@@ -4,12 +4,20 @@
 
         {{!-- Sheet Header --}}
         <header class="sheet-header">
-            <div class="header-fields">
+            <div class="header-fields flex flex-row gap-1">
                 <input class="name" name="name" type="text" value="{{actor.name}}" placeholder="Name" />
+                <div class="field w-12">
+                    <label>{{localize "FT.character.sheet.label.ap"}}</label>
+                    <input type="text" value="{{system.ap}}" readonly>
+                </div>
+                <div class="field w-28">
+                    <label>{{localize "FT.character.sheet.label.xp"}}</label>
+                    <input type="number" name="system.xp" value="{{system.xp}}" min="0">
+                </div>
             </div>
         </header>
 
-        {{!-- Right Side --}}
+        {{!-- Sheet Body --}}
         <section class="sheet-body">
             {{!-- Sheet Tab Navigation --}}
             <nav class="sheet-tabs tabs" data-group="primary">
@@ -19,172 +27,27 @@
                 <a class="item" data-tab="items">{{localize "FT.character.sheet.tab.items"}}</a>
                 <a class="item" data-tab="spells">{{localize "FT.character.sheet.tab.spells"}}</a>
             </nav>
-            {{!-- Sheet Body --}}
+            {{!-- Tab Contentsa --}}
             <div>
                 {{!-- Character Tab --}}
-                <div class="tab notes" data-group="primary" data-tab="character">
-                    <div class="flex flex-col gap-2 justify-start">
-                        {{!-- Type, Race, Job --}}
-                        <div class="grid grid-cols-3 gap-1 m-0 p-0">
-                            <div class="field">
-                                <label>Type</label>
-                                <select name="system.type">
-                                    {{selectOptions FT.character.type selected=system.type localize=true
-                                    }}
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label>Race</label>
-                                <input type="text" name="system.race" list="race">
-                                <datalist id="race">
-                                    {{selectOptions FT.character.race localize=true }}
-                                </datalist>
-                            </div>
-                            <div class="field"><label>Age</label><input type="number" min="16"></div>
-                            <div class="field">
-                                <label>Job</label>
-                                <input type="text" name="system.job.name" value="{{system.job.name}}">
-                            </div>
-                            <div class="field"><label>Pay</label>
-                                <input type="number" name="system.job.pay" value="{{system.job.pay}}">
-                            </div>
-                            <div class="field"><label>Risk</label>
-                                <div class="grid grid-cols-2 gap-1">
-                                    <input type="number" name="system.job.risk.low" value="{{system.job.risk.low}}"
-                                        min=" 3" max="11">
-                                    <input type="number" name="system.job.risk.high" value="{{system.job.risk.high}}"
-                                        min="12" max="18">
-                                </div>
-                            </div>
-                        </div>
-                        {{!-- Attributes --}}
-                        <div class="flex flex-row gap-2 m-0 p-0">
-                            <div class="flex flex-col gap-1 shrink">
-                                {{#each system.attributes}}
-                                <div class="attribute" data-attribute="{{@key}}">
-                                    <label class="clickable" data-action="attribute-roll">{{@key}}</label>
-                                    {{!-- <input type="number" name="system.attributes.{{@key}}.value"
-                                        value="{{this.value}}" />
-                                    --}}
-                                    <input type="number" name="system.attributes.{{@key}}.max" value="{{this.max}}" />
-                                </div>
-                                {{/each}}
-                            </div>
-                            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
-                        </div>
-                        {{!-- Action/Combat --}}
-                        <div class="flex flex-col gap-1 m-0 p-0">
-                            {{!-- Weapons --}}
-                            {{#each organizedItems.weapon as |weapon id|}}
-                            {{#if (eq weapon.location "equipped")}}
-                            <div class="grid grid-cols-4 gap-1">
-                                <img class="w-8 h-8" src="{{weapon.img}}" alt="">
-                                <div>{{weapon.name}}</div>
-                            </div>
-                            {{/if}}
-                            {{/each}}
-                            {{!-- Armour --}}
-                            {{#each organizedItems.armour as |armour id|}}
-                            {{#if (eq armour.location "equipped")}}
-                            <div class="grid grid-cols-4 gap-1">
-                                <img class="w-8 h-8" src="{{armour.img}}" alt="">
-                                <div>{{armour.name}}</div>
-                            </div>
-                            {{/if}}
-                            {{/each}}
-                        </div>
-                    </div>
+                <div class="tab character" data-group="primary" data-tab="character">
+                    {{> (concat FT.path "/templates/sheets/_character.hbs")}}
                 </div>
                 {{!-- Notes Tab --}}
                 <div class="tab notes" data-group="primary" data-tab="notes">
                     {{editor system.notes target="system.notes" button=true owner=owner editable=editable}}
                 </div>
                 {{!-- Talents Tab --}}
-                <div class="tab skills" data-group="primary" data-tab="talents">
-                    {{#if organizedItems.talent}}
-                    <table>
-                        <thead>
-                            <tr>
-                                {{#if settings.showItemIcons}}<th></th>{{/if}}
-                                <th>{{localize 'FT.character.sheet.table.talents.name'}}</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        {{#each (sort organizedItems.talent 'name') as |talent id|}}
-                        <tr data-item-id="{{talent._id}}">
-                            {{#if ../settings.showItemIcons}}
-                            <td><img src="{{talent.img}}" /> </td>
-                            {{/if}}
-                            <td>{{talent.name}}</td>
-                            <td><button><i class="icon-rolling-dice"></i></button></td>
-                            <td class="shrink">
-                                <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i
-                                        class="fa fa-comment"></i></a>
-                                <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i
-                                        class="fas fa-edit"></i></a>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </table>
-                    {{/if}}
+                <div class="tab talents" data-group="primary" data-tab="talents">
+                    {{> (concat FT.path "/templates/sheets/_character-talents.hbs")}}
                 </div>
                 {{!-- Items Tab --}}
                 <div class="tab items" data-group="primary" data-tab="items">
-                    {{#if organizedItems.item}}
-                    <table>
-                        <thead>
-                            <tr>
-                                {{#if settings.showItemIcons}}<th></th>{{/if}}
-                                <th>{{localize 'FT.character.sheet.table.items.name'}}</th>
-                                <th>{{localize 'FT.character.sheet.table.items.cost'}}</th>
-                                <th>{{localize 'FT.character.sheet.table.items.wt'}}</th>
-                                <th>{{localize 'FT.character.sheet.table.items.location'}}</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        {{#each (sort organizedItems.item 'name') as |item id|}}
-                        <tr data-item-id="{{item._id}}">
-                            {{#if ../settings.showItemIcons}}<td><img src="{{item.img}}" /> </td>
-                            {{/if}}
-                            <td>{{item.name}}</td>
-                            <td>{{item.cost}}</td>
-                            <td>{{item.wt}}</td>
-                            <td>
-                                {{#if (eq item.system.location 'equipped')}}
-                                <a class="document-set-field mr-2" data-field="system.location" data-value="carried"
-                                    title="{{localize 'FT.character.sheet.button.equipped'}}"><i
-                                        class="icon-battle-gear"></i></a>
-                                {{else if (eq item.system.location 'carried')}}
-                                <a class="document-set-field mr-2" data-field="system.location" data-value="stowed"
-                                    title="{{localize 'FT.character.sheet.button.carried'}}"><i
-                                        class="icon-knapsack"></i></a>
-                                {{else if (eq item.system.location 'stowed')}}
-                                <a class="document-set-field mr-2" data-field="system.location" data-value="stored"
-                                    title="{{localize 'FT.character.sheet.button.stowed'}}"><i
-                                        class="icon-chest"></i></a>
-                                {{else if (eq item.system.location 'stored')}}
-                                <a class="document-set-field mr-2" data-field="system.location" data-value="equipped"
-                                    title="{{localize 'FT.character.sheet.button.stored'}}"><i
-                                        class="icon-white-tower"></i></a>
-                                {{/if}}
-                            </td>
-                            <td class="shrink">
-                                <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i
-                                        class="fa fa-comment"></i></a>
-                                <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i
-                                        class="fas fa-edit"></i></a>
-                                <a class="document-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
-                                        class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </table>
-                    {{/if}}
+                    {{> (concat FT.path "/templates/sheets/_character-items.hbs")}}
                 </div>
                 {{!-- Spells Tab --}}
                 <div class="tab spells" data-group="primary" data-tab="spells">
-                    Spells
+                    {{> (concat FT.path "/templates/sheets/_character-spells.hbs")}}
                 </div>
             </div>
         </section>

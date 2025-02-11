@@ -23,25 +23,28 @@
 
     & .sheet-tabs {
       @apply m-0;
+      & .tab {
+        @apply overflow-auto;
+      }
       & .item {
         @apply m-0 p-0.5 text-xs uppercase;
       }
     }
 
     & .field {
-      @apply leading-2.5;
+      @apply flex flex-col gap-1 mt-auto mb-0 !leading-2;
       & label {
         @apply m-0 p-0 text-[0.5rem] uppercase;
       }
     }
 
     & .attribute {
-      @apply flex flex-row gap-1;
+      @apply flex flex-row gap-1 justify-start;
       & label {
         @apply bg-black text-xl text-white text-center uppercase m-0 p-1 min-w-10 rounded-sm;
       }
       & input {
-        @apply !text-center !text-xl !h-full min-w-16;
+        @apply !text-center !text-xl !h-full w-16;
       }
     }
 
@@ -51,7 +54,7 @@
 
     & .editor-content,
     & .tox.tox-tinymce {
-      @apply min-h-[12rem];
+      @apply h-[25rem];
     }
   }
 }

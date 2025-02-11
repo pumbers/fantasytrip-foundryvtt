@@ -1,0 +1,33 @@
+{{#if organizedItems.spell}}
+<table>
+    <thead>
+        <tr>
+            {{#if settings.showItemIcons}}<th></th>{{/if}}
+            <th class="w-full">{{localize 'FT.character.sheet.table.spells.name'}}</th>
+            <th>{{localize 'FT.character.sheet.table.spells.iq'}}</th>
+            <th>{{localize 'FT.character.sheet.table.spells.st'}}</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    {{#each (sort organizedItems.spell 'name') as |spell|}}
+    <tr data-item-id="{{spell._id}}">
+        {{#if ../settings.showItemIcons}}
+        <td><img src="{{spell.img}}" /> </td>
+        {{/if}}
+        <td>{{spell.name}}</td>
+        <td>{{spell.iq}}</td>
+        <td>{{spell.st}}</td>
+        <td><button>Cast</button></td>
+        <td class="shrink">
+            <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i
+                    class="fa fa-comment"></i></a>
+            <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i
+                    class="fas fa-edit"></i></a>
+            <a class="document-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
+                    class="fas fa-trash"></i></a>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+{{/if}}

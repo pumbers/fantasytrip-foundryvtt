@@ -1,0 +1,81 @@
+<div class="flex flex-col gap-2 justify-start">
+    {{!-- Type, Race, Job --}}
+    <div class="grid grid-cols-4 gap-1 m-0 p-0">
+        <div class="field">
+            <label>{{localize "FT.character.sheet.label.type"}}</label>
+            <select name="system.type">
+                {{selectOptions FT.character.types selected=system.type localize=true
+                }}
+            </select>
+        </div>
+        <div class="field col-span-2">
+            <label>{{localize "FT.character.sheet.label.race"}}</label>
+            <input type="text" name="system.race" value="{{system.race}}" list="race">
+            <datalist id="race">
+                {{#each FT.character.races}}
+                <option value="{{localize .}}">{{localize .}}</option>
+                {{/each}}
+            </datalist>
+        </div>
+        <div class="field">
+            <label>{{localize "FT.character.sheet.label.age"}}</label>
+            <input type="number" min="16">
+        </div>
+        <div class="field col-span-2">
+            <label>{{localize "FT.character.sheet.label.job"}}</label>
+            <input type="text" name="system.job.name" value="{{system.job.name}}">
+        </div>
+        <div class="field">
+            <label>{{localize "FT.character.sheet.label.pay"}}</label>
+            <input type="number" name="system.job.pay" value="{{system.job.pay}}">
+        </div>
+        <div class="field">
+            <label>{{localize "FT.character.sheet.label.risk"}}</label>
+            <div class="grid grid-cols-2 gap-1">
+                <input type="number" name="system.job.risk.low" value="{{system.job.risk.low}}" min=" 3" max="11">
+                <input type="number" name="system.job.risk.high" value="{{system.job.risk.high}}" min="12" max="18">
+            </div>
+        </div>
+    </div>
+    {{!-- Attributes --}}
+    <div class="flex flex-row gap-2 justify-between m-0 p-0">
+        <div class="flex flex-col gap-1">
+            {{#*inline "attribute"}}
+            <div class="attribute" data-attribute="{{key}}">
+                <label class="clickable" data-action="attribute-roll">{{key}}</label>
+                <input class="" type="number" name="system.{{key}}.max" value="{{attr.max}}" />
+                {{#if adj}}
+                <input class="shrink" type="number" name="system.{{key}}.value" value="{{attr.value}}" min="0"
+                    max="{{attr.max}}" />
+                {{/if}}
+            </div>
+            {{/inline}}
+            {{> attribute key="st" attr=system.st adj=true}}
+            {{> attribute key="dx" attr=system.dx adj=true}}
+            {{> attribute key="iq" attr=system.iq}}
+            {{> attribute key="ma" attr=system.ma adj=true}}
+        </div>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+    </div>
+    {{!-- Action/Combat --}}
+    <div class="flex flex-col gap-1 m-0 p-0">
+        {{!-- Weapons --}}
+        {{#each organizedItems.weapon as |weapon id|}}
+        {{#if (eq weapon.location "equipped")}}
+        <div class="grid grid-cols-4 gap-1">
+            <img class="w-8 h-8" src="{{weapon.img}}" alt="">
+            <div>{{weapon.name}}</div>
+        </div>
+        {{/if}}
+        {{/each}}
+        {{!-- Armour --}}
+        {{#each organizedItems.armour as |armour id|}}
+        {{#if (eq armour.location "equipped")}}
+        <div class="grid grid-cols-4 gap-1">
+            <img class="w-8 h-8" src="{{armour.img}}" alt="">
+            <div>{{armour.name}}</div>
+        </div>
+        {{/if}}
+        {{/each}}
+    </div>
+</div>

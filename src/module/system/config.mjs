@@ -11,18 +11,18 @@ FT.path = "systems/fantasytrip";
 /* ------------------------------------------- */
 
 FT.character = {
-  type: {
+  types: {
     hero: "FT.character.type.hero",
     wizard: "FT.character.type.wizard",
   },
-  race: {
-    human: "FT.character.race.human",
-    elf: "FT.character.race.elf",
-    dwarf: "FT.character.race.dwarf",
-    halfling: "FT.character.race.halfling",
-    orc: "FT.character.race.orc",
-    goblin: "FT.character.race.human",
-  },
+  races: [
+    "FT.character.race.human",
+    "FT.character.race.elf",
+    "FT.character.race.dwarf",
+    "FT.character.race.halfling",
+    "FT.character.race.orc",
+    "FT.character.race.goblin",
+  ],
 };
 
 /* ------------------------------------------- */

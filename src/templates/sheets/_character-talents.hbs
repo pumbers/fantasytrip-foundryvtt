@@ -1,0 +1,29 @@
+{{#if organizedItems.talent}}
+<table>
+    <thead>
+        <tr>
+            {{#if settings.showItemIcons}}<th></th>{{/if}}
+            <th class="w-full">{{localize 'FT.character.sheet.table.talents.name'}}</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    {{#each (sort organizedItems.talent 'name') as |talent|}}
+    <tr data-item-id="{{talent._id}}">
+        {{#if ../settings.showItemIcons}}
+        <td><img src="{{talent.img}}" /> </td>
+        {{/if}}
+        <td>{{talent.name}}</td>
+        <td><button>Roll</button></td>
+        <td class="shrink">
+            <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i
+                    class="fa fa-comment"></i></a>
+            <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i
+                    class="fas fa-edit"></i></a>
+            <a class="document-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
+                    class="fas fa-trash"></i></a>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+{{/if}}

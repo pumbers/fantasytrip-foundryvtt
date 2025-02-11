@@ -15,8 +15,16 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
 export class FTTalentData extends FTBaseItemData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
-      iq: new SchemaField({ min: new NumberField({ initial: 0 }) }),
+      iq: new NumberField({ initial: 0 }),
       cost: new NumberField({ initial: 0 }),
+    });
+  }
+}
+
+export class FTSpellData extends FTTalentData {
+  static defineSchema() {
+    return Object.assign(super.defineSchema(), {
+      st: new NumberField({ initial: 0 }),
     });
   }
 }
@@ -38,7 +46,7 @@ export class FTWeaponData extends FTItemData {
       damage: new StringField(),
       st: new NumberField({ initial: 0 }),
       //
-      skill: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+      talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
     });
   }
 }

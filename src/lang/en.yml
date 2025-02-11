@@ -52,6 +52,15 @@ FT:
         talents: Talents
         items: Items
         spells: Spells
+      label:
+        type: Type
+        race: Race
+        age: Age
+        job: Job
+        pay: Pay
+        risk: Risk
+        ap: AP
+        xp: XP
       table:
         talents:
           name: Talent
@@ -61,6 +70,10 @@ FT:
           cost: Cost
           wt: Wt.
           location: Loc.
+        spells:
+          name: Name
+          iq: IQ
+          st: ST
       button:
         chat: Send to chat
         create: Add

@@ -23,20 +23,20 @@ export class FTCharacter extends Actor {
   // ActorDataModel.prepareDerivedData()
   // Actor.prepareDerivedData()
 
-  prepareBaseData() {
-    console.log("FTCharacter.prepareBaseData()", this);
-    super.prepareBaseData();
-  }
+  // prepareBaseData() {
+  //   console.log("FTCharacter.prepareBaseData()", this);
+  //   super.prepareBaseData();
+  // }
 
-  prepareEmbeddedDocuments() {
-    console.log("FTCharacter.prepareEmbeddedDocuments()", this);
-    super.prepareEmbeddedDocuments();
-  }
+  // prepareEmbeddedDocuments() {
+  //   console.log("FTCharacter.prepareEmbeddedDocuments()", this);
+  //   super.prepareEmbeddedDocuments();
+  // }
 
-  prepareDerivedData() {
-    console.log("FTCharacter.prepareDerivedData()", this);
-    super.prepareDerivedData();
-  }
+  // prepareDerivedData() {
+  //   console.log("FTCharacter.prepareDerivedData()", this);
+  //   super.prepareDerivedData();
+  // }
 
   /* ------------------------------------------- */
   /*  Action & Utility Functions                 */
