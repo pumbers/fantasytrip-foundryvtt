@@ -1,0 +1,13 @@
+# IDE
+.idea/
+.vs/
+
+# Node Modules
+node_modules/
+npm-debug.log
+
+# Other
+import
+build
+dist
+.DS_Store

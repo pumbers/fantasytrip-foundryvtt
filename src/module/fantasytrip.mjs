@@ -1,0 +1,138 @@
+// Import Modules
+import { FT } from "./system/config.mjs";
+import { FTCharacterData } from "./data/actor-data.mjs";
+import { FTCharacter } from "./documents/character.mjs";
+import { FTCharacterSheet } from "./sheets/character-sheet.mjs";
+
+import { FTItem } from "./documents/item.mjs";
+import { FTItemData, FTTalentData, FTWeaponData, FTArmourData } from "./data/item-data.mjs";
+import { FTItemSheet } from "./sheets/item-sheet.mjs";
+
+import * as Macros from "./util/macros.mjs";
+import * as Helpers from "./util/helpers.mjs";
+import "./util/extensions.mjs";
+
+const { StringField, BooleanField } = foundry.data.fields;
+
+/* -------------------------------------------- */
+/*  Define Module Structure                         
+/* -------------------------------------------- */
+
+// globalThis.FT = {
+//   entities: { FTCharacter },
+// };
+
+Hooks.once("init", async function () {
+  console.info(`FT | Initializing the Fantasy Trip Game System`);
+
+  /* -------------------------------------------- */
+  /*  Config                            
+  /* -------------------------------------------- */
+
+  // Add custom constants for configuration.
+  CONFIG.FT = FT;
+
+  // Active Effects are never copied to the Actor,
+  // but will still apply to the Actor from within the Item
+  // if the transfer property on the Active Effect is true.
+  CONFIG.ActiveEffect.legacyTransferral = false;
+
+  /* -------------------------------------------- */
+  /*  Game Settings                            
+  /* -------------------------------------------- */
+
+  // Add utility classes to the global game object so that they're more easily
+  // accessible in global contexts.
+  game.ft = {
+    FTCharacter,
+    FTItem,
+  };
+
+  /**
+   * Set an initiative formula for the system
+   * @type {String}
+   */
+  CONFIG.Combat.initiative = {
+    formula: "1d10",
+    decimals: 0,
+  };
+
+  /*
+   * Define game settings
+   */
+  game.settings.register("fantasytrip", "showItemIcons", {
+    name: game.i18n.localize("FT.game.settings.showItemIcons.name"),
+    hint: game.i18n.localize("FT.game.settings.showItemIcons.hint"),
+    scope: "world",
+    type: new BooleanField({ initial: true }),
+    config: true,
+  });
+
+  /* -------------------------------------------- */
+  /*  Define Entities & Sheets                           
+  /* -------------------------------------------- */
+
+  /*
+   * Define custom Entity classes
+   */
+  CONFIG.Actor.dataModels.character = FTCharacterData;
+  CONFIG.Actor.documentClass = FTCharacter;
+  CONFIG.Actor.trackableAttributes = {
+    character: {
+      bar: ["attributes.st"],
+    },
+  };
+
+  CONFIG.Item.dataModels = {
+    skill: FTTalentData,
+    item: FTItemData,
+    weapon: FTWeaponData,
+    armour: FTArmourData,
+  };
+  CONFIG.Item.documentClass = FTItem;
+
+  /*
+   * Register Sheet Application Classes
+   */
+  Actors.unregisterSheet("core", ActorSheet);
+  Actors.registerSheet("FT", FTCharacterSheet, { types: ["character"], makeDefault: true });
+  // Actors.registerSheet("FT", FTNpcSheet, { types: ["npc"], makeDefault: true });
+  Items.unregisterSheet("core", ItemSheet);
+  Items.registerSheet("FT", FTItemSheet, { makeDefault: true });
+
+  /* -------------------------------------------- */
+  /*  Handlebars Helpers & Partials                      
+  /* -------------------------------------------- */
+
+  Handlebars.registerHelper("log", Helpers.log);
+  Handlebars.registerHelper("stringify", Helpers.stringify);
+  Handlebars.registerHelper("property", Helpers.property);
+  Handlebars.registerHelper("offset", Helpers.offset);
+  Handlebars.registerHelper("object", Helpers.object);
+  Handlebars.registerHelper("array", Helpers.array);
+  Handlebars.registerHelper("range", Helpers.range);
+  Handlebars.registerHelper("abbrev", Helpers.abbrev);
+  Handlebars.registerHelper("abs", Helpers.abs);
+  Handlebars.registerHelper("sort", Helpers.sort);
+  Handlebars.registerHelper("includes", Helpers.includes);
+  Handlebars.registerHelper("between", Helpers.between);
+  Handlebars.registerHelper("startsWith", Helpers.startsWith);
+
+  loadTemplates([
+    `${CONFIG.FT.path}/templates/sheets/character-sheet.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/item-sheet.hbs`,
+  ]);
+});
+
+/* -------------------------------------------- */
+/*  Hotbar Macros                               
+/* -------------------------------------------- */
+
+Hooks.once("ready", async function () {
+  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+  Hooks.on("hotbarDrop", (bar, data, slot) => Macros.createHotbarMacro(data, slot));
+});
+
+// Hooks.on("ready", () => {
+//   ui.notifications.info("Fantasy Trip for Foundry VTT is © Code Theoretic Inc.");
+// });

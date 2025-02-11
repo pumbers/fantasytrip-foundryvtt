@@ -1,0 +1,50 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "eslint:recommended",
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "ignorePatterns": ["gulpfile.js", "babel.config.js", "jest.config.js"],
+  "rules": {
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "no-unused-vars": ["error", { "varsIgnorePattern": ".*Key" }]
+  },
+  "globals": {
+    "fantasytrip": true,
+    "$": true,
+    "foundry": true,
+    "fromUuid": true,
+    "fromUuidSync": true,
+    "CONFIG": true,
+    "CONST": true,
+    "Hooks": true,
+    "game": true,
+    "Handlebars": true,
+    "loadTemplates": true,
+    "renderTemplate": true,
+    "getProperty": true,
+    "foundry.utils.mergeObject": true,
+    "ui": true,
+    "Actors": true,
+    "Actor": true,
+    "ActorSheet": true,
+    "Dialog": true,
+    "Items": true,
+    "Item": true,
+    "ItemSheet": true,
+    "ChatMessage": true,
+    "Macro": true,
+    "Roll": true,
+    "test": true,
+    "expect": true,
+    "module": true
+  }
+}

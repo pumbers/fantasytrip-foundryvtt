@@ -1,0 +1,46 @@
+name: fantasytrip
+title: Fantasy Trip
+description: Fantasy Trip for FoundryVTT!
+version: 0.1.0
+license: LICENSE
+compatibility:
+  minimum: "12"
+  verified: "12.331"
+authors:
+  - name: 3rd Dog
+    email: codetheoretic@gmail.com
+esmodules:
+  - module/fantasytrip.mjs
+styles:
+  - css/fantasytrip.css
+  - css/icons.css
+  - css/character-sheet.css
+  - css/item-sheet.css
+scripts:
+# packs:
+#   - name: starting-items
+#     label: Starting Items
+#     path: /packs/starting-items
+#     type: Item
+#     system: fantasytrip
+#   - name: weapons
+#     label: Weapons
+#     path: /packs/weapons
+#     type: Item
+#     system: fantasytrip
+languages:
+  - lang: en
+    name: English
+    path: lang/en.json
+grid:
+  distance: 5
+  units: ft
+documentTypes:
+  Actor:
+    character: {}
+  Item:
+    talent: {}
+    item: {}
+    weapon: {}
+    armour: {}
+    spell: {}

@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+.fantasy-trip {
+  input,
+  textarea,
+  select {
+    @apply w-full border rounded-sm m-0 p-1 !appearance-auto;
+    &::placeholder {
+      @apply opacity-80;
+    }
+    &:focus {
+      @apply outline-none shadow-none;
+    }
+    &[readonly] {
+      @apply cursor-not-allowed bg-transparent;
+    }
+    &[disabled] {
+      @apply cursor-not-allowed text-black/50 border-none;
+    }
+  }
+
+  select {
+    height: calc(var(--form-field-height));
+  }
+
+  table {
+    @apply text-sm m-0 border-none w-full;
+    thead {
+      @apply font-bold uppercase text-[0.5rem];
+    }
+    tr:nth-child(even) {
+      @apply bg-black/10;
+    }
+    th,
+    td {
+      @apply p-[2px] whitespace-nowrap text-center;
+      &:first-child {
+        @apply text-left w-6;
+      }
+      &:nth-child(2) {
+        @apply text-left;
+      }
+      &:last-child {
+        @apply text-right;
+      }
+      img {
+        @apply border-none m-[1px] min-w-4;
+      }
+      i[class^="icon-"] {
+        @apply align-text-top;
+      }
+    }
+  }
+
+  button {
+    @apply bg-orange-300 text-black border-none w-auto m-0 px-1 cursor-pointer leading-4;
+    &:hover {
+      @apply bg-orange-200 shadow-none;
+    }
+  }
+
+  .clickable:hover {
+    @apply !bg-orange-200 !text-black cursor-pointer;
+  }
+}

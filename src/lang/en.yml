@@ -1,0 +1,80 @@
+FT:
+  # Game
+  game:
+    settings:
+      showItemIcons:
+        name: Show Item Icons
+        hint: Show icons in item tables?
+  # General Messages
+  messages:
+    createHotbarMacroItemNotOwned: You can only create macro buttons for owned Items.
+    useItemMacroItemNotOwned: Your controlled Actor does not have that item.
+    useItemMacroCannotDetermineActor: You need to select a token so that I can determine who's acting.
+  options:
+    none: -- None --
+  effect:
+    name: Effect
+    modes:
+      - Custom
+      - Multiply
+      - Add
+      - Downgrade
+      - Upgrade
+      - Override
+    source:
+      name: Source
+      type: Type
+    label:
+      attribute: Attribute
+      change: Change
+      value: Value
+    action:
+      create: Create
+      edit: Edit
+      toggle: Toggle
+      delete: Delete
+  #
+  character:
+    type:
+      hero: Hero
+      wizard: Wizard
+    race:
+      human: Human
+      elf: Elf
+      dwarf: Dwarf
+      halfling: Halfling
+      orc: Orc
+      goblin: Goblin
+    sheet:
+      tab:
+        character: Character
+        notes: Notes
+        talents: Talents
+        items: Items
+        spells: Spells
+      table:
+        talents:
+          name: Talent
+          iq: IQ
+        items:
+          name: Item
+          cost: Cost
+          wt: Wt.
+          location: Loc.
+      button:
+        chat: Send to chat
+        create: Add
+        edit: Edit
+        delete: Delete
+  item:
+    type:
+      talent: Talent
+      item: Item
+      weapon: Weapon
+      armour: Armour
+      spell: Spell
+    sheet:
+      tab:
+        notes: Notes
+        settings: Settings
+        effects: Effects

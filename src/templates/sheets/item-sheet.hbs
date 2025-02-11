@@ -1,0 +1,39 @@
+<form class="{{cssClass}}" autocomplete="off">
+    {{log .}}
+    <div class="sheet-content">
+
+        <!-- Sheet Heaader -->
+        <header class="sheet-header">
+            <img class="item-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+            <div class="header-fields">
+                <input class="name" name="name" type="text" value="{{item.name}}" placeholder="Name" />
+                <div class="flex flex-row justify-between font-bold uppercase">
+                    <span>{{localize (concat "FT.item.type." item.type)}}</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sheet Tab Navigation -->
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" title="Notes" data-tab="notes">{{localize
+                "FT.item.sheet.tab.notes"}}</a>
+            <a class="item" title="Settings" data-tab="settings">{{localize
+                "FT.item.sheet.tab.settings"}}</i></a>
+            <a class="item" title="Effects" data-tab="effects">{{localize
+                "FT.item.sheet.tab.effects"}}</i></a>
+        </nav>
+
+        <!-- Sheet Body -->
+        <section class="sheet-body">
+            <div class="tab" data-group="primary" data-tab="notes">
+                {{editor system.description target="system.notes" button=true owner=owner editable=editable}}
+            </div>
+            <div class="tab" data-group="primary" data-tab="settings">
+                Settings
+            </div>
+            <div class="tab" data-group="primary" data-tab="effects">
+                Effects
+            </div>
+        </section>
+    </div>
+</form>

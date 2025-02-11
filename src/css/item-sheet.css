@@ -1,0 +1,12 @@
+@reference "./fantasytrip.css";
+
+.fantasy-trip.item.sheet {
+  /*  */
+  & .window-content {
+    @apply bg-none bg-white m-0 p-0;
+  }
+  /*  */
+  & .sheet-content {
+    @apply bg-white p-2;
+  }
+}
