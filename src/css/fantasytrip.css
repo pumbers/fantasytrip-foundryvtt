@@ -58,52 +58,10 @@
     }
   }
 
-  /* & table {
-    @apply text-sm m-0 border-none w-full;
-    & thead {
-      text-shadow: none;
-      @apply bg-slate-400 border-none font-bold uppercase text-[0.5rem] text-white;
+  & .field {
+    @apply flex flex-col gap-1 mt-auto mb-0 !leading-2;
+    & label {
+      @apply m-0 p-0 text-[0.5rem] uppercase;
     }
-    & tr:nth-child(even) {
-      @apply bg-slate-300;
-    }
-    & th,
-    & td {
-      @apply m-0 p-0 whitespace-nowrap text-center;
-      &:first-child {
-        @apply text-left w-4;
-      }
-      &:nth-child(2) {
-        @apply text-left;
-      }
-      &:last-child {
-        @apply text-right;
-      }
-      & img {
-        @apply border-none m-0 p-0 min-w-[0.875rem];
-      }
-      &i[class^="icon-"] {
-        @apply align-text-top;
-      }
-      & tfoot {
-        text-shadow: none;
-        @apply bg-slate-400 border-none font-bold uppercase text-[0.5rem] text-white;
-      }
-    }
-    & tfoot {
-      text-shadow: none;
-      @apply bg-slate-200 border-none font-bold uppercase text-[0.5rem] text-black;
-    }
-  } */
-
-  & button {
-    @apply bg-orange-300 text-black border-none w-auto min-w-6 m-0 p-0 cursor-pointer;
-    &:hover {
-      @apply bg-orange-200 shadow-none;
-    }
-  }
-
-  & .clickable:hover {
-    @apply !bg-orange-200 !text-black cursor-pointer;
   }
 }
