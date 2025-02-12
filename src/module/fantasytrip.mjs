@@ -121,7 +121,9 @@ Hooks.once("init", async function () {
 
   loadTemplates([
     `${CONFIG.FT.path}/templates/sheets/character-sheet.hbs`,
-    `${CONFIG.FT.path}/templates/sheets/_character.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/_character-stats.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/_character-status.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/_character-combat.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-talents.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-items.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-spells.hbs`,

@@ -57,25 +57,12 @@
         </div>
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
     </div>
+    {{!-- Status --}}
+    <div class="flex flex-col gap-1 m-0 p-0">
+        {{> (concat FT.path "/templates/sheets/_character-status.hbs")}}
+    </div>
     {{!-- Action/Combat --}}
     <div class="flex flex-col gap-1 m-0 p-0">
-        {{!-- Weapons --}}
-        {{#each organizedItems.weapon as |weapon id|}}
-        {{#if (eq weapon.location "equipped")}}
-        <div class="grid grid-cols-4 gap-1">
-            <img class="w-8 h-8" src="{{weapon.img}}" alt="">
-            <div>{{weapon.name}}</div>
-        </div>
-        {{/if}}
-        {{/each}}
-        {{!-- Armour --}}
-        {{#each organizedItems.armour as |armour id|}}
-        {{#if (eq armour.location "equipped")}}
-        <div class="grid grid-cols-4 gap-1">
-            <img class="w-8 h-8" src="{{armour.img}}" alt="">
-            <div>{{armour.name}}</div>
-        </div>
-        {{/if}}
-        {{/each}}
+        {{> (concat FT.path "/templates/sheets/_character-combat.hbs")}}
     </div>
 </div>

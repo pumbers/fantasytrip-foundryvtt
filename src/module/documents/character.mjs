@@ -33,10 +33,37 @@ export class FTCharacter extends Actor {
   //   super.prepareEmbeddedDocuments();
   // }
 
-  // prepareDerivedData() {
-  //   console.log("FTCharacter.prepareDerivedData()", this);
-  //   super.prepareDerivedData();
-  // }
+  prepareDerivedData() {
+    console.log("FTCharacter.prepareDerivedData()", this);
+    super.prepareDerivedData();
+    const system = this.system;
+
+    // Calculate Adjusted Attribute Values
+    system.st.value = Math.max(system.st.max - system.damage - system.fatigue, 0);
+
+    // Calculate ST Fatigue/Damage Thresholds
+    system.st.amber = Math.ceil(system.st.max / 2);
+    system.st.red = Math.ceil(system.st.max / 5);
+
+    // Calculate Encumbrance
+    const capacity = [
+      system.st.max * 2,
+      system.st.max * 3,
+      system.st.max * 4,
+      system.st.max * 6,
+      system.st.max * 8,
+      system.st.max * 10,
+      system.st.max * 15,
+    ];
+
+    const load = Array.from(this.items)
+      .filter((item) => ["item", "weapon", "armour"].includes(item.type))
+      .filter((item) => ["carried", "equipped"].includes(item.system.location))
+      .reduce((load, item) => load + item.system.wt, 0);
+    const level = capacity.findIndex((val) => val > load);
+
+    system.encumbrance = { capacity, load, level };
+  }
 
   /* ------------------------------------------- */
   /*  Action & Utility Functions                 */

@@ -1,3 +1,11 @@
+{{#*inline "actions"}}
+<td class="shrink">
+    <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i class="fa fa-comment"></i></a>
+    <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i class="fas fa-edit"></i></a>
+    <a class="document-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i class="fas fa-trash"></i></a>
+</td>
+{{/inline}}
+
 {{#if organizedItems.talent}}
 <table>
     <thead>
@@ -15,14 +23,7 @@
         {{/if}}
         <td>{{talent.name}}</td>
         <td><button>Roll</button></td>
-        <td class="shrink">
-            <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i
-                    class="fa fa-comment"></i></a>
-            <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i
-                    class="fas fa-edit"></i></a>
-            <a class="document-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
-                    class="fas fa-trash"></i></a>
-        </td>
+        {{> actions}}
     </tr>
     {{/each}}
 </table>

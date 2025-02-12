@@ -29,7 +29,18 @@
                 {{editor system.description target="system.notes" button=true owner=owner editable=editable}}
             </div>
             <div class="tab" data-group="primary" data-tab="settings">
-                Settings
+                {{#if (or (eq item.type "item") (eq item.type "weapon") (eq item.type "armour"))}}
+                <div class="grid grid-cols-4 gap-1">
+                    <div class="field">
+                        <label>{{localize "FT.item.sheet.label.cost"}}</label>
+                        <input type="number" name="system.cost" value="{{system.cost}}" min="0">
+                    </div>
+                    <div class="field">
+                        <label>{{localize "FT.item.sheet.label.wt"}}</label>
+                        <input type="number" name="system.wt" value="{{system.wt}}" min="0">
+                    </div>
+                </div>
+                {{/if}}
             </div>
             <div class="tab" data-group="primary" data-tab="effects">
                 Effects

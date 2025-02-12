@@ -2,12 +2,12 @@
 
 .fantasy-trip.character.sheet {
   /*  */
-  .window-content {
+  & .window-content {
     @apply bg-none bg-white m-0 p-0;
   }
 
   /*  */
-  .sheet-content {
+  & .sheet-content {
     @apply bg-white p-2;
 
     & .sheet-header {

@@ -41,17 +41,20 @@ export class FTCharacterData extends foundry.abstract.TypeDataModel {
       }),
       //
       notes: new HTMLField(),
+      //
+      fatigue: new NumberField({ initial: 0 }),
+      damage: new NumberField({ initial: 0 }),
     };
   }
 
-  prepareBaseData() {
-    super.prepareBaseData();
-    console.log("FTCharacterData.prepareBaseData()", this);
-  }
+  // prepareBaseData() {
+  //   super.prepareBaseData();
+  //   console.log("FTCharacterData.prepareBaseData()", this);
+  // }
 
   prepareDerivedData() {
     super.prepareDerivedData();
-    console.log("FTCharacterData.prepareDerivedData()", this);
+    // console.log("FTCharacterData.prepareDerivedData()", this);
 
     // Calculate attribute points
     const { st, dx, iq } = this;

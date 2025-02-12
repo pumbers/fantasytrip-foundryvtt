@@ -21,7 +21,7 @@
         <section class="sheet-body">
             {{!-- Sheet Tab Navigation --}}
             <nav class="sheet-tabs tabs" data-group="primary">
-                <a class="item" data-tab="character">{{localize "FT.character.sheet.tab.character"}}</a>
+                <a class="item" data-tab="stats">{{localize "FT.character.sheet.tab.stats"}}</a>
                 <a class="item" data-tab="notes">{{localize "FT.character.sheet.tab.notes"}}</a>
                 <a class="item" data-tab="talents">{{localize "FT.character.sheet.tab.talents"}}</a>
                 <a class="item" data-tab="items">{{localize "FT.character.sheet.tab.items"}}</a>
@@ -30,8 +30,8 @@
             {{!-- Tab Contentsa --}}
             <div>
                 {{!-- Character Tab --}}
-                <div class="tab character" data-group="primary" data-tab="character">
-                    {{> (concat FT.path "/templates/sheets/_character.hbs")}}
+                <div class="tab stats" data-group="primary" data-tab="stats">
+                    {{> (concat FT.path "/templates/sheets/_character-stats.hbs")}}
                 </div>
                 {{!-- Notes Tab --}}
                 <div class="tab notes" data-group="primary" data-tab="notes">

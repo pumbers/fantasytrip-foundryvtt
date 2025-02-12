@@ -16,7 +16,7 @@ export class FTCharacterSheet extends ActorSheet {
         {
           navSelector: ".sheet-tabs",
           contentSelector: ".sheet-body",
-          initial: "character",
+          initial: "stats",
         },
       ],
       dragDrop: [{ dragSelector: ".item[draggable='true']" }],

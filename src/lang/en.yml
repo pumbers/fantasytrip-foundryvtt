@@ -47,7 +47,7 @@ FT:
       goblin: Goblin
     sheet:
       tab:
-        character: Character
+        stats: Character
         notes: Notes
         talents: Talents
         items: Items
@@ -67,9 +67,11 @@ FT:
           iq: IQ
         items:
           name: Item
-          cost: Cost
-          wt: Wt.
+          cost: Cost $
+          wt: Wt. lbs
           location: Loc.
+          carried: Carried
+          unit: lbs
         spells:
           name: Name
           iq: IQ
@@ -79,6 +81,10 @@ FT:
         create: Add
         edit: Edit
         delete: Delete
+        equipped: Equipped
+        carried: Carried
+        stowed: Stowed
+        stored: Stored
   item:
     type:
       talent: Talent
@@ -91,3 +97,6 @@ FT:
         notes: Notes
         settings: Settings
         effects: Effects
+      label:
+        cost: Cost $
+        wt: Wt. Lbs

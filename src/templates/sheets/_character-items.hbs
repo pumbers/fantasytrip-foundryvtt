@@ -1,46 +1,61 @@
-{{#if organizedItems.item}}
-<table>
-    <thead>
-        <tr>
-            {{#if settings.showItemIcons}}<th></th>{{/if}}
-            <th class="w-full">{{localize 'FT.character.sheet.table.items.name'}}</th>
-            <th>{{localize 'FT.character.sheet.table.items.cost'}}</th>
-            <th>{{localize 'FT.character.sheet.table.items.wt'}}</th>
-            <th>{{localize 'FT.character.sheet.table.items.location'}}</th>
-            <th></th>
-        </tr>
-    </thead>
-    {{#each (sort organizedItems.item 'name') as |item|}}
-    <tr data-item-id="{{item._id}}">
-        {{#if ../settings.showItemIcons}}<td><img src="{{item.img}}" /> </td>
-        {{/if}}
-        <td>{{item.name}}</td>
-        <td>{{item.cost}}</td>
-        <td>{{item.wt}}</td>
-        <td>
-            {{#if (eq item.system.location 'equipped')}}
-            <a class="document-set-field mr-2" data-field="system.location" data-value="carried"
-                title="{{localize 'FT.character.sheet.button.equipped'}}"><i class="icon-battle-gear"></i></a>
-            {{else if (eq item.system.location 'carried')}}
-            <a class="document-set-field mr-2" data-field="system.location" data-value="stowed"
-                title="{{localize 'FT.character.sheet.button.carried'}}"><i class="icon-knapsack"></i></a>
-            {{else if (eq item.system.location 'stowed')}}
-            <a class="document-set-field mr-2" data-field="system.location" data-value="stored"
-                title="{{localize 'FT.character.sheet.button.stowed'}}"><i class="icon-chest"></i></a>
-            {{else if (eq item.system.location 'stored')}}
-            <a class="document-set-field mr-2" data-field="system.location" data-value="equipped"
-                title="{{localize 'FT.character.sheet.button.stored'}}"><i class="icon-white-tower"></i></a>
+<div class="flex flex-col gap-2">
+    {{!-- Carrying Capacity --}}
+
+    {{#*inline "actions"}}
+    <td class="flex flex-row gap-[2px]">
+        <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i class="fa fa-comment"></i></a>
+        <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i class="fas fa-edit"></i></a>
+        <a class="document-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
+                class="fas fa-trash"></i></a>
+    </td>
+    {{/inline}}
+
+    {{!-- Items --}}
+    {{#if (or organizedItems.item organizedItems.weapon organizedItems.armour)}}
+    <table>
+        <thead>
+            <tr>
+                {{#if settings.showItemIcons}}<th></th>{{/if}}
+                <th class="w-full">{{localize 'FT.character.sheet.table.items.name'}}</th>
+                <th>{{localize 'FT.character.sheet.table.items.cost'}}</th>
+                <th>{{localize 'FT.character.sheet.table.items.wt'}}</th>
+                <th>{{localize 'FT.character.sheet.table.items.location'}}</th>
+                <th></th>
+            </tr>
+        </thead>
+        {{#each (sort (array organizedItems.item organizedItems.weapon organizedItems.armour) 'name') as |item|}}
+        <tr data-item-id="{{item._id}}">
+            {{#if ../settings.showItemIcons}}<td><img src="{{item.img}}" /> </td>
             {{/if}}
-        </td>
-        <td class="shrink">
-            <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i
-                    class="fa fa-comment"></i></a>
-            <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i
-                    class="fas fa-edit"></i></a>
-            <a class="document-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
-                    class="fas fa-trash"></i></a>
-        </td>
-    </tr>
-    {{/each}}
-</table>
-{{/if}}
+            <td>{{item.name}}</td>
+            <td>{{item.system.cost}}</td>
+            <td>{{item.system.wt}}</td>
+            <td>
+                {{#if (eq item.system.location 'equipped')}}
+                <a class="document-set-field mr-2" data-field="system.location" data-value="carried"
+                    title="{{localize 'FT.character.sheet.button.equipped'}}"><i class="icon-battle-gear"></i></a>
+                {{else if (eq item.system.location 'carried')}}
+                <a class="document-set-field mr-2" data-field="system.location" data-value="stowed"
+                    title="{{localize 'FT.character.sheet.button.carried'}}"><i class="icon-knapsack"></i></a>
+                {{else if (eq item.system.location 'stowed')}}
+                <a class="document-set-field mr-2" data-field="system.location" data-value="stored"
+                    title="{{localize 'FT.character.sheet.button.stowed'}}"><i class="icon-chest"></i></a>
+                {{else if (eq item.system.location 'stored')}}
+                <a class="document-set-field mr-2" data-field="system.location" data-value="equipped"
+                    title="{{localize 'FT.character.sheet.button.stored'}}"><i class="icon-white-tower"></i></a>
+                {{/if}}
+            </td>
+            {{> actions}}
+        </tr>
+        {{/each}}
+        <tfoot>
+            <tr>
+                {{#if settings.showItemIcons}}<td></td>{{/if}}
+                <td colspan="2" class="!text-right">{{localize 'FT.character.sheet.table.items.carried'}}</td>
+                <td>{{system.encumbrance.load}}&nbsp;{{localize 'FT.character.sheet.table.items.unit'}}</td>
+                <td colspan="2"></td>
+            </tr>
+        </tfoot>
+    </table>
+    {{/if}}
+</div>

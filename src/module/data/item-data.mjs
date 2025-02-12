@@ -36,6 +36,7 @@ export class FTItemData extends FTBaseItemData {
       wt: new NumberField({ initial: 0 }),
       //
       location: new StringField({ initial: "carried" }),
+      capacity: new NumberField({ initial: 0 }),
     });
   }
 }

@@ -23,6 +23,17 @@ FT.character = {
     "FT.character.race.orc",
     "FT.character.race.goblin",
   ],
+  tracks: {
+    encumbrance: {
+      colors: ["bg-lime", "bg-lime", "bg-lime", "bg-amber", "bg-amber", "bg-red", "bg-red", ""],
+    },
+    fatigue: {
+      colors: [],
+    },
+    damage: {
+      colors: [],
+    },
+  },
 };
 
 /* ------------------------------------------- */

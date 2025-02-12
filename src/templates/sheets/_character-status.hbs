@@ -1,0 +1,26 @@
+{{!-- Encumbrance --}}
+<div class="flex flex-row gap-1">
+    <div class="min-w-6 text-center bg bg-slate-300 p-0"><i class="icon-knapsack">&nbsp;</i></div>
+    {{#each system.encumbrance.capacity as |capacity|}}
+    <div
+        class="grow p-0 min-w-6 text-center {{lookup ../FT.character.tracks.encumbrance.colors @index}}{{#unless (eq @index ../system.encumbrance.level)}}-100{{else}}-500{{/unless}}">
+        {{capacity}}&nbsp;lbs
+    </div>
+    {{/each }}
+</div>
+
+{{!-- Fatigue --}}
+<div class="flex flex-row gap-1 justify-start">
+    <div class="min-w-6 text-center bg bg-slate-300 p-0"><i class="icon-despair">&nbsp;</i></div>
+    {{#each (range 0 system.st.max)}}
+    <div class="grow p-0 min-w-4 text-center bg-slate-200">{{.}}</div>
+    {{/each }}
+</div>
+
+{{!-- Damage --}}
+<div class="flex flex-row gap-1 justify-start">
+    <div class="min-w-6 text-center bg bg-slate-300 p-0"><i class="icon-hearts">&nbsp;</i></div>
+    {{#each (range 0 system.st.max)}}
+    <div class="grow p-0 min-w-4 text-center bg-slate-200">{{.}}</div>
+    {{/each }}
+</div>

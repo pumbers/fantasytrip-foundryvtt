@@ -1,0 +1,19 @@
+Combat
+{{!-- Weapons --}}
+{{#each organizedItems.weapon as |weapon id|}}
+{{#if (eq weapon.location "equipped")}}
+<div class="grid grid-cols-4 gap-1">
+    <img class="w-8 h-8" src="{{weapon.img}}" alt="">
+    <div>{{weapon.name}}</div>
+</div>
+{{/if}}
+{{/each}}
+{{!-- Armour --}}
+{{#each organizedItems.armour as |armour id|}}
+{{#if (eq armour.location "equipped")}}
+<div class="grid grid-cols-4 gap-1">
+    <img class="w-8 h-8" src="{{armour.img}}" alt="">
+    <div>{{armour.name}}</div>
+</div>
+{{/if}}
+{{/each}}
