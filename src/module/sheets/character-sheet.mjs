@@ -50,7 +50,7 @@ export class FTCharacterSheet extends ActorSheet {
             break;
           case "weapon":
             break;
-          case "armour":
+          case "armor":
             break;
           case "spell":
             break;
@@ -64,7 +64,7 @@ export class FTCharacterSheet extends ActorSheet {
         talent: [],
         item: [],
         weapon: [],
-        armour: [],
+        armor: [],
         spell: [],
       }
     );

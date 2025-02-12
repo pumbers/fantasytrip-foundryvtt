@@ -90,7 +90,7 @@ FT:
       talent: Talent
       item: Item
       weapon: Weapon
-      armour: Armour
+      armor: Armor
       spell: Spell
     sheet:
       tab:
@@ -102,4 +102,10 @@ FT:
         wt: Wt. Lbs
         iq: IQ Level
         acquire: Cost to Acquire
-        st: ST to Cast
+        stUse: Min ST to use
+        stCast: ST to Cast
+        damage: Damage Roll
+        talent: Talent to Use
+        hitsStopped: Hits Stopped
+        dxMod: DX Mod
+        maxMA: Max MA

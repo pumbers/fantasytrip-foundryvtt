@@ -28,7 +28,7 @@
   }
 
   & table {
-    @apply text-xs;
+    @apply text-xs m-0;
     & thead {
       text-shadow: none;
       @apply bg-slate-500 border-none text-white;

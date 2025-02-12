@@ -12,8 +12,8 @@ export class FTItemSheet extends ItemSheet {
       classes: ["fantasy-trip", "item", "sheet"],
       width: 400,
       height: 520,
-      resizable: false,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
+      resizable: true,
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "settings" }],
     });
   }
 
@@ -26,6 +26,18 @@ export class FTItemSheet extends ItemSheet {
       system: foundry.utils.deepClone(this.item.system),
       flags: foundry.utils.deepClone(this.item.flags),
       owned: !!this.item.parent,
+      // Applicable skill options from the parent actor
+      ...(!!this.item.parent &&
+        ["weapon"].includes(this.item.type) && {
+          selectOptions: !!this.item.parent
+            ? {
+                talents: this.item.parent?.items
+                  ?.values()
+                  .filter((item) => item.type === "talent")
+                  .reduce((talents, talent) => ({ ...talents, [talent._id]: talent.name }), {}),
+              }
+            : { talents: {} },
+        }),
     };
     return context;
   }

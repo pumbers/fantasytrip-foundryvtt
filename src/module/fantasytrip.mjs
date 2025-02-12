@@ -5,7 +5,7 @@ import { FTCharacter } from "./documents/character.mjs";
 import { FTCharacterSheet } from "./sheets/character-sheet.mjs";
 
 import { FTItem } from "./documents/item.mjs";
-import { FTItemData, FTTalentData, FTSpellData, FTWeaponData, FTArmourData } from "./data/item-data.mjs";
+import { FTItemData, FTTalentData, FTSpellData, FTWeaponData, FTArmorData } from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
 import * as Macros from "./util/macros.mjs";
@@ -88,7 +88,7 @@ Hooks.once("init", async function () {
     spell: FTSpellData,
     item: FTItemData,
     weapon: FTWeaponData,
-    armour: FTArmourData,
+    armor: FTArmorData,
   };
   CONFIG.Item.documentClass = FTItem;
 
@@ -128,6 +128,7 @@ Hooks.once("init", async function () {
     `${CONFIG.FT.path}/templates/sheets/_character-items.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-spells.hbs`,
     `${CONFIG.FT.path}/templates/sheets/item-sheet.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/_item-effects.hbs`,
   ]);
 });
 

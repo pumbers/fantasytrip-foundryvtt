@@ -57,7 +57,7 @@ export class FTCharacter extends Actor {
     ];
 
     const load = Array.from(this.items)
-      .filter((item) => ["item", "weapon", "armour"].includes(item.type))
+      .filter((item) => ["item", "weapon", "armor"].includes(item.type))
       .filter((item) => ["carried", "equipped"].includes(item.system.location))
       .reduce((load, item) => load + item.system.wt, 0);
     const level = capacity.findIndex((val) => val > load);

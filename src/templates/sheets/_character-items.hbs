@@ -11,7 +11,7 @@
     {{/inline}}
 
     {{!-- Items --}}
-    {{#if (or organizedItems.item organizedItems.weapon organizedItems.armour)}}
+    {{#if (or organizedItems.item organizedItems.weapon organizedItems.armor)}}
     <table>
         <thead>
             <tr>
@@ -23,7 +23,7 @@
                 <th></th>
             </tr>
         </thead>
-        {{#each (sort (array organizedItems.item organizedItems.weapon organizedItems.armour) 'name') as |item|}}
+        {{#each (sort (array organizedItems.item organizedItems.weapon organizedItems.armor) 'name') as |item|}}
         <tr data-item-id="{{item._id}}">
             {{#if ../settings.showItemIcons}}<td><img src="{{item.img}}" /> </td>
             {{/if}}

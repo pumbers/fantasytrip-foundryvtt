@@ -8,12 +8,12 @@ Combat
 </div>
 {{/if}}
 {{/each}}
-{{!-- Armour --}}
-{{#each organizedItems.armour as |armour id|}}
-{{#if (eq armour.location "equipped")}}
+{{!-- Armor --}}
+{{#each organizedItems.armor as |armor id|}}
+{{#if (eq armor.location "equipped")}}
 <div class="grid grid-cols-4 gap-1">
-    <img class="w-8 h-8" src="{{armour.img}}" alt="">
-    <div>{{armour.name}}</div>
+    <img class="w-8 h-8" src="{{armor.img}}" alt="">
+    <div>{{armor.name}}</div>
 </div>
 {{/if}}
 {{/each}}
