@@ -56,8 +56,6 @@ export class FTArmorData extends FTItemData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
       hitsStopped: new NumberField({ initial: 0 }),
-      dxMod: new NumberField({ initial: 0 }),
-      maxMA: new NumberField({ initial: 0 }),
     });
   }
 }

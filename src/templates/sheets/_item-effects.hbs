@@ -20,7 +20,11 @@
         </table>
         <div class="actions">
             <button class="effect-manage" data-action="edit">{{localize "FT.effect.action.edit"}}</button>
-            <button class="effect-manage" data-action="toggle">{{localize "FT.effect.action.toggle"}}</button>
+            {{#if effect.active}}
+            <button class="effect-manage" data-action="toggle">{{localize "FT.effect.action.off"}}</button>
+            {{else}}
+            <button class="effect-manage" data-action="toggle">{{localize "FT.effect.action.on"}}</button>
+            {{/if}}
             <button class="effect-manage" data-action="delete">{{localize "FT.effect.action.delete"}}</button>
         </div>
     </fieldset>

@@ -83,7 +83,6 @@ export function onItemDelete(event) {
  */
 export function onUpdateItemField(event) {
   event.preventDefault();
-  // Fetch the triggering element nd it's attached dataset
   const element = $(event.currentTarget);
   const dataset = element.data();
   const itemId = element?.closest("[data-item-id]").data("itemId");
@@ -101,7 +100,6 @@ export function onUpdateItemField(event) {
  */
 export function onSetItemField(event) {
   event.preventDefault();
-  // Fetch the triggering element nd it's attached dataset
   const element = $(event.currentTarget);
   const dataset = element.data();
   const itemId = element?.closest("[data-item-id]").data("itemId");
@@ -109,8 +107,10 @@ export function onSetItemField(event) {
 
   // Find and update the item
   const item = this.actor.getEmbeddedDocument("Item", itemId);
+  console.log("onSetItemField()", item.name, dataset.field, dataset.value);
   item?.update({ [dataset.field]: dataset.value });
 }
+
 /**
  * Update or set/unset an item flag
  * @param {Event} event The originating change event
@@ -137,6 +137,24 @@ export function onUpdateItemFlag(event) {
       item?.unsetFlag(game.data.system.id, dataset.flag);
       break;
   }
+}
+
+/**
+ * Turns active effects for an item on or off
+ * @param {Event} event
+ */
+export function onSetItemEffects(event) {
+  event.preventDefault();
+  const element = $(event.currentTarget);
+  const dataset = element.data();
+  const itemId = element?.closest("[data-item-id]").data("itemId");
+  if (!itemId) return;
+
+  // Find and update the item effects
+  const item = this.actor.getEmbeddedDocument("Item", itemId);
+  item?.effects?.values().forEach((effect) => {
+    effect?.update({ disabled: dataset.disabled });
+  });
 }
 
 /**

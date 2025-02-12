@@ -90,6 +90,7 @@ export class FTCharacterSheet extends ActorSheet {
     html.find(".clickable").click(this.click.bind(this));
 
     // Item actions
+    html.find(".document-set-effects").click(Handlers.onSetItemEffects.bind(this));
     html.find(".document-set-field").click(Handlers.onSetItemField.bind(this));
     html.find(".document-chat").click(Handlers.onChatItem.bind(this));
     html.find(".document-edit").click(Handlers.onItemEdit.bind(this));
