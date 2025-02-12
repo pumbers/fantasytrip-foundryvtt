@@ -63,6 +63,25 @@ export class FTCharacter extends Actor {
     const level = capacity.findIndex((val) => val > load);
 
     system.encumbrance = { capacity, load, level };
+
+    // Apply Encumbrance to Stats
+    switch (system.encumbrance.level) {
+      case 3:
+        system.ma.value = Math.min(system.ma.max, 8);
+        break;
+      case 4:
+        system.ma.value = Math.min(system.ma.max, 6);
+        system.dx.value = Math.max(system.dx.max - 1, 0);
+        break;
+      case 5:
+        system.ma.value = Math.min(system.ma.max, 4);
+        system.dx.value = Math.max(system.dx.max - 2, 0);
+        break;
+      default:
+        break;
+    }
+
+    console.log("FTCharacter.prepareDerivedData()", "encumbrance", system.encumbrance, "stats", system);
   }
 
   /* ------------------------------------------- */
