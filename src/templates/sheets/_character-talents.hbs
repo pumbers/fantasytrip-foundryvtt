@@ -12,6 +12,7 @@
         <tr>
             {{#if settings.showItemIcons}}<th></th>{{/if}}
             <th class="w-full">{{localize 'FT.character.sheet.table.talents.name'}}</th>
+            <th>{{localize 'FT.character.sheet.table.talents.iq'}}</th>
             <th></th>
             <th></th>
         </tr>
@@ -22,7 +23,8 @@
         <td><img src="{{talent.img}}" /> </td>
         {{/if}}
         <td>{{talent.name}}</td>
-        <td><button>Roll</button></td>
+        <td>{{talent.system.iq}}</td>
+        <td><a>Roll</a></td>
         {{> actions}}
     </tr>
     {{/each}}

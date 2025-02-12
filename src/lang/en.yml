@@ -100,3 +100,6 @@ FT:
       label:
         cost: Cost $
         wt: Wt. Lbs
+        iq: IQ Level
+        acquire: Cost to Acquire
+        st: ST to Cast

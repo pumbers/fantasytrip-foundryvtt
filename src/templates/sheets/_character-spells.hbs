@@ -24,9 +24,9 @@
         <td><img src="{{spell.img}}" /> </td>
         {{/if}}
         <td>{{spell.name}}</td>
-        <td>{{spell.iq}}</td>
-        <td>{{spell.st}}</td>
-        <td><button>Cast</button></td>
+        <td>{{spell.system.iq}}</td>
+        <td>{{spell.system.st}}</td>
+        <td><a>Cast</a></td>
         {{> actions}}
     </tr>
     {{/each}}

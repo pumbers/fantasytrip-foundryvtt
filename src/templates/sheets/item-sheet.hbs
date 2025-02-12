@@ -13,37 +13,60 @@
             </div>
         </header>
 
-        <!-- Sheet Tab Navigation -->
-        <nav class="sheet-tabs tabs" data-group="primary">
-            <a class="item" title="Notes" data-tab="notes">{{localize
-                "FT.item.sheet.tab.notes"}}</a>
-            <a class="item" title="Settings" data-tab="settings">{{localize
-                "FT.item.sheet.tab.settings"}}</i></a>
-            <a class="item" title="Effects" data-tab="effects">{{localize
-                "FT.item.sheet.tab.effects"}}</i></a>
-        </nav>
-
         <!-- Sheet Body -->
         <section class="sheet-body">
-            <div class="tab" data-group="primary" data-tab="notes">
-                {{editor system.description target="system.notes" button=true owner=owner editable=editable}}
-            </div>
-            <div class="tab" data-group="primary" data-tab="settings">
-                {{#if (or (eq item.type "item") (eq item.type "weapon") (eq item.type "armour"))}}
-                <div class="grid grid-cols-4 gap-1">
-                    <div class="field">
-                        <label>{{localize "FT.item.sheet.label.cost"}}</label>
-                        <input type="number" name="system.cost" value="{{system.cost}}" min="0">
-                    </div>
-                    <div class="field">
-                        <label>{{localize "FT.item.sheet.label.wt"}}</label>
-                        <input type="number" name="system.wt" value="{{system.wt}}" min="0">
+            <!-- Sheet Tab Navigation -->
+            <nav class="sheet-tabs tabs" data-group="primary">
+                <a class="item" title="Notes" data-tab="notes">{{localize
+                    "FT.item.sheet.tab.notes"}}</a>
+                <a class="item" title="Settings" data-tab="settings">{{localize
+                    "FT.item.sheet.tab.settings"}}</i></a>
+                <a class="item" title="Effects" data-tab="effects">{{localize
+                    "FT.item.sheet.tab.effects"}}</i></a>
+            </nav>
+            {{!-- Tab Contents --}}
+            <div>
+                {{!-- Notes Tab --}}
+                <div class="tab" data-group="primary" data-tab="notes">
+                    {{editor system.description target="system.notes" button=true owner=owner editable=editable}}
+                </div>
+                {{!-- Settings Tab --}}
+                <div class="tab" data-group="primary" data-tab="settings">
+                    <div class="grid grid-cols-4 gap-1">
+                        {{!-- Equipment --}}
+                        {{#if (or (eq item.type "item") (eq item.type "weapon") (eq item.type "armour"))}}
+                        <div class="field">
+                            <label>{{localize "FT.item.sheet.label.cost"}}</label>
+                            <input type="number" name="system.cost" value="{{system.cost}}" min="0">
+                        </div>
+                        <div class="field">
+                            <label>{{localize "FT.item.sheet.label.wt"}}</label>
+                            <input type="number" name="system.wt" value="{{system.wt}}" min="0">
+                        </div>
+                        {{!-- Talents --}}
+                        {{else if (or (eq item.type "talent") (eq item.type "spell"))}}
+                        <div class="field">
+                            <label>{{localize "FT.item.sheet.label.iq"}}</label>
+                            <input type="number" name="system.iq" value="{{system.iq}}" min="0">
+                        </div>
+                        <div class="field">
+                            <label>{{localize "FT.item.sheet.label.acquire"}}</label>
+                            <input type="number" name="system.acquire" value="{{system.acquire}}" min="0">
+                        </div>
+                        {{/if}}
+                        {{!-- Spells --}}
+                        {{#if (eq item.type "spell")}}
+                        <div class="field">
+                            <label>{{localize "FT.item.sheet.label.st"}}</label>
+                            <input type="number" name="system.st" value="{{system.st}}" min="0">
+                        </div>
+                        {{/if}}
                     </div>
                 </div>
-                {{/if}}
-            </div>
-            <div class="tab" data-group="primary" data-tab="effects">
-                Effects
+                {{!-- Effects Tab --}}
+                <div class="tab" data-group="primary" data-tab="effects">
+                    Effects
+                </div>
             </div>
         </section>
     </div>
