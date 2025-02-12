@@ -26,7 +26,7 @@
         <td>{{spell.name}}</td>
         <td>{{spell.system.iq}}</td>
         <td>{{spell.system.st}}</td>
-        <td><a>Cast</a></td>
+        <td><a class="clickable" data-action="cast-spell">{{localize "FT.character.sheet.button.cast"}}</a></td>
         {{> actions}}
     </tr>
     {{/each}}

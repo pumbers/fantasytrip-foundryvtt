@@ -43,7 +43,7 @@
             {{#*inline "attribute"}}
             <div class="flex flex-row gap-1 justify-start" data-attribute="{{key}}">
                 <label class="bg-black text-white text-xl text-center uppercase min-w-10 rounded-sm m-0 p-1 clickable"
-                    data-action="attribute-roll">{{key}}</label>
+                    data-action="attribute-roll" data-attribute="{{key}}">{{key}}</label>
                 <input class="!text-center !text-xl !h-full !w-16" type="number" name="system.{{key}}.max"
                     value="{{attr.max}}" />
                 {{#if adj}}

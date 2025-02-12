@@ -87,6 +87,8 @@ FT:
         carried: Carried
         stowed: Stowed
         stored: Stored
+        roll: Roll
+        cast: Cast
   item:
     type:
       talent: Talent

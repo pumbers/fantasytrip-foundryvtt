@@ -10,7 +10,7 @@ export class FTCharacterSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fantasy-trip", "character", "sheet"],
       template: `${CONFIG.FT.path}/templates/sheets/character-sheet.hbs`,
-      width: 400,
+      width: 350,
       height: 550,
       tabs: [
         {
@@ -102,8 +102,24 @@ export class FTCharacterSheet extends ActorSheet {
     const element = $(event?.currentTarget);
     const dataset = element?.data();
     const { shiftKey, ctrlKey, altKey } = event;
+    let itemId;
 
     switch (dataset.action) {
+      case "attribute-roll":
+        console.log("click():attribute-roll", dataset.attribute);
+        break;
+      case "talent-roll":
+        itemId = element?.closest("[data-item-id]").data("itemId");
+        console.log("click():talent-roll", itemId);
+        if (!itemId) return;
+        item = this.actor.getEmbeddedDocument("Item", itemId);
+        break;
+      case "cast-spell":
+        itemId = element?.closest("[data-item-id]").data("itemId");
+        console.log("click():cast-spell", itemId);
+        item = this.actor.getEmbeddedDocument("Item", itemId);
+        if (!itemId) return;
+        break;
       default:
         console.error(`FT | Unimplemented clickable action: ${dataset.action}`);
         break;

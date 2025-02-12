@@ -34,7 +34,7 @@ export class FTCharacter extends Actor {
   // }
 
   prepareDerivedData() {
-    console.log("FTCharacter.prepareDerivedData()", this);
+    // console.log("FTCharacter.prepareDerivedData()", this);
     super.prepareDerivedData();
     const system = this.system;
 
@@ -80,8 +80,6 @@ export class FTCharacter extends Actor {
       default:
         break;
     }
-
-    console.log("FTCharacter.prepareDerivedData()", "encumbrance", system.encumbrance, "stats", system);
   }
 
   /* ------------------------------------------- */
