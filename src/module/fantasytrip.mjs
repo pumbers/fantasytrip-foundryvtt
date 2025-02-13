@@ -5,7 +5,7 @@ import { FTCharacter } from "./documents/character.mjs";
 import { FTCharacterSheet } from "./sheets/character-sheet.mjs";
 
 import { FTItem } from "./documents/item.mjs";
-import { FTItemData, FTTalentData, FTSpellData, FTWeaponData, FTArmorData } from "./data/item-data.mjs";
+import { FTEquipmentData, FTTalentData, FTSpellData, FTWeaponData, FTArmorData } from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
 import * as Macros from "./util/macros.mjs";
@@ -86,7 +86,7 @@ Hooks.once("init", async function () {
   CONFIG.Item.dataModels = {
     talent: FTTalentData,
     spell: FTSpellData,
-    item: FTItemData,
+    equipment: FTEquipmentData,
     weapon: FTWeaponData,
     armor: FTArmorData,
   };

@@ -6,7 +6,7 @@
 </td>
 {{/inline}}
 
-{{#if organizedItems.spell}}
+{{#if spells}}
 <table>
     <thead>
         <tr>
@@ -18,7 +18,7 @@
             <th></th>
         </tr>
     </thead>
-    {{#each (sort organizedItems.spell 'name') as |spell|}}
+    {{#each (sort spells 'name') as |spell|}}
     <tr data-item-id="{{spell._id}}">
         {{#if ../settings.showItemIcons}}
         <td><img src="{{spell.img}}" /> </td>

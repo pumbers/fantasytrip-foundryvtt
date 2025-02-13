@@ -19,7 +19,7 @@ export class FTCharacterSheet extends ActorSheet {
           initial: "stats",
         },
       ],
-      dragDrop: [{ dragSelector: ".item[draggable='true']" }],
+      dragDrop: [{ dragSelector: ".item[draggable='true']", dropSelector: null }],
     });
   }
 
@@ -39,35 +39,29 @@ export class FTCharacterSheet extends ActorSheet {
       settings: {
         showItemIcons: game.settings.get("fantasytrip", "showItemIcons"),
       },
+      // Categorized itemsa
+      talents: this.actor.items.filter((item) => item.type === "talent").map((item) => item.toObject()),
+      weapons: this.actor.items.filter((item) => item.type === "weapon").map((item) => item.toObject()),
+      armor: this.actor.items.filter((item) => item.type === "armor").map((item) => item.toObject()),
+      spells: this.actor.items.filter((item) => item.type === "spell").map((item) => item.toObject()),
+      // Character's Inventory
+      inventory: this.actor.items
+        .filter((item) => ["equipment", "weapon", "armor"].includes(item.type))
+        .sort((a, b) => a.name.localeCompare(b.name)),
     };
 
-    context.organizedItems = context.actor.items.reduce(
-      (slots, item) => {
-        switch (item.type) {
-          case "talent":
-            break;
-          case "item":
-            break;
-          case "weapon":
-            break;
-          case "armor":
-            break;
-          case "spell":
-            break;
-          default:
-            break;
+    // Sort inventory items into their containers
+    context.inventory = context.inventory
+      .map((item) => {
+        if (!!item.system.capacity) {
+          return [item, context.inventory.filter((contents) => contents.system.container === item._id)];
+        } else if (!item.system.container) {
+          return item;
+        } else {
+          return [];
         }
-        slots[item.type].push(item);
-        return slots;
-      },
-      {
-        talent: [],
-        item: [],
-        weapon: [],
-        armor: [],
-        spell: [],
-      }
-    );
+      })
+      .flat(2);
 
     // Prepare active effects
     context.effects = Array.from(this.actor.allApplicableEffects());
@@ -95,6 +89,34 @@ export class FTCharacterSheet extends ActorSheet {
     html.find(".document-chat").click(Handlers.onChatItem.bind(this));
     html.find(".document-edit").click(Handlers.onItemEdit.bind(this));
     html.find(".document-delete").click(Handlers.onItemDelete.bind(this));
+  }
+
+  async _onDropItem(event, data) {
+    const item = (await super._onDropItem(event, data))[0];
+    console.log("_onDrop()", "data", data, "item", item);
+
+    // If the item is a general item...
+    if (["equipment", "weapon", "armor"].includes(item.type)) {
+      // Find the nearest container (any item with a capcity)
+      const element = $(event?.target);
+      const containerId = element?.closest(".item-container").data("itemId");
+      console.log("_onDrop() dropped to", "element", element, "container", containerId);
+
+      if (containerId) {
+        // If there is a container, set the container reference on the item and mark the items location
+        await item?.update({ "system.location": "contained", "system.container": containerId }, {});
+        console.log("_onDrop() moved to", "container", containerId, "item", item);
+      } else {
+        // If not, then assume the character has it "in-hand"
+        await item?.update({ "system.location": "equipped", "system.container": null }, {});
+        console.log("_onDrop() equipped", "item", item);
+      }
+    }
+
+    // dropping items when a container is deleted
+    // changing an items location to be the same as the container
+    // dropping an item onto itself
+    // dropping a container onto another container
   }
 
   click(event) {

@@ -29,30 +29,32 @@ export class FTSpellData extends FTTalentData {
   }
 }
 
-export class FTItemData extends FTBaseItemData {
+export class FTEquipmentData extends FTBaseItemData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
       cost: new NumberField({ initial: 0 }),
       wt: new NumberField({ initial: 0 }),
+      qty: new NumberField({ initial: 1 }),
       //
       location: new StringField({ initial: "carried" }),
       capacity: new NumberField({ initial: 0 }),
+      container: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
     });
   }
 }
 
-export class FTWeaponData extends FTItemData {
+export class FTWeaponData extends FTEquipmentData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
       damage: new StringField(),
-      st: new NumberField({ initial: 0 }),
+      minST: new NumberField({ initial: 0 }),
       //
       talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
     });
   }
 }
 
-export class FTArmorData extends FTItemData {
+export class FTArmorData extends FTEquipmentData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
       hitsStopped: new NumberField({ initial: 0 }),

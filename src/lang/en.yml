@@ -69,8 +69,9 @@ FT:
           iq: IQ
         items:
           name: Item
-          cost: Cost $
-          wt: Wt. lbs
+          cost: Cost
+          wt: Wt
+          qty: Qty
           location: Loc.
           carried: Carried
           unit: lbs
@@ -92,7 +93,7 @@ FT:
   item:
     type:
       talent: Talent
-      item: Item
+      equipment: Equipment
       weapon: Weapon
       armor: Armor
       spell: Spell
@@ -104,6 +105,7 @@ FT:
       label:
         cost: Cost $
         wt: Wt. Lbs
+        qty: Quantity
         iq: IQ Level
         acquire: Cost to Acquire
         stUse: Min ST to use
@@ -113,3 +115,4 @@ FT:
         hitsStopped: Hits Stopped
         dxMod: DX Mod
         maxMA: Max MA
+        capacity: Capacity

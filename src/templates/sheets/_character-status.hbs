@@ -4,7 +4,7 @@
     {{#each system.encumbrance.capacity as |capacity|}}
     <div
         class="grow p-0 min-w-6 text-center {{lookup ../FT.character.tracks.encumbrance.colors @index}}{{#unless (eq @index ../system.encumbrance.level)}}-100{{else}}-500{{/unless}}">
-        {{capacity}}&nbsp;lbs
+        {{capacity}}
     </div>
     {{/each }}
 </div>

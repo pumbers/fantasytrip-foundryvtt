@@ -11,7 +11,7 @@
     {{/inline}}
 
     {{!-- Items --}}
-    {{#if (or organizedItems.item organizedItems.weapon organizedItems.armor)}}
+    {{#if inventory}}
     <table>
         <thead>
             <tr>
@@ -19,18 +19,22 @@
                 <th class="w-full">{{localize 'FT.character.sheet.table.items.name'}}</th>
                 <th>{{localize 'FT.character.sheet.table.items.cost'}}</th>
                 <th>{{localize 'FT.character.sheet.table.items.wt'}}</th>
+                <th>{{localize 'FT.character.sheet.table.items.qty'}}</th>
                 <th>{{localize 'FT.character.sheet.table.items.location'}}</th>
                 <th></th>
             </tr>
         </thead>
-        {{#each (sort (array organizedItems.item organizedItems.weapon organizedItems.armor) 'name') as |item|}}
-        <tr data-item-id="{{item._id}}">
+        {{#each inventory as |item|}}
+        <tr data-item-id="{{item._id}}" draggable="true"
+            class="{{#if item.system.capacity}}item-container{{else}}item{{/if}}">
             {{#if ../settings.showItemIcons}}<td><img src="{{item.img}}" /> </td>
             {{/if}}
-            <td>{{item.name}}</td>
+            <td>{{#if item.system.container}}&rdsh;&nbsp;{{/if}}{{item.name}}</td>
             <td>{{item.system.cost}}</td>
             <td>{{item.system.wt}}</td>
+            <td>{{item.system.qty}}</td>
             <td>
+                {{#unless item.system.container}}
                 {{#if (eq item.system.location 'equipped')}}
                 <a class="document-set-field document-set-effects mr-2" data-field="system.location"
                     data-value="carried" data-disabled="false"
@@ -48,6 +52,7 @@
                     data-value="equipped" data-disabled="false"
                     title="{{localize 'FT.character.sheet.button.stored'}}"><i class="icon-white-tower"></i></a>
                 {{/if}}
+                {{/unless}}
             </td>
             {{> actions}}
         </tr>
@@ -57,7 +62,7 @@
                 {{#if settings.showItemIcons}}<td></td>{{/if}}
                 <td colspan="2" class="!text-right">{{localize 'FT.character.sheet.table.items.carried'}}</td>
                 <td>{{system.encumbrance.load}}&nbsp;{{localize 'FT.character.sheet.table.items.unit'}}</td>
-                <td colspan="2"></td>
+                <td colspan="3"></td>
             </tr>
         </tfoot>
     </table>

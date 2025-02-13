@@ -40,7 +40,7 @@ documentTypes:
     character: {}
   Item:
     talent: {}
-    item: {}
+    equipment: {}
     weapon: {}
     armor: {}
     spell: {}

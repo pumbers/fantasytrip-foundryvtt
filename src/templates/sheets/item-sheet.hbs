@@ -26,7 +26,7 @@
             <div class="tab" data-group="primary" data-tab="settings">
                 <div class="grid grid-cols-4 gap-1">
                     {{!-- Equipment --}}
-                    {{#if (or (eq item.type "item") (eq item.type "weapon") (eq item.type "armor"))}}
+                    {{#if (or (eq item.type "equipment") (eq item.type "weapon") (eq item.type "armor"))}}
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.cost"}}</label>
                         <input type="number" name="system.cost" value="{{system.cost}}" min="0">
@@ -34,6 +34,14 @@
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.wt"}}</label>
                         <input type="number" name="system.wt" value="{{system.wt}}" min="0">
+                    </div>
+                    <div class="field">
+                        <label>{{localize "FT.item.sheet.label.qty"}}</label>
+                        <input type="number" name="system.qty" value="{{system.qty}}" min="0">
+                    </div>
+                    <div class="field">
+                        <label>{{localize "FT.item.sheet.label.capacity"}}</label>
+                        <input type="number" name="system.capacity" value="{{system.capacity}}" min="0">
                     </div>
                     {{!-- Talents --}}
                     {{else if (or (eq item.type "talent") (eq item.type "spell"))}}

@@ -107,7 +107,6 @@ export function onSetItemField(event) {
 
   // Find and update the item
   const item = this.actor.getEmbeddedDocument("Item", itemId);
-  console.log("onSetItemField()", item.name, dataset.field, dataset.value);
   item?.update({ [dataset.field]: dataset.value });
 }
 
