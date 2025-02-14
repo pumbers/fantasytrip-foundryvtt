@@ -46,6 +46,7 @@ export class FTEquipmentData extends FTBaseItemData {
   prepareDerivedData() {
     super.prepareDerivedData();
     this.totalWt = this.wt * this.qty;
+    this.totalCost = this.cost * this.qty;
   }
 
   get isContainer() {

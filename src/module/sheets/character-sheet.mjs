@@ -10,7 +10,7 @@ export class FTCharacterSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fantasy-trip", "character", "sheet"],
       template: `${CONFIG.FT.path}/templates/sheets/character-sheet.hbs`,
-      width: 350,
+      width: 370,
       height: 550,
       tabs: [
         {

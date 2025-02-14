@@ -29,7 +29,7 @@
             class="item {{#if item.system.isContainer}}item-container{{/if}}">
             {{#if ../settings.showItemIcons}}<td><img src="{{item.img}}" /></td>{{/if}}
             <td>{{#if item.system.container}}&rdsh;&nbsp;{{/if}}{{item.name}}</td>
-            <td>{{item.system.cost}}</td>
+            <td>{{numberFormat item.system.totalCost decimals=1}}</td>
             <td>{{numberFormat item.system.totalWt decimals=1}}</td>
             <td>{{item.system.qty}}</td>
             <td>{{#if item.system.isContainer}}{{numberFormat item.system.remaining decimals=1}}{{/if}}</td>
