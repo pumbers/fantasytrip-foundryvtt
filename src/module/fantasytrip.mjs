@@ -60,6 +60,14 @@ Hooks.once("init", async function () {
   /*
    * Define game settings
    */
+  game.settings.register("fantasytrip", "allowTalentSpendOnIQIncrease", {
+    name: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.name"),
+    hint: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.hint"),
+    scope: "world",
+    type: new BooleanField({ initial: true }),
+    config: true,
+  });
+
   game.settings.register("fantasytrip", "showItemIcons", {
     name: game.i18n.localize("FT.game.settings.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.settings.showItemIcons.hint"),

@@ -5,6 +5,11 @@ FT:
       showItemIcons:
         name: Show Item Icons
         hint: Show icons in item tables?
+      allowTalentSpendOnIQIncrease:
+        name: Allow Talent Spend on IQ Increase
+        hint: >
+          If a character increases their IQ, do they automatically get a point to acquire a new Talent
+          or Spell, or must they spend XP instead?
   # General Messages
   messages:
     noCapacity: "{container} is not big enough."
