@@ -54,7 +54,7 @@ export function useItemMacro(itemId) {
   // Use the drop data to retrieve the item
   Item.fromDropData(dropData).then((item) => {
     // Check that the item is still owned
-    if (!item || !item.parent) {
+    if (!item ?? !item.parent) {
       // const itemName = item?.name ?? itemUuid;
       return ui.notifications.warn(game.i18n.localize("FT.messages.useItemMacroItemNotOwned"));
     }

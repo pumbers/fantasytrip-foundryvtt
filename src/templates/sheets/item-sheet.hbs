@@ -9,6 +9,9 @@
                 <input class="name" name="name" type="text" value="{{item.name}}" placeholder="Name" />
                 <div class="flex flex-row justify-between font-bold uppercase mt-2">
                     <span>{{localize (concat "FT.item.type." item.type)}}</span>
+                    {{#if (and (eq item.type "spell") item.system.type)}}
+                    <span>{{localize (concat "FT.item.spell.type." item.system.type)}}</span>
+                    {{/if}}
                 </div>
             </div>
         </header>
@@ -84,8 +87,15 @@
                     {{!-- Spells --}}
                     {{#if (eq item.type "spell")}}
                     <div class="field">
+                        <label>{{localize "FT.item.sheet.label.type"}}</label>
+                        <select name="system.type">
+                            <option value="">{{localize 'FT.options.none'}}</option>
+                            {{selectOptions selectOptions.spellTypes selected=system.type localize=true}}
+                        </select>
+                    </div>
+                    <div class="field">
                         <label>{{localize "FT.item.sheet.label.stCast"}}</label>
-                        <input type="number" name="system.st" value="{{system.st}}" min="0">
+                        <input type="number" name="system.stCast" value="{{system.stCast}}" min="0">
                     </div>
                     {{/if}}
                 </div>

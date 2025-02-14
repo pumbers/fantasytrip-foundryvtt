@@ -1,11 +1,10 @@
 <div class="flex flex-col gap-2">
-    {{!-- Carrying Capacity --}}
 
     {{#*inline "actions"}}
     <td class="flex flex-row gap-[2px]">
         <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i class="fa fa-comment"></i></a>
         <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i class="fas fa-edit"></i></a>
-        <a class="document-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
+        <a class="clickable" data-action="item-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
                 class="fas fa-trash"></i></a>
     </td>
     {{/inline}}
@@ -20,38 +19,25 @@
                 <th>{{localize 'FT.character.sheet.table.items.cost'}}</th>
                 <th>{{localize 'FT.character.sheet.table.items.wt'}}</th>
                 <th>{{localize 'FT.character.sheet.table.items.qty'}}</th>
+                <th>{{localize 'FT.character.sheet.table.items.capacity'}}</th>
                 <th>{{localize 'FT.character.sheet.table.items.location'}}</th>
                 <th></th>
             </tr>
         </thead>
         {{#each inventory as |item|}}
         <tr data-item-id="{{item._id}}" draggable="true"
-            class="{{#if item.system.capacity}}item-container{{else}}item{{/if}}">
-            {{#if ../settings.showItemIcons}}<td><img src="{{item.img}}" /> </td>
-            {{/if}}
+            class="item {{#if item.system.isContainer}}item-container{{/if}}">
+            {{#if ../settings.showItemIcons}}<td><img src="{{item.img}}" /></td>{{/if}}
             <td>{{#if item.system.container}}&rdsh;&nbsp;{{/if}}{{item.name}}</td>
             <td>{{item.system.cost}}</td>
             <td>{{item.system.wt}}</td>
             <td>{{item.system.qty}}</td>
+            <td>{{#if item.system.capacity}}{{item.system.remaining}}{{/if}}</td>
             <td>
                 {{#unless item.system.container}}
-                {{#if (eq item.system.location 'equipped')}}
-                <a class="document-set-field document-set-effects mr-2" data-field="system.location"
-                    data-value="carried" data-disabled="false"
-                    title="{{localize 'FT.character.sheet.button.equipped'}}"><i class="icon-battle-gear"></i></a>
-                {{else if (eq item.system.location 'carried')}}
-                <a class="document-set-field document-set-effects mr-2" data-field="system.location" data-value="stowed"
-                    data-disabled="true" title="{{localize 'FT.character.sheet.button.carried'}}"><i
-                        class="icon-knapsack"></i></a>
-                {{else if (eq item.system.location 'stowed')}}
-                <a class="document-set-field document-set-effects mr-2" data-field="system.location" data-value="stored"
-                    data-disabled="true" title="{{localize 'FT.character.sheet.button.stowed'}}"><i
-                        class="icon-chest"></i></a>
-                {{else if (eq item.system.location 'stored')}}
-                <a class="document-set-field document-set-effects mr-2" data-field="system.location"
-                    data-value="equipped" data-disabled="false"
-                    title="{{localize 'FT.character.sheet.button.stored'}}"><i class="icon-white-tower"></i></a>
-                {{/if}}
+                <a class="clickable mr-2" data-action="item-change-location"
+                    title="{{localize (concat 'FT.character.sheet.label.location.' item.system.location)}}"><i
+                        class="{{lookup ../FT.item.inventory.icons item.system.location}}"></i></a>
                 {{/unless}}
             </td>
             {{> actions}}

@@ -40,7 +40,28 @@ FT.character = {
 /*  Item Config & Options                  */
 /* ------------------------------------------- */
 
-FT.item = {};
+FT.item = {
+  inventory: {
+    types: ["equipment", "weapon", "armor"],
+    locations: ["equipped", "carried", "dropped", "stowed", "stored"],
+    icons: {
+      equipped: "icon-battle-gear",
+      carried: "icon-knapsack",
+      dropped: "icon-drop-weapon",
+      stowed: "icon-chest",
+      stored: "icon-white-tower",
+    },
+    encumbering: ["carried", "equipped"],
+  },
+  spell: {
+    types: {
+      missile: "FT.item.spell.type.missile",
+      thrown: "FT.item.spell.type.thrown",
+      creation: "FT.item.spell.type.creation",
+      special: "FT.item.spell.type.special",
+    },
+  },
+};
 
 /* ------------------------------------------- */
 /*  Combat Config & Options                  */

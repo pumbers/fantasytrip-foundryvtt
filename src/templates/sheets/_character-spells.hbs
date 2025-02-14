@@ -12,6 +12,7 @@
         <tr>
             {{#if settings.showItemIcons}}<th></th>{{/if}}
             <th class="w-full">{{localize 'FT.character.sheet.table.spells.name'}}</th>
+            <th>{{localize 'FT.character.sheet.table.spells.type'}}</th>
             <th>{{localize 'FT.character.sheet.table.spells.iq'}}</th>
             <th>{{localize 'FT.character.sheet.table.spells.st'}}</th>
             <th></th>
@@ -24,8 +25,9 @@
         <td><img src="{{spell.img}}" /> </td>
         {{/if}}
         <td>{{spell.name}}</td>
+        <td>{{localize (concat "FT.item.spell.typeAbbr." spell.system.type)}}</td>
         <td>{{spell.system.iq}}</td>
-        <td>{{spell.system.st}}</td>
+        <td>{{spell.system.stCast}}</td>
         <td><a class="clickable" data-action="cast-spell">{{localize "FT.character.sheet.button.cast"}}</a></td>
         {{> actions}}
     </tr>

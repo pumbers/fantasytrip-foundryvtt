@@ -31,8 +31,8 @@ export function property(obj, key) {
  */
 export function abbrev(str, options) {
   return (
-    str?.substring(0, options.hash.len || 3) +
-    (str.length > (options.hash.len || 3) && options.hash.ellipsis ? "..." : "")
+    str?.substring(0, options.hash.len ?? 3) +
+    (str.length > (options.hash.len ?? 3) && options.hash.ellipsis ? "..." : "")
   );
 }
 
@@ -67,7 +67,7 @@ export function array() {
  * Create an array from a range
  */
 export function range() {
-  if (arguments[0] == null || arguments[1] == null) return;
+  if (arguments[0] == null ?? arguments[1] == null) return;
   let low = Math.min(arguments[0], arguments[1]);
   let high = Math.max(arguments[0], arguments[1]);
   let list = [];

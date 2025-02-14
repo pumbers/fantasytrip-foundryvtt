@@ -57,12 +57,12 @@ export class FTCharacter extends Actor {
     ];
 
     const load = Array.from(this.items)
-      .filter((item) => ["equipment", "weapon", "armor"].includes(item.type))
-      .filter((item) => ["carried", "equipped"].includes(item.system.location))
+      .filter((item) => CONFIG.FT.item.inventory.types.includes(item.type))
+      .filter((item) => CONFIG.FT.item.inventory.encumbering.includes(item.system.location))
       .reduce((load, item) => load + item.system.wt * item.system.qty, 0);
     const level = capacity.findIndex((val) => val > load);
 
-    system.encumbrance = { capacity, load, level };
+    system.encumbrance = { capacity, load: load.toFixed(1), level };
 
     // Apply Encumbrance to Stats
     switch (system.encumbrance.level) {
@@ -80,6 +80,16 @@ export class FTCharacter extends Actor {
       default:
         break;
     }
+
+    // Calculate container remaining capacity
+    Array.from(this.items)
+      .filter((item) => item.system.isContainer)
+      .forEach((container) => {
+        const wt = this.items
+          .filter((item) => item.system.container === container._id)
+          .reduce((wt, item) => wt + item.system.wt, 0);
+        container.system.remaining = (container.system.capacity - wt).toFixed(1);
+      });
   }
 
   /* ------------------------------------------- */

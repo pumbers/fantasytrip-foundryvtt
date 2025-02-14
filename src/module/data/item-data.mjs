@@ -24,7 +24,8 @@ export class FTTalentData extends FTBaseItemData {
 export class FTSpellData extends FTTalentData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
-      st: new NumberField({ initial: 0 }),
+      type: new StringField(),
+      stCast: new NumberField({ initial: 0 }),
     });
   }
 }
@@ -36,10 +37,14 @@ export class FTEquipmentData extends FTBaseItemData {
       wt: new NumberField({ initial: 0 }),
       qty: new NumberField({ initial: 1 }),
       //
-      location: new StringField({ initial: "carried" }),
+      location: new StringField(),
       capacity: new NumberField({ initial: 0 }),
       container: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
     });
+  }
+
+  get isContainer() {
+    return !!this.capacity;
   }
 }
 

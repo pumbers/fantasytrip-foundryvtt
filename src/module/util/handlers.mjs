@@ -37,11 +37,11 @@ export function onUpdateField(event) {
 export function onItemCreate(event) {
   event?.preventDefault();
   const element = $(event?.currentTarget);
-  const { name, type, ...system } = element?.data() || {};
+  const { name, type, ...system } = element?.data() ?? {};
   // Prepare the item object.
   foundry.utils.deepClone(system);
   const itemData = {
-    name: name || `New ${type.capitalize()}`,
+    name: name ?? `New ${type.capitalize()}`,
     type,
     system,
   };
@@ -216,7 +216,7 @@ export function onIncrementValue(event) {
   const dataset = element?.data();
   const actor = this.actor;
   actor?.update({
-    [dataset.value]: Math.min(foundry.utils.getProperty(actor.data, dataset.value) + 1, parseInt(dataset.max) || 20),
+    [dataset.value]: Math.min(foundry.utils.getProperty(actor.data, dataset.value) + 1, parseInt(dataset.max) ?? 20),
   });
 }
 
@@ -230,6 +230,6 @@ export function onDecrementValue(event) {
   const dataset = element?.data();
   const actor = this.actor;
   actor?.update({
-    [dataset.value]: Math.max(foundry.utils.getProperty(actor.data, dataset.value) - 1, parseInt(dataset.min) || 0),
+    [dataset.value]: Math.max(foundry.utils.getProperty(actor.data, dataset.value) - 1, parseInt(dataset.min) ?? 0),
   });
 }

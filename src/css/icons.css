@@ -27,6 +27,9 @@
   & .icon-white-tower::before {
     content: url("../assets/icons/white-tower.svg");
   }
+  & .icon-drop-weapon::before {
+    content: url("../assets/icons/drop-weapon.svg");
+  }
 
   /* Status */
   & .icon-despair::before {

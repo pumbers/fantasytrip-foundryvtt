@@ -7,6 +7,7 @@ FT:
         hint: Show icons in item tables?
   # General Messages
   messages:
+    noCapacity: "{container} is not big enough."
     createHotbarMacroItemNotOwned: You can only create macro buttons for owned Items.
     useItemMacroItemNotOwned: Your controlled Actor does not have that item.
     useItemMacroCannotDetermineActor: You need to select a token so that I can determine who's acting.
@@ -63,20 +64,28 @@ FT:
         risk: Risk
         ap: AP
         xp: XP
+        location:
+          equipped: Equipped
+          carried: Carried
+          dropped: Dropped
+          stowed: Stowed
+          stored: Stored
       table:
         talents:
           name: Talent
           iq: IQ
         items:
           name: Item
-          cost: Cost
+          cost: Cost.
           wt: Wt
           qty: Qty
-          location: Loc.
+          capacity: Cap
+          location: Loc
           carried: Carried
           unit: lbs
         spells:
           name: Name
+          type: Type
           iq: IQ
           st: ST
       button:
@@ -84,10 +93,6 @@ FT:
         create: Add
         edit: Edit
         delete: Delete
-        equipped: Equipped
-        carried: Carried
-        stowed: Stowed
-        stored: Stored
         roll: Roll
         cast: Cast
   item:
@@ -97,6 +102,19 @@ FT:
       weapon: Weapon
       armor: Armor
       spell: Spell
+    spell:
+      type:
+        missile: Missile
+        thrown: Thrown
+        creation: Creation
+        special: Special
+      typeAbbr:
+        missile: M
+        thrown: T
+        creation: C
+        special: S
+    label:
+      name: Name
     sheet:
       tab:
         notes: Notes
@@ -109,6 +127,7 @@ FT:
         iq: IQ Level
         acquire: Cost to Acquire
         stUse: Min ST to use
+        type: Spell Type
         stCast: ST to Cast
         damage: Damage Roll
         talent: Talent to Use
