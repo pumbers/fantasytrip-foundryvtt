@@ -43,6 +43,11 @@ export class FTEquipmentData extends FTBaseItemData {
     });
   }
 
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this.totalWt = this.wt * this.qty;
+  }
+
   get isContainer() {
     return !!this.capacity;
   }

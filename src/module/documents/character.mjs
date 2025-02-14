@@ -59,10 +59,10 @@ export class FTCharacter extends Actor {
     const load = Array.from(this.items)
       .filter((item) => CONFIG.FT.item.inventory.types.includes(item.type))
       .filter((item) => CONFIG.FT.item.inventory.encumbering.includes(item.system.location))
-      .reduce((load, item) => load + item.system.wt * item.system.qty, 0);
+      .reduce((load, item) => load + item.system.totalWt, 0);
     const level = capacity.findIndex((val) => val > load);
 
-    system.encumbrance = { capacity, load: load.toFixed(1), level };
+    system.encumbrance = { capacity, load, level };
 
     // Apply Encumbrance to Stats
     switch (system.encumbrance.level) {

@@ -76,7 +76,7 @@ FT:
           iq: IQ
         items:
           name: Item
-          cost: Cost.
+          cost: $
           wt: Wt
           qty: Qty
           capacity: Cap

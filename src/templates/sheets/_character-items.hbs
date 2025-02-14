@@ -30,9 +30,9 @@
             {{#if ../settings.showItemIcons}}<td><img src="{{item.img}}" /></td>{{/if}}
             <td>{{#if item.system.container}}&rdsh;&nbsp;{{/if}}{{item.name}}</td>
             <td>{{item.system.cost}}</td>
-            <td>{{item.system.wt}}</td>
+            <td>{{numberFormat item.system.totalWt decimals=1}}</td>
             <td>{{item.system.qty}}</td>
-            <td>{{#if item.system.capacity}}{{item.system.remaining}}{{/if}}</td>
+            <td>{{#if item.system.isContainer}}{{numberFormat item.system.remaining decimals=1}}{{/if}}</td>
             <td>
                 {{#unless item.system.container}}
                 <a class="clickable mr-2" data-action="item-change-location"
@@ -47,7 +47,8 @@
             <tr>
                 {{#if settings.showItemIcons}}<td></td>{{/if}}
                 <td colspan="2" class="!text-right">{{localize 'FT.character.sheet.table.items.carried'}}</td>
-                <td>{{system.encumbrance.load}}&nbsp;{{localize 'FT.character.sheet.table.items.unit'}}</td>
+                <td>{{numberFormat system.encumbrance.load decimals=1}}&nbsp;{{localize
+                    'FT.character.sheet.table.items.unit'}}</td>
                 <td colspan="3"></td>
             </tr>
         </tfoot>
