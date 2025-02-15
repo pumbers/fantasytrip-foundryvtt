@@ -35,6 +35,11 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         max: new NumberField({ initial: 10 }),
         value: new NumberField({ initial: 10 }),
       }),
+      mana: new SchemaField({
+        min: new NumberField({ initial: 0 }),
+        max: new NumberField({ initial: 0 }),
+        value: new NumberField({ initial: 0 }),
+      }),
       //
       xp: new NumberField({ initial: 0 }),
       //
@@ -64,5 +69,9 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
     this.dx.value = Math.max(this.dx.max + this.dx.mod, 0);
     this.iq.value = Math.max(this.iq.max + this.iq.mod, 0);
     this.ma.value = Math.max(this.ma.max + this.ma.mod, 0);
+
+    // Calculate availoable mana (from staff if a wizard)
+    this.mana.value = Math.min(this.mana.max, this.mana.value);
+    this.mana.used = Math.max(this.mana.max - this.mana.value, 0);
   }
 }

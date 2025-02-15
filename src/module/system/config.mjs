@@ -25,7 +25,7 @@ FT.character = {
   ],
   tracks: {
     encumbrance: {
-      colors: ["bg-lime", "bg-lime", "bg-lime", "bg-amber", "bg-amber", "bg-red", "bg-red", ""],
+      colors: ["bg-lime", "bg-lime", "bg-lime", "bg-amber", "bg-amber", "bg-red", "bg-red"],
     },
     fatigue: {
       colors: [],
@@ -43,7 +43,7 @@ FT.character = {
 FT.item = {
   inventory: {
     types: ["equipment", "weapon", "armor"],
-    locations: ["equipped", "carried", "dropped", "stowed", "stored"],
+    locations: ["equipped", "dropped", "carried", "stowed", "stored"],
     icons: {
       equipped: "icon-battle-gear",
       carried: "icon-knapsack",

@@ -68,4 +68,35 @@
   & .clickable {
     @apply cursor-pointer;
   }
+
+  .effects {
+    @apply flex flex-col gap-2;
+    .effect {
+      @apply border border-black rounded-sm m-0 p-1 flex flex-row gap-2;
+      legend {
+        @apply font-bold uppercase;
+      }
+      img {
+        @apply w-12 h-12 border-none;
+      }
+      table {
+        @apply h-4;
+      }
+      th,
+      td {
+        &:last-child {
+          @apply text-left;
+        }
+      }
+      .actions {
+        @apply flex flex-col gap-1 justify-start;
+        button.effect-manage {
+          @apply border-none w-auto px-1 cursor-pointer text-xs;
+          /* &:hover {
+            @apply bg-cs5-gold-50;
+          } */
+        }
+      }
+    }
+  }
 }

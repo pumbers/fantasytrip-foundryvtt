@@ -5,8 +5,9 @@
     </span>
     {{#each system.encumbrance.capacity as |capacity|}}
     <span
-        class="border-[1px] rounded-sm m-0 p-0  {{lookup ../FT.character.tracks.encumbrance.colors @index}}{{#unless (eq @index ../system.encumbrance.level)}}-100{{else}}-500{{/unless}}">
-        {{capacity}}&thinsp;{{localize 'FT.character.sheet.table.items.unit'}}
+        class="border-[1px] rounded-sm m-0 p-0 {{lookup ../FT.character.tracks.encumbrance.colors @index}}{{#unless (eq @index ../system.encumbrance.level)}}-100{{else}}-500{{/unless}}"
+        title="{{localize (concat 'FT.character.sheet.label.encumbranceLevel.' @index)}}">
+        {{numberFormat capacity decimals=0}}&thinsp;{{localize 'FT.character.sheet.table.items.unit'}}
     </span>
     {{/each }}
 </div>
@@ -28,11 +29,35 @@
         {{/each}}
     </span>
 </div>
-<div class="grid grid-cols-6 gap-1 text-xs text-center">
+
+{{!-- Staff Mana (if a wizard) --}}
+{{#if (eq system.type "wizard")}}
+<div class="grid grid-cols-8 gap-1 text-xs text-center">
+    <span class="border-[1px] rounded-sm m-0 p-0 bg-slate-300">
+        <i class="icon-wizard-staff"></i>
+    </span>
+    <span class="col-span-7 border-[1px] rounded-sm m-0 p-0 flex flex-row gap-0">
+        {{#each (range system.mana.value)}}
+        <span class="grow bg-blue-500"></span>
+        {{/each}}
+        {{#each (range system.mana.used)}}
+        <span class="grow bg-white"></span>
+        {{/each}}
+    </span>
+</div>
+{{/if}}
+
+{{!-- Damage, Fatigue and stats modifiers --}}
+<div class="flex flex-row gap-1 text-xs text-center">
     <div class="field"><label>{{localize "FT.character.sheet.label.fatigue"}}</label><input type="number"
             name="system.fatigue" value="{{system.fatigue}}" min="0"></div>
     <div class="field"><label>{{localize "FT.character.sheet.label.damage"}}</label><input type="number"
             name="system.damage" value="{{system.damage}}" min="0"></div>
+    {{#if (eq system.type "wizard")}}
+    <div class="field"><label>{{localize "FT.character.sheet.label.mana"}}</label><input type="number"
+            name="system.mana.value" value="{{system.mana.value}}">
+    </div>
+    {{/if}}
     <div class="field"><label>{{localize "FT.character.sheet.label.stMod"}}</label><input type="number"
             name="system.st.mod" value="{{system.st.mod}}">
     </div>
@@ -46,21 +71,3 @@
             name="system.ma.mod" value="{{system.ma.mod}}">
     </div>
 </div>
-
-
-
-{{!-- Fatigue --}}
-{{!-- <div class="flex flex-row gap-1 justify-start">
-    <div class="min-w-6 text-center bg bg-slate-300 p-0"><i class="icon-despair">&nbsp;</i></div>
-    {{#each (range 0 system.st.max)}}
-    <div class="grow p-0 min-w-4 text-center bg-slate-200">{{.}}</div>
-    {{/each }}
-</div> --}}
-
-{{!-- Damage --}}
-{{!-- <div class="flex flex-row gap-1 justify-start">
-    <div class="min-w-6 text-center bg bg-slate-300 p-0"><i class="icon-hearts">&nbsp;</i></div>
-    {{#each (range 0 system.st.max)}}
-    <div class="grow p-0 min-w-4 text-center bg-slate-200">{{.}}</div>
-    {{/each }}
-</div> --}}

@@ -32,13 +32,10 @@
   }
 
   /* Status */
-  & .icon-despair::before {
-    content: url("../assets/icons/despair.svg");
-  }
-  & .icon-hearts::before {
-    content: url("../assets/icons/hearts.svg");
-  }
   & .icon-death-skull::before {
     content: url("../assets/icons/death-skull.svg");
+  }
+  & .icon-wizard-staff::before {
+    content: url("../assets/icons/wizard-staff.svg");
   }
 }

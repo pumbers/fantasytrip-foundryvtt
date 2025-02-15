@@ -83,6 +83,9 @@ export class FTActor extends Actor {
           .reduce((wt, item) => wt + item.system.wt, 0);
         container.system.remaining = (container.system.capacity - wt).toFixed(1);
       });
+
+    // Calculate weapon & armor penalties
+    // TODO
   }
 
   /* ------------------------------------------- */

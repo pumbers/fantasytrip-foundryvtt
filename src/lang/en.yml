@@ -34,6 +34,7 @@ FT:
       attribute: Attribute
       change: Change
       value: Value
+      disabled: (Disabled)
     action:
       create: Create
       edit: Edit
@@ -70,8 +71,18 @@ FT:
         risk: Risk
         ap: AP
         xp: XP
+        encumbrance: Encumbrance
+        encumbranceLevel:
+          - No penalties
+          - Swimming at -2 DX
+          - Swimming at -5 DX
+          - No swimming, combat MA 8
+          - Combat MA 6, -1 DX
+          - Combat MA 4, -2 DX
+          - ST reduced by 1 every 10 minutes
         damage: Damage
         fatigue: Fatigue
+        mana: Mana
         stMod: ST Mod
         dxMod: DX Mod
         iqMod: IQ Mod

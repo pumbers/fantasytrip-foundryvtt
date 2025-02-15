@@ -21,8 +21,6 @@ export function onManageActiveEffect(event) {
           }),
           icon: "icons/svg/aura.svg",
           origin: this.uuid,
-          //   "duration.rounds": li.dataset.effectType === "temporary" ? 1 : undefined,
-          //   disabled: li.dataset.effectType === "inactive",
         },
       ]);
     case "edit":
