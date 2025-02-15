@@ -3,7 +3,7 @@
 .fantasy-trip {
   & i[class^="icon-"] {
     /* Try to match Font Awesome size & spacing */
-    @apply inline-block !w-[0.875rem] !h-[0.875rem] leading-[0.875rem];
+    @apply inline-block !w-[1em] !h-[1em] leading-[1em] relative top-[0.2em];
   }
 
   /* Dice */
@@ -37,5 +37,8 @@
   }
   & .icon-hearts::before {
     content: url("../assets/icons/hearts.svg");
+  }
+  & .icon-death-skull::before {
+    content: url("../assets/icons/death-skull.svg");
   }
 }

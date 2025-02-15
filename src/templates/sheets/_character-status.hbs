@@ -1,13 +1,51 @@
 {{!-- Encumbrance --}}
-<div class="flex flex-row gap-1">
-    <div class="min-w-6 text-center bg bg-slate-300 p-0"><i class="icon-knapsack">&nbsp;</i></div>
+<div class="grid grid-cols-8 gap-1 text-xs text-center">
+    <span class="border-[1px] rounded-sm m-0 p-0 bg-slate-300">
+        <i class="icon-knapsack"></i>
+    </span>
     {{#each system.encumbrance.capacity as |capacity|}}
-    <div
-        class="grow p-0 min-w-6 text-center {{lookup ../FT.character.tracks.encumbrance.colors @index}}{{#unless (eq @index ../system.encumbrance.level)}}-100{{else}}-500{{/unless}}">
-        {{capacity}}
-    </div>
+    <span
+        class="border-[1px] rounded-sm m-0 p-0  {{lookup ../FT.character.tracks.encumbrance.colors @index}}{{#unless (eq @index ../system.encumbrance.level)}}-100{{else}}-500{{/unless}}">
+        {{capacity}}&thinsp;{{localize 'FT.character.sheet.table.items.unit'}}
+    </span>
     {{/each }}
 </div>
+
+{{!-- Fatigue & Damage --}}
+<div class="grid grid-cols-8 gap-1 text-xs text-center">
+    <span class="border-[1px] rounded-sm m-0 p-0 bg-slate-300">
+        <i class="icon-death-skull"></i>
+    </span>
+    <span class="col-span-7 border-[1px] rounded-sm m-0 p-0 flex flex-row gap-0">
+        {{#each (range system.damage)}}
+        <span class="grow bg-red-500"></span>
+        {{/each}}
+        {{#each (range system.fatigue)}}
+        <span class="grow bg-amber-500"></span>
+        {{/each}}
+        {{#each (range system.st.value)}}
+        <span class="grow bg-white"></span>
+        {{/each}}
+    </span>
+    <div class="field col-span-2"><label>{{localize "FT.character.sheet.label.fatigue"}}</label><input type="number"
+            name="system.fatigue" value="{{system.fatigue}}" min="0"></div>
+    <div class="field col-span-2"><label>{{localize "FT.character.sheet.label.damage"}}</label><input type="number"
+            name="system.damage" value="{{system.damage}}" min="0"></div>
+    <div class="field"><label>{{localize "FT.character.sheet.label.stMod"}}</label><input type="number"
+            name="system.st.bonus" value="{{system.st.bonus}}">
+    </div>
+    <div class="field"><label>{{localize "FT.character.sheet.label.dxMod"}}</label><input type="number"
+            name="system.dx.bonus" value="{{system.dx.bonus}}">
+    </div>
+    <div class="field"><label>{{localize "FT.character.sheet.label.iqMod"}}</label><input type="number"
+            name="system.iq.bonus" value="{{system.iq.bonus}}">
+    </div>
+    <div class="field"><label>maMod</label><input type="number" name="system.ma.bonus" value="{{system.ma.bonus}}">
+    </div>
+</div>
+
+
+
 
 {{!-- Fatigue --}}
 {{!-- <div class="flex flex-row gap-1 justify-start">

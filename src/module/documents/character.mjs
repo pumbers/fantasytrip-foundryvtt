@@ -38,13 +38,6 @@ export class FTCharacter extends Actor {
     super.prepareDerivedData();
     const system = this.system;
 
-    // Calculate Adjusted Attribute Values
-    system.st.value = Math.max(system.st.max - system.damage - system.fatigue, 0);
-
-    // Calculate ST Fatigue/Damage Thresholds
-    system.st.amber = Math.ceil(system.st.max / 2);
-    system.st.red = Math.ceil(system.st.max / 5);
-
     // Calculate Encumbrance
     const capacity = [
       system.st.max * 2,

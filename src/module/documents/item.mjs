@@ -28,7 +28,7 @@ export class FTItem extends Item {
    * Send item details to chat
    */
   async chat() {
-    const content = await renderTemplate(`${CONFIG.FT.path}/templates/chat/item.hbs`, this.data);
+    const content = await renderTemplate(`${CONFIG.FT.path}/templates/chat/item.hbs`, this.system);
     ChatMessage.create({
       content: content,
       flavor: this.name,

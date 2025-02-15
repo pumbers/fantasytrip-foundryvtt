@@ -49,7 +49,7 @@
         @apply text-right;
       }
       & img {
-        @apply border-none m-0 p-0 min-w-[0.875rem] min-h-[0.875rem];
+        @apply border-none m-0 p-0 min-w-[1em] min-h-[1em];
       }
     }
     & tfoot {
@@ -61,7 +61,11 @@
   & .field {
     @apply flex flex-col gap-1 mt-auto mb-0 !leading-2;
     & label {
-      @apply m-0 p-0 text-[0.5rem] uppercase;
+      @apply m-0 p-0 text-[0.5rem] !text-left uppercase;
     }
+  }
+
+  & .clickable {
+    @apply cursor-pointer;
   }
 }

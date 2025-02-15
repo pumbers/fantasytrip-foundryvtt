@@ -131,10 +131,11 @@ Hooks.once("init", async function () {
     `${CONFIG.FT.path}/templates/sheets/character-sheet.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-stats.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-status.hbs`,
-    `${CONFIG.FT.path}/templates/sheets/_character-combat.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/_character-action.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-talents.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-items.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-spells.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/_character-fx.hbs`,
     `${CONFIG.FT.path}/templates/sheets/item-sheet.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_item-effects.hbs`,
   ]);

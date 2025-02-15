@@ -60,6 +60,7 @@ FT:
         talents: Talents
         items: Items
         spells: Spells
+        fx: FX
       label:
         type: Type
         race: Race
@@ -69,6 +70,12 @@ FT:
         risk: Risk
         ap: AP
         xp: XP
+        damage: Damage
+        fatigue: Fatigue
+        stMod: ST Mod
+        dxMod: DX Mod
+        iqMod: IQ Mod
+        maMod: MA Mod
         location:
           equipped: Equipped
           carried: Carried
@@ -87,7 +94,7 @@ FT:
           capacity: Cap
           location: Loc
           carried: Carried
-          unit: lbs
+          unit: lb
         spells:
           name: Name
           type: Type

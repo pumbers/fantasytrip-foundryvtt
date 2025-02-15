@@ -26,6 +26,7 @@
                 <a class="item" data-tab="talents">{{localize "FT.character.sheet.tab.talents"}}</a>
                 <a class="item" data-tab="items">{{localize "FT.character.sheet.tab.items"}}</a>
                 <a class="item" data-tab="spells">{{localize "FT.character.sheet.tab.spells"}}</a>
+                <a class="item" data-tab="fx">{{localize "FT.character.sheet.tab.fx"}}</a>
             </nav>
             {{!-- Tab Contents --}}
             <div>
@@ -48,6 +49,10 @@
                 {{!-- Spells Tab --}}
                 <div class="tab spells" data-group="primary" data-tab="spells">
                     {{> (concat FT.path "/templates/sheets/_character-spells.hbs")}}
+                </div>
+                {{!-- Effects Tab --}}
+                <div class="tab fx" data-group="primary" data-tab="fx">
+                    {{> (concat FT.path "/templates/sheets/_character-fx.hbs")}}
                 </div>
             </div>
         </section>
