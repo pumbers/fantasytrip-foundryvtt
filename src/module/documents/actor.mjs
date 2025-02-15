@@ -81,11 +81,20 @@ export class FTActor extends Actor {
         const wt = this.items
           .filter((item) => item.system.container === container._id)
           .reduce((wt, item) => wt + item.system.wt, 0);
-        container.system.remaining = (container.system.capacity - wt).toFixed(1);
+        container.system.remaining = container.system.capacity - wt;
       });
 
     // Calculate weapon & armor penalties
     // TODO
+
+    // Calculate weapon & armor combat stats
+    Array.from(this.items)
+      .filter((item) => item.type === "weapon")
+      .forEach((weapon) => {
+        weapon.system.toHitMod = Math.min(this.system.st.max - weapon.system.minST, 0);
+        weapon.system.toHit = this.system.dx.value + weapon.system.toHitMod;
+        weapon.system.damageMod = Math.ceil(Math.min(this.system.st.max - weapon.system.minST, 0) / 2);
+      });
   }
 
   /* ------------------------------------------- */

@@ -2,6 +2,9 @@ FT:
   # Game
   game:
     settings:
+      initialAP:
+        name: Attribute Points for new characters
+        hint: The number of Attribute Points a new character is allowed to spend.
       showItemIcons:
         name: Show Item Icons
         hint: Show icons in item tables?
@@ -54,6 +57,11 @@ FT:
       halfling: Halfling
       orc: Orc
       goblin: Goblin
+    attribute:
+      st: ST
+      dx: DX
+      iq: IQ
+      ma: MA
     sheet:
       tab:
         stats: Character
@@ -82,6 +90,7 @@ FT:
           - ST reduced by 1 every 10 minutes
         damage: Damage
         fatigue: Fatigue
+        health: Health
         mana: Mana
         stMod: ST Mod
         dxMod: DX Mod
@@ -125,6 +134,13 @@ FT:
       weapon: Weapon
       armor: Armor
       spell: Spell
+    weapon:
+      type:
+        natural: Natural
+        melee: Melee
+        poearm: Polearm
+        thrown: Thrown
+        missile: Missile
     spell:
       type:
         missile: Missile
@@ -144,13 +160,13 @@ FT:
         settings: Settings
         effects: Effects
       label:
-        cost: Cost $
-        wt: Wt. Lbs
+        cost: Cost $ (each)
+        wt: Wt Lbs (each)
         qty: Quantity
         iq: IQ Level
         acquire: Cost to Acquire
         minST: Min ST to use
-        type: Spell Type
+        type: Type
         stCast: ST to Cast
         damage: Damage Roll
         talent: Talent to Use
@@ -158,3 +174,4 @@ FT:
         dxMod: DX Mod
         maxMA: Max MA
         capacity: Capacity
+        defaultAttribute: Default Attribute

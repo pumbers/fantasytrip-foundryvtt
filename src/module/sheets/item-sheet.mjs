@@ -27,7 +27,9 @@ export class FTItemSheet extends ItemSheet {
       flags: foundry.utils.deepClone(this.item.flags),
       owned: !!this.item.parent,
       selectOptions: {
+        attributes: CONFIG.FT.character.attributes,
         spellTypes: CONFIG.FT.item.spell.types,
+        weaponTypes: CONFIG.FT.item.weapon.types,
         // Applicable skill options from the parent actor
         ...(!!this.item.parent &&
           this.item.type === "weapon" && {

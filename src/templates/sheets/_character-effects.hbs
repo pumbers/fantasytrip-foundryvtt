@@ -1,6 +1,5 @@
 <div class="effects">
     {{#each effects as |effect|}}
-    {{log effect}}
     <fieldset class="effect" data-effect-id="{{effect._id}}">
         <legend>{{effect.parent.name}}:&nbsp;{{effect.name}}&nbsp;{{#if effect.disabled}}{{localize
             "FT.effect.label.disabled"}}{{/if}}</legend>

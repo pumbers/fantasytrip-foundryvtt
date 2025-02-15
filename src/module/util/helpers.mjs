@@ -68,7 +68,7 @@ export function array() {
  */
 export function range() {
   if (arguments.length === 1) return;
-  if (arguments.length === 2) return [...Array(arguments[0]).keys()];
+  if (arguments.length === 2) return [...Array(Math.max(arguments[0], 0)).keys()];
   let low = Math.min(arguments[0], arguments[1]);
   let high = Math.max(arguments[0], arguments[1]);
   let list = [];

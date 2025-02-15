@@ -23,16 +23,18 @@ FT.character = {
     "FT.character.race.orc",
     "FT.character.race.goblin",
   ],
+  attributes: {
+    st: "FT.character.attribute.st",
+    dx: "FT.character.attribute.dx",
+    iq: "FT.character.attribute.iq",
+  },
   tracks: {
     encumbrance: {
       colors: ["bg-lime", "bg-lime", "bg-lime", "bg-amber", "bg-amber", "bg-red", "bg-red"],
     },
-    fatigue: {
-      colors: [],
-    },
-    damage: {
-      colors: [],
-    },
+    damage: { color: "bg-red-500" },
+    fatigue: { color: "bg-amber-500" },
+    mana: { color: "bg-sky-400" },
   },
 };
 
@@ -52,6 +54,15 @@ FT.item = {
       stored: "icon-white-tower",
     },
     encumbering: ["carried", "equipped"],
+  },
+  weapon: {
+    types: {
+      natural: "FT.item.weapon.type.natural",
+      melee: "FT.item.weapon.type.melee",
+      polearm: "FT.item.weapon.type.polearm",
+      thrown: "FT.item.weapon.type.thrown",
+      missile: "FT.item.weapon.type.missile",
+    },
   },
   spell: {
     types: {

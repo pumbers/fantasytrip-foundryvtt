@@ -17,6 +17,7 @@ export class FTTalentData extends FTBaseItemData {
     return Object.assign(super.defineSchema(), {
       iq: new NumberField({ initial: 0 }),
       acquire: new NumberField({ initial: 0 }),
+      defaultAttribute: new StringField(),
     });
   }
 }
@@ -57,6 +58,7 @@ export class FTEquipmentData extends FTBaseItemData {
 export class FTWeaponData extends FTEquipmentData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
+      type: new StringField(),
       damage: new StringField(),
       minST: new NumberField({ initial: 0 }),
       //

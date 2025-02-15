@@ -40,10 +40,10 @@ export class FTCharacterSheet extends ActorSheet {
         showItemIcons: game.settings.get("fantasytrip", "showItemIcons"),
       },
       // Categorized itemsa
-      talents: this.actor.items.filter((item) => item.type === "talent").map((item) => item.toObject()),
-      weapons: this.actor.items.filter((item) => item.type === "weapon").map((item) => item.toObject()),
-      armor: this.actor.items.filter((item) => item.type === "armor").map((item) => item.toObject()),
-      spells: this.actor.items.filter((item) => item.type === "spell").map((item) => item.toObject()),
+      talents: this.actor.items.filter((item) => item.type === "talent"),
+      weapons: this.actor.items.filter((item) => item.type === "weapon"),
+      armor: this.actor.items.filter((item) => item.type === "armor"),
+      spells: this.actor.items.filter((item) => item.type === "spell"),
       // Character's Inventory
       inventory: this.actor.items
         .filter((item) => CONFIG.FT.item.inventory.types.includes(item.type))

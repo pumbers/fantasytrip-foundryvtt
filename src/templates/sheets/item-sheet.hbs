@@ -9,8 +9,8 @@
                 <input class="name" name="name" type="text" value="{{item.name}}" placeholder="Name" />
                 <div class="flex flex-row justify-between font-bold uppercase mt-2">
                     <span>{{localize (concat "FT.item.type." item.type)}}</span>
-                    {{#if (and (eq item.type "spell") item.system.type)}}
-                    <span>{{localize (concat "FT.item.spell.type." item.system.type)}}</span>
+                    {{#if item.system.type}}
+                    <span>{{localize (concat "FT.item." item.type ".type." item.system.type)}}</span>
                     {{/if}}
                 </div>
             </div>
@@ -28,8 +28,8 @@
             {{!-- Settings Tab --}}
             <div class="tab" data-group="primary" data-tab="settings">
                 <div class="grid grid-cols-4 gap-1">
-                    {{!-- Equipment --}}
-                    {{#if (or (eq item.type "equipment") (eq item.type "weapon") (eq item.type "armor"))}}
+                    {{!-- All inventory types --}}
+                    {{#if (includes FT.item.inventory.types item.type)}}
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.cost"}}</label>
                         <input type="number" name="system.cost" value="{{system.cost}}" min="0">
@@ -42,23 +42,23 @@
                         <label>{{localize "FT.item.sheet.label.qty"}}</label>
                         <input type="number" name="system.qty" value="{{system.qty}}" min="0">
                     </div>
+                    {{/if}}
+                    {{!-- Equipment --}}
+                    {{#if (eq item.type "equipment")}}
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.capacity"}}</label>
                         <input type="number" name="system.capacity" value="{{system.capacity}}" min="0">
                     </div>
-                    {{!-- Talents --}}
-                    {{else if (or (eq item.type "talent") (eq item.type "spell"))}}
-                    <div class="field">
-                        <label>{{localize "FT.item.sheet.label.iq"}}</label>
-                        <input type="number" name="system.iq" value="{{system.iq}}" min="0">
-                    </div>
-                    <div class="field">
-                        <label>{{localize "FT.item.sheet.label.acquire"}}</label>
-                        <input type="number" name="system.acquire" value="{{system.acquire}}" min="0">
-                    </div>
                     {{/if}}
                     {{!-- Weapons --}}
                     {{#if (eq item.type "weapon")}}
+                    <div class="field">
+                        <label>{{localize "FT.item.sheet.label.type"}}</label>
+                        <select name="system.type">
+                            <option value="">{{localize 'FT.options.none'}}</option>
+                            {{selectOptions selectOptions.weaponTypes selected=system.type localize=true}}
+                        </select>
+                    </div>
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.minST"}}</label>
                         <input type="number" name="system.minST" value="{{system.minST}}" min="0">
@@ -82,6 +82,27 @@
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.hitsStopped"}}</label>
                         <input type="number" name="system.hitsStopped" value="{{system.hitsStopped}}" min="0">
+                    </div>
+                    {{/if}}
+                    {{!-- Talents & Spells --}}
+                    {{#if (or (eq item.type "talent") (eq item.type "spell"))}}
+                    <div class="field">
+                        <label>{{localize "FT.item.sheet.label.iq"}}</label>
+                        <input type="number" name="system.iq" value="{{system.iq}}" min="0">
+                    </div>
+                    <div class="field">
+                        <label>{{localize "FT.item.sheet.label.acquire"}}</label>
+                        <input type="number" name="system.acquire" value="{{system.acquire}}" min="0">
+                    </div>
+                    {{/if}}
+                    {{!-- Talents --}}
+                    {{#if (eq item.type "talent")}}
+                    <div class="field">
+                        <label>{{localize "FT.item.sheet.label.defaultAttribute"}}</label>
+                        <select name="system.defaultAttribute">
+                            <option value="">{{localize 'FT.options.none'}}</option>
+                            {{selectOptions selectOptions.attributes selected=system.defaultAttribute localize=true}}
+                        </select>
                     </div>
                     {{/if}}
                     {{!-- Spells --}}

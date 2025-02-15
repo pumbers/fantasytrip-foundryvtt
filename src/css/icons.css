@@ -38,4 +38,18 @@
   & .icon-wizard-staff::before {
     content: url("../assets/icons/wizard-staff.svg");
   }
+
+  /* Actions */
+  & .icon-sword-brandish::before {
+    content: url("../assets/icons/sword-brandish.svg");
+  }
+  & .icon-weight-lifting-up::before {
+    content: url("../assets/icons/weight-lifting-up.svg");
+  }
+  & .icon-broadsword::before {
+    content: url("../assets/icons/broadsword.svg");
+  }
+  & .icon-chest-armor::before {
+    content: url("../assets/icons/chest-armor.svg");
+  }
 }

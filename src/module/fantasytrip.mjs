@@ -12,7 +12,7 @@ import * as Macros from "./util/macros.mjs";
 import * as Helpers from "./util/helpers.mjs";
 import "./util/extensions.mjs";
 
-const { StringField, BooleanField } = foundry.data.fields;
+const { StringField, NumberField, BooleanField } = foundry.data.fields;
 
 /* -------------------------------------------- */
 /*  Define Module Structure                         
@@ -56,6 +56,14 @@ Hooks.once("init", async function () {
   /*
    * Define game settings
    */
+  game.settings.register("fantasytrip", "initialAP", {
+    name: game.i18n.localize("FT.game.settings.initialAP.name"),
+    hint: game.i18n.localize("FT.game.settings.initialAP.hint"),
+    scope: "world",
+    type: new NumberField({ initial: 32 }),
+    config: true,
+  });
+
   game.settings.register("fantasytrip", "allowTalentSpendOnIQIncrease", {
     name: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.name"),
     hint: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.hint"),

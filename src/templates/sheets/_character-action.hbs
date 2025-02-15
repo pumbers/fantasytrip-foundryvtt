@@ -1,20 +1,27 @@
 {{!-- Weapons --}}
 {{#each weapons as |weapon|}}
 {{#if (and (eq weapon.system.location "equipped") weapon.system.talent)}}
-<div class="flex flex-row gap-1 border-[1px] rounded-sm m-0 p-1 text-lg leading-6">
-    <img class="w-6 h-6" src="{{weapon.img}}" alt="">
-    <div class="grow">{{weapon.name}}</div>
-    <div class="grow">ST&nbsp;{{weapon.system.minST}}</div>
-    <div class="grow">{{weapon.system.damage}}</div>
+<div class="flex flex-row justify-start gap-4 border-[1px] rounded-sm m-0 p-[2px] text-xs leading-4">
+    <img class="w-4 h-4" src="{{weapon.img}}" alt="">
+    <span class="grow">{{weapon.name}}</span>
+    <span><i class="icon-broadsword mr-1"></i>{{localize (concat "FT.item.weapon.type." weapon.system.type)}}</span>
+    <span><i class="icon-weight-lifting-up mr-1"></i>{{localize
+        "FT.character.attribute.st"}}&nbsp;{{weapon.system.minST}}</span>
+    <span><i class="icon-sword-brandish mr-1 "></i>{{localize
+        "FT.character.attribute.dx"}}&nbsp;{{weapon.system.toHit}}</span>
+    <span><i class="icon-death-skull mr-1"></i>{{weapon.system.damage}}{{#if
+        weapon.system.damageMod}}&nbsp;({{weapon.system.damageMod}}){{/if}}
+    </span>
 </div>
 {{/if}}
 {{/each}}
 {{!-- Armor --}}
 {{#each armor as |armor|}}
 {{#if (eq armor.system.location "equipped")}}
-<div class="grid grid-cols-4 gap-1">
+<div class="flex flex-row justify-start gap-1 border-[1px] rounded-sm m-0 p-[2px] text-xs leading-4">
     <img class="w-4 h-4" src="{{armor.img}}" alt="">
-    <div>{{armor.name}}</div>
+    <span class="grow">{{armor.name}}</span>
+    <span><i class="icon-chest-armor mr-1"></i>{{armor.system.hitsStopped}}</span>
 </div>
 {{/if}}
 {{/each}}

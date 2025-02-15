@@ -60,6 +60,16 @@
           "url": "https://tailwindcss.com/docs/functions-and-directives#reference-directive"
         }
       ]
+    },
+    {
+      "name": "@source",
+      "description": "",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/detecting-classes-in-source-files"
+        }
+      ]
     }
   ]
 }
