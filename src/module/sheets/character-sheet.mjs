@@ -95,53 +95,20 @@ export class FTCharacterSheet extends ActorSheet {
     event.preventDefault();
     const element = $(event?.currentTarget);
     const dataset = element?.data();
-    let itemId, item;
+    let itemId;
 
     switch (dataset.action) {
       case "item-change-location":
         console.log("click():item-change-location", dataset);
-        // Find the item
         itemId = element?.closest("[data-item-id]").data("itemId");
         if (!itemId) return;
-        item = this.actor.getEmbeddedDocument("Item", itemId);
-        // Move it to the next location
-        const movedTo =
-          (CONFIG.FT.item.inventory.locations.findIndex((location) => location === item.system.location) + 1) % 5;
-        item.update({ "system.location": CONFIG.FT.item.inventory.locations[movedTo] });
-        // If it's a container, also move its contents
-        if (item.system.isContainer) {
-          this.actor.updateEmbeddedDocuments(
-            "Item",
-            Array.from(this.actor.items)
-              .filter((i) => i.system.container === itemId)
-              .map((i) => ({ _id: i._id, "system.location": CONFIG.FT.item.inventory.locations[movedTo] }))
-          );
-        }
-        // Turn on ActiveEffects if equipped, off otherwise, only for inventory items
-        if (CONFIG.FT.item.inventory.types.includes(item.type)) {
-          if (movedTo === 0) {
-            console.log("... enabling");
-            item.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: false }));
-          } else {
-            console.log("... disabling");
-            item.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: true }));
-          }
-        }
+        this.onItemChangeLocation(itemId);
         break;
       case "item-delete":
         console.log("click():item-delete");
         itemId = element?.closest("[data-item-id]").data("itemId");
         if (!itemId) return;
-        item = this.actor.getEmbeddedDocument("Item", itemId);
-        if (item.system.isContainer) {
-          this.actor.updateEmbeddedDocuments(
-            "Item",
-            Array.from(this.actor.items)
-              .filter((i) => i.system.container === itemId)
-              .map((i) => ({ _id: i._id, "system.container": null, "system.location": "dropped" }))
-          );
-        }
-        this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+        this.onItemDelete(itemId);
         break;
       case "attribute-roll":
         console.log("click():attribute-roll", dataset);
@@ -209,5 +176,45 @@ export class FTCharacterSheet extends ActorSheet {
       }
     }
     return super._onDrop(event);
+  }
+
+  onItemChangeLocation(itemId) {
+    const item = this.actor.getEmbeddedDocument("Item", itemId);
+    // Move it to the next location
+    const movedTo =
+      (CONFIG.FT.item.inventory.locations.findIndex((location) => location === item.system.location) + 1) % 5;
+    item.update({ "system.location": CONFIG.FT.item.inventory.locations[movedTo] });
+    // If it's a container, also move its contents
+    if (item.system.isContainer) {
+      this.actor.updateEmbeddedDocuments(
+        "Item",
+        Array.from(this.actor.items)
+          .filter((i) => i.system.container === itemId)
+          .map((i) => ({ _id: i._id, "system.location": CONFIG.FT.item.inventory.locations[movedTo] }))
+      );
+    }
+    // Turn on ActiveEffects if equipped, off otherwise, only for inventory items
+    if (CONFIG.FT.item.inventory.types.includes(item.type)) {
+      if (movedTo === 0) {
+        console.log("... enabling");
+        item.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: false }));
+      } else {
+        console.log("... disabling");
+        item.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: true }));
+      }
+    }
+  }
+
+  onItemDelete(itemId) {
+    const item = this.actor.getEmbeddedDocument("Item", itemId);
+    if (item.system.isContainer) {
+      this.actor.updateEmbeddedDocuments(
+        "Item",
+        Array.from(this.actor.items)
+          .filter((i) => i.system.container === itemId)
+          .map((i) => ({ _id: i._id, "system.container": null, "system.location": "dropped" }))
+      );
+    }
+    this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }
 }
