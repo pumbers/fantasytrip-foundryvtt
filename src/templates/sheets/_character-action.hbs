@@ -1,18 +1,19 @@
-Action
 {{!-- Weapons --}}
-{{#each organizedItems.weapon as |weapon id|}}
-{{#if (eq weapon.location "equipped")}}
-<div class="grid grid-cols-4 gap-1">
-    <img class="w-8 h-8" src="{{weapon.img}}" alt="">
-    <div>{{weapon.name}}</div>
+{{#each weapons as |weapon|}}
+{{#if (and (eq weapon.system.location "equipped") weapon.system.talent)}}
+<div class="flex flex-row gap-1 border-[1px] rounded-sm m-0 p-1 text-lg leading-6">
+    <img class="w-6 h-6" src="{{weapon.img}}" alt="">
+    <div class="grow">{{weapon.name}}</div>
+    <div class="grow">ST&nbsp;{{weapon.system.minST}}</div>
+    <div class="grow">{{weapon.system.damage}}</div>
 </div>
 {{/if}}
 {{/each}}
 {{!-- Armor --}}
-{{#each organizedItems.armor as |armor id|}}
-{{#if (eq armor.location "equipped")}}
+{{#each armor as |armor|}}
+{{#if (eq armor.system.location "equipped")}}
 <div class="grid grid-cols-4 gap-1">
-    <img class="w-8 h-8" src="{{armor.img}}" alt="">
+    <img class="w-4 h-4" src="{{armor.img}}" alt="">
     <div>{{armor.name}}</div>
 </div>
 {{/if}}

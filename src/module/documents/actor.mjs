@@ -2,7 +2,7 @@
  * Fantasy Trip Actor
  * @extends {Actor} Extends the basic Actor
  */
-export class FTCharacter extends Actor {
+export class FTActor extends Actor {
   /* ------------------------------------------- */
   /*  Properties                                 */
   /* ------------------------------------------- */
@@ -24,17 +24,17 @@ export class FTCharacter extends Actor {
   // Actor.prepareDerivedData()
 
   // prepareBaseData() {
-  //   console.log("FTCharacter.prepareBaseData()", this);
+  //   console.log("FTActor.prepareBaseData()", this);
   //   super.prepareBaseData();
   // }
 
   // prepareEmbeddedDocuments() {
-  //   console.log("FTCharacter.prepareEmbeddedDocuments()", this);
+  //   console.log("FTActor.prepareEmbeddedDocuments()", this);
   //   super.prepareEmbeddedDocuments();
   // }
 
   prepareDerivedData() {
-    // console.log("FTCharacter.prepareDerivedData()", this);
+    // console.log("FTActor.prepareDerivedData()", this);
     super.prepareDerivedData();
     const system = this.system;
 

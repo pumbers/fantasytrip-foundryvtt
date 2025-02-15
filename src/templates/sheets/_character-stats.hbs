@@ -42,22 +42,20 @@
         <div class="flex flex-col gap-1">
             {{#*inline "attribute"}}
             <div class="flex flex-row gap-1 justify-start" data-attribute="{{key}}">
-                <label class="bg-black text-white text-xl text-center uppercase min-w-10 rounded-sm m-0 p-1 clickable"
-                    data-action="attribute-roll" data-attribute="{{key}}">{{key}}</label>
+                <label
+                    class="bg-black text-white text-xl text-center uppercase min-w-10 rounded-sm m-0 p-1">{{key}}</label>
                 <input class="!text-center !text-xl !h-full !w-16" type="number" name="system.{{key}}.max"
                     value="{{attr.max}}" />
-                {{#if adj}}
                 <div class="field w-12">
                     <label>Adj.</label>
                     <input class="" type="text" value="{{attr.value}}" min="0" max="{{attr.max}}" readonly />
                 </div>
-                {{/if}}
             </div>
             {{/inline}}
-            {{> attribute key="st" attr=system.st adj=true}}
-            {{> attribute key="dx" attr=system.dx adj=true}}
+            {{> attribute key="st" attr=system.st}}
+            {{> attribute key="dx" attr=system.dx}}
             {{> attribute key="iq" attr=system.iq}}
-            {{> attribute key="ma" attr=system.ma adj=true}}
+            {{> attribute key="ma" attr=system.ma}}
         </div>
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
     </div>

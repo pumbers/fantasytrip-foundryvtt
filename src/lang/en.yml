@@ -138,7 +138,7 @@ FT:
         qty: Quantity
         iq: IQ Level
         acquire: Cost to Acquire
-        stUse: Min ST to use
+        minST: Min ST to use
         type: Spell Type
         stCast: ST to Cast
         damage: Damage Roll

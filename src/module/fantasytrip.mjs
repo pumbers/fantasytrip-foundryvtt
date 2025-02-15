@@ -1,7 +1,7 @@
 // Import Modules
 import { FT } from "./system/config.mjs";
-import { FTCharacterData } from "./data/actor-data.mjs";
-import { FTCharacter } from "./documents/character.mjs";
+import { FTActorData } from "./data/actor-data.mjs";
+import { FTActor } from "./documents/actor.mjs";
 import { FTCharacterSheet } from "./sheets/character-sheet.mjs";
 
 import { FTItem } from "./documents/item.mjs";
@@ -17,10 +17,6 @@ const { StringField, BooleanField } = foundry.data.fields;
 /* -------------------------------------------- */
 /*  Define Module Structure                         
 /* -------------------------------------------- */
-
-// globalThis.FT = {
-//   entities: { FTCharacter },
-// };
 
 Hooks.once("init", async function () {
   console.info(`FT | Initializing the Fantasy Trip Game System`);
@@ -44,7 +40,7 @@ Hooks.once("init", async function () {
   // Add utility classes to the global game object so that they're more easily
   // accessible in global contexts.
   game.ft = {
-    FTCharacter,
+    FTActor,
     FTItem,
   };
 
@@ -83,8 +79,8 @@ Hooks.once("init", async function () {
   /*
    * Define custom Entity classes
    */
-  CONFIG.Actor.dataModels.character = FTCharacterData;
-  CONFIG.Actor.documentClass = FTCharacter;
+  CONFIG.Actor.dataModels.character = FTActorData;
+  CONFIG.Actor.documentClass = FTActor;
   CONFIG.Actor.trackableAttributes = {
     character: {
       bar: ["st"],

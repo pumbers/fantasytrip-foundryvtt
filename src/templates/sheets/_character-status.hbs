@@ -27,23 +27,25 @@
         <span class="grow bg-white"></span>
         {{/each}}
     </span>
-    <div class="field col-span-2"><label>{{localize "FT.character.sheet.label.fatigue"}}</label><input type="number"
+</div>
+<div class="grid grid-cols-6 gap-1 text-xs text-center">
+    <div class="field"><label>{{localize "FT.character.sheet.label.fatigue"}}</label><input type="number"
             name="system.fatigue" value="{{system.fatigue}}" min="0"></div>
-    <div class="field col-span-2"><label>{{localize "FT.character.sheet.label.damage"}}</label><input type="number"
+    <div class="field"><label>{{localize "FT.character.sheet.label.damage"}}</label><input type="number"
             name="system.damage" value="{{system.damage}}" min="0"></div>
     <div class="field"><label>{{localize "FT.character.sheet.label.stMod"}}</label><input type="number"
-            name="system.st.bonus" value="{{system.st.bonus}}">
+            name="system.st.mod" value="{{system.st.mod}}">
     </div>
     <div class="field"><label>{{localize "FT.character.sheet.label.dxMod"}}</label><input type="number"
-            name="system.dx.bonus" value="{{system.dx.bonus}}">
+            name="system.dx.mod" value="{{system.dx.mod}}">
     </div>
     <div class="field"><label>{{localize "FT.character.sheet.label.iqMod"}}</label><input type="number"
-            name="system.iq.bonus" value="{{system.iq.bonus}}">
+            name="system.iq.mod" value="{{system.iq.mod}}">
     </div>
-    <div class="field"><label>maMod</label><input type="number" name="system.ma.bonus" value="{{system.ma.bonus}}">
+    <div class="field"><label>{{localize "FT.character.sheet.label.maMod"}}</label><input type="number"
+            name="system.ma.mod" value="{{system.ma.mod}}">
     </div>
 </div>
-
 
 
 
