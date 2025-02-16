@@ -67,7 +67,7 @@ FT:
         stats: Character
         notes: Notes
         talents: Talents
-        items: Items
+        items: Inventory
         spells: Spells
         fx: FX
       label:

@@ -1,4 +1,5 @@
-<div class="effects">
+<div class="effects scroll-auto">
+    {{!-- {{log effects}} --}}
     {{#each effects as |effect|}}
     <fieldset class="effect" data-effect-id="{{effect._id}}">
         <legend>{{effect.parent.name}}:&nbsp;{{effect.name}}&nbsp;{{#if effect.disabled}}{{localize
@@ -19,6 +20,20 @@
                 {{/each}}
             </tbody>
         </table>
+        <div class="actions">
+            {{#if (eq parent.name "Actor")}}
+            <button class="effect-manage" data-action="edit">{{localize "FT.effect.action.edit"}}</button>
+            {{#if effect.active}}
+            <button class="effect-manage" data-action="toggle">{{localize "FT.effect.action.off"}}</button>
+            {{else}}
+            <button class="effect-manage" data-action="toggle">{{localize "FT.effect.action.on"}}</button>
+            {{/if}}
+            <button class="effect-manage" data-action="delete">{{localize "FT.effect.action.delete"}}</button>
+            {{/if}}
+        </div>
     </fieldset>
     {{/each}}
+    <div>
+        <button class="effect-manage ml-auto mr-0" data-action="create">{{localize "FT.effect.action.create"}}</button>
+    </div>
 </div>
