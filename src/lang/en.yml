@@ -133,6 +133,7 @@ FT:
       equipment: Equipment
       weapon: Weapon
       armor: Armor
+      shield: Shield
       spell: Spell
     weapon:
       type:

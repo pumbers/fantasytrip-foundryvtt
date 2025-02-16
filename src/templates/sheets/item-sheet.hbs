@@ -78,7 +78,7 @@
                     {{/if}}
                     {{/if}}
                     {{!-- Armor & Shields --}}
-                    {{#if (eq item.type "armor")}}
+                    {{#if (or (eq item.type "armor") (eq item.type "shield"))}}
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.hitsStopped"}}</label>
                         <input type="number" name="system.hitsStopped" value="{{system.hitsStopped}}" min="0">

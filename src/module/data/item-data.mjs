@@ -74,3 +74,11 @@ export class FTArmorData extends FTEquipmentData {
     });
   }
 }
+
+export class FTShieldData extends FTEquipmentData {
+  static defineSchema() {
+    return Object.assign(super.defineSchema(), {
+      hitsStopped: new NumberField({ initial: 0 }),
+    });
+  }
+}

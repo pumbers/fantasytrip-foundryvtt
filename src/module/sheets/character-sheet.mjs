@@ -1,4 +1,6 @@
 import * as Handlers from "../util/handlers.mjs";
+import * as Effects from "../util/effects.mjs";
+
 
 /**
  * Fantasy Trip Character Sheet
@@ -43,6 +45,7 @@ export class FTCharacterSheet extends ActorSheet {
       talents: this.actor.items.filter((item) => item.type === "talent"),
       weapons: this.actor.items.filter((item) => item.type === "weapon"),
       armor: this.actor.items.filter((item) => item.type === "armor"),
+      shields: this.actor.items.filter((item) => item.type === "shield"),
       spells: this.actor.items.filter((item) => item.type === "spell"),
       // Character's Inventory
       inventory: this.actor.items
@@ -82,6 +85,7 @@ export class FTCharacterSheet extends ActorSheet {
 
     // Sheet Actions
     html.find(".clickable").click(this.click.bind(this));
+    html.find(".effect-manage").click(Effects.onManageActiveEffect.bind(this.actor));
 
     // Item actions
     html.find(".document-set-effects").click(Handlers.onSetItemEffects.bind(this));

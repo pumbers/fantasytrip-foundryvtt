@@ -25,3 +25,13 @@
 </div>
 {{/if}}
 {{/each}}
+{{!-- Shields --}}
+{{#each shields as |shield|}}
+{{#if (eq shield.system.location "equipped")}}
+<div class="flex flex-row justify-start gap-1 border-[1px] rounded-sm m-0 p-[2px] text-xs leading-4">
+    <img class="w-4 h-4" src="{{shield.img}}" alt="">
+    <span class="grow">{{shield.name}}</span>
+    <span><i class="icon-chest-armor mr-1"></i>{{shield.system.hitsStopped}}</span>
+</div>
+{{/if}}
+{{/each}}

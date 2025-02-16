@@ -43,4 +43,5 @@ documentTypes:
     equipment: {}
     weapon: {}
     armor: {}
+    shield: {}
     spell: {}

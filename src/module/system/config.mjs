@@ -44,7 +44,7 @@ FT.character = {
 
 FT.item = {
   inventory: {
-    types: ["equipment", "weapon", "armor"],
+    types: ["equipment", "weapon", "armor", "shield"],
     locations: ["equipped", "dropped", "carried", "stowed", "stored"],
     icons: {
       equipped: "icon-battle-gear",
