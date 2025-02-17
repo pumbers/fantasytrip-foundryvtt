@@ -77,6 +77,16 @@
                     </div>
                     {{/if}}
                     {{/if}}
+                    {{!-- Armor --}}
+                    {{#if (eq item.type "armor")}}
+                    <div class="field">
+                        <label>{{localize "FT.item.sheet.label.type"}}</label>
+                        <select name="system.type">
+                            <option value="">{{localize 'FT.options.none'}}</option>
+                            {{selectOptions selectOptions.armorTypes selected=system.type localize=true}}
+                        </select>
+                    </div>
+                    {{/if}}
                     {{!-- Armor & Shields --}}
                     {{#if (or (eq item.type "armor") (eq item.type "shield"))}}
                     <div class="field">
@@ -115,8 +125,8 @@
                         </select>
                     </div>
                     <div class="field">
-                        <label>{{localize "FT.item.sheet.label.stCast"}}</label>
-                        <input type="number" name="system.stCast" value="{{system.stCast}}" min="0">
+                        <label>{{localize "FT.item.sheet.label.stToCast"}}</label>
+                        <input type="number" name="system.stToCast" value="{{system.stToCast}}" min="0">
                     </div>
                     {{/if}}
                 </div>

@@ -26,7 +26,7 @@ export class FTSpellData extends FTTalentData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
       type: new StringField(),
-      stCast: new NumberField({ initial: 0 }),
+      stToCast: new NumberField({ initial: 0 }),
     });
   }
 }
@@ -50,8 +50,12 @@ export class FTEquipmentData extends FTBaseItemData {
     this.totalCost = this.cost * this.qty;
   }
 
+  get isReady() {
+    return this.location === "equipped";
+  }
+
   get isContainer() {
-    return !!this.capacity;
+    return this.capacity > 0;
   }
 }
 
@@ -65,13 +69,22 @@ export class FTWeaponData extends FTEquipmentData {
       talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
     });
   }
+
+  get isReady() {
+    return this.type === "natural" || (!!this.type && !!this.talent && this.location === "equipped");
+  }
 }
 
 export class FTArmorData extends FTEquipmentData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
+      type: new StringField({ initial: "made" }),
       hitsStopped: new NumberField({ initial: 0 }),
     });
+  }
+
+  get isReady() {
+    return this.type === "natural" || this.location === "equipped";
   }
 }
 
@@ -80,5 +93,9 @@ export class FTShieldData extends FTEquipmentData {
     return Object.assign(super.defineSchema(), {
       hitsStopped: new NumberField({ initial: 0 }),
     });
+  }
+
+  get isReady() {
+    return this.location === "equipped";
   }
 }

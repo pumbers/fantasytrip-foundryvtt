@@ -145,9 +145,13 @@ FT:
       type:
         natural: Natural
         melee: Melee
-        poearm: Polearm
+        polearm: Polearm
         thrown: Thrown
         missile: Missile
+    armor:
+      type:
+        natural: Natural
+        made: Made
     spell:
       type:
         missile: Missile
@@ -174,7 +178,7 @@ FT:
         acquire: Cost to Acquire
         minST: Min ST to use
         type: Type
-        stCast: ST to Cast
+        stToCast: ST to Cast
         damage: Damage Roll
         talent: Talent to Use
         hitsStopped: Hits Stopped

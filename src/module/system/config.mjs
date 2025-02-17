@@ -73,6 +73,7 @@ FT.item = {
       missile: "FT.item.weapon.type.missile",
     },
   },
+  armor: { types: { natural: "FT.item.armor.type.natural", made: "FT.item.armor.type.made" } },
   spell: {
     types: {
       missile: "FT.item.spell.type.missile",

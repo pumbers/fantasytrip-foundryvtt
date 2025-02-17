@@ -8,51 +8,69 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
       type: new StringField({ initial: "hero" }),
-      race: new StringField({ initial: "human" }),
-      gender: new StringField(),
-      //
-      st: new SchemaField({
-        mod: new NumberField({ initial: 0 }),
-        min: new NumberField({ initial: 0 }),
-        max: new NumberField({ initial: 8 }),
-        value: new NumberField({ initial: 8 }),
-      }),
-      dx: new SchemaField({
-        mod: new NumberField({ initial: 0 }),
-        min: new NumberField({ initial: 0 }),
-        max: new NumberField({ initial: 8 }),
-        value: new NumberField({ initial: 8 }),
-      }),
-      iq: new SchemaField({
-        mod: new NumberField({ initial: 0 }),
-        min: new NumberField({ initial: 0 }),
-        max: new NumberField({ initial: 8 }),
-        value: new NumberField({ initial: 8 }),
-      }),
-      ma: new SchemaField({
-        mod: new NumberField({ initial: 0 }),
-        min: new NumberField({ initial: 0 }),
-        max: new NumberField({ initial: 10 }),
-        value: new NumberField({ initial: 10 }),
-      }),
-      mana: new SchemaField({
-        min: new NumberField({ initial: 0 }),
-        max: new NumberField({ initial: 0 }),
-        value: new NumberField({ initial: 0 }),
-      }),
-      //
-      xp: new NumberField({ initial: 0 }),
-      //
+      race: new StringField({ initial: "Human" }),
+      age: new NumberField({ initial: 18 }),
       job: new SchemaField({
         name: new StringField(),
         pay: new NumberField({ initial: 0 }),
         risk: new SchemaField({ low: new NumberField({ initial: 3 }), high: new NumberField({ initial: 18 }) }),
       }),
-      //
+      xp: new NumberField({ initial: 0 }),
       notes: new HTMLField(),
       //
-      fatigue: new NumberField({ initial: 0 }),
-      damage: new NumberField({ initial: 0 }),
+      st: new SchemaField({
+        min: new NumberField({ initial: 0 }), // Minimum value
+        max: new NumberField({ initial: 8 }), // Maximum or base value
+        mod: new NumberField({ initial: 0 }), // Manually set modifier
+        value: new NumberField({ initial: 8 }), // Current value
+        modFor: new SchemaField({
+          success: new NumberField({ initial: 0 }), // Modifier to success rolls
+          save: new NumberField({ initial: 0 }), // Modifier to save rolls
+          damage: new NumberField({ initial: 0 }), // Modifier to damage done
+        }),
+      }),
+      dx: new SchemaField({
+        min: new NumberField({ initial: 0 }), // Minimum value
+        max: new NumberField({ initial: 8 }), // Maximum or base value
+        mod: new NumberField({ initial: 0 }), // Manually set modifier
+        value: new NumberField({ initial: 8 }), // Current value
+        modFor: new SchemaField({
+          success: new NumberField({ initial: 0 }), // Modifier to success rolls
+          save: new NumberField({ initial: 0 }), // Modifier to save rolls
+          natural: new NumberField({ initial: 0 }), // Modifier to natural wepon attacks
+          hth: new NumberField({ initial: 0 }), // Modifier to HTH attacks
+          melee: new NumberField({ initial: 0 }), // Modifier to melee attacks
+          polearm: new NumberField({ initial: 0 }), // Modifier to polearm attacks
+          thrown: new NumberField({ initial: 0 }), // Modifier to thrown weapon attacks
+          missile: new NumberField({ initial: 0 }), // Modifier to missile weapon attacks
+        }),
+      }),
+      iq: new SchemaField({
+        min: new NumberField({ initial: 0 }), // Minimum value
+        max: new NumberField({ initial: 8 }), // Maximum or base value
+        mod: new NumberField({ initial: 0 }), // Manually set modifier
+        value: new NumberField({ initial: 8 }), // Current value
+        modFor: new SchemaField({
+          success: new NumberField({ initial: 0 }), // Modifier to success rolls
+          save: new NumberField({ initial: 0 }), // Modifier to save rolls
+        }),
+      }),
+      //
+      ma: new SchemaField({
+        min: new NumberField({ initial: 0 }), // Minimum value
+        max: new NumberField({ initial: 10 }), // Maximum or base value
+        mod: new NumberField({ initial: 0 }), // Manually set modifier
+        value: new NumberField({ initial: 10 }), // Current value
+      }),
+      //
+      initiative: new NumberField({ initial: 0 }), // Initiative modifier
+      fatigue: new NumberField({ initial: 0 }), // Fatigue accrued
+      damage: new NumberField({ initial: 0 }), // Damage taken
+      mana: new SchemaField({
+        min: new NumberField({ initial: 0 }), // Minimum value
+        max: new NumberField({ initial: 0 }), // Maximum or base value
+        value: new NumberField({ initial: 0 }), // Current value
+      }),
     };
   }
 

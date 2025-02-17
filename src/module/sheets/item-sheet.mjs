@@ -30,6 +30,7 @@ export class FTItemSheet extends ItemSheet {
         attributes: CONFIG.FT.character.attributes,
         spellTypes: CONFIG.FT.item.spell.types,
         weaponTypes: CONFIG.FT.item.weapon.types,
+        armorTypes: CONFIG.FT.item.armor.types,
         // Applicable skill options from the parent actor
         ...(!!this.item.parent &&
           this.item.type === "weapon" && {

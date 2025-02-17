@@ -1,7 +1,6 @@
 import * as Handlers from "../util/handlers.mjs";
 import * as Effects from "../util/effects.mjs";
 
-
 /**
  * Fantasy Trip Character Sheet
  * @extends {ActorSheet} Extends the basic ActorSheet
@@ -67,6 +66,9 @@ export class FTCharacterSheet extends ActorSheet {
       .flat(2);
 
     // Prepare active effects
+    context.inventory.forEach((item) =>
+      item.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: !item.system.isReady }))
+    );
     context.effects = Array.from(this.actor.allApplicableEffects());
 
     return context;
@@ -200,10 +202,8 @@ export class FTCharacterSheet extends ActorSheet {
     // Turn on ActiveEffects if equipped, off otherwise, only for inventory items
     if (CONFIG.FT.item.inventory.types.includes(item.type)) {
       if (movedTo === 0) {
-        console.log("... enabling");
         item.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: false }));
       } else {
-        console.log("... disabling");
         item.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: true }));
       }
     }

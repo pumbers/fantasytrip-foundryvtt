@@ -1,6 +1,6 @@
 {{!-- Weapons --}}
 {{#each weapons as |weapon|}}
-{{#if (and (eq weapon.system.location "equipped") weapon.system.talent)}}
+{{#if weapon.system.isReady}}
 <div
     class="flex flex-row justify-start gap-4 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
     <img class="w-4 h-4" src="{{weapon.img}}" alt="">
@@ -18,7 +18,7 @@
 {{/each}}
 {{!-- Armor --}}
 {{#each armor as |armor|}}
-{{#if (eq armor.system.location "equipped")}}
+{{#if armor.system.isReady}}
 <div
     class="flex flex-row justify-start gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
     <img class="w-4 h-4" src="{{armor.img}}" alt="">
@@ -29,7 +29,7 @@
 {{/each}}
 {{!-- Shields --}}
 {{#each shields as |shield|}}
-{{#if (eq shield.system.location "equipped")}}
+{{#if shield.system.isReady}}
 <div
     class="flex flex-row justify-start gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
     <img class="w-4 h-4" src="{{shield.img}}" alt="">

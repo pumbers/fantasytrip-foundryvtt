@@ -57,8 +57,8 @@
     <div class="field"><label>{{localize "FT.character.sheet.label.damage"}}</label><input type="number"
             name="system.damage" value="{{system.damage}}" min="0"></div>
     {{#if (eq system.type "wizard")}}
-    <div class="field"><label>{{localize "FT.character.sheet.label.mana"}}</label><input type="number"
-            name="system.mana.value" value="{{system.mana.value}}">
+    <div class="field"><label>{{localize "FT.character.sheet.label.mana"}}-{{system.mana.max}}</label><input
+            type="number" name="system.mana.value" value="{{system.mana.value}}" max="{{system.mana.max}}">
     </div>
     {{/if}}
     <div class="field"><label>{{localize "FT.character.sheet.label.stMod"}}</label><input type="number"
