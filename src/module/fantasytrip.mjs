@@ -71,6 +71,22 @@ Hooks.once("init", async function () {
     config: true,
   });
 
+  game.settings.register("fantasytrip", "damageMultiplierStrategy", {
+    name: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.name"),
+    hint: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.hint"),
+    scope: "world",
+    type: new StringField({
+      choices: {
+        rollTimes: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.options.rollTimes"),
+        multiply: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.options.multiply"),
+      },
+      initial: "multiply",
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: true,
+  });
+
   game.settings.register("fantasytrip", "allowTalentSpendOnIQIncrease", {
     name: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.name"),
     hint: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.hint"),

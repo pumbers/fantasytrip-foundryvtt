@@ -5,6 +5,12 @@ FT:
       initialAP:
         name: Attribute Points for new characters
         hint: The number of Attribute Points a new character is allowed to spend.
+      damageMultiplierStrategy:
+        name: Calculate Increased Damage
+        hint: When a damage roll calls for double or triple damage...
+        options:
+          rollTimes: Roll the damage a number of times
+          multiply: Roll the damage once and multiply
       showItemIcons:
         name: Show Item Icons
         hint: Show icons in item tables?

@@ -6,6 +6,15 @@ export const FT = {};
 
 FT.path = "systems/fantasytrip";
 
+FT.settings = {
+  damageMultiplierStrategy: {
+    options: {
+      rollTimes: "FT.game.settings.damageMultiplierStrategy.options.rollTimes",
+      multiply: "FT.game.settings.damagedamageMultiplierStrategy.options.multiply",
+    },
+  },
+};
+
 /* ------------------------------------------- */
 /*  Character Config & Options                  */
 /* ------------------------------------------- */
