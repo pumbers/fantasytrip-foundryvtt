@@ -82,12 +82,10 @@ export class FTCharacterSheet extends ActorSheet {
     if (!this.options.editable) return;
 
     // Sheet Actions
-    html.find(".clickable").click(this.click.bind(this));
+    html.find("[data-action]").click(this.click.bind(this));
     html.find(".effect-manage").click(Effects.onManageActiveEffect.bind(this.actor));
 
     // Item actions
-    html.find(".document-set-effects").click(Handlers.onSetItemEffects.bind(this));
-    html.find(".document-set-field").click(Handlers.onSetItemField.bind(this));
     html.find(".document-chat").click(Handlers.onChatItem.bind(this));
     html.find(".document-edit").click(Handlers.onItemEdit.bind(this));
     html.find(".document-delete").click(Handlers.onItemDelete.bind(this));
@@ -97,7 +95,7 @@ export class FTCharacterSheet extends ActorSheet {
     event.preventDefault();
     const element = $(event?.currentTarget);
     const dataset = element?.data();
-    let itemId;
+    let itemId, item;
 
     switch (dataset.action) {
       case "item-change-location":
@@ -118,6 +116,20 @@ export class FTCharacterSheet extends ActorSheet {
         break;
       case "talent-roll":
         console.log("click():talent-roll", dataset);
+        itemId = element?.closest("[data-item-id]").data("itemId");
+        if (!itemId) return;
+        item = this.actor.getEmbeddedDocument("Item", itemId);
+        // TODO
+        break;
+      case "attack-roll":
+        console.log("click():attack-roll", dataset);
+        itemId = element?.closest("[data-item-id]").data("itemId");
+        if (!itemId) return;
+        item = this.actor.getEmbeddedDocument("Item", itemId);
+        // TODO
+        break;
+      case "damage-roll":
+        console.log("click():damage-roll", dataset);
         itemId = element?.closest("[data-item-id]").data("itemId");
         if (!itemId) return;
         item = this.actor.getEmbeddedDocument("Item", itemId);

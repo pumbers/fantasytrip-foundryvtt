@@ -4,7 +4,7 @@
     <td class="flex flex-row gap-[2px]">
         <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i class="fa fa-comment"></i></a>
         <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i class="fas fa-edit"></i></a>
-        <a class="clickable" data-action="item-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
+        <a data-action="item-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
                 class="fas fa-trash"></i></a>
     </td>
     {{/inline}}
@@ -35,7 +35,7 @@
             <td>{{#if item.system.isContainer}}{{numberFormat item.system.remaining decimals=1}}{{/if}}</td>
             <td>
                 {{#unless item.system.container}}
-                <a class="clickable mr-2" data-action="item-change-location"
+                <a class="mr-2" data-action="item-change-location"
                     title="{{localize (concat 'FT.character.sheet.label.location.' item.system.location)}}"><i
                         class="{{lookup ../FT.item.inventory.icons item.system.location}}"></i></a>
                 {{/unless}}

@@ -77,7 +77,7 @@
     }
   }
 
-  & .clickable {
+  & [data-action] {
     @apply cursor-pointer;
   }
 
