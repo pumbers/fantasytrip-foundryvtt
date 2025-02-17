@@ -1,7 +1,8 @@
 {{!-- Weapons --}}
 {{#each weapons as |weapon|}}
 {{#if (and (eq weapon.system.location "equipped") weapon.system.talent)}}
-<div class="flex flex-row justify-start gap-4 border-[1px] rounded-sm m-0 p-[2px] text-xs leading-4">
+<div
+    class="flex flex-row justify-start gap-4 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
     <img class="w-4 h-4" src="{{weapon.img}}" alt="">
     <span class="grow">{{weapon.name}}</span>
     <span><i class="icon-broadsword mr-1"></i>{{localize (concat "FT.item.weapon.type." weapon.system.type)}}</span>
@@ -18,7 +19,8 @@
 {{!-- Armor --}}
 {{#each armor as |armor|}}
 {{#if (eq armor.system.location "equipped")}}
-<div class="flex flex-row justify-start gap-1 border-[1px] rounded-sm m-0 p-[2px] text-xs leading-4">
+<div
+    class="flex flex-row justify-start gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
     <img class="w-4 h-4" src="{{armor.img}}" alt="">
     <span class="grow">{{armor.name}}</span>
     <span><i class="icon-chest-armor mr-1"></i>{{armor.system.hitsStopped}}</span>
@@ -28,7 +30,8 @@
 {{!-- Shields --}}
 {{#each shields as |shield|}}
 {{#if (eq shield.system.location "equipped")}}
-<div class="flex flex-row justify-start gap-1 border-[1px] rounded-sm m-0 p-[2px] text-xs leading-4">
+<div
+    class="flex flex-row justify-start gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
     <img class="w-4 h-4" src="{{shield.img}}" alt="">
     <span class="grow">{{shield.name}}</span>
     <span><i class="icon-chest-armor mr-1"></i>{{shield.system.hitsStopped}}</span>

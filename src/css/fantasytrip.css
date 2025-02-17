@@ -10,7 +10,7 @@
   & input,
   & textarea,
   & select {
-    @apply w-full border rounded-sm m-0 p-1 !appearance-auto;
+    @apply w-full border rounded-sm m-0 p-1 !appearance-auto dark:text-slate-200;
     &::placeholder {
       @apply opacity-80;
     }
@@ -30,13 +30,13 @@
   }
 
   & table {
-    @apply text-xs m-0;
+    @apply text-xs m-0 dark:text-slate-200;
     & thead {
       text-shadow: none;
-      @apply bg-slate-500 border-none text-white;
+      @apply bg-slate-500 border-none text-slate-200;
     }
     & tr:nth-child(even) {
-      @apply bg-slate-300;
+      @apply bg-slate-300 dark:bg-slate-700;
     }
     & th,
     & td {
@@ -56,7 +56,17 @@
     }
     & tfoot {
       text-shadow: none;
-      @apply border-none bg-white text-black;
+      @apply border-none bg-white text-black dark:bg-slate-800 dark:text-slate-200;
+    }
+  }
+
+  & .sheet-tabs {
+    @apply m-0;
+    & .tab {
+      @apply overflow-auto;
+    }
+    & .item {
+      @apply m-0 p-0.5 text-xs uppercase dark:text-slate-200;
     }
   }
 

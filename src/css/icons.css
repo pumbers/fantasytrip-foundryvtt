@@ -3,10 +3,13 @@
 .fantasy-trip {
   & i[class^="icon-"] {
     /* Try to match Font Awesome size & spacing */
-    @apply inline-block !w-[1em] !h-[1em] leading-[1em] relative top-[0.2em];
+    @apply inline-block !w-[1em] !h-[1em] leading-[1em] relative top-[0.2em] dark:invert-100;
   }
 
   /* Dice */
+  & .icon-d6::before {
+    content: url("../assets/icons/d6.svg");
+  }
   & .icon-d20::before {
     content: url("../assets/icons/d20.svg");
   }
