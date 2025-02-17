@@ -27,6 +27,7 @@ FT:
     useItemMacroCannotDetermineActor: You need to select a token so that I can determine who's acting.
   options:
     none: -- None --
+    unskilled: -- Unskilled --
   effect:
     name: Effect
     modes:

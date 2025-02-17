@@ -71,7 +71,7 @@ export class FTWeaponData extends FTEquipmentData {
   }
 
   get isReady() {
-    return this.type === "natural" || (!!this.type && !!this.talent && this.location === "equipped");
+    return this.type === "natural" || (!!this.type && this.location === "equipped");
   }
 }
 

@@ -6,9 +6,10 @@
     <img class="w-4 h-4" src="{{weapon.img}}" alt="">
     <span class="grow">{{weapon.name}}</span>
     <span><i class="icon-broadsword mr-1"></i>{{localize (concat "FT.item.weapon.type." weapon.system.type)}}</span>
-    <span><i class="icon-weight-lifting-up mr-1"></i>{{localize
+    <span><i
+            class="icon-weight-lifting-up mr-1 {{#unless (gte ../system.st.max weapon.system.minST)}}warning{{/unless}}"></i>{{localize
         "FT.character.attribute.st"}}&nbsp;{{weapon.system.minST}}</span>
-    <span><i class="icon-sword-brandish mr-1 "></i>{{localize
+    <span><i class="icon-sword-brandish mr-1 {{#unless weapon.system.talent}}warning{{/unless}}"></i>{{localize
         "FT.character.attribute.dx"}}&nbsp;{{weapon.system.toHit}}</span>
     <span><i class="icon-death-skull mr-1"></i>{{weapon.system.damage}}{{#if
         weapon.system.damageMod}}&nbsp;({{weapon.system.damageMod}}){{/if}}

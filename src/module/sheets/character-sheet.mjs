@@ -65,10 +65,6 @@ export class FTCharacterSheet extends ActorSheet {
       })
       .flat(2);
 
-    // Prepare active effects
-    context.inventory.forEach((item) =>
-      item.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: !item.system.isReady }))
-    );
     context.effects = Array.from(this.actor.allApplicableEffects());
 
     return context;
@@ -198,14 +194,6 @@ export class FTCharacterSheet extends ActorSheet {
           .filter((i) => i.system.container === itemId)
           .map((i) => ({ _id: i._id, "system.location": CONFIG.FT.item.inventory.locations[movedTo] }))
       );
-    }
-    // Turn on ActiveEffects if equipped, off otherwise, only for inventory items
-    if (CONFIG.FT.item.inventory.types.includes(item.type)) {
-      if (movedTo === 0) {
-        item.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: false }));
-      } else {
-        item.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: true }));
-      }
     }
   }
 
