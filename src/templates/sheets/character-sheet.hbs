@@ -17,45 +17,50 @@
             </div>
         </header>
 
+        {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="character">{{localize "FT.character.sheet.tab.character"}}</a>
+            <a class="item" data-tab="notes">{{localize "FT.character.sheet.tab.notes"}}</a>
+            <a class="item" data-tab="talents">{{localize "FT.character.sheet.tab.talents"}}</a>
+            <a class="item" data-tab="items">{{localize "FT.character.sheet.tab.items"}}</a>
+            <a class="item" data-tab="spells">{{localize "FT.character.sheet.tab.spells"}}</a>
+            {{#if effects}}
+            <a class="item" data-tab="fx">{{localize "FT.character.sheet.tab.fx"}}</a>
+            {{/if}}
+        </nav>
+
         {{!-- Sheet Body --}}
         <section class="sheet-body">
-            {{!-- Sheet Tab Navigation --}}
-            <nav class="sheet-tabs tabs" data-group="primary">
-                <a class="item" data-tab="stats">{{localize "FT.character.sheet.tab.stats"}}</a>
-                <a class="item" data-tab="notes">{{localize "FT.character.sheet.tab.notes"}}</a>
-                <a class="item" data-tab="talents">{{localize "FT.character.sheet.tab.talents"}}</a>
-                <a class="item" data-tab="items">{{localize "FT.character.sheet.tab.items"}}</a>
-                <a class="item" data-tab="spells">{{localize "FT.character.sheet.tab.spells"}}</a>
-                {{#if effects}}
-                <a class="item" data-tab="fx">{{localize "FT.character.sheet.tab.fx"}}</a>
-                {{/if}}
-            </nav>
-            {{!-- Tab Contents --}}
-            <div>
-                {{!-- Character Tab --}}
-                <div class="tab stats" data-group="primary" data-tab="stats">
+            {{!-- Stats Tab --}}
+            <div class="tab character" data-group="primary" data-tab="character">
+                <div class="flex flex-col gap-2">
+                    {{!-- Stats --}}
                     {{> (concat FT.path "/templates/sheets/_character-stats.hbs")}}
+                    {{!-- Status --}}
+                    {{> (concat FT.path "/templates/sheets/_character-status.hbs")}}
+                    {{!-- Action/Combat --}}
+                    {{> (concat FT.path "/templates/sheets/_character-action.hbs")}}
                 </div>
-                {{!-- Notes Tab --}}
-                <div class="tab notes" data-group="primary" data-tab="notes">
-                    {{editor system.notes target="system.notes" button=true owner=owner editable=editable}}
-                </div>
-                {{!-- Talents Tab --}}
-                <div class="tab talents" data-group="primary" data-tab="talents">
-                    {{> (concat FT.path "/templates/sheets/_character-talents.hbs")}}
-                </div>
-                {{!-- Items Tab --}}
-                <div class="tab items" data-group="primary" data-tab="items">
-                    {{> (concat FT.path "/templates/sheets/_character-items.hbs")}}
-                </div>
-                {{!-- Spells Tab --}}
-                <div class="tab spells" data-group="primary" data-tab="spells">
-                    {{> (concat FT.path "/templates/sheets/_character-spells.hbs")}}
-                </div>
-                {{!-- Effects Tab --}}
-                <div class="tab fx" data-group="primary" data-tab="fx">
-                    {{> (concat FT.path "/templates/sheets/_character-effects.hbs")}}
-                </div>
+            </div>
+            {{!-- Notes Tab --}}
+            <div class="tab notes" data-group="primary" data-tab="notes">
+                {{editor system.notes target="system.notes" button=true owner=owner editable=editable}}
+            </div>
+            {{!-- Talents Tab --}}
+            <div class="tab talents" data-group="primary" data-tab="talents">
+                {{> (concat FT.path "/templates/sheets/_character-talents.hbs")}}
+            </div>
+            {{!-- Items Tab --}}
+            <div class="tab items" data-group="primary" data-tab="items">
+                {{> (concat FT.path "/templates/sheets/_character-items.hbs")}}
+            </div>
+            {{!-- Spells Tab --}}
+            <div class="tab spells" data-group="primary" data-tab="spells">
+                {{> (concat FT.path "/templates/sheets/_character-spells.hbs")}}
+            </div>
+            {{!-- Effects Tab --}}
+            <div class="tab fx" data-group="primary" data-tab="fx">
+                {{> (concat FT.path "/templates/sheets/_character-effects.hbs")}}
             </div>
         </section>
     </div>

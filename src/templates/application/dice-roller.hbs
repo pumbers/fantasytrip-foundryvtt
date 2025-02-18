@@ -1,0 +1,54 @@
+<div class="flex flex-col gap-1 justify-between">
+    {{log .}}
+    <input type="hidden" name="rollType" value="{{system.type}}">
+    {{!-- Roll Type --}}
+    <div class="grid grid-cols-6 gap-1">
+        {{#each FT.roll.types as |label type|}}
+        <a class="border-[1px] p-1 text-center {{#if (eq ../system.type type)}}bg-red-500{{/if}}"
+            data-action="select-roll-type" data-type="{{type}}">{{localize
+            label}}</a>
+        {{/each}}
+    </div>
+    {{!-- Attribute --}}
+    {{#unless (eq system.type "damage")}}
+    <div class="grid grid-cols-3 gap-1">
+        {{#each (array "st" "dx" "iq" "adjST" "adjDX" "adjIQ")}}
+        <a class="border-[1px] p-1 text-center {{#if (eq ../system.attribute .)}}bg-red-500{{/if}}"
+            data-action="select-attribute" data-attribute="{{.}}">{{.}}</a>
+        {{/each}}
+    </div>
+    {{/unless}}
+    {{!-- Dice --}}
+    <div class="grid grid-cols-8 gap-1">
+        {{#each (range 1 8)}}
+        <a data-action="select-dice" data-dice="{{.}}"><i
+                class="icon-d6 !w-8 !h-8 m-0 p-1 {{#unless (gte ../system.dice .)}}faded{{/unless}}"></i></a>
+        {{/each}}
+    </div>
+    {{!-- Modifiers --}}
+    <div class="grid grid-cols-11 gap-1">
+        {{#each (range -5 5)}}
+        <a class="border-[1px] p-1 text-center" data-action="select-modifier" data-modifier="{{.}}">{{.}}</a>
+        {{/each}}
+    </div>
+    {{#if (eq system.type "attack")}}
+    {{!-- <div class="grid grid-cols-2">
+        <fieldset>
+            <legend>Range</legend>
+            <input type="radio" name="system.range" id="short"><label for="short">Short</label>
+        </fieldset>
+    </div> --}}
+    {{/if}}
+    {{!-- Visibility --}}
+    <div class="grid grid-cols-5 gap-1">
+        {{#each (array "roll" "publicroll" "gmroll" "blindroll" "selfroll" )}}
+        <a class="border-[1px] p-1 text-center" data-action="select-visibility" data-visibility="{{.}}">{{localize
+            (concat
+            "FT.game.roll.visibility." .)}}</a>
+        {{/each}}
+    </div>
+    <div class="flex flex-row gap-2 mt-6">
+        <button type="cancel">Cancel</button>
+        <button type="submit">Roll</button>
+    </div>
+</div>

@@ -166,6 +166,7 @@ Hooks.once("init", async function () {
     `${CONFIG.FT.path}/templates/sheets/_character-effects.hbs`,
     `${CONFIG.FT.path}/templates/sheets/item-sheet.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_item-effects.hbs`,
+    `${CONFIG.FT.path}/templates/application/dice-roller.hbs`,
   ]);
 });
 

@@ -1,11 +1,16 @@
 import * as Handlers from "../util/handlers.mjs";
 import * as Effects from "../util/effects.mjs";
 
+import { FTDiceRollerApp } from "../applications/dice-roller.mjs";
+
 /**
  * Fantasy Trip Character Sheet
  * @extends {ActorSheet} Extends the basic ActorSheet
  */
 export class FTCharacterSheet extends ActorSheet {
+  //
+  DICE_ROLLER = new FTDiceRollerApp();
+
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -17,7 +22,7 @@ export class FTCharacterSheet extends ActorSheet {
         {
           navSelector: ".sheet-tabs",
           contentSelector: ".sheet-body",
-          initial: "stats",
+          initial: "character",
         },
       ],
       dragDrop: [{ dragSelector: ".item[draggable='true']", dropSelector: null }],
@@ -113,6 +118,16 @@ export class FTCharacterSheet extends ActorSheet {
       case "attribute-roll":
         console.log("click():attribute-roll", dataset);
         // TODO
+        this.DICE_ROLLER.render({
+          force: true,
+          actor: this.actor,
+          system: {
+            type: "attribute",
+            dice: 3,
+            modifiers: [],
+            ...dataset,
+          },
+        });
         break;
       case "talent-roll":
         console.log("click():talent-roll", dataset);
@@ -120,13 +135,38 @@ export class FTCharacterSheet extends ActorSheet {
         if (!itemId) return;
         item = this.actor.getEmbeddedDocument("Item", itemId);
         // TODO
+        this.DICE_ROLLER.render({
+          force: true,
+          actor: this.actor,
+          item,
+          system: {
+            type: "talent",
+            attribute: item.system.defaultAttribute,
+            dice: 3,
+            modifiers: [],
+            ...dataset,
+          },
+        });
         break;
       case "attack-roll":
         console.log("click():attack-roll", dataset);
         itemId = element?.closest("[data-item-id]").data("itemId");
         if (!itemId) return;
         item = this.actor.getEmbeddedDocument("Item", itemId);
+        let talent = item?.system.talent ? this.actor.getEmbeddedDocument("Item", item?.system.talent) : null;
         // TODO
+        this.DICE_ROLLER.render({
+          force: true,
+          actor: this.actor,
+          item,
+          system: {
+            type: "attack",
+            attribute: talent?.system.defaultAttribute ?? "dx",
+            dice: 3,
+            modifiers: [],
+            ...dataset,
+          },
+        });
         break;
       case "damage-roll":
         console.log("click():damage-roll", dataset);
@@ -134,6 +174,17 @@ export class FTCharacterSheet extends ActorSheet {
         if (!itemId) return;
         item = this.actor.getEmbeddedDocument("Item", itemId);
         // TODO
+        this.DICE_ROLLER.render({
+          force: true,
+          actor: this.actor,
+          item,
+          system: {
+            type: "damage",
+            dice: 3,
+            modifiers: [],
+            ...dataset,
+          },
+        });
         break;
       case "cast-spell":
         console.log("click():cast-spell", dataset);
@@ -141,9 +192,21 @@ export class FTCharacterSheet extends ActorSheet {
         if (!itemId) return;
         item = this.actor.getEmbeddedDocument("Item", itemId);
         // TODO
+        this.DICE_ROLLER.render({
+          force: true,
+          actor: this.actor,
+          item,
+          system: {
+            type: "cast",
+            attribute: "adjIQ",
+            dice: 3,
+            modifiers: [],
+            ...dataset,
+          },
+        });
         break;
       default:
-        console.error(`FT | Unimplemented clickable action: ${dataset.action}`);
+        console.error(`FT | Unimplemented action: ${dataset.action}`);
         break;
     }
   }

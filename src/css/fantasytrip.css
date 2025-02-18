@@ -21,7 +21,7 @@
       @apply cursor-not-allowed bg-transparent;
     }
     &[disabled] {
-      @apply cursor-not-allowed text-black/50 border-none;
+      @apply cursor-not-allowed text-black/500 dark:text-slate-200 border-none;
     }
   }
 
@@ -61,12 +61,12 @@
   }
 
   & .sheet-tabs {
-    @apply m-0;
+    @apply !mb-2;
     & .tab {
       @apply overflow-auto;
     }
     & .item {
-      @apply m-0 p-0.5 text-xs uppercase dark:text-slate-200;
+      @apply m-0 !p-1 text-[0.6rem] uppercase dark:text-slate-200;
     }
   }
 
@@ -79,6 +79,12 @@
 
   & [data-action] {
     @apply cursor-pointer;
+    &.action {
+      @apply bg-yellow-100;
+      &:hover {
+        @apply bg-yellow-300;
+      }
+    }
   }
 
   .effects {

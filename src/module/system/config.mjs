@@ -1,7 +1,7 @@
 export const FT = {};
 
 /* ------------------------------------------- */
-/*  Character Config & Options                  */
+/*  Game System Config & Options                  */
 /* ------------------------------------------- */
 
 FT.path = "systems/fantasytrip";
@@ -12,6 +12,17 @@ FT.settings = {
       rollTimes: "FT.game.settings.damageMultiplierStrategy.options.rollTimes",
       multiply: "FT.game.settings.damagedamageMultiplierStrategy.options.multiply",
     },
+  },
+};
+
+FT.roll = {
+  types: {
+    success: "FT.system.roll.type.success",
+    save: "FT.system.roll.type.save",
+    talent: "FT.system.roll.type.talent",
+    attack: "FT.system.roll.type.attack",
+    damage: "FT.system.roll.type.damage",
+    cast: "FT.system.roll.type.cast",
   },
 };
 
@@ -83,9 +94,3 @@ FT.item = {
     },
   },
 };
-
-/* ------------------------------------------- */
-/*  Combat Config & Options                  */
-/* ------------------------------------------- */
-
-FT.combat = {};

@@ -1,0 +1,37 @@
+<div class="dice-roll">
+    {{!-- {{log .}} --}}
+    <!-- Result -->
+    <div class="dice-result">
+        <!-- Result Detail -->
+        <div class="dice-tooltip">
+            {{#each roll.terms as |term|}}
+            {{#each term.rolls as |rolled index|}}
+            <section class="tooltip-part">
+                <div class="dice">
+                    <header class="part-header flexrow">
+                        <span class="part-formula">{{rolled._formula}}</span>
+                        <span class="part-total">{{rolled._total}}</span>
+                    </header>
+                    <ol class="dice-rolls">
+                        <li class="roll die d20">{{rolled._total}}</li>
+                    </ol>
+                </div>
+            </section>
+            {{/each}}
+            {{/each}}
+        </div>
+        <!-- Dice Result -->
+        {{#if success}}
+        <div class="dice-total !my-2">Success!</div>
+        {{else}}
+        <div class="dice-total !my-2">Failure!</div>
+        {{/if}}
+        <!-- Result Description -->
+        <div class="dice-description">
+            <h5 class="font-bold">{{critical.label}}</h5>
+            <p class="mt-2">
+                {{critical.description}}
+            </p>
+        </div>
+    </div>
+</div>

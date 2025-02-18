@@ -12,6 +12,10 @@
       filter: brightness(0) saturate(100%) invert(27%) sepia(63%) saturate(6083%) hue-rotate(0deg) brightness(100%)
         contrast(110%);
     }
+    &.faded {
+      filter: brightness(0) saturate(100%) invert(71%) sepia(4%) saturate(30%) hue-rotate(23deg) brightness(96%)
+        contrast(89%);
+    }
   }
 
   /* Dice */

@@ -17,10 +17,6 @@
       }
     }
 
-    & .sheet-body {
-      @apply flex flex-col gap-2 justify-start;
-    }
-
     & img.profile-img {
       @apply rounded-sm max-w-[162px];
     }
