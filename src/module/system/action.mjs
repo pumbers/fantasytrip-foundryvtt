@@ -25,22 +25,49 @@ export function isTokenInActiveCombat(token) {
  * @param {*} weapon
  * @param {*} options
  */
-export function attackRoll(actor, weapon, options) {
+export async function attackRoll(actor, weapon, options) {
   console.log("Combat.attackRoll()", actor, weapon);
   const talent = weapon?.system.talent ? actor.getEmbeddedDocument("Item", weapon?.system.talent) : null;
   // TODO Weapon type hit mod
-  DICE_ROLLER.render({
+  const result = await DICE_ROLLER.render({
     force: true,
     type: "attack",
     dice: 3,
     actor,
     item: weapon,
-    modifier: weapon.system.stHitMod,
+    modifiers: { stHitMod: weapon.system.stHitMod },
     talent,
     attribute: `${talent?.defaultAttribute ?? "dx"}.max`,
     targets: Array.from(game.user.targets),
     ...options,
+    submit: async (data) => {
+      console.log("Combat.attackRoll().submit()", "data", data);
+
+      const roll = new Roll(`${data.dice}D6`, {
+        actor: data.actor,
+        item: data.item,
+      });
+
+      roll.evaluate().then((roll) => {
+        const totalModifiers = Object.values(data.modifiers).reduce((total, modifier) => total + parseInt(modifier), 0);
+        const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.0`, {
+          targets: data.targets.map((t) => t.name).join(", "),
+          item: data.item.name,
+        });
+        const margin =
+          foundry.utils.getProperty(data.actor.getRollData(), data.attribute) + totalModifiers - roll.total;
+        const result = `... ${margin >= 0 ? "Success! Made it by" : "and misses by"} ${Math.abs(margin)}`;
+        roll.toMessage(
+          {
+            speaker: ChatMessage.getSpeaker({ actor: data.actor }),
+            flavor: message + result,
+          },
+          { rollMode: data.visibility }
+        );
+      });
+    },
   });
+  console.log("Combat.attackRoll() ... result", result);
 }
 
 /**

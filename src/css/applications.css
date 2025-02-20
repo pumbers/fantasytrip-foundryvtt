@@ -6,7 +6,14 @@
   }
 
   &#ft-dice-roller {
-    & a.selected {
+    & input[type="radio"],
+    input[type="checkbox"] {
+      @apply hidden;
+    }
+    & input ~ label {
+      @apply inline-block w-full p-1 cursor-pointer border text-center text-xs;
+    }
+    & input:checked ~ label {
       @apply bg-amber-300;
     }
   }

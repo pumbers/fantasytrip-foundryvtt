@@ -79,6 +79,21 @@ FT:
         attack: Attack
         damage: Damage
         cast: Cast
+      flavor:
+        success:
+          - Attempts
+        save:
+          - Saves
+        talent:
+          - Uses
+        attack:
+          - Strikes {targets} with {item}
+        cast:
+          - Casts {spell}
+      result:
+        attack:
+          success: ... Success!
+          failure: ... and misses
   #
   app:
     dice:
