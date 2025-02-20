@@ -1,0 +1,13 @@
+@reference "./fantasytrip.css";
+
+.fantasy-trip.application {
+  & .window-content {
+    @apply bg-none m-0 p-4 bg-white dark:bg-current;
+  }
+
+  &#ft-dice-roller {
+    & a.selected {
+      @apply bg-amber-300;
+    }
+  }
+}

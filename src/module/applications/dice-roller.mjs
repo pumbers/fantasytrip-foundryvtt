@@ -1,10 +1,12 @@
+import { FT } from "../system/config.mjs";
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: "ft-dice-roller",
-    classes: ["fantasy-trip"],
-    tag: "form",
+    classes: ["fantasy-trip", "dice-roller"],
+    tag: "div",
     window: {
       title: "Dice Roller",
       icon: "fa fa-dice",
@@ -16,76 +18,78 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
       closeOnSubmit: false,
     },
     actions: {
-      "select-roll-type": FTDiceRollerApp.selectRollType,
-      "select-attribute": FTDiceRollerApp.selectAttribute,
-      "select-dice": FTDiceRollerApp.selectDice,
-      "select-modifier": FTDiceRollerApp.selectModifier,
-      "select-visibility": FTDiceRollerApp.selectVisibility,
+      "select-roll-type": FTDiceRollerApp.onChange,
+      "select-attribute": FTDiceRollerApp.onChange,
+      "select-dice": FTDiceRollerApp.onChange,
+      "select-modifier": FTDiceRollerApp.onChange,
+      "select-visibility": FTDiceRollerApp.onChange,
+      roll: FTDiceRollerApp.onRoll,
+      cancel: FTDiceRollerApp.onCancel,
     },
   };
 
   static PARTS = {
-    form: {
+    div: {
       template: `systems/fantasytrip/templates/application/dice-roller.hbs`,
     },
   };
 
+  static #context = {
+    type: "success",
+    dice: 3,
+    modifier: 0,
+    visibility: "roll",
+  };
+
   async _prepareContext(options) {
-    console.log("FTDiceRollerApp._prepareContext()", "options", options);
-    const context = { ...(await super._prepareContext(options)), ...options, FT: CONFIG.FT };
-    console.log("FTDiceRollerApp._prepareContext()", "context", context);
-    return context;
+    console.log("FTDiceRollerApp._prepareContext()", "context", FTDiceRollerApp.#context, "options", options);
+    FTDiceRollerApp.#context = { ...FTDiceRollerApp.#context, ...options, FT: CONFIG.FT };
+    return FTDiceRollerApp.#context;
   }
 
-  static selectRollType(event, target) {
-    console.log("FTDiceRollerApp.selectRollType()", event, target);
+  static onChange(event, target) {
+    console.log("FTDiceRollerApp.onChange()", event, target, target?.dataset);
     event.preventDefault();
     event.stopPropagation();
     if (event.detail > 1) return; // Ignore repeated clicks
-    console.log("FTDiceRollerApp.selectRollType()", "type", target?.dataset.type);
+    switch (target?.dataset.action) {
+      case "select-dice":
+        this.render({ ...target?.dataset, dice: parseInt(target?.dataset.dice ?? 0) });
+        break;
+      case "select-modifier":
+        this.render({ ...target?.dataset, modifier: parseInt(target?.dataset.modifier ?? 0) });
+        break;
+      default:
+        this.render({ ...target?.dataset });
+        break;
+    }
   }
 
-  static selectAttribute(event, target) {
-    console.log("FTDiceRollerApp.selectAttribute()", event, target);
-    event.preventDefault();
-    event.stopPropagation();
-    if (event.detail > 1) return; // Ignore repeated clicks
-    console.log("FTDiceRollerApp.selectAttribute()", "attribute", target?.dataset.attribute);
+  static onRoll(event, target) {
+    console.log("FTDiceRollerApp.onRoll()", "context", FTDiceRollerApp.#context);
+
+    // TODO critical success & failure
+    const { actor, item, attribute, dice, modifier, targets, visibility } = FTDiceRollerApp.#context;
+    const formula = `${dice}D6`;
+    const roll = new Roll(formula, { actor, item });
+
+    roll.evaluate().then((roll) => {
+      roll.toMessage(
+        {
+          speaker: ChatMessage.getSpeaker({ actor }),
+          flavor: `Strikes ${targets.map((t) => t.name).join(", ")} with ${item.name}... ${
+            roll.total <= foundry.utils.getProperty(actor.getRollData(), attribute) + modifier
+              ? "Success!"
+              : "and misses"
+          }`,
+        },
+        { rollMode: visibility }
+      );
+    });
   }
 
-  static selectDice(event, target) {
-    console.log("FTDiceRollerApp.selectDice()", event, target);
-    event.preventDefault();
-    event.stopPropagation();
-    if (event.detail > 1) return; // Ignore repeated clicks
-    console.log("FTDiceRollerApp.selectDice()", "dice", target?.dataset.dice);
-  }
-
-  static selectModifier(event, target) {
-    console.log("FTDiceRollerApp.selectModifier()", event, target);
-    event.preventDefault();
-    event.stopPropagation();
-    if (event.detail > 1) return; // Ignore repeated clicks
-    console.log("FTDiceRollerApp.selectModifier()", "modifier", target?.dataset.modifier);
-  }
-
-  static selectVisibility(event, target) {
-    console.log("FTDiceRollerApp.selectVisibility()", event, target);
-    event.preventDefault();
-    event.stopPropagation();
-    if (event.detail > 1) return; // Ignore repeated clicks
-    console.log("FTDiceRollerApp.selectVisibility()", "modifier", target?.dataset.visibility);
-  }
-
-  /**
-   * Process form submission for the sheet
-   * @this {MyApplication}                      The handler is called with the application as its bound scope
-   * @param {SubmitEvent} event                   The originating form submission event
-   * @param {HTMLFormElement} form                The form element  that was submitted
-   * @param {FormDataExtended} formData           Processed data for the submitted form
-   * @returns {Promise<void>}
-   */
-  static async formHandler(event, form, formData) {
-    console.log("FTDiceRollerApp.formHandler()", event, form, formData);
+  static onCancel(event, target) {
+    console.log("FTDiceRollerApp.onCancel()", "context", FTDiceRollerApp.#context);
+    this.close();
   }
 }

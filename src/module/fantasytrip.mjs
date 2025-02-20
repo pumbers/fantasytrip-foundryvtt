@@ -17,7 +17,6 @@ import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
 import * as Macros from "./util/macros.mjs";
 import * as Helpers from "./util/helpers.mjs";
-import "./util/extensions.mjs";
 
 const { StringField, NumberField, BooleanField } = foundry.data.fields;
 
@@ -56,7 +55,7 @@ Hooks.once("init", async function () {
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: "1d10",
+    formula: "1d6",
     decimals: 0,
   };
 
@@ -112,11 +111,12 @@ Hooks.once("init", async function () {
    */
   CONFIG.Actor.dataModels.character = FTActorData;
   CONFIG.Actor.documentClass = FTActor;
-  CONFIG.Actor.trackableAttributes = {
-    character: {
-      bar: ["st"],
-    },
-  };
+  // CONFIG.Actor.trackableAttributes = {
+  //   character: {
+  //     bar: ["health", "mana"],
+  //     value: ["st", "mana"],
+  //   },
+  // };
 
   CONFIG.Item.dataModels = {
     talent: FTTalentData,

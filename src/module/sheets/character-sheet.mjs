@@ -1,16 +1,12 @@
 import * as Handlers from "../util/handlers.mjs";
 import * as Effects from "../util/effects.mjs";
-
-import { FTDiceRollerApp } from "../applications/dice-roller.mjs";
+import * as Action from "../system/action.mjs";
 
 /**
  * Fantasy Trip Character Sheet
  * @extends {ActorSheet} Extends the basic ActorSheet
  */
 export class FTCharacterSheet extends ActorSheet {
-  //
-  DICE_ROLLER = new FTDiceRollerApp();
-
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -100,110 +96,69 @@ export class FTCharacterSheet extends ActorSheet {
     event.preventDefault();
     const element = $(event?.currentTarget);
     const dataset = element?.data();
-    let itemId, item;
+    const itemId = element?.closest("[data-item-id]").data("itemId");
+    let item;
 
     switch (dataset.action) {
       case "item-change-location":
         console.log("click():item-change-location", dataset);
-        itemId = element?.closest("[data-item-id]").data("itemId");
         if (!itemId) return;
         this.onItemChangeLocation(itemId);
         break;
       case "item-delete":
-        console.log("click():item-delete");
-        itemId = element?.closest("[data-item-id]").data("itemId");
+        console.log("click():item-delete", dataset);
         if (!itemId) return;
         this.onItemDelete(itemId);
         break;
       case "attribute-roll":
         console.log("click():attribute-roll", dataset);
         // TODO
-        this.DICE_ROLLER.render({
-          force: true,
-          actor: this.actor,
-          system: {
-            type: "attribute",
-            dice: 3,
-            modifiers: [],
-            ...dataset,
-          },
-        });
+        // this.DICE_ROLLER.render({
+        //   force: true,
+        //   actor: this.actor,
+        //   type: "attribute",
+        //   ...dataset,
+        // });
         break;
       case "talent-roll":
         console.log("click():talent-roll", dataset);
-        itemId = element?.closest("[data-item-id]").data("itemId");
         if (!itemId) return;
         item = this.actor.getEmbeddedDocument("Item", itemId);
         // TODO
-        this.DICE_ROLLER.render({
-          force: true,
-          actor: this.actor,
-          item,
-          system: {
-            type: "talent",
-            attribute: item.system.defaultAttribute,
-            dice: 3,
-            modifiers: [],
-            ...dataset,
-          },
-        });
+        // this.DICE_ROLLER.render({
+        //   force: true,
+        //   actor: this.actor,
+        //   item,
+        //   type: "talent",
+        //   attribute: item.system.defaultAttribute,
+        //   ...dataset,
+        // });
         break;
       case "attack-roll":
         console.log("click():attack-roll", dataset);
-        itemId = element?.closest("[data-item-id]").data("itemId");
         if (!itemId) return;
         item = this.actor.getEmbeddedDocument("Item", itemId);
-        let talent = item?.system.talent ? this.actor.getEmbeddedDocument("Item", item?.system.talent) : null;
-        // TODO
-        this.DICE_ROLLER.render({
-          force: true,
-          actor: this.actor,
-          item,
-          system: {
-            type: "attack",
-            attribute: talent?.system.defaultAttribute ?? "dx",
-            dice: 3,
-            modifiers: [],
-            ...dataset,
-          },
-        });
+        Action.attackRoll(this.actor, item, dataset);
         break;
       case "damage-roll":
         console.log("click():damage-roll", dataset);
-        itemId = element?.closest("[data-item-id]").data("itemId");
         if (!itemId) return;
         item = this.actor.getEmbeddedDocument("Item", itemId);
-        // TODO
-        this.DICE_ROLLER.render({
-          force: true,
-          actor: this.actor,
-          item,
-          system: {
-            type: "damage",
-            dice: 3,
-            modifiers: [],
-            ...dataset,
-          },
-        });
+        Action.damageRoll(this.actor, item);
         break;
       case "cast-spell":
         console.log("click():cast-spell", dataset);
-        itemId = element?.closest("[data-item-id]").data("itemId");
         if (!itemId) return;
         item = this.actor.getEmbeddedDocument("Item", itemId);
         // TODO
-        this.DICE_ROLLER.render({
-          force: true,
-          actor: this.actor,
-          item,
-          system: {
-            type: "cast",
-            attribute: "adjIQ",
-            dice: 3,
-            modifiers: [],
-            ...dataset,
-          },
-        });
+        // this.DICE_ROLLER.render({
+        //   force: true,
+        //   actor: this.actor,
+        //   item,
+        //   type: "cast",
+        //   attribute: "adjiq",
+        //   ...dataset,
+        // });
         break;
       default:
         console.error(`FT | Unimplemented action: ${dataset.action}`);

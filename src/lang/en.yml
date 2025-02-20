@@ -62,6 +62,16 @@ FT:
   # System
   system:
     roll:
+      attribute:
+        st:
+          max: ST
+          value: adj ST
+        dx:
+          max: DX
+          value: adj DX
+        iq:
+          max: IQ
+          value: adj IQ
       type:
         success: Success
         save: Save

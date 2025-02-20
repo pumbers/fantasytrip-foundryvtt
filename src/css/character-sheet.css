@@ -18,7 +18,7 @@
     }
 
     & img.profile-img {
-      @apply rounded-sm max-w-[162px];
+      @apply rounded-sm w-[163px] h-[163px] object-cover;
     }
 
     & .editor-content,

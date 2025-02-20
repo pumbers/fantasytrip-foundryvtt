@@ -16,6 +16,7 @@ styles:
   - css/icons.css
   - css/character-sheet.css
   - css/item-sheet.css
+  - css/applications.css
 scripts:
 # packs:
 #   - name: starting-items

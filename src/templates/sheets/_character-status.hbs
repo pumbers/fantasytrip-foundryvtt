@@ -7,7 +7,7 @@
         </span>
         {{#each system.encumbrance.capacity as |capacity|}}
         <span
-            class="border-[1px] rounded-sm m-0 p-0 {{lookup ../FT.character.tracks.encumbrance.colors @index}}{{#unless (eq @index ../system.encumbrance.level)}}-100{{else}}-500{{/unless}}"
+            class="border-[1px] rounded-sm m-0 p-0 {{lookup ../FT.character.tracks.encumbrance.colors @index}}{{#unless (eq @index ../system.encumbrance.level)}}-50{{else}}-500{{/unless}}"
             title="{{localize (concat 'FT.character.sheet.label.encumbranceLevel.' @index)}}">
             {{numberFormat capacity decimals=0}}&thinsp;{{localize 'FT.character.sheet.table.items.unit'}}
         </span>

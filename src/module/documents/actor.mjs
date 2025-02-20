@@ -91,9 +91,8 @@ export class FTActor extends Actor {
     Array.from(this.items)
       .filter((item) => item.type === "weapon")
       .forEach((weapon) => {
-        weapon.system.toHitMod = Math.min(this.system.st.max - weapon.system.minST, 0);
-        weapon.system.toHit = this.system.dx.value + weapon.system.toHitMod;
-        weapon.system.damageMod = Math.ceil(Math.min(this.system.st.max - weapon.system.minST, 0) / 2);
+        weapon.system.stHitMod = Math.min(this.system.st.max - weapon.system.minST, 0);
+        weapon.system.stDamageMod = Math.ceil(Math.min(this.system.st.max - weapon.system.minST, 0) / 2);
       });
   }
 
