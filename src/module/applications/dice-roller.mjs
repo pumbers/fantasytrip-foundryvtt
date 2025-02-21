@@ -30,7 +30,7 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
     type: "success",
     dice: 3,
     modifiers: { manual: 0 },
-    visibility: "roll",
+    rollMode: "roll",
   };
 
   static #context = {};
@@ -47,9 +47,13 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
   static onSubmit(event, form, formData) {
     console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);
 
+    const data = foundry.utils.expandObject(Object.fromEntries(formData));
+    data.dice = parseInt(data.dice);
+    Object.entries(data.modifiers).forEach(([key, value]) => (data.modifiers[key] = parseInt(value)));
+
     if (event.submitter?.value === "submit") {
       return FTDiceRollerApp.#context.submit?.(
-        foundry.utils.mergeObject(FTDiceRollerApp.#context, foundry.utils.expandObject(Object.fromEntries(formData)), {
+        foundry.utils.mergeObject(FTDiceRollerApp.#context, data, {
           recursive: true,
         })
       );

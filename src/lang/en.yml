@@ -19,13 +19,12 @@ FT:
         hint: >
           If a character increases their IQ, do they automatically get a point to acquire a new Talent
           or Spell, or must they spend XP instead?
-    roll:
-      visibility:
-        roll: Default
-        publicroll: Public
-        gmroll: With GM
-        blindroll: Blind
-        selfroll: Self
+    rollMode:
+      roll: Default
+      publicroll: Public
+      gmroll: With GM
+      blindroll: Blind
+      selfroll: Self
   # General Messages
   messages:
     noCapacity: "{container} is not big enough."
@@ -79,6 +78,10 @@ FT:
         attack: Attack
         damage: Damage
         cast: Cast
+      modifier:
+        manual: Manual
+        stHitMod: ST Mod
+        effectMod: Effects Mod
       flavor:
         success:
           - Attempts
@@ -87,13 +90,13 @@ FT:
         talent:
           - Uses
         attack:
-          - Strikes {targets} with {item}
+          - Strikes {targets} with their {item}
         cast:
           - Casts {spell}
       result:
-        attack:
-          success: ... Success!
-          failure: ... and misses
+        exact: ... Success! Just made it!
+        success: ... Success! Made it by {margin}
+        failure: ... and misses by {margin}
   #
   app:
     dice:

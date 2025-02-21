@@ -30,7 +30,7 @@
     <div class="grid grid-flow-col grid-rows-2 gap-1">
         {{#each (array "st.max" "st.value" "dx.max" "dx.value" "iq.max" "iq.value") as | attribute |}}
         <span>
-            <input type="radio" name="attribute" id="attribute-{{attribute}}" value="{{attribute}}" {{#if (eq
+            <input type="checkbox" name="attributes" id="attribute-{{attribute}}" value="{{attribute}}" {{#if (eq
                 ../attribute attribute)}}checked{{/if}}>
             <label for="attribute-{{attribute}}">{{localize (concat "FT.system.roll.attribute." attribute)}}</label>
         </span>
@@ -40,9 +40,9 @@
 
     {{!-- Modifiers --}}
     {{#each modifiers as | value modifier|}}
-    <label class="text-xs">{{modifier}}</label>
-    <div class="grid grid-cols-11 gap-1">
-        {{#each (range -5 5) as | set |}}
+    <div class="grid grid-cols-16 gap-1">
+        <label class="text-xs col-span-3">{{localize (concat "FT.system.roll.modifier." modifier)}}</label>
+        {{#each (range -6 6) as | set |}}
         <span>
             <input type="radio" name="modifiers.{{modifier}}" id="modifiers-{{modifier}}-{{set}}" value="{{set}}" {{#if
                 (eq value set)}}checked{{/if}}>
@@ -57,19 +57,18 @@
         {{#each (range 1 8) as | dice |}}
         <span>
             <input type="radio" name="dice" id="dice-{{dice}}" value="{{dice}}" {{#if (eq ../dice dice)}}checked{{/if}}>
-            <label for="dice-{{dice}}"><i
-                    class="icon-d6 !w-8 !h-8 m-0 p-1 {{#unless (gte ../dice dice)}}faded{{/unless}}"></i></label>
+            <label for="dice-{{dice}}" title="{{dice}}D6"><i class="icon-d6 !w-8 !h-8 m-0 p-1"></i></label>
         </span>
         {{/each}}
     </div>
 
-    {{!-- Visibility --}}
+    {{!-- Roll Mode --}}
     <div class="grid grid-cols-5 gap-1">
-        {{#each (array "roll" "publicroll" "gmroll" "blindroll" "selfroll" ) as | visibility |}}
+        {{#each (array "roll" "publicroll" "gmroll" "blindroll" "selfroll" ) as | rollMode |}}
         <span>
-            <input type="radio" name="visibility" id="visibility-{{visibility}}" value="{{visibility}}" {{#if (eq
-                ../visibility visibility)}}checked{{/if}}>
-            <label for="visibility-{{visibility}}">{{localize (concat "FT.game.roll.visibility." visibility)}}</label>
+            <input type="radio" name="rollMode" id="rollMode-{{rollMode}}" value="{{rollMode}}" {{#if (eq ../rollMode
+                rollMode)}}checked{{/if}}>
+            <label for="rollMode-{{rollMode}}">{{localize (concat "FT.game.rollMode." rollMode)}}</label>
         </span>
         {{/each}}
     </div>
@@ -78,5 +77,4 @@
         <button type="cancel" value="cancel">Cancel</button>
         <button type="submit" form="ft-dice-roller" value="submit">Roll</button>
     </div>
-
 </div>

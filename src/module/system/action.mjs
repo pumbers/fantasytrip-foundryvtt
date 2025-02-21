@@ -22,11 +22,20 @@ export function isTokenInActiveCombat(token) {
 /**
  *
  * @param {*} actor
+ * @param {*} options
+ */
+export async function attributeRoll(actor, options) {
+  console.log("Action.attributeRoll()", actor, options);
+}
+
+/**
+ * Make an attack roll.
+ * @param {*} actor
  * @param {*} weapon
  * @param {*} options
  */
 export async function attackRoll(actor, weapon, options) {
-  console.log("Combat.attackRoll()", actor, weapon);
+  console.log("Action.attackRoll()", actor, weapon);
   const talent = weapon?.system.talent ? actor.getEmbeddedDocument("Item", weapon?.system.talent) : null;
   // TODO Weapon type hit mod
   const result = await DICE_ROLLER.render({
@@ -35,13 +44,18 @@ export async function attackRoll(actor, weapon, options) {
     dice: 3,
     actor,
     item: weapon,
-    modifiers: { stHitMod: weapon.system.stHitMod },
+    modifiers: {
+      ...(weapon.system.stHitMod !== 0 ? { stHitMod: weapon.system.stHitMod } : {}),
+      ...(actor.system.dx.modFor[weapon.system.type] !== 0
+        ? { effectMod: actor.system.dx.modFor[weapon.system.type] }
+        : {}),
+    },
     talent,
     attribute: `${talent?.defaultAttribute ?? "dx"}.max`,
     targets: Array.from(game.user.targets),
     ...options,
     submit: async (data) => {
-      console.log("Combat.attackRoll().submit()", "data", data);
+      console.log("Action.attackRoll().submit()", "data", data);
 
       const roll = new Roll(`${data.dice}D6`, {
         actor: data.actor,
@@ -49,25 +63,33 @@ export async function attackRoll(actor, weapon, options) {
       });
 
       roll.evaluate().then((roll) => {
+        const totalAttributes = JSON.parse(data.attributes)
+          .filter((a) => !!a)
+          .reduce((total, attribute) => total + foundry.utils.getProperty(data.actor.getRollData(), attribute), 0);
         const totalModifiers = Object.values(data.modifiers).reduce((total, modifier) => total + parseInt(modifier), 0);
+        // TODO random message choice
         const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.0`, {
           targets: data.targets.map((t) => t.name).join(", "),
           item: data.item.name,
         });
-        const margin =
-          foundry.utils.getProperty(data.actor.getRollData(), data.attribute) + totalModifiers - roll.total;
-        const result = `... ${margin >= 0 ? "Success! Made it by" : "and misses by"} ${Math.abs(margin)}`;
+        const margin = totalAttributes + totalModifiers - roll.total;
+        const result =
+          margin === 0
+            ? game.i18n.format("FT.system.roll.result.exact")
+            : margin >= 0
+            ? game.i18n.format("FT.system.roll.result.success", { margin: Math.abs(margin) })
+            : game.i18n.format("FT.system.roll.result.failure", { margin: Math.abs(margin) });
         roll.toMessage(
           {
             speaker: ChatMessage.getSpeaker({ actor: data.actor }),
             flavor: message + result,
           },
-          { rollMode: data.visibility }
+          { rollMode: data.rollMode }
         );
       });
     },
   });
-  console.log("Combat.attackRoll() ... result", result);
+  console.log("Action.attackRoll() ... result", result);
 }
 
 /**
@@ -77,7 +99,7 @@ export async function attackRoll(actor, weapon, options) {
  * @param {*} options
  */
 export function damageRoll(actor, weapon, options = {}) {
-  console.log("Combat.damageRoll()", actor, weapon);
+  console.log("Action.damageRoll()", actor, weapon);
   // TODO Remove effects when actor updated manually?
 
   const baseFormula = weapon.system.damage.concat(weapon.system.stDamageMod);

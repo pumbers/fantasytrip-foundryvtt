@@ -112,28 +112,13 @@ export class FTCharacterSheet extends ActorSheet {
         break;
       case "attribute-roll":
         console.log("click():attribute-roll", dataset);
-        // TODO
-        // this.DICE_ROLLER.render({
-        //   force: true,
-        //   actor: this.actor,
-        //   type: "attribute",
-        //   ...dataset,
-        // });
+        Action.attributeRoll(this.actor);
         break;
-      case "talent-roll":
-        console.log("click():talent-roll", dataset);
-        if (!itemId) return;
-        item = this.actor.getEmbeddedDocument("Item", itemId);
-        // TODO
-        // this.DICE_ROLLER.render({
-        //   force: true,
-        //   actor: this.actor,
-        //   item,
-        //   type: "talent",
-        //   attribute: item.system.defaultAttribute,
-        //   ...dataset,
-        // });
-        break;
+      // case "talent-roll":
+      //   console.log("click():talent-roll", dataset);
+      //   if (!itemId) return;
+      //   item = this.actor.getEmbeddedDocument("Item", itemId);
+      // break;
       case "attack-roll":
         console.log("click():attack-roll", dataset);
         if (!itemId) return;
@@ -146,20 +131,11 @@ export class FTCharacterSheet extends ActorSheet {
         item = this.actor.getEmbeddedDocument("Item", itemId);
         Action.damageRoll(this.actor, item);
         break;
-      case "cast-spell":
-        console.log("click():cast-spell", dataset);
-        if (!itemId) return;
-        item = this.actor.getEmbeddedDocument("Item", itemId);
-        // TODO
-        // this.DICE_ROLLER.render({
-        //   force: true,
-        //   actor: this.actor,
-        //   item,
-        //   type: "cast",
-        //   attribute: "adjiq",
-        //   ...dataset,
-        // });
-        break;
+      // case "cast-spell":
+      //   console.log("click():cast-spell", dataset);
+      //   if (!itemId) return;
+      //   item = this.actor.getEmbeddedDocument("Item", itemId);
+      //   break;
       default:
         console.error(`FT | Unimplemented action: ${dataset.action}`);
         break;

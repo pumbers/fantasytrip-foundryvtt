@@ -37,7 +37,7 @@
     </div>
 </div>
 {{!-- Attributes --}}
-<div class="flex flex-row gap-2 justify-between m-0 my-1 p-0">
+<div class="flex flex-row gap-1 justify-between m-0 my-1 p-0">
     <div class="flex flex-col gap-1">
         {{!-- Attribute Partial --}}
         {{#*inline "attribute"}}
@@ -72,6 +72,15 @@
         {{> attribute key="dx" attr=system.dx roll=true}}
         {{> attribute key="iq" attr=system.iq roll=true}}
         {{> attribute key="ma" attr=system.ma}}
+    </div>
+    <div class="flex flex-col gap-1 justify-between w-full">
+        <span class="border-[1px] rounded-sm text-xs text-center action" data-action="A">A</span>
+        <span class="border-[1px] rounded-sm text-xs text-center action" data-action="A">B</span>
+        <span class="border-[1px] rounded-sm text-xs text-center action" data-action="A">C</span>
+        <span class="border-[1px] rounded-sm text-xs text-center action" data-action="A">D</span>
+        <span class="border-[1px] rounded-sm text-xs text-center action" data-action="A">E</span>
+        <span class="border-[1px] rounded-sm text-xs text-center action" data-action="A">F</span>
+        <span class="border-[1px] rounded-sm text-xs text-center action" data-action="A">G</span>
     </div>
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
 </div>
