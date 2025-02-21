@@ -14,7 +14,7 @@ esmodules:
 styles:
   - css/fantasytrip.css
   - css/icons.css
-  - css/character-sheet.css
+  - css/actor-sheet.css
   - css/item-sheet.css
   - css/applications.css
 scripts:

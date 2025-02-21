@@ -23,16 +23,6 @@ export class FTActor extends Actor {
   // ActorDataModel.prepareDerivedData()
   // Actor.prepareDerivedData()
 
-  // prepareBaseData() {
-  //   console.log("FTActor.prepareBaseData()", this);
-  //   super.prepareBaseData();
-  // }
-
-  // prepareEmbeddedDocuments() {
-  //   console.log("FTActor.prepareEmbeddedDocuments()", this);
-  //   super.prepareEmbeddedDocuments();
-  // }
-
   prepareDerivedData() {
     // console.log("FTActor.prepareDerivedData()", this);
     super.prepareDerivedData();
@@ -94,6 +84,24 @@ export class FTActor extends Actor {
         weapon.system.stHitMod = Math.min(this.system.st.max - weapon.system.minST, 0);
         weapon.system.stDamageMod = Math.ceil(Math.min(this.system.st.max - weapon.system.minST, 0) / 2);
       });
+
+    // Calculate talent & spell costs
+    system.totalIQCost = { talents: 0, spells: 0 };
+    this.items.forEach((item) => {
+      switch (item.type) {
+        case "talent":
+          item.system.actualIQCost = this.system.type === "hero" ? item.system.iqCost : item.system.iqCost * 2;
+          system.totalIQCost.talents += item.system.actualIQCost;
+          break;
+        case "spell":
+          item.system.actualIQCost = this.system.type === "wizard" ? item.system.iqCost : item.system.iqCost * 3;
+          system.totalIQCost.spells += item.system.actualIQCost;
+          break;
+        default:
+          item.system.actualIQCost = item.system.iqCost;
+          break;
+      }
+    });
   }
 
   /* ------------------------------------------- */

@@ -162,6 +162,7 @@ FT:
         talents:
           name: Talent
           iq: IQ
+          cost: Cost
         items:
           name: Item
           cost: $
@@ -175,6 +176,7 @@ FT:
           name: Name
           type: Type
           iq: IQ
+          cost: Cost
           st: ST
       button:
         chat: Send to chat
@@ -225,7 +227,7 @@ FT:
         wt: Wt Lbs (each)
         qty: Quantity
         iq: IQ Level
-        acquire: Cost to Acquire
+        iqCost: Cost to Acquire
         minST: Min ST to use
         type: Type
         stToCast: ST to Cast

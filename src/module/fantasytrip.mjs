@@ -2,7 +2,7 @@
 import { FT } from "./system/config.mjs";
 import { FTActorData } from "./data/actor-data.mjs";
 import { FTActor } from "./documents/actor.mjs";
-import { FTCharacterSheet } from "./sheets/character-sheet.mjs";
+import { FTActorSheet } from "./sheets/actor-sheet.mjs";
 
 import { FTItem } from "./documents/item.mjs";
 import {
@@ -132,7 +132,7 @@ Hooks.once("init", async function () {
    * Register Sheet Application Classes
    */
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("FT", FTCharacterSheet, { types: ["character"], makeDefault: true });
+  Actors.registerSheet("FT", FTActorSheet, { types: ["character"], makeDefault: true });
   // Actors.registerSheet("FT", FTNpcSheet, { types: ["npc"], makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("FT", FTItemSheet, { makeDefault: true });

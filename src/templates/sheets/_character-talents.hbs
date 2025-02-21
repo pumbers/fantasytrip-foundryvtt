@@ -13,6 +13,7 @@
             {{#if settings.showItemIcons}}<th></th>{{/if}}
             <th class="w-full">{{localize 'FT.character.sheet.table.talents.name'}}</th>
             <th>{{localize 'FT.character.sheet.table.talents.iq'}}</th>
+            <th>{{localize 'FT.character.sheet.table.talents.cost'}}</th>
             <th></th>
             <th></th>
         </tr>
@@ -24,9 +25,17 @@
         {{/if}}
         <td>{{talent.name}}</td>
         <td>{{talent.system.iq}}</td>
+        <td>{{talent.system.actualIQCost}}</td>
         <td><a class="px-[2px] action" data-action="talent-roll">{{localize "FT.character.sheet.button.roll"}}</a></td>
         {{> actions}}
     </tr>
     {{/each}}
+    <tfoot>
+        <tr>
+            <td colspan="3"></td>
+            <td>{{system.totalIQCost.talents}}</td>
+            <td colspan="2"></td>
+        </tr>
+    </tfoot>
 </table>
 {{/if}}

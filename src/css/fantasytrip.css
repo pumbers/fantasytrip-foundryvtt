@@ -44,9 +44,6 @@
       &:first-child {
         @apply text-left w-4;
       }
-      &:nth-child(2) {
-        @apply text-left;
-      }
       &:last-child {
         @apply text-right;
       }
@@ -73,14 +70,14 @@
   & .field {
     @apply flex flex-col gap-1 mt-auto mb-0 !leading-2;
     & label {
-      @apply m-0 p-0 text-[0.5rem] !text-left uppercase;
+      @apply m-0 p-0 text-[0.5rem] !text-left uppercase dark:text-slate-200;
     }
   }
 
   & [data-action] {
     @apply cursor-pointer;
     &.action {
-      @apply bg-yellow-100;
+      @apply bg-yellow-100 dark:text-black;
       &:hover {
         @apply bg-yellow-300;
       }

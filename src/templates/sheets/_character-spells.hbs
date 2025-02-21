@@ -14,6 +14,7 @@
             <th class="w-full">{{localize 'FT.character.sheet.table.spells.name'}}</th>
             <th>{{localize 'FT.character.sheet.table.spells.type'}}</th>
             <th>{{localize 'FT.character.sheet.table.spells.iq'}}</th>
+            <th>{{localize 'FT.character.sheet.table.spells.cost'}}</th>
             <th>{{localize 'FT.character.sheet.table.spells.st'}}</th>
             <th></th>
             <th></th>
@@ -27,10 +28,18 @@
         <td>{{spell.name}}</td>
         <td>{{localize (concat "FT.item.spell.typeAbbr." spell.system.type)}}</td>
         <td>{{spell.system.iq}}</td>
+        <td>{{spell.system.actualIQCost}}</td>
         <td>{{spell.system.stToCast}}</td>
         <td><a class="px-[2px] action" data-action="cast-spell">{{localize "FT.character.sheet.button.cast"}}</a></td>
         {{> actions}}
     </tr>
     {{/each}}
+    <tfoot>
+        <tr>
+            <td colspan="4"></td>
+            <td>{{system.totalIQCost.spells}}</td>
+            <td colspan="3"></td>
+        </tr>
+    </tfoot>
 </table>
 {{/if}}

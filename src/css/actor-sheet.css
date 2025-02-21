@@ -1,6 +1,6 @@
 @reference "./fantasytrip.css";
 
-.fantasy-trip.character.sheet {
+.fantasy-trip.actor.sheet {
   /*  */
   & .window-content {
     @apply bg-none m-0 p-0 bg-white dark:bg-current;

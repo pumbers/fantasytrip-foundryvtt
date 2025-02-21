@@ -6,11 +6,11 @@ import * as Action from "../system/action.mjs";
  * Fantasy Trip Character Sheet
  * @extends {ActorSheet} Extends the basic ActorSheet
  */
-export class FTCharacterSheet extends ActorSheet {
+export class FTActorSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["fantasy-trip", "character", "sheet"],
+      classes: ["fantasy-trip", "actor", "sheet"],
       template: `${CONFIG.FT.path}/templates/sheets/character-sheet.hbs`,
       width: 400,
       height: 600,
@@ -31,7 +31,7 @@ export class FTCharacterSheet extends ActorSheet {
 
   /** @override */
   async getData() {
-    // console.log("character-sheet.getData()", this);
+    // console.log("actor-sheet.getData()", this);
     const context = {
       ...super.getData(),
       FT: CONFIG.FT,

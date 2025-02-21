@@ -16,7 +16,7 @@ export class FTTalentData extends FTBaseItemData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
       iq: new NumberField({ initial: 0 }),
-      acquire: new NumberField({ initial: 0 }),
+      iqCost: new NumberField({ initial: 0 }),
       defaultAttribute: new StringField(),
     });
   }
