@@ -44,6 +44,9 @@
       &:first-child {
         @apply text-left w-4;
       }
+      &:nth-child(2) {
+        @apply text-left;
+      }
       &:last-child {
         @apply text-right;
       }

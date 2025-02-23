@@ -39,6 +39,7 @@ grid:
 documentTypes:
   Actor:
     character: {}
+    npc: {}
   Item:
     talent: {}
     equipment: {}

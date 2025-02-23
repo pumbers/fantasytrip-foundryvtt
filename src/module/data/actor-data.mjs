@@ -21,7 +21,6 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       st: new SchemaField({
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
-        value: new NumberField({ initial: 8 }), // Current value
         modFor: new SchemaField({
           success: new NumberField({ initial: 0 }), // Modifier to success rolls
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
@@ -31,7 +30,6 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       dx: new SchemaField({
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
-        value: new NumberField({ initial: 8 }), // Current value
         modFor: new SchemaField({
           success: new NumberField({ initial: 0 }), // Modifier to success rolls
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
@@ -46,20 +44,18 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       iq: new SchemaField({
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
-        value: new NumberField({ initial: 8 }), // Current value
         modFor: new SchemaField({
           success: new NumberField({ initial: 0 }), // Modifier to success rolls
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
         }),
       }),
-      //
+      // TODO modes: walk, swim, fly
       ma: new SchemaField({
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
-        // value: new NumberField({ initial: 10 }), // Current value
       }),
       //
-      initiative: new NumberField({ initial: 0 }), // Initiative modifier
+      initiative: new SchemaField({ self: new NumberField({ initial: 0 }), party: new NumberField({ initial: 0 }) }), // Initiative modifiers
       fatigue: new NumberField({ initial: 0 }), // Fatigue accrued
       damage: new NumberField({ initial: 0 }), // Damage taken
       mana: new SchemaField({
@@ -69,10 +65,8 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
     };
   }
 
-  prepareDerivedData() {
-    super.prepareDerivedData();
-    // console.log("FTActorData.prepareDerivedData()", this);
-
+  prepareBaseData() {
+    super.prepareBaseData();
     // Calculate attribute points
     const { st, dx, iq } = this;
     this.ap = [st, dx, iq].reduce((ap, attribute) => ap + attribute.max, 0);
@@ -82,6 +76,11 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
     this.dx.value = Math.max(this.dx.max + this.dx.mod, 0);
     this.iq.value = Math.max(this.iq.max + this.iq.mod, 0);
     this.ma.value = Math.max(this.ma.max + this.ma.mod, 0);
+  }
+
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    // console.log("FTActorData.prepareDerivedData()", this);
 
     // Calculate availoable mana (from staff if a wizard)
     this.mana.value = Math.min(this.mana.max, this.mana.value);

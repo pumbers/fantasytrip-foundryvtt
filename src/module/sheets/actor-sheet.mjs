@@ -6,7 +6,7 @@ import * as Action from "../system/action.mjs";
  * Fantasy Trip Character Sheet
  * @extends {ActorSheet} Extends the basic ActorSheet
  */
-export class FTActorSheet extends ActorSheet {
+export class FTCharacterSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -214,5 +214,16 @@ export class FTActorSheet extends ActorSheet {
       );
     }
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
+  }
+}
+
+export class FTNPCSheet extends FTCharacterSheet {
+  /** @override */
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      template: `${CONFIG.FT.path}/templates/sheets/npc-sheet.hbs`,
+      width: 470,
+      height: 400,
+    });
   }
 }

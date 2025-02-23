@@ -1,0 +1,33 @@
+{{!-- Attribute Partial --}}
+{{#*inline "attribute"}}
+<div class="flex flex-row gap-1">
+    <label
+        class="m-0 p-0.5 bg-black text-white leading-8 dark:bg-white dark:text-black text-center text-lg uppercase min-w-8 rounded-sm">{{localize
+        (concat "FT.character.attribute." key)}}</label>
+    <div class="flex flex-row gap-0">
+        <input class="m-0 !text-center !text-lg !h-full !w-12 !rounded-r-none" type="number" name="system.{{key}}.max"
+            value="{{attr.max}}" />
+        <a class="block m-0 p-1 border-y-[1px] border-r-[1px] rounded-r-sm action" data-action="attribute-roll"
+            data-attribute="{{key}}" data-path="{{key}}.max" data-type="success"><i class="icon-d6 text-lg"></i></a>
+    </div>
+</div>
+<div class="field w-14 ml-auto">
+    <label>Adj.</label>
+    {{#if roll}}
+    <div class="flex flex-row gap-0">
+        <input class="m-0 w-14 !text-center !rounded-r-none" type="text" value="{{attr.value}}" readonly />
+        <a class="block m-0 p-1 border-y-[1px] border-r-[1px] rounded-r-sm action" data-action="attribute-roll"
+            data-attribute="adj{{key}}" data-path="{{key}}.value" data-type="success"><i class="icon-d6"></i></a>
+    </div>
+    {{else}}
+    <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+    {{/if}}
+</div>
+{{/inline}}
+{{!-- Attribute Block --}}
+<div class="grid grid-flow-col grid-rows-2 gap-1">
+    {{> attribute key="st" attr=system.st roll=true}}
+    {{> attribute key="dx" attr=system.dx roll=true}}
+    {{> attribute key="iq" attr=system.iq roll=true}}
+    {{> attribute key="ma" attr=system.ma}}
+</div>

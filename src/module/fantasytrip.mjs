@@ -2,7 +2,7 @@
 import { FT } from "./system/config.mjs";
 import { FTActorData } from "./data/actor-data.mjs";
 import { FTActor } from "./documents/actor.mjs";
-import { FTActorSheet } from "./sheets/actor-sheet.mjs";
+import { FTCharacterSheet, FTNPCSheet } from "./sheets/actor-sheet.mjs";
 
 import { FTItem } from "./documents/item.mjs";
 import {
@@ -110,6 +110,7 @@ Hooks.once("init", async function () {
    * Define custom Entity classes
    */
   CONFIG.Actor.dataModels.character = FTActorData;
+  CONFIG.Actor.dataModels.npc = FTActorData;
   CONFIG.Actor.documentClass = FTActor;
   // CONFIG.Actor.trackableAttributes = {
   //   character: {
@@ -132,8 +133,8 @@ Hooks.once("init", async function () {
    * Register Sheet Application Classes
    */
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("FT", FTActorSheet, { types: ["character"], makeDefault: true });
-  // Actors.registerSheet("FT", FTNpcSheet, { types: ["npc"], makeDefault: true });
+  Actors.registerSheet("FT", FTCharacterSheet, { types: ["character", "npc"], makeDefault: true });
+  Actors.registerSheet("FT", FTNPCSheet, { types: ["npc"], makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("FT", FTItemSheet, { makeDefault: true });
 
@@ -164,6 +165,11 @@ Hooks.once("init", async function () {
     `${CONFIG.FT.path}/templates/sheets/_character-items.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-spells.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_character-effects.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/npc-sheet.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/_npc-stats.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/_npc-status.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/_npc-action.hbs`,
+    `${CONFIG.FT.path}/templates/sheets/_npc-items.hbs`,
     `${CONFIG.FT.path}/templates/sheets/item-sheet.hbs`,
     `${CONFIG.FT.path}/templates/sheets/_item-effects.hbs`,
     `${CONFIG.FT.path}/templates/application/dice-roller.hbs`,
