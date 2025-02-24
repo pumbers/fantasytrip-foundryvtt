@@ -21,6 +21,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       st: new SchemaField({
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
+        value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
           success: new NumberField({ initial: 0 }), // Modifier to success rolls
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
@@ -30,6 +31,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       dx: new SchemaField({
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
+        value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
           success: new NumberField({ initial: 0 }), // Modifier to success rolls
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
@@ -44,6 +46,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       iq: new SchemaField({
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
+        value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
           success: new NumberField({ initial: 0 }), // Modifier to success rolls
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
@@ -54,6 +57,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         mode: new StringField({ initial: "walk" }), // Movement type
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
+        value: new NumberField({ initial: 8 }), // Current or adjusted value
       }),
       //
       initiative: new SchemaField({ self: new NumberField({ initial: 0 }), party: new NumberField({ initial: 0 }) }), // Initiative modifiers
