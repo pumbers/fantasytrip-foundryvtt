@@ -35,23 +35,24 @@ export async function attributeRoll(actor, options) {
  * @param {*} options
  */
 export async function attackRoll(actor, weapon, options) {
-  console.log("Action.attackRoll()", actor, weapon);
-  const talent = weapon?.system.talent ? actor.getEmbeddedDocument("Item", weapon?.system.talent) : null;
-  // TODO Weapon type hit mod
+  console.log("Action.attackRoll()", actor, weapon, options);
+  const attack = weapon.system.attacks[options.attackIndex];
+  const talent = !!attack.talent ? actor.getEmbeddedDocument("Item", attack.talent) : null;
   const result = await DICE_ROLLER.render({
     force: true,
     type: "attack",
-    dice: 3,
+    dice: attack.dice,
     actor,
-    item: weapon,
-    modifiers: {
-      ...(weapon.system.stHitMod !== 0 ? { stHitMod: weapon.system.stHitMod } : {}),
-      ...(actor.system.dx.modFor[weapon.system.type] !== 0
-        ? { effectMod: actor.system.dx.modFor[weapon.system.type] }
-        : {}),
-    },
     talent,
-    attribute: `${talent?.defaultAttribute ?? "dx"}.max`,
+    item: weapon,
+    attribute: attack.attribute,
+    modifiers: {
+      ...(attack.toHitMod !== 0 ? { toHitMod: attack.toHitMod } : {}),
+      ...(attack.stHitMod !== 0 ? { stHitMod: attack.stHitMod } : {}),
+      ...(attack.attackTypeMod !== 0 ? { attackTypeMod: attack.attackTypeMod } : {}),
+      ...(attack.attributeMod !== 0 ? { attributeMod: attack.attributeMod } : {}),
+      ...(attack.type === "thrown" || attack.type === "missile" ? { rangeMod: 0 } : {}),
+    },
     targets: Array.from(game.user.targets),
     ...options,
     submit: async (data) => {
@@ -69,8 +70,9 @@ export async function attackRoll(actor, weapon, options) {
         const totalModifiers = Object.values(data.modifiers).reduce((total, modifier) => total + parseInt(modifier), 0);
         // TODO random message choice
         const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.0`, {
-          targets: data.targets.map((t) => t.name).join(", "),
           item: data.item.name,
+          attack: attack.action,
+          targets: data.targets.map((t) => t.name).join(", "),
         });
         const margin = totalAttributes + totalModifiers - roll.total;
         const result =
@@ -79,6 +81,7 @@ export async function attackRoll(actor, weapon, options) {
             : margin >= 0
             ? game.i18n.format("FT.system.roll.result.success", { margin: Math.abs(margin) })
             : game.i18n.format("FT.system.roll.result.failure", { margin: Math.abs(margin) });
+
         roll.toMessage(
           {
             speaker: ChatMessage.getSpeaker({ actor: data.actor }),
@@ -99,18 +102,15 @@ export async function attackRoll(actor, weapon, options) {
  * @param {*} options
  */
 export function damageRoll(actor, weapon, options = {}) {
-  console.log("Action.damageRoll()", actor, weapon);
+  console.log("Action.damageRoll()", actor, weapon, options);
   // TODO Remove effects when actor updated manually?
 
-  const baseFormula = weapon.system.damage.concat(weapon.system.stDamageMod);
+  const attack = weapon.system.attacks[options.attackIndex];
   const formula =
     game.settings.get("fantasytrip", "damageMultiplierStrategy") === "rollTimes"
-      ? new Array(options.multiplier ?? 1).fill(baseFormula).join("+")
-      : `(${baseFormula ?? 0})*${options.multiplier ?? 1}`;
-
+      ? new Array(options.multiplier ?? 1).fill(attack.damage).join("+")
+      : `(${attack.damage ?? 0})*${options.multiplier ?? 1}`;
   const roll = new Roll(formula, { actor, weapon });
-
-  console.log("... simplified", roll.terms);
 
   if (!!game.user.targets.size) {
     game.user.targets.forEach((target) => {

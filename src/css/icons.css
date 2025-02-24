@@ -67,4 +67,21 @@
   & .icon-chest-armor::before {
     content: url("../assets/icons/chest-armor.svg");
   }
+
+  /* Weapons */
+  & .icon-fist::before {
+    content: url("../assets/icons/fist.svg");
+  }
+  & .icon-swordman::before {
+    content: url("../assets/icons/swordman.svg");
+  }
+  & .icon-flanged-mace::before {
+    content: url("../assets/icons/flanged-mace.svg");
+  }
+  & .icon-thrown-knife::before {
+    content: url("../assets/icons/thrown-knife.svg");
+  }
+  & .icon-bowman::before {
+    content: url("../assets/icons/bowman.svg");
+  }
 }

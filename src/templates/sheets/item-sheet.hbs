@@ -9,9 +9,8 @@
                 <input class="name" name="name" type="text" value="{{item.name}}" placeholder="Name" />
                 <div class="flex flex-row justify-between font-bold uppercase mt-2">
                     <span>{{localize (concat "FT.item.type." item.type)}}</span>
-                    {{#if item.system.type}}
-                    <span>{{localize (concat "FT.item." item.type ".type." item.system.type)}}</span>
-                    {{/if}}
+                    <span>{{#if system.isContainer}}{{localize
+                        "FT.item.sheet.label.container"}}{{/if}}</span>
                 </div>
             </div>
         </header>
@@ -20,16 +19,20 @@
         <section class="sheet-body">
             <!-- Sheet Tab Navigation -->
             <nav class="sheet-tabs tabs" data-group="primary">
-                <a class="item" title="Settings" data-tab="settings">{{localize
-                    "FT.item.sheet.tab.settings"}}</a>
-                <a class="item" title="Effects" data-tab="effects">{{localize
+                <a class="item" data-tab="description">{{localize
+                    "FT.item.sheet.tab.description"}}</a>
+                {{#if (eq item.type "equipment")}}
+                <a class="item" data-tab="actions">{{localize
+                    "FT.item.sheet.tab.actions"}}</i></a>
+                {{/if}}
+                <a class="item" data-tab="effects">{{localize
                     "FT.item.sheet.tab.effects"}}</i></a>
             </nav>
             {{!-- Settings Tab --}}
-            <div class="tab" data-group="primary" data-tab="settings">
+            <div class="tab" data-group="primary" data-tab="description">
                 <div class="grid grid-cols-4 gap-1">
-                    {{!-- All inventory types --}}
-                    {{#if (includes FT.item.inventory.types item.type)}}
+                    {{!-- Equipment --}}
+                    {{#if (eq item.type "equipment")}}
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.cost"}}</label>
                         <input type="number" name="system.cost" value="{{system.cost}}" min="0">
@@ -42,70 +45,23 @@
                         <label>{{localize "FT.item.sheet.label.qty"}}</label>
                         <input type="number" name="system.qty" value="{{system.qty}}" min="0">
                     </div>
-                    {{/if}}
-                    {{!-- Equipment --}}
-                    {{#if (eq item.type "equipment")}}
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.capacity"}}</label>
                         <input type="number" name="system.capacity" value="{{system.capacity}}" min="0">
                     </div>
                     {{/if}}
-                    {{!-- Weapons --}}
-                    {{#if (eq item.type "weapon")}}
-                    <div class="field">
-                        <label>{{localize "FT.item.sheet.label.type"}}</label>
-                        <select name="system.type">
-                            <option value="">{{localize 'FT.options.none'}}</option>
-                            {{selectOptions selectOptions.weaponTypes selected=system.type localize=true}}
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label>{{localize "FT.item.sheet.label.minST"}}</label>
-                        <input type="number" name="system.minST" value="{{system.minST}}" min="0">
-                    </div>
-                    <div class="field">
-                        <label>{{localize "FT.item.sheet.label.damage"}}</label>
-                        <input type="text" name="system.damage" value="{{system.damage}}" min="0">
-                    </div>
-                    {{#if owned}}
-                    <div class="field col-span-2">
-                        <label>{{localize "FT.item.sheet.label.talent"}}</label>
-                        <select name="system.talent">
-                            <option value="">{{localize 'FT.options.unskilled'}}</option>
-                            {{selectOptions selectOptions.talents selected=system.talent}}
-                        </select>
-                    </div>
-                    {{/if}}
-                    {{/if}}
-                    {{!-- Armor --}}
-                    {{#if (eq item.type "armor")}}
-                    <div class="field">
-                        <label>{{localize "FT.item.sheet.label.type"}}</label>
-                        <select name="system.type">
-                            <option value="">{{localize 'FT.options.none'}}</option>
-                            {{selectOptions selectOptions.armorTypes selected=system.type localize=true}}
-                        </select>
-                    </div>
-                    {{/if}}
-                    {{!-- Armor & Shields --}}
-                    {{#if (or (eq item.type "armor") (eq item.type "shield"))}}
-                    <div class="field">
-                        <label>{{localize "FT.item.sheet.label.hitsStopped"}}</label>
-                        <input type="number" name="system.hitsStopped" value="{{system.hitsStopped}}" min="0">
-                    </div>
-                    {{/if}}
                     {{!-- Talents & Spells --}}
                     {{#if (or (eq item.type "talent") (eq item.type "spell"))}}
                     <div class="field">
-                        <label>{{localize "FT.item.sheet.label.iq"}}</label>
-                        <input type="number" name="system.iq" value="{{system.iq}}" min="0">
+                        <label>{{localize "FT.item.sheet.label.minIQ"}}</label>
+                        <input type="number" name="system.minIQ" value="{{system.minIQ}}" min="0">
                     </div>
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.iqCost"}}</label>
                         <input type="number" name="system.iqCost" value="{{system.iqCost}}" min="0">
                     </div>
                     {{/if}}
-                    {{!-- Talents --}}
+                    {{!-- Talents Only --}}
                     {{#if (eq item.type "talent")}}
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.defaultAttribute"}}</label>
@@ -115,7 +71,7 @@
                         </select>
                     </div>
                     {{/if}}
-                    {{!-- Spells --}}
+                    {{!-- Spells Only --}}
                     {{#if (eq item.type "spell")}}
                     <div class="field">
                         <label>{{localize "FT.item.sheet.label.type"}}</label>
@@ -130,7 +86,71 @@
                     </div>
                     {{/if}}
                 </div>
-                <div>{{editor system.notes target="system.notes" button=true owner=owner editable=editable}}
+                <div>{{editor system.notes target="system.notes" button=true owner=owner editable=editable}}</div>
+            </div>
+            {{!-- Actions Tab --}}
+            <div class="tab" data-group="primary" data-tab="actions">
+                <div class="flex flex-col gap-2">
+                    {{!-- Attacks --}}
+                    <fieldset class="flex flex-col gap-4 justify-start">
+                        <legend>Attacks&nbsp;<i class="fa fa-plus-square" data-action="add-attack"></i></legend>
+                        {{#each system.attacks as | attack |}}
+                        <div class="grid grid-cols-4 gap-1">
+                            <div class="field col-span-2">
+                                <label>{{localize "FT.item.sheet.label.attackAction"}}</label>
+                                <input type="text" name="system.attacks.{{@index}}.action" value="{{attack.action}}">
+                            </div>
+                            <div class="field">
+                                <label>{{localize "FT.item.sheet.label.type"}}</label>
+                                <select name="system.attacks.{{@index}}.type">
+                                    <option value="">{{localize 'FT.options.none'}}</option>
+                                    {{selectOptions ../selectOptions.attackTypes selected=attack.type localize=true}}
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>{{localize "FT.item.sheet.label.toHitMod"}}</label>
+                                <input type="number" name="system.attacks.{{@index}}.toHitMod"
+                                    value="{{attack.toHitMod}}">
+                            </div>
+                            <div class="field">
+                                <label>{{localize "FT.item.sheet.label.baseDamage"}}</label>
+                                <input type="text" name="system.attacks.{{@index}}.baseDamage"
+                                    value="{{attack.baseDamage}}">
+                            </div>
+                            <div class="field">
+                                <label>{{localize "FT.item.sheet.label.minST"}}</label>
+                                <input type="number" name="system.attacks.{{@index}}.minST" value="{{attack.minST}}"
+                                    min="0">
+                            </div>
+                            {{#if ../owned}}
+                            <div class="field col-span-2">
+                                <label>{{localize "FT.item.sheet.label.talent"}}</label>
+                                <select name="system.attacks.{{@index}}.talent">
+                                    <option value="">{{localize 'FT.options.unskilled'}}</option>
+                                    {{selectOptions ../selectOptions.talents selected=attack.talent}}
+                                </select>
+                            </div>
+                            {{/if}}
+                        </div>
+                        {{/each}}
+                    </fieldset>
+                    {{!-- Defenses --}}
+                    <fieldset class="flex flex-col gap-4 justify-start">
+                        <legend>Defenses&nbsp;<i class="fa fa-plus-square" data-action="add-defense"></i></legend>
+                        {{#each system.defenses as | defense |}}
+                        <div class="grid grid-cols-4 gap-1">
+                            <div class="field col-span-2">
+                                <label>{{localize "FT.item.sheet.label.defenseAction"}}</label>
+                                <input type="text" name="system.defenses.{{@index}}.action" value="{{defense.action}}">
+                            </div>
+                            <div class="field">
+                                <label>{{localize "FT.item.sheet.label.hitsStopped"}}</label>
+                                <input type="number" name="system.defenses.{{@index}}.hitsStopped"
+                                    value="{{defense.hitsStopped}}" min="0">
+                            </div>
+                        </div>
+                        {{/each}}
+                    </fieldset>
                 </div>
             </div>
             {{!-- Effects Tab --}}

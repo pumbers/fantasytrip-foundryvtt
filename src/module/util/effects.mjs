@@ -11,7 +11,7 @@ export function onManageActiveEffect(event) {
   const effectId = element?.closest("[data-effect-id]").data("effectId");
   const effect = effectId ? this.effects.get(effectId) : null;
 
-  switch (dataset.action) {
+  switch (dataset.effectAction) {
     case "create":
       return this.createEmbeddedDocuments("ActiveEffect", [
         {

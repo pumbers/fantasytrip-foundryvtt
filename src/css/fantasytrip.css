@@ -70,6 +70,12 @@
     }
   }
 
+  & fieldset {
+    & legend {
+      @apply dark:text-slate-200;
+    }
+  }
+
   & .field {
     @apply flex flex-col gap-1 mt-auto mb-0 !leading-2;
     & label {
@@ -108,7 +114,7 @@
       }
       .actions {
         @apply flex flex-col gap-1 justify-start;
-        button.effect-manage {
+        button[data-effect-action] {
           @apply border-none w-auto px-1 cursor-pointer text-xs;
           /* &:hover {
             @apply bg-cs5-gold-50;

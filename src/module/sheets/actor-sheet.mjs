@@ -12,8 +12,8 @@ export class FTCharacterSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fantasy-trip", "actor", "sheet"],
       template: `${CONFIG.FT.path}/templates/sheets/character-sheet.hbs`,
-      width: 400,
-      height: 600,
+      width: 430,
+      height: 640,
       tabs: [
         {
           navSelector: ".sheet-tabs",
@@ -41,16 +41,15 @@ export class FTCharacterSheet extends ActorSheet {
       settings: {
         showItemIcons: game.settings.get("fantasytrip", "showItemIcons"),
       },
-      // Categorized itemsa
-      talents: this.actor.items.filter((item) => item.type === "talent"),
-      weapons: this.actor.items.filter((item) => item.type === "weapon"),
-      armor: this.actor.items.filter((item) => item.type === "armor"),
-      shields: this.actor.items.filter((item) => item.type === "shield"),
-      spells: this.actor.items.filter((item) => item.type === "spell"),
-      // Character's Inventory
+      // Categorized items
+      talents: this.actor.items.filter((item) => item.type === "talent").sort((a, b) => a.name.localeCompare(b.name)),
+      spells: this.actor.items.filter((item) => item.type === "spell").sort((a, b) => a.name.localeCompare(b.name)),
       inventory: this.actor.items
-        .filter((item) => CONFIG.FT.item.inventory.types.includes(item.type))
+        .filter((item) => item.type === "equipment")
         .sort((a, b) => a.name.localeCompare(b.name)),
+      // Attacks & Defenses
+      weapons: this.actor.items.filter((item) => item.system.isReady && item.system.canAttack),
+      protections: this.actor.items.filter((item) => item.system.isReady && item.system.canDefend),
     };
 
     // Sort inventory items into their containers
@@ -84,7 +83,7 @@ export class FTCharacterSheet extends ActorSheet {
 
     // Sheet Actions
     html.find("[data-action]").click(this.click.bind(this));
-    html.find(".effect-manage").click(Effects.onManageActiveEffect.bind(this.actor));
+    html.find("[data-effect-action]").click(Effects.onManageActiveEffect.bind(this.actor));
 
     // Item actions
     html.find(".document-chat").click(Handlers.onChatItem.bind(this));
@@ -129,7 +128,7 @@ export class FTCharacterSheet extends ActorSheet {
         console.log("click():damage-roll", dataset);
         if (!itemId) return;
         item = this.actor.getEmbeddedDocument("Item", itemId);
-        Action.damageRoll(this.actor, item);
+        Action.damageRoll(this.actor, item, dataset);
         break;
       // case "cast-spell":
       //   console.log("click():cast-spell", dataset);
@@ -148,9 +147,10 @@ export class FTCharacterSheet extends ActorSheet {
     // If the drop was an item....
     if (data.type === "Item") {
       const item = await Item.implementation.fromDropData(data);
-      // If it was an inventory item type...
-      if (CONFIG.FT.item.inventory.types.includes(item.type)) {
+      // If it was an equipment item type...
+      if (item.type === "equipment") {
         // Check if it was dropped on a container item
+        // TODO dropping container on another container
         const element = $(event?.target);
         const containerId = element?.closest(".item-container").data("itemId");
         const container = !!containerId ? await this.actor.getEmbeddedDocument("Item", containerId) : null;

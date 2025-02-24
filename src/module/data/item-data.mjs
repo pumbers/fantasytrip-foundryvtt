@@ -1,4 +1,5 @@
-const { HTMLField, SchemaField, NumberField, StringField, ArrayField, ForeignDocumentField } = foundry.data.fields;
+const { HTMLField, SchemaField, NumberField, StringField, ArrayField, ForeignDocumentField, EmbeddedDataField } =
+  foundry.data.fields;
 
 /* -------------------------------------------- */
 /*  Item Data Type                       
@@ -15,7 +16,7 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
 export class FTTalentData extends FTBaseItemData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
-      iq: new NumberField({ initial: 0 }),
+      minIQ: new NumberField({ initial: 0 }),
       iqCost: new NumberField({ initial: 0 }),
       defaultAttribute: new StringField(),
     });
@@ -41,6 +42,24 @@ export class FTEquipmentData extends FTBaseItemData {
       location: new StringField(),
       capacity: new NumberField({ initial: 0 }),
       container: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+      attacks: new ArrayField(
+        new SchemaField({
+          action: new StringField(),
+          type: new StringField(),
+          toHitMod: new NumberField({ initial: 0 }),
+          baseDamage: new StringField(),
+          minST: new NumberField({ initial: 0 }),
+          talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+        }),
+        { initial: [] }
+      ),
+      defenses: new ArrayField(
+        new SchemaField({
+          action: new StringField(),
+          hitsStopped: new NumberField({ initial: 0 }),
+        }),
+        { initial: [] }
+      ),
     });
   }
 
@@ -57,45 +76,12 @@ export class FTEquipmentData extends FTBaseItemData {
   get isContainer() {
     return this.capacity > 0;
   }
-}
 
-export class FTWeaponData extends FTEquipmentData {
-  static defineSchema() {
-    return Object.assign(super.defineSchema(), {
-      type: new StringField(),
-      damage: new StringField(),
-      minST: new NumberField({ initial: 0 }),
-      //
-      talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
-    });
+  get canAttack() {
+    return this.attacks.length > 0;
   }
 
-  get isReady() {
-    return this.type === "natural" || (!!this.type && this.location === "equipped");
-  }
-}
-
-export class FTArmorData extends FTEquipmentData {
-  static defineSchema() {
-    return Object.assign(super.defineSchema(), {
-      type: new StringField({ initial: "made" }),
-      hitsStopped: new NumberField({ initial: 0 }),
-    });
-  }
-
-  get isReady() {
-    return this.type === "natural" || this.location === "equipped";
-  }
-}
-
-export class FTShieldData extends FTEquipmentData {
-  static defineSchema() {
-    return Object.assign(super.defineSchema(), {
-      hitsStopped: new NumberField({ initial: 0 }),
-    });
-  }
-
-  get isReady() {
-    return this.location === "equipped";
+  get canDefend() {
+    return this.defenses.length > 0;
   }
 }

@@ -51,6 +51,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       }),
       // TODO modes: walk, swim, fly
       ma: new SchemaField({
+        mode: new StringField({ initial: "walk" }), // Movement type
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
       }),
@@ -67,6 +68,8 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
 
   prepareBaseData() {
     super.prepareBaseData();
+    // console.log("FTActorData.prepareDerivedData()", this);
+
     // Calculate attribute points
     const { st, dx, iq } = this;
     this.ap = [st, dx, iq].reduce((ap, attribute) => ap + attribute.max, 0);

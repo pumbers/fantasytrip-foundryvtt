@@ -26,25 +26,27 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
     },
   };
 
-  #defaultOptions = {
-    type: "success",
-    dice: 3,
-    modifiers: { manual: 0 },
-    rollMode: "roll",
-  };
-
   static #context = {};
 
   async _prepareContext(options) {
     console.log("FTDiceRollerApp._prepareContext()", "options", options);
     FTDiceRollerApp.#context = {
-      ...foundry.utils.mergeObject(this.#defaultOptions, options, { recursive: true }),
+      ...foundry.utils.mergeObject(
+        {
+          type: "success",
+          dice: 3,
+          modifiers: { situationMod: 0 },
+          rollMode: "roll",
+        },
+        options,
+        { recursive: true }
+      ),
       FT: CONFIG.FT,
     };
     return FTDiceRollerApp.#context;
   }
 
-  static onSubmit(event, form, formData) {
+  static onSubmit(event, _, formData) {
     console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);
 
     const data = foundry.utils.expandObject(Object.fromEntries(formData));

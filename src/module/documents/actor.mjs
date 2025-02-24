@@ -1,3 +1,5 @@
+import * as Dice from "../util/dice.mjs";
+
 /**
  * Fantasy Trip Actor
  * @extends {Actor} Extends the basic Actor
@@ -40,7 +42,7 @@ export class FTActor extends Actor {
     ];
 
     const load = Array.from(this.items)
-      .filter((item) => CONFIG.FT.item.inventory.types.includes(item.type))
+      .filter((item) => item.type === "equipment")
       .filter((item) => CONFIG.FT.item.inventory.encumbering.includes(item.system.location))
       .reduce((load, item) => load + item.system.totalWt, 0);
     const level = capacity.findIndex((val) => val > load);
@@ -74,15 +76,29 @@ export class FTActor extends Actor {
         container.system.remaining = container.system.capacity - wt;
       });
 
-    // Calculate weapon & armor penalties
-    // TODO
-
-    // Calculate weapon & armor combat stats
+    // Calculate attack combat stats
     Array.from(this.items)
-      .filter((item) => item.type === "weapon")
+      .filter((item) => item.system.canAttack)
       .forEach((weapon) => {
-        weapon.system.stHitMod = Math.min(this.system.st.max - weapon.system.minST, 0);
-        weapon.system.stDamageMod = Math.ceil(Math.min(this.system.st.max - weapon.system.minST, 0) / 2);
+        weapon.system.attacks.forEach((attack) => {
+          // To Hit
+          const talent = this.getEmbeddedDocument("Item", attack.talent);
+          attack.attribute = !!talent ? talent.system.defaultAttribute : "dx.value";
+          attack.dice = !!talent ? 3 : 4;
+          attack.stHitMod = Math.min(this.system.st.max - attack.minST, 0);
+          attack.attackTypeMod = this.system.dx.modFor[attack.type];
+          attack.attributeMod = this.system.dx.mod;
+          attack.toHit =
+            foundry.utils.getProperty(this.system, attack.attribute) +
+            attack.toHitMod +
+            attack.stHitMod +
+            attack.attackTypeMod +
+            attack.attributeMod;
+
+          // Damage
+          attack.stDamageMod = Math.ceil(Math.min(this.system.st.max - attack.minST, 0) / 2);
+          attack.damage = Dice.simplifyRollFormula(attack.baseDamage?.concat("+", attack.stDamageMod));
+        });
       });
 
     // Calculate talent & spell costs

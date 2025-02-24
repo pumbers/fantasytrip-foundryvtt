@@ -22,13 +22,13 @@
         </table>
         <div class="actions">
             {{#if (eq parent.name "Actor")}}
-            <button class="effect-manage" data-action="edit">{{localize "FT.effect.action.edit"}}</button>
+            <button data-effect-action="edit">{{localize "FT.effect.action.edit"}}</button>
             {{#if effect.active}}
-            <button class="effect-manage" data-action="toggle">{{localize "FT.effect.action.off"}}</button>
+            <button data-effect-action="toggle">{{localize "FT.effect.action.off"}}</button>
             {{else}}
-            <button class="effect-manage" data-action="toggle">{{localize "FT.effect.action.on"}}</button>
+            <button data-effect-action="toggle">{{localize "FT.effect.action.on"}}</button>
             {{/if}}
-            <button class="effect-manage" data-action="delete">{{localize "FT.effect.action.delete"}}</button>
+            <button data-effect-action="delete">{{localize "FT.effect.action.delete"}}</button>
             {{/if}}
         </div>
     </fieldset>

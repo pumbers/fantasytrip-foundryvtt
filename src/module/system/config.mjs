@@ -27,7 +27,7 @@ FT.roll = {
 };
 
 /* ------------------------------------------- */
-/*  Character Config & Options                  */
+/*  Character Config & Options                 */
 /* ------------------------------------------- */
 
 FT.character = {
@@ -44,9 +44,19 @@ FT.character = {
     "FT.character.race.goblin",
   ],
   attributes: {
-    st: "FT.character.attribute.st",
-    dx: "FT.character.attribute.dx",
-    iq: "FT.character.attribute.iq",
+    "st.max": "FT.character.attribute.st.max",
+    "st.value": "FT.character.attribute.st.value",
+    "dx.max": "FT.character.attribute.dx.max",
+    "dx.value": "FT.character.attribute.dx.value",
+    "iq.max": "FT.character.attribute.iq.max",
+    "iq.value": "FT.character.attribute.iq.value",
+  },
+  ma: {
+    modes: {
+      walk: "FT.character.ma.mode.walk",
+      swim: "FT.character.ma.mode.swim",
+      fly: "FT.character.ma.mode.fly",
+    },
   },
   tracks: {
     encumbrance: {
@@ -64,7 +74,6 @@ FT.character = {
 
 FT.item = {
   inventory: {
-    types: ["equipment", "weapon", "armor", "shield"],
     locations: ["equipped", "dropped", "carried", "stowed", "stored"],
     icons: {
       equipped: "icon-battle-gear",
@@ -75,16 +84,15 @@ FT.item = {
     },
     encumbering: ["carried", "equipped"],
   },
-  weapon: {
+  attack: {
     types: {
-      natural: "FT.item.weapon.type.natural",
-      melee: "FT.item.weapon.type.melee",
-      polearm: "FT.item.weapon.type.polearm",
-      thrown: "FT.item.weapon.type.thrown",
-      missile: "FT.item.weapon.type.missile",
+      natural: "FT.item.attack.type.natural",
+      melee: "FT.item.attack.type.melee",
+      polearm: "FT.item.attack.type.polearm",
+      thrown: "FT.item.attack.type.thrown",
+      missile: "FT.item.attack.type.missile",
     },
   },
-  armor: { types: { natural: "FT.item.armor.type.natural", made: "FT.item.armor.type.made" } },
   spell: {
     types: {
       missile: "FT.item.spell.type.missile",

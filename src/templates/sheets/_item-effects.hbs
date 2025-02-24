@@ -19,17 +19,17 @@
             </tbody>
         </table>
         <div class="actions">
-            <button class="effect-manage" data-action="edit">{{localize "FT.effect.action.edit"}}</button>
+            <button data-effect-action="edit">{{localize "FT.effect.action.edit"}}</button>
             {{#if effect.active}}
-            <button class="effect-manage" data-action="toggle">{{localize "FT.effect.action.off"}}</button>
+            <button data-effect-action="toggle">{{localize "FT.effect.action.off"}}</button>
             {{else}}
-            <button class="effect-manage" data-action="toggle">{{localize "FT.effect.action.on"}}</button>
+            <button data-effect-action="toggle">{{localize "FT.effect.action.on"}}</button>
             {{/if}}
-            <button class="effect-manage" data-action="delete">{{localize "FT.effect.action.delete"}}</button>
+            <button data-effect-action="delete">{{localize "FT.effect.action.delete"}}</button>
         </div>
     </fieldset>
     {{/each}}
     <div>
-        <button class="effect-manage ml-auto mr-0" data-action="create">{{localize "FT.effect.action.create"}}</button>
+        <button class="ml-auto mr-0" data-effect-action="create">{{localize "FT.effect.action.create"}}</button>
     </div>
 </div>

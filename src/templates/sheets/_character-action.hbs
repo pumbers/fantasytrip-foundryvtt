@@ -1,43 +1,49 @@
 <div class="flex flex-col gap-1">
     {{!-- Weapons --}}
-    {{#each weapons as |weapon|}}
-    {{#if weapon.system.isReady}}
+    {{#each weapons as | weapon |}}
     <div data-item-id="{{weapon._id}}"
-        class="grid grid-cols-[1fr_6fr_3fr_3fr_4fr] gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
+        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
         <img class="w-4 h-4" src="{{weapon.img}}" alt="">
-        <span class="grow">{{weapon.name}}</span>
+        <span>{{weapon.name}}</span>
+        {{#each weapon.system.attacks as | attack |}}
+        {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
         <span><i
-                class="icon-weight-lifting-up mr-1 {{#unless (gte ../system.st.max weapon.system.minST)}}warning{{/unless}}"></i>{{localize
-            "FT.character.attribute.st"}}&nbsp;{{weapon.system.minST}}</span>
-        <span class="px-[2px] action" data-action="attack-roll"><i class="icon-sword-brandish mr-1"></i>{{localize
-            "FT.character.attribute.dx"}}&nbsp;{{weapon.system.stHitMod}}</span>
-        <span class="px-[2px] action" data-action="damage-roll"><i
-                class="icon-death-skull mr-1"></i>{{weapon.system.damage}}{{#if
-            weapon.system.stDamageMod}}&nbsp;({{weapon.system.stDamageMod}}){{/if}}
+                class="icon-weight-lifting-up mr-1 {{#unless (gte ../../system.st.max attack.minST)}}warning{{/unless}}"></i>{{localize
+            "FT.character.attribute.st.max"}}&nbsp;{{attack.minST}}</span>
+        <span class="px-[2px] action" data-action="attack-roll" data-attack-index="{{@index}}">
+            {{#if (eq attack.type "natural")}}
+            <i class="icon-fist mr-1" title="{{localize (concat 'FT.item.attack.type.' attack.type)}}"></i>
+            {{else if (eq attack.type "melee")}}
+            <i class="icon-swordman mr-1" title="{{localize (concat 'FT.item.attack.type.' attack.type)}}"></i>
+            {{else if (eq attack.type "polearm")}}
+            <i class="icon-flanged-mace mr-1" title="{{localize (concat 'FT.item.attack.type.' attack.type)}}"></i>
+            {{else if (eq attack.type "thrown")}}
+            <i class="icon-thrown-knife mr-1" title="{{localize (concat 'FT.item.attack.type.' attack.type)}}"></i>
+            {{else if (eq attack.type "missile")}}
+            <i class="icon-bowman mr-1" title="{{localize (concat 'FT.item.attack.type.' attack.type)}}"></i>
+            {{/if}}
+            {{attack.action}}&thinsp;{{attack.dice}}/{{localize
+            (concat "FT.character.attribute." attack.attribute)}}&thinsp;{{attack.toHit}}</span>
+        {{#if attack.damage}}
+        <span class="px-[2px] action" data-action="damage-roll" data-attack-index="{{@index}}"><i
+                class="icon-death-skull mr-1"></i>{{attack.damage}}
         </span>
+        {{else}}
+        <span></span>
+        {{/if}}
+        {{/each}}
     </div>
-    {{/if}}
     {{/each}}
     {{!-- Armor --}}
-    {{#each armor as |armor|}}
-    {{#if armor.system.isReady}}
-    <div data-item-id="{{armor._id}}"
-        class="flex flex-row justify-start gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
-        <img class="w-4 h-4" src="{{armor.img}}" alt="">
-        <span class="grow">{{armor.name}}</span>
-        <span><i class="icon-chest-armor mr-1"></i>{{armor.system.hitsStopped}}</span>
+    {{#each protections as | protection |}}
+    <div data-item-id="{{protection._id}}"
+        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
+        <img class="w-4 h-4" src="{{protection.img}}" alt="">
+        <span>{{protection.name}}</span>
+        {{#each protection.system.defenses as | defense |}}
+        {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
+        <span><i class="icon-chest-armor mr-1"></i>{{defense.hitsStopped}}</span>
+        {{/each}}
     </div>
-    {{/if}}
-    {{/each}}
-    {{!-- Shields --}}
-    {{#each shields as |shield|}}
-    {{#if shield.system.isReady}}
-    <div data-item-id="{{shield._id}}"
-        class="flex flex-row justify-start gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
-        <img class="w-4 h-4" src="{{shield.img}}" alt="">
-        <span class="grow">{{shield.name}}</span>
-        <span><i class="icon-chest-armor mr-1"></i>{{shield.system.hitsStopped}}</span>
-    </div>
-    {{/if}}
     {{/each}}
 </div>

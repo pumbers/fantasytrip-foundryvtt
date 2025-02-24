@@ -13,7 +13,7 @@ export class FTItemSheet extends ItemSheet {
       width: 400,
       height: 520,
       resizable: true,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "settings" }],
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
     });
   }
 
@@ -29,16 +29,14 @@ export class FTItemSheet extends ItemSheet {
       selectOptions: {
         attributes: CONFIG.FT.character.attributes,
         spellTypes: CONFIG.FT.item.spell.types,
-        weaponTypes: CONFIG.FT.item.weapon.types,
-        armorTypes: CONFIG.FT.item.armor.types,
+        attackTypes: CONFIG.FT.item.attack.types,
         // Applicable skill options from the parent actor
-        ...(!!this.item.parent &&
-          this.item.type === "weapon" && {
-            talents: this.item.parent?.items
-              ?.values()
-              .filter((item) => item.type === "talent")
-              .reduce((talents, talent) => ({ ...talents, [talent._id]: talent.name }), {}),
-          }),
+        ...(!!this.item.parent && {
+          talents: this.item.parent?.items
+            ?.values()
+            .filter((item) => item.type === "talent")
+            .reduce((talents, talent) => ({ ...talents, [talent._id]: talent.name }), {}),
+        }),
       },
     };
     return context;
@@ -56,6 +54,52 @@ export class FTItemSheet extends ItemSheet {
     if (!this.options.editable) return;
 
     // Sheet Actions
-    html.find(".effect-manage").click(Effects.onManageActiveEffect.bind(this.item));
+    html.find("[data-effect-action]").click(Effects.onManageActiveEffect.bind(this.item));
+    html.find("[data-action]").click(this.click.bind(this));
+  }
+
+  click(event) {
+    event.preventDefault();
+    const element = $(event?.currentTarget);
+    const dataset = element?.data();
+    const itemId = element?.closest("[data-item-id]").data("itemId");
+    let item;
+
+    switch (dataset.action) {
+      case "add-attack":
+        console.log("click():add-attack");
+        this.item.system.attacks.push({
+          name: "Attack",
+          type: "melee",
+          toHitMod: 0,
+          baseDamage: "1d6",
+          minST: 7,
+          talent: null,
+        });
+        this.item.update({ "system.attacks": this.item.system.attacks });
+        break;
+      case "delete-attack":
+        console.log("click():delete-attack", dataset.index);
+        this.item.system.attacks.splice(dataset.index, 1);
+        this.item.update({ "system.attacks": this.item.system.attacks });
+        break;
+      case "add-defense":
+        console.log("click():add-defense");
+        this.item.system.defenses.push({
+          name: "Defend",
+          hitsStopped: 0,
+        });
+        this.item.update({ "system.defenses": this.item.system.defenses });
+        break;
+      case "delete-attack":
+        console.log("click():delete-attack", dataset.index);
+        this.item.system.defenses.splice(dataset.index, 1);
+        this.item.update({ "system.defenses": this.item.system.defenses });
+        break;
+      default:
+        console.error(`FT | Unimplemented action: ${dataset.action}`);
+        break;
+    }
+    console.log("...", this.item.system);
   }
 }

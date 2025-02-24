@@ -79,9 +79,12 @@ FT:
         damage: Damage
         cast: Cast
       modifier:
-        manual: Manual
-        stHitMod: ST Mod
-        effectMod: Effects Mod
+        situationMod: Situation
+        attributeMod: Attribute
+        stHitMod: Attack Min ST
+        toHitMod: Attack
+        attackTypeMod: Attack Type
+        rangeMod: Range
       flavor:
         success:
           - Attempts
@@ -90,7 +93,7 @@ FT:
         talent:
           - Uses
         attack:
-          - Strikes {targets} with their {item}
+          - Attempts to {attack} {targets} with their {item}
         cast:
           - Casts {spell}
       result:
@@ -114,10 +117,19 @@ FT:
       orc: Orc
       goblin: Goblin
     attribute:
-      st: ST
-      dx: DX
-      iq: IQ
-      ma: MA
+      st.max: ST
+      st.value: adj ST
+      dx.max: DX
+      dx.value: adj DX
+      iq.max: IQ
+      iq.value: adj IQ
+      ma.max: MA
+      ma.value: adj MA
+    ma:
+      mode:
+        walk: Walk
+        swim: Swim
+        fly: Fly
     sheet:
       tab:
         character: Character
@@ -144,6 +156,7 @@ FT:
           - Combat MA 6, -1 DX
           - Combat MA 4, -2 DX
           - ST reduced by 1 every 10 minutes
+        adjusted: Adj.
         damage: Damage
         fatigue: Fatigue
         health: Health
@@ -188,22 +201,15 @@ FT:
   item:
     type:
       talent: Talent
-      equipment: Equipment
-      weapon: Weapon
-      armor: Armor
-      shield: Shield
       spell: Spell
-    weapon:
+      equipment: Equipment
+    attack:
       type:
         natural: Natural
         melee: Melee
         polearm: Polearm
         thrown: Thrown
         missile: Missile
-    armor:
-      type:
-        natural: Natural
-        made: Made
     spell:
       type:
         missile: Missile
@@ -215,26 +221,27 @@ FT:
         thrown: T
         creation: C
         special: S
-    label:
-      name: Name
     sheet:
       tab:
-        notes: Notes
-        settings: Settings
+        description: Description
+        actions: Actions
         effects: Effects
       label:
+        name: Name
+        container: Container
         cost: Cost $ (each)
         wt: Wt Lbs (each)
         qty: Quantity
-        iq: IQ Level
+        minIQ: IQ Level
         iqCost: Cost to Acquire
         minST: Min ST to use
-        type: Type
+        type: Attack Type
         stToCast: ST to Cast
-        damage: Damage Roll
         talent: Talent to Use
         hitsStopped: Hits Stopped
-        dxMod: DX Mod
-        maxMA: Max MA
         capacity: Capacity
         defaultAttribute: Default Attribute
+        attackAction: Attack Action
+        defenseAction: Defense Action
+        toHitMod: To Hit Mod
+        baseDamage: Base Damage

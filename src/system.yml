@@ -41,9 +41,6 @@ documentTypes:
     character: {}
     npc: {}
   Item:
-    talent: {}
     equipment: {}
-    weapon: {}
-    armor: {}
-    shield: {}
+    talent: {}
     spell: {}

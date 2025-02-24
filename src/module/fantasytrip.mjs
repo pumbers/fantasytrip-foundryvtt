@@ -5,14 +5,7 @@ import { FTActor } from "./documents/actor.mjs";
 import { FTCharacterSheet, FTNPCSheet } from "./sheets/actor-sheet.mjs";
 
 import { FTItem } from "./documents/item.mjs";
-import {
-  FTEquipmentData,
-  FTTalentData,
-  FTSpellData,
-  FTWeaponData,
-  FTArmorData,
-  FTShieldData,
-} from "./data/item-data.mjs";
+import { FTEquipmentData, FTTalentData, FTSpellData } from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
 import * as Macros from "./util/macros.mjs";
@@ -123,9 +116,6 @@ Hooks.once("init", async function () {
     talent: FTTalentData,
     spell: FTSpellData,
     equipment: FTEquipmentData,
-    weapon: FTWeaponData,
-    armor: FTArmorData,
-    shield: FTShieldData,
   };
   CONFIG.Item.documentClass = FTItem;
 
