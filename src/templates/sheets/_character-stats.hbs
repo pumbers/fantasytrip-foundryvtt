@@ -49,8 +49,7 @@
                 <input class="m-0 !text-center !text-xl !h-full !w-14 !rounded-r-none" type="number"
                     name="system.{{key}}.max" value="{{attr.max}}" />
                 <a class="block m-0 p-1 border-y-[1px] border-r-[1px] rounded-r-sm action" data-action="attribute-roll"
-                    data-attribute="{{key}}" data-path="{{key}}.max" data-type="success"><i
-                        class="icon-d6 text-xl"></i></a>
+                    data-attribute="{{key}}.max" data-type="success"><i class="icon-d6 text-xl"></i></a>
             </div>
             <div class="field w-14">
                 <label>{{localize "FT.character.sheet.label.adjusted"}}</label>
@@ -58,8 +57,8 @@
                 <div class="flex flex-row gap-0">
                     <input class="m-0 w-14 !text-center !rounded-r-none" type="text" value="{{attr.value}}" readonly />
                     <a class="block m-0 p-1 border-y-[1px] border-r-[1px] rounded-r-sm action"
-                        data-action="attribute-roll" data-attribute="adj{{key}}" data-path="{{key}}.value"
-                        data-type="success"><i class="icon-d6"></i></a>
+                        data-action="attribute-roll" data-attribute="{{key}}.value" data-type="success"><i
+                            class="icon-d6"></i></a>
                 </div>
                 {{else}}
                 <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
@@ -74,13 +73,13 @@
         {{> attribute key="ma" attr=system.ma}}
     </div>
     {{!-- <div class="flex flex-col gap-1 justify-between w-full">
-        <span class="text-xs text-center action" data-action="A">A</span>
-        <span class="text-xs text-center action" data-action="A">B</span>
-        <span class="text-xs text-center action" data-action="A">C</span>
-        <span class="text-xs text-center action" data-action="A">D</span>
-        <span class="text-xs text-center action" data-action="A">E</span>
-        <span class="text-xs text-center action" data-action="A">F</span>
-        <span class="text-xs text-center action" data-action="A">G</span>
+        <span class="text-xs text-center mx-1 action" data-action="A">A</span>
+        <span class="text-xs text-center mx-1 action" data-action="A">B</span>
+        <span class="text-xs text-center mx-1 action" data-action="A">C</span>
+        <span class="text-xs text-center mx-1 action" data-action="A">D</span>
+        <span class="text-xs text-center mx-1 action" data-action="A">E</span>
+        <span class="text-xs text-center mx-1 action" data-action="A">F</span>
+        <span class="text-xs text-center mx-1 action" data-action="A">G</span>
     </div> --}}
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
 </div>

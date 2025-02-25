@@ -19,13 +19,103 @@ export function isTokenInActiveCombat(token) {
   return game.combats.active?.combatants.some((c) => c.token?.id === token.id);
 }
 
+export async function attributeRoll(actor, options) {
+  console.log("Action.attributeRoll()", actor, options);
+  const result = await DICE_ROLLER.render({
+    force: true,
+    type: "success",
+    dice: 3,
+    actor,
+    attribute: options.attribute,
+    submit: async (data) => {
+      console.log("Action.attributeRoll().submit()", "data", data);
+
+      const roll = new Roll(`${data.dice}D6`, {
+        actor: data.actor,
+      });
+
+      roll.evaluate().then((roll) => {
+        const attributes = JSON.parse(data.attributes).filter((a) => !!a);
+        const totalAttributes = attributes.reduce(
+          (total, attribute) => total + foundry.utils.getProperty(data.actor.getRollData(), attribute),
+          0
+        );
+        const totalModifiers = Object.values(data.modifiers).reduce((total, modifier) => total + parseInt(modifier), 0);
+        // TODO random message choice
+        const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.0`, {
+          attributes: attributes.map((a) => game.i18n.localize(`FT.system.roll.attribute.${a}`)).join("+"),
+        });
+        const margin = totalAttributes + totalModifiers - roll.total;
+        const result =
+          margin === 0
+            ? game.i18n.format("FT.system.roll.result.exact")
+            : margin >= 0
+            ? game.i18n.format("FT.system.roll.result.success", { margin: Math.abs(margin) })
+            : game.i18n.format("FT.system.roll.result.failure", { margin: Math.abs(margin) });
+
+        roll.toMessage(
+          {
+            speaker: ChatMessage.getSpeaker({ actor: data.actor }),
+            flavor: message + result,
+          },
+          { rollMode: data.rollMode }
+        );
+      });
+    },
+  });
+}
+
 /**
  *
  * @param {*} actor
+ * @param {*} talent
  * @param {*} options
  */
-export async function attributeRoll(actor, options) {
-  console.log("Action.attributeRoll()", actor, options);
+export async function talentRoll(actor, talent, options) {
+  console.log("Action.talentRoll()", actor, talent, options);
+  const result = await DICE_ROLLER.render({
+    force: true,
+    type: "talent",
+    dice: 3,
+    actor,
+    talent,
+    attribute: talent.system.defaultAttribute,
+    submit: async (data) => {
+      console.log("Action.talentRoll().submit()", "data", data);
+
+      const roll = new Roll(`${data.dice}D6`, {
+        actor: data.actor,
+      });
+
+      roll.evaluate().then((roll) => {
+        const attributes = JSON.parse(data.attributes).filter((a) => !!a);
+        const totalAttributes = attributes.reduce(
+          (total, attribute) => total + foundry.utils.getProperty(data.actor.getRollData(), attribute),
+          0
+        );
+        const totalModifiers = Object.values(data.modifiers).reduce((total, modifier) => total + parseInt(modifier), 0);
+        // TODO random message choice
+        const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.0`, {
+          talent: talent.name,
+        });
+        const margin = totalAttributes + totalModifiers - roll.total;
+        const result =
+          margin === 0
+            ? game.i18n.format("FT.system.roll.result.exact")
+            : margin >= 0
+            ? game.i18n.format("FT.system.roll.result.success", { margin: Math.abs(margin) })
+            : game.i18n.format("FT.system.roll.result.failure", { margin: Math.abs(margin) });
+
+        roll.toMessage(
+          {
+            speaker: ChatMessage.getSpeaker({ actor: data.actor }),
+            flavor: message + result,
+          },
+          { rollMode: data.rollMode }
+        );
+      });
+    },
+  });
 }
 
 /**
@@ -103,7 +193,6 @@ export async function attackRoll(actor, weapon, options) {
  */
 export function damageRoll(actor, weapon, options = {}) {
   console.log("Action.damageRoll()", actor, weapon, options);
-  // TODO Remove effects when actor updated manually?
 
   const attack = weapon.system.attacks[options.attackIndex];
   const formula =

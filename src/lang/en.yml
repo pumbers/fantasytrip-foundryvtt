@@ -88,11 +88,11 @@ FT:
         rangeMod: Range
       flavor:
         success:
-          - Attempts
+          - Attempts a {attributes} check
         save:
-          - Saves
+          - Attempts a {attributes} save
         talent:
-          - Uses
+          - Attempts a {talent} check
         attack:
           - Attempts to {attack} {targets} with their {item}
         cast:

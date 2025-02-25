@@ -111,13 +111,14 @@ export class FTCharacterSheet extends ActorSheet {
         break;
       case "attribute-roll":
         console.log("click():attribute-roll", dataset);
-        Action.attributeRoll(this.actor);
+        Action.attributeRoll(this.actor, dataset);
         break;
-      // case "talent-roll":
-      //   console.log("click():talent-roll", dataset);
-      //   if (!itemId) return;
-      //   item = this.actor.getEmbeddedDocument("Item", itemId);
-      // break;
+      case "talent-roll":
+        console.log("click():talent-roll", dataset);
+        if (!itemId) return;
+        item = this.actor.getEmbeddedDocument("Item", itemId);
+        Action.talentRoll(this.actor, item, dataset);
+        break;
       case "attack-roll":
         console.log("click():attack-roll", dataset);
         if (!itemId) return;
