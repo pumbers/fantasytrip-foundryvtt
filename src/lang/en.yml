@@ -28,6 +28,7 @@ FT:
   # General Messages
   messages:
     noCapacity: "{container} is not big enough."
+    noDropContainer: "{item} is a container and cannot be dropped onto another container."
     createHotbarMacroItemNotOwned: You can only create macro buttons for owned Items.
     useItemMacroItemNotOwned: Your controlled Actor does not have that item.
     useItemMacroCannotDetermineActor: You need to select a token so that I can determine who's acting.

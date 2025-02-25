@@ -150,10 +150,15 @@ export class FTCharacterSheet extends ActorSheet {
       // If it was an equipment item type...
       if (item.type === "equipment") {
         // Check if it was dropped on a container item
-        // TODO dropping container on another container
         const element = $(event?.target);
         const containerId = element?.closest(".item-container").data("itemId");
         const container = !!containerId ? await this.actor.getEmbeddedDocument("Item", containerId) : null;
+
+        // Check if the item is a container itself
+        if (!!container && item.system.isContainer) {
+          ui.notifications.warn(game.i18n.format("FT.messages.noDropContainer", { item: item.name }));
+          return item;
+        }
 
         if (item?.parent?._id === this.actor._id) {
           // Existing inventory item dropped
