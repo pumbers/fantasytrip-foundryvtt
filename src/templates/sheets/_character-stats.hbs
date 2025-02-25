@@ -46,19 +46,18 @@
                 class="m-0 p-1 bg-black text-white dark:bg-white dark:text-black text-xl text-center uppercase min-w-10 rounded-none">{{localize
                 (concat "FT.character.attribute." key ".max")}}</label>
             <div class="flex flex-row gap-0">
-                <input class="m-0 !text-center !text-xl !h-full !w-14 !rounded-r-none" type="number"
-                    name="system.{{key}}.max" value="{{attr.max}}" />
-                <a class="block m-0 p-1 border-y-[1px] border-r-[1px] rounded-r-sm action" data-action="attribute-roll"
+                <input class="m-0 !text-center !text-xl !h-full !w-14" type="number" name="system.{{key}}.max"
+                    value="{{attr.max}}" />
+                <a class="block m-0 p-1 border-y-[1px] border-r-[1px] action" data-action="attribute-roll"
                     data-attribute="{{key}}.max" data-type="success"><i class="icon-d6 text-xl"></i></a>
             </div>
             <div class="field w-14">
                 <label>{{localize "FT.character.sheet.label.adjusted"}}</label>
                 {{#if roll}}
                 <div class="flex flex-row gap-0">
-                    <input class="m-0 w-14 !text-center !rounded-r-none" type="text" value="{{attr.value}}" readonly />
-                    <a class="block m-0 p-1 border-y-[1px] border-r-[1px] rounded-r-sm action"
-                        data-action="attribute-roll" data-attribute="{{key}}.value" data-type="success"><i
-                            class="icon-d6"></i></a>
+                    <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+                    <a class="block m-0 p-1 border-y-[1px] border-r-[1px] action" data-action="attribute-roll"
+                        data-attribute="{{key}}.value" data-type="success"><i class="icon-d6"></i></a>
                 </div>
                 {{else}}
                 <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
