@@ -1,0 +1,28 @@
+@reference "./fantasytrip.css";
+
+.fantasy-trip.npc.sheet {
+  /*  */
+  & .window-content {
+    @apply bg-none m-0 p-0 bg-white dark:bg-current;
+  }
+
+  /*  */
+  & .sheet-content {
+    @apply p-2 bg-white dark:bg-current;
+
+    & .sheet-header {
+      @apply mb-2;
+      & img.profile-img {
+        @apply rounded-none w-[42px] h-[42px] object-cover flex-none;
+      }
+      & input.name {
+        @apply w-full m-0 py-5 px-2 text-3xl font-bold;
+      }
+    }
+
+    & .editor-content,
+    & .tox.tox-tinymce {
+      @apply h-[25rem] dark:text-slate-200;
+    }
+  }
+}

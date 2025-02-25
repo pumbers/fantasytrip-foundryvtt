@@ -2,7 +2,7 @@
     {{!-- Weapons --}}
     {{#each weapons as | weapon |}}
     <div data-item-id="{{weapon._id}}"
-        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
+        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-slate-200 dark:text-slate-200 rounded-none m-0 p-[2px] text-xs leading-4">
         <img class="w-4 h-4" src="{{weapon.img}}" alt="">
         <span>{{weapon.name}}</span>
         {{#each weapon.system.attacks as | attack |}}
@@ -10,7 +10,7 @@
         <span><i
                 class="icon-weight-lifting-up mr-1 {{#unless (gte ../../system.st.max attack.minST)}}warning{{/unless}}"></i>{{localize
             "FT.character.attribute.st.max"}}&nbsp;{{attack.minST}}</span>
-        <span class="px-[2px] action" data-action="attack-roll" data-attack-index="{{@index}}">
+        <a class="px-[2px] action" data-action="attack-roll" data-attack-index="{{@index}}">
             {{#if (eq attack.type "natural")}}
             <i class="icon-fist mr-1" title="{{localize (concat 'FT.item.attack.type.' attack.type)}}"></i>
             {{else if (eq attack.type "melee")}}
@@ -23,11 +23,11 @@
             <i class="icon-bowman mr-1" title="{{localize (concat 'FT.item.attack.type.' attack.type)}}"></i>
             {{/if}}
             {{attack.action}}&thinsp;{{attack.dice}}/{{localize
-            (concat "FT.character.attribute." attack.attribute)}}&thinsp;{{attack.toHit}}</span>
+            (concat "FT.character.attribute." attack.attribute)}}&thinsp;{{attack.toHit}}</a>
         {{#if attack.damage}}
-        <span class="px-[2px] action" data-action="damage-roll" data-attack-index="{{@index}}"><i
+        <a class="px-[2px] action" data-action="damage-roll" data-attack-index="{{@index}}"><i
                 class="icon-death-skull mr-1"></i>{{attack.damage}}
-        </span>
+        </a>
         {{else}}
         <span></span>
         {{/if}}
@@ -37,7 +37,7 @@
     {{!-- Armor --}}
     {{#each protections as | protection |}}
     <div data-item-id="{{protection._id}}"
-        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
+        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-slate-200 dark:text-slate-200 rounded-none m-0 p-[2px] text-xs leading-4">
         <img class="w-4 h-4" src="{{protection.img}}" alt="">
         <span>{{protection.name}}</span>
         {{#each protection.system.defenses as | defense |}}

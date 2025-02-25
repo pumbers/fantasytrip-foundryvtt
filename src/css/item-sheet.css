@@ -12,6 +12,9 @@
 
     & .sheet-header {
       @apply mb-2;
+      & img.item-img {
+        @apply rounded-none h-[70px] w-[70px] object-cover;
+      }
       & input.name {
         @apply w-full m-0 py-5 px-2 text-3xl font-bold;
       }
@@ -40,7 +43,7 @@
 
     & .editor-content,
     & .tox.tox-tinymce {
-      @apply min-h-[15rem];
+      @apply h-[18rem] dark:text-slate-200;
     }
   }
 }

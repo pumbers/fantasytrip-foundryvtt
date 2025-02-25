@@ -3,7 +3,7 @@
     {{#each weapons as |weapon|}}
     {{#if weapon.system.isReady}}
     <div data-item-id="{{weapon._id}}"
-        class="grid grid-cols-[1fr_6fr_3fr_3fr_4fr] gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
+        class="grid grid-cols-[1fr_6fr_3fr_3fr_4fr] gap-1 border-[1px] dark:border-slate-200 dark:text-slate-200 rounded-none m-0 p-[2px] text-xs leading-4">
         <img class="w-4 h-4" src="{{weapon.img}}" alt="">
         <span class="grow">{{weapon.name}}</span>
         <span><i
@@ -22,7 +22,7 @@
     {{#each armor as |armor|}}
     {{#if armor.system.isReady}}
     <div data-item-id="{{armor._id}}"
-        class="flex flex-row justify-start gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
+        class="flex flex-row justify-start gap-1 border-[1px] dark:border-slate-200 dark:text-slate-200 rounded-none m-0 p-[2px] text-xs leading-4">
         <img class="w-4 h-4" src="{{armor.img}}" alt="">
         <span class="grow">{{armor.name}}</span>
         <span><i class="icon-chest-armor mr-1"></i>{{armor.system.hitsStopped}}</span>
@@ -33,7 +33,7 @@
     {{#each shields as |shield|}}
     {{#if shield.system.isReady}}
     <div data-item-id="{{shield._id}}"
-        class="flex flex-row justify-start gap-1 border-[1px] dark:border-slate-300 dark:text-slate-300 rounded-sm m-0 p-[2px] text-xs leading-4">
+        class="flex flex-row justify-start gap-1 border-[1px] dark:border-slate-200 dark:text-slate-200 rounded-none m-0 p-[2px] text-xs leading-4">
         <img class="w-4 h-4" src="{{shield.img}}" alt="">
         <span class="grow">{{shield.name}}</span>
         <span><i class="icon-chest-armor mr-1"></i>{{shield.system.hitsStopped}}</span>

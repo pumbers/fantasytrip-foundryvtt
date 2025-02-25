@@ -1,6 +1,6 @@
 @reference "./fantasytrip.css";
 
-.fantasy-trip.actor.sheet {
+.fantasy-trip.character.sheet {
   /*  */
   & .window-content {
     @apply bg-none m-0 p-0 bg-white dark:bg-current;
@@ -17,21 +17,13 @@
       }
     }
 
-    &.character {
-      & img.profile-img {
-        @apply rounded-sm w-[163px] h-[163px] object-cover;
-      }
-    }
-
-    &.npc {
-      & img.profile-img {
-        @apply rounded-sm w-[42px] h-[42px] object-cover flex-none;
-      }
+    & img.profile-img {
+      @apply rounded-none w-[164px] h-[164px] object-cover;
     }
 
     & .editor-content,
     & .tox.tox-tinymce {
-      @apply h-[25rem] dark:text-slate-300;
+      @apply h-[30rem] dark:text-slate-200;
     }
 
     [draggable] {

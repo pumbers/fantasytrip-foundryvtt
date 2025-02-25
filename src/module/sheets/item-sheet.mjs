@@ -10,7 +10,7 @@ export class FTItemSheet extends ItemSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       template: `${CONFIG.FT.path}/templates/sheets/item-sheet.hbs`,
       classes: ["fantasy-trip", "item", "sheet"],
-      width: 400,
+      width: 380,
       height: 520,
       resizable: true,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],

@@ -10,7 +10,7 @@ export class FTCharacterSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["fantasy-trip", "actor", "sheet"],
+      classes: ["fantasy-trip", "character", "sheet"],
       template: `${CONFIG.FT.path}/templates/sheets/character-sheet.hbs`,
       width: 430,
       height: 640,
@@ -226,6 +226,7 @@ export class FTNPCSheet extends FTCharacterSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
+      classes: ["fantasy-trip", "npc", "sheet"],
       template: `${CONFIG.FT.path}/templates/sheets/npc-sheet.hbs`,
       width: 470,
       height: 400,
