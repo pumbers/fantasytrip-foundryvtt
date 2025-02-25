@@ -93,12 +93,19 @@
                 <div class="flex flex-col gap-2">
                     {{!-- Attacks --}}
                     <fieldset class="flex flex-col gap-4 justify-start">
-                        <legend>Attacks&nbsp;<i class="fa fa-plus-square" data-action="add-attack"></i></legend>
+                        <legend>{{localize "FT.item.sheet.label.attacks"}}&nbsp;<i class="fa fa-plus-square"
+                                data-action="add-attack"></i></legend>
                         {{#each system.attacks as | attack |}}
                         <div class="grid grid-cols-4 gap-1">
                             <div class="field col-span-2">
                                 <label>{{localize "FT.item.sheet.label.attackAction"}}</label>
-                                <input type="text" name="system.attacks.{{@index}}.action" value="{{attack.action}}">
+                                <div class="flex flex-row gap-0">
+                                    <span class="block m-0 p-1 border-y-[1px] border-l-[1px] rounded-l-sm text-xs"
+                                        data-action="delete-attack" data-index="{{@index}}"><i
+                                            class="fas fa-trash"></i></span>
+                                    <input class="!rounded-l-none" type="text" name="system.attacks.{{@index}}.action"
+                                        value="{{attack.action}}">
+                                </div>
                             </div>
                             <div class="field">
                                 <label>{{localize "FT.item.sheet.label.type"}}</label>
@@ -136,12 +143,19 @@
                     </fieldset>
                     {{!-- Defenses --}}
                     <fieldset class="flex flex-col gap-4 justify-start">
-                        <legend>Defenses&nbsp;<i class="fa fa-plus-square" data-action="add-defense"></i></legend>
+                        <legend>{{localize "FT.item.sheet.label.defenses"}}&nbsp;<i class="fa fa-plus-square"
+                                data-action="add-defense"></i></legend>
                         {{#each system.defenses as | defense |}}
                         <div class="grid grid-cols-4 gap-1">
                             <div class="field col-span-2">
                                 <label>{{localize "FT.item.sheet.label.defenseAction"}}</label>
-                                <input type="text" name="system.defenses.{{@index}}.action" value="{{defense.action}}">
+                                <div class="flex flex-row gap-0">
+                                    <span class="block m-0 p-1 border-y-[1px] border-l-[1px] rounded-l-sm text-xs"
+                                        data-action="delete-defense" data-index="{{@index}}"><i
+                                            class="fas fa-trash"></i></span>
+                                    <input class="!rounded-l-none" type="text" name="system.defenses.{{@index}}.action"
+                                        value="{{defense.action}}">
+                                </div>
                             </div>
                             <div class="field">
                                 <label>{{localize "FT.item.sheet.label.hitsStopped"}}</label>

@@ -246,3 +246,5 @@ FT:
         defenseAction: Defense Action
         toHitMod: To Hit Mod
         baseDamage: Base Damage
+        attacks: Attacks
+        defenses: Defenses
