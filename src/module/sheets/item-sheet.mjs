@@ -54,7 +54,6 @@ export class FTItemSheet extends ItemSheet {
     if (!this.options.editable) return;
 
     // Sheet Actions
-    html.find("[data-effect-action]").click(Effects.onManageActiveEffect.bind(this.item));
     html.find("[data-action]").click(this.click.bind(this));
   }
 
@@ -62,8 +61,8 @@ export class FTItemSheet extends ItemSheet {
     event.preventDefault();
     const element = $(event?.currentTarget);
     const dataset = element?.data();
-    const itemId = element?.closest("[data-item-id]").data("itemId");
-    let item;
+
+    console.log("click()", element, dataset);
 
     switch (dataset.action) {
       case "add-attack":
@@ -95,6 +94,12 @@ export class FTItemSheet extends ItemSheet {
         console.log("click():delete-attack", dataset.index);
         this.item.system.defenses.splice(dataset.index, 1);
         this.item.update({ "system.defenses": this.item.system.defenses });
+        break;
+      case "create-effect":
+      case "edit-effect":
+      case "toggle-effect":
+      case "delete-effect":
+        Effects.onManageActiveEffect.call(this.item, event);
         break;
       default:
         console.error(`FT | Unimplemented action: ${dataset.action}`);

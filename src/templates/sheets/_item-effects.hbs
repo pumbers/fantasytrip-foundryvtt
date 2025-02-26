@@ -1,5 +1,5 @@
 <div class="effects">
-    {{#each item.effects as |effect|}}
+    {{#each item.effects as | effect |}}
     <fieldset class="effect" data-effect-id="{{effect._id}}">
         <legend>{{effect.name}}</legend>
         <table>
@@ -19,17 +19,12 @@
             </tbody>
         </table>
         <div class="actions">
-            <button data-effect-action="edit">{{localize "FT.effect.action.edit"}}</button>
-            {{#if effect.active}}
-            <button data-effect-action="toggle">{{localize "FT.effect.action.off"}}</button>
-            {{else}}
-            <button data-effect-action="toggle">{{localize "FT.effect.action.on"}}</button>
-            {{/if}}
-            <button data-effect-action="delete">{{localize "FT.effect.action.delete"}}</button>
+            <button data-action="edit-effect">{{localize "FT.effect.action.edit"}}</button>
+            <button data-action="delete-effect">{{localize "FT.effect.action.delete"}}</button>
         </div>
     </fieldset>
     {{/each}}
     <div>
-        <button class="ml-auto mr-0" data-effect-action="create">{{localize "FT.effect.action.create"}}</button>
+        <button class="ml-auto mr-0" data-action="create-effect">{{localize "FT.effect.action.create"}}</button>
     </div>
 </div>

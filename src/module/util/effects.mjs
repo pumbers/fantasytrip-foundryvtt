@@ -7,12 +7,11 @@ export function onManageActiveEffect(event) {
   event.preventDefault();
   const element = $(event.currentTarget);
   const dataset = element.data();
-
   const effectId = element?.closest("[data-effect-id]").data("effectId");
   const effect = effectId ? this.effects.get(effectId) : null;
 
-  switch (dataset.effectAction) {
-    case "create":
+  switch (dataset.action) {
+    case "create-effect":
       return this.createEmbeddedDocuments("ActiveEffect", [
         {
           name: game.i18n.format("DOCUMENT.New", {
@@ -22,11 +21,11 @@ export function onManageActiveEffect(event) {
           origin: this.uuid,
         },
       ]);
-    case "edit":
+    case "edit-effect":
       return effect.sheet.render(true);
-    case "delete":
-      return effect.delete();
-    case "toggle":
+    case "toggle-effect":
       return effect.update({ disabled: !effect.disabled });
+    case "delete-effect":
+      return effect.delete();
   }
 }

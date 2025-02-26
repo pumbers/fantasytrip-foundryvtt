@@ -56,8 +56,6 @@ FT:
       create: Create
       edit: Edit
       toggle: Toggle
-      on: On
-      off: Off
       delete: Delete
   # System
   system:

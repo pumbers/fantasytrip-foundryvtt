@@ -7,10 +7,10 @@
 @source "../module//system/config.mjs";
 
 .fantasy-trip {
-  & input,
-  & textarea,
-  & select {
-    @apply w-full border rounded-none m-0 p-1 !appearance-auto dark:text-slate-200;
+  input,
+  textarea,
+  select {
+    @apply w-full h-6 border rounded-none m-0 p-1 !appearance-auto text-slate-900 dark:text-slate-200;
     &::placeholder {
       @apply opacity-80;
     }
@@ -25,21 +25,17 @@
     }
   }
 
-  & select {
-    height: calc(var(--form-field-height));
-  }
-
-  & table {
-    @apply text-xs m-0 dark:text-slate-200;
-    & thead {
+  table {
+    @apply text-xs m-0 text-slate-900 dark:text-slate-200;
+    thead {
       text-shadow: none;
       @apply bg-slate-500 border-none text-slate-200;
     }
-    & tr:nth-child(even) {
+    tr:nth-child(even) {
       @apply bg-slate-200 dark:bg-slate-700;
     }
-    & th,
-    & td {
+    th,
+    td {
       @apply px-1 whitespace-nowrap text-center;
       &:first-child {
         @apply text-left w-4;
@@ -50,13 +46,13 @@
       &:last-child {
         @apply text-right;
       }
-      & img {
+      img {
         @apply border-none m-0 p-0 min-w-[1em] min-h-[1em];
       }
     }
-    & tfoot {
+    tfoot {
       text-shadow: none;
-      @apply border-none bg-white text-black dark:bg-slate-800 dark:text-slate-200;
+      @apply border-none bg-slate-200 text-slate-900 dark:bg-slate-800 dark:text-slate-200;
     }
   }
 
@@ -66,7 +62,7 @@
       @apply overflow-auto;
     }
     & .item {
-      @apply m-0 !p-1 text-[0.6rem] uppercase dark:text-slate-200;
+      @apply m-0 !p-1 text-[0.6rem] uppercase text-slate-900 dark:text-slate-200;
       &.active {
         text-shadow: none;
         @apply font-bold;
@@ -83,7 +79,7 @@
   & .field {
     @apply flex flex-col gap-1 mt-auto mb-0 !leading-2;
     & label {
-      @apply m-0 p-0 text-[0.5rem] !text-left uppercase dark:text-slate-200;
+      @apply m-0 p-0 text-[0.5rem] !text-left uppercase text-slate-900 dark:text-slate-200;
     }
   }
 
@@ -122,11 +118,8 @@
       }
       .actions {
         @apply flex flex-col gap-1 justify-start;
-        button[data-effect-action] {
+        button[data-action] {
           @apply border-none w-auto px-1 cursor-pointer text-xs;
-          /* &:hover {
-            @apply bg-cs5-gold-50;
-          } */
         }
       }
     }
