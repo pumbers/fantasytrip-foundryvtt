@@ -134,9 +134,9 @@ FT:
         character: Character
         notes: Notes
         talents: Talents
-        items: Inventory
+        inventory: Inventory
         spells: Spells
-        fx: FX
+        effects: Effects
       label:
         type: Type
         race: Race

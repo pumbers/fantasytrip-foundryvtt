@@ -24,7 +24,9 @@ export function onManageActiveEffect(event) {
     case "edit-effect":
       return effect.sheet.render(true);
     case "toggle-effect":
-      return effect.update({ disabled: !effect.disabled });
+      // TODO fix this is not working
+      // console.log("... toggling", effect.disabled, "=>", !effect.disabled);
+      return effect.update({ name: "updated", description: "Something", disabled: !effect.disabled });
     case "delete-effect":
       return effect.delete();
   }

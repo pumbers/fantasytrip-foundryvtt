@@ -1,0 +1,11 @@
+{{!-- Character Tab --}}
+<div class="tab character" data-group="primary" data-tab="character">
+    <div class="flex flex-col gap-2">
+        {{!-- Stats --}}
+        {{> (concat FT.path "/templates/sheet/character/_stats.hbs")}}
+        {{!-- Status --}}
+        {{> (concat FT.path "/templates/sheet/character/_status.hbs")}}
+        {{!-- Action/Combat --}}
+        {{> (concat FT.path "/templates/sheet/character/_action.hbs")}}
+    </div>
+</div>

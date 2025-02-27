@@ -11,7 +11,7 @@ export class FTCharacterSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fantasy-trip", "character", "sheet"],
-      template: `${CONFIG.FT.path}/templates/sheets/character-sheet.hbs`,
+      template: `${CONFIG.FT.path}/templates/sheet/character/character-sheet.hbs`,
       width: 430,
       height: 640,
       tabs: [
@@ -83,7 +83,6 @@ export class FTCharacterSheet extends ActorSheet {
 
     // Sheet Actions
     html.find("[data-action]").click(this.click.bind(this));
-    html.find("[data-effect-action]").click(Effects.onManageActiveEffect.bind(this.actor));
 
     // Item actions
     html.find(".document-chat").click(Handlers.onChatItem.bind(this));
@@ -136,6 +135,12 @@ export class FTCharacterSheet extends ActorSheet {
       //   if (!itemId) return;
       //   item = this.actor.getEmbeddedDocument("Item", itemId);
       //   break;
+      case "create-effect":
+      case "edit-effect":
+      case "toggle-effect":
+      case "delete-effect":
+        Effects.onManageActiveEffect.call(this.actor, event);
+        break;
       default:
         console.error(`FT | Unimplemented action: ${dataset.action}`);
         break;
@@ -228,7 +233,7 @@ export class FTNPCSheet extends FTCharacterSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fantasy-trip", "npc", "sheet"],
-      template: `${CONFIG.FT.path}/templates/sheets/npc-sheet.hbs`,
+      template: `${CONFIG.FT.path}/templates/sheet/npc/npc-sheet.hbs`,
       width: 470,
       height: 400,
     });

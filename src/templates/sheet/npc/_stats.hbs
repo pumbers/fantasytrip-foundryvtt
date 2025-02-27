@@ -3,7 +3,7 @@
 <div class="flex flex-row gap-1">
     <label
         class="m-0 p-0.5 bg-black text-white leading-8 dark:bg-white dark:text-black text-center text-lg uppercase min-w-8 rounded-none">{{localize
-        (concat "FT.character.attribute." key)}}</label>
+        (concat "FT.character.attribute." key ".max")}}</label>
     <div class="flex flex-row gap-0">
         <input class="m-0 !text-center !text-lg !h-full !w-12" type="number" name="system.{{key}}.max"
             value="{{attr.max}}" />
@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="field w-14 ml-auto">
-    <label>Adj.</label>
+    <label>{{localize "FT.character.sheet.label.adjusted"}}</label>
     {{#if roll}}
     <div class="flex flex-row gap-0">
         <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />

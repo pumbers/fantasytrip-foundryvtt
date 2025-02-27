@@ -20,8 +20,7 @@
         </span>
     </div>
 
-    {{!-- Staff Mana (if a wizard) --}}
-    {{!-- {{#if (eq system.type "wizard")}}
+    {{!-- Mana (for NPC wizards) --}}
     <div class="grid grid-cols-8 gap-1 text-xs text-center">
         <span class="border-[1px] rounded-none m-0 p-0 bg-slate-200"
             title="{{localize 'FT.character.sheet.label.mana'}}">
@@ -36,7 +35,6 @@
             {{/each}}
         </span>
     </div>
-    {{/if}} --}}
 
     {{!-- Damage, Fatigue and stats modifiers --}}
     <div class="flex flex-row gap-1 text-xs text-center">
@@ -44,11 +42,9 @@
                 name="system.fatigue" value="{{system.fatigue}}" min="0"></div>
         <div class="field"><label>{{localize "FT.character.sheet.label.damage"}}</label><input type="number"
                 name="system.damage" value="{{system.damage}}" min="0"></div>
-        {{#if (eq system.type "wizard")}}
         <div class="field"><label>{{localize "FT.character.sheet.label.mana"}}</label><input type="number"
                 name="system.mana.value" value="{{system.mana.value}}" max="{{system.mana.max}}">
         </div>
-        {{/if}}
         <div class="field"><label>{{localize "FT.character.sheet.label.stMod"}}</label><input type="number"
                 name="system.st.mod" value="{{system.st.mod}}">
         </div>

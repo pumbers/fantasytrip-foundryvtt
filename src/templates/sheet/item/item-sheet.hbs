@@ -1,0 +1,13 @@
+<form class="{{cssClass}}" autocomplete="off">
+    {{!-- {{log .}} --}}
+    <div class="sheet-content">
+        {{> (concat FT.path "/templates/sheet/item/_header.hbs")}}
+        {{> (concat FT.path "/templates/sheet/item/_navigation.hbs")}}
+        <!-- Sheet Body -->
+        <section class="sheet-body">
+            {{> (concat FT.path "/templates/sheet/item/_tab-description.hbs")}}
+            {{> (concat FT.path "/templates/sheet/item/_tab-actions.hbs")}}
+            {{> (concat FT.path "/templates/sheet/item/_tab-effects.hbs")}}
+        </section>
+    </div>
+</form>

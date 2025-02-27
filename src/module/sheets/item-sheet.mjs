@@ -8,7 +8,7 @@ export class FTItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      template: `${CONFIG.FT.path}/templates/sheets/item-sheet.hbs`,
+      template: `${CONFIG.FT.path}/templates/sheet/item/item-sheet.hbs`,
       classes: ["fantasy-trip", "item", "sheet"],
       width: 380,
       height: 520,
@@ -62,8 +62,6 @@ export class FTItemSheet extends ItemSheet {
     const element = $(event?.currentTarget);
     const dataset = element?.data();
 
-    console.log("click()", element, dataset);
-
     switch (dataset.action) {
       case "add-attack":
         console.log("click():add-attack");
@@ -105,6 +103,5 @@ export class FTItemSheet extends ItemSheet {
         console.error(`FT | Unimplemented action: ${dataset.action}`);
         break;
     }
-    console.log("...", this.item.system);
   }
 }

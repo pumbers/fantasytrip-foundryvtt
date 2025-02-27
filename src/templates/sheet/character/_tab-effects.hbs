@@ -1,0 +1,38 @@
+{{!-- Effects Tab --}}
+<div class="tab effects" data-group="primary" data-tab="effects">
+    <div class="flex flex-col gap-2 scroll-auto">
+        {{!-- {{log effects}} --}}
+        {{#each effects as |effect|}}
+        <fieldset class="effect" data-effect-id="{{effect._id}}">
+            <legend>{{effect.parent.name}}:&nbsp;{{effect.name}}&nbsp;{{#if effect.disabled}}{{localize
+                "FT.effect.label.disabled"}}{{/if}}</legend>
+            <table>
+                <thead>
+                    <th>{{localize "FT.effect.label.attribute"}}</th>
+                    <th>{{localize "FT.effect.label.change"}}</th>
+                    <th>{{localize "FT.effect.label.value"}}</th>
+                </thead>
+                <tbody>
+                    {{#each effect.changes as |change|}}
+                    <tr>
+                        <td>{{abbrev change.key len=35 ellipsis=true}}</td>
+                        <td>{{localize (concat "FT.effect.modes." change.mode)}}</td>
+                        <td>{{change.value}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <div class="actions">
+                {{#if (eq parent.name "Actor")}}
+                <button data-action="edit-effect">{{localize "FT.effect.action.edit"}}</button>
+                <button data-action="toggle-effect">{{localize "FT.effect.action.toggle"}}</button>
+                <button data-action="delete-effect">{{localize "FT.effect.action.delete"}}</button>
+                {{/if}}
+            </div>
+        </fieldset>
+        {{/each}}
+        <div>
+            <button class="ml-auto mr-0" data-action="create-effect">{{localize "FT.effect.action.create"}}</button>
+        </div>
+    </div>
+</div>
