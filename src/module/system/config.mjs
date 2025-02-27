@@ -26,6 +26,16 @@ FT.roll = {
   },
 };
 
+FT.combat = {
+  phase: {
+    movement: {
+      initiativeFormula: "1d6+(1d6/10)+(1d6/100)",
+    },
+    combat: {
+      initiativeFormula: "@dx.value+(1d6/10)+(1d6/100)",
+    },
+  },
+};
 /* ------------------------------------------- */
 /*  Character Config & Options                 */
 /* ------------------------------------------- */

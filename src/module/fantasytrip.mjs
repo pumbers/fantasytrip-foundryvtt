@@ -8,6 +8,8 @@ import { FTItem } from "./documents/item.mjs";
 import { FTEquipmentData, FTTalentData, FTSpellData } from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
+import { FTCombatTracker, FTCombat } from "./documents/combat.mjs";
+
 import * as Macros from "./util/macros.mjs";
 import * as Helpers from "./util/helpers.mjs";
 
@@ -41,15 +43,6 @@ Hooks.once("init", async function () {
   game.ft = {
     FTActor,
     FTItem,
-  };
-
-  /**
-   * Set an initiative formula for the system
-   * @type {String}
-   */
-  CONFIG.Combat.initiative = {
-    formula: "1d6",
-    decimals: 0,
   };
 
   /*
@@ -99,34 +92,27 @@ Hooks.once("init", async function () {
   /*  Define Entities & Sheets                           
   /* -------------------------------------------- */
 
-  /*
-   * Define custom Entity classes
-   */
+  // Actor document configuration
   CONFIG.Actor.dataModels.character = FTActorData;
   CONFIG.Actor.dataModels.npc = FTActorData;
   CONFIG.Actor.documentClass = FTActor;
-  // CONFIG.Actor.trackableAttributes = {
-  //   character: {
-  //     bar: ["health", "mana"],
-  //     value: ["st", "mana"],
-  //   },
-  // };
+  Actors.unregisterSheet("core", ActorSheet);
+  Actors.registerSheet("FT", FTCharacterSheet, { types: ["character", "npc"], makeDefault: true });
+  Actors.registerSheet("FT", FTNPCSheet, { types: ["npc"], makeDefault: true });
 
+  // Item document configuration
   CONFIG.Item.dataModels = {
     talent: FTTalentData,
     spell: FTSpellData,
     equipment: FTEquipmentData,
   };
   CONFIG.Item.documentClass = FTItem;
-
-  /*
-   * Register Sheet Application Classes
-   */
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("FT", FTCharacterSheet, { types: ["character", "npc"], makeDefault: true });
-  Actors.registerSheet("FT", FTNPCSheet, { types: ["npc"], makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("FT", FTItemSheet, { makeDefault: true });
+
+  // Other document configuration
+  CONFIG.Combat.documentClass = FTCombat;
+  CONFIG.ui.combat = FTCombatTracker;
 
   /* -------------------------------------------- */
   /*  Handlebars Helpers & Partials                      
@@ -190,7 +176,3 @@ Hooks.once("ready", async function () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => Macros.createHotbarMacro(data, slot));
 });
-
-// Hooks.on("ready", () => {
-//   ui.notifications.info("Fantasy Trip for Foundry VTT is © Code Theoretic Inc.");
-// });

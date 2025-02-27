@@ -52,7 +52,7 @@
     }
     tfoot {
       text-shadow: none;
-      @apply border-none bg-slate-200 text-slate-900 dark:bg-slate-800 dark:text-slate-200;
+      @apply border-none bg-slate-300 text-slate-900 dark:bg-slate-900 dark:text-slate-300;
     }
   }
 

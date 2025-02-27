@@ -99,6 +99,10 @@ FT:
         exact: ... Success! Just made it!
         success: ... Success! Made it by {margin}
         failure: ... and misses by {margin}
+    combat:
+      phase:
+        movement: Movement
+        combat: Combat
   #
   app:
     dice:
