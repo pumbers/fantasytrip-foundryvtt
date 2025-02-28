@@ -5,6 +5,12 @@ FT:
       initialAP:
         name: Attribute Points for new characters
         hint: The number of Attribute Points a new character is allowed to spend.
+      initiativeType:
+        name: Individual or Group Initiatve
+        hint: Roll initiative individually for each combatant, or roll for Player Characters and NPC's as groups?
+        options:
+          individual: Individual
+          group: Group
       damageMultiplierStrategy:
         name: Calculate Increased Damage
         hint: When a damage roll calls for double or triple damage...

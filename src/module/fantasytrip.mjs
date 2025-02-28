@@ -56,6 +56,24 @@ Hooks.once("init", async function () {
     config: true,
   });
 
+  game.settings.register("fantasytrip", "initiativeType", {
+    name: game.i18n.localize("FT.game.settings.initiativeType.name"),
+    hint: game.i18n.localize("FT.game.settings.initiativeType.hint"),
+    scope: "world",
+    type: new StringField({
+      choices: {
+        individual: game.i18n.localize("FT.game.settings.initiativeType.options.individual"),
+        group: game.i18n.localize("FT.game.settings.initiativeType.options.group"),
+      },
+      required: true,
+      nullable: false,
+      initial: "group",
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: false,
+  });
+
   game.settings.register("fantasytrip", "damageMultiplierStrategy", {
     name: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.name"),
     hint: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.hint"),
@@ -65,6 +83,8 @@ Hooks.once("init", async function () {
         rollTimes: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.options.rollTimes"),
         multiply: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.options.multiply"),
       },
+      required: true,
+      nullable: false,
       initial: "multiply",
     }),
     config: true,
