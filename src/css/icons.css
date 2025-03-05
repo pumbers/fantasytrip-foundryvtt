@@ -67,6 +67,9 @@
   & .icon-chest-armor::before {
     content: url("../assets/icons/chest-armor.svg");
   }
+  & .icon-run::before {
+    content: url("../assets/icons/run.svg");
+  }
 
   /* Weapons */
   & .icon-fist::before {

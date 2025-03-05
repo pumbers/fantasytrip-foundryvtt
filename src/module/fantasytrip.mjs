@@ -8,7 +8,7 @@ import { FTItem } from "./documents/item.mjs";
 import { FTEquipmentData, FTTalentData, FTSpellData } from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
-import { FTCombatTracker, FTCombat } from "./documents/combat.mjs";
+import { FTCombatTracker, FTCombatant } from "./documents/combat.mjs";
 
 import * as Macros from "./util/macros.mjs";
 import * as Helpers from "./util/helpers.mjs";
@@ -131,8 +131,9 @@ Hooks.once("init", async function () {
   Items.registerSheet("FT", FTItemSheet, { makeDefault: true });
 
   // Other document configuration
-  CONFIG.Combat.documentClass = FTCombat;
   CONFIG.ui.combat = FTCombatTracker;
+  CONFIG.Combatant.documentClass = FTCombatant;
+  CONFIG.Combat.initiative.formula = FT.combat.initiative.formula;
 
   /* -------------------------------------------- */
   /*  Handlebars Helpers & Partials                      
