@@ -1,10 +1,3 @@
-import { FT } from "../system/config.mjs";
-
-// TODO Situational initiative bonuses
-// TODO Bonuses for character tactics & strategy
-// TODO Check behaviour with skipDefeated turned on
-// TODO Individual or group initiative
-
 /**
  * Combat sequence is...
  *
@@ -47,27 +40,21 @@ import { FT } from "../system/config.mjs";
  *    endCombat()
  */
 
-Hooks.on("combatStart", function (combat, updateData) {
+Hooks.on("Hooks.combatStart", function (combat, updateData) {
   updateData.system = { phase: "movement" };
 });
 
-Hooks.on("combatRound", function (combat, updateData, updateOptions) {
-  // Setup the combat phase and update the Combat and Combatants
-  const phase = combat.system.phase === "movement" ? "combat" : "movement";
-  updateData["system.phase"] = phase;
-  combat.combatants.forEach((c) => c.update({ system: { phase } }));
-  // console.log(
-  //   "Hooks.combatRound",
-  //   "combat",
-  //   combat,
-  //   "combatants",
-  //   combat.combatants,
-  //   "system",
-  //   combat.system,
-  //   "updates",
-  //   updateData,
-  //   updateOptions
-  // );
+Hooks.on("Hooks.combatRound", function (combat, updateData, updateOptions) {
+  updateData["system.phase"] = combat.system.phase === "movement" ? "combat" : "movement";
+});
+
+Hooks.on("FT.initiativeRoll", function (combat, combatant, data) {
+  const party = combat.combatants.filter((c) => !c.isDefeated).filter((c) => c.isNPC === combatant.isNPC);
+  const partyBonus = Math.max(...party.map((c) => c.actor.system.initiative.party));
+  data.formula =
+    combat.system.phase === "combat"
+      ? `@dx.value+${(combatant.initiative ?? 0) / 10}`
+      : `1d6+@initiative.situation+@initiative.self+${partyBonus}+(1d6/10)+(1d6/100)`;
 });
 
 /**
@@ -112,9 +99,8 @@ export class FTCombatant extends Combatant {
    * @returns {String} formula based on combat phase
    */
   getInitiativeRoll(formula) {
-    // console.log("Combatant.getInitiativeRoll()", "combatant", this.toObject(), "formula", formula);
-    return super.getInitiativeRoll(
-      this.system.phase === "combat" ? `@dx.value+${this.initiative / 10}` : FT.combat.initiative.formula
-    );
+    const data = {};
+    Hooks.callAll("FT.initiativeRoll", this.parent, this, data);
+    return super.getInitiativeRoll(data.formula);
   }
 }

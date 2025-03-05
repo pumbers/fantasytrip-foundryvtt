@@ -26,11 +26,6 @@ FT.roll = {
   },
 };
 
-FT.combat = {
-  initiative: {
-    formula: "1d6+@initiative.self+@initiative.party+(1d6/10)+(1d6/100)",
-  },
-};
 /* ------------------------------------------- */
 /*  Character Config & Options                 */
 /* ------------------------------------------- */

@@ -1,4 +1,4 @@
-const { SchemaField, NumberField, StringField, HTMLField, ArrayField } = foundry.data.fields;
+const { SchemaField, NumberField, StringField, HTMLField, BooleanField } = foundry.data.fields;
 
 /* -------------------------------------------- */
 /*  Character Data Type                       
@@ -60,7 +60,11 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         value: new NumberField({ initial: 8 }), // Current or adjusted value
       }),
       //
-      initiative: new SchemaField({ self: new NumberField({ initial: 0 }), party: new NumberField({ initial: 0 }) }), // Initiative modifiers
+      initiative: new SchemaField({
+        situation: new NumberField({ initial: 0 }),
+        self: new NumberField({ initial: 0 }),
+        party: new NumberField({ initial: 0 }),
+      }), // Initiative modifiers
       fatigue: new NumberField({ initial: 0 }), // Fatigue accrued
       damage: new NumberField({ initial: 0 }), // Damage taken
       mana: new SchemaField({
@@ -89,7 +93,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
     super.prepareDerivedData();
     // console.log("FTActorData.prepareDerivedData()", this);
 
-    // Calculate availoable mana (from staff if a wizard)
+    // Calculate available mana (from staff if a wizard)
     this.mana.value = Math.min(this.mana.max, this.mana.value);
     this.mana.used = Math.max(this.mana.max - this.mana.value, 0);
   }

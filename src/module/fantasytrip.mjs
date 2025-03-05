@@ -133,7 +133,6 @@ Hooks.once("init", async function () {
   // Other document configuration
   CONFIG.ui.combat = FTCombatTracker;
   CONFIG.Combatant.documentClass = FTCombatant;
-  CONFIG.Combat.initiative.formula = FT.combat.initiative.formula;
 
   /* -------------------------------------------- */
   /*  Handlebars Helpers & Partials                      
