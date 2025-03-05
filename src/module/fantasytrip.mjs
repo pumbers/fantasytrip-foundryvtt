@@ -8,7 +8,7 @@ import { FTItem } from "./documents/item.mjs";
 import { FTEquipmentData, FTTalentData, FTSpellData } from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
-import { FTCombatTracker, FTCombatant } from "./documents/combat.mjs";
+import { FTCombatant } from "./documents/combat.mjs";
 
 import * as Macros from "./util/macros.mjs";
 import * as Helpers from "./util/helpers.mjs";
@@ -54,24 +54,6 @@ Hooks.once("init", async function () {
     scope: "world",
     type: new NumberField({ initial: 32 }),
     config: true,
-  });
-
-  game.settings.register("fantasytrip", "initiativeType", {
-    name: game.i18n.localize("FT.game.settings.initiativeType.name"),
-    hint: game.i18n.localize("FT.game.settings.initiativeType.hint"),
-    scope: "world",
-    type: new StringField({
-      choices: {
-        individual: game.i18n.localize("FT.game.settings.initiativeType.options.individual"),
-        group: game.i18n.localize("FT.game.settings.initiativeType.options.group"),
-      },
-      required: true,
-      nullable: false,
-      initial: "group",
-    }),
-    config: true,
-    restricted: true,
-    requiresReload: false,
   });
 
   game.settings.register("fantasytrip", "damageMultiplierStrategy", {
@@ -131,7 +113,6 @@ Hooks.once("init", async function () {
   Items.registerSheet("FT", FTItemSheet, { makeDefault: true });
 
   // Other document configuration
-  CONFIG.ui.combat = FTCombatTracker;
   CONFIG.Combatant.documentClass = FTCombatant;
 
   /* -------------------------------------------- */
@@ -192,7 +173,7 @@ Hooks.once("init", async function () {
 /*  Hotbar Macros                               
 /* -------------------------------------------- */
 
-Hooks.once("ready", async function () {
-  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => Macros.createHotbarMacro(data, slot));
-});
+// Hooks.once("ready", async function () {
+//   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+//   Hooks.on("hotbarDrop", (bar, data, slot) => Macros.createHotbarMacro(data, slot));
+// });
