@@ -23,7 +23,9 @@
             </table>
             <div class="actions">
                 <button data-action="edit-effect">{{localize "FT.effect.action.edit"}}</button>
+                {{#unless (eq parent.type "equipment")}}
                 <button data-action="toggle-effect">{{localize "FT.effect.action.toggle"}}</button>
+                {{/unless}}
                 <button data-action="delete-effect">{{localize "FT.effect.action.delete"}}</button>
             </div>
         </fieldset>

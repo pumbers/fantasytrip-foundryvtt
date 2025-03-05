@@ -28,15 +28,7 @@ FT.roll = {
 
 FT.combat = {
   initiative: {
-    formula: "1d6+(1d6/10)+(1d6/100)",
-  },
-  phase: {
-    movement: {
-      initiativeFormula: "1d6+(1d6/10)+(1d6/100)",
-    },
-    combat: {
-      initiativeFormula: "@dx.value+(1d6/10)+(1d6/100)",
-    },
+    formula: "1d6+@initiative.self+@initiative.party+(1d6/10)+(1d6/100)",
   },
 };
 /* ------------------------------------------- */
