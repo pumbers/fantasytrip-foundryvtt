@@ -30,13 +30,14 @@ const SYSTEM_PACKS = "src/packs";
 
 const IMPORT_DIR = "import";
 const BUILD_DIR = "build";
+const DIST_DIR = "dist";
 
 /* ----------------------------------------- */
 /*  Clean the build folder
 /* ----------------------------------------- */
 
 function cleanBuild() {
-  return gulp.src(`${BUILD_DIR}`, { allowEmpty: true }, { read: false }).pipe(clean());
+  return gulp.src([BUILD_DIR, DIST_DIR], { allowEmpty: true }, { read: false }).pipe(clean());
 }
 
 /* ----------------------------------------- */
@@ -173,6 +174,18 @@ function copyFiles() {
 }
 
 /* ----------------------------------------- */
+/*  Create a distribution folder
+/* ----------------------------------------- */
+
+function createDist() {
+  return gulp
+    .src(["LICENSE", `${BUILD_DIR}/**/*`], {
+      nodir: true,
+    })
+    .pipe(gulp.dest(DIST_DIR));
+}
+
+/* ----------------------------------------- */
 /*  Watch Updates
 /* ----------------------------------------- */
 
@@ -202,4 +215,9 @@ exports.images = optimizeImages;
 exports.bundle = bundleJs;
 exports.copy = copyFiles;
 exports.build = gulp.series(cleanBuild, gulp.parallel(compileYaml, compilePacks, compileCss, bundleJs, copyFiles));
+exports.dist = gulp.series(
+  cleanBuild,
+  gulp.parallel(compileYaml, compilePacks, compileCss, bundleJs, copyFiles),
+  createDist
+);
 exports.clean = cleanBuild;

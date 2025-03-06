@@ -55,8 +55,11 @@ jobs:
 
       # Create a "system.zip" archive containing all the system's required files.
       - name: Create System Archive
-        run: |
-          zip -j --recurse-paths system.zip  build LICENSE
+        uses: thedoctor0/zip-release@0.7.5
+        with:
+          type: zip
+          filename: system.zip
+          directory: dist
 
       # Update the GitHub release with the manifest and system archive files.
       - name: Update Release With Files
