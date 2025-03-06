@@ -18,7 +18,6 @@ env:
 on:
   release:
     types:
-      - edited
       - prereleased
       - published
 
@@ -56,23 +55,15 @@ jobs:
 
       # Create a "system.zip" archive containing all the system's required files.
       - name: Create System Archive
-        working-directory: build
         run: |
-          zip --recurse-paths system.zip  \
-            system.json                   \
-            assets/                       \
-            css/                          \
-            lang/                         \
-            module/                       \
-            packs/                        \
-            templates/                    \
+          zip -j --recurse-paths system.zip  build LICENSE
 
       # Update the GitHub release with the manifest and system archive files.
       - name: Update Release With Files
         id: create_version_release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/system.json, ./system.zip"
+          artifacts: "./build/system.json, ./system.zip"
           allowUpdates: true
           name: ${{ github.event.release.name }}
           draft: ${{ github.event.release.unpublished }}
