@@ -18,6 +18,7 @@ env:
 on:
   release:
     types:
+      - edited
       - prereleased
       - published
 
@@ -71,7 +72,7 @@ jobs:
         id: create_version_release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "./system.json, ./system.zip"
+          artifacts: "build/system.json, ./system.zip"
           allowUpdates: true
           name: ${{ github.event.release.name }}
           draft: ${{ github.event.release.unpublished }}
