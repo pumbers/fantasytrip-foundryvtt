@@ -4,7 +4,6 @@
   "description": "Fantasy Trip for Foundry VTT",
   "scripts": {
     "build": "gulp build",
-    "dist": "gulp build && gulp dist",
     "dev": "gulp",
     "gulp": "gulp"
   },
