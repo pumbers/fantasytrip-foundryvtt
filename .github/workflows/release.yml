@@ -15,7 +15,12 @@ env:
   latest_manifest_url: "https://github.com/${{github.repository}}/releases/latest/download/system.json"
   release_download_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip"
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - created
+      - published
 
 jobs:
   release:
