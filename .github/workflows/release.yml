@@ -16,7 +16,6 @@ env:
   release_download_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip"
 
 on:
-  workflow_dispatch:
   release:
     types:
       - created
@@ -58,6 +57,7 @@ jobs:
 
       # Create a "system.zip" archive containing all the system's required files.
       - name: Create System Archive
+        working-directory: build
         run: |
           zip --recurse-paths ./system.zip  \
             LICENSE                         \
