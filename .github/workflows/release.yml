@@ -48,7 +48,7 @@ jobs:
         id: sub_manifest_link_version
         uses: cschleiden/replace-tokens@v1
         with:
-          files: "build/system.json"
+          files: "dist/system.json"
         env:
           MANIFEST: ${{ env.latest_manifest_url }}
           DOWNLOAD: ${{ env.release_download_url }}

@@ -12,7 +12,7 @@ license: LICENSE
 readme: README.md
 manifest: "#{MANIFEST}"
 download: "#{DOWNLOAD}"
-url: https://foundryvtt.com/packages/crucible
+url: https://foundryvtt.com/packages/fantasytrip-foundryvtt
 bugs: https://github.com/pumbers/fantasytrip-foundryvtt/issues
 # changelog:
 # relationships:
