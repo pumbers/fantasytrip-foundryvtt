@@ -1,0 +1,67 @@
+name: Ring of Fighting
+type: equipment
+img: icons/equipment/finger/ring-bone-spiked.webp
+system:
+  notes: ''
+  cost: 300
+  wt: 0
+  qty: 1
+  capacity: 0
+  container: null
+  attacks: []
+  defenses: []
+effects:
+  - name: updated
+    origin: Item.IEQm5JZ1S0DuImgH
+    img: icons/svg/aura.svg
+    _id: DLax6XO1EB4VpGWz
+    type: base
+    system: {}
+    changes:
+      - key: system.dx.modFor.melee
+        mode: 2
+        value: '4'
+        priority: null
+    disabled: true
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    description: Something
+    tint: '#ffffff'
+    transfer: true
+    statuses: []
+    sort: 0
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '12.331'
+      systemId: fantasytrip
+      systemVersion: 0.1.0
+      createdTime: null
+      modifiedTime: null
+      lastModifiedBy: null
+    _key: '!items.effects!pSBKR4sm1IDTg1BV.DLax6XO1EB4VpGWz'
+folder: null
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  coreVersion: '12.331'
+  systemId: fantasytrip
+  systemVersion: 0.1.0
+  createdTime: 1741279597871
+  modifiedTime: 1741279597871
+  lastModifiedBy: jYWQAcYwV2K8zXyc
+_id: pSBKR4sm1IDTg1BV
+sort: 0
+ownership:
+  default: 0
+  jYWQAcYwV2K8zXyc: 3
+_key: '!items!pSBKR4sm1IDTg1BV'
+

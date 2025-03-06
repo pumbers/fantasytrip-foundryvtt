@@ -1,0 +1,37 @@
+name: Longbow
+type: equipment
+img: icons/weapons/bows/longbow-recurve-leather-red.webp
+system:
+  notes: ''
+  cost: 40
+  wt: 4
+  qty: 1
+  capacity: 0
+  container: null
+  attacks:
+    - action: Fire
+      type: missile
+      toHitMod: 0
+      baseDamage: 1d6
+      minST: 11
+      talent: null
+  defenses: []
+effects: []
+folder: null
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  coreVersion: '12.331'
+  systemId: fantasytrip
+  systemVersion: 0.1.0
+  createdTime: 1741279595709
+  modifiedTime: 1741279595720
+  lastModifiedBy: jYWQAcYwV2K8zXyc
+_id: OeC7t3vl1K8o88xw
+sort: 200000
+ownership:
+  default: 0
+  jYWQAcYwV2K8zXyc: 3
+_key: '!items!OeC7t3vl1K8o88xw'
+

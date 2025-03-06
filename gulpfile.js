@@ -23,7 +23,6 @@ const extractPack = (...args) => import("@foundryvtt/foundryvtt-cli").then(({ ex
 /*
  * Build settings & locations
  */
-const SYSTEM = yaml.loadAll(fs.readFileSync("src/system.yml"))[0];
 const SYSTEM_CSS = ["src/css/**/*.css"];
 const SYSTEM_STATIC = ["src/assets/**/*", "src/templates/**/*"];
 const SYSTEM_YAML = ["src/system.yml", "src/lang/**/*.yml"];
@@ -31,18 +30,13 @@ const SYSTEM_PACKS = "src/packs";
 
 const IMPORT_DIR = "import";
 const BUILD_DIR = "build";
-const DIST_DIR = "dist";
 
 /* ----------------------------------------- */
-/*  Clean the build or dist folder
+/*  Clean the build folder
 /* ----------------------------------------- */
 
 function cleanBuild() {
   return gulp.src(`${BUILD_DIR}`, { allowEmpty: true }, { read: false }).pipe(clean());
-}
-
-function cleanDist() {
-  return gulp.src(`${DIST_DIR}`, { allowEmpty: true }, { read: false }).pipe(clean());
 }
 
 /* ----------------------------------------- */
@@ -179,33 +173,14 @@ function copyFiles() {
 }
 
 /* ----------------------------------------- */
-/*  Create distribution archive
-/* ----------------------------------------- */
-
-function createZip() {
-  return gulp
-    .src(`${BUILD_DIR}/**/*`)
-    .pipe(zip(`foundryvtt-${SYSTEM.id}-v${SYSTEM.version}.zip`))
-    .pipe(gulp.dest(DIST_DIR));
-}
-
-function copyManifest() {
-  return gulp
-    .src([`${BUILD_DIR}/system.json`], {
-      base: BUILD_DIR,
-      nodir: true,
-    })
-    .pipe(gulp.dest(DIST_DIR));
-}
-
-/* ----------------------------------------- */
 /*  Watch Updates
 /* ----------------------------------------- */
 
 function watchUpdates() {
   gulp.watch([, "src/**/*.js", "src/**/*.mjs"], bundleJs);
-  gulp.watch("src/**/*.yml", gulp.parallel(compileYaml /* , compilePacks*/));
-  gulp.watch("src/**/*.css", compileCss);
+  gulp.watch(["src/**/*.yml", "!src/packs/**/*"], compileYaml);
+  gulp.watch(["src/packs/**/*"], compilePacks);
+  gulp.watch(["src/**/*.css"], compileCss);
   gulp.watch(["src/LICENSE", "src/assets/**/*", "src/lib/**/*"], copyFiles);
   gulp.watch(["src/templates/**/*"], gulp.parallel(copyFiles, compileCss));
 }
@@ -226,6 +201,5 @@ exports.css = compileCss;
 exports.images = optimizeImages;
 exports.bundle = bundleJs;
 exports.copy = copyFiles;
-exports.dist = gulp.series(cleanDist, createZip, copyManifest);
 exports.build = gulp.series(cleanBuild, gulp.parallel(compileYaml, compilePacks, compileCss, bundleJs, copyFiles));
 exports.clean = cleanBuild;

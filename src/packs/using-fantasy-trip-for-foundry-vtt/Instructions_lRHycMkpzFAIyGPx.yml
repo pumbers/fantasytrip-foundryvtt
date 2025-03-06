@@ -1,0 +1,139 @@
+name: Instructions
+pages:
+  - sort: 100000
+    name: Introduction
+    type: text
+    _id: Ahcj5Hf12oLopn4U
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: >-
+        <h1>Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit.</h1><p>Donec sit amet pretium odio, sit amet aliquam nisi. Aliquam
+        erat volutpat. Pellentesque habitant morbi tristique senectus et netus
+        et malesuada fames ac turpis egestas. Interdum et malesuada fames ac
+        ante ipsum primis in faucibus. Etiam mollis posuere tellus, condimentum
+        cursus risus placerat non. Cras eros sapien, congue sit amet neque at,
+        egestas convallis sapien. Curabitur nunc dolor, sagittis posuere
+        sollicitudin at, commodo ut dui. Phasellus eleifend mi nec orci
+        pellentesque, a gravida nibh porta. Proin lacinia aliquet ex, eu posuere
+        risus ullamcorper eu. Vivamus congue massa sit amet arcu posuere
+        volutpat. Quisque vel dui magna.</p><h2>Suspendisse tristique ante
+        dolor, sit amet scelerisque nulla cursus at.</h2><p>Suspendisse
+        hendrerit tristique nunc at tempor. Maecenas porttitor sem lacus, non
+        euismod ipsum efficitur eget. Nullam quis mi eu velit rhoncus malesuada
+        vitae vel dui. Suspendisse ullamcorper sagittis ex, quis volutpat turpis
+        luctus a. Sed consectetur maximus dolor in finibus. In a aliquet lacus.
+        Praesent cursus dignissim quam in maximus. Donec eget sodales sem.
+        Nullam convallis erat vitae justo fringilla, nec laoreet eros porta.
+        Suspendisse feugiat risus quis aliquet venenatis. Nunc fringilla libero
+        ut nibh volutpat, ut luctus arcu varius. Maecenas varius elementum dui,
+        et fermentum tortor finibus nec. Vivamus nec sollicitudin
+        nulla.</p><p>Integer scelerisque at est sit amet mollis. Aenean eros
+        sem, mattis vel urna et, lacinia faucibus augue. Quisque auctor tortor
+        non sem aliquam, nec auctor ipsum faucibus. Integer eget nibh nibh.
+        Vivamus finibus, eros interdum tincidunt pellentesque, massa orci
+        feugiat enim, non lacinia nunc nunc non odio. Proin et lectus in purus
+        ultricies maximus a quis sem. Integer mollis risus id nunc mattis
+        vehicula. Fusce varius, massa et luctus consectetur, metus nibh
+        dignissim lacus, quis malesuada ligula felis in libero.</p>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    ownership:
+      default: -1
+      jYWQAcYwV2K8zXyc: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '12.331'
+      systemId: fantasytrip
+      systemVersion: 0.1.0
+      createdTime: null
+      modifiedTime: null
+      lastModifiedBy: null
+    _key: '!journal.pages!lRHycMkpzFAIyGPx.Ahcj5Hf12oLopn4U'
+  - sort: 200000
+    name: Another Page
+    type: text
+    _id: 8QpHd2w3fWyC0Oke
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: >-
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit
+        amet pretium odio, sit amet aliquam nisi. Aliquam erat volutpat.
+        Pellentesque habitant morbi tristique senectus et netus et malesuada
+        fames ac turpis egestas. Interdum et malesuada fames ac ante ipsum
+        primis in faucibus. Etiam mollis posuere tellus, condimentum cursus
+        risus placerat non. Cras eros sapien, congue sit amet neque at, egestas
+        convallis sapien. Curabitur nunc dolor, sagittis posuere sollicitudin
+        at, commodo ut dui. Phasellus eleifend mi nec orci pellentesque, a
+        gravida nibh porta. Proin lacinia aliquet ex, eu posuere risus
+        ullamcorper eu. Vivamus congue massa sit amet arcu posuere volutpat.
+        Quisque vel dui magna.</p><p>Suspendisse tristique ante dolor, sit amet
+        scelerisque nulla cursus at. Suspendisse hendrerit tristique nunc at
+        tempor. Maecenas porttitor sem lacus, non euismod ipsum efficitur eget.
+        Nullam quis mi eu velit rhoncus malesuada vitae vel dui. Suspendisse
+        ullamcorper sagittis ex, quis volutpat turpis luctus a. Sed consectetur
+        maximus dolor in finibus. In a aliquet lacus. Praesent cursus dignissim
+        quam in maximus. Donec eget sodales sem. Nullam convallis erat vitae
+        justo fringilla, nec laoreet eros porta. Suspendisse feugiat risus quis
+        aliquet venenatis. Nunc fringilla libero ut nibh volutpat, ut luctus
+        arcu varius. Maecenas varius elementum dui, et fermentum tortor finibus
+        nec. Vivamus nec sollicitudin nulla.</p><p>Integer scelerisque at est
+        sit amet mollis. Aenean eros sem, mattis vel urna et, lacinia faucibus
+        augue. Quisque auctor tortor non sem aliquam, nec auctor ipsum faucibus.
+        Integer eget nibh nibh. Vivamus finibus, eros interdum tincidunt
+        pellentesque, massa orci feugiat enim, non lacinia nunc nunc non odio.
+        Proin et lectus in purus ultricies maximus a quis sem. Integer mollis
+        risus id nunc mattis vehicula. Fusce varius, massa et luctus
+        consectetur, metus nibh dignissim lacus, quis malesuada ligula felis in
+        libero.</p>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    ownership:
+      default: -1
+      jYWQAcYwV2K8zXyc: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '12.331'
+      systemId: fantasytrip
+      systemVersion: 0.1.0
+      createdTime: null
+      modifiedTime: null
+      lastModifiedBy: null
+    _key: '!journal.pages!lRHycMkpzFAIyGPx.8QpHd2w3fWyC0Oke'
+folder: null
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  coreVersion: '12.331'
+  systemId: fantasytrip
+  systemVersion: 0.1.0
+  createdTime: 1741278708786
+  modifiedTime: 1741278708786
+  lastModifiedBy: jYWQAcYwV2K8zXyc
+_id: lRHycMkpzFAIyGPx
+sort: 0
+ownership:
+  default: 0
+  jYWQAcYwV2K8zXyc: 3
+_key: '!journal!lRHycMkpzFAIyGPx'
+categories: []
+

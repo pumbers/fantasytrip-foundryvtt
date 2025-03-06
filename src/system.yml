@@ -8,10 +8,12 @@ compatibility:
 authors:
   - name: 3rd Dog
     email: codetheoretic@gmail.com
-# url:
 license: LICENSE
 readme: README.md
-# bugs:
+manifest: "#{MANIFEST}"
+download: "#{DOWNLOAD}"
+url: https://foundryvtt.com/packages/crucible
+bugs: https://github.com/pumbers/fantasytrip-foundryvtt/issues
 # changelog:
 # relationships:
 #   requires:
@@ -30,17 +32,17 @@ styles:
   - css/item-sheet.css
   - css/applications.css
 scripts:
-# packs:
-#   - name: starting-items
-#     label: Starting Items
-#     path: /packs/starting-items
-#     type: Item
-#     system: fantasytrip
-#   - name: weapons
-#     label: Weapons
-#     path: /packs/weapons
-#     type: Item
-#     system: fantasytrip
+packs:
+  - name: using-fantasy-trip-for-foundry-vtt
+    label: Using Fantasy Trip for Foundry VTT
+    path: /packs/using-fantasy-trip-for-foundry-vtt
+    type: JournalEntry
+    system: fantasytrip
+  - name: example-items
+    label: Example Items
+    path: /packs/example-items
+    type: Item
+    system: fantasytrip
 languages:
   - lang: en
     name: English
