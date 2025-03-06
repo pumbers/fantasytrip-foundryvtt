@@ -3,10 +3,9 @@
  * @extends {Item} Extends the basic Item
  */
 export class FTItem extends Item {
-  prepareBaseData() {
-    // console.log("FTItem.prepareBaseData()", this);
-    super.prepareBaseData();
-  }
+  /* ------------------------------------------- */
+  /*  Data Preparation                           */
+  /* ------------------------------------------- */
 
   prepareDerivedData() {
     // console.log("FTItem.prepareDerivedData()", this);
@@ -23,13 +22,6 @@ export class FTItem extends Item {
   /* ------------------------------------------- */
   /*  Action & Utility Functions                 */
   /* ------------------------------------------- */
-
-  /**
-   *
-   */
-  async use() {
-    console.log("use", this._id, this.name);
-  }
 
   /**
    * Send item details to chat

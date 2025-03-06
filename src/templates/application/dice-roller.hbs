@@ -59,7 +59,7 @@
         {{#each (range 1 8) as | dice |}}
         <span>
             <input type="radio" name="dice" id="dice-{{dice}}" value="{{dice}}" {{#if (eq ../dice dice)}}checked{{/if}}>
-            <label for="dice-{{dice}}" title="{{dice}}D6"><i class="icon-d6 !w-8 !h-8 m-0 p-1"></i></label>
+            <label for="dice-{{dice}}" title="{{dice}}D6">{{dice}}&thinsp;<i class="icon-d6 !w-6 !h-6"></i></label>
         </span>
         {{/each}}
     </div>

@@ -19,7 +19,6 @@ export class FTItemSheet extends ItemSheet {
 
   /** @override */
   getData() {
-    // console.log("item-sheet.getData()", this.item.type, this);
     const context = {
       ...super.getData(),
       FT: CONFIG.FT,

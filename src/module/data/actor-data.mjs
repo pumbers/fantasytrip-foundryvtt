@@ -1,9 +1,8 @@
 const { SchemaField, NumberField, StringField, HTMLField, BooleanField } = foundry.data.fields;
 
-/* -------------------------------------------- */
-/*  Character Data Type                       
-/* -------------------------------------------- */
-
+/**
+ * Fantasy Trip Actor Data Model
+ */
 export class FTActorData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
@@ -91,7 +90,6 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
 
   prepareDerivedData() {
     super.prepareDerivedData();
-    // console.log("FTActorData.prepareDerivedData()", this);
 
     // Calculate available mana (from staff if a wizard)
     this.mana.value = Math.min(this.mana.max, this.mana.value);
@@ -107,10 +105,10 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
   }
 
   get isDown() {
-    return this.damage + this.fatigue > this.st.max + this.st.mod;
+    return this.damage + this.fatigue > this.st.max;
   }
 
   get isDead() {
-    return this.damage > this.st.max + this.st.mod;
+    return this.damage > this.st.max;
   }
 }

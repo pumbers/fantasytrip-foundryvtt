@@ -3,22 +3,11 @@ import { FTDiceRollerApp } from "../applications/dice-roller.mjs";
 const DICE_ROLLER = new FTDiceRollerApp();
 
 /**
+ * Make an Attribute Roll for the specified Actor
  *
- * @returns
+ * @param {Actor} actor
+ * @param {Object} options
  */
-export function isCombatsActive() {
-  return game.combats && game.combats.active;
-}
-
-/**
- *
- * @param {*} token
- * @returns
- */
-export function isTokenInActiveCombat(token) {
-  return game.combats.active?.combatants.some((c) => c.token?.id === token.id);
-}
-
 export async function attributeRoll(actor, options) {
   console.log("Action.attributeRoll()", actor, options);
   const result = await DICE_ROLLER.render({
@@ -66,10 +55,11 @@ export async function attributeRoll(actor, options) {
 }
 
 /**
+ * Make a Talent Roll for the specified Actor
  *
- * @param {*} actor
- * @param {*} talent
- * @param {*} options
+ * @param {Actor} actor
+ * @param {Item} talent
+ * @param {Object} options
  */
 export async function talentRoll(actor, talent, options) {
   console.log("Action.talentRoll()", actor, talent, options);
@@ -119,10 +109,11 @@ export async function talentRoll(actor, talent, options) {
 }
 
 /**
- * Make an attack roll.
- * @param {*} actor
- * @param {*} weapon
- * @param {*} options
+ * Make an Attack Roll for the specified Actor
+ *
+ * @param {Actor} actor
+ * @param {Item} weapon
+ * @param {Object} options
  */
 export async function attackRoll(actor, weapon, options) {
   console.log("Action.attackRoll()", actor, weapon, options);
@@ -186,10 +177,11 @@ export async function attackRoll(actor, weapon, options) {
 }
 
 /**
+ * Make an Attack Roll for the specified Actor
  *
- * @param {*} actor
- * @param {*} weapon
- * @param {*} options
+ * @param {Actor} actor
+ * @param {Item} weapon
+ * @param {Object} options
  */
 export function damageRoll(actor, weapon, options = {}) {
   console.log("Action.damageRoll()", actor, weapon, options);

@@ -109,11 +109,11 @@ FT:
       phase:
         movement: Movement
         combat: Combat
-  #
+  # Application
   app:
     dice:
       title: Dice Roller
-  #
+  # Character
   character:
     type:
       hero: Hero
@@ -208,6 +208,7 @@ FT:
         delete: Delete
         roll: Roll
         cast: Cast
+  # Item
   item:
     type:
       talent: Talent

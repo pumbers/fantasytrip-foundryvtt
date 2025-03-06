@@ -65,7 +65,7 @@ Hooks.on("combatStart", function (combat, updateData) {
 });
 
 Hooks.on("combatRound", (combat, updateData, updateOptions) => {
-  // Siwch the combat phase
+  // Switch the combat phase
   updateData["system.phase"] = combat.system.phase === "movement" ? "combat" : "movement";
   // console.log("Hooks.combatRound", "combat", combat, "updateData", updateData, "updateOptions", updateOptions);
 });

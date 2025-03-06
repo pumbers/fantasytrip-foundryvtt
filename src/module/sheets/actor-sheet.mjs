@@ -228,6 +228,10 @@ export class FTCharacterSheet extends ActorSheet {
   }
 }
 
+/**
+ * Fantasy Trip NPC Sheet
+ * @extends {ActorSheet} Extends the FTCHaracterSheet
+ */
 export class FTNPCSheet extends FTCharacterSheet {
   /** @override */
   static get defaultOptions() {

@@ -1,7 +1,8 @@
-import { FT } from "../system/config.mjs";
-
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
+/**
+ * Dice Roller Application
+ */
 export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: "ft-dice-roller",
@@ -47,7 +48,7 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   static onSubmit(event, _, formData) {
-    console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);
+    // console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);
 
     const data = foundry.utils.expandObject(Object.fromEntries(formData));
     data.dice = parseInt(data.dice);
