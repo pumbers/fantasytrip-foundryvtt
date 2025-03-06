@@ -18,8 +18,8 @@ env:
 on:
   release:
     types:
-      - created
-      - edited
+      # - created
+      # - edited
       - prereleased
       - published
 
@@ -57,7 +57,7 @@ jobs:
 
       # Create a "system.zip" archive containing all the system's required files.
       - name: Create System Archive
-        working-directory: build
+        # working-directory: build
         run: |
           zip --recurse-paths ./system.zip  \
             LICENSE                         \
