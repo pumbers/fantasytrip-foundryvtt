@@ -10,8 +10,8 @@ authors:
     email: codetheoretic@gmail.com
 license: LICENSE
 readme: README.md
-manifest: "#{MANIFEST}"
-download: "#{DOWNLOAD}"
+manifest: "#{MANIFEST}#"
+download: "#{DOWNLOAD}#"
 url: https://foundryvtt.com/packages/fantasytrip-foundryvtt
 bugs: https://github.com/pumbers/fantasytrip-foundryvtt/issues
 # changelog:
