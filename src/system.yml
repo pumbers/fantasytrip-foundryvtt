@@ -1,27 +1,17 @@
-name: fantasytrip
+id: fantasytrip
 title: Fantasy Trip
-description: Fantasy Trip for FoundryVTT!
+description: Fantasy Trip for FoundryVTT (Unofficial)
 version: 0.1.0
 compatibility:
   minimum: "12"
   verified: "12.331"
 authors:
   - name: 3rd Dog
-    email: codetheoretic@gmail.com
 license: LICENSE
-readme: README.md
+url: https://github.com/pumbers/fantasytrip-foundryvtt
 manifest: "#{MANIFEST}#"
 download: "#{DOWNLOAD}#"
-url: https://foundryvtt.com/packages/fantasytrip-foundryvtt
 bugs: https://github.com/pumbers/fantasytrip-foundryvtt/issues
-# changelog:
-# relationships:
-#   requires:
-#     - id: lib-wrapper
-#       type: module
-#       compatibility:
-#         minimum: 1.13
-#         verified: 1.13.2
 esmodules:
   - module/fantasytrip.mjs
 styles:
