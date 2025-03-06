@@ -1,7 +1,7 @@
 id: fantasytrip
+version: 0.1.0
 title: Fantasy Trip
 description: Fantasy Trip for FoundryVTT (Unofficial)
-version: 0.1.0
 compatibility:
   minimum: "12"
   verified: "12.331"
@@ -21,7 +21,6 @@ styles:
   - css/npc-sheet.css
   - css/item-sheet.css
   - css/applications.css
-scripts:
 packs:
   - name: using-fantasy-trip-for-foundry-vtt
     label: Using Fantasy Trip for Foundry VTT
