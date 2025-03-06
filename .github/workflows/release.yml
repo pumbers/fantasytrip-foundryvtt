@@ -55,17 +55,16 @@ jobs:
 
       # Create a "system.zip" archive containing all the system's required files.
       - name: Create System Archive
-        # working-directory: build
         run: |
           zip --recurse-paths ./system.zip  \
             LICENSE                         \
-            system.json                     \
-            assets/                         \
-            css/                            \
-            lang/                           \
-            module/                         \
-            packs/                          \
-            templates/                      \
+            build/system.json                     \
+            build/assets/                         \
+            build/css/                            \
+            build/lang/                           \
+            build/module/                         \
+            build/packs/                          \
+            build/templates/                      \
 
       # Update the GitHub release with the manifest and system archive files.
       - name: Update Release With Files
