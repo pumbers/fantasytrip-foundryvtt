@@ -20,6 +20,8 @@ on:
   release:
     types:
       - created
+      - edited
+      - prereleased
       - published
 
 jobs:
