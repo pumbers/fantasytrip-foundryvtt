@@ -41,7 +41,7 @@ jobs:
       - name: Build System
         uses: borales/actions-yarn@v4
         with:
-          cmd: build
+          cmd: dist
 
       # Modify system.json with values specific to the release.
       - name: Modify System Manifest
