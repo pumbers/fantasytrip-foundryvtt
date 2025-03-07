@@ -2,7 +2,7 @@ name: Ring of Fighting
 type: equipment
 img: icons/equipment/finger/ring-bone-spiked.webp
 system:
-  notes: ''
+  notes: ""
   cost: 300
   wt: 0
   qty: 1
@@ -20,7 +20,7 @@ effects:
     changes:
       - key: system.dx.modFor.melee
         mode: 2
-        value: '4'
+        value: "4"
         priority: null
     disabled: true
     duration:
@@ -32,7 +32,7 @@ effects:
       startRound: null
       startTurn: null
     description: Something
-    tint: '#ffffff'
+    tint: "#ffffff"
     transfer: true
     statuses: []
     sort: 0
@@ -40,20 +40,20 @@ effects:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
-      systemId: fantasytrip
+      coreVersion: "12.331"
+      systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
       modifiedTime: null
       lastModifiedBy: null
-    _key: '!items.effects!pSBKR4sm1IDTg1BV.DLax6XO1EB4VpGWz'
+    _key: "!items.effects!pSBKR4sm1IDTg1BV.DLax6XO1EB4VpGWz"
 folder: null
 flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
-  coreVersion: '12.331'
-  systemId: fantasytrip
+  coreVersion: "12.331"
+  systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1741279597871
   modifiedTime: 1741279597871
@@ -63,5 +63,4 @@ sort: 0
 ownership:
   default: 0
   jYWQAcYwV2K8zXyc: 3
-_key: '!items!pSBKR4sm1IDTg1BV'
-
+_key: "!items!pSBKR4sm1IDTg1BV"

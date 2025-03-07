@@ -2,7 +2,7 @@ name: Tactics
 type: talent
 img: icons/skills/melee/maneuver-greatsword-yellow.webp
 system:
-  notes: ''
+  notes: ""
   minIQ: 11
   iqCost: 1
   defaultAttribute: iq.max
@@ -16,7 +16,7 @@ effects:
     changes:
       - key: system.initiative.party
         mode: 5
-        value: '1'
+        value: "1"
         priority: null
     disabled: false
     duration:
@@ -27,8 +27,8 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: ''
-    tint: '#ffffff'
+    description: ""
+    tint: "#ffffff"
     transfer: true
     statuses: []
     sort: 0
@@ -36,20 +36,20 @@ effects:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
-      systemId: fantasytrip
+      coreVersion: "12.331"
+      systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
       modifiedTime: null
       lastModifiedBy: null
-    _key: '!items.effects!VNQsTrbPOcIDH3Pp.EAyrYOx3POH4qo1J'
+    _key: "!items.effects!VNQsTrbPOcIDH3Pp.EAyrYOx3POH4qo1J"
 folder: null
 flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
-  coreVersion: '12.331'
-  systemId: fantasytrip
+  coreVersion: "12.331"
+  systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1741279606374
   modifiedTime: 1741279606374
@@ -59,5 +59,4 @@ sort: 0
 ownership:
   default: 0
   jYWQAcYwV2K8zXyc: 3
-_key: '!items!VNQsTrbPOcIDH3Pp'
-
+_key: "!items!VNQsTrbPOcIDH3Pp"

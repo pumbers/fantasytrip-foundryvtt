@@ -2,7 +2,7 @@ name: Sword
 type: talent
 img: icons/skills/melee/hand-grip-sword-white-brown.webp
 system:
-  notes: ''
+  notes: ""
   defaultAttribute: dx.value
   iqCost: 1
   minIQ: 7
@@ -12,8 +12,8 @@ flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
-  coreVersion: '12.331'
-  systemId: fantasytrip
+  coreVersion: "12.331"
+  systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1741279604409
   modifiedTime: 1741279604409
@@ -23,5 +23,4 @@ sort: 0
 ownership:
   default: 0
   jYWQAcYwV2K8zXyc: 3
-_key: '!items!EHIx4Pb3d7EZ1KB1'
-
+_key: "!items!EHIx4Pb3d7EZ1KB1"

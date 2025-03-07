@@ -39,7 +39,7 @@ export class FTCharacterSheet extends ActorSheet {
       system: foundry.utils.deepClone(this.actor.system),
       flags: foundry.utils.deepClone(this.actor.flags),
       settings: {
-        showItemIcons: game.settings.get("fantasytrip", "showItemIcons"),
+        showItemIcons: game.settings.get("fantasy-trip", "showItemIcons"),
       },
       // Categorized items
       talents: this.actor.items.filter((item) => item.type === "talent").sort((a, b) => a.name.localeCompare(b.name)),

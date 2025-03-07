@@ -66,7 +66,7 @@ effects:
     changes:
       - key: system.mana
         mode: 2
-        value: '10'
+        value: "10"
         priority: null
     disabled: true
     duration:
@@ -77,8 +77,8 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: ''
-    tint: '#ffffff'
+    description: ""
+    tint: "#ffffff"
     transfer: true
     statuses: []
     sort: 0
@@ -86,20 +86,20 @@ effects:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
-      systemId: fantasytrip
+      coreVersion: "12.331"
+      systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
       modifiedTime: null
       lastModifiedBy: null
-    _key: '!items.effects!pytO3uwpPPXRcxWk.olwx2f549hLy86ex'
+    _key: "!items.effects!pytO3uwpPPXRcxWk.olwx2f549hLy86ex"
 folder: null
 flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
-  coreVersion: '12.331'
-  systemId: fantasytrip
+  coreVersion: "12.331"
+  systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1741279611895
   modifiedTime: 1741279611895
@@ -109,5 +109,4 @@ sort: 0
 ownership:
   default: 0
   jYWQAcYwV2K8zXyc: 3
-_key: '!items!pytO3uwpPPXRcxWk'
-
+_key: "!items!pytO3uwpPPXRcxWk"

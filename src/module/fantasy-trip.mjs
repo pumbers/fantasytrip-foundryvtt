@@ -48,7 +48,7 @@ Hooks.once("init", async function () {
   /*
    * Define game settings
    */
-  game.settings.register("fantasytrip", "initialAP", {
+  game.settings.register("fantasy-trip", "initialAP", {
     name: game.i18n.localize("FT.game.settings.initialAP.name"),
     hint: game.i18n.localize("FT.game.settings.initialAP.hint"),
     scope: "world",
@@ -56,7 +56,7 @@ Hooks.once("init", async function () {
     config: true,
   });
 
-  game.settings.register("fantasytrip", "damageMultiplierStrategy", {
+  game.settings.register("fantasy-trip", "damageMultiplierStrategy", {
     name: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.name"),
     hint: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.hint"),
     scope: "world",
@@ -74,7 +74,7 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
-  game.settings.register("fantasytrip", "allowTalentSpendOnIQIncrease", {
+  game.settings.register("fantasy-trip", "allowTalentSpendOnIQIncrease", {
     name: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.name"),
     hint: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.hint"),
     scope: "world",
@@ -82,7 +82,7 @@ Hooks.once("init", async function () {
     config: true,
   });
 
-  game.settings.register("fantasytrip", "showItemIcons", {
+  game.settings.register("fantasy-trip", "showItemIcons", {
     name: game.i18n.localize("FT.game.settings.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.settings.showItemIcons.hint"),
     scope: "world",

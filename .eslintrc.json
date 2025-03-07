@@ -18,7 +18,7 @@
     "no-unused-vars": ["error", { "varsIgnorePattern": ".*Key" }]
   },
   "globals": {
-    "fantasytrip": true,
+    "fantasy-trip": true,
     "$": true,
     "foundry": true,
     "fromUuid": true,

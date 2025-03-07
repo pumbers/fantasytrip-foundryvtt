@@ -2,7 +2,7 @@ name: Light Leather
 type: equipment
 img: icons/equipment/chest/shirt-collared-yellow.webp
 system:
-  notes: ''
+  notes: ""
   cost: 10
   wt: 2
   qty: 1
@@ -22,11 +22,11 @@ effects:
     changes:
       - key: system.ma.max
         mode: 3
-        value: '8'
+        value: "8"
         priority: null
       - key: system.dx.max
         mode: 2
-        value: '-2'
+        value: "-2"
         priority: null
     disabled: true
     duration:
@@ -37,8 +37,8 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: ''
-    tint: '#ffffff'
+    description: ""
+    tint: "#ffffff"
     transfer: true
     statuses: []
     sort: 0
@@ -46,20 +46,20 @@ effects:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
-      systemId: fantasytrip
+      coreVersion: "12.331"
+      systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
       modifiedTime: null
       lastModifiedBy: null
-    _key: '!items.effects!nfxbGVXzz7SqpFMl.sWzgfvlGoA3AOkBz'
+    _key: "!items.effects!nfxbGVXzz7SqpFMl.sWzgfvlGoA3AOkBz"
 folder: null
 flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
-  coreVersion: '12.331'
-  systemId: fantasytrip
+  coreVersion: "12.331"
+  systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1741279593790
   modifiedTime: 1741279595720
@@ -69,5 +69,4 @@ sort: 300000
 ownership:
   default: 0
   jYWQAcYwV2K8zXyc: 3
-_key: '!items!nfxbGVXzz7SqpFMl'
-
+_key: "!items!nfxbGVXzz7SqpFMl"

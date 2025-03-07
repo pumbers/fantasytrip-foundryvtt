@@ -4,7 +4,7 @@ export const FT = {};
 /*  Game System Config & Options                  */
 /* ------------------------------------------- */
 
-FT.path = "systems/fantasytrip";
+FT.path = "systems/fantasy-trip";
 
 FT.settings = {
   damageMultiplierStrategy: {
