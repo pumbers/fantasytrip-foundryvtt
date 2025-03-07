@@ -32,8 +32,13 @@ export class FTSpellData extends FTTalentData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
       type: new StringField(),
-      stToCast: new NumberField({ initial: 0 }),
+      stToCast: new SchemaField({ min: new NumberField({ initial: 0 }), max: new NumberField({ initial: 0 }) }),
     });
+  }
+
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    this.stToCast.max = Math.max(this.stToCast.min, this.stToCast.max);
   }
 }
 

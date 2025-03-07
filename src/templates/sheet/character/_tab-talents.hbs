@@ -15,6 +15,7 @@
             <tr>
                 {{#if settings.showItemIcons}}<th></th>{{/if}}
                 <th class="w-full">{{localize 'FT.character.sheet.table.talents.name'}}</th>
+                <th>{{localize 'FT.character.sheet.table.talents.attribute'}}</th>
                 <th>{{localize 'FT.character.sheet.table.talents.iq'}}</th>
                 <th>{{localize 'FT.character.sheet.table.talents.cost'}}</th>
                 <th></th>
@@ -27,6 +28,7 @@
             <td><img src="{{talent.img}}" /> </td>
             {{/if}}
             <td>{{talent.name}}</td>
+            <td>{{localize (concat "FT.character.attribute." talent.system.defaultAttribute)}}</td>
             <td>{{talent.system.minIQ}}</td>
             <td>{{talent.system.actualIQCost}}</td>
             <td><a class="px-[2px] action" data-action="talent-roll">{{localize "FT.character.sheet.button.roll"}}</a>
@@ -36,7 +38,7 @@
         {{/each}}
         <tfoot>
             <tr>
-                <td colspan="3"></td>
+                <td colspan="4"></td>
                 <td class="!text-center">{{system.totalIQCost.talents}}</td>
                 <td colspan="2"></td>
             </tr>

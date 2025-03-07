@@ -66,16 +66,6 @@ FT:
   # System
   system:
     roll:
-      attribute:
-        st:
-          max: ST
-          value: adj ST
-        dx:
-          max: DX
-          value: adj DX
-        iq:
-          max: IQ
-          value: adj IQ
       type:
         success: Success
         save: Save
@@ -83,6 +73,8 @@ FT:
         attack: Attack
         damage: Damage
         cast: Cast
+      cost:
+        st: ST Cost
       modifier:
         situationMod: Situation
         attributeMod: Attribute
@@ -92,19 +84,34 @@ FT:
         rangeMod: Range
       flavor:
         success:
-          - Attempts a {attributes} check
+          - Attempts a {attributes} check... {result}
+          - Tries valiantly to make a {attributes} check... {result}
+          - Effortlessly tries to make a {attributes} check... {result}
         save:
-          - Attempts a {attributes} save
+          - Attempts a {attributes} save... {result}
+          - Tries valiantly to make a {attributes} save... {result}
+          - Effortlessly tries to make a {attributes} save... {result}
         talent:
-          - Attempts a {talent} check
+          - Attempts a {talent} check... {result}
+          - Puts every effort into a {talent} check... {result}
+          - Effortlessly tries to make a {talent} check... {result}
         attack:
-          - Attempts to {attack} {targets} with their {item}
+          - Attempts to {attack} {targets} with their {item}... {result}
+          - Firecely tries to {attack} {targets} with their {item}... {result}
+          - Brings all their might to bear in a {attack} on {targets} with their {item}... {result}
         cast:
-          - Casts {spell}
+          - Attempts to cast {spell}... {result}
+          - Weaves mana to cast {spell}... {result}
+          - Waves and mutters, casting {spell}... {result}
+          - Shapes mana and casts {spell}... {result}
+          - With confidence, casts {spell}... {result}
+          - Concentrates then casts {spell}... {result}
       result:
-        exact: ... Success! Just made it!
-        success: ... Success! Made it by {margin}
-        failure: ... and misses by {margin}
+        exact: Success! Just made it!
+        automaticSuccess: Automatic success!
+        success: Success! Made it by {margin}
+        failure: and misses by {margin}
+        criticalFailure: Critical failure!
     combat:
       phase:
         movement: Movement
@@ -126,14 +133,18 @@ FT:
       orc: Orc
       goblin: Goblin
     attribute:
-      st.max: ST
-      st.value: adj ST
-      dx.max: DX
-      dx.value: adj DX
-      iq.max: IQ
-      iq.value: adj IQ
-      ma.max: MA
-      ma.value: adj MA
+      st:
+        max: ST
+        value: adjST
+      dx:
+        max: DX
+        value: adjDX
+      iq:
+        max: IQ
+        value: adjIQ
+      ma:
+        max: MA
+        value: adjMA
     ma:
       mode:
         walk: Walk
@@ -184,6 +195,7 @@ FT:
       table:
         talents:
           name: Talent
+          attribute: Attr.
           iq: IQ
           cost: Cost
         items:
@@ -247,7 +259,8 @@ FT:
         iqCost: Cost to Acquire
         minST: Min ST to use
         type: Attack Type
-        stToCast: ST to Cast
+        minSTToCast: Min ST to Cast
+        maxSTToCast: Max ST to Cast
         talent: Talent to Use
         hitsStopped: Hits Stopped
         capacity: Capacity

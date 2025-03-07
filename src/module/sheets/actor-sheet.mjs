@@ -130,11 +130,12 @@ export class FTCharacterSheet extends ActorSheet {
         item = this.actor.getEmbeddedDocument("Item", itemId);
         Action.damageRoll(this.actor, item, dataset);
         break;
-      // case "cast-spell":
-      //   console.log("click():cast-spell", dataset);
-      //   if (!itemId) return;
-      //   item = this.actor.getEmbeddedDocument("Item", itemId);
-      //   break;
+      case "cast-spell":
+        console.log("click():cast-spell", dataset);
+        if (!itemId) return;
+        item = this.actor.getEmbeddedDocument("Item", itemId);
+        Action.castingRoll(this.actor, item, dataset);
+        break;
       case "create-effect":
       case "edit-effect":
       case "toggle-effect":

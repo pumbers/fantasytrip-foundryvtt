@@ -32,7 +32,11 @@
             <td>{{localize (concat "FT.item.spell.typeAbbr." spell.system.type)}}</td>
             <td>{{spell.system.minIQ}}</td>
             <td>{{spell.system.actualIQCost}}</td>
-            <td>{{spell.system.stToCast}}</td>
+            {{#if (eq spell.system.stToCast.min spell.system.stToCast.max)}}
+            <td>{{spell.system.stToCast.min}}</td>
+            {{else}}
+            <td>{{spell.system.stToCast.min}}-{{spell.system.stToCast.max}}</td>
+            {{/if}}
             <td><a class="px-[2px] action" data-action="cast-spell">{{localize "FT.character.sheet.button.cast"}}</a>
             </td>
             {{> actions}}

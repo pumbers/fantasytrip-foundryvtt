@@ -66,13 +66,11 @@ export function array() {
 /**
  * Create an array from a range
  */
-export function range() {
-  if (arguments.length === 1) return;
-  if (arguments.length === 2) return [...Array(Math.max(arguments[0], 0)).keys()];
-  let low = Math.min(arguments[0], arguments[1]);
-  let high = Math.max(arguments[0], arguments[1]);
+export function range(...args) {
+  args.pop();
+  let low = args.length === 1 ? 1 : Math.min(args[0], args[1]);
+  let high = Math.max(args[0], args[1] ?? 0);
   let list = [];
-  if (low === high) return list;
   for (var i = low; i <= high; i++) {
     list.push(i);
   }

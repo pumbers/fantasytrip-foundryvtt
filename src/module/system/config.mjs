@@ -24,6 +24,12 @@ FT.roll = {
     damage: "FT.system.roll.type.damage",
     cast: "FT.system.roll.type.cast",
   },
+  result: {
+    automaticSuccess: "FT.system.roll.result.automaticSuccess",
+    success: "FT.system.roll.result.success",
+    failure: "FT.system.roll.result.failure",
+    criticalFailure: "FT.system.roll.result.criticalFailure",
+  },
 };
 
 /* ------------------------------------------- */

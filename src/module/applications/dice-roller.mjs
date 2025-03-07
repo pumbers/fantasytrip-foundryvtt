@@ -1,3 +1,5 @@
+import { FT } from "../system/config.mjs";
+
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
 /**
@@ -23,7 +25,7 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
 
   static PARTS = {
     form: {
-      template: `systems/fantasytrip/templates/application/dice-roller.hbs`,
+      template: `${FT.path}/templates/application/dice-roller.hbs`,
     },
   };
 
@@ -44,11 +46,12 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
       ),
       FT: CONFIG.FT,
     };
+    console.log("FTDiceRollerApp._prepareContext()", "#context", FTDiceRollerApp.#context);
     return FTDiceRollerApp.#context;
   }
 
   static onSubmit(event, _, formData) {
-    // console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);
+    console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);
 
     const data = foundry.utils.expandObject(Object.fromEntries(formData));
     data.dice = parseInt(data.dice);
@@ -60,8 +63,8 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
           recursive: true,
         })
       );
-    } else if (event.submitter?.value === "cancel") {
-      this.close();
     }
+
+    this.close();
   }
 }

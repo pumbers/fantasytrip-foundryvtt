@@ -1,3 +1,4 @@
+{{log system}}
 <div class="flex flex-col gap-1">
     {{!-- Encumbrance --}}
     <div class="grid grid-cols-8 gap-1 text-xs text-center">
@@ -60,6 +61,7 @@
         <div class="field"><label>{{localize "FT.character.sheet.label.damage"}}</label><input type="number"
                 name="system.damage" value="{{system.damage}}" min="0"></div>
         {{#if (eq system.type "wizard")}}
+        {{!-- TODO Why does this input having a min cause the value to vanish?? --}}
         <div class="field"><label>{{localize "FT.character.sheet.label.mana"}}</label><input type="number"
                 name="system.mana.value" value="{{system.mana.value}}" max="{{system.mana.max}}">
         </div>

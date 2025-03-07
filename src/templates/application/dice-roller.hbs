@@ -1,11 +1,12 @@
 <div class="flex flex-col gap-2 justify-between">
-    {{log .}}
+    {{!-- {{log .}} --}}
     <div class="flex flex-row gap-4">
         <img class="w-16 h-16" src="{{actor.img}}" alt="{{actor.name}}" title="{{actor.name}}">
         {{#if talent}}
         <img class=" w-16 h-16" src="{{talent.img}}" alt="{{talent.name}}" title="{{talent.name}}">
-        {{/if}}
-        {{#if item}}
+        {{else if spell}}
+        <img class=" w-16 h-16" src="{{spell.img}}" alt="{{spell.name}}" title="{{spell.name}}">
+        {{else if item}}
         <img class=" w-16 h-16" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}">
         {{/if}}
         {{!-- {{#if (and actor.inCombat targets)}}
@@ -27,18 +28,32 @@
         {{/each}}
     </div>
 
-    {{!-- Attribute --}}
     {{#unless (eq type "damage")}}
+    {{!-- Attribute --}}
     <div class="grid grid-flow-col grid-rows-2 gap-1">
         {{#each (array "st.max" "st.value" "dx.max" "dx.value" "iq.max" "iq.value") as | attribute |}}
         <span>
             <input type="checkbox" name="attributes" id="attribute-{{attribute}}" value="{{attribute}}" {{#if (eq
                 ../attribute attribute)}}checked{{/if}}>
-            <label for="attribute-{{attribute}}">{{localize (concat "FT.system.roll.attribute." attribute)}}</label>
+            <label for="attribute-{{attribute}}">{{localize (concat "FT.character.attribute."
+                attribute)}}</label>
         </span>
         {{/each}}
     </div>
     {{/unless}}
+
+    {{!-- Spell Strength --}}
+    {{#if (eq type "cast")}}
+    <div class="grid grid-cols-16 gap-1">
+        <label class="text-xs col-span-3">{{localize "FT.system.roll.cost.st"}}</label>
+        {{#each (range spell.system.stToCast.min spell.system.stToCast.max) as | value |}}
+        <span>
+            <input type="radio" name="cost.st.value" id="cost-st-{{value}}" value="{{value}}" {{#if (eq value
+                ../cost.st.value)}}checked{{/if}}>
+            <label for="cost-st-{{value}}">{{numberFormat value}}</label> </span>
+        {{/each}}
+    </div>
+    {{/if}}
 
     {{!-- Modifiers --}}
     {{#each modifiers as | value modifier|}}

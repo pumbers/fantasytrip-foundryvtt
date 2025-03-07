@@ -31,10 +31,13 @@
                     <label>{{localize "FT.item.sheet.label.baseDamage"}}</label>
                     <input type="text" name="system.attacks.{{@index}}.baseDamage" value="{{attack.baseDamage}}">
                 </div>
+                {{!-- If equipment, there's a min ST to use --}}
+                {{#if (eq ../item.type "equipment")}}
                 <div class="field">
                     <label>{{localize "FT.item.sheet.label.minST"}}</label>
                     <input type="number" name="system.attacks.{{@index}}.minST" value="{{attack.minST}}" min="0">
                 </div>
+                {{!-- If owned equipment, there may be a talent required --}}
                 {{#if ../owned}}
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.talent"}}</label>
@@ -43,6 +46,7 @@
                         {{selectOptions ../selectOptions.talents selected=attack.talent}}
                     </select>
                 </div>
+                {{/if}}
                 {{/if}}
             </div>
             {{/each}}
