@@ -38,7 +38,9 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
         {
           type: "success",
           dice: 3,
-          modifiers: { situationMod: 0 },
+          modifiers: {
+            situationMod: { min: FT.roll.modifiers.default.min, max: FT.roll.modifiers.default.max, value: 0 },
+          },
           rollMode: "roll",
         },
         options,

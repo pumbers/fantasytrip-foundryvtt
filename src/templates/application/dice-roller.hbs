@@ -56,14 +56,14 @@
     {{/if}}
 
     {{!-- Modifiers --}}
-    {{#each modifiers as | value modifier|}}
+    {{#each modifiers as | modifier name|}}
     <div class="grid grid-cols-16 gap-1">
-        <label class="text-xs col-span-3">{{localize (concat "FT.system.roll.modifier." modifier)}}</label>
-        {{#each (range -6 6) as | set |}}
+        <label class="text-xs col-span-3">{{localize (concat "FT.system.roll.modifier." name)}}</label>
+        {{#each (range modifier.min modifier.max) as | set |}}
         <span>
-            <input type="radio" name="modifiers.{{modifier}}" id="modifiers-{{modifier}}-{{set}}" value="{{set}}" {{#if
-                (eq value set)}}checked{{/if}}>
-            <label for="modifiers-{{modifier}}-{{set}}">{{numberFormat set sign=true}}</label>
+            <input type="radio" name="modifiers.{{name}}" id="modifiers-{{name}}-{{set}}" value="{{set}}" {{#if (eq
+                modifier.value set)}}checked{{/if}}>
+            <label for="modifiers-{{name}}-{{set}}">{{numberFormat set sign=true}}</label>
         </span>
         {{/each}}
     </div>

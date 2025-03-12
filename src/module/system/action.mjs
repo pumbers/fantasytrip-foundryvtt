@@ -204,11 +204,45 @@ export function attackRoll(actor, weapon, options) {
     item: weapon,
     attribute: attack.attribute,
     modifiers: {
-      ...(attack.toHitMod !== 0 ? { toHitMod: attack.toHitMod } : {}),
-      ...(attack.minSTMod !== 0 ? { minSTMod: attack.minSTMod } : {}),
-      ...(attack.attackTypeMod !== 0 ? { attackTypeMod: attack.attackTypeMod } : {}),
-      ...(attack.attributeMod !== 0 ? { attributeMod: attack.attributeMod } : {}),
-      ...(attack.type === "thrown" || attack.type === "missile" ? { rangeMod: 0 } : {}),
+      ...(attack.toHitMod !== 0
+        ? {
+            toHitMod: {
+              min: FT.roll.modifiers.default.min,
+              max: FT.roll.modifiers.default.max,
+              value: attack.toHitMod,
+            },
+          }
+        : {}),
+      ...(attack.minSTMod !== 0
+        ? {
+            minSTMod: {
+              min: FT.roll.modifiers.default.min,
+              max: FT.roll.modifiers.default.max,
+              value: attack.minSTMod,
+            },
+          }
+        : {}),
+      ...(attack.attackTypeMod !== 0
+        ? {
+            attackTypeMod: {
+              min: FT.roll.modifiers.default.min,
+              max: FT.roll.modifiers.default.max,
+              value: attack.attackTypeMod,
+            },
+          }
+        : {}),
+      ...(attack.attributeMod !== 0
+        ? {
+            attributeMod: {
+              min: FT.roll.modifiers.default.min,
+              max: FT.roll.modifiers.default.max,
+              value: attack.attributeMod,
+            },
+          }
+        : {}),
+      ...(attack.type === "thrown" || attack.type === "missile"
+        ? { rangeMod: { min: FT.roll.modifiers.range.min, max: FT.roll.modifiers.range.max, value: 0 } }
+        : {}),
     },
     targets: Array.from(game.user.targets),
     ...options,
@@ -217,7 +251,7 @@ export function attackRoll(actor, weapon, options) {
       console.log("Action.attackRoll().submit()", "data", data);
 
       // Extract roll parameters
-      const { actor, talent, item, targets, dice, totalAttributes, totalModifiers, rollMode } =
+      const { actor, talent, item, targets, dice, attributes, totalAttributes, totalModifiers, rollMode } =
         extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
@@ -238,10 +272,24 @@ export function attackRoll(actor, weapon, options) {
         }),
       });
 
+      const content = await renderTemplate(`${CONFIG.FT.path}/templates/chat/attack.hbs`, {
+        attributes: attributes.map((a) => game.i18n.localize(`FT.character.attribute.${a}`)).join("+"),
+        totalAttributes,
+        modifiers: data.modifiers,
+        totalModifiers,
+        target: totalAttributes + totalModifiers,
+        unskilled: !!talent,
+        dice,
+        roll: roll,
+        classes: margin >= 0 ? "success" : "failure",
+        parts: roll.dice.map((d) => d.getTooltipData()),
+      });
+
       roll.toMessage(
         {
           speaker: ChatMessage.getSpeaker({ actor }),
           flavor: message,
+          content,
         },
         { rollMode }
       );

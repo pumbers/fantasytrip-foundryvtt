@@ -24,6 +24,10 @@ FT.roll = {
     damage: "FT.system.roll.type.damage",
     cast: "FT.system.roll.type.cast",
   },
+  modifiers: {
+    default: { min: -6, max: 6 },
+    range: { min: -9, max: 0 },
+  },
   result: {
     automaticSuccess: "FT.system.roll.result.automaticSuccess",
     success: "FT.system.roll.result.success",

@@ -66,6 +66,7 @@ FT:
   # System
   system:
     roll:
+      dice: "{dice}D6"
       type:
         success: Success
         save: Save
@@ -82,6 +83,8 @@ FT:
         toHitMod: Attack
         attackTypeMod: Attack Type
         rangeMod: Range
+        unskilled: Unskilled
+      target: Target
       flavor:
         success:
           - Attempts a {attributes} check... {result}

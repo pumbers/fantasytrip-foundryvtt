@@ -1,0 +1,60 @@
+{{log .}}
+<div class="message-content">
+    <div class="dice-roll">
+        <div class="dice-result">
+            {{!-- Roll Formula --}}
+            <div class="dice-formula">{{roll.formula}}</div>
+            <div class="dice-tooltip">
+                {{!-- Roll Modifier Summary --}}
+                <section class="tooltip-part">
+                    <div class="target mb-2">
+                        <header class="part-header flexrow">
+                            <span class="part-formula">{{attributes}}</span>
+                            <span class="part-total">{{totalAttributes}}</span>
+                        </header>
+                        <ol class="modifiers list-none !p-0">
+                            {{#each modifiers as | value modifier|}}
+                            <li class="flex flex-row justify-between px-[5px]">
+                                <span>{{localize (concat "FT.system.roll.modifier." modifier)}}</span>
+                                <span>{{numberFormat value sign=true}}</span>
+                            </li>
+                            {{/each}}
+                            <li class="flex flex-row justify-between px-[5px] font-bold">
+                                <span>{{localize "FT.system.roll.target"}}</span>
+                                <span>{{target}}</span>
+                            </li>
+                            <li class="flex flex-row justify-between px-[5px]">
+                                <span>{{localize "FT.system.roll.modifier.unskilled"}}</span>
+                                <span>{{roll.formula}}</span>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+                {{!-- Normal Foundry Dice Result Display --}}
+                {{#each parts}}
+                <section class="tooltip-part">
+                    <div class="dice">
+                        <header class="part-header flexrow">
+                            {{#if icon}}
+                            <span class="part-method" data-tooltip="{{ method }}" aria-label="{{ localize method }}">
+                                {{{ icon }}}
+                            </span>
+                            {{/if}}
+                            <span class="part-formula">{{this.formula}}</span>
+                            {{#if this.flavor}}<span class="part-flavor">{{this.flavor}}</span>{{/if}}
+                            <span class="part-total">{{this.total}}</span>
+                        </header>
+                        <ol class="dice-rolls">
+                            {{#each this.rolls}}
+                            <li class="roll {{this.classes}}">{{{this.result}}}</li>
+                            {{/each}}
+                        </ol>
+                    </div>
+                </section>
+                {{/each}}
+            </div>
+            {{!-- Roll Total --}}
+            <h4 class="dice-total {{classes}}">{{roll.total}}</h4>
+        </div>
+    </div>
+</div>
