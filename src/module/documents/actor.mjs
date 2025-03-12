@@ -81,13 +81,13 @@ export class FTActor extends Actor {
           const talent = this.getEmbeddedDocument("Item", attack.talent);
           attack.attribute = !!talent ? talent.system.defaultAttribute : "dx.value";
           attack.dice = !!talent ? 3 : 4;
-          attack.stHitMod = Math.min(this.system.st.max - attack.minST, 0);
+          attack.minSTMod = Math.min(this.system.st.max - attack.minST, 0);
           attack.attackTypeMod = this.system.dx.modFor[attack.type];
           attack.attributeMod = this.system.dx.mod;
           attack.toHit =
             foundry.utils.getProperty(this.system, attack.attribute) +
             attack.toHitMod +
-            attack.stHitMod +
+            attack.minSTMod +
             attack.attackTypeMod +
             attack.attributeMod;
 

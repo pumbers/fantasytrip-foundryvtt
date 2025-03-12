@@ -141,11 +141,13 @@ export async function talentRoll(actor, talent, options) {
   console.log("Action.talentRoll()", actor, talent, options);
   const context = {
     force: true,
+    //
     type: "talent",
     dice: 3,
     actor,
     talent,
     attribute: talent.system.defaultAttribute,
+    //
     submit: async (data) => {
       console.log("Action.talentRoll().submit()", "data", data);
 
@@ -153,27 +155,27 @@ export async function talentRoll(actor, talent, options) {
       const { actor, talent, dice, totalAttributes, totalModifiers, rollMode } = extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
-      new Roll(`${data.dice}D6`).evaluate().then((roll) => {
-        // Determine roll result and margin of success/failure
-        const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
-        const margin = totalAttributes + totalModifiers - roll.total;
+      const roll = await new Roll(`${data.dice}D6`).evaluate();
 
-        // Create a chat message for the result
-        const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 3)}`, {
-          talent: talent.name,
-          result: game.i18n.format(`FT.system.roll.result.${margin === 0 ? "exact" : result}`, {
-            margin: Math.abs(margin),
-          }),
-        });
+      // Determine roll result and margin of success/failure
+      const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
+      const margin = totalAttributes + totalModifiers - roll.total;
 
-        roll.toMessage(
-          {
-            speaker: ChatMessage.getSpeaker({ actor }),
-            flavor: message,
-          },
-          { rollMode }
-        );
+      // Create a chat message for the result
+      const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 3)}`, {
+        talent: talent.name,
+        result: game.i18n.format(`FT.system.roll.result.${margin === 0 ? "exact" : result}`, {
+          margin: Math.abs(margin),
+        }),
       });
+
+      roll.toMessage(
+        {
+          speaker: ChatMessage.getSpeaker({ actor }),
+          flavor: message,
+        },
+        { rollMode }
+      );
     },
   };
 
@@ -194,6 +196,7 @@ export function attackRoll(actor, weapon, options) {
 
   const context = {
     force: true,
+    //
     type: "attack",
     dice: attack.dice,
     actor,
@@ -202,13 +205,14 @@ export function attackRoll(actor, weapon, options) {
     attribute: attack.attribute,
     modifiers: {
       ...(attack.toHitMod !== 0 ? { toHitMod: attack.toHitMod } : {}),
-      ...(attack.stHitMod !== 0 ? { stHitMod: attack.stHitMod } : {}),
+      ...(attack.minSTMod !== 0 ? { minSTMod: attack.minSTMod } : {}),
       ...(attack.attackTypeMod !== 0 ? { attackTypeMod: attack.attackTypeMod } : {}),
       ...(attack.attributeMod !== 0 ? { attributeMod: attack.attributeMod } : {}),
       ...(attack.type === "thrown" || attack.type === "missile" ? { rangeMod: 0 } : {}),
     },
     targets: Array.from(game.user.targets),
     ...options,
+    //
     submit: async (data) => {
       console.log("Action.attackRoll().submit()", "data", data);
 
@@ -217,30 +221,30 @@ export function attackRoll(actor, weapon, options) {
         extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
-      new Roll(`${data.dice}D6`).evaluate().then((roll) => {
-        // Determine roll result and margin of success/failure
-        const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
-        const margin = totalAttributes + totalModifiers - roll.total;
+      const roll = await new Roll(`${data.dice}D6`).evaluate();
 
-        // Create a chat message for the result
-        const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 3)}`, {
-          talent: talent.name,
-          item: item.name,
-          attack: attack.action,
-          targets,
-          result: game.i18n.format(`FT.system.roll.result.${margin === 0 ? "exact" : result}`, {
-            margin: Math.abs(margin),
-          }),
-        });
+      // Determine roll result and margin of success/failure
+      const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
+      const margin = totalAttributes + totalModifiers - roll.total;
 
-        roll.toMessage(
-          {
-            speaker: ChatMessage.getSpeaker({ actor }),
-            flavor: message,
-          },
-          { rollMode }
-        );
+      // Create a chat message for the result
+      const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 3)}`, {
+        talent: talent?.name,
+        item: item?.name,
+        attack: attack.action,
+        targets,
+        result: game.i18n.format(`FT.system.roll.result.${margin === 0 ? "exact" : result}`, {
+          margin: Math.abs(margin),
+        }),
       });
+
+      roll.toMessage(
+        {
+          speaker: ChatMessage.getSpeaker({ actor }),
+          flavor: message,
+        },
+        { rollMode }
+      );
     },
   };
 
@@ -306,6 +310,7 @@ export function castingRoll(actor, spell, options = {}) {
 
   const context = {
     force: true,
+    //
     type: "cast",
     dice: 3,
     actor,
@@ -318,6 +323,7 @@ export function castingRoll(actor, spell, options = {}) {
         value: spell.system.stToCast.min,
       },
     },
+    //
     submit: async (data) => {
       console.log("Action.castingRoll().submit()", "data", data);
 
@@ -325,56 +331,27 @@ export function castingRoll(actor, spell, options = {}) {
       const { actor, spell, dice, totalAttributes, totalModifiers, rollMode } = extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
-      new Roll(`${data.dice}D6`).evaluate().then((roll) => {
-        // Determine roll result and margin of success/failure
-        const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
-        const margin = totalAttributes + totalModifiers - roll.total;
+      const roll = await new Roll(`${data.dice}D6`).evaluate();
 
-        // Create a chat message for the result
-        const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
-          spell: spell.name,
-          result: game.i18n.format(`FT.system.roll.result.${margin === 0 ? "exact" : result}`, {
-            margin: Math.abs(margin),
-          }),
-        });
+      // Determine roll result and margin of success/failure
+      const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
+      const margin = totalAttributes + totalModifiers - roll.total;
 
-        roll.toMessage(
-          {
-            speaker: ChatMessage.getSpeaker({ actor }),
-            flavor: message,
-          },
-          { rollMode }
-        );
+      // Create a chat message for the result
+      const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
+        spell: spell.name,
+        result: game.i18n.format(`FT.system.roll.result.${margin === 0 ? "exact" : result}`, {
+          margin: Math.abs(margin),
+        }),
       });
 
-      // const roll = new Roll(`${data.dice}D6`, {
-      //   actor: data.actor,
-      // });
-
-      // roll.evaluate().then((roll) => {
-      //   // Extract roll parameters
-      //   const { attributes, totalAttributes, totalModifiers } = extractRollParameters(data);
-
-      //   // TODO random message choice
-      //   const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
-      //     spell: spell.name,
-      //   });
-      //   const margin = totalAttributes + totalModifiers - roll.total;
-      //   const result =
-      //     margin === 0
-      //       ? game.i18n.format("FT.system.roll.result.exact")
-      //       : margin >= 0
-      //       ? game.i18n.format("FT.system.roll.result.success", { margin: Math.abs(margin) })
-      //       : game.i18n.format("FT.system.roll.result.failure", { margin: Math.abs(margin) });
-
-      //   roll.toMessage(
-      //     {
-      //       speaker: ChatMessage.getSpeaker({ actor: data.actor }),
-      //       flavor: message + result,
-      //     },
-      //     { rollMode: data.rollMode }
-      //   );
-      // });
+      roll.toMessage(
+        {
+          speaker: ChatMessage.getSpeaker({ actor }),
+          flavor: message,
+        },
+        { rollMode }
+      );
     },
   };
 

@@ -78,7 +78,7 @@ FT:
       modifier:
         situationMod: Situation
         attributeMod: Attribute
-        stHitMod: Attack Min ST
+        minSTMod: Attack Min ST
         toHitMod: Attack
         attackTypeMod: Attack Type
         rangeMod: Range
@@ -258,7 +258,7 @@ FT:
         minIQ: IQ Level
         iqCost: Cost to Acquire
         minST: Min ST to use
-        type: Attack Type
+        type: Spell Type
         minSTToCast: Min ST to Cast
         maxSTToCast: Max ST to Cast
         talent: Talent to Use

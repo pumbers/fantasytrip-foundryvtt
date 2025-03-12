@@ -82,12 +82,12 @@ Hooks.on("FT.getInitiativeRoll", (combat, combatant, data) => {
       (c) => (!combatant.isNPC && !c.isNPC) || (combatant.isNPC && c.isNPC && c.actor.name === combatant.actor.name)
     );
 
-  // Party bonus is the highest party bonus from all party members
+  // Party bonus is the highest party bonus from all party members of the same actor name
   const partyBonus = Math.max(...party.map((c) => c.actor.system.initiative.party));
 
   // Return the formula
   let formula = `1d6+@initiative.situation+@initiative.self+${partyBonus}+(1d6/10)+(1d6/100)`;
-  console.log("Hooks.getInitiativeRoll", "party", party.map((c) => c.name).join(","), "formula", formula);
+  // console.log("Hooks.getInitiativeRoll", "party", party.map((c) => c.name).join(","), "formula", formula);
   data.formula = combat.system.phase === "combat" ? `@dx.value+${(combatant.initiative ?? 0) / 10}` : formula;
 });
 
@@ -104,6 +104,6 @@ export class FTCombatant extends Combatant {
   getInitiativeRoll(formula) {
     const data = {};
     Hooks.callAll("FT.getInitiativeRoll", this.parent, this, data);
-    return super.getInitiativeRoll(data.formula);
+    return super.getInitiativeRoll(data.formula ?? formula);
   }
 }
