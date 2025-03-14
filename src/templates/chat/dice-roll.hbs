@@ -1,4 +1,4 @@
-{{log .}}
+{{!-- {{log .}} --}}
 <div class="message-content">
     <div class="dice-roll">
         <div class="dice-result">
@@ -7,7 +7,7 @@
             <div class="dice-tooltip">
                 {{!-- Roll Modifier Summary --}}
                 <section class="tooltip-part">
-                    <div class="target mb-2">
+                    <div class="mb-2">
                         <header class="part-header flexrow">
                             <span class="part-formula">{{attributes}}</span>
                             <span class="part-total">{{totalAttributes}}</span>
@@ -20,13 +20,15 @@
                             </li>
                             {{/each}}
                             <li class="flex flex-row justify-between px-[5px] font-bold">
-                                <span>{{localize "FT.system.roll.target"}}</span>
-                                <span>{{target}}</span>
+                                <span>{{localize "FT.system.roll.targetNumber"}}</span>
+                                <span>{{targetNumber}}</span>
                             </li>
+                            {{#if unskilled}}
                             <li class="flex flex-row justify-between px-[5px]">
                                 <span>{{localize "FT.system.roll.modifier.unskilled"}}</span>
                                 <span>{{roll.formula}}</span>
                             </li>
+                            {{/if}}
                         </ol>
                     </div>
                 </section>
@@ -57,4 +59,9 @@
             <h4 class="dice-total {{classes}}">{{roll.total}}</h4>
         </div>
     </div>
+    {{#if (and (eq type "attack") success)}}
+    <button class="!mt-4" data-ft-action="damage-roll" data-token-id="{{token._id}}" data-actor-id="{{actor._id}}"
+        data-item-id="{{item._id}}" data-attack-index="{{attackIndex}}" data-multiplier="{{multiplier}}">{{localize
+        "FT.chat.button.rollDamage"}}</button>
+    {{/if}}
 </div>

@@ -32,7 +32,7 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
   static #context = {};
 
   async _prepareContext(options) {
-    console.log("FTDiceRollerApp._prepareContext()", "options", options);
+    // console.log("FTDiceRollerApp._prepareContext()", "options", options);
     FTDiceRollerApp.#context = {
       ...foundry.utils.mergeObject(
         {
@@ -48,12 +48,12 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
       ),
       FT: CONFIG.FT,
     };
-    console.log("FTDiceRollerApp._prepareContext()", "#context", FTDiceRollerApp.#context);
+    // console.log("FTDiceRollerApp._prepareContext()", "#context", FTDiceRollerApp.#context);
     return FTDiceRollerApp.#context;
   }
 
   static onSubmit(event, _, formData) {
-    console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);
+    // console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);
 
     const data = foundry.utils.expandObject(Object.fromEntries(formData));
     data.dice = parseInt(data.dice);

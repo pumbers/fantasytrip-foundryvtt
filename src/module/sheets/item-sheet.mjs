@@ -63,7 +63,7 @@ export class FTItemSheet extends ItemSheet {
 
     switch (dataset.action) {
       case "add-attack":
-        console.log("click():add-attack");
+        // console.log("click():add-attack");
         this.item.system.attacks.push({
           name: "Attack",
           type: "melee",
@@ -75,12 +75,12 @@ export class FTItemSheet extends ItemSheet {
         this.item.update({ "system.attacks": this.item.system.attacks });
         break;
       case "delete-attack":
-        console.log("click():delete-attack", dataset.index);
+        // console.log("click():delete-attack", dataset.index);
         this.item.system.attacks.splice(dataset.index, 1);
         this.item.update({ "system.attacks": this.item.system.attacks });
         break;
       case "add-defense":
-        console.log("click():add-defense");
+        // console.log("click():add-defense");
         this.item.system.defenses.push({
           name: "Defend",
           hitsStopped: 0,
@@ -88,7 +88,7 @@ export class FTItemSheet extends ItemSheet {
         this.item.update({ "system.defenses": this.item.system.defenses });
         break;
       case "delete-attack":
-        console.log("click():delete-attack", dataset.index);
+        // console.log("click():delete-attack", dataset.index);
         this.item.system.defenses.splice(dataset.index, 1);
         this.item.update({ "system.defenses": this.item.system.defenses });
         break;

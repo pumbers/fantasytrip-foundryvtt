@@ -105,7 +105,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
   }
 
   get isDown() {
-    return this.damage + this.fatigue > this.st.max;
+    return this.damage + this.fatigue >= this.st.max;
   }
 
   get isDead() {

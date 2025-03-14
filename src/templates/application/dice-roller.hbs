@@ -4,18 +4,13 @@
         <img class="w-16 h-16" src="{{actor.img}}" alt="{{actor.name}}" title="{{actor.name}}">
         {{#if talent}}
         <img class=" w-16 h-16" src="{{talent.img}}" alt="{{talent.name}}" title="{{talent.name}}">
-        {{else if spell}}
+        {{/if}}
+        {{#if spell}}
         <img class=" w-16 h-16" src="{{spell.img}}" alt="{{spell.name}}" title="{{spell.name}}">
-        {{else if item}}
+        {{/if}}
+        {{#if item}}
         <img class=" w-16 h-16" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}">
         {{/if}}
-        {{!-- {{#if (and actor.inCombat targets)}}
-        <div class="grid grid-flow-col grid-rows-2 gap-2 m-0 p-0">
-            {{#each targets as |target|}}
-            <img class="w-7 h-7" src="{{target.actor.img}}" alt="{{target.name}}" title="{{target.name}}">
-            {{/each}}
-        </div>
-        {{/if}} --}}
     </div>
 
     {{!-- Roll Type --}}

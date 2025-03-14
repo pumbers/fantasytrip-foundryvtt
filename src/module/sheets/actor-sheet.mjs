@@ -99,41 +99,41 @@ export class FTCharacterSheet extends ActorSheet {
 
     switch (dataset.action) {
       case "item-change-location":
-        console.log("click():item-change-location", dataset);
+        // console.log("click():item-change-location", dataset);
         if (!itemId) return;
         this.onItemChangeLocation(itemId);
         break;
       case "item-delete":
-        console.log("click():item-delete", dataset);
+        // console.log("click():item-delete", dataset);
         if (!itemId) return;
         this.onItemDelete(itemId);
         break;
       case "attribute-roll":
-        console.log("click():attribute-roll", dataset);
+        // console.log("click():attribute-roll", dataset);
         Action.attributeRoll(this.actor, dataset);
         break;
       case "talent-roll":
-        console.log("click():talent-roll", dataset);
+        // console.log("click():talent-roll", dataset);
         if (!itemId) return;
-        item = this.actor.getEmbeddedDocument("Item", itemId);
+        item = this.actor.items.get(itemId);
         Action.talentRoll(this.actor, item, dataset);
         break;
       case "attack-roll":
-        console.log("click():attack-roll", dataset);
+        // console.log("click():attack-roll", dataset);
         if (!itemId) return;
-        item = this.actor.getEmbeddedDocument("Item", itemId);
+        item = this.actor.items.get(itemId);
         Action.attackRoll(this.actor, item, dataset);
         break;
       case "damage-roll":
-        console.log("click():damage-roll", dataset);
+        // console.log("click():damage-roll", dataset);
         if (!itemId) return;
-        item = this.actor.getEmbeddedDocument("Item", itemId);
+        item = this.actor.items.get(itemId);
         Action.damageRoll(this.actor, item, dataset);
         break;
       case "cast-spell":
-        console.log("click():cast-spell", dataset);
+        // console.log("click():cast-spell", dataset);
         if (!itemId) return;
-        item = this.actor.getEmbeddedDocument("Item", itemId);
+        item = this.actor.items.get(itemId);
         Action.castingRoll(this.actor, item, dataset);
         break;
       case "create-effect":

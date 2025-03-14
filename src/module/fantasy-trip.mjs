@@ -10,6 +10,7 @@ import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
 import { FTCombatant } from "./documents/combat.mjs";
 
+import * as Chat from "./documents/chat.mjs";
 import * as Macros from "./util/macros.mjs";
 import * as Helpers from "./util/helpers.mjs";
 
@@ -165,9 +166,22 @@ Hooks.once("init", async function () {
     `${CONFIG.FT.path}/templates/sheet/item/_tab-actions.hbs`,
     `${CONFIG.FT.path}/templates/sheet/item/_tab-effects.hbs`,
     //
+    `${CONFIG.FT.path}/templates/chat/dice-roll.hbs`,
+    `${CONFIG.FT.path}/templates/chat/damage-roll.hbs`,
+    //
+    `${CONFIG.FT.path}/templates/dialog/apply-damage.hbs`,
     `${CONFIG.FT.path}/templates/application/dice-roller.hbs`,
   ]);
 });
+
+/* -------------------------------------------- */
+/*  Startup Messages                           
+/* -------------------------------------------- */
+
+// Hooks.on("ready", () => {
+//   ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
+//   ui.notifications.info(game.i18n.localize("FT.messages.notice"));
+// });
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               

@@ -2,11 +2,12 @@ import { FT } from "../system/config.mjs";
 import { FTDiceRollerApp } from "../applications/dice-roller.mjs";
 
 /**
- *
+ * Reusable dice roller application instance
  */
 const DICE_ROLLER = new FTDiceRollerApp();
 
 /**
+ * Extract roll parameters from the dice roller form.
  *
  * @param {*} data
  * @returns
@@ -27,17 +28,18 @@ function extractRollParameters(data) {
     attributes,
     totalAttributes,
     dice: data.dice,
+    modifiers: data.modifiers,
     totalModifiers,
-    targets: data.targets?.map((t) => t.name).join(", ") ?? "",
     rollMode: data.rollMode,
   };
 }
 
 /**
+ * Determine the result (level of success) of a dice roll.
  *
- * @param {*} dice
- * @param {*} target
- * @param {*} roll
+ * @param {Number} dice
+ * @param {Number} target
+ * @param {Roll} evaluated roll
  * @returns
  */
 function determineRollResult(dice, target, roll) {
@@ -79,13 +81,13 @@ function determineRollResult(dice, target, roll) {
 }
 
 /**
- * Make an Attribute Roll for the specified Actor
+ * Make an Attribute Roll for the specified Actor.
  *
  * @param {Actor} actor
  * @param {Object} options
  */
 export function attributeRoll(actor, options) {
-  console.log("Action.attributeRoll()", actor, options);
+  // console.log("Action.attributeRoll()", actor, options);
 
   const context = {
     //
@@ -97,7 +99,7 @@ export function attributeRoll(actor, options) {
     attribute: options.attribute,
     //
     submit: (data) => {
-      console.log("Action.attributeRoll().submit()", "data", data);
+      // console.log("Action.attributeRoll().submit()", "data", data);
 
       // Extract roll parameters
       const { actor, attributes, dice, totalAttributes, totalModifiers, rollMode } = extractRollParameters(data);
@@ -131,14 +133,14 @@ export function attributeRoll(actor, options) {
 }
 
 /**
- * Make a Talent Roll for the specified Actor
+ * Make a Talent Roll for the specified Actor.
  *
  * @param {Actor} actor
  * @param {Item} talent
  * @param {Object} options
  */
 export async function talentRoll(actor, talent, options) {
-  console.log("Action.talentRoll()", actor, talent, options);
+  // console.log("Action.talentRoll()", actor, talent, options);
   const context = {
     force: true,
     //
@@ -149,7 +151,7 @@ export async function talentRoll(actor, talent, options) {
     attribute: talent.system.defaultAttribute,
     //
     submit: async (data) => {
-      console.log("Action.talentRoll().submit()", "data", data);
+      // console.log("Action.talentRoll().submit()", "data", data);
 
       // Extract roll parameters
       const { actor, talent, dice, totalAttributes, totalModifiers, rollMode } = extractRollParameters(data);
@@ -190,9 +192,10 @@ export async function talentRoll(actor, talent, options) {
  * @param {Object} options
  */
 export function attackRoll(actor, weapon, options) {
-  console.log("Action.attackRoll()", actor, weapon, options);
-  const attack = weapon.system.attacks[options.attackIndex];
-  const talent = !!attack.talent ? actor.getEmbeddedDocument("Item", attack.talent) : null;
+  // console.log("Action.attackRoll()", actor, weapon, options);
+
+  const attack = weapon.system.attacks[options.attackIndex ?? 0];
+  const talent = !!attack.talent ? actor.items.get(attack.talent) : null;
 
   const context = {
     force: true,
@@ -244,15 +247,25 @@ export function attackRoll(actor, weapon, options) {
         ? { rangeMod: { min: FT.roll.modifiers.range.min, max: FT.roll.modifiers.range.max, value: 0 } }
         : {}),
     },
-    targets: Array.from(game.user.targets),
     ...options,
     //
     submit: async (data) => {
-      console.log("Action.attackRoll().submit()", "data", data);
+      // console.log("Action.attackRoll().submit()", "data", data);
 
       // Extract roll parameters
-      const { actor, talent, item, targets, dice, attributes, totalAttributes, totalModifiers, rollMode } =
-        extractRollParameters(data);
+      const {
+        type,
+        actor,
+        talent,
+        item,
+        targets,
+        dice,
+        attributes,
+        totalAttributes,
+        modifiers,
+        totalModifiers,
+        rollMode,
+      } = extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
       const roll = await new Roll(`${data.dice}D6`).evaluate();
@@ -265,23 +278,32 @@ export function attackRoll(actor, weapon, options) {
       const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 3)}`, {
         talent: talent?.name,
         item: item?.name,
-        attack: attack.action,
-        targets,
+        attack: attack.action?.toLowerCase(),
+        targets: Array.from(game.user.targets)
+          .map((t) => t.name)
+          .join(", "),
         result: game.i18n.format(`FT.system.roll.result.${margin === 0 ? "exact" : result}`, {
           margin: Math.abs(margin),
         }),
       });
 
-      const content = await renderTemplate(`${CONFIG.FT.path}/templates/chat/attack.hbs`, {
+      const content = await renderTemplate(`${FT.path}/templates/chat/dice-roll.hbs`, {
+        type,
+        actor,
+        token: actor.parent,
+        item,
+        attackIndex: options.attackIndex,
         attributes: attributes.map((a) => game.i18n.localize(`FT.character.attribute.${a}`)).join("+"),
         totalAttributes,
-        modifiers: data.modifiers,
+        modifiers,
         totalModifiers,
-        target: totalAttributes + totalModifiers,
-        unskilled: !!talent,
+        targetNumber: totalAttributes + totalModifiers,
+        unskilled: !talent,
         dice,
-        roll: roll,
+        roll,
+        success: margin >= 0,
         classes: margin >= 0 ? "success" : "failure",
+        multiplier: roll.total === 3 ? 3 : roll.total === 4 ? 2 : 1,
         parts: roll.dice.map((d) => d.getTooltipData()),
       });
 
@@ -300,50 +322,168 @@ export function attackRoll(actor, weapon, options) {
 }
 
 /**
- * Make an Attack Roll for the specified Actor
+ * Make a Damage Roll for the specified Actor & weapon Item
  *
  * @param {Actor} actor
  * @param {Item} weapon
  * @param {Object} options
  */
 export function damageRoll(actor, weapon, options = {}) {
-  console.log("Action.damageRoll()", actor, weapon, options);
+  // console.log("Action.damageRoll()", "actor", actor, "weapon", weapon, "options", options);
 
+  // Create a damage roll
   const attack = weapon.system.attacks[options.attackIndex];
   const formula =
     game.settings.get("fantasy-trip", "damageMultiplierStrategy") === "rollTimes"
       ? new Array(options.multiplier ?? 1).fill(attack.damage).join("+")
       : `(${attack.damage ?? 0})*${options.multiplier ?? 1}`;
-  const roll = new Roll(formula, { actor, weapon });
 
+  // Roll and generate a chat message for each target
   if (!!game.user.targets.size) {
-    game.user.targets.forEach((target) => {
-      // console.log("... target", target, target.actor);
-      roll.evaluate().then((roll) => {
-        // console.log("... roll", roll);
-        const damage = target.actor
-          .update({ "system.damage": target.actor.system.damage + roll.total })
-          .then((actor) => {
-            if (actor.system.isDead) {
-              target.actor.toggleStatusEffect("dead", { active: true });
-            } else if (actor.system.isDown) {
-              target.actor.toggleStatusEffect("unconscious", { active: true });
-            }
-          });
-        roll.toMessage({
-          speaker: ChatMessage.getSpeaker({ actor }),
-          flavor: `${weapon.name} deals damage to ${target.name}`,
-        });
+    game.user.targets.forEach(async (token) => {
+      // Create & evaluate a roll based on the set parameters
+      const roll = await new Roll(formula).evaluate();
+
+      // Create a chat message for the result
+      const message = game.i18n.format(`FT.system.roll.flavor.damage.${Math.floor(Math.random() * 6)}`, {
+        weapon: weapon.name,
+        attack: attack.action?.toLowerCase(),
+        total: roll.total,
       });
+
+      const content = await renderTemplate(`${FT.path}/templates/chat/damage-roll.hbs`, {
+        token,
+        actor: token.actor,
+        roll,
+        parts: roll.dice.map((d) => d.getTooltipData()),
+      });
+
+      roll.toMessage(
+        {
+          speaker: ChatMessage.getSpeaker({ actor }),
+          flavor: message,
+          content,
+        }
+        // { rollMode }
+      );
     });
   } else {
-    roll.evaluate().then((roll) => {
+    // If no targets, just roll
+    new Roll(formula).evaluate().then((roll) => {
       roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor }),
-        flavor: `${weapon.name} deals damage`,
+        flavor: game.i18n.format(`FT.system.roll.flavor.damage.${Math.floor(Math.random() * 3)}`, {
+          weapon: weapon.name,
+          attack: attack.action?.toLowerCase(),
+          total: roll.total,
+        }),
       });
     });
   }
+}
+
+/**
+ *
+ * @param {*} actor
+ * @param {*} damage
+ * @param {*} options
+ */
+export async function applyDamage(actor, damage, options) {
+  // console.log("Action.applyDamage()", actor, damage);
+
+  // Find all items that act as defenses
+  const items = Array.from(actor.items).filter((i) => i.system.canDefend);
+
+  // If there are none, just apply the damage
+  if (!items.length) {
+    _applyDamage(actor, damage, options);
+    return;
+  }
+
+  // Create a dialog for the GM to select applicable defenses
+  const content = await renderTemplate(`${FT.path}/templates/dialog/apply-damage.hbs`, {
+    items,
+    damage,
+  });
+
+  new foundry.applications.api.DialogV2({
+    window: {
+      title: game.i18n.format("FT.dialog.damage.title", { name: actor.name }),
+    },
+    content,
+    buttons: [
+      {
+        action: "cancel",
+        label: "Cancel",
+        callback: (event, button, dialog) => ({
+          action: "cancel",
+        }),
+      },
+      {
+        action: "apply",
+        label: "Apply Damage",
+        default: true,
+        callback: (event, button, dialog) => ({
+          action: "apply",
+          hitsStopped: Array.from(button.form?.elements?.namedItem("defense"))
+            .filter((e) => e.checked)
+            .reduce((hitsStopped, e) => hitsStopped + parseInt(e.value), 0),
+        }),
+      },
+    ],
+    submit: (result) => {
+      if (result.action === "apply") {
+        _applyDamage(actor, Math.max(damage - result.hitsStopped, 0), options);
+      }
+    },
+  }).render({ force: true });
+}
+
+/**
+ * Apply damage to an actor and set appropriate status conditions.
+ *
+ * @param {*} actor
+ * @param {*} damageTaken
+ * @param {*} options
+ */
+function _applyDamage(actor, damageTaken, options) {
+  // console.log("Action._applyDamage", actor, damageTaken, options);
+  actor.update({ "system.damage": actor.system.damage + damageTaken }).then((updatedActor) => {
+    if (updatedActor?.system.isDead) {
+      updatedActor.toggleStatusEffect("dead", { active: true });
+      ChatMessage.create({
+        flavor: game.i18n.format(`FT.system.combat.chat.dead.${Math.floor(Math.random() * 6)}`, {
+          name: actor.name,
+          damageTaken,
+        }),
+      });
+    } else if (updatedActor?.system.isDown) {
+      updatedActor.toggleStatusEffect("unconscious", { active: true });
+      ChatMessage.create({
+        flavor: game.i18n.format(`FT.system.combat.chat.down.${Math.floor(Math.random() * 6)}`, {
+          name: actor.name,
+          damageTaken,
+        }),
+      });
+    } else if (damageTaken >= 8) {
+      updatedActor.toggleStatusEffect("stun", { active: true });
+      ChatMessage.create({
+        flavor: game.i18n.format(`FT.system.combat.chat.stunned.${Math.floor(Math.random() * 6)}`, {
+          name: actor.name,
+          damageTaken,
+        }),
+        ...(actor.type === "npc" ? { whisper: [game.user._id] } : {}),
+      });
+    } else {
+      ChatMessage.create({
+        flavor: game.i18n.format("FT.system.combat.chat.damaged", {
+          name: actor.name,
+          damageTaken,
+        }),
+        whisper: [game.user._id],
+      });
+    }
+  });
 }
 
 /**
@@ -354,7 +494,7 @@ export function damageRoll(actor, weapon, options = {}) {
  * @param {Object} options
  */
 export function castingRoll(actor, spell, options = {}) {
-  console.log("Action.castingRoll()", actor, spell, options);
+  // console.log("Action.castingRoll()", actor, spell, options);
 
   const context = {
     force: true,
@@ -373,7 +513,7 @@ export function castingRoll(actor, spell, options = {}) {
     },
     //
     submit: async (data) => {
-      console.log("Action.castingRoll().submit()", "data", data);
+      // console.log("Action.castingRoll().submit()", "data", data);
 
       // Extract roll parameters
       const { actor, spell, dice, totalAttributes, totalModifiers, rollMode } = extractRollParameters(data);

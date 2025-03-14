@@ -33,6 +33,10 @@ FT:
       selfroll: Self
   # General Messages
   messages:
+    disclaimer: >
+      The material presented here is my original creation, intended for use with the <a href="https://www.thefantasytrip.game/"><b><i>The Fantasy Trip</i></b></a> system from <a href="http://www.sjgames.com/">Steve Jackson Games</a>. This material is not official and is not endorsed by Steve Jackson Games.
+    notice: >
+      <a href="https://www.thefantasytrip.game/"><b><i>The Fantasy Trip</i></b></a> is a registered trademark of Steve Jackson Games, and the art here is copyrighted by Steve Jackson Games. All rights are reserved by SJ Games. This material is used here in accordance with the SJ Games <a href="http://www.sjgames.com/general/online_policy.html">online policy</a>.
     noCapacity: "{container} is not big enough."
     noDropContainer: "{item} is a container and cannot be dropped onto another container."
     createHotbarMacroItemNotOwned: You can only create macro buttons for owned Items.
@@ -63,6 +67,17 @@ FT:
       edit: Edit
       toggle: Toggle
       delete: Delete
+  # Application
+  app:
+    dice:
+      title: Dice Roller
+  dialog:
+    damage:
+      title: Apply Damage to {name}
+  chat:
+    button:
+      rollDamage: Roll Damage
+      applyDamage: Apply {damage} Damage to {name}
   # System
   system:
     roll:
@@ -84,7 +99,7 @@ FT:
         attackTypeMod: Attack Type
         rangeMod: Range
         unskilled: Unskilled
-      target: Target
+      targetNumber: Target
       flavor:
         success:
           - Attempts a {attributes} check... {result}
@@ -109,6 +124,13 @@ FT:
           - Shapes mana and casts {spell}... {result}
           - With confidence, casts {spell}... {result}
           - Concentrates then casts {spell}... {result}
+        damage:
+          - Deals {total} damage with their {weapon}
+          - Deals {total} damage with their {attack}
+          - Deals {total} damage with their {weapon}
+          - Deals {total} damage with their {weapon}
+          - Deals {total} damage with their {attack}
+          - Deals {total} damage with their {weapon}
       result:
         exact: Success! Just made it!
         automaticSuccess: Automatic success!
@@ -119,10 +141,31 @@ FT:
       phase:
         movement: Movement
         combat: Combat
-  # Application
-  app:
-    dice:
-      title: Dice Roller
+      notification:
+        notActive: "{name} is not active in this scene."
+      chat:
+        damaged: "{name} takes {damageTaken} damage."
+        stunned:
+          - "{name} takes {damageTaken} damage, and is stunned."
+          - "{name} takes {damageTaken} damage, and is stunned."
+          - "{name} takes {damageTaken} damage, and is stunned."
+          - "{name} takes {damageTaken} damage, and is stunned."
+          - "{name} takes {damageTaken} damage, and is stunned."
+          - "{name} takes {damageTaken} damage, and is stunned."
+        down:
+          - "{name} takes {damageTaken} damage, and goes down."
+          - "{name} takes {damageTaken} damage, and goes down."
+          - "{name} takes {damageTaken} damage, and goes down."
+          - "{name} takes {damageTaken} damage, and goes down."
+          - "{name} takes {damageTaken} damage, and goes down."
+          - "{name} takes {damageTaken} damage, and goes down."
+        dead:
+          - "{name} takes {damageTaken} damage, and dies."
+          - "{name} takes {damageTaken} damage, and dies."
+          - "{name} takes {damageTaken} damage, and dies."
+          - "{name} takes {damageTaken} damage, and dies."
+          - "{name} takes {damageTaken} damage, and dies."
+          - "{name} takes {damageTaken} damage, and dies."
   # Character
   character:
     type:
