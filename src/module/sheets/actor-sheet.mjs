@@ -177,7 +177,7 @@ export class FTCharacterSheet extends ActorSheet {
           // Set the container and location
           await item.update({
             "system.container": containerId ?? null,
-            "system.location": container?.system.location ?? "carried",
+            "system.location": container?.system.location ?? this.actor.type === "npc" ? "equipped" : "carried",
           });
           return item;
         } else {
@@ -187,7 +187,7 @@ export class FTCharacterSheet extends ActorSheet {
             "Item",
             dropped.map((d) => ({
               _id: d._id,
-              "system.location": container?.system.location ?? "carried",
+              "system.location": container?.system.location ?? this.actor.type === "npc" ? "equipped" : "carried",
               "system.container": container?._id,
             }))
           );

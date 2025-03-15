@@ -3,23 +3,37 @@
     <div class="flex flex-col gap-2">
 
         {{#*inline "table-row"}}
-        <tr data-item-id="{{item._id}}" draggable="true"
+        <tr data-item-id="{{item._id}}" {{#if (eq item.type "equipment" )}}draggable="true" {{/if}}
             class="item {{#if item.system.isContainer}}item-container{{/if}}">
             {{#if showItemIcon}}
-            <td><img src="{{item.img}}" /></td>{{/if}}
+            <td><img src="{{item.img}}" /></td>
+            {{/if}}
             <td>{{#if item.system.container}}&rdsh;&nbsp;{{/if}}{{item.name}}</td>
+            {{!-- Talent --}}
             {{#if (eq item.type "talent")}}
-            <td><a class="px-[2px] action" data-action="talent-roll">{{localize
+            <td>
+                <a class="px-[2px] action" data-action="talent-roll">{{localize
                     "FT.character.sheet.button.roll"}}</a>
             </td>
+            <td></td>
+            {{!-- Spell --}}
             {{else if (eq item.type "spell")}}
-            <td><a class="px-[2px] action" data-action="cast-spell">{{localize
+            <td>
+                <a class="px-[2px] action" data-action="cast-spell">{{localize
                     "FT.character.sheet.button.cast"}}</a>
             </td>
+            <td></td>
+            {{!-- Equipment --}}
             {{else}}
             <td></td>
+            <td>
+                {{#unless item.system.container}}
+                <a class="mr-2" data-action="item-change-location"
+                    title="{{localize (concat 'FT.character.sheet.label.location.' item.system.location)}}"><i
+                        class="{{lookup FT.item.inventory.icons item.system.location}}"></i></a>
+                {{/unless}}
+            </td>
             {{/if}}
-            <td> </td>
             <td class="flex flex-row gap-[2px]">
                 <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i
                         class="fa fa-comment"></i></a>
@@ -36,25 +50,27 @@
                 <tr>
                     {{#if settings.showItemIcons}}<th></th>{{/if}}
                     <th class="w-full">{{localize 'FT.character.sheet.table.items.name'}}</th>
-                    <th colspan="3"></th>
+                    <th></th>
+                    <th>{{localize 'FT.character.sheet.table.items.location'}}</th>
+                    <th></th>
                 </tr>
             </thead>
             {{!-- Talents --}}
             <tbody class="border-b">
                 {{#each talents as |item|}}
-                {{> "table-row" item=item showItemIcon=../settings.showItemIcons}}
+                {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
                 {{/each}}
             </tbody>
             {{!-- Inventory --}}
             <tbody class="border-b">
                 {{#each inventory as |item|}}
-                {{> "table-row" item=item showItemIcon=../settings.showItemIcons}}
+                {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
                 {{/each}}
             </tbody>
             {{!-- Spells --}}
             <tbody class="border-b">
                 {{#each spells as |item|}}
-                {{> "table-row" item=item showItemIcon=../settings.showItemIcons}}
+                {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
                 {{/each}}
             </tbody>
         </table>
