@@ -8,8 +8,8 @@ import { FTItem } from "./documents/item.mjs";
 import { FTEquipmentData, FTTalentData, FTSpellData } from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
-import { FTCombat, FTCombatant } from "./documents/combat.mjs";
-import { FTChatMessage } from "./documents/chat-message.mjs";
+import { FTCombat } from "./documents/combat.mjs";
+import * as ChatMessage from "./documents/chat-message.mjs";
 import * as Macros from "./util/macros.mjs";
 import * as Helpers from "./util/helpers.mjs";
 
@@ -38,7 +38,7 @@ Hooks.once("init", async function () {
   CONFIG.time.roundTime = 1;
   CONFIG.time.turnTime = 1;
 
-  // Debug
+  // Combat
   // CONFIG.debug.combat = true;
   CONFIG.Combat.initiative.formula = "1d6+@initiative.situation+@initiative.self+(1d6/10)+(1d6/100)";
 
@@ -64,6 +64,62 @@ Hooks.once("init", async function () {
     config: true,
   });
 
+  game.settings.register("fantasy-trip", "useFTInitiative", {
+    name: game.i18n.localize("FT.game.settings.useFTInitiative.name"),
+    hint: game.i18n.localize("FT.game.settings.useFTInitiative.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: true,
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: false,
+  });
+
+  game.settings.register("fantasy-trip", "combatPCGroupInitiative", {
+    name: game.i18n.localize("FT.game.settings.combatPCGroupInitiative.name"),
+    hint: game.i18n.localize("FT.game.settings.combatPCGroupInitiative.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: false,
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: false,
+  });
+
+  game.settings.register("fantasy-trip", "combatNPCGroupInitiative", {
+    name: game.i18n.localize("FT.game.settings.combatNPCGroupInitiative.name"),
+    hint: game.i18n.localize("FT.game.settings.combatNPCGroupInitiative.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: false,
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: false,
+  });
+
+  game.settings.register("fantasy-trip", "combatantNPCGroupByActor", {
+    name: game.i18n.localize("FT.game.settings.combatantNPCGroupByActor.name"),
+    hint: game.i18n.localize("FT.game.settings.combatantNPCGroupByActor.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: false,
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: false,
+  });
+
   game.settings.register("fantasy-trip", "damageMultiplierStrategy", {
     name: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.name"),
     hint: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.hint"),
@@ -82,13 +138,13 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
-  game.settings.register("fantasy-trip", "allowTalentSpendOnIQIncrease", {
-    name: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.name"),
-    hint: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.hint"),
-    scope: "world",
-    type: new BooleanField({ initial: true }),
-    config: true,
-  });
+  // game.settings.register("fantasy-trip", "allowTalentSpendOnIQIncrease", {
+  //   name: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.name"),
+  //   hint: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.hint"),
+  //   scope: "world",
+  //   type: new BooleanField({ initial: true }),
+  //   config: true,
+  // });
 
   game.settings.register("fantasy-trip", "showItemIcons", {
     name: game.i18n.localize("FT.game.settings.showItemIcons.name"),
@@ -122,7 +178,6 @@ Hooks.once("init", async function () {
 
   // Other document configuration
   CONFIG.Combat.documentClass = FTCombat;
-  CONFIG.Combatant.documentClass = FTCombatant;
 
   /* -------------------------------------------- */
   /*  Handlebars Helpers & Partials                      
@@ -186,7 +241,7 @@ Hooks.once("init", async function () {
 /*  Startup Messages                           
 /* -------------------------------------------- */
 
-// Hooks.on("ready", () => {
+// Hooks.on("ready", async () => {
 //   ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
 //   ui.notifications.info(game.i18n.localize("FT.messages.notice"));
 // });

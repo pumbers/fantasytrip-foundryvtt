@@ -5,6 +5,9 @@ FT:
       initialAP:
         name: Attribute Points for new characters
         hint: The number of Attribute Points a new character is allowed to spend.
+      useFTInitiative:
+        name: Use Fantasy Trip Initiative
+        hint: Use Fantasy Trip split movement/combat initiative and make initiative rolls every round automatically.
       initiativeType:
         name: Individual or Group Initiatve
         hint: Roll initiative individually for each combatant, or roll for Player Characters and NPC's as groups?
@@ -25,6 +28,18 @@ FT:
         hint: >
           If a character increases their IQ, do they automatically get a point to acquire a new Talent
           or Spell, or must they spend XP instead?
+      combatPCGroupInitiative:
+        name: Combat PC Group Initiative
+        hint: >
+          Roll PC initiative as a group and not for each combatant individually.
+      combatNPCGroupInitiative:
+        name: Combat NPC Group Initiative
+        hint: >
+          Roll NPC initiative as a group and not for each combatant individually.
+      combatantNPCGroupByActor:
+        name: Group NPC Combatants by Actor
+        hint: >
+          When using group initiative, group NPC combatants by the Actor name rather than a single NPC group, eg: all goblins, all trolls, etc.
     rollMode:
       roll: Default
       publicroll: Public
@@ -37,6 +52,8 @@ FT:
       The material presented here is my original creation, intended for use with the <a href="https://www.thefantasytrip.game/"><b><i>The Fantasy Trip</i></b></a> system from <a href="http://www.sjgames.com/">Steve Jackson Games</a>. This material is not official and is not endorsed by Steve Jackson Games.
     notice: >
       <a href="https://www.thefantasytrip.game/"><b><i>The Fantasy Trip</i></b></a> is a registered trademark of Steve Jackson Games, and the art here is copyrighted by Steve Jackson Games. All rights are reserved by SJ Games. This material is used here in accordance with the SJ Games <a href="http://www.sjgames.com/general/online_policy.html">online policy</a>.
+    monksWarning: >
+      Please ensure the setting "Reroll Initiative" in the module <b>Monk's Combat Details</b> is disabled as it may interfere with Fantasy Trip initiative.
     noCapacity: "{container} is not big enough."
     noDropContainer: "{item} is a container and cannot be dropped onto another container."
     createHotbarMacroItemNotOwned: You can only create macro buttons for owned Items.
