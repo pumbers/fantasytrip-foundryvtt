@@ -1,8 +1,11 @@
 import * as Action from "../system/action.mjs";
 
-Hooks.on("renderChatMessage", async (chatMessage, html, messageData) => {
-  //   console.log("Hooks.renderChatMessage", "chatMessage", chatMessage, "html", html, "messageData", messageData);
+export class FTChatMessage extends ChatMessage {}
 
+/**
+ * Hook into chat message rendering to add listeners for damage buttons.
+ */
+Hooks.on("renderChatMessage", async (chatMessage, html, messageData) => {
   html.find("[data-ft-action='damage-roll']").click(onDamageRoll.bind(chatMessage));
   html.find("[data-ft-action='apply-damage']").click(onApplyDamage.bind(chatMessage));
 
@@ -18,8 +21,6 @@ Hooks.on("renderChatMessage", async (chatMessage, html, messageData) => {
  * @param {Event} event
  */
 const onDamageRoll = async (event) => {
-  // console.log("Chat.onDamageRoll()", event);
-
   event.preventDefault();
   const element = $(event?.currentTarget);
   const dataset = element?.data();
@@ -37,8 +38,6 @@ const onDamageRoll = async (event) => {
  * @param {Event} event
  */
 const onApplyDamage = async (event) => {
-  // console.log("Chat.onApplyDamage()", event);
-
   event.preventDefault();
   const element = $(event?.currentTarget);
   const dataset = element?.data();

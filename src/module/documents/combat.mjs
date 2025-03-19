@@ -1,109 +1,83 @@
 /**
- * Combat sequence is...
- *
- *  Create:
- *    prepareDerivedData()
- *
- *  Add combatants:
- *    prepareDerivedData()
- *    setupTurns()
- *
- *  Roll first initiative:
- *    A rollAll()
- *    A getInitiativeRoll()
- *    prepareDerivedData()
- *    setupTurns()
- *
- *  Start:
- *    A startCombat()
- *      Hooks.combatStart
- *    prepareDerivedData()
- *    setupTurns()
- *    Hooks.combatTurnChange
- *
- *  Next combatant turn:
- *    nextTurn()
- *      Hooks.combatTurn
- *    prepareDerivedData()
- *    Hooks.combatTurnChange
- *
- *  Next round:
- *    A nextRound()
- *      Hooks.combatRound
- *    prepareDerivedData()
- *    A Combatant.getInitiativeRoll() x # of combatants
- *      prepareDerivedData()
- *      setupTurns()
- *    Hooks.combatTurnChange
- *
- *  End:
- *    endCombat()
+ * Patch Foundry to use Fantasy Trip split movement/combat initiative
  */
 
+/**
+ * Hook into Combat Tracker rendering to display the round type in the header
+ */
 Hooks.on("renderCombatTracker", async (app, html, data) => {
-  // console.log("Hooks.renderCombatTracker", "app", app, "html", html, "data", data);
-  if (data.combat?.round) {
-    // Change round header to reflect phase
+  if (!!data.combat) {
     html
       .find("h3.encounter-title")
       .append(
-        data.combat?.system?.phase === "movement"
-          ? `&nbsp;<a data-action="ft-change-phase" data-phase="combat">${game.i18n.localize(
-              "FT.system.combat.phase.movement"
-            )}</a>`
-          : `&nbsp;<a data-action="ft-change-phase" data-phase="movement">${game.i18n.localize(
-              "FT.system.combat.phase.combat"
-            )}</a>`
+        `&nbsp;<span>${game.i18n.localize(
+          data.combat?.isMovementRound ? "FT.system.combat.phase.movement" : "FT.system.combat.phase.combat"
+        )}</span>`
       );
   }
 });
 
-Hooks.on("combatStart", function (combat, updateData) {
-  // Set the initial combat phase
-  updateData.system = { phase: "movement" };
-  // console.log("Hooks.combatStart", "combat", combat, "updateData", updateData);
-});
-
-Hooks.on("combatRound", (combat, updateData, updateOptions) => {
-  // Switch the combat phase
-  updateData["system.phase"] = combat.system.phase === "movement" ? "combat" : "movement";
-  // console.log("Hooks.combatRound", "combat", combat, "updateData", updateData, "updateOptions", updateOptions);
-});
-
-Hooks.on("FT.getInitiativeRoll", (combat, combatant, data) => {
-  // console.log("Hooks.getInitiativeRoll", "combatant", combatant, "actor", combatant.actor);
-
-  // Party is either...
-  // ... Other PC's if combatant is a PC
-  // ... Other NPC's of the same Actor name (ie NPC type) if combatant is an NPC
-  const party = combat.combatants
-    .filter((c) => !c.isDefeated)
-    .filter(
-      (c) => (!combatant.isNPC && !c.isNPC) || (combatant.isNPC && c.isNPC && c.actor.name === combatant.actor.name)
+/**
+ * Hook into the Combat document update to reroll initiative at the start of each new round
+ */
+Hooks.on("updateCombat", async (combat, updateData, updateOptions) => {
+  if (
+    game.user.isGM &&
+    combat.combatants.size &&
+    combat.started &&
+    updateOptions.direction === 1 &&
+    updateData.round > 1 &&
+    updateData.turn == 0
+  ) {
+    await combat.rollInitiative(
+      combat.combatants.filter((c) => !c.isDefeated).map((c) => c.id),
+      { updateTurn: false }
     );
-
-  // Party bonus is the highest party bonus from all party members of the same actor name
-  const partyBonus = Math.max(...party.map((c) => c.actor.system.initiative.party));
-
-  // Return the formula
-  let formula = `1d6+@initiative.situation+@initiative.self+${partyBonus}+(1d6/10)+(1d6/100)`;
-  // console.log("Hooks.getInitiativeRoll", "party", party.map((c) => c.name).join(","), "formula", formula);
-  data.formula = combat.system.phase === "combat" ? `@dx.value+${(combatant.initiative ?? 0) / 10}` : formula;
+    await combat.update({ turn: 0 });
+    combat.debounceSetup();
+  }
 });
 
 /**
- * Extend the Combatant class to add initiative modifications
+ * Add two new convenience function to the Combat class
+ */
+export class FTCombat extends Combat {
+  // Odd mnumbered rounds are movement rounds
+  get isMovementRound() {
+    return this.started && !!(this.round % 2);
+  }
+
+  // Even numbered rounds are combat rounds
+  get isCombatRound() {
+    return this.started && !(this.round % 2);
+  }
+}
+
+/**
+ * Override Combatant initiative rolling to use two initiative formulae
  */
 export class FTCombatant extends Combatant {
-  /**
-   * Override to call a Hook when rolling for initiative
-   *
-   * @param {String} formula
-   * @returns {String} formula based on combat phase
-   */
   getInitiativeRoll(formula) {
-    const data = {};
-    Hooks.callAll("FT.getInitiativeRoll", this.parent, this, data);
-    return super.getInitiativeRoll(data.formula ?? formula);
+    const combat = this.parent;
+    const combatant = this;
+
+    if (combat.isCombatRound) {
+      // Use character adjDX + existing initiative as tiebreaker
+      return super.getInitiativeRoll(`@dx.value+${(combatant.initiative / 10).toFixed(2)}`);
+    } else {
+      // Party is either...
+      // ... Other PC's if combatant is a PC
+      // ... Other NPC's of the same Actor name (ie NPC type) if combatant is an NPC
+      const party = combat.combatants
+        .filter((c) => !c.isDefeated)
+        .filter(
+          (c) => (!combatant.isNPC && !c.isNPC) || (combatant.isNPC && c.isNPC && c.actor.name === combatant.actor.name)
+        );
+
+      // Party bonus is the highest party bonus from all party members of the same actor name
+      const partyBonus = Math.max(...party.map((c) => c.actor.system.initiative.party));
+
+      return super.getInitiativeRoll(`1d6+@initiative.situation+@initiative.self+${partyBonus}+(1d6/10)+(1d6/100)`);
+    }
   }
 }

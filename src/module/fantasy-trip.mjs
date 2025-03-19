@@ -8,9 +8,8 @@ import { FTItem } from "./documents/item.mjs";
 import { FTEquipmentData, FTTalentData, FTSpellData } from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
-import { FTCombatant } from "./documents/combat.mjs";
-
-import * as Chat from "./documents/chat.mjs";
+import { FTCombat, FTCombatant } from "./documents/combat.mjs";
+import { FTChatMessage } from "./documents/chat-message.mjs";
 import * as Macros from "./util/macros.mjs";
 import * as Helpers from "./util/helpers.mjs";
 
@@ -34,6 +33,14 @@ Hooks.once("init", async function () {
   // but will still apply to the Actor from within the Item
   // if the transfer property on the Active Effect is true.
   CONFIG.ActiveEffect.legacyTransferral = false;
+
+  // Time settings
+  CONFIG.time.roundTime = 1;
+  CONFIG.time.turnTime = 1;
+
+  // Debug
+  // CONFIG.debug.combat = true;
+  CONFIG.Combat.initiative.formula = "1d6+@initiative.situation+@initiative.self+(1d6/10)+(1d6/100)";
 
   /* -------------------------------------------- */
   /*  Game Settings                            
@@ -114,6 +121,7 @@ Hooks.once("init", async function () {
   Items.registerSheet("FT", FTItemSheet, { makeDefault: true });
 
   // Other document configuration
+  CONFIG.Combat.documentClass = FTCombat;
   CONFIG.Combatant.documentClass = FTCombatant;
 
   /* -------------------------------------------- */
