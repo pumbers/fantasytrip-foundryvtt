@@ -67,7 +67,7 @@ export class FTCharacterSheet extends ActorSheet {
       })
       .flat(2);
 
-    context.effects = Array.from(this.actor.allApplicableEffects());
+    context.effects = Array.from(this.actor.allApplicableEffects()).filter((e) => !e.disabled);
 
     return context;
   }
