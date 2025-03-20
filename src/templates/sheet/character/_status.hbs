@@ -76,7 +76,7 @@
                 name="system.iq.mod" value="{{system.iq.mod}}">
         </div>
         <div class="field"><label>{{localize "FT.character.sheet.label.maMod"}}</label><input type="number"
-                name="system.ma.mod" value="{{system.ma.mod}}">
+                name="{{concat 'system.ma.' system.ma.mode '.mod' }}" value="{{system.currentMA.mod}}">
         </div>
         <div class="field"><label>{{localize
                 "FT.character.sheet.label.initiative"}}</label><input type="number" name="system.initiative.situation"

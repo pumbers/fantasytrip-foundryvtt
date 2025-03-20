@@ -1,3 +1,4 @@
+import { FT } from "../system/config.mjs";
 import * as Dice from "../util/dice.mjs";
 
 /**
@@ -65,9 +66,9 @@ export class FTActor extends Actor {
         system.dx.value = Math.max(system.dx.max - 2, 0);
         break;
       default:
-        system.ma.walk.value = system.ma.walk.max;
-        system.ma.swim.value = system.ma.swim.max;
-        system.ma.fly.value = system.ma.fly.max;
+        Object.keys(FT.character.ma.modes).forEach((mode) => {
+          system.ma[mode].value = Math.max(system.ma[mode].max + system.ma[mode].mod, 0);
+        });
         break;
     }
 
