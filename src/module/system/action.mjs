@@ -425,8 +425,8 @@ export async function applyDamage(actor, damage, options) {
         default: true,
         callback: (event, button, dialog) => ({
           action: "apply",
-          hitsStopped: Array.from(button.form?.elements?.namedItem("defense"))
-            .filter((e) => e.checked)
+          hitsStopped: Array.from(button.form?.elements)
+            .filter((e) => e.id === "defense" && e.checked)
             .reduce((hitsStopped, e) => hitsStopped + parseInt(e.value), 0),
         }),
       },
