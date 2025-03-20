@@ -108,6 +108,13 @@ export class FTCharacterSheet extends ActorSheet {
         if (!itemId) return;
         this.onItemDelete(itemId);
         break;
+      case "change-movement":
+        // console.log("click():change-movement", dataset);
+        const modes = Object.keys(CONFIG.FT.character.ma.modes);
+        this.actor.update({
+          "system.ma.mode": modes[(modes.findIndex((m) => m === this.actor.system.ma.mode) + 1) % modes.length],
+        });
+        break;
       case "attribute-roll":
         // console.log("click():attribute-roll", dataset);
         Action.attributeRoll(this.actor, dataset);

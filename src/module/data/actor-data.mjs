@@ -54,9 +54,21 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       // TODO modes: walk, swim, fly
       ma: new SchemaField({
         mode: new StringField({ initial: "walk" }), // Movement type
-        max: new NumberField({ initial: 8 }), // Maximum or base value
-        mod: new NumberField({ initial: 0 }), // Manually set modifier
-        value: new NumberField({ initial: 8 }), // Current or adjusted value
+        walk: new SchemaField({
+          max: new NumberField({ initial: 10 }), // Maximum or base value
+          mod: new NumberField({ initial: 0 }), // Manually set modifier
+          value: new NumberField({ initial: 10 }), // Current or adjusted value
+        }),
+        swim: new SchemaField({
+          max: new NumberField({ initial: 10 }), // Maximum or base value
+          mod: new NumberField({ initial: 0 }), // Manually set modifier
+          value: new NumberField({ initial: 10 }), // Current or adjusted value
+        }),
+        fly: new SchemaField({
+          max: new NumberField({ initial: 0 }), // Maximum or base value
+          mod: new NumberField({ initial: 0 }), // Manually set modifier
+          value: new NumberField({ initial: 0 }), // Current or adjusted value
+        }),
       }),
       //
       initiative: new SchemaField({
@@ -94,6 +106,10 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
     // Calculate available mana (from staff if a wizard)
     this.mana.value = Math.min(this.mana.max, this.mana.value);
     this.mana.used = Math.max(this.mana.max - this.mana.value, 0);
+  }
+
+  get currentMA() {
+    return this.ma[this.ma.mode];
   }
 
   get isTired() {

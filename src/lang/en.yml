@@ -206,13 +206,19 @@ FT:
         max: IQ
         value: adjIQ
       ma:
-        max: MA
-        value: adjMA
-    ma:
-      mode:
-        walk: Walk
-        swim: Swim
-        fly: Fly
+        mode:
+          walk: Walk
+          swim: Swim
+          fly: Fly
+        walk:
+          max: MA
+          value: adjMA
+        swim:
+          max: MA
+          value: adjMA
+        fly:
+          max: MA
+          value: adjMA
     sheet:
       tab:
         character: Character
@@ -277,6 +283,7 @@ FT:
           cost: Cost
           st: ST
       button:
+        attributeRoll: Attribute Roll
         chat: Send to chat
         create: Add
         edit: Edit

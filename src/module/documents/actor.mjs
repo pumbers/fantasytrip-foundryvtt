@@ -48,17 +48,26 @@ export class FTActor extends Actor {
     // Apply Encumbrance to Stats
     switch (system.encumbrance.level) {
       case 3:
-        system.ma.value = Math.min(system.ma.max, 8);
+        system.ma.walk.value = Math.min(system.ma.walk.max, 8);
+        system.ma.fly.value = Math.min(system.ma.fly.max, 8);
+        system.ma.swim.value = 0;
         break;
       case 4:
-        system.ma.value = Math.min(system.ma.max, 6);
+        system.ma.walk.value = Math.min(system.ma.walk.max, 6);
+        system.ma.fly.value = Math.min(system.ma.fly.max, 6);
+        system.ma.swim.value = 0;
         system.dx.value = Math.max(system.dx.max - 1, 0);
         break;
       case 5:
-        system.ma.value = Math.min(system.ma.max, 4);
+        system.ma.walk.value = Math.min(system.ma.walk.max, 4);
+        system.ma.fly.value = Math.min(system.ma.fly.max, 4);
+        system.ma.swim.value = 0;
         system.dx.value = Math.max(system.dx.max - 2, 0);
         break;
       default:
+        system.ma.walk.value = system.ma.walk.max;
+        system.ma.swim.value = system.ma.swim.max;
+        system.ma.fly.value = system.ma.fly.max;
         break;
     }
 

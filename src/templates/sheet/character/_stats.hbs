@@ -46,30 +46,41 @@
                 class="m-0 p-1 bg-black text-white dark:bg-white dark:text-black text-xl text-center uppercase min-w-10 rounded-none">{{localize
                 (concat "FT.character.attribute." key ".max")}}</label>
             <div class="flex flex-row gap-0">
-                <input class="m-0 !text-center !text-xl !h-full !w-14" type="number" name="system.{{key}}.max"
+                <input class="m-0 !text-center !text-xl !h-full !w-14" type="number" name="system.{{key}}.max" min="0"
                     value="{{attr.max}}" />
-                <a class="block m-0 p-1 border-y-[1px] border-r-[1px] action" data-action="attribute-roll"
-                    data-attribute="{{key}}.max" data-type="success"><i class="icon-d6 text-xl"></i></a>
+                <a title="{{title}}" class="block m-0 p-1 border-y-[1px] border-r-[1px] action"
+                    data-action="attribute-roll" data-attribute="{{key}}.max" data-type="success"><i
+                        class="icon-d6 text-xl"></i></a>
             </div>
             <div class="field w-14">
                 <label>{{localize "FT.character.sheet.label.adjusted"}}</label>
                 {{#if roll}}
                 <div class="flex flex-row gap-0">
                     <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                    <a class="block m-0 p-1 border-y-[1px] border-r-[1px] action" data-action="attribute-roll"
-                        data-attribute="{{key}}.value" data-type="success"><i class="icon-d6"></i></a>
+                    <a title="{{title}}" class="block m-0 p-1 border-y-[1px] border-r-[1px] action"
+                        data-action="attribute-roll" data-attribute="{{key}}.value" data-type="success"><i
+                            class="icon-d6"></i></a>
+                </div>
+                {{else if action}}
+                <div class="flex flex-row gap-0">
+                    <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+                    <a title="{{title}}" class="block m-0 p-1 border-y-[1px] border-r-[1px] action"
+                        data-action="{{name}}"><i class="{{icon}}"></i></a>
                 </div>
                 {{else}}
-                <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+                <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />\
                 {{/if}}
             </div>
         </div>
         {{/inline}}
         {{!-- Attribute Block --}}
-        {{> attribute key="st" attr=system.st roll=true}}
-        {{> attribute key="dx" attr=system.dx roll=true}}
-        {{> attribute key="iq" attr=system.iq roll=true}}
-        {{> attribute key="ma" attr=system.ma}}
+        {{> attribute key="st" attr=system.st roll=true title=(localize "FT.character.sheet.button.attributeRoll")}}
+        {{> attribute key="dx" attr=system.dx roll=true title=(localize "FT.character.sheet.button.attributeRoll")}}
+        {{> attribute key="iq" attr=system.iq roll=true title=(localize "FT.character.sheet.button.attributeRoll")}}
+        {{> attribute key=(concat "ma." system.ma.mode) attr=system.currentMA action=true
+        name="change-movement" icon=(concat "icon-" system.ma.mode) title=(localize (concat
+        "FT.character.attribute.ma.mode."
+        system.ma.mode))}}
     </div>
     {{!-- <div class="flex flex-col gap-1 justify-between w-full">
         <span class="text-xs text-center mx-1 action" data-action="A">A</span>

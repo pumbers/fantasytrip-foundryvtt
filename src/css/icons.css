@@ -86,4 +86,15 @@
   & .icon-bowman::before {
     content: url("../assets/icons/bowman.svg");
   }
+
+  /* Movement */
+  & .icon-walk::before {
+    content: url("../assets/icons/walk.svg");
+  }
+  & .icon-swim::before {
+    content: url("../assets/icons/salmon.svg");
+  }
+  & .icon-fly::before {
+    content: url("../assets/icons/feathered-wing.svg");
+  }
 }
