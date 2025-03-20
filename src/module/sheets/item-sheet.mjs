@@ -31,8 +31,7 @@ export class FTItemSheet extends ItemSheet {
         attackTypes: CONFIG.FT.item.attack.types,
         // Applicable skill options from the parent actor
         ...(!!this.item.parent && {
-          talents: this.item.parent?.items
-            ?.values()
+          talents: Array.from(this.item.parent?.items.values())
             .filter((item) => item.type === "talent")
             .reduce((talents, talent) => ({ ...talents, [talent._id]: talent.name }), {}),
         }),
