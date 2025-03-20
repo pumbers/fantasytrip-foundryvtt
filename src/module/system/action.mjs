@@ -305,6 +305,11 @@ export function attackRoll(actor, weapon, options) {
         classes: margin >= 0 ? "success" : "failure",
         multiplier: roll.total === 3 ? 3 : roll.total === 4 ? 2 : 1,
         parts: roll.dice.map((d) => d.getTooltipData()),
+        showDamageButton: type === "attack" && margin >= 0,
+        showOwnerClasses: Array.from(Object.entries(actor.ownership))
+          .filter(([id, level]) => level === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
+          .map(([id, level]) => `.ft-show-${id}`)
+          .join(" "),
       });
 
       roll.toMessage(

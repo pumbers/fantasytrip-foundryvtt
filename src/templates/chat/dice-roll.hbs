@@ -59,9 +59,10 @@
             <h4 class="dice-total {{classes}}">{{roll.total}}</h4>
         </div>
     </div>
-    {{#if (and (eq type "attack") success)}}
-    <button class="!mt-4" data-ft-action="damage-roll" data-token-id="{{token._id}}" data-actor-id="{{actor._id}}"
-        data-item-id="{{item._id}}" data-attack-index="{{attackIndex}}" data-multiplier="{{multiplier}}">{{localize
+    {{#if showDamageButton}}
+    <button class="!mt-4 ft-restricted ft-show-gm {{showOwnerClasses}}" data-ft-action="damage-roll"
+        data-token-id="{{token._id}}" data-actor-id="{{actor._id}}" data-item-id="{{item._id}}"
+        data-attack-index="{{attackIndex}}" data-multiplier="{{multiplier}}">{{localize
         "FT.chat.button.rollDamage"}}</button>
     {{/if}}
 </div>
