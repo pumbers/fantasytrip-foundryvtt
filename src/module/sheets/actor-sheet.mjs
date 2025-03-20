@@ -37,7 +37,9 @@ export class FTCharacterSheet extends ActorSheet {
       FT: CONFIG.FT,
       actor: foundry.utils.deepClone(this.actor),
       system: foundry.utils.deepClone(this.actor.system),
-      flags: foundry.utils.deepClone(this.actor.flags),
+      flags: foundry.utils.mergeObject(foundry.utils.deepClone(this.actor.flags), {
+        apExceeded: this.actor.system.ap > game.settings.get("fantasy-trip", "initialAP") && this.actor.system.xp === 0,
+      }),
       settings: {
         showItemIcons: game.settings.get("fantasy-trip", "showItemIcons"),
       },
