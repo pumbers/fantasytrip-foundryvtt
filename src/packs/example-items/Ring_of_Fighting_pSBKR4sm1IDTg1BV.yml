@@ -31,7 +31,7 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: Something
+    description:
     tint: "#ffffff"
     transfer: true
     statuses: []

@@ -20,7 +20,7 @@ effects:
     type: base
     system: {}
     changes:
-      - key: system.dx.max
+      - key: system.dx.value
         mode: 2
         value: "-1"
         priority: null

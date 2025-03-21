@@ -20,11 +20,11 @@ effects:
     type: base
     system: {}
     changes:
-      - key: system.ma.max
+      - key: system.ma.walk.value
         mode: 3
         value: "8"
         priority: null
-      - key: system.dx.max
+      - key: system.dx.value
         mode: 2
         value: "-2"
         priority: null

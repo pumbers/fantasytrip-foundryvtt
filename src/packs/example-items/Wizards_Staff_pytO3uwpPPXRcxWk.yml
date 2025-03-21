@@ -9,40 +9,6 @@ system:
     habitant sem venenatis iaculis augue. Quis dui condimentum sagittis
     fermentum; sit primis conubia pulvinar. Tempor pellentesque dictum
     ullamcorper class fusce sodales.</p>
-
-    <p>Mollis ligula ultricies efficitur id dis sed taciti netus. Hendrerit
-    tempus per pretium bibendum class semper sapien! Aneque finibus senectus
-    enim maecenas tortor. Justo mauris gravida, pretium posuere nisl non. Nibh
-    id viverra vestibulum cras nam aenean risus. Et semper litora viverra neque
-    sed. Ut massa aliquam eget conubia hendrerit vivamus, aliquam ac orci.
-    Ullamcorper sollicitudin sollicitudin hac et metus duis sem. Potenti pretium
-    nisi potenti dapibus ridiculus tristique pulvinar dictum.</p>
-
-    <p>Himenaeos senectus malesuada imperdiet suspendisse molestie vivamus
-    tincidunt. Ornare dignissim semper sagittis vivamus rhoncus nascetur.
-    Inceptos ac mollis lacus vitae diam orci sit nascetur. Iaculis at mauris
-    dictum finibus curae. Enim hendrerit primis habitant enim parturient orci
-    interdum. Etiam aliquet maximus lobortis proin blandit libero fringilla.
-    Mauris nulla nulla fermentum bibendum mattis vestibulum, rhoncus nulla.</p>
-
-    <p>Eget arcu eget non etiam amet vehicula urna potenti mi. Hendrerit a quis
-    urna quam et etiam. Vestibulum curabitur est maecenas lobortis condimentum
-    condimentum. Pretium dis at a parturient habitant non vulputate pulvinar.
-    Nascetur velit nibh nascetur inceptos sollicitudin penatibus. Fermentum
-    commodo justo fermentum sapien volutpat sollicitudin posuere. Maximus augue
-    eros tristique at himenaeos quis aliquet semper. Ex risus porttitor metus
-    cubilia sodales quam. Augue phasellus id eu dictum quam volutpat felis
-    metus?</p>
-
-    <p>Aenean parturient enim viverra mus fusce sollicitudin lorem hendrerit.
-    Egestas hac ultrices habitasse, sapien nibh quam ligula porta. Morbi nisl
-    pharetra bibendum accumsan amet integer. Sit neque cursus, hac suscipit hac
-    placerat class! Accumsan sem sociosqu varius mi bibendum accumsan ridiculus.
-    Duis elit lacinia pretium hendrerit faucibus. Vitae venenatis cras iaculis
-    nascetur nullam nisl rutrum viverra gravida. Diam vivamus mauris
-    condimentum; egestas nec nec. Pulvinar himenaeos aliquam lobortis morbi
-    maecenas congue. Tristique mi quis curabitur turpis aliquam litora
-    rhoncus.</p>
   cost: 300
   wt: 5
   qty: 1
@@ -64,7 +30,7 @@ effects:
     type: base
     system: {}
     changes:
-      - key: system.mana
+      - key: system.mana.max
         mode: 2
         value: "10"
         priority: null
