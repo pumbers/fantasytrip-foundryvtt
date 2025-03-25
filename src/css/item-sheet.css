@@ -34,13 +34,6 @@
       }
     }
 
-    & .field {
-      @apply flex flex-col gap-1 mt-auto mb-0 !leading-2;
-      & label {
-        @apply m-0 p-0 text-[0.5rem] uppercase;
-      }
-    }
-
     & .editor-content,
     & .tox.tox-tinymce {
       @apply h-[18rem] dark:text-slate-200;

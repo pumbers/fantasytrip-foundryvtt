@@ -14,7 +14,7 @@
     </div>
 
     {{!-- Roll Type --}}
-    <div class="grid grid-cols-6 gap-1">
+    <div class="grid grid-cols-5 gap-1">
         {{#each FT.roll.types as |label type|}}
         <span>
             <input type="radio" name="type" id="type-{{type}}" value="{{type}}" {{#if (eq ../type type)}}checked{{/if}}>
@@ -31,12 +31,10 @@
             <input type="checkbox" name="attributes" id="attribute-{{attribute}}" value="{{attribute}}" {{#if (eq
                 ../attribute attribute)}}checked{{/if}}>
             <label for="attribute-{{attribute}}">{{localize (concat "FT.character.attribute."
-                attribute)}}</label>
+                attribute)}}&nbsp;{{property ../actor.system attribute}}</label>
         </span>
         {{/each}}
     </div>
-    {{/unless}}
-
     {{!-- Spell Strength --}}
     {{#if (eq type "cast")}}
     <div class="grid grid-cols-16 gap-1">
@@ -49,7 +47,6 @@
         {{/each}}
     </div>
     {{/if}}
-
     {{!-- Modifiers --}}
     {{#each modifiers as | modifier name|}}
     <div class="grid grid-cols-16 gap-1">
@@ -63,7 +60,6 @@
         {{/each}}
     </div>
     {{/each}}
-
     {{!-- Dice --}}
     <div class="grid grid-cols-8 gap-1">
         {{#each (range 1 8) as | dice |}}
@@ -73,6 +69,26 @@
         </span>
         {{/each}}
     </div>
+    {{else}}
+    {{!-- Damage Formula --}}
+    <div class="w-full flex flex-row gap-1 justify-between">
+        <div class="field w-24">
+            <label>{{localize "FT.app.dice.label.formula"}}</label>
+            <input type="text" name="formula" value="{{formula}}">
+        </div>
+        <div class="field w-16">
+            <label>{{localize "FT.app.dice.label.multiplier"}}</label>
+            <input type="number" name="multiplier" value="{{multiplier}}" min="1">
+        </div>
+        <div class="field grow">
+            <label>{{localize "FT.game.settings.damageMultiplierStrategy.name"}}</label>
+            <select name="damageMultiplierStrategy">
+                {{selectOptions FT.settings.damageMultiplierStrategy.options selected=damageMultiplierStrategy
+                localize=true }}
+            </select>
+        </div>
+    </div>
+    {{/unless}}
 
     {{!-- Roll Mode --}}
     <div class="grid grid-cols-5 gap-1">

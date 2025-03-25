@@ -1,28 +1,26 @@
-name: Large Shield
+name: Ring of Fighting
 type: equipment
-img: icons/equipment/shield/heater-wooden-steel-boss.webp
+img: icons/equipment/finger/ring-bone-spiked.webp
 system:
-  notes: ""
-  cost: 20
-  wt: 50
+  notes: ''
+  cost: 300
+  wt: 0
   qty: 1
   capacity: 0
   container: null
   attacks: []
-  defenses:
-    - action: Block
-      hitsStopped: 2
+  defenses: []
 effects:
-  - name: New Active Effect
-    origin: Item.33tC0sh93HmNkTZc
+  - name: updated
+    origin: Item.IEQm5JZ1S0DuImgH
     img: icons/svg/aura.svg
-    _id: 3lYQxxPtX8ZK6mpR
+    _id: DLax6XO1EB4VpGWz
     type: base
     system: {}
     changes:
-      - key: system.dx.value
+      - key: system.dx.modFor.melee
         mode: 2
-        value: "-1"
+        value: '4'
         priority: null
     disabled: true
     duration:
@@ -33,8 +31,8 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: ""
-    tint: "#ffffff"
+    description: Something
+    tint: '#ffffff'
     transfer: true
     statuses: []
     sort: 0
@@ -42,27 +40,28 @@ effects:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "12.331"
+      coreVersion: '12.331'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
       modifiedTime: null
       lastModifiedBy: null
-    _key: "!items.effects!3s1I4hVJCay0RhXU.3lYQxxPtX8ZK6mpR"
-folder: null
+    _key: '!items.effects!crOREkR1nXwLlkgt.DLax6XO1EB4VpGWz'
+folder: XFw411o4x7UZ4oCH
 flags: {}
 _stats:
-  compendiumSource: null
+  compendiumSource: Compendium.fantasy-trip.example-items.Item.pSBKR4sm1IDTg1BV
   duplicateSource: null
-  coreVersion: "12.331"
+  coreVersion: '12.331'
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1741279591421
-  modifiedTime: 1741279595720
-  lastModifiedBy: jYWQAcYwV2K8zXyc
-_id: 3s1I4hVJCay0RhXU
-sort: 100000
+  createdTime: 1742056876796
+  modifiedTime: 1742854236971
+  lastModifiedBy: 4jN5Lbw1IbyHFDNM
 ownership:
   default: 0
-  jYWQAcYwV2K8zXyc: 3
-_key: "!items!3s1I4hVJCay0RhXU"
+  4jN5Lbw1IbyHFDNM: 3
+_id: crOREkR1nXwLlkgt
+sort: 900000
+_key: '!items!crOREkR1nXwLlkgt'
+

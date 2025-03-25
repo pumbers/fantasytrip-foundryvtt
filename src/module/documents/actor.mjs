@@ -80,13 +80,13 @@ export class FTActor extends Actor {
 
     // Calculate attack combat stats
     Array.from(this.items)
-      .filter((item) => item.system.canAttack)
+      .filter((item) => item.system.hasAttacks)
       .forEach((weapon) => {
         weapon.system.attacks.forEach((attack) => {
           // To Hit
           const talent = this.getEmbeddedDocument("Item", attack.talent);
           attack.attribute = !!talent ? talent.system.defaultAttribute : "dx.value";
-          attack.dice = !!talent ? 3 : 4;
+          attack.dice = weapon.type === "spell" ? 3 : !!talent ? 3 : 4;
           attack.minSTMod = Math.min(this.system.st.max - attack.minST, 0);
           attack.attackTypeMod = this.system.dx.modFor[attack.type];
           attack.attributeMod = this.system.dx.mod;

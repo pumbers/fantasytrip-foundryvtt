@@ -52,13 +52,13 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "12.331"
-      systemId: fantasy-trip
+      coreVersion: '12.331'
+      systemId: fantasytrip
       systemVersion: 0.1.0
       createdTime: null
       modifiedTime: null
       lastModifiedBy: null
-    _key: "!journal.pages!lRHycMkpzFAIyGPx.Ahcj5Hf12oLopn4U"
+    _key: '!journal.pages!lRHycMkpzFAIyGPx.Ahcj5Hf12oLopn4U'
   - sort: 200000
     name: Another Page
     type: text
@@ -111,20 +111,20 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "12.331"
-      systemId: fantasy-trip
+      coreVersion: '12.331'
+      systemId: fantasytrip
       systemVersion: 0.1.0
       createdTime: null
       modifiedTime: null
       lastModifiedBy: null
-    _key: "!journal.pages!lRHycMkpzFAIyGPx.8QpHd2w3fWyC0Oke"
+    _key: '!journal.pages!lRHycMkpzFAIyGPx.8QpHd2w3fWyC0Oke'
 folder: null
 flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
-  coreVersion: "12.331"
-  systemId: fantasy-trip
+  coreVersion: '12.331'
+  systemId: fantasytrip
   systemVersion: 0.1.0
   createdTime: 1741278708786
   modifiedTime: 1741278708786
@@ -134,5 +134,6 @@ sort: 0
 ownership:
   default: 0
   jYWQAcYwV2K8zXyc: 3
-_key: "!journal!lRHycMkpzFAIyGPx"
+_key: '!journal!lRHycMkpzFAIyGPx'
 categories: []
+

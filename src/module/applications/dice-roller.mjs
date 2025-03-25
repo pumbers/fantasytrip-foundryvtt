@@ -36,7 +36,7 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
     FTDiceRollerApp.#context = {
       ...foundry.utils.mergeObject(
         {
-          type: "success",
+          type: "save",
           dice: 3,
           modifiers: {
             situationMod: { min: FT.roll.modifiers.default.min, max: FT.roll.modifiers.default.max, value: 0 },
@@ -56,8 +56,9 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
     // console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);
 
     const data = foundry.utils.expandObject(Object.fromEntries(formData));
-    data.dice = parseInt(data.dice);
-    Object.entries(data.modifiers).forEach(([key, value]) => (data.modifiers[key] = parseInt(value)));
+
+    data.dice = parseInt(data.dice ?? 0);
+    Object.entries(data.modifiers ?? []).forEach(([key, value]) => (data.modifiers[key] = parseInt(value)));
 
     if (event.submitter?.value === "submit") {
       return FTDiceRollerApp.#context.submit?.(

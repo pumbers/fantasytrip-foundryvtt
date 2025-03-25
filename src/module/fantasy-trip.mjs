@@ -138,13 +138,29 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
-  // game.settings.register("fantasy-trip", "allowTalentSpendOnIQIncrease", {
-  //   name: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.name"),
-  //   hint: game.i18n.localize("FT.game.settings.allowTalentSpendOnIQIncrease.hint"),
-  //   scope: "world",
-  //   type: new BooleanField({ initial: true }),
-  //   config: true,
-  // });
+  game.settings.register("fantasy-trip", "addCastingFatigueAuto", {
+    name: game.i18n.localize("FT.game.settings.addCastingFatigueAuto.name"),
+    hint: game.i18n.localize("FT.game.settings.addCastingFatigueAuto.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: true,
+    }),
+    config: true,
+  });
+
+  game.settings.register("fantasy-trip", "cancelAttackSpellAuto", {
+    name: game.i18n.localize("FT.game.settings.cancelAttackSpellAuto.name"),
+    hint: game.i18n.localize("FT.game.settings.cancelAttackSpellAuto.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: true,
+    }),
+    config: true,
+  });
 
   game.settings.register("fantasy-trip", "showItemIcons", {
     name: game.i18n.localize("FT.game.settings.showItemIcons.name"),

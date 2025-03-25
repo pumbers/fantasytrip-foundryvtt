@@ -1,0 +1,27 @@
+name: 'Language: Human'
+type: talent
+img: icons/skills/social/wave-halt-stop.webp
+system:
+  notes: ''
+  defaultAttribute: iq.max
+  iqCost: 1
+  minIQ: 5
+effects: []
+folder: XFw411o4x7UZ4oCH
+flags: {}
+_stats:
+  compendiumSource: Compendium.fantasy-trip.example-items.Item.fERxZsKE9nrEIVlV
+  duplicateSource: null
+  coreVersion: '12.331'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1742056876796
+  modifiedTime: 1742854236971
+  lastModifiedBy: 4jN5Lbw1IbyHFDNM
+ownership:
+  default: 0
+  4jN5Lbw1IbyHFDNM: 3
+_id: YmhbjDAz0LdagHAz
+sort: 500000
+_key: '!items!YmhbjDAz0LdagHAz'
+

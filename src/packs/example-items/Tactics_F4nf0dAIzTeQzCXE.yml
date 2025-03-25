@@ -1,22 +1,22 @@
-name: Strategist
+name: Tactics
 type: talent
-img: icons/skills/melee/maneuver-sword-katana-yellow.webp
+img: icons/skills/melee/maneuver-greatsword-yellow.webp
 system:
-  notes: ""
-  minIQ: 13
-  iqCost: 2
+  notes: ''
+  minIQ: 11
+  iqCost: 1
   defaultAttribute: iq.max
 effects:
   - name: Initiative Bonus
-    origin: Item.0bhu72bXQTHjwq4F
+    origin: Item.7AdSRjbkzvjaj9Js
     img: icons/svg/aura.svg
-    _id: VfMuENyDYERSr9S4
+    _id: EAyrYOx3POH4qo1J
     type: base
     system: {}
     changes:
       - key: system.initiative.party
         mode: 4
-        value: "2"
+        value: '1'
         priority: null
     disabled: false
     duration:
@@ -27,8 +27,8 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: ""
-    tint: "#ffffff"
+    description: ''
+    tint: '#ffffff'
     transfer: true
     statuses: []
     sort: 0
@@ -36,27 +36,28 @@ effects:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "12.331"
+      coreVersion: '12.331'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
-      modifiedTime: null
-      lastModifiedBy: null
-    _key: "!items.effects!J8u8lnU4Ri3sR7Jr.VfMuENyDYERSr9S4"
-folder: null
+      modifiedTime: 1742854587708
+      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+    _key: '!items.effects!F4nf0dAIzTeQzCXE.EAyrYOx3POH4qo1J'
+folder: XFw411o4x7UZ4oCH
 flags: {}
 _stats:
-  compendiumSource: null
+  compendiumSource: Compendium.fantasy-trip.example-items.Item.VNQsTrbPOcIDH3Pp
   duplicateSource: null
-  coreVersion: "12.331"
+  coreVersion: '12.331'
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1741279602555
-  modifiedTime: 1741279602555
-  lastModifiedBy: jYWQAcYwV2K8zXyc
-_id: J8u8lnU4Ri3sR7Jr
-sort: 0
+  createdTime: 1742056876796
+  modifiedTime: 1742854236971
+  lastModifiedBy: 4jN5Lbw1IbyHFDNM
 ownership:
   default: 0
-  jYWQAcYwV2K8zXyc: 3
-_key: "!items!J8u8lnU4Ri3sR7Jr"
+  4jN5Lbw1IbyHFDNM: 3
+_id: F4nf0dAIzTeQzCXE
+sort: 1400000
+_key: '!items!F4nf0dAIzTeQzCXE'
+

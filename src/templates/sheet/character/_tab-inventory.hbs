@@ -41,7 +41,7 @@
                     {{#unless item.system.container}}
                     <a class="mr-2" data-action="item-change-location"
                         title="{{localize (concat 'FT.character.sheet.label.location.' item.system.location)}}"><i
-                            class="{{lookup ../FT.item.inventory.icons item.system.location}}"></i></a>
+                            class="{{property ../FT.item.inventory.icons item.system.location}}"></i></a>
                     {{/unless}}
                 </td>
                 {{> actions}}

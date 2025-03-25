@@ -1,0 +1,27 @@
+name: Staff
+type: talent
+img: icons/skills/melee/hand-grip-staff-blue.webp
+system:
+  notes: ''
+  defaultAttribute: dx.max
+  iqCost: 1
+  minIQ: 9
+effects: []
+folder: XFw411o4x7UZ4oCH
+flags: {}
+_stats:
+  compendiumSource: Compendium.fantasy-trip.example-items.Item.OXJnRFO6pZ3GVSKA
+  duplicateSource: null
+  coreVersion: '12.331'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1742056876796
+  modifiedTime: 1742854236971
+  lastModifiedBy: 4jN5Lbw1IbyHFDNM
+ownership:
+  default: 0
+  4jN5Lbw1IbyHFDNM: 3
+_id: uQhoyfX53Dfkjrv3
+sort: 1100000
+_key: '!items!uQhoyfX53Dfkjrv3'
+

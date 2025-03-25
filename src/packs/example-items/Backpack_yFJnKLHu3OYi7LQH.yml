@@ -1,0 +1,31 @@
+name: Backpack
+type: equipment
+img: icons/containers/bags/case-leather-tan.webp
+system:
+  notes: ''
+  cost: 3
+  wt: 2
+  qty: 1
+  capacity: 10
+  container: null
+  attacks: []
+  defenses: []
+effects: []
+folder: XFw411o4x7UZ4oCH
+flags: {}
+_stats:
+  compendiumSource: Compendium.fantasy-trip.example-items.Item.WFnirqE5bFd64Drr
+  duplicateSource: null
+  coreVersion: '12.331'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1742056876796
+  modifiedTime: 1742854236971
+  lastModifiedBy: 4jN5Lbw1IbyHFDNM
+ownership:
+  default: 0
+  4jN5Lbw1IbyHFDNM: 3
+_id: yFJnKLHu3OYi7LQH
+sort: 100000
+_key: '!items!yFJnKLHu3OYi7LQH'
+

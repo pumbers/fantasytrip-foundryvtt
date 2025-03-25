@@ -1,10 +1,11 @@
 {{!-- Items Tab --}}
 <div class="tab inventory" data-group="primary" data-tab="inventory">
     <div class="flex flex-col gap-2">
-
+        {{!-- Table Row Partial --}}
         {{#*inline "table-row"}}
         <tr data-item-id="{{item._id}}" {{#if (eq item.type "equipment" )}}draggable="true" {{/if}}
             class="item {{#if item.system.isContainer}}item-container{{/if}}">
+            {{!-- Common Columns --}}
             {{#if showItemIcon}}
             <td><img src="{{item.img}}" /></td>
             {{/if}}
@@ -19,8 +20,12 @@
             {{!-- Spell --}}
             {{else if (eq item.type "spell")}}
             <td>
-                <a class="px-[2px] action" data-action="cast-spell">{{localize
-                    "FT.character.sheet.button.cast"}}</a>
+                {{#if item.system.isReady}}
+                <a class="px-[2px] action" data-action="cancel-spell">{{localize
+                    "FT.character.sheet.button.cancel"}}</a>
+                {{else}}
+                <a class="px-[2px] action" data-action="cast-spell">{{localize "FT.character.sheet.button.cast"}}</a>
+                {{/if}}
             </td>
             <td></td>
             {{!-- Equipment --}}
@@ -30,7 +35,7 @@
                 {{#unless item.system.container}}
                 <a class="mr-2" data-action="item-change-location"
                     title="{{localize (concat 'FT.character.sheet.label.location.' item.system.location)}}"><i
-                        class="{{lookup FT.item.inventory.icons item.system.location}}"></i></a>
+                        class="{{property FT.item.inventory.icons item.system.location}}"></i></a>
                 {{/unless}}
             </td>
             {{/if}}
@@ -44,7 +49,7 @@
             </td>
         </tr>
         {{/inline}}
-
+        {{!-- Inventory Table --}}
         <table>
             <thead>
                 <tr>

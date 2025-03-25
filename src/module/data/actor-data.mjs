@@ -23,7 +23,6 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         mod: new NumberField({ initial: 0 }), // Manually set modifier
         value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
-          success: new NumberField({ initial: 0 }), // Modifier to success rolls
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
           damage: new NumberField({ initial: 0 }), // Modifier to damage done
         }),
@@ -33,7 +32,6 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         mod: new NumberField({ initial: 0 }), // Manually set modifier
         value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
-          success: new NumberField({ initial: 0 }), // Modifier to success rolls
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
           hth: new NumberField({ initial: 0 }), // Modifier to HTH attacks
           natural: new NumberField({ initial: 0 }), // Modifier to natural wepon attacks
@@ -48,11 +46,9 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         mod: new NumberField({ initial: 0 }), // Manually set modifier
         value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
-          success: new NumberField({ initial: 0 }), // Modifier to success rolls
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
         }),
       }),
-      // TODO modes: walk, swim, fly
       ma: new SchemaField({
         mode: new StringField({ initial: "walk" }), // Movement type
         walk: new SchemaField({

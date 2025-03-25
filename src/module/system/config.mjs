@@ -10,14 +10,13 @@ FT.settings = {
   damageMultiplierStrategy: {
     options: {
       rollTimes: "FT.game.settings.damageMultiplierStrategy.options.rollTimes",
-      multiply: "FT.game.settings.damagedamageMultiplierStrategy.options.multiply",
+      multiply: "FT.game.settings.damageMultiplierStrategy.options.multiply",
     },
   },
 };
 
 FT.roll = {
   types: {
-    success: "FT.system.roll.type.success",
     save: "FT.system.roll.type.save",
     talent: "FT.system.roll.type.talent",
     attack: "FT.system.roll.type.attack",
@@ -72,9 +71,9 @@ FT.character = {
     encumbrance: {
       colors: ["bg-lime", "bg-lime", "bg-lime", "bg-amber", "bg-amber", "bg-red", "bg-red"],
     },
-    damage: { color: "bg-red-500" },
-    fatigue: { color: "bg-amber-500" },
-    mana: { color: "bg-sky-400" },
+    damage: { color: "bg-red-400" },
+    fatigue: { color: "bg-amber-400" },
+    mana: { color: "bg-sky-300" },
   },
 };
 
@@ -101,6 +100,13 @@ FT.item = {
       polearm: "FT.item.attack.type.polearm",
       thrown: "FT.item.attack.type.thrown",
       missile: "FT.item.attack.type.missile",
+    },
+    icon: {
+      natural: "icon-fist",
+      melee: "icon-swordman",
+      polearm: "icon-mace",
+      thrown: "icon-thrown-knife",
+      missile: "icon-bowman",
     },
   },
   spell: {

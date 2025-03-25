@@ -39,11 +39,22 @@ languages:
 grid:
   distance: 5
   units: ft
+primaryTokenAttribute: st
 documentTypes:
   Actor:
-    character: {}
-    npc: {}
+    character:
+      htmlFields:
+        - notes
+    npc:
+      htmlFields:
+        - notes
   Item:
-    equipment: {}
-    talent: {}
-    spell: {}
+    equipment:
+      htmlFields:
+        - notes
+    talent:
+      htmlFields:
+        - notes
+    spell:
+      htmlFields:
+        - notes

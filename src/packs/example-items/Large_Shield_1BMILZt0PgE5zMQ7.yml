@@ -1,32 +1,28 @@
-name: Light Leather
+name: Large Shield
 type: equipment
-img: icons/equipment/chest/shirt-collared-yellow.webp
+img: icons/equipment/shield/heater-wooden-steel-boss.webp
 system:
   notes: ""
-  cost: 10
-  wt: 2
+  cost: 20
+  wt: 50
   qty: 1
   capacity: 0
   container: null
   attacks: []
   defenses:
-    - action: Armor
-      hitsStopped: 1
+    - action: Block
+      hitsStopped: 2
 effects:
   - name: New Active Effect
-    origin: Item.Jw7YqDm907MrMKXI
+    origin: Item.33tC0sh93HmNkTZc
     img: icons/svg/aura.svg
-    _id: sWzgfvlGoA3AOkBz
+    _id: 3lYQxxPtX8ZK6mpR
     type: base
     system: {}
     changes:
-      - key: system.ma.walk.value
-        mode: 3
-        value: "8"
-        priority: null
       - key: system.dx.value
         mode: 2
-        value: "-2"
+        value: "-1"
         priority: null
     disabled: true
     duration:
@@ -52,21 +48,21 @@ effects:
       createdTime: null
       modifiedTime: null
       lastModifiedBy: null
-    _key: "!items.effects!nfxbGVXzz7SqpFMl.sWzgfvlGoA3AOkBz"
-folder: null
+    _key: "!items.effects!1BMILZt0PgE5zMQ7.3lYQxxPtX8ZK6mpR"
+folder: XFw411o4x7UZ4oCH
 flags: {}
 _stats:
-  compendiumSource: null
+  compendiumSource: Compendium.fantasy-trip.example-items.Item.3s1I4hVJCay0RhXU
   duplicateSource: null
   coreVersion: "12.331"
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1741279593790
-  modifiedTime: 1741279595720
-  lastModifiedBy: jYWQAcYwV2K8zXyc
-_id: nfxbGVXzz7SqpFMl
-sort: 300000
+  createdTime: 1742056876796
+  modifiedTime: 1742854236971
+  lastModifiedBy: 4jN5Lbw1IbyHFDNM
 ownership:
   default: 0
-  jYWQAcYwV2K8zXyc: 3
-_key: "!items!nfxbGVXzz7SqpFMl"
+  4jN5Lbw1IbyHFDNM: 3
+_id: 1BMILZt0PgE5zMQ7
+sort: 600000
+_key: "!items!1BMILZt0PgE5zMQ7"

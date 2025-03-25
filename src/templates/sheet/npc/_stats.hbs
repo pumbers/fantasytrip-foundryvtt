@@ -8,7 +8,7 @@
         <input class="m-0 !text-center !text-lg !h-full !w-12" type="number" name="system.{{key}}.max" min="0"
             value="{{attr.max}}" />
         <a class="block m-0 p-1 border-y-[1px] border-r-[1px] action" data-action="attribute-roll"
-            data-attribute="{{key}}" data-path="{{key}}.max" data-type="success"><i class="icon-d6 text-lg"></i></a>
+            data-attribute="{{key}}" data-path="{{key}}.max" data-type="save"><i class="icon-d6 text-lg"></i></a>
     </div>
 </div>
 <div class="field w-14 ml-auto">
@@ -17,7 +17,7 @@
     <div title="{{title}}" class="flex flex-row gap-0">
         <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
         <a class="block m-0 p-1 border-y-[1px] border-r-[1px] action" data-action="attribute-roll"
-            data-attribute="adj{{key}}" data-path="{{key}}.value" data-type="success"><i class="icon-d6"></i></a>
+            data-attribute="adj{{key}}" data-path="{{key}}.value" data-type="save"><i class="icon-d6"></i></a>
     </div>
     {{else if action}}
     <div class="flex flex-row gap-0">

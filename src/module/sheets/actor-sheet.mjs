@@ -49,9 +49,10 @@ export class FTCharacterSheet extends ActorSheet {
       inventory: this.actor.items
         .filter((item) => item.type === "equipment")
         .sort((a, b) => a.name.localeCompare(b.name)),
-      // Attacks & Defenses
-      weapons: this.actor.items.filter((item) => item.system.isReady && item.system.canAttack),
-      protections: this.actor.items.filter((item) => item.system.isReady && item.system.canDefend),
+      // Attacks, Defenses, Readied Spells
+      offenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasAttacks),
+      defenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasDefenses),
+      cast: this.actor.items.filter((item) => item.type === "spell" && item.system.isReady && !item.system.hasActions),
     };
 
     // Sort inventory items into their containers
@@ -144,6 +145,12 @@ export class FTCharacterSheet extends ActorSheet {
         if (!itemId) return;
         item = this.actor.items.get(itemId);
         Action.castingRoll(this.actor, item, dataset);
+        break;
+      case "cancel-spell":
+        // console.log("click():cast-spell", dataset);
+        if (!itemId) return;
+        item = this.actor.items.get(itemId);
+        item.update({ "system.stSpent": 0 });
         break;
       case "create-effect":
       case "edit-effect":
