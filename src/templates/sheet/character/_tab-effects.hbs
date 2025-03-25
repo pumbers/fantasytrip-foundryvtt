@@ -23,7 +23,7 @@
                 </tbody>
             </table>
             <div class="actions">
-                {{#if (eq parent.name "Actor")}}
+                {{#if (eq parent.name ../actor.name)}}
                 <button data-action="edit-effect">{{localize "FT.effect.action.edit"}}</button>
                 <button data-action="toggle-effect">{{localize "FT.effect.action.toggle"}}</button>
                 <button data-action="delete-effect">{{localize "FT.effect.action.delete"}}</button>

@@ -9,7 +9,7 @@
   input,
   textarea,
   select {
-    @apply w-full h-6 border rounded-none m-0 p-1 !appearance-auto text-slate-900 dark:text-slate-200;
+    @apply w-full h-6 border border-stone-900 dark:border-stone-200 rounded-none m-0 p-1 !appearance-auto text-stone-900 dark:text-stone-200;
     &::placeholder {
       @apply opacity-80;
     }
@@ -20,18 +20,18 @@
       @apply cursor-not-allowed bg-transparent;
     }
     &[disabled] {
-      @apply cursor-not-allowed text-black/500 dark:text-slate-200 border-none;
+      @apply cursor-not-allowed text-stone-900/500 dark:text-stone-200 border-none;
     }
   }
 
   table {
-    @apply text-xs m-0 text-slate-900 dark:text-slate-200;
+    @apply text-xs m-0 text-stone-900 dark:text-stone-200;
     thead {
       text-shadow: none;
-      @apply bg-slate-500 border-none text-slate-200;
+      @apply border-none bg-stone-900 text-stone-200 dark:bg-stone-200 dark:text-stone-900;
     }
     tr:nth-child(even) {
-      @apply bg-slate-200 dark:bg-slate-700;
+      @apply bg-stone-300 dark:bg-stone-700;
     }
     th,
     td {
@@ -51,7 +51,7 @@
     }
     tfoot {
       text-shadow: none;
-      @apply border-none bg-slate-300 text-slate-900 dark:bg-slate-900 dark:text-slate-300;
+      @apply border-none bg-stone-400 text-stone-900 dark:bg-stone-900 dark:text-stone-200;
     }
   }
 
@@ -61,7 +61,7 @@
       @apply overflow-auto;
     }
     & .item {
-      @apply m-0 !p-1 text-[0.6rem] uppercase text-slate-900 dark:text-slate-200;
+      @apply m-0 !p-1 text-[0.6rem] uppercase text-stone-900 dark:text-stone-200;
       &.active {
         text-shadow: none;
         @apply font-bold;
@@ -71,14 +71,14 @@
 
   & fieldset {
     & legend {
-      @apply dark:text-slate-200;
+      @apply text-stone-900 dark:text-stone-200;
     }
   }
 
   & .field {
     @apply flex flex-col gap-1 mt-auto mb-0 !leading-2;
     & label {
-      @apply m-0 p-0 text-[0.5rem] !text-left uppercase text-slate-900 dark:text-slate-200;
+      @apply m-0 p-0 text-[0.5rem] !text-left uppercase text-stone-900 dark:text-stone-200;
     }
   }
 
@@ -89,15 +89,15 @@
   & [data-action] {
     @apply cursor-pointer;
     &.action {
-      @apply bg-yellow-100 dark:text-black;
+      @apply bg-yellow-100 text-stone-900 dark:bg-yellow-900 dark:text-stone-200;
       &:hover {
-        @apply bg-yellow-300;
+        @apply bg-yellow-300 dark:bg-yellow-700;
       }
     }
   }
 
   .effect {
-    @apply border border-black rounded-none m-0 p-1 flex flex-row gap-2;
+    @apply border border-stone-900 dark:border-stone-200 rounded-none m-0 p-1 flex flex-row gap-2;
     legend {
       @apply font-bold uppercase;
     }
@@ -119,5 +119,9 @@
         @apply border-none w-auto px-1 cursor-pointer text-xs;
       }
     }
+  }
+
+  button {
+    @apply bg-stone-700 text-stone-200;
   }
 }

@@ -43,12 +43,13 @@
         {{#*inline "attribute"}}
         <div class="flex flex-row gap-1 justify-start" data-attribute="{{key}}">
             <label
-                class="m-0 p-1 bg-black text-white dark:bg-white dark:text-black text-xl text-center uppercase min-w-10 rounded-none">{{localize
+                class="m-0 p-1 bg-stone-900 text-stone-200 dark:bg-stone-200 dark:text-stone-900 text-xl text-center uppercase min-w-10 rounded-none">{{localize
                 (concat "FT.character.attribute." key ".max")}}</label>
             <div class="flex flex-row gap-0">
                 <input class="m-0 !text-center !text-xl !h-full !w-14" type="number" name="system.{{key}}.max" min="0"
                     value="{{attr.max}}" />
-                <a title="{{title}}" class="block m-0 p-1 border-y-[1px] border-r-[1px] action"
+                <a title="{{title}}"
+                    class="block m-0 p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-200 action"
                     data-action="attribute-roll" data-attribute="{{key}}.max" data-type="save"><i
                         class="icon-d6 text-xl"></i></a>
             </div>
@@ -57,14 +58,16 @@
                 {{#if roll}}
                 <div class="flex flex-row gap-0">
                     <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                    <a title="{{title}}" class="block m-0 p-1 border-y-[1px] border-r-[1px] action"
+                    <a title="{{title}}"
+                        class="block m-0 p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-200 action"
                         data-action="attribute-roll" data-attribute="{{key}}.value" data-type="save"><i
                             class="icon-d6"></i></a>
                 </div>
                 {{else if action}}
                 <div class="flex flex-row gap-0">
                     <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                    <a title="{{title}}" class="block m-0 p-1 border-y-[1px] border-r-[1px] action"
+                    <a title="{{title}}"
+                        class="block m-0 p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-200 action"
                         data-action="{{name}}"><i class="{{icon}}"></i></a>
                 </div>
                 {{else}}
