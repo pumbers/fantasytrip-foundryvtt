@@ -23,7 +23,7 @@ const extractPack = (...args) => import("@foundryvtt/foundryvtt-cli").then(({ ex
 /*
  * Build settings & locations
  */
-const SYSTEM_CSS = ["src/css/**/*.css"];
+const SYSTEM_STYLES = ["src/styles/**/*.css"];
 const SYSTEM_STATIC = ["src/assets/**/*", "src/templates/**/*"];
 const SYSTEM_YAML = ["src/system.yml", "src/lang/**/*.yml"];
 const SYSTEM_PACKS = "src/packs";
@@ -119,12 +119,12 @@ const tailwindcss = require("@tailwindcss/postcss");
 
 function compileCss() {
   return gulp
-    .src(SYSTEM_CSS)
+    .src(SYSTEM_STYLES)
     .pipe(sourcemaps.init())
     .pipe(postcss([tailwindcss("./tailwind.config.js")]))
     .pipe(postcss())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(`${BUILD_DIR}/css`));
+    .pipe(gulp.dest(`${BUILD_DIR}/styles`));
 }
 
 /* ----------------------------------------- */

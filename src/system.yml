@@ -15,12 +15,12 @@ bugs: https://github.com/pumbers/fantasytrip-foundryvtt/issues
 esmodules:
   - module/fantasy-trip.mjs
 styles:
-  - css/fantasy-trip.css
-  - css/icons.css
-  - css/character-sheet.css
-  - css/npc-sheet.css
-  - css/item-sheet.css
-  - css/applications.css
+  - styles/fantasy-trip.css
+  - styles/icons.css
+  - styles/character-sheet.css
+  - styles/npc-sheet.css
+  - styles/item-sheet.css
+  - styles/applications.css
 packs:
   - name: using-fantasy-trip-for-foundry-vtt
     label: Using Fantasy Trip for Foundry VTT
