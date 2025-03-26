@@ -2,7 +2,7 @@
     {{!-- Offensives --}}
     {{#each offenses as | offense |}}
     <div data-item-id="{{offense._id}}"
-        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-slate-200 dark:text-slate-200 rounded-none m-0 p-[2px] text-xs leading-4">
+        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
         <img class="w-4 h-4" src="{{offense.img}}" alt="">
         <span>{{offense.name}}</span>
         {{#each offense.system.attacks}}
@@ -35,7 +35,7 @@
     {{!-- Defenses --}}
     {{#each defenses as | defense |}}
     <div data-item-id="{{defense._id}}"
-        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-slate-200 dark:text-slate-200 rounded-none m-0 p-[2px] text-xs leading-4">
+        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
         <img class="w-4 h-4" src="{{defense.img}}" alt="">
         <span>{{defense.name}}</span>
         {{#each defense.system.defenses}}
@@ -47,7 +47,7 @@
     {{!-- Active Spells --}}
     {{#each cast as | spell |}}
     <div data-item-id="{{spell._id}}"
-        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-slate-200 dark:text-slate-200 rounded-none m-0 p-[2px] text-xs leading-4">
+        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
         <img class="w-4 h-4" src="{{spell.img}}" alt="">
         <span>{{spell.name}}</span>
         <span><i class="icon-pentacle mr-1"></i>{{spell.system.stSpent}}/{{spell.system.stToMaintain}}</span>

@@ -9,7 +9,7 @@
   input,
   textarea,
   select {
-    @apply w-full h-6 border border-stone-900 dark:border-stone-200 rounded-none m-0 p-1 !appearance-auto text-stone-900 dark:text-stone-200;
+    @apply w-full h-6 border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1 !appearance-auto text-stone-900 dark:text-stone-200;
     &::placeholder {
       @apply opacity-80;
     }
@@ -97,7 +97,7 @@
   }
 
   .effect {
-    @apply border border-stone-900 dark:border-stone-200 rounded-none m-0 p-1 flex flex-row gap-2;
+    @apply border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1 flex flex-row gap-2;
     legend {
       @apply font-bold uppercase;
     }
@@ -122,6 +122,6 @@
   }
 
   button {
-    @apply bg-stone-700 text-stone-200;
+    @apply bg-stone-300 text-stone-900;
   }
 }

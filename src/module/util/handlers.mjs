@@ -39,7 +39,6 @@ export function onItemCreate(event) {
   const element = $(event?.currentTarget);
   const { name, type, ...system } = element?.data() ?? {};
   // Prepare the item object.
-  foundry.utils.deepClone(system);
   const itemData = {
     name: name ?? `New ${type.capitalize()}`,
     type,
@@ -47,7 +46,7 @@ export function onItemCreate(event) {
   };
 
   // Finally, create the item!
-  return Item.create(itemData, { parent: this.actor });
+  return Item.create(itemData, { parent: this.actor }).then((item) => item.sheet.render(true));
 }
 
 /**

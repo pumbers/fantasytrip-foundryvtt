@@ -10,7 +10,8 @@
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.attackAction"}}</label>
                     <div class="flex flex-row gap-0">
-                        <span class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs"
+                        <span
+                            class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] border-stone-900 dark:border-stone-400 text-xs dark:bg-stone-200"
                             data-action="delete-attack" data-index="{{@index}}"><i class="fas fa-trash"></i></span>
                         <input class="!rounded-l-none" type="text" name="system.attacks.{{@index}}.action"
                             value="{{attack.action}}">

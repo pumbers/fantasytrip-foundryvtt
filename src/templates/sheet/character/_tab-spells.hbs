@@ -20,7 +20,8 @@
                 <th>{{localize 'FT.character.sheet.table.spells.cost'}}</th>
                 <th>{{localize 'FT.character.sheet.table.spells.st'}}</th>
                 <th></th>
-                <th></th>
+                <th><a class="document-create" data-type="spell"
+                        title="{{localize 'FT.character.sheet.button.create'}}"><i class="fa fa-plus"></i></a></th>
             </tr>
         </thead>
         {{#each (sort spells 'name') as |spell|}}
@@ -29,7 +30,7 @@
             <td><img src="{{spell.img}}" /> </td>
             {{/if}}
             <td>{{spell.name}}</td>
-            <td>{{localize (concat "FT.item.spell.typeAbbr." spell.system.type)}}</td>
+            <td>{{#if spell.system.type}}{{localize (concat "FT.item.spell.typeAbbr." spell.system.type)}}{{/if}}</td>
             <td>{{spell.system.minIQ}}</td>
             <td>{{spell.system.actualIQCost}}</td>
             {{#if (eq spell.system.stToCast.min spell.system.stToCast.max)}}
@@ -41,7 +42,7 @@
                 {{#if spell.system.isReady}}
                 <a class="px-[2px] action" data-action="cancel-spell">{{localize
                     "FT.character.sheet.button.cancel"}}</a>
-                {{else}}
+                {{else if spell.system.type}}
                 <a class="px-[2px] action" data-action="cast-spell">{{localize "FT.character.sheet.button.cast"}}</a>
                 {{/if}}
             </td>

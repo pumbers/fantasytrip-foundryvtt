@@ -70,6 +70,16 @@
           "url": "https://tailwindcss.com/docs/detecting-classes-in-source-files"
         }
       ]
+    },
+    {
+      "name": "@theme",
+      "description": "",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/theme"
+        }
+      ]
     }
   ]
 }

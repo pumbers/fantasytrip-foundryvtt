@@ -417,13 +417,15 @@ export async function applyDamage(actor, damage, options) {
 
   // Create a dialog for the GM to select applicable defenses
   const content = await renderTemplate(`${FT.path}/templates/dialog/apply-damage.hbs`, {
-    items,
     damage,
+    items,
   });
 
   new foundry.applications.api.DialogV2({
+    id: "ft-apply-damage",
+    classes: ["fantasy-trip", "apply-damage"],
     window: {
-      title: game.i18n.format("FT.dialog.damage.title", { name: actor.name }),
+      title: game.i18n.format("FT.dialog.damage.title", { name: actor.parent?.name ?? actor.name, damage }),
     },
     content,
     buttons: [
@@ -509,7 +511,7 @@ function _applyDamage(actor, damageTaken, options = {}) {
  * @param {Object} options
  */
 export function castingRoll(actor, spell, options = {}) {
-  console.log("Action.castingRoll()", actor, spell, options);
+  // console.log("Action.castingRoll()", actor, spell, options);
 
   const context = {
     force: true,
@@ -528,7 +530,7 @@ export function castingRoll(actor, spell, options = {}) {
     },
     //
     submit: async (data) => {
-      console.log("Action.castingRoll().submit()", "data", data);
+      // console.log("Action.castingRoll().submit()", "data", data);
 
       // Extract roll parameters
       const { actor, spell, cost, dice, totalAttributes, totalModifiers, rollMode } = extractRollParameters(data);

@@ -89,6 +89,7 @@ export class FTCharacterSheet extends ActorSheet {
 
     // Item actions
     html.find(".document-chat").click(Handlers.onChatItem.bind(this));
+    html.find(".document-create").click(Handlers.onItemCreate.bind(this));
     html.find(".document-edit").click(Handlers.onItemEdit.bind(this));
     html.find(".document-delete").click(Handlers.onItemDelete.bind(this));
   }
@@ -255,7 +256,7 @@ export class FTNPCSheet extends FTCharacterSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["fantasy-trip", "npc", "sheet"],
       template: `${CONFIG.FT.path}/templates/sheet/npc/npc-sheet.hbs`,
-      width: 470,
+      width: 445,
       height: 400,
     });
   }

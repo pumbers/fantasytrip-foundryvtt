@@ -25,7 +25,8 @@
                     <th>{{localize 'FT.character.sheet.table.items.qty'}}</th>
                     <th>{{localize 'FT.character.sheet.table.items.capacity'}}</th>
                     <th>{{localize 'FT.character.sheet.table.items.location'}}</th>
-                    <th></th>
+                    <th><a class="document-create" data-type="equipment" data-location="carried"
+                            title="{{localize 'FT.character.sheet.button.create'}}"><i class="fa fa-plus"></i></a></th>
                 </tr>
             </thead>
             {{#each inventory as |item|}}

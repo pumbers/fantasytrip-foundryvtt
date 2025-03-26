@@ -101,7 +101,9 @@ FT:
         multiplier: Multiplier
   dialog:
     damage:
-      title: Apply Damage to {name}
+      title: Apply {damage} Damage to {name}
+      label:
+        stops: Stops {hits}
   chat:
     button:
       rollDamage: Roll Damage

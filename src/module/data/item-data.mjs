@@ -63,7 +63,7 @@ export class FTTalentData extends FTBaseItemData {
   }
 
   get isReady() {
-    return true;
+    return !!this.defaultAttribute;
   }
 }
 

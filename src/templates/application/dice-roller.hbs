@@ -17,7 +17,8 @@
     <div class="grid grid-cols-5 gap-1">
         {{#each FT.roll.types as |label type|}}
         <span>
-            <input type="radio" name="type" id="type-{{type}}" value="{{type}}" {{#if (eq ../type type)}}checked{{/if}}>
+            <input type="radio" name="type" id="type-{{type}}" value="{{type}}" {{#if (eq ../type type)}}checked{{/if}}
+                disabled>
             <label for="type-{{type}}">{{localize label}}</label>
         </span>
         {{/each}}

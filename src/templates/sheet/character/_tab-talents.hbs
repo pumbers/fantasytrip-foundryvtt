@@ -19,7 +19,8 @@
                 <th>{{localize 'FT.character.sheet.table.talents.iq'}}</th>
                 <th>{{localize 'FT.character.sheet.table.talents.cost'}}</th>
                 <th></th>
-                <th></th>
+                <th><a class="document-create" data-type="talent"
+                        title="{{localize 'FT.character.sheet.button.create'}}"><i class="fa fa-plus"></i></a></th>
             </tr>
         </thead>
         {{#each (sort talents 'name') as |talent|}}
@@ -28,10 +29,12 @@
             <td><img src="{{talent.img}}" /> </td>
             {{/if}}
             <td>{{talent.name}}</td>
-            <td>{{localize (concat "FT.character.attribute." talent.system.defaultAttribute)}}</td>
+            <td>{{#if talent.system.isReady}}{{localize (concat "FT.character.attribute."
+                talent.system.defaultAttribute)}}{{/if}}</td>
             <td>{{talent.system.minIQ}}</td>
             <td>{{talent.system.actualIQCost}}</td>
-            <td><a class="px-[2px] action" data-action="talent-roll">{{localize "FT.character.sheet.button.roll"}}</a>
+            <td>{{#if talent.system.isReady}}<a class="px-[2px] action" data-action="talent-roll">{{localize
+                    "FT.character.sheet.button.roll"}}</a>{{/if}}
             </td>
             {{> actions}}
         </tr>

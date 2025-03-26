@@ -71,9 +71,9 @@ FT.character = {
     encumbrance: {
       colors: ["bg-lime", "bg-lime", "bg-lime", "bg-amber", "bg-amber", "bg-red", "bg-red"],
     },
-    damage: { color: "bg-red-400" },
-    fatigue: { color: "bg-amber-400" },
-    mana: { color: "bg-sky-300" },
+    damage: { color: "bg-red-500" },
+    fatigue: { color: "bg-amber-500" },
+    mana: { color: "bg-sky-400" },
   },
 };
 

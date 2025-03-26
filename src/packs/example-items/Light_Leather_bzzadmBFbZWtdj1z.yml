@@ -13,7 +13,7 @@ system:
     - action: Armor
       hitsStopped: 1
 effects:
-  - name: New Active Effect
+  - name: Encumbrance
     origin: Item.Jw7YqDm907MrMKXI
     img: icons/svg/aura.svg
     _id: sWzgfvlGoA3AOkBz
