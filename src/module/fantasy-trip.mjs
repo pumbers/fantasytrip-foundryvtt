@@ -257,10 +257,10 @@ Hooks.once("init", async function () {
 /*  Startup Messages                           
 /* -------------------------------------------- */
 
-// Hooks.on("ready", async () => {
-//   ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
-//   ui.notifications.info(game.i18n.localize("FT.messages.notice"));
-// });
+Hooks.on("ready", async () => {
+  ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
+  ui.notifications.info(game.i18n.localize("FT.messages.notice"));
+});
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               

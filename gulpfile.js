@@ -169,6 +169,7 @@ function copyFiles() {
     .src(SYSTEM_STATIC, {
       base: "src",
       nodir: true,
+      encoding: false,
     })
     .pipe(gulp.dest(BUILD_DIR));
 }
