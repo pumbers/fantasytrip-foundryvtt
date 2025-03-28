@@ -39,6 +39,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
           polearm: new NumberField({ initial: 0 }), // Modifier to polearm attacks
           thrown: new NumberField({ initial: 0 }), // Modifier to thrown weapon attacks
           missile: new NumberField({ initial: 0 }), // Modifier to missile weapon attacks
+          casting: new NumberField({ initial: 0 }), // Modifier to spell casting
         }),
       }),
       iq: new SchemaField({

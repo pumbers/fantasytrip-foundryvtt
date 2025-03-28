@@ -518,6 +518,13 @@ export function castingRoll(actor, spell, options = {}) {
     //
     type: "cast",
     dice: 3,
+    modifiers: {
+      casting: {
+        min: FT.roll.modifiers.default.min,
+        max: FT.roll.modifiers.default.max,
+        value: actor.system.dx.modFor.casting ?? 0,
+      },
+    },
     actor,
     spell,
     attribute: ["missile", "thrown"].includes(spell.system.type) ? "dx.value" : "iq.value",
