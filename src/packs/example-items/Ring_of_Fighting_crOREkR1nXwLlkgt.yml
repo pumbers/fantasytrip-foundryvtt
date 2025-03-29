@@ -11,7 +11,7 @@ system:
   attacks: []
   defenses: []
 effects:
-  - name: updated
+  - name: DX Bonus
     origin: Item.IEQm5JZ1S0DuImgH
     img: icons/svg/aura.svg
     _id: DLax6XO1EB4VpGWz
@@ -31,7 +31,7 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: Something
+    description: <p>Something</p>
     tint: '#ffffff'
     transfer: true
     statuses: []
@@ -44,10 +44,10 @@ effects:
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
-      modifiedTime: null
-      lastModifiedBy: null
+      modifiedTime: 1743182309447
+      lastModifiedBy: 4jN5Lbw1IbyHFDNM
     _key: '!items.effects!crOREkR1nXwLlkgt.DLax6XO1EB4VpGWz'
-folder: XFw411o4x7UZ4oCH
+folder: 7V7OlTyNZlJC2pNF
 flags: {}
 _stats:
   compendiumSource: Compendium.fantasy-trip.example-items.Item.pSBKR4sm1IDTg1BV
@@ -56,12 +56,12 @@ _stats:
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1742056876796
-  modifiedTime: 1742854236971
+  modifiedTime: 1743182176014
   lastModifiedBy: 4jN5Lbw1IbyHFDNM
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
 _id: crOREkR1nXwLlkgt
-sort: 900000
+sort: 100000
 _key: '!items!crOREkR1nXwLlkgt'
 

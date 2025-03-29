@@ -43,7 +43,7 @@ effects:
       modifiedTime: 1742854587708
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
     _key: '!items.effects!F4nf0dAIzTeQzCXE.EAyrYOx3POH4qo1J'
-folder: XFw411o4x7UZ4oCH
+folder: oOf6spXXGGiOYgFY
 flags: {}
 _stats:
   compendiumSource: Compendium.fantasy-trip.example-items.Item.VNQsTrbPOcIDH3Pp
@@ -52,12 +52,12 @@ _stats:
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1742056876796
-  modifiedTime: 1742854236971
+  modifiedTime: 1743182205070
   lastModifiedBy: 4jN5Lbw1IbyHFDNM
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
 _id: F4nf0dAIzTeQzCXE
-sort: 1400000
+sort: 600000
 _key: '!items!F4nf0dAIzTeQzCXE'
 

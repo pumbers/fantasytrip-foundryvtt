@@ -1,0 +1,29 @@
+folder: oOf6spXXGGiOYgFY
+name: Area Knowledge
+type: talent
+_id: ZFExV18CMNC8j7lE
+img: icons/sundries/survival/bedroll-worn-beige.webp
+system:
+  notes: ''
+  attacks: []
+  defenses: []
+  minIQ: 8
+  iqCost: 1
+  defaultAttribute: iq.value
+effects: []
+sort: 100000
+ownership:
+  default: 0
+  4jN5Lbw1IbyHFDNM: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  coreVersion: '12.331'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1743182029502
+  modifiedTime: 1743182086743
+  lastModifiedBy: 4jN5Lbw1IbyHFDNM
+_key: '!items!ZFExV18CMNC8j7lE'
+

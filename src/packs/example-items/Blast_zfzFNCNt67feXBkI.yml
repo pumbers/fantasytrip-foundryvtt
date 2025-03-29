@@ -1,30 +1,28 @@
-name: Magic Fist
+name: Blast
 type: spell
-_id: Rg7UCcS4Chyli2iW
-img: icons/skills/melee/unarmed-punch-fist-yellow-red.webp
+_id: zfzFNCNt67feXBkI
+img: icons/magic/fire/orb-vortex.webp
 system:
   notes: ''
   attacks:
-    - action: Slam
-      type: missile
+    - action: Blast
+      type: melee
       toHitMod: 0
-      baseDamage: 1d6-2
+      baseDamage: 1d6
       minST: 0
       talent: null
   defenses: []
-  minIQ: 8
+  minIQ: 12
   iqCost: 1
   stToCast:
-    min: 1
-    max: 3
-  isCast: false
-  type: missile
-  castingCost:
-    min: 1
-    max: 3
+    min: 2
+    max: 2
+  stToMaintain: 0
+  stSpent: 0
+  type: special
 effects: []
 folder: A0BCLwg7anBpVI6K
-sort: 600000
+sort: 100000
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
@@ -35,8 +33,8 @@ _stats:
   coreVersion: '12.331'
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1742837392675
-  modifiedTime: 1743182158228
+  createdTime: 1743181201807
+  modifiedTime: 1743182136328
   lastModifiedBy: 4jN5Lbw1IbyHFDNM
-_key: '!items!Rg7UCcS4Chyli2iW'
+_key: '!items!zfzFNCNt67feXBkI'
 

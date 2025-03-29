@@ -1,0 +1,546 @@
+name: Using Fantasy Trip for Foundry VTT
+pages:
+  - sort: 100000
+    name: Introduction
+    type: text
+    _id: Ahcj5Hf12oLopn4U
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: >-
+        <h2>History</h2><p>Like a lot of people, I started playing <strong>The
+        Fantasy Trip</strong> back around 1979, first with
+        <strong>Melee</strong> and <strong>Wizard</strong> and later with the
+        full blown <strong>In The Labyrinth</strong>. I was also playing a fair
+        bit of Dungeons &amp; Dragons and Chivalry &amp; Sorcery, but I found
+        Fantasy Trip intriguing in its simple complexity.</p><p>It didn't have
+        D&amp;D's "Vancian Magic" (remember a spell, cast it, forget it), which
+        I've disliked from day one, and it didn't have classes or levels. A
+        character could be and do whatever you wanted without having to fit into
+        predesignated slots.  C&amp;S was a similar in those respects, but was
+        also an order of magnitude crunchier than D&amp;D - and was printed
+        using text so small I can't even read the 1st edition book these
+        days.</p><p>Fantasy Trip filled that gap where a game was simple enough
+        to be easy to learn and play but complex enough to create a richness of
+        detail in the settings &amp; adventures.</p><p>Although I hadn't played
+        the game in over 30 years, I was pleasantly surprised when Steve Jackson
+        Games resurrected it in 2019 with the <strong>Legacy Edition</strong>. I
+        signed up for the full print/PDF package straight away, and was not
+        disappointed with the end product. It brought back a lot of
+        memories.</p><p>But, time and circumstances came along and I still
+        didn't play the game. Then, finally in 2024, I retired and started
+        picking up older games, including Fantasy Trip. I couldn't find a local
+        gaming group for it, and although there was online support in
+        <strong>Roll 20</strong> and <strong>Owlbear Rodeo</strong> could be
+        used generically, there wasn't a <strong>Foundry VTT</strong>
+        implementation, and Foundry is my go-to VTT these days.</p><p>Luckily,
+        I've spent the last 30 years as a software developer, and have even
+        implemented a few modules &amp; systems for friends. So, I set about
+        implementing it for Foundry, and here's the
+        result.</p><p>Enjoy!</p><h2>Design Notes</h2><p>The design philosophy
+        for all of the systems I've written for Foundry is not necessarily to
+        implement each game rule or process in detail, but rather to implement
+        key features in a way that takes the repetitive or complex tasks off of
+        the players &amp; GM and makes it easier for them to do the rest. I've
+        found this gives the users a lot of freedom in how the rules are
+        interpreted and applied without constraining them too much.</p><p>For
+        example, I did consider having strict AP limits and XP spending for
+        advancement, but determined that would have been complicated to
+        implement &amp; use, so opted for a simple AP total on the character
+        sheet that highlights in red if a set limit is exceeded without spending
+        XP. This gives players an indication of their AP total that they can use
+        to determine the cost as per pp45 of the rulebook. It's up to the GM to
+        enforce those costs or not, according to how they want the game played.
+        XP spends for other items just use the XP total field, manually
+        adjusted.</p><p>The same goes for the Dice Roller application. It allows
+        players to quickly see what a dice roll is made up from (target
+        attribute(s), modifiers, number of dice, etc) and adjust the parameters
+        before making the roll. Buttons are provided on the character sheet that
+        act as "presets" for attribute rolls, talent rolls, attacks &amp;
+        damage, spell casting, etc.</p><p>Encumbrance calculation though, is a
+        chore, so I've automated that. A player can have as many items in their
+        inventory as they like, they can choose each item's location (dropped,
+        equipped, carried, stowed, stored) and the character's total encumbrance
+        (based on carried or equipped items) is calculated automatically. That
+        encumbrance level is shown on the character sheet and attribute
+        penalties are applied automatically. I even added a "container" feature
+        so that a character can put items in a backpack which counts them
+        against encumbrance when carried, but if the backpack is dropped (say,
+        for combat) then all the items in it are also dropped and the combat
+        penalties come off immediately.</p><p>Hopefully, this design philosophy
+        achieves what I set out to do: make it easy for old and new players to
+        play the game the way they want in the way they're used to.</p><p>I'm
+        always open to suggestions (and, of course, hearing about bugs), so
+        please feel free to use  Github Issues to let me know what you like or
+        dislike, what I got wrong, and what you want. Bear in mind though, I'm
+        in this for fun, not money, and sometimes life happens and I can't make
+        changes quickly.</p><h2>Steve Jackson Online Policy</h2><p>I have tried
+        to ensure that this implementation conforms to the <a
+        href="https://www.sjgames.com/general/online_policy.html">Steve Jackson
+        Online Policy</a>, and since SJG rarely recognize or allow "official"
+        versions of their games, this is an unofficial version.  This means that
+        while I can implement the mechanisms of the game and even use some of
+        the terminology, I cannot cut &amp; paste any significant content from
+        the game and distribute it. This is why I've included only a few
+        <em>Example Items</em> to show how Talents, Spells, and equipment can be
+        built, and none of those items include descriptive text from the
+        game.</p><p>If there is content in here that infringes on SJG
+        intellectual property or copyright, or breaks their online policy,
+        please let me know ASAP via Github Issues.</p>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    ownership:
+      default: -1
+      jYWQAcYwV2K8zXyc: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '12.331'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      createdTime: null
+      modifiedTime: 1743095055012
+      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.Ahcj5Hf12oLopn4U'
+  - sort: 200000
+    name: Character Sheet
+    type: text
+    _id: 8QpHd2w3fWyC0Oke
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: >-
+        <p>As with any RPG, the character sheet is the heart of the
+        game.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/character_tab_0.1.0.webp"
+        /><h2>Character Tab</h2><ul><li><p>At the top, you have the character's
+        name</p></li><li><p>Next to the name are the character's current total
+        Attribute Points (AP) and Experience Points (XP). The AP value can be
+        used along with pp45 of the rulebook to determine the cost of attribute
+        increases. The XP field is always adjusted manually when XP are earned
+        or spent.</p></li><li><p>Next are the different tabs or pages for the
+        character sheet, I'll cover those later. Clicking on the title of each
+        switches to that page.</p></li><li><p>Then there are a few fields for
+        basic information such as the character type, race, age,
+        etc.</p></li><li><p>The next block down shows the four main character
+        attributes: Strength (ST), Dexterity (DX), Intelligence (IQ), and
+        Movement Allowance (MA). The larger number is the maximum value for that
+        attribute, while smaller number marked <em>Adj.</em> is the current
+        adjusted value. The maximum value won't normally change unless the
+        character raises it through XP spends. The adjusted value can change for
+        a lot of reasons - fatigue, damage, spells, situation, item effects,
+        etc.</p></li><li><p>The button with a dice icon to the right of each
+        attribute triggers an Attribute Roll against that
+        attribute.</p></li><li><p>The button next to the Adjusted Movement
+        Allowance indicates the current movement m ode (Walk/Run, Swim, Fly) and
+        can be used to with between the three. MA can be changed independently
+        for each mode.</p></li><li><p>To the right of the attributes is the
+        character portrait. Click on this to change it.</p></li><li><p>The next
+        section down is a series of status indicators and modifiers. In order,
+        they are:</p><ul><li><p><strong>Encumbrance</strong> - this shows the
+        weight the character can carry at each encumbrance level, and the
+        current encumbrance level calculated from the equipment the character is
+        carrying. Note that only equipment marked as <em>Equipped</em> or
+        <em>Carried</em> counts for encumbrance. Anything <em>Dropped</em>,
+        <em>Stowed</em> (nearby, such as on a horse or cart), or <em>Stored</em>
+        (some distance away, such as in a home) does not count towards
+        encumbrance. Adjustments to attributes from encumbrance are made
+        automatically. On the sheet above, you can see the character is heavily
+        encumbered and their DX and MA hav been adjusted
+        accordingly.</p></li><li><p><strong>Health</strong> - this bar shows the
+        character's state of health. Normally, it's blank. When the character
+        becomes fatigued it shows here as an amber bar. When they take damage it
+        shows as a red bar. Both can be shown at the same time. On the sheet
+        above, the character has taken damage and is fatigued, so their ST has
+        been adjusted automatically.</p></li><li><p><strong>Mana</strong> - for
+        Player Characters, this bar will show only if they're a Wizard. It shows
+        any Mana available to them from objects they have equipped, such as
+        their Staff.</p></li><li><p>Finally, there are a series of fields to
+        record current <strong>Fatigue</strong> or <strong>Damage</strong>
+        taken, Mana available, and a series of modifiers for ST, DX, IQ, MA, and
+        Initiative. These can be adjusted manually at any
+        time.</p></li></ul></li><li><p>Lastly on this tab is the
+        <strong>Actions</strong> area. Here, each line represents an available
+        action, such as a ready weapon, equipped armor, cast spells, etc. Most
+        of these will have buttons that can be used to trigger dice rolls such
+        as attacks or damage.</p><ul><li><p>Weapons also show the required ST
+        for a weapon and an icon that turns amber if the ST requirement is not
+        met.</p></li><li><p>Armor shows the number of hits the armor will
+        absorb.</p></li></ul></li></ul><h2>Notes Tab</h2><img
+        src="systems/fantasy-trip/assets/images/instructions/notes_tab_0.1.0.webp"
+        /><p>The <strong>Notes</strong> tab is just one big freeform text
+        notebook. Hover the mouse cursor over the top right corner and click the
+        <strong>Edit</strong> icon to edit the text.</p><h2>Talents Tab</h2><img
+        src="systems/fantasy-trip/assets/images/instructions/talents_tab_0.1.0.webp"
+        /><p>The <strong>Talents</strong> tab shows a table of Talents the
+        character has.</p><ul><li><p>The icon on the left is for aesthetics
+        only. Showing icons in tables can be turned off from the Foundry VTT
+        Settings menu for Fantasy Trip.</p></li><li><p>Each line shows the name
+        of the Talent, the attribute a roll will be made against by default
+        (this can be changed in the Dice Roller if necessary), the IQ level of
+        the Talent, and the cost to acquire the Talent (in IQ
+        points).</p></li><li><p>The last line of the table shows the total IQ
+        cost of all Talents.</p></li><li><p>Note that the cost shown will change
+        depending on whether the character is a Hero or Wizard. as shown above,
+        because this character is a Wizard, each Talent costs 2 IQ and not
+        1.</p></li><li><p>There is a small Roll button which can be used to
+        trigger a Talent roll.</p></li><li><p>The last three icons are for
+        managing the Talent details. In order, they are:</p><ul><li><p>Send the
+        Talent description to the Chat Log.</p></li><li><p>Edit the
+        Talent.</p></li><li><p>Delete the
+        Talent.</p></li></ul></li></ul><h2>Inventory Tab</h2><img
+        src="systems/fantasy-trip/assets/images/instructions/inventory_tab_0.1.0.webp"
+        /><p>The <strong>Inventory</strong> Tab records any equipment the
+        character owns, some details, and where each item is.</p><ul><li><p>As
+        with the Talents tab, an icon and the name of the item(s) are shown
+        first.</p></li><li><p>Then there is the total $ cost of the item(s), the
+        total weight of the item(s), and a Quantity. Most of the time, the
+        Quantity will be 1, and the cost &amp; weight shown will be for a single
+        item. Where the Quantity is higher, the cost &amp; weight are calculated
+        accordingly.</p></li><li><p>If an item is a <strong>Container</strong> -
+        a Container is any item that has a Capacity of greater than 0 - then.
+        that Capacity will be shown. More about Containers
+        below.</p></li><li><p>A single icon shows the item(s)
+        <strong>Location</strong>. Clicking on the current icon cycles to the
+        next location. The locations are:</p><ul><li><p><strong>Dropped</strong>
+        - somewhere on the ground nearby</p></li><li><p><strong>Carried</strong>
+        - on the character's person but not readied (say, in a backpack or
+        pouch)</p></li><li><p><strong>Stowed</strong> - somewhere safe nearby,
+        say on a horse or cart</p></li><li><p><strong>Stored</strong> -
+        somewhere far away, at home or at an inn, not immediately
+        available</p></li><li><p><strong>Equipped</strong> - on the character's
+        person and ready for use</p></li></ul></li><li><p>As mentioned before,
+        only <strong>Carried</strong> or <strong>Equipped</strong> items count
+        against the character's encumbrance.</p></li><li><p>Weapons and armor
+        are only considered ready if <strong>Equipped</strong>. Any other
+        location, and they will not show in the Actions section of the Character
+        Tab.</p></li><li><p>As with Talents, the Chat, Edit, and Delete icons
+        are on the far
+        right.</p></li></ul><h3>Containers</h3><p><strong>Containers</strong>
+        let players put one item inside another, exactly as you would put
+        something in a chest, backpack, or belt pouch.</p><p>Any item can be a
+        Container - it just has to have it's Capacity set to greater than 0.
+        Yes, a sword, or ring, or pocket, can be a Container. It's up to you to
+        explain how, but this implementation does not limit what can be a
+        Container. The only limits are: the total weight of all the items cannot
+        exceed the Capacity of the Container, and you can't put one Container
+        inside another.</p><p>The advantage of using a Container for something
+        is that everything in the Container is automatically in the same
+        location as the Container. If a chest is stored at your rooms in the
+        local tavern and you put something in the chest, it's in the tavern as
+        well. The major reason for having Containers is to simplify combat - a
+        character can put a bunch of items in a backpack and be heavily
+        encumbered, but when they go into combat they only have to drop the
+        backpack and not each item individually.</p><p>To move items into or out
+        of Containers, simply hover over the name (a hand icon will show) then
+        click and drag the item. Drop it on a Container to move it to that
+        Container, drop it anywhere else on the sheet to move it out of a
+        Container.</p><p>Items in a Container will show a small arrow to the
+        left of the name and will always appear directly under their Container.
+        Their location icon will also disappear.</p><h2>Spells Tab</h2><img
+        src="systems/fantasy-trip/assets/images/instructions/spells_tab_0.1.0.webp"
+        /><p>The <strong>Spells</strong> tab shows any spells the character has
+        learned.</p><ul><li><p>The usual icon and spell name come
+        first.</p></li><li><p>Then we have the spell type (Missile, Thrown,
+        Creation, Special).</p></li><li><p>Then there's the IQ level of the
+        spell and the IQ cost to learn it. As with Talents, the cost shown is
+        adjusted based on the character type.</p></li><li><p>Then the ST
+        required to cast the spell is shown. This can either be a single value,
+        or a range if the spell can be cast at different
+        strengths.</p></li><li><p>The <strong>Cast</strong> button triggers a
+        spell casting roll.</p></li><li><p>And we finish with the usual Chat,
+        Edit, and Delete icons.</p></li></ul><h2>Effects Tab</h2><p>Foundry VTT
+        has a system called Active Effects that allows changes to be made to the
+        character based simply on items they have in their possession. For
+        example, a Wizard's Staff can add Mana, a Ring of Giant Strength might
+        add to the character's ST, Boots of Running could increase the
+        character's MA. All of these changes can happen automatically when a
+        character has the item in their Inventory. In this system, the item
+        <strong>must</strong> also be Equipped for the effect to be
+        active.</p><p>More information on Active Effects can be found on the <a
+        href="https://foundryvtt.com/article/active-effects/">Foundry VTT web
+        site</a>.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/effects_tab_0.1.0.webp"
+        /><p>The <strong>Effects</strong> tab shows any Active Effects attached
+        to items in the character's possession. If the character has an item but
+        it is not Equipped, the effect will not be listed. Each effect also
+        shows the changes that it makes to the character. Note that effects
+        derived from an item cannot be edited here, they must be edited on the
+        item itself. See the Item Sheet instructions for more.</p><p>You can
+        also create Active Effects directly on the character from here using the
+        Create button. Effects created in this way can be edited,
+        enabled/disabled, and deleted from this tab. These can be used to
+        represent spells, curses, diseases, and so on. Any changes made via
+        effects are completely independent of the manual modifiers on the
+        Character Tab.</p>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    ownership:
+      default: -1
+      jYWQAcYwV2K8zXyc: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '12.331'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      createdTime: null
+      modifiedTime: 1743269358631
+      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.8QpHd2w3fWyC0Oke'
+  - sort: 300000
+    name: Items and the Item Sheet
+    type: text
+    _id: AGDQOLKibDzbaHh8
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: ''
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    ownership:
+      default: -1
+      4jN5Lbw1IbyHFDNM: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '12.331'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      createdTime: 1743110034476
+      modifiedTime: 1743110037166
+      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.AGDQOLKibDzbaHh8'
+  - sort: 800000
+    name: Writing Effects
+    type: text
+    _id: ZC0ir9H0OUqr0Ehw
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: >-
+        <p>Active Effects are a key feature of Foundry VTT. They allow temporary
+        changes to be made to a character based on items in their possession or
+        can be added directly to the character. They can have assigned durations
+        in play time or combat turns &amp; rounds, so that they start and expire
+        automatically.</p><p>Each effect can target one or more character
+        attributes or stat values, and can modify it in various
+        ways:</p><ul><li><p><strong>Add</strong> - Adds the provided value to a
+        number. This can be used to both add and subtract from a particular
+        value by specifying +1 or -1 as the value to
+        add.</p></li><li><p><strong>Multiply</strong> - Multiplies the defined
+        attribute by the numeric value in the Effect Value
+        field.</p></li><li><p><strong>Override</strong> - Replaces the defined
+        attribute with the value provided in the Effect Value
+        field.</p></li><li><p><strong>Downgrade</strong> - Reduces the defined
+        attribute only in cases where the current value of that attribute would
+        be greater than value specified in the Effect Value
+        field.</p></li><li><p><strong>Upgrade</strong> - Increases the defined
+        attribute only in cases where the current value of that attribute would
+        be less than value specified in the Effect Value
+        field.</p></li><li><p><strong>Custom</strong> - The Custom change mode
+        applies logic defined by a game system or add-on
+        module.</p></li></ul><p>A single item (or character effect) can modify
+        any or all of the following
+        attributes:</p><p></p><table><tbody><tr><td><p><strong>Attribute</strong></p></td><td><p><strong>Description/Use</strong></p></td></tr><tr><td><p>system.st.max</p></td><td><p>Maximum
+        ST</p></td></tr><tr><td><p>system.st.value</p></td><td><p>Adjusted
+        ST</p></td></tr><tr><td><p>system.st.modFor.save</p></td><td><p>Modifier
+        for attribute save rolls
+        only</p></td></tr><tr><td><p>system.st.modFor.damage</p></td><td><p>Damage
+        modifier</p></td></tr><tr><td><p>system.dx.max</p></td><td><p>Maximum
+        DX</p></td></tr><tr><td><p>system.dx.value</p></td><td><p>Adjusted
+        DX</p></td></tr><tr><td><p>system.dx.modFor.save</p></td><td><p>Modifier
+        for attribute save rolls
+        only</p></td></tr><tr><td><p>system.dx.modFor.hth</p></td><td><p>Modifier
+        for HTH
+        attacks</p></td></tr><tr><td><p>system.dx.modFor.natural</p></td><td><p>Modifier
+        for attacks with natural
+        weapons</p></td></tr><tr><td><p>system.dx.modFor.melee</p></td><td><p>Modifier
+        for attacks with melee
+        weapons</p></td></tr><tr><td><p>system.dx.modFor.polearm</p></td><td><p>Modifier
+        for attacks with
+        polearms</p></td></tr><tr><td><p>system.dx.modFor.thrown</p></td><td><p>Modifier
+        for attacks with thrown
+        weapons/spells</p></td></tr><tr><td><p>system.dx.modFor.missile</p></td><td><p>Modifier
+        for attacks with missile
+        weapons/spells</p></td></tr><tr><td><p>system.dx.modFor.casting</p></td><td><p>Modifier
+        for casting
+        spells</p></td></tr><tr><td><p>system.iq.max</p></td><td><p>Maximum
+        IQ</p></td></tr><tr><td><p>system.iq.value</p></td><td><p>Adjusted
+        IQ</p></td></tr><tr><td><p>system.iq.modFor.save</p></td><td><p>Modifier
+        for attribute save rolls
+        only</p></td></tr><tr><td><p>system.ma.walk.max</p></td><td><p>Maximum
+        walk/run
+        MA</p></td></tr><tr><td><p>system.ma.walk.value</p></td><td><p>Adjusted
+        walk/run
+        MA</p></td></tr><tr><td><p>system.ma.swim.max</p></td><td><p>Maximum
+        swimming
+        MA</p></td></tr><tr><td><p>system.ma.swim.value</p></td><td><p>Adjusted
+        swimming
+        MA</p></td></tr><tr><td><p>system.ma.fly.max</p></td><td><p>Maximum
+        flying
+        MA</p></td></tr><tr><td><p>system.ma.fly.value</p></td><td><p>Adjusted
+        flying
+        MA</p></td></tr><tr><td><p>system.initiative.self</p></td><td><p>Modifier
+        to character's personal
+        initiative</p></td></tr><tr><td><p>system.initiative.party</p></td><td><p>Modifier
+        to party
+        initiative</p></td></tr><tr><td><p>system.mana.max</p></td><td><p>Maximum
+        available Mana</p></td></tr></tbody></table><p><strong>Note:</strong>
+        the reason why attributes are split into <em>max</em> and <em>value</em>
+        pairs, with those specific names, is that Foundry VTT recognizes them as
+        being attributes and can use them to display status bars on the
+        character's map token if necessary.</p><p></p>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    ownership:
+      default: -1
+      4jN5Lbw1IbyHFDNM: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '12.331'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      createdTime: 1743110064087
+      modifiedTime: 1743185286511
+      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.ZC0ir9H0OUqr0Ehw'
+  - sort: 500000
+    name: Dice Rolls
+    type: text
+    _id: 7MY6ZNV0LvIRGWOF
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: ''
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    ownership:
+      default: -1
+      4jN5Lbw1IbyHFDNM: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '12.331'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      createdTime: 1743110077275
+      modifiedTime: 1743110079971
+      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.7MY6ZNV0LvIRGWOF'
+  - sort: 600000
+    name: Combat
+    type: text
+    _id: taYa6XujJcawZlXZ
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: ''
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    ownership:
+      default: -1
+      4jN5Lbw1IbyHFDNM: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '12.331'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      createdTime: 1743110089455
+      modifiedTime: 1743110091972
+      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.taYa6XujJcawZlXZ'
+  - sort: 700000
+    name: Casting Spells
+    type: text
+    _id: 6iNkXDrerMY8ltYw
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: ''
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    ownership:
+      default: -1
+      4jN5Lbw1IbyHFDNM: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '12.331'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      createdTime: 1743110384981
+      modifiedTime: 1743110388114
+      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.6iNkXDrerMY8ltYw'
+folder: null
+flags: {}
+_stats:
+  compendiumSource: >-
+    Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.lRHycMkpzFAIyGPx
+  duplicateSource: null
+  coreVersion: '12.331'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1743093080563
+  modifiedTime: 1743095976875
+  lastModifiedBy: 4jN5Lbw1IbyHFDNM
+ownership:
+  default: 0
+  4jN5Lbw1IbyHFDNM: 3
+_id: KaQZyogQKvA3r2vi
+sort: 100000
+_key: '!journal!KaQZyogQKvA3r2vi'
+categories: []
+

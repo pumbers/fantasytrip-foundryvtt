@@ -2,7 +2,7 @@ name: Light Leather
 type: equipment
 img: icons/equipment/chest/shirt-collared-yellow.webp
 system:
-  notes: ""
+  notes: ''
   cost: 10
   wt: 2
   qty: 1
@@ -20,13 +20,13 @@ effects:
     type: base
     system: {}
     changes:
-      - key: system.ma.walk.value
+      - key: system.ma.max
         mode: 3
-        value: "8"
+        value: '8'
         priority: null
-      - key: system.dx.value
+      - key: system.dx.max
         mode: 2
-        value: "-2"
+        value: '-2'
         priority: null
     disabled: true
     duration:
@@ -37,8 +37,8 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: ""
-    tint: "#ffffff"
+    description: ''
+    tint: '#ffffff'
     transfer: true
     statuses: []
     sort: 0
@@ -46,27 +46,28 @@ effects:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "12.331"
+      coreVersion: '12.331'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
-      modifiedTime: null
-      lastModifiedBy: null
-    _key: "!items.effects!bzzadmBFbZWtdj1z.sWzgfvlGoA3AOkBz"
-folder: XFw411o4x7UZ4oCH
+      modifiedTime: 1743007761154
+      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+    _key: '!items.effects!bzzadmBFbZWtdj1z.sWzgfvlGoA3AOkBz'
+folder: qHPsKfSkDmDHENVJ
 flags: {}
 _stats:
   compendiumSource: Compendium.fantasy-trip.example-items.Item.nfxbGVXzz7SqpFMl
   duplicateSource: null
-  coreVersion: "12.331"
+  coreVersion: '12.331'
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1742056876796
-  modifiedTime: 1742854236971
+  modifiedTime: 1743182148306
   lastModifiedBy: 4jN5Lbw1IbyHFDNM
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
 _id: bzzadmBFbZWtdj1z
-sort: 700000
-_key: "!items!bzzadmBFbZWtdj1z"
+sort: 400000
+_key: '!items!bzzadmBFbZWtdj1z'
+

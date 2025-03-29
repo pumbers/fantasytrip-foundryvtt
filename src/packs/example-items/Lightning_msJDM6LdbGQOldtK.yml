@@ -3,7 +3,7 @@ type: spell
 _id: msJDM6LdbGQOldtK
 img: icons/magic/lightning/bolt-blue.webp
 system:
-  notes: ""
+  notes: ''
   attacks:
     - action: Strike
       type: missile
@@ -14,13 +14,17 @@ system:
   defenses: []
   minIQ: 14
   iqCost: 1
-  type: missile
   stToCast:
     min: 1
     max: 3
+  isCast: false
+  type: missile
+  castingCost:
+    min: 1
+    max: 3
 effects: []
-folder: XFw411o4x7UZ4oCH
-sort: 125000
+folder: A0BCLwg7anBpVI6K
+sort: 500000
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
@@ -28,10 +32,11 @@ flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
-  coreVersion: "12.331"
+  coreVersion: '12.331'
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1742837419678
-  modifiedTime: 1742854243541
+  modifiedTime: 1743182150633
   lastModifiedBy: 4jN5Lbw1IbyHFDNM
-_key: "!items!msJDM6LdbGQOldtK"
+_key: '!items!msJDM6LdbGQOldtK'
+

@@ -7,7 +7,7 @@ system:
   iqCost: 1
   minIQ: 5
 effects: []
-folder: XFw411o4x7UZ4oCH
+folder: oOf6spXXGGiOYgFY
 flags: {}
 _stats:
   compendiumSource: Compendium.fantasy-trip.example-items.Item.fERxZsKE9nrEIVlV
@@ -16,12 +16,12 @@ _stats:
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1742056876796
-  modifiedTime: 1742854236971
+  modifiedTime: 1743182094200
   lastModifiedBy: 4jN5Lbw1IbyHFDNM
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
 _id: YmhbjDAz0LdagHAz
-sort: 500000
+sort: 200000
 _key: '!items!YmhbjDAz0LdagHAz'
 

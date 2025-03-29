@@ -11,7 +11,7 @@ system:
   attacks: []
   defenses: []
 effects: []
-folder: XFw411o4x7UZ4oCH
+folder: qHPsKfSkDmDHENVJ
 flags: {}
 _stats:
   compendiumSource: Compendium.fantasy-trip.example-items.Item.FEGZzXtkSWGrBplx
@@ -20,12 +20,12 @@ _stats:
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1742056876796
-  modifiedTime: 1742854236971
+  modifiedTime: 1743182133636
   lastModifiedBy: 4jN5Lbw1IbyHFDNM
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
 _id: GyhrngMvX4YDzUTQ
-sort: 300000
+sort: 200000
 _key: '!items!GyhrngMvX4YDzUTQ'
 
