@@ -96,6 +96,7 @@ FT.item = {
   attack: {
     types: {
       natural: "FT.item.attack.type.natural",
+      hth: "FT.item.attack.type.hth",
       melee: "FT.item.attack.type.melee",
       polearm: "FT.item.attack.type.polearm",
       thrown: "FT.item.attack.type.thrown",

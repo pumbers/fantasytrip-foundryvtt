@@ -172,6 +172,13 @@ FT:
         success: Success! Made it by {margin}
         failure: and misses by {margin}
         criticalFailure: Critical failure!
+        dropped: The {weapon} escapes their grasp and tumbles to the ground!
+        maybeDropped: Their staff, if readied, drops to the ground!
+        broken: The {weapon} shatters into pieces!
+        maybeBroken: Their staff, if readied, breaks in twain!
+        fatigued: A wave of fatigue staggers them.
+        knockdown: They fall to the ground!
+        damage: They take {damage} damage from cuts & bruises.
     combat:
       phase:
         movement: Movement
@@ -318,6 +325,7 @@ FT:
     attack:
       type:
         natural: Natural
+        hth: Hand-to-Hand
         melee: Melee
         polearm: Polearm
         thrown: Thrown

@@ -260,7 +260,7 @@ export function attackRoll(actor, weapon, options) {
       const margin = totalAttributes + totalModifiers - roll.total;
 
       // Create a chat message for the result
-      const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
+      let message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
         talent: talent?.name,
         item: item?.name,
         attack: attack.action?.toLowerCase(),
@@ -271,6 +271,15 @@ export function attackRoll(actor, weapon, options) {
           margin: Math.abs(margin),
         }),
       });
+
+      if (roll.total >= 17 && (weapon.system.type === "natural" || weapon.system.type === "natural")) {
+        const damage = await new Roll("1d6").evaluate().total;
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.damage", { damage }));
+      } else if (roll.total === 17) {
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.dropped", { weapon: item?.name }));
+      } else if (roll.total === 18) {
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.broken", { weapon: item?.name }));
+      }
 
       const content = await renderTemplate(`${FT.path}/templates/chat/dice-roll.hbs`, {
         actor,
@@ -549,21 +558,31 @@ export function castingRoll(actor, spell, options = {}) {
       const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
       const margin = totalAttributes + totalModifiers - roll.total;
 
-      // Mark the spell as cast and subtract the fatigue
+      // Mark the spell as cast and/or subtract the fatigue
       if (margin >= 0) {
         spell.update({ "system.stSpent": cost.st.value ?? 0 });
-        if (game.settings.get("fantasy-trip", "addCastingFatigueAuto")) {
-          actor.update({ "system.fatigue": actor.system.fatigue + parseInt(cost.st.value) });
-        }
+      }
+
+      if ((margin >= 0 || roll.total >= 17) && game.settings.get("fantasy-trip", "addCastingFatigueAuto")) {
+        actor.update({ "system.fatigue": actor.system.fatigue + parseInt(cost.st.value) });
       }
 
       // Create a chat message for the result
-      const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
+      let message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
         spell: spell.name,
         result: game.i18n.format(`FT.system.roll.result.${result}`, {
           margin: Math.abs(margin),
         }),
       });
+
+      if (roll.total === 17) {
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeDropped"));
+      } else if (roll.total === 18) {
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeBroken"));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.knockdown"));
+      }
 
       roll.toMessage(
         {
