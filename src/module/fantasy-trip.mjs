@@ -85,7 +85,7 @@ Hooks.once("init", async function () {
     type: new BooleanField({
       required: true,
       nullable: false,
-      initial: false,
+      initial: true,
     }),
     config: true,
     restricted: true,
@@ -99,7 +99,7 @@ Hooks.once("init", async function () {
     type: new BooleanField({
       required: true,
       nullable: false,
-      initial: false,
+      initial: true,
     }),
     config: true,
     restricted: true,

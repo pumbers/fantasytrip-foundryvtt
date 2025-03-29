@@ -1,29 +1,21 @@
 const { HTMLField, SchemaField, NumberField, StringField, ArrayField, ForeignDocumentField, BooleanField } =
   foundry.data.fields;
 
-// Attacks field
-const attacks = () =>
-  new ArrayField(
-    new SchemaField({
+// Attack field
+const attack = new SchemaField({
       action: new StringField(),
       type: new StringField(),
       toHitMod: new NumberField({ initial: 0 }),
       baseDamage: new StringField({ nullable: true }),
       minST: new NumberField({ initial: 0 }),
       talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
-    }),
-    { initial: [] }
-  );
+});
 
-// Defenses field
-const defenses = () =>
-  new ArrayField(
-    new SchemaField({
+// Defense field
+const defense = new SchemaField({
       action: new StringField(),
       hitsStopped: new NumberField({ initial: 0 }),
-    }),
-    { initial: [] }
-  );
+});
 
 /**
  * Fantasy Trip Base Item Data Model
@@ -32,8 +24,8 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
       notes: new HTMLField(),
-      attacks: attacks(),
-      defenses: defenses(),
+      attacks: new ArrayField(attack, { initial: [] }),
+      defenses: new ArrayField(defense, { initial: [] }),
     };
   }
 
