@@ -217,31 +217,34 @@ export class FTCharacterSheet extends ActorSheet {
 
   onItemChangeLocation(itemId) {
     const item = this.actor.getEmbeddedDocument("Item", itemId);
+    const changes = [];
+
     // Move it to the next location
     const movedTo =
       (CONFIG.FT.item.inventory.locations.findIndex((location) => location === item.system.location) + 1) % 5;
-    item.update({ "system.location": CONFIG.FT.item.inventory.locations[movedTo] });
+    changes.push({ _id: itemId, "system.location": CONFIG.FT.item.inventory.locations[movedTo] });
+
     // If it's a container, also move its contents
     if (item.system.isContainer) {
-      this.actor.updateEmbeddedDocuments(
-        "Item",
-        Array.from(this.actor.items)
-          .filter((i) => i.system.container === itemId)
-          .map((i) => ({ _id: i._id, "system.location": CONFIG.FT.item.inventory.locations[movedTo] }))
-      );
+      this.actor.items.forEach((i) => {
+        if (i.system.container === itemId)
+          changes.push({ _id: i._id, "system.location": CONFIG.FT.item.inventory.locations[movedTo] });
+      });
     }
+
+    this.actor.updateEmbeddedDocuments("Item", changes);
   }
 
   onItemDelete(itemId) {
     const item = this.actor.getEmbeddedDocument("Item", itemId);
+    const changes = [];
     if (item.system.isContainer) {
-      this.actor.updateEmbeddedDocuments(
-        "Item",
-        Array.from(this.actor.items)
-          .filter((i) => i.system.container === itemId)
-          .map((i) => ({ _id: i._id, "system.container": null, "system.location": "dropped" }))
-      );
+      this.actor.items.forEach((i) => {
+        if (i.system.container === itemId)
+          changes.push({ _id: i._id, "system.container": null, "system.location": "dropped" });
+      });
     }
+    this.actor.updateEmbeddedDocuments("Item", changes);
     this.actor.deleteEmbeddedDocuments("Item", [itemId]);
   }
 }
