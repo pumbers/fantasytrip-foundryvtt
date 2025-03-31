@@ -35,6 +35,9 @@ export class FTItemSheet extends ItemSheet {
             .filter((item) => item.type === "talent")
             .reduce((talents, talent) => ({ ...talents, [talent._id]: talent.name }), {}),
         }),
+        worldSpells: Array.from(game.items.values())
+          .filter((item) => item.type === "spell")
+          .reduce((spells, spell) => ({ ...spells, [spell._id]: spell.name }), {}),
       },
     };
     return context;
@@ -86,10 +89,20 @@ export class FTItemSheet extends ItemSheet {
         });
         this.item.update({ "system.defenses": this.item.system.defenses });
         break;
-      case "delete-attack":
+      case "delete-defense":
         // console.log("click():delete-attack", dataset.index);
         this.item.system.defenses.splice(dataset.index, 1);
         this.item.update({ "system.defenses": this.item.system.defenses });
+        break;
+      case "add-spell":
+        // console.log("click():add-spell", dataset);
+        this.item.system.spells.push({ id: null, item: null });
+        this.item.update({ "system.spells": this.item.system.spells });
+        break;
+      case "delete-spell":
+        // console.log("click():delete-spell", dataset.index);
+        this.item.system.spells.splice(dataset.index, 1);
+        this.item.update({ "system.spells": this.item.system.spells });
         break;
       case "create-effect":
       case "edit-effect":
@@ -103,3 +116,13 @@ export class FTItemSheet extends ItemSheet {
     }
   }
 }
+
+Hooks.on("preUpdateItem", (item, changes, options, userId) => {
+  // console.log("Hooks.preUpdateItem", item.type, item, "changes", changes, "options", options, "userId", userId);
+
+  Object.values(changes.system.spells ?? [])
+    .filter((s) => s.id !== s.data?._id)
+    .forEach((spell) => {
+      spell.data = game.items.get(spell.id);
+    });
+});

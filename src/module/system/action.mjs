@@ -591,6 +591,15 @@ export function castingRoll(actor, spell, options = {}) {
         },
         { rollMode }
       );
+
+      // If the spell is cast from an item, then it may get burned (deleted)
+      if (!!options.item && options.burn) {
+        actor.deleteEmbeddedDocuments("Item", [options.item._id]);
+        ChatMessage.create({
+          flavor: game.i18n.format("FT.item.chat.burn", { name: options.item.name }),
+          whisper: Object.keys(actor.ownership).filter((k) => k !== "default"),
+        });
+      }
     },
   };
 

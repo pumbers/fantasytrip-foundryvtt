@@ -53,7 +53,7 @@
             {{/each}}
         </fieldset>
         {{!-- Defenses --}}
-        <fieldset class="flex flex-col gap-4 justify-start">
+        <fieldset class="flex flex-col gap-1 justify-start">
             <legend>{{localize "FT.item.sheet.label.defenses"}}&nbsp;<i class="fa fa-plus-square"
                     data-action="add-defense"></i></legend>
             {{#each system.defenses as | defense |}}
@@ -72,6 +72,33 @@
                     <input type="number" name="system.defenses.{{@index}}.hitsStopped" value="{{defense.hitsStopped}}"
                         min="0">
                 </div>
+            </div>
+            {{/each}}
+        </fieldset>
+        {{!-- Spells --}}
+        <fieldset class="flex flex-col gap-1 justify-start">
+            <legend>{{localize "FT.item.sheet.label.spells"}}&nbsp;<i class="fa fa-plus-square"
+                    data-action="add-spell"></i></legend>
+            {{#each system.spells as | spell |}}
+            <div class="grid grid-cols-3 gap-1">
+                <div class="field col-span-2">
+                    <label>{{localize "FT.item.sheet.label.name"}}</label>
+                    <div class="flex flex-row gap-0">
+                        <span class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="delete-spell"
+                            data-index="{{@index}}"><i class="fas fa-trash"></i></span>
+                        <select name="system.spells.{{@index}}.id">
+                            <option value=""></option>
+                            {{selectOptions ../selectOptions.worldSpells selected=spell.id}}
+                        </select>
+                    </div>
+                </div>
+                {{#if spell.data}}
+                <div class="field">
+                    <label>{{localize "FT.item.sheet.label.burn"}}</label>
+                    <input class="!size-8" type="checkbox" name="system.spells.{{@index}}.burn" {{#if
+                        spell.burn}}checked{{/if}} />
+                </div>
+                {{/if}}
             </div>
             {{/each}}
         </fieldset>

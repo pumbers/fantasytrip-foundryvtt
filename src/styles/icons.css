@@ -100,4 +100,15 @@
   & .icon-fly::before {
     content: url("../assets/icons/feathered-wing.svg");
   }
+
+  /* Spells */
+  & .icon-magic-swirl::before {
+    content: url("../assets/icons/magic-swirl.svg");
+  }
+  & .icon-pentacle::before {
+    content: url("../assets/icons/pentacle.svg");
+  }
+  & .icon-pentagram-rose::before {
+    content: url("../assets/icons/pentagram-rose.svg");
+  }
 }

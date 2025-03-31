@@ -52,6 +52,7 @@ export class FTCharacterSheet extends ActorSheet {
       // Attacks, Defenses, Readied Spells
       offenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasAttacks),
       defenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasDefenses),
+      castables: this.actor.items.filter((item) => item.system.isReady && item.system.hasSpells),
       cast: this.actor.items.filter((item) => item.type === "spell" && item.system.isReady && !item.system.hasActions),
     };
 
@@ -152,6 +153,12 @@ export class FTCharacterSheet extends ActorSheet {
         if (!itemId) return;
         item = this.actor.items.get(itemId);
         item.update({ "system.stSpent": 0 });
+        break;
+      case "cast-item":
+        if (!itemId) return;
+        item = this.actor.items.get(itemId);
+        const spell = item.system.spells[dataset.index];
+        Action.castingRoll(this.actor, spell.data, { ...dataset, burn: spell.burn, item });
         break;
       case "create-effect":
       case "edit-effect":

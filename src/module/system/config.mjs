@@ -117,5 +117,11 @@ FT.item = {
       creation: "FT.item.spell.type.creation",
       special: "FT.item.spell.type.special",
     },
+    icon: {
+      missile: "icon-bowman",
+      thrown: "icon-thrown-knife",
+      creation: "icon-magic-swirl",
+      special: "icon-pentagram-rose",
+    },
   },
 };

@@ -3,18 +3,25 @@ const { HTMLField, SchemaField, NumberField, StringField, ArrayField, ForeignDoc
 
 // Attack field
 const attack = new SchemaField({
-      action: new StringField(),
-      type: new StringField(),
-      toHitMod: new NumberField({ initial: 0 }),
-      baseDamage: new StringField({ nullable: true }),
-      minST: new NumberField({ initial: 0 }),
-      talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+  action: new StringField(),
+  type: new StringField(),
+  toHitMod: new NumberField({ initial: 0 }),
+  baseDamage: new StringField({ nullable: true }),
+  minST: new NumberField({ initial: 0 }),
+  talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
 });
 
 // Defense field
 const defense = new SchemaField({
-      action: new StringField(),
-      hitsStopped: new NumberField({ initial: 0 }),
+  action: new StringField(),
+  hitsStopped: new NumberField({ initial: 0 }),
+});
+
+// Spell field
+const spell = new SchemaField({
+  id: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+  data: new ForeignDocumentField(foundry.documents.BaseItem),
+  burn: new BooleanField({ initial: true, nullable: false }),
 });
 
 /**
@@ -26,11 +33,12 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
       notes: new HTMLField(),
       attacks: new ArrayField(attack, { initial: [] }),
       defenses: new ArrayField(defense, { initial: [] }),
+      spells: new ArrayField(spell, { initial: [] }),
     };
   }
 
   get hasActions() {
-    return this.attacks.length > 0 || this.defenses.length > 0;
+    return this.attacks.length > 0 || this.defenses.length > 0 || this.spells.length > 0;
   }
 
   get hasAttacks() {
@@ -39,6 +47,10 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
 
   get hasDefenses() {
     return this.defenses.length > 0;
+  }
+
+  get hasSpells() {
+    return this.spells.length > 0;
   }
 }
 

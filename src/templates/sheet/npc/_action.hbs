@@ -1,4 +1,5 @@
 <div class="flex flex-col gap-1">
+
     {{!-- Offensives --}}
     {{#each offenses as | offense |}}
     <div data-item-id="{{offense._id}}"
@@ -32,6 +33,7 @@
         {{/each}}
     </div>
     {{/each}}
+
     {{!-- Defenses --}}
     {{#each defenses as | defense |}}
     <div data-item-id="{{defense._id}}"
@@ -44,6 +46,24 @@
         {{/each}}
     </div>
     {{/each}}
+
+    {{!-- Castable Items --}}
+    {{#each castables as | castable |}}
+    <div data-item-id="{{castable._id}}"
+        class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
+        <img class="w-4 h-4" src="{{castable.img}}" alt="">
+        <span>{{castable.name}}</span>
+        {{#each castable.system.spells}}
+        {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
+        <span><i class="icon-pentacle"></i>&nbsp;{{data.system.castingST}}</span>
+        <a class="px-[2px] action" data-action="cast-item" data-index="{{@index}}">
+            <i class="{{property ../../FT.item.spell.icon data.system.type}} mr-1"
+                title="{{localize (concat 'FT.item.spell.type.' data.system.type)}}"></i>
+            {{localize "FT.character.sheet.button.cast"}}&nbsp;{{data.name}}</a>
+        {{/each}}
+    </div>
+    {{/each}}
+
     {{!-- Active Spells --}}
     {{#each cast as | spell |}}
     <div data-item-id="{{spell._id}}"

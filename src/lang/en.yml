@@ -336,11 +336,8 @@ FT:
         thrown: Thrown
         creation: Creation
         special: Special
-      typeAbbr:
-        missile: M
-        thrown: T
-        creation: C
-        special: S
+    chat:
+      burn: "{name} disappears in burst of flame and smoke."
     sheet:
       tab:
         description: Description
@@ -367,5 +364,7 @@ FT:
         defenseAction: Defense Action
         toHitMod: To Hit Mod
         baseDamage: Base Damage
+        burn: Burn item when cast
         attacks: Attacks
         defenses: Defenses
+        spells: Spells
