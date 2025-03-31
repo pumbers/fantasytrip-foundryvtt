@@ -15,7 +15,6 @@ const fs = require("fs");
 const path = require("path");
 
 const webp = (...args) => import("gulp-webp").then(({ default: webp }) => webp(...args));
-const zip = (...args) => import("gulp-zip").then(({ default: zip }) => zip(...args));
 
 const compilePack = (...args) => import("@foundryvtt/foundryvtt-cli").then(({ compilePack }) => compilePack(...args));
 const extractPack = (...args) => import("@foundryvtt/foundryvtt-cli").then(({ extractPack }) => extractPack(...args));
