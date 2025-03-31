@@ -89,7 +89,7 @@ Hooks.once("init", async function () {
     }),
     config: true,
     restricted: true,
-    requiresReload: false,
+    requiresReload: true,
   });
 
   game.settings.register("fantasy-trip", "combatNPCGroupInitiative", {
@@ -103,7 +103,7 @@ Hooks.once("init", async function () {
     }),
     config: true,
     restricted: true,
-    requiresReload: false,
+    requiresReload: true,
   });
 
   game.settings.register("fantasy-trip", "combatantNPCGroupByActor", {
@@ -117,7 +117,7 @@ Hooks.once("init", async function () {
     }),
     config: true,
     restricted: true,
-    requiresReload: false,
+    requiresReload: true,
   });
 
   game.settings.register("fantasy-trip", "damageMultiplierStrategy", {

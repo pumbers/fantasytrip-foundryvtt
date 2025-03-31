@@ -92,6 +92,10 @@ export class FTSpellData extends FTTalentData {
   get isReady() {
     return this.stSpent > 0;
   }
+
+  get castingST() {
+    return this.stToCast.min === this.stToCast.max ? this.stToCast.max : `${this.stToCast.min}-${this.stToCast.max}`;
+  }
 }
 
 /**
@@ -118,6 +122,10 @@ export class FTEquipmentData extends FTBaseItemData {
 
   get isContainer() {
     return this.capacity > 0;
+  }
+
+  get isContained() {
+    return !!this.container;
   }
 
   get isReady() {

@@ -9,7 +9,7 @@
             {{#if showItemIcon}}
             <td><img src="{{item.img}}" /></td>
             {{/if}}
-            <td>{{#if item.system.container}}&rdsh;&nbsp;{{/if}}{{item.name}}</td>
+            <td>{{#if item.system.isContained}}&rdsh;&nbsp;{{/if}}{{item.name}}</td>
             {{!-- Talent --}}
             {{#if (eq item.type "talent")}}
             <td>

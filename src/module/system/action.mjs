@@ -536,7 +536,7 @@ export function castingRoll(actor, spell, options = {}) {
     },
     actor,
     spell,
-    attribute: ["missile", "thrown"].includes(spell.system.type) ? "dx.value" : "iq.value",
+    attribute: FT.item.spell.castAttribute[spell.system.type],
     cost: {
       st: {
         min: spell.system.stToCast.min,

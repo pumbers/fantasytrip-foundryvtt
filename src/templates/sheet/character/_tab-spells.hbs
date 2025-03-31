@@ -30,14 +30,12 @@
             <td><img src="{{spell.img}}" /> </td>
             {{/if}}
             <td>{{spell.name}}</td>
-            <td>{{#if spell.system.type}}{{localize (concat "FT.item.spell.typeAbbr." spell.system.type)}}{{/if}}</td>
+            <td>{{#if spell.system.type}}<i title="{{localize (concat 'FT.item.spell.type.' spell.system.type)}}"
+                    class="{{property ../FT.item.spell.icon system.type}}"></i>{{/if}}
+            </td>
             <td>{{spell.system.minIQ}}</td>
             <td>{{spell.system.actualIQCost}}</td>
-            {{#if (eq spell.system.stToCast.min spell.system.stToCast.max)}}
-            <td>{{spell.system.stToCast.min}}</td>
-            {{else}}
-            <td>{{spell.system.stToCast.min}}-{{spell.system.stToCast.max}}</td>
-            {{/if}}
+            <td>{{spell.system.castingST}}</td>
             <td>
                 {{#if spell.system.isReady}}
                 <a class="px-[2px] action" data-action="cancel-spell">{{localize
