@@ -9,7 +9,7 @@
   input,
   textarea,
   select {
-    @apply w-full h-6 border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1 !appearance-auto text-stone-900 dark:text-stone-200;
+    @apply w-full h-6 border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1 !appearance-auto bg-transparent text-stone-900 dark:text-stone-200;
     &::placeholder {
       @apply opacity-80;
     }

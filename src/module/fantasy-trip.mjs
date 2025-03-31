@@ -10,7 +10,6 @@ import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
 import { FTCombat } from "./documents/combat.mjs";
 import * as ChatMessage from "./documents/chat-message.mjs";
-import * as Macros from "./util/macros.mjs";
 import * as Helpers from "./util/helpers.mjs";
 
 const { StringField, NumberField, BooleanField } = foundry.data.fields;
@@ -261,12 +260,3 @@ Hooks.on("ready", async () => {
   ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
   ui.notifications.info(game.i18n.localize("FT.messages.notice"));
 });
-
-/* -------------------------------------------- */
-/*  Hotbar Macros                               
-/* -------------------------------------------- */
-
-// Hooks.once("ready", async function () {
-//   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-//   Hooks.on("hotbarDrop", (bar, data, slot) => Macros.createHotbarMacro(data, slot));
-// });

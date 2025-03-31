@@ -1,29 +1,6 @@
 const { HTMLField, SchemaField, NumberField, StringField, ArrayField, ForeignDocumentField, BooleanField } =
   foundry.data.fields;
 
-// Attack field
-const attack = new SchemaField({
-  action: new StringField(),
-  type: new StringField(),
-  toHitMod: new NumberField({ initial: 0 }),
-  baseDamage: new StringField({ nullable: true }),
-  minST: new NumberField({ initial: 0 }),
-  talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
-});
-
-// Defense field
-const defense = new SchemaField({
-  action: new StringField(),
-  hitsStopped: new NumberField({ initial: 0 }),
-});
-
-// Spell field
-const spell = new SchemaField({
-  id: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
-  data: new ForeignDocumentField(foundry.documents.BaseItem),
-  burn: new BooleanField({ initial: true, nullable: false }),
-});
-
 /**
  * Fantasy Trip Base Item Data Model
  */
@@ -31,9 +8,32 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
       notes: new HTMLField(),
-      attacks: new ArrayField(attack, { initial: [] }),
-      defenses: new ArrayField(defense, { initial: [] }),
-      spells: new ArrayField(spell, { initial: [] }),
+      attacks: new ArrayField(
+        new SchemaField({
+          action: new StringField(),
+          type: new StringField(),
+          toHitMod: new NumberField({ initial: 0 }),
+          baseDamage: new StringField({ nullable: true }),
+          minST: new NumberField({ initial: 0 }),
+          talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+        }),
+        { initial: [] }
+      ),
+      defenses: new ArrayField(
+        new SchemaField({
+          action: new StringField(),
+          hitsStopped: new NumberField({ initial: 0 }),
+        }),
+        { initial: [] }
+      ),
+      spells: new ArrayField(
+        new SchemaField({
+          id: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+          data: new ForeignDocumentField(foundry.documents.BaseItem),
+          burn: new BooleanField({ initial: true, nullable: false }),
+        }),
+        { initial: [] }
+      ),
     };
   }
 
