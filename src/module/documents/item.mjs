@@ -35,3 +35,18 @@ export class FTItem extends Item {
     });
   }
 }
+
+/**
+ * Hook into item update. If the item has spells, grab the spell data
+ * from the world and add it to the spell record.
+ *
+ */
+Hooks.on("preUpdateItem", (item, changes, options, userId) => {
+  // console.log("Hooks.preUpdateItem", item.type, item, "changes", changes, "options", options, "userId", userId);
+
+  Object.values(changes.system.spells ?? [])
+    .filter((s) => s.id !== s.data?._id)
+    .forEach((spell) => {
+      spell.data = game.items.get(spell.id);
+    });
+});
