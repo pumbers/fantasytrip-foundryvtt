@@ -57,9 +57,12 @@ FT:
   # General Messages
   messages:
     disclaimer: >
-      The material presented here is my original creation, intended for use with the <a href="https://www.thefantasytrip.game/"><b><i>The Fantasy Trip</i></b></a> system from <a href="http://www.sjgames.com/">Steve Jackson Games</a>. This material is not official and is not endorsed by Steve Jackson Games.
+      The material presented here is my original creation, intended for use with the <a href="https://www.thefantasytrip.game/"><b><i>The Fantasy Trip</i></b></a> 
+      system from <a href="http://www.sjgames.com/">Steve Jackson Games</a>. This material is not official and is not endorsed by Steve Jackson Games.
     notice: >
-      <b>The Fantasy Trip: In the Labyrinth<b> is a trademark of Steve Jackson Games, and its rules and art are copyrighted by Steve Jackson Games. All rights are reserved by Steve Jackson Games. This game aid is the original creation of Paul Umbers and is released for free distribution, and not for resale, under the permissions granted in the <a href="http://www.sjgames.com/general/online_policy.html">Steve Jackson Games Online Policy</a>.
+      <b>The Fantasy Trip: In the Labyrinth<b> is a trademark of Steve Jackson Games, and its rules and art are copyrighted by Steve Jackson Games. 
+      All rights are reserved by Steve Jackson Games. This game aid is the original creation of Paul Umbers and is released for free distribution, 
+      and not for resale, under the permissions granted in the <a href="http://www.sjgames.com/general/online_policy.html">Steve Jackson Games Online Policy</a>.
     monksWarning: >
       Please ensure the setting "Reroll Initiative" in the module <b>Monk's Combat Details</b> is disabled as it may interfere with Fantasy Trip initiative.
     noCapacity: "{container} is not big enough."
@@ -104,11 +107,6 @@ FT:
       title: Apply {damage} Damage to {name}
       label:
         stops: Stops {hits}
-  chat:
-    button:
-      rollDamage: Roll Damage
-      applyDamage: Apply {damage} Damage to {name}
-  # System
   system:
     roll:
       dice: "{dice}D6"
@@ -135,23 +133,23 @@ FT:
           - Attempts a {attributes} save... {result}
           - Tries valiantly to make a {attributes} save... {result}
           - Effortlessly tries to make a {attributes} save... {result}
-          - Attempts a {attributes} save... {result}
-          - Tries valiantly to make a {attributes} save... {result}
-          - Effortlessly tries to make a {attributes} save... {result}
+          - By the power of their unyielding spirit, they strive to make a daring {attributes} save... {result}
+          - Summoning every last shred of strength, they try to muster up a {attributes} save... {result}
+          - Flinging caution to the winds, they attempt to roll with a reckless abandon that might just pay off in a {attributes} save... {result}
         talent:
-          - Attempts a {talent} check... {result}
+          - Draws upon deep wellspring of expertise to make an expert {talent} check... {result}
           - Puts every effort into a {talent} check... {result}
           - Effortlessly tries to make a {talent} check... {result}
-          - Attempts a {talent} check... {result}
-          - Puts every effort into a {talent} check... {result}
-          - Effortlessly tries to make a {talent} check... {result}
+          - Goes for broke on a {talent} check, trusting in their skill... {result}
+          - Utilizes years of practice to nail a precise {talent} check... {result}
+          - Makes a hesitant attempt at a {talent} check, hoping not to blow it... {result}
         attack:
           - Attempts to {attack} {targets} with their {item}... {result}
           - Firecely tries to {attack} {targets} with their {item}... {result}
           - Brings all their might to bear to {attack} {targets} with their {item}... {result}
-          - Attempts to {attack} {targets} with their {item}... {result}
-          - Firecely tries to {attack} {targets} with their {item}... {result}
-          - Brings all their might to bear to {attack} {targets} with their {item}... {result}
+          - Hurls themselves into the fray, determined to make a {attack} that will leave the enemy reeling... {result}
+          - Burns with a fierce determination, determined to {attack} {targets} with their {item} until the job is done... {result}
+          - Takes a wild swing, hoping for the best... {result}
         cast:
           - Attempts to cast {spell}... {result}
           - Weaves mana to cast {spell}... {result}
@@ -160,12 +158,12 @@ FT:
           - With confidence, casts {spell}... {result}
           - Concentrates then casts {spell}... {result}
         damage:
-          - Deals {total} damage with their {weapon}
-          - Deals {total} damage with their {attack}
-          - Deals {total} damage with their {weapon}
-          - Deals {total} damage with their {weapon}
-          - Deals {total} damage with their {attack}
-          - Deals {total} damage with their {weapon}
+          - Unleashes a flurry of blows, striking for a total of {total} points of hurt.
+          - Unleashes a devastating blast that deals {total} points of damage to their foe.
+          - Strikes with the full force of their fury, landing a full {total} point hit that leaves their opponent reeling.
+          - Feels a surge of adrenaline as they strike for {total} points of damage.
+          - Narrows their sights and deal a precise {total} point hit to the enemy.
+          - Senses the fear in their enemy's eyes as they realize they're taking {total} points of hurt from the attack.
       result:
         exact: Success! Just made it!
         automaticSuccess: Automatic success!
@@ -188,26 +186,29 @@ FT:
       chat:
         damaged: "{name} takes {damageTaken} damage."
         stunned:
-          - "{name} takes {damageTaken} damage, and is stunned."
-          - "{name} takes {damageTaken} damage, and is stunned."
-          - "{name} takes {damageTaken} damage, and is stunned."
-          - "{name} takes {damageTaken} damage, and is stunned."
-          - "{name} takes {damageTaken} damage, and is stunned."
-          - "{name} takes {damageTaken} damage, and is stunned."
+          - "{name} is struck for a total of {damageTaken} points, leaving them reeling."
+          - "{name} stumbles around, trying to clear their head after taking {damageTaken} points of damage from the attack."
+          - "{name} takes a moment to catch their breath after being struck for a total of {damageTaken} points of damage."
+          - "{name} realizes that they're in trouble, taking a devastating {damageTaken} point hit that leaves them weakened and battered."
+          - "{name} takes {damageTaken} points of damage from the attack."
+          - "{name} is caught off guard by a brutal {damageTaken} point onslaught that leaves them stumbling back."
         down:
-          - "{name} takes {damageTaken} damage, and goes down."
-          - "{name} takes {damageTaken} damage, and goes down."
-          - "{name} takes {damageTaken} damage, and goes down."
-          - "{name} takes {damageTaken} damage, and goes down."
-          - "{name} takes {damageTaken} damage, and goes down."
-          - "{name} takes {damageTaken} damage, and goes down."
+          - "{name} takes {damageTaken} points and falls motionless on the ground, unaware of anything except the searing pain of their wounds."
+          - "{name} is consumed by pain as they take a {damageTaken} point hit, losing consciousness from the sheer force of it all."
+          - "{name} takes {damageTaken} points and is trapped in a world of darkness and agony, unable to escape the effects of the attack."
+          - "{name} can't even lift their head off the ground as they take {damageTaken} points of damage from the attack."
+          - "{name} loses all sense of reality as they stumble backward, unable to stay conscious after taking {damageTaken} points of damage."
+          - "{name} is struck with such force that they're unable to even react, falling unconscious after being raked up for {damageTaken} points of damage."
         dead:
-          - "{name} takes {damageTaken} damage, and dies."
-          - "{name} takes {damageTaken} damage, and dies."
-          - "{name} takes {damageTaken} damage, and dies."
-          - "{name} takes {damageTaken} damage, and dies."
-          - "{name} takes {damageTaken} damage, and dies."
-          - "{name} takes {damageTaken} damage, and dies."
+          - "{name} stumbles and falls, the light in their eyes dying as they take {damageTaken} points of damage."
+          - "{name} takes a fatal hit, their body shutting down as they fall lifeless to the ground after taking {damageTaken} damage."
+          - "{name} is battered into oblivion with strikes that add up to a total of {damageTaken} points of damage."
+          - "{name} slips away into the shadows, their body going limp as they fall dead to the ground nafter {damageTaken} damage."
+          - "{name} falls into a deep and permanent sleep, lost to the world after taking {damageTaken} damage."
+          - "{name} is dragged into the darkness, unable to survive {damageTaken} points of damage."
+        button:
+          rollDamage: Roll Damage
+          applyDamage: Apply {damage} Damage to {name}
   # Character
   character:
     type:

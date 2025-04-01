@@ -363,6 +363,7 @@ export function damageRoll(actor, weapon, options = {}) {
 
           // Create a chat message for the result
           const message = game.i18n.format(`FT.system.roll.flavor.damage.${Math.floor(Math.random() * 6)}`, {
+            name: token.name,
             weapon: weapon.name,
             attack: attack.action?.toLowerCase(),
             total: roll.total,
@@ -476,7 +477,7 @@ function _applyDamage(actor, damageTaken, options = {}) {
       updatedActor.toggleStatusEffect("dead", { active: true });
       ChatMessage.create({
         flavor: game.i18n.format(`FT.system.combat.chat.dead.${Math.floor(Math.random() * 6)}`, {
-          name: actor.name,
+          name: actor.parent?.name ?? actor.name,
           damageTaken,
         }),
       });
@@ -484,7 +485,7 @@ function _applyDamage(actor, damageTaken, options = {}) {
       updatedActor.toggleStatusEffect("unconscious", { active: true });
       ChatMessage.create({
         flavor: game.i18n.format(`FT.system.combat.chat.down.${Math.floor(Math.random() * 6)}`, {
-          name: actor.name,
+          name: actor.parent?.name ?? actor.name,
           damageTaken,
         }),
       });
@@ -492,7 +493,7 @@ function _applyDamage(actor, damageTaken, options = {}) {
       updatedActor.toggleStatusEffect("stun", { active: true });
       ChatMessage.create({
         flavor: game.i18n.format(`FT.system.combat.chat.stunned.${Math.floor(Math.random() * 6)}`, {
-          name: actor.name,
+          name: actor.parent?.name ?? actor.name,
           damageTaken,
         }),
         ...(actor.type === "npc" ? { whisper: [game.user._id] } : {}),
@@ -500,7 +501,7 @@ function _applyDamage(actor, damageTaken, options = {}) {
     } else {
       ChatMessage.create({
         flavor: game.i18n.format("FT.system.combat.chat.damaged", {
-          name: actor.name,
+          name: actor.parent?.name ?? actor.name,
           damageTaken,
         }),
         whisper: [game.user._id],
