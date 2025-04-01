@@ -3,12 +3,12 @@
 .fantasy-trip.item.sheet {
   /*  */
   & .window-content {
-    @apply bg-none m-0 p-0 bg-stone-200 dark:bg-current;
+    @apply bg-none m-0 p-0 bg-stone-100 dark:bg-current;
   }
 
   /*  */
   & .sheet-content {
-    @apply p-2 bg-stone-200 dark:bg-current;
+    @apply p-2 bg-stone-100 dark:bg-current;
 
     & .sheet-header {
       @apply mb-2;

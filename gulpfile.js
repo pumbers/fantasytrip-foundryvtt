@@ -74,7 +74,7 @@ function cleanPacks() {
 }
 
 // Extract LevelDB packs from a world or module to Yaml
-function extractPacks(cb) {
+function importPacks(cb) {
   const PACKS_DIR = path.join(IMPORT_DIR, "packs");
   const packs = fs.readdirSync(PACKS_DIR).filter((location) => {
     return fs.statSync(path.join(PACKS_DIR, location)).isDirectory();
@@ -208,7 +208,7 @@ exports.default = gulp.series(
   watchUpdates
 );
 exports.yaml = compileYaml;
-exports.importPacks = gulp.series(cleanPacks, extractPacks);
+exports.importPacks = gulp.series(cleanPacks, importPacks);
 exports.compilePacks = compilePacks;
 exports.css = compileCss;
 exports.images = optimizeImages;

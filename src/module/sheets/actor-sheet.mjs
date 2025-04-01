@@ -4,6 +4,7 @@ import * as Action from "../system/action.mjs";
 
 /**
  * Fantasy Trip Character Sheet
+ *
  * @extends {ActorSheet} Extends the basic ActorSheet
  */
 export class FTCharacterSheet extends ActorSheet {
@@ -34,6 +35,7 @@ export class FTCharacterSheet extends ActorSheet {
     // console.log("actor-sheet.getData()", this);
     const context = {
       ...super.getData(),
+      // General Documents, Settings & Config
       FT: CONFIG.FT,
       actor: foundry.utils.deepClone(this.actor),
       system: foundry.utils.deepClone(this.actor.system),
@@ -49,7 +51,7 @@ export class FTCharacterSheet extends ActorSheet {
       inventory: this.actor.items
         .filter((item) => item.type === "equipment")
         .sort((a, b) => a.name.localeCompare(b.name)),
-      // Attacks, Defenses, Readied Spells
+      // Attacks, Defenses, Magic Items, Readied Spells
       offenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasAttacks),
       defenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasDefenses),
       castables: this.actor.items.filter((item) => item.system.isReady && item.system.hasSpells),
@@ -69,6 +71,7 @@ export class FTCharacterSheet extends ActorSheet {
       })
       .flat(2);
 
+    // Applied Active Effects
     context.effects = Array.from(this.actor.allApplicableEffects()).filter((e) => !e.disabled);
 
     return context;
@@ -95,6 +98,11 @@ export class FTCharacterSheet extends ActorSheet {
     html.find(".document-delete").click(Handlers.onItemDelete.bind(this));
   }
 
+  /**
+   * Handle a sheet click event
+   *
+   * @param {Event} event
+   */
   click(event) {
     event.preventDefault();
     const element = $(event?.currentTarget);
@@ -155,6 +163,7 @@ export class FTCharacterSheet extends ActorSheet {
         item.update({ "system.stSpent": 0 });
         break;
       case "cast-item":
+        // console.log("click():cast-item", dataset);
         if (!itemId) return;
         item = this.actor.items.get(itemId);
         const spell = item.system.spells[dataset.index];
@@ -172,6 +181,11 @@ export class FTCharacterSheet extends ActorSheet {
     }
   }
 
+  /**
+   * Handle a drop event
+   *
+   * @param {Event} event
+   */
   async _onDrop(event) {
     const data = TextEditor.getDragEventData(event);
 
@@ -222,6 +236,11 @@ export class FTCharacterSheet extends ActorSheet {
     return super._onDrop(event);
   }
 
+  /**
+   * Change an item's location
+   *
+   * @param {String} itemId
+   */
   onItemChangeLocation(itemId) {
     const item = this.actor.getEmbeddedDocument("Item", itemId);
     const changes = [];
@@ -242,6 +261,11 @@ export class FTCharacterSheet extends ActorSheet {
     this.actor.updateEmbeddedDocuments("Item", changes);
   }
 
+  /**
+   * Delete an item
+   *
+   * @param {String} itemId
+   */
   onItemDelete(itemId) {
     const item = this.actor.getEmbeddedDocument("Item", itemId);
     const changes = [];

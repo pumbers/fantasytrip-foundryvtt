@@ -2,6 +2,7 @@ import * as Dice from "../util/dice.mjs";
 
 /**
  * Fantasy Trip Actor
+ *
  * @extends {Actor} Extends the basic Actor
  */
 export class FTActor extends Actor {
@@ -130,11 +131,11 @@ export class FTActor extends Actor {
    * Send character details to chat
    */
   async chat() {
-    const content = await renderTemplate(`${CONFIG.FT.path}/templates/chat/character.hbs`, this.data);
+    const content = await renderTemplate(`${CONFIG.FT.path}/templates/chat/character.hbs`, this);
     ChatMessage.create({
       content: content,
       flavor: this.name,
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      speaker: ChatMessage.getSpeaker({ actor: this }),
     });
   }
 }

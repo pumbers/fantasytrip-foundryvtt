@@ -36,7 +36,8 @@ const onDamageRoll = async (event) => {
 };
 
 /**
- * Collect damage parameters and apply them to a target actor
+ * Collect damage parameters and apply them to a target actor.
+ *
  * @param {Event} event
  */
 const onApplyDamage = async (event) => {

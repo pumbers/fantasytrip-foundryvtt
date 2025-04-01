@@ -1,7 +1,8 @@
 import * as Effects from "../util/effects.mjs";
 
 /**
- * Extend the basic ItemSheet with some very simple modifications
+ * Fantasy Trip Item Sheet
+ *
  * @extends {ItemSheet}
  */
 export class FTItemSheet extends ItemSheet {
@@ -21,6 +22,7 @@ export class FTItemSheet extends ItemSheet {
   getData() {
     const context = {
       ...super.getData(),
+      // General Documents, Settings & Config
       FT: CONFIG.FT,
       system: foundry.utils.deepClone(this.item.system),
       flags: foundry.utils.deepClone(this.item.flags),
@@ -35,6 +37,7 @@ export class FTItemSheet extends ItemSheet {
             .filter((item) => item.type === "talent")
             .reduce((talents, talent) => ({ ...talents, [talent._id]: talent.name }), {}),
         }),
+        // World Compendia Spells for Magic Items
         worldSpells: Array.from(game.items.values())
           .filter((item) => item.type === "spell")
           .reduce((spells, spell) => ({ ...spells, [spell._id]: spell.name }), {}),
@@ -58,6 +61,11 @@ export class FTItemSheet extends ItemSheet {
     html.find("[data-action]").click(this.click.bind(this));
   }
 
+  /**
+   * Handle a sheet click event
+   *
+   * @param {Event} event
+   */
   click(event) {
     event.preventDefault();
     const element = $(event?.currentTarget);
@@ -117,6 +125,11 @@ export class FTItemSheet extends ItemSheet {
   }
 }
 
+/**
+ * Hook into item update. If the item has spells, grab the spell data
+ * from the world and add it to the spell record.
+ *
+ */
 Hooks.on("preUpdateItem", (item, changes, options, userId) => {
   // console.log("Hooks.preUpdateItem", item.type, item, "changes", changes, "options", options, "userId", userId);
 

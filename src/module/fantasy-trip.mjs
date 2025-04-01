@@ -38,23 +38,12 @@ Hooks.once("init", async function () {
   CONFIG.time.turnTime = 1;
 
   // Combat
-  // CONFIG.debug.combat = true;
   CONFIG.Combat.initiative.formula = "1d6+@initiative.situation+@initiative.self+(1d6/10)+(1d6/100)";
 
   /* -------------------------------------------- */
   /*  Game Settings                            
   /* -------------------------------------------- */
 
-  // Add utility classes to the global game object so that they're more easily
-  // accessible in global contexts.
-  game.ft = {
-    FTActor,
-    FTItem,
-  };
-
-  /*
-   * Define game settings
-   */
   game.settings.register("fantasy-trip", "initialAP", {
     name: game.i18n.localize("FT.game.settings.initialAP.name"),
     hint: game.i18n.localize("FT.game.settings.initialAP.hint"),
@@ -170,7 +159,7 @@ Hooks.once("init", async function () {
   });
 
   /* -------------------------------------------- */
-  /*  Define Entities & Sheets                           
+  /*  Define Documents & Sheets                           
   /* -------------------------------------------- */
 
   // Actor document configuration

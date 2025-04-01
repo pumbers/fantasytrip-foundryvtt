@@ -9,7 +9,7 @@ const DICE_ROLLER = new FTDiceRollerApp();
 /**
  * Extract roll parameters from the dice roller form.
  *
- * @param {*} data
+ * @param {FormData} data
  * @returns
  */
 function extractRollParameters(data) {
@@ -407,10 +407,10 @@ export function damageRoll(actor, weapon, options = {}) {
 }
 
 /**
- *
- * @param {*} actor
- * @param {*} damage
- * @param {*} options
+ * Apply damage to a target, accounting for any defenses if present
+ * @param {Actor} actor
+ * @param {Number} damage
+ * @param {Object} options
  */
 export async function applyDamage(actor, damage, options) {
   // console.log("Action.applyDamage()", actor, damage);
@@ -441,9 +441,6 @@ export async function applyDamage(actor, damage, options) {
       {
         action: "cancel",
         label: "Cancel",
-        callback: (event, button, dialog) => ({
-          action: "cancel",
-        }),
       },
       {
         action: "apply",
@@ -468,9 +465,9 @@ export async function applyDamage(actor, damage, options) {
 /**
  * Apply damage to an actor and set appropriate status conditions.
  *
- * @param {*} actor
- * @param {*} damageTaken
- * @param {*} options
+ * @param {Actor} actor
+ * @param {Number} damageTaken
+ * @param {Object} options
  */
 function _applyDamage(actor, damageTaken, options = {}) {
   // console.log("Action._applyDamage", actor, damageTaken, options);
@@ -563,6 +560,7 @@ export function castingRoll(actor, spell, options = {}) {
         spell.update({ "system.stSpent": cost.st.value ?? 0 });
       }
 
+      // Subtract the fatigue even if the spell failed on a roll of 17+
       if ((margin >= 0 || roll.total >= 17) && game.settings.get("fantasy-trip", "addCastingFatigueAuto")) {
         actor.update({ "system.fatigue": actor.system.fatigue + parseInt(cost.st.value) });
       }

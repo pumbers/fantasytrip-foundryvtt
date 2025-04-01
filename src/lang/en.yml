@@ -352,7 +352,7 @@ FT:
         minIQ: IQ Level
         iqCost: Cost to Acquire
         minST: Min ST to use
-        type: Spell Type
+        type: Type
         minStToCast: Min ST to Cast
         maxStToCast: Max ST to Cast
         stToMaintain: ST to Maintain

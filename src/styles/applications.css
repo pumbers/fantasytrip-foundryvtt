@@ -2,7 +2,7 @@
 
 .fantasy-trip.application {
   & .window-content {
-    @apply bg-none m-0 p-4 bg-stone-200 dark:bg-stone-900;
+    @apply bg-none m-0 p-4 bg-stone-100 dark:bg-stone-900;
   }
 
   &#ft-dice-roller {
