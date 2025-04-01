@@ -27,11 +27,6 @@ packs:
     path: /packs/using-fantasy-trip-for-foundry-vtt
     type: JournalEntry
     system: fantasy-trip
-  - name: example-items
-    label: Example Items
-    path: /packs/example-items
-    type: Item
-    system: fantasy-trip
 languages:
   - lang: en
     name: English
