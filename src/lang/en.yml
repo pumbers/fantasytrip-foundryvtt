@@ -8,12 +8,9 @@ FT:
       useFTInitiative:
         name: Use Fantasy Trip Initiative
         hint: Use Fantasy Trip split movement/combat initiative and make initiative rolls every round automatically.
-      initiativeType:
-        name: Individual or Group Initiatve
-        hint: Roll initiative individually for each combatant, or roll for Player Characters and NPC's as groups?
-        options:
-          individual: Individual
-          group: Group
+      combatGroupInitiative:
+        name: Group Initiatve
+        hint: Roll initiative for Player Characters and NPC's as groups rather than individually for each combatant.
       damageMultiplierStrategy:
         name: Calculate Increased Damage
         hint: When a damage roll calls for double or triple damage...
@@ -28,14 +25,6 @@ FT:
         hint: >
           If a character increases their IQ, do they automatically get a point to acquire a new Talent
           or Spell, or must they spend XP instead?
-      combatPCGroupInitiative:
-        name: Combat PC Group Initiative
-        hint: >
-          Roll PC initiative as a group and not for each combatant individually.
-      combatNPCGroupInitiative:
-        name: Combat NPC Group Initiative
-        hint: >
-          Roll NPC initiative as a group and not for each combatant individually.
       combatantNPCGroupByActor:
         name: Group NPC Combatants by Actor
         hint: >

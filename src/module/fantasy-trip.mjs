@@ -66,9 +66,9 @@ Hooks.once("init", async function () {
     requiresReload: false,
   });
 
-  game.settings.register("fantasy-trip", "combatPCGroupInitiative", {
-    name: game.i18n.localize("FT.game.settings.combatPCGroupInitiative.name"),
-    hint: game.i18n.localize("FT.game.settings.combatPCGroupInitiative.hint"),
+  game.settings.register("fantasy-trip", "combatGroupInitiative", {
+    name: game.i18n.localize("FT.game.settings.combatGroupInitiative.name"),
+    hint: game.i18n.localize("FT.game.settings.combatGroupInitiative.hint"),
     scope: "world",
     type: new BooleanField({
       required: true,
@@ -77,35 +77,7 @@ Hooks.once("init", async function () {
     }),
     config: true,
     restricted: true,
-    requiresReload: true,
-  });
-
-  game.settings.register("fantasy-trip", "combatNPCGroupInitiative", {
-    name: game.i18n.localize("FT.game.settings.combatNPCGroupInitiative.name"),
-    hint: game.i18n.localize("FT.game.settings.combatNPCGroupInitiative.hint"),
-    scope: "world",
-    type: new BooleanField({
-      required: true,
-      nullable: false,
-      initial: true,
-    }),
-    config: true,
-    restricted: true,
-    requiresReload: true,
-  });
-
-  game.settings.register("fantasy-trip", "combatantNPCGroupByActor", {
-    name: game.i18n.localize("FT.game.settings.combatantNPCGroupByActor.name"),
-    hint: game.i18n.localize("FT.game.settings.combatantNPCGroupByActor.hint"),
-    scope: "world",
-    type: new BooleanField({
-      required: true,
-      nullable: false,
-      initial: false,
-    }),
-    config: true,
-    restricted: true,
-    requiresReload: true,
+    requiresReload: false,
   });
 
   game.settings.register("fantasy-trip", "damageMultiplierStrategy", {
