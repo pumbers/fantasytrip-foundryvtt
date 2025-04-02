@@ -110,9 +110,10 @@ export class FTCombat extends Combat {
           "@initiative.situation",
           "@initiative.self",
           combatGroupInitiative ? 0 : pcGroupBonus,
-          "(1d6/10)",
-          "(1d6/100)",
-        ].join("+"),
+          combatGroupInitiative ? null : "(1d6/10)+(1d6/100)",
+        ]
+          .filter((t) => !!t)
+          .join("+"),
         updateTurn,
         messageOptions,
       }
@@ -127,9 +128,10 @@ export class FTCombat extends Combat {
           "@initiative.situation",
           "@initiative.self",
           combatGroupInitiative ? 0 : npcGroupBonus,
-          "(1d6/10)",
-          "(1d6/100)",
-        ].join("+"),
+          combatGroupInitiative ? null : "(1d6/10)+(1d6/100)",
+        ]
+          .filter((t) => !!t)
+          .join("+"),
         updateTurn,
         messageOptions,
       }
