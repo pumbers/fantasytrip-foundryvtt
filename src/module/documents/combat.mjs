@@ -97,9 +97,9 @@ export class FTCombat extends Combat {
     // Calculate group initiative bonuses & group rolls
     let pcGroupRoll, npcGroupRoll;
     const pcGroupBonus = Math.max(...pcCombatants.map((c) => c.actor.system.initiative.party), 0);
-    if (pcGroupInitiative) pcGroupRoll = (await new Roll(`1d6+${pcGroupBonus}`).evaluate()).total;
+    if (pcGroupInitiative) pcGroupRoll = (await new Roll(`1d6`).evaluate()).total;
     const npcGroupBonus = Math.max(...npcCombatants.map((c) => c.actor.system.initiative.party), 0);
-    if (npcGroupInitiative) npcGroupRoll = (await new Roll(`1d6+${npcGroupBonus}`).evaluate()).total;
+    if (npcGroupInitiative) npcGroupRoll = (await new Roll(`1d6`).evaluate()).total;
 
     // Roll PC initiative
     await super.rollInitiative(
