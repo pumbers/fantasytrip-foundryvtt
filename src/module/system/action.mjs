@@ -108,7 +108,7 @@ export function attributeRoll(actor, options) {
 
         // Create a chat message for the result
         const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
-          attributes: attributes.map((a) => game.i18n.localize(`FT.character.attribute.${a}`)).join("+"),
+          attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
           result: game.i18n.format(`FT.system.roll.result.${result}`, {
             margin: Math.abs(margin),
           }),
@@ -286,7 +286,7 @@ export function attackRoll(actor, weapon, options) {
         token: actor.parent,
         item,
         attackIndex: options.attackIndex,
-        attributes: attributes.map((a) => game.i18n.localize(`FT.character.attribute.${a}`)).join("+"),
+        attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
         totalAttributes,
         modifiers,
         totalModifiers,

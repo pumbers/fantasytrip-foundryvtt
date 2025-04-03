@@ -2,10 +2,9 @@
 <div class="tab talents" data-group="primary" data-tab="talents">
     {{#*inline "actions"}}
     <td class="shrink">
-        <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i class="fa fa-comment"></i></a>
-        <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i class="fas fa-edit"></i></a>
-        <a class="document-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
-                class="fas fa-trash"></i></a>
+        <a class="document-chat" title="{{localize 'FT.actor.sheet.button.chat'}}"><i class="fa fa-comment"></i></a>
+        <a class="document-edit" title="{{localize 'FT.actor.sheet.button.edit'}}"><i class="fas fa-edit"></i></a>
+        <a class="document-delete" title="{{localize 'FT.actor.sheet.button.delete'}}"><i class="fas fa-trash"></i></a>
     </td>
     {{/inline}}
 
@@ -14,13 +13,13 @@
         <thead>
             <tr>
                 {{#if settings.showItemIcons}}<th></th>{{/if}}
-                <th class="w-full">{{localize 'FT.character.sheet.table.talents.name'}}</th>
-                <th>{{localize 'FT.character.sheet.table.talents.attribute'}}</th>
-                <th>{{localize 'FT.character.sheet.table.talents.iq'}}</th>
-                <th>{{localize 'FT.character.sheet.table.talents.cost'}}</th>
+                <th class="w-full">{{localize 'FT.actor.sheet.table.talents.name'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.talents.attribute'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.talents.iq'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.talents.cost'}}</th>
                 <th></th>
-                <th><a class="document-create" data-type="talent"
-                        title="{{localize 'FT.character.sheet.button.create'}}"><i class="fa fa-plus"></i></a></th>
+                <th><a class="document-create" data-type="talent" title="{{localize 'FT.actor.sheet.button.create'}}"><i
+                            class="fa fa-plus"></i></a></th>
             </tr>
         </thead>
         {{#each (sort talents 'name') as |talent|}}
@@ -29,12 +28,12 @@
             <td><img src="{{talent.img}}" /> </td>
             {{/if}}
             <td>{{talent.name}}</td>
-            <td>{{#if talent.system.isReady}}{{localize (concat "FT.character.attribute."
+            <td>{{#if talent.system.isReady}}{{localize (concat "FT.actor.attribute."
                 talent.system.defaultAttribute)}}{{/if}}</td>
             <td>{{talent.system.minIQ}}</td>
             <td>{{talent.system.actualIQCost}}</td>
             <td>{{#if talent.system.isReady}}<a class="px-[2px] action" data-action="talent-roll">{{localize
-                    "FT.character.sheet.button.roll"}}</a>{{/if}}
+                    "FT.actor.sheet.button.roll"}}</a>{{/if}}
             </td>
             {{> actions}}
         </tr>

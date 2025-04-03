@@ -59,9 +59,9 @@ FT:
       Please ensure the setting "Reroll Initiative" in the module <b>Monk's Combat Details</b> is disabled as it may interfere with Fantasy Trip initiative.
     noCapacity: "{container} is not big enough."
     noDropContainer: "{item} is a container and cannot be dropped onto another container."
-    createHotbarMacroItemNotOwned: You can only create macro buttons for owned Items.
-    useItemMacroItemNotOwned: Your controlled Actor does not have that item.
-    useItemMacroCannotDetermineActor: You need to select a token so that I can determine who's acting.
+    # createHotbarMacroItemNotOwned: You can only create macro buttons for owned Items.
+    # useItemMacroItemNotOwned: Your controlled Actor does not have that item.
+    # useItemMacroCannotDetermineActor: You need to select a token so that I can determine who's acting.
   options:
     none: -- None --
     unskilled: -- Unskilled --
@@ -99,6 +99,7 @@ FT:
       title: Apply {damage} Damage to {name}
       label:
         stops: Stops {hits}
+  # System specific
   system:
     roll:
       dice: "{dice}D6"
@@ -113,9 +114,9 @@ FT:
       modifier:
         situationMod: Situation
         attributeMod: Attribute
-        minSTMod: Attack Min ST
-        toHitMod: Attack
-        attackTypeMod: Attack Type
+        minSTMod: Min ST
+        toHitMod: To Hit
+        attackTypeMod: Type
         rangeMod: Range
         unskilled: Unskilled
         casting: Spell Casting
@@ -150,12 +151,12 @@ FT:
           - With confidence, casts {spell}... {result}
           - Concentrates then casts {spell}... {result}
         damage:
-          - Unleashes a flurry of blows, striking for a total of {total} points of hurt.
-          - Unleashes a devastating blast that deals {total} points of damage to their foe.
+          - Unleashes a flurry of blows, striking for a total of {total} point(s) of hurt.
+          - Unleashes a devastating blast that deals {total} point(s) of damage to their foe.
           - Strikes with the full force of their fury, landing a full {total} point hit that leaves their opponent reeling.
-          - Feels a surge of adrenaline as they strike for {total} points of damage.
+          - Feels a surge of adrenaline as they strike for {total} point(s) of damage.
           - Narrows their sights and deal a precise {total} point hit to the enemy.
-          - Senses the fear in their enemy's eyes as they realize they're taking {total} points of hurt from the attack.
+          - Senses the fear in their enemy's eyes as they realize they're taking {total} point(s) of hurt from the attack.
       result:
         exact: Success! Just made it!
         automaticSuccess: Automatic success!
@@ -201,8 +202,8 @@ FT:
         button:
           rollDamage: Roll Damage
           applyDamage: Apply {damage} Damage to {name}
-  # Character
-  character:
+  # Actor
+  actor:
     type:
       hero: Hero
       wizard: Wizard

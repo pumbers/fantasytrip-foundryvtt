@@ -12,7 +12,7 @@
             {{#unless (eq minST 0)}}
             <i
                 class="icon-weight-lifting-up mr-1 {{#unless (gte ../../system.st.max minST)}}warning{{/unless}}"></i>{{localize
-            "FT.character.attribute.st.max"}}&nbsp;{{minST}}
+            "FT.actor.attribute.st.max"}}&nbsp;{{minST}}
             {{/unless}}
             {{#if (eq offense.type "spell")}}
             <span><i class="icon-pentacle mr-1"></i>{{offense.system.stSpent}}</span>
@@ -22,7 +22,7 @@
             <i class="{{property ../../FT.item.attack.icon type}} mr-1"
                 title="{{localize (concat 'FT.item.attack.type.' type)}}"></i>
             {{action}}&thinsp;{{dice}}/{{localize
-            (concat "FT.character.attribute." attribute)}}&thinsp;{{toHit}}</a>
+            (concat "FT.actor.attribute." attribute)}}&thinsp;{{toHit}}</a>
         {{#if damage}}
         <a class="px-[2px] action" data-action="damage-roll" data-attack-index="{{@index}}"><i
                 class="icon-death-skull mr-1"></i>{{damage}}
@@ -59,7 +59,7 @@
         <a class="px-[2px] action" data-action="cast-item" data-index="{{@index}}">
             <i class="{{property ../../FT.item.spell.icon data.system.type}} mr-1"
                 title="{{localize (concat 'FT.item.spell.type.' data.system.type)}}"></i>
-            {{localize "FT.character.sheet.button.cast"}}&nbsp;{{data.name}}</a>
+            {{localize "FT.actor.sheet.button.cast"}}&nbsp;{{data.name}}</a>
         {{/each}}
     </div>
     {{/each}}

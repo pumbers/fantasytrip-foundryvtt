@@ -123,7 +123,7 @@ export class FTCharacterSheet extends ActorSheet {
         break;
       case "change-movement":
         // console.log("click():change-movement", dataset);
-        const modes = Object.keys(CONFIG.FT.character.ma.modes);
+        const modes = Object.keys(CONFIG.FT.actor.ma.modes);
         this.actor.update({
           "system.ma.mode": modes[(modes.findIndex((m) => m === this.actor.system.ma.mode) + 1) % modes.length],
         });

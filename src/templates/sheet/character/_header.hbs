@@ -3,12 +3,12 @@
     <div class="header-fields flex flex-row gap-1">
         <input class="name" name="name" type="text" value="{{actor.name}}" placeholder="Name" />
         <div class="field w-12">
-            <label>{{localize "FT.character.sheet.label.ap"}}</label>
+            <label>{{localize "FT.actor.sheet.label.ap"}}</label>
             <input {{#if flags.apExceeded}}class="font-bold !text-red-500" {{/if}} type="text" value="{{system.ap}}"
                 readonly>
         </div>
         <div class="field w-28">
-            <label>{{localize "FT.character.sheet.label.xp"}}</label>
+            <label>{{localize "FT.actor.sheet.label.xp"}}</label>
             <input type="number" name="system.xp" value="{{system.xp}}" min="0">
         </div>
     </div>

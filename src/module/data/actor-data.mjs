@@ -95,7 +95,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
     this.st.value = this.st.max + this.st.mod - this.damage - this.fatigue;
     this.dx.value = Math.max(this.dx.max + this.dx.mod, 0);
     this.iq.value = Math.max(this.iq.max + this.iq.mod, 0);
-    Object.keys(FT.character.ma.modes).forEach((mode) => {
+    Object.keys(FT.actor.ma.modes).forEach((mode) => {
       this.ma[mode].value = Math.max(this.ma[mode].max + this.ma[mode].mod, 0);
     });
   }

@@ -31,7 +31,7 @@
         <span>
             <input type="checkbox" name="attributes" id="attribute-{{attribute}}" value="{{attribute}}" {{#if (eq
                 ../attribute attribute)}}checked{{/if}}>
-            <label for="attribute-{{attribute}}">{{localize (concat "FT.character.attribute."
+            <label for="attribute-{{attribute}}">{{localize (concat "FT.actor.attribute."
                 attribute)}}&nbsp;{{property ../actor.system attribute}}</label>
         </span>
         {{/each}}

@@ -39,32 +39,32 @@ FT.roll = {
 /*  Character Config & Options                 */
 /* ------------------------------------------- */
 
-FT.character = {
+FT.actor = {
   types: {
-    hero: "FT.character.type.hero",
-    wizard: "FT.character.type.wizard",
+    hero: "FT.actor.type.hero",
+    wizard: "FT.actor.type.wizard",
   },
   races: [
-    "FT.character.race.human",
-    "FT.character.race.elf",
-    "FT.character.race.dwarf",
-    "FT.character.race.halfling",
-    "FT.character.race.orc",
-    "FT.character.race.goblin",
+    "FT.actor.race.human",
+    "FT.actor.race.elf",
+    "FT.actor.race.dwarf",
+    "FT.actor.race.halfling",
+    "FT.actor.race.orc",
+    "FT.actor.race.goblin",
   ],
   attributes: {
-    "st.max": "FT.character.attribute.st.max",
-    "st.value": "FT.character.attribute.st.value",
-    "dx.max": "FT.character.attribute.dx.max",
-    "dx.value": "FT.character.attribute.dx.value",
-    "iq.max": "FT.character.attribute.iq.max",
-    "iq.value": "FT.character.attribute.iq.value",
+    "st.max": "FT.actor.attribute.st.max",
+    "st.value": "FT.actor.attribute.st.value",
+    "dx.max": "FT.actor.attribute.dx.max",
+    "dx.value": "FT.actor.attribute.dx.value",
+    "iq.max": "FT.actor.attribute.iq.max",
+    "iq.value": "FT.actor.attribute.iq.value",
   },
   ma: {
     modes: {
-      walk: "FT.character.ma.mode.walk",
-      swim: "FT.character.ma.mode.swim",
-      fly: "FT.character.ma.mode.fly",
+      walk: "FT.actor.ma.mode.walk",
+      swim: "FT.actor.ma.mode.swim",
+      fly: "FT.actor.ma.mode.fly",
     },
   },
   tracks: {

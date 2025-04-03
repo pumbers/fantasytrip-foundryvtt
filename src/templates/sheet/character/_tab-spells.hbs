@@ -2,10 +2,9 @@
 <div class="tab spells" data-group="primary" data-tab="spells">
     {{#*inline "actions"}}
     <td class="shrink">
-        <a class="document-chat" title="{{localize 'FT.character.sheet.button.chat'}}"><i class="fa fa-comment"></i></a>
-        <a class="document-edit" title="{{localize 'FT.character.sheet.button.edit'}}"><i class="fas fa-edit"></i></a>
-        <a class="document-delete" title="{{localize 'FT.character.sheet.button.delete'}}"><i
-                class="fas fa-trash"></i></a>
+        <a class="document-chat" title="{{localize 'FT.actor.sheet.button.chat'}}"><i class="fa fa-comment"></i></a>
+        <a class="document-edit" title="{{localize 'FT.actor.sheet.button.edit'}}"><i class="fas fa-edit"></i></a>
+        <a class="document-delete" title="{{localize 'FT.actor.sheet.button.delete'}}"><i class="fas fa-trash"></i></a>
     </td>
     {{/inline}}
 
@@ -14,14 +13,14 @@
         <thead>
             <tr>
                 {{#if settings.showItemIcons}}<th></th>{{/if}}
-                <th class="w-full">{{localize 'FT.character.sheet.table.spells.name'}}</th>
-                <th>{{localize 'FT.character.sheet.table.spells.type'}}</th>
-                <th>{{localize 'FT.character.sheet.table.spells.iq'}}</th>
-                <th>{{localize 'FT.character.sheet.table.spells.cost'}}</th>
-                <th>{{localize 'FT.character.sheet.table.spells.st'}}</th>
+                <th class="w-full">{{localize 'FT.actor.sheet.table.spells.name'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.spells.type'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.spells.iq'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.spells.cost'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.spells.st'}}</th>
                 <th></th>
-                <th><a class="document-create" data-type="spell"
-                        title="{{localize 'FT.character.sheet.button.create'}}"><i class="fa fa-plus"></i></a></th>
+                <th><a class="document-create" data-type="spell" title="{{localize 'FT.actor.sheet.button.create'}}"><i
+                            class="fa fa-plus"></i></a></th>
             </tr>
         </thead>
         {{#each (sort spells 'name') as |spell|}}
@@ -39,9 +38,9 @@
             <td>
                 {{#if spell.system.isReady}}
                 <a class="px-[2px] action" data-action="cancel-spell">{{localize
-                    "FT.character.sheet.button.cancel"}}</a>
+                    "FT.actor.sheet.button.cancel"}}</a>
                 {{else if spell.system.type}}
-                <a class="px-[2px] action" data-action="cast-spell">{{localize "FT.character.sheet.button.cast"}}</a>
+                <a class="px-[2px] action" data-action="cast-spell">{{localize "FT.actor.sheet.button.cast"}}</a>
                 {{/if}}
             </td>
             {{> actions}}
