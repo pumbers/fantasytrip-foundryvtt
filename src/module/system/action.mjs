@@ -300,7 +300,7 @@ export function attackRoll(actor, weapon, options) {
         resultClass: margin >= 0 ? "success" : "failure",
         showOwnerClasses: Array.from(Object.entries(actor.ownership))
           .filter(([id, level]) => level === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
-          .map(([id, level]) => `.ft-show-${id}`)
+          .map(([id, level]) => `ft-show-${id}`)
           .join(" "),
       });
 
@@ -496,7 +496,7 @@ function _applyDamage(actor, damageTaken, options = {}) {
           name: actor.parent?.name ?? actor.name,
           damageTaken,
         }),
-        ...(actor.type === "npc" ? { whisper: [game.user._id] } : {}),
+        whisper: Object.keys(actor.ownership).filter((k) => k !== "default"),
       });
     } else {
       ChatMessage.create({
@@ -504,7 +504,7 @@ function _applyDamage(actor, damageTaken, options = {}) {
           name: actor.parent?.name ?? actor.name,
           damageTaken,
         }),
-        whisper: [game.user._id],
+        whisper: Object.keys(actor.ownership).filter((k) => k !== "default"),
       });
     }
   });

@@ -66,9 +66,23 @@ Hooks.once("init", async function () {
     requiresReload: false,
   });
 
-  game.settings.register("fantasy-trip", "combatGroupInitiative", {
-    name: game.i18n.localize("FT.game.settings.combatGroupInitiative.name"),
-    hint: game.i18n.localize("FT.game.settings.combatGroupInitiative.hint"),
+  game.settings.register("fantasy-trip", "pcGroupInitiative", {
+    name: game.i18n.localize("FT.game.settings.pcGroupInitiative.name"),
+    hint: game.i18n.localize("FT.game.settings.pcGroupInitiative.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: false,
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: true,
+  });
+
+  game.settings.register("fantasy-trip", "npcGroupInitiative", {
+    name: game.i18n.localize("FT.game.settings.npcGroupInitiative.name"),
+    hint: game.i18n.localize("FT.game.settings.npcGroupInitiative.hint"),
     scope: "world",
     type: new BooleanField({
       required: true,

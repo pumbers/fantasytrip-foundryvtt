@@ -62,6 +62,9 @@ export class FTCombat extends Combat {
     return this.started && !(this.round % 2);
   }
 
+  /**
+   * @inheritdoc
+   */
   async rollInitiative(ids, { formula = null, updateTurn = false, messageOptions = {} } = {}) {
     // console.log(
     //   "Combat.rollInitiative()",
@@ -76,7 +79,8 @@ export class FTCombat extends Combat {
     // );
 
     const useFTInitiative = game.settings.get("fantasy-trip", "useFTInitiative");
-    const combatGroupInitiative = game.settings.get("fantasy-trip", "combatGroupInitiative");
+    const pcGroupInitiative = game.settings.get("fantasy-trip", "pcGroupInitiative");
+    const npcGroupInitiative = game.settings.get("fantasy-trip", "npcGroupInitiative");
 
     // console.log("... useFTInitiative", useFTInitiative, "combatGroupInitiative", combatGroupInitiative);
 
@@ -90,27 +94,23 @@ export class FTCombat extends Combat {
     const pcCombatants = combatants.filter((c) => !c.isDefeated).filter((c) => !c.isNPC);
     const npcCombatants = combatants.filter((c) => !c.isDefeated).filter((c) => c.isNPC);
 
-    // Roll group initiatives, reroll until they're different
+    // Calculate group initiative bonuses & group rolls
     let pcGroupRoll, npcGroupRoll;
     const pcGroupBonus = Math.max(...pcCombatants.map((c) => c.actor.system.initiative.party), 0);
+    if (pcGroupInitiative) pcGroupRoll = (await new Roll(`1d6+${pcGroupBonus}`).evaluate()).total;
     const npcGroupBonus = Math.max(...npcCombatants.map((c) => c.actor.system.initiative.party), 0);
-    if (combatGroupInitiative) {
-      do {
-        pcGroupRoll = (await new Roll(`1d6+${pcGroupBonus}`).evaluate()).total;
-        npcGroupRoll = (await new Roll(`1d6+${npcGroupBonus}`).evaluate()).total;
-      } while (pcGroupRoll === npcGroupRoll);
-    }
+    if (npcGroupInitiative) npcGroupRoll = (await new Roll(`1d6+${npcGroupBonus}`).evaluate()).total;
 
     // Roll PC initiative
     await super.rollInitiative(
       pcCombatants.map((c) => c._id),
       {
         formula: [
-          combatGroupInitiative ? pcGroupRoll : "1d6",
+          pcGroupInitiative ? pcGroupRoll : "1d6",
           "@initiative.situation",
           "@initiative.self",
-          combatGroupInitiative ? 0 : pcGroupBonus,
-          combatGroupInitiative ? null : "(1d6/10)+(1d6/100)",
+          pcGroupBonus,
+          "(1d6/10)+(1d6/100)",
         ]
           .filter((t) => !!t)
           .join("+"),
@@ -124,11 +124,11 @@ export class FTCombat extends Combat {
       npcCombatants.map((c) => c._id),
       {
         formula: [
-          combatGroupInitiative ? npcGroupRoll : "1d6",
+          npcGroupInitiative ? npcGroupRoll : "1d6",
           "@initiative.situation",
           "@initiative.self",
-          combatGroupInitiative ? 0 : npcGroupBonus,
-          combatGroupInitiative ? null : "(1d6/10)+(1d6/100)",
+          npcGroupBonus,
+          "(1d6/10)+(1d6/100)",
         ]
           .filter((t) => !!t)
           .join("+"),

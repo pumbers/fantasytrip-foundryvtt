@@ -8,9 +8,12 @@ FT:
       useFTInitiative:
         name: Use Fantasy Trip Initiative
         hint: Use Fantasy Trip split movement/combat initiative and make initiative rolls every round automatically.
-      combatGroupInitiative:
-        name: Group Initiatve
-        hint: Roll initiative for Player Characters and NPC's as groups rather than individually for each combatant.
+      pcGroupInitiative:
+        name: PC Group Initiatve
+        hint: Roll initiative for Player Characters as a group rather than individually for each combatant.
+      npcGroupInitiative:
+        name: NPC Group Initiatve
+        hint: Roll initiative for NPC's as a group rather than individually for each combatant.
       damageMultiplierStrategy:
         name: Calculate Increased Damage
         hint: When a damage roll calls for double or triple damage...
@@ -175,26 +178,26 @@ FT:
       chat:
         damaged: "{name} takes {damageTaken} damage."
         stunned:
-          - "{name} is struck for a total of {damageTaken} points, leaving them reeling."
-          - "{name} stumbles around, trying to clear their head after taking {damageTaken} points of damage from the attack."
-          - "{name} takes a moment to catch their breath after being struck for a total of {damageTaken} points of damage."
+          - "{name} is struck for a total of {damageTaken} point(s), leaving them reeling."
+          - "{name} stumbles around, trying to clear their head after taking {damageTaken} point(s) of damage from the attack."
+          - "{name} takes a moment to catch their breath after being struck for a total of {damageTaken} point(s) of damage."
           - "{name} realizes that they're in trouble, taking a devastating {damageTaken} point hit that leaves them weakened and battered."
-          - "{name} takes {damageTaken} points of damage from the attack."
+          - "{name} takes {damageTaken} point(s) of damage from the attack."
           - "{name} is caught off guard by a brutal {damageTaken} point onslaught that leaves them stumbling back."
         down:
-          - "{name} takes {damageTaken} points and falls motionless on the ground, unaware of anything except the searing pain of their wounds."
+          - "{name} takes {damageTaken} point(s) and falls motionless to the ground, unaware of anything except the searing pain of their wounds."
           - "{name} is consumed by pain as they take a {damageTaken} point hit, losing consciousness from the sheer force of it all."
-          - "{name} takes {damageTaken} points and is trapped in a world of darkness and agony, unable to escape the effects of the attack."
-          - "{name} can't even lift their head off the ground as they take {damageTaken} points of damage from the attack."
-          - "{name} loses all sense of reality as they stumble backward, unable to stay conscious after taking {damageTaken} points of damage."
-          - "{name} is struck with such force that they're unable to even react, falling unconscious after being raked up for {damageTaken} points of damage."
+          - "{name} takes {damageTaken} point(s) and is trapped in a world of darkness and agony, unable to escape the effects of the attack."
+          - "{name} can't even lift their head off the ground as they take {damageTaken} point(s) of damage from the attack."
+          - "{name} loses all sense of reality as they stumble backward, unable to stay conscious after taking {damageTaken} point(s) of damage."
+          - "{name} is struck with such force that they're unable to even react, falling unconscious after being raked up for {damageTaken} point(s) of damage."
         dead:
-          - "{name} stumbles and falls, the light in their eyes dying as they take {damageTaken} points of damage."
+          - "{name} stumbles and falls, the light in their eyes dying as they take {damageTaken} point(s) of damage."
           - "{name} takes a fatal hit, their body shutting down as they fall lifeless to the ground after taking {damageTaken} damage."
-          - "{name} is battered into oblivion with strikes that add up to a total of {damageTaken} points of damage."
+          - "{name} is battered into oblivion with strikes that add up to a total of {damageTaken} point(s) of damage."
           - "{name} slips away into the shadows, their body going limp as they fall dead to the ground nafter {damageTaken} damage."
           - "{name} falls into a deep and permanent sleep, lost to the world after taking {damageTaken} damage."
-          - "{name} is dragged into the darkness, unable to survive {damageTaken} points of damage."
+          - "{name} is dragged into the darkness, unable to survive {damageTaken} point(s) of damage."
         button:
           rollDamage: Roll Damage
           applyDamage: Apply {damage} Damage to {name}
