@@ -178,11 +178,11 @@ pages:
         for a weapon and an icon that turns amber if the ST requirement is not
         met.</p></li><li><p>Armor shows the number of hits the armor will
         absorb.</p></li></ul></li></ul><h2>Notes Tab</h2><img
-        src="systems/fantasy-trip/assets/images/instructions/notes_tab_0.1.0.webp"
+        src="systems/fantasy-trip/assets/images/instructions/character_notes_tab_0.1.0.webp"
         /><p>The <strong>Notes</strong> tab is just one big freeform text
         notebook. Hover the mouse cursor over the top right corner and click the
         <strong>Edit</strong> icon to edit the text.</p><h2>Talents Tab</h2><img
-        src="systems/fantasy-trip/assets/images/instructions/talents_tab_0.1.0.webp"
+        src="systems/fantasy-trip/assets/images/instructions/character_talents_tab_0.1.0.webp"
         /><p>The <strong>Talents</strong> tab shows a table of Talents the
         character has.</p><ul><li><p>The icon on the left is for aesthetics
         only. Showing icons in tables can be turned off from the Foundry VTT
@@ -200,7 +200,7 @@ pages:
         Talent description to the Chat Log.</p></li><li><p>Edit the
         Talent.</p></li><li><p>Delete the
         Talent.</p></li></ul></li></ul><h2>Inventory Tab</h2><img
-        src="systems/fantasy-trip/assets/images/instructions/inventory_tab_0.1.0.webp"
+        src="systems/fantasy-trip/assets/images/instructions/character_inventory_tab_0.1.0.webp"
         /><p>The <strong>Inventory</strong> Tab records any equipment the
         character owns, some details, and where each item is.</p><ul><li><p>As
         with the Talents tab, an icon and the name of the item(s) are shown
@@ -249,7 +249,7 @@ pages:
         Container.</p><p>Items in a Container will show a small arrow to the
         left of the name and will always appear directly under their Container.
         Their location icon will also disappear.</p><h2>Spells Tab</h2><img
-        src="systems/fantasy-trip/assets/images/instructions/spells_tab_0.1.0.webp"
+        src="systems/fantasy-trip/assets/images/instructions/character_spells_tab_0.1.0.webp"
         /><p>The <strong>Spells</strong> tab shows any spells the character has
         learned.</p><ul><li><p>The usual icon and spell name come
         first.</p></li><li><p>Then we have the spell type (Missile, Thrown,
@@ -271,7 +271,7 @@ pages:
         active.</p><p>More information on Active Effects can be found on the <a
         href="https://foundryvtt.com/article/active-effects/">Foundry VTT web
         site</a>.</p><img
-        src="systems/fantasy-trip/assets/images/instructions/effects_tab_0.1.0.webp"
+        src="systems/fantasy-trip/assets/images/instructions/character_effects_tab_0.1.0.webp"
         /><p>The <strong>Effects</strong> tab shows any Active Effects attached
         to items in the character's possession. If the character has an item but
         it is not Equipped, the effect will not be listed. Each effect also
@@ -299,7 +299,7 @@ pages:
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
-      modifiedTime: 1743269358631
+      modifiedTime: 1743713784392
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
     _key: '!journal.pages!KaQZyogQKvA3r2vi.8QpHd2w3fWyC0Oke'
   - sort: 300000
@@ -313,7 +313,164 @@ pages:
     image: {}
     text:
       format: 1
-      content: ''
+      content: >-
+        <p>In most Foundry games, an Item is basically anything that's not an
+        Actor (Player Character, NPC, monster, etc). In the Fantasy Trip
+        implementation for Foundry, there are three types of
+        Item:</p><ul><li><p><strong>Talents</strong> are a direct translation of
+        Talents from the rulebook.</p></li><li><p><strong>Spells</strong> are
+        also a direct translation of spells from the
+        rulebook.</p></li><li><p><strong>Equipment</strong> is everything else,
+        which can include weapons, armor, scrolls, books, bags &amp; packs,
+        tools, potions… pretty much any physical object a character can
+        carry.</p></li></ul><p>Items are created and edited from the Item Sheet,
+        which has three tabs:</p><ul><li><p>The <strong>Description</strong> tab
+        has a free form text field for entering notes on the item, and a series
+        of fields that set the parameters of the item. These fields will vary
+        depending on the type of item.</p></li><li><p>The
+        <strong>Actions</strong> tab shows any actions that can be taken with
+        the item, they are:</p><ul><li><p><strong>Attacks</strong> - an action
+        that requires an attack roll and does
+        damage</p></li><li><p><strong>Defenses</strong> - any way in which the
+        item stops incoming damage</p></li><li><p><strong>Spells</strong> - any
+        spells written opn or bound into the item that can be cast by the user
+        when the item is readied.</p></li></ul></li><li><p>The
+        <strong>Effects</strong> tab shows any Active Effects that the item has.
+        More about Active Effects can be found <a
+        href="https://foundryvtt.com/article/active-effects/">here</a>.</p></li></ul><h2>Talents</h2><img
+        src="systems/fantasy-trip/assets/images/instructions/talent_description_tab_0.1.0.webp"
+        /><p>Talents have only three descriptive fields:</p><ul><li><p>The IQ
+        level needed to learn the Talent.</p></li><li><p>The IQ cost to acquire
+        the Talent. Note that this is the base (book) cost for the Talent. When
+        it is added to a character sheet, the cost paid will be calculated
+        depending on whether the character is a Hero or
+        Wizard.</p></li><li><p>The default attribute to use for Talent rolls.
+        Note that this can be changed later in the Dice Roller depending on the
+        circumstances.</p></li></ul><h2>Spells</h2><img
+        src="systems/fantasy-trip/assets/images/instructions/spell_description_tab_0.1.0.webp"
+        /><p>Spells are slightly more complex than Talents, and have the
+        following fields:</p><ul><li><p>The IQ level needed to learn the
+        Spell.</p></li><li><p>The IQ cost to acquire the Spell. Note that this
+        is the base (book) cost for the Spell. When it is added to a character
+        sheet, the cost paid will be calculated depending on whether the
+        character is a Hero or Wizard.</p></li><li><p>The Type of spell
+        (Missile, Thrown, Creation, Special).</p></li><li><p>The minimum ST cost
+        to cast the spell.</p></li><li><p>The maximum ST cost to cast the
+        spell.</p></li><li><p>The ST cost required to maintain the
+        spell.</p></li></ul><h2>Equipment</h2><img
+        src="systems/fantasy-trip/assets/images/instructions/equipment_description_tab_0.1.0.webp"
+        /><p>Every item of equipment has the following fields:</p><ul><li><p>The
+        unit cost in $ of the item.</p></li><li><p>The unit weight in lbs of the
+        item.</p></li><li><p>The quantity of the item to hand.</p></li><li><p>A
+        lbs Capacity if the item is to be a container.</p></li></ul><p>Note that
+        when added to the character sheet, the unit cost &amp; weight of an item
+        will be multiplied by the quantity to give a total cost &amp; weight
+        carried.</p><h3>Containers</h3><img
+        src="systems/fantasy-trip/assets/images/instructions/equipment_container_tab_0.1.0.webp"
+        /><p><strong>Containers</strong> are a special kind of equipment in that
+        a Container is allowed to hold other items. The only difference between
+        a normal piece of equipment and a Container is that a Container has a
+        <strong>Capacity</strong> set to greater than 0 in lbs. A Container
+        still has its own weight &amp; cost independent of anything within it
+        (also quantity, but that is usually 1).</p><p>And yes, anything can be a
+        container, it doesn't have to be a real life container like a backpack
+        or belt pouch, and there is no limit to the capacity.</p><p>So, a simple
+        small bag might be a magical bag that can actually "contain" several
+        hundred lbs of equipment. An item you wouldn't normally think of as a
+        container might also be one - a ring, locket, sword, knife, shield…
+        anything can be a container.</p><p>On the character sheet inventory tab,
+        simple drag other items into or out of the container. If the container
+        hits it's capacity, you;ll see a warning and the item you're dragging
+        will not be accepted.</p><h2>Actions</h2><p>Much like any piece of
+        equipment, any Item can have <strong>Actions</strong> associated with it
+        - Attacks, Defenses, and Spells. It may seem counter-intuitive to think
+        that <strong>any</strong> item can have these actions, but in fact it
+        makes for a very flexible system.</p><p>Firstly, there are the obvious
+        examples:</p><ul><li><p>A weapon (such as a sword) will have one or more
+        Attacks.</p></li><li><p>A piece of armor or a shield will have one or
+        more Defenses.</p></li><li><p>A scroll or spellbook will have one or
+        more Spells.</p></li></ul><p>But there are also any number of
+        combinations that can be used to represent gadgets or magic items, for
+        example:</p><ul><li><p>A sword might have attacks <strong>and</strong>
+        one or more spells bound to it.</p></li><li><p>A piece of armor might
+        have its usual defenses, and also a few handy defensive spells bound to
+        it.</p></li><li><p>A ring or glove might have spells bound to them, or
+        even some attacks or defenses.</p></li><li><p>A Talent such as Martial
+        Arts might have both attacks &amp; defenses.</p></li><li><p>A spell
+        might have attack or defensive capabilities.</p></li></ul><p>Whatever
+        the Actions are, in this implementation they only become available for
+        use if the Item is <strong>readied</strong>, which
+        means:</p><ul><li><p>A Talent is readied automatically and its actions
+        are always available.</p></li><li><p>A piece of equipment is readied
+        only when it's location is <strong>equipped</strong>.</p></li><li><p>A
+        Spell is readied only after it has been successfully
+        cast.</p></li></ul><h3>Attacks</h3><img
+        src="systems/fantasy-trip/assets/images/instructions/item_attacks_0.1.0.webp"
+        /><p>Attacks include the following fields:</p><ul><li><p>The
+        <strong>Attack Action</strong> is used purely descriptively, so names
+        like Strike, Sweep, Blast, Thrust, etc. Note that a weapon can have
+        several actions, each with it's own set of parameters. A staff, for
+        example, might have Strike and Sweep attacks.</p></li><li><p>The
+        <strong>Type</strong> is (Natural, Hand-to-Hand, Melee, Polearm, Thrown,
+        Missile) indicates the nature of the attack. It also determines which
+        attack modifier to be applied if the character has an Active Effect that
+        gives them one.</p></li><li><p>The <strong>To-Hit Mod</strong> is a
+        to-hit modifier specific to this weapon. This can be used to represent
+        fine or magical weapons, such as a +1 sword.</p></li><li><p>The
+        <strong>Base Damage</strong> is the damage the attack does under normal
+        circumstances. This may be multiplied for critical
+        hits.</p></li><li><p>The <strong>Min ST to Use</strong> is the minimum
+        ST the character needs to wield the weapon. If they don't meet this
+        requirement, then attack penalties are automatically
+        applied.</p></li></ul><p>It will probably be an item of equipment that
+        has attacks, such as a sword, knife, staff, etc. But Spells and Talents
+        can also have attacks.</p><p>If a Talent has attacks, they might be
+        Martial Arts blows or natural weapons. If a spell has attacks, it might
+        be something like Fireball, Magic Fist, or Lightning. Remember, Talents
+        are always considered ready, so those attacks are always available. A
+        spell only becomes ready, and it's attacks available, if it is
+        successfully cast.</p><h3>Defenses</h3><img
+        src="systems/fantasy-trip/assets/images/instructions/item_defenses_o.1.0.webp"
+        /><p>Each defense has just:</p><ul><li><p>A <strong>Defense
+        Action</strong>, which is used purely descriptively, such as Block,
+        Armor, etc.</p></li><li><p>The <strong>Number of Hits Stopped</strong>
+        if the defense applies when attacked.</p></li></ul><p>When an attack
+        lands and damage has been rolled, the GM can apply that damage to a PC
+        or NPC automatically if they are targeted in Foundry. The GM can choose,
+        based on circumstances, which of a character's readied defenses can be
+        used.</p><p>For example, if a character is carrying a shield and wearing
+        armor, the armor will always stop damage, but the shield will only if
+        the attack came from the shield side. The GM gets to choose based on
+        their view of the situation.</p><h3>Spells</h3><img
+        src="systems/fantasy-trip/assets/images/instructions/item_spells_0.1.0.webp"
+        /><p>Any item can contain spells. If a Talent has spells, the talent
+        might represent some innate powers the character possesses, for example.
+        But, more often than not, spells will be attached to a piece of
+        equipment, which would most likely be a scroll, spell book, or magical
+        artifact.</p><p>Spells attached to an item have only two
+        fields:</p><ul><li><p>The <strong>Name</strong> of the spell. Note that
+        the only spells that will appear in the selection list will be spells
+        that exist in the game world - ie: they appear in one or more item lists
+        (in the Foundry sidebar). Spells entered directly onto a character sheet
+        or in compendia will not appear, they must be imported into an items
+        list.</p></li><li><p>The <strong>Burn Item When Cast</strong> field
+        tells Foundry to delete the item with the spell if the spell is cast
+        (whether successful or not). So, for spell books this setting is turned
+        off (the book doesn't disappear when a spell is cast), and for scrolls
+        or potions it would be turned on.</p></li></ul><p>There is no limit to
+        the number of spells an item can have.</p><h2>Effects</h2><img
+        src="systems/fantasy-trip/assets/images/instructions/equipment_effects_tab_0.1.0.webp"
+        /><p>The <strong>Effects</strong> tab details any Foundry Active Effects
+        the item has <strong>that will be transferred to the character that has
+        the item readied</strong>. Let's explain that some more.</p><p>In the
+        above example, the Wizard's Staff has a <strong>Mana</strong> effect.
+        When this item is <strong>readied</strong> (location set to
+        <em>equipped</em>), then the effect <strong>will be applied to the
+        character</strong>, boosting their available maximum available mana
+        score. An item can have any number of effects, and they will all be
+        applied to the character.</p><p>See the pages on
+        @UUID[.ZC0ir9H0OUqr0Ehw]{Writing Effects} for details on which character
+        attributes can be changed by an effect.</p>
     video:
       controls: true
       volume: 0.5
@@ -329,7 +486,7 @@ pages:
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
-      modifiedTime: 1743110037166
+      modifiedTime: 1743717088260
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
     _key: '!journal.pages!KaQZyogQKvA3r2vi.AGDQOLKibDzbaHh8'
   - sort: 800000

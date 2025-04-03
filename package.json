@@ -6,6 +6,7 @@
     "build": "gulp build",
     "dist": "gulp dist",
     "dev": "gulp",
+    "import": "gulp importPacks",
     "gulp": "gulp"
   },
   "browserslist": [
