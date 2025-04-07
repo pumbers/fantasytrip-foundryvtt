@@ -91,7 +91,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
     const { st, dx, iq } = this;
     this.ap = [st, dx, iq].reduce((ap, attribute) => ap + attribute.max, 0);
 
-    // Calculate Adjusted Attribute Values
+    // Calculate Initial Adjusted Attribute Values
     this.st.value = this.st.max + this.st.mod - this.damage - this.fatigue;
     this.dx.value = Math.max(this.dx.max + this.dx.mod, 0);
     this.iq.value = Math.max(this.iq.max + this.iq.mod, 0);
