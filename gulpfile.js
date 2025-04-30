@@ -114,13 +114,10 @@ function compilePacks(cb) {
 /*  Compile CSS
 /* ----------------------------------------- */
 
-const tailwindcss = require("@tailwindcss/postcss");
-
 function compileCss() {
   return gulp
     .src(SYSTEM_STYLES)
     .pipe(sourcemaps.init())
-    .pipe(postcss([tailwindcss("./tailwind.config.js")]))
     .pipe(postcss())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(`${BUILD_DIR}/styles`));

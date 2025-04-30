@@ -85,9 +85,7 @@ export class FTCombat extends Combat {
     // console.log("... useFTInitiative", useFTInitiative, "combatGroupInitiative", combatGroupInitiative);
 
     // If not using Fantasy Trip initiative, use Foundary default
-    if (!useFTInitiative) {
-      return super.rollInitiative(ids);
-    }
+    if (!useFTInitiative) return super.rollInitiative(ids, { formula, updateTurn, messageOptions });
 
     // Split up the combatants
     const combatants = ids.map((id) => this.combatants.get(id));
