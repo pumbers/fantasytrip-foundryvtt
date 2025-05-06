@@ -76,6 +76,7 @@
             {{/each}}
         </fieldset>
         {{!-- Spells --}}
+        {{#unless (eq item.type "spell")}}
         <fieldset class="flex flex-col gap-1 justify-start">
             <legend>{{localize "FT.item.sheet.label.spells"}}&nbsp;<i class="fa fa-plus-square"
                     data-action="add-spell"></i></legend>
@@ -102,5 +103,6 @@
             </div>
             {{/each}}
         </fieldset>
+        {{/unless}}
     </div>
 </div>

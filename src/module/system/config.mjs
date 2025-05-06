@@ -69,7 +69,15 @@ FT.actor = {
   },
   tracks: {
     encumbrance: {
-      colors: ["bg-lime", "bg-lime", "bg-lime", "bg-amber", "bg-amber", "bg-red", "bg-red"],
+      colors: [
+        "bg-lime-400",
+        "bg-lime-400",
+        "bg-lime-400",
+        "bg-amber-400",
+        "bg-amber-400",
+        "bg-rose-400",
+        "bg-rose-500",
+      ],
     },
     damage: { color: "bg-red-500" },
     fatigue: { color: "bg-amber-500" },
@@ -83,6 +91,7 @@ FT.actor = {
 
 FT.item = {
   inventory: {
+    types: ["equipment"],
     locations: ["equipped", "dropped", "carried", "stowed", "stored"],
     icons: {
       equipped: "icon-battle-gear",

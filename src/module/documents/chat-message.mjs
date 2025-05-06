@@ -5,16 +5,15 @@ export class FTChatMessage extends ChatMessage {}
 /**
  * Hook into chat message rendering to add listeners for damage buttons.
  */
-Hooks.on("renderChatMessage", async (chatMessage, html, messageData) => {
-  html.find("[data-ft-action='damage-roll']").click(onDamageRoll.bind(chatMessage));
-  html.find("[data-ft-action='apply-damage']").click(onApplyDamage.bind(chatMessage));
-
-  // Hide restricted elements (like buttons)
-  html.find(".ft-restricted").hide();
-
-  // Then show them again if they are marked for the GM or a specific user
-  if (game.user.isGM) html.find(".ft-show-gm").show();
-  html.find(`.ft-show-${game.user.id}`).show();
+Hooks.on("renderChatMessageHTML", async (chatMessage, html, messageData) => {
+  // TODO Fix for v13
+  // html.find("[data-ft-action='damage-roll']").click(onDamageRoll.bind(chatMessage));
+  // html.find("[data-ft-action='apply-damage']").click(onApplyDamage.bind(chatMessage));
+  // // Hide restricted elements (like buttons)
+  // html.find(".ft-restricted").hide();
+  // // Then show them again if they are marked for the GM or a specific user
+  // if (game.user.isGM) html.find(".ft-show-gm").show();
+  // html.find(`.ft-show-${game.user.id}`).show();
 });
 
 /**

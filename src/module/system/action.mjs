@@ -574,14 +574,15 @@ export function castingRoll(actor, spell, options = {}) {
         }),
       });
 
-      if (roll.total === 17) {
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeDropped"));
-      } else if (roll.total === 18) {
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeBroken"));
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.knockdown"));
-      }
+      // TODO Move to attack roll?
+      // if (roll.total === 17) {
+      //   message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
+      //   message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeDropped"));
+      // } else if (roll.total === 18) {
+      //   message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeBroken"));
+      //   message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
+      //   message = message.concat(" ", game.i18n.format("FT.system.roll.result.knockdown"));
+      // }
 
       roll.toMessage(
         {

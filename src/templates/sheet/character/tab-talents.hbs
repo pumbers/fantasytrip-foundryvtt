@@ -1,10 +1,13 @@
 {{!-- Talents Tab --}}
-<div class="tab talents" data-group="primary" data-tab="talents">
+<section id="{{partId}}" class="tab {{tabs.talents.cssClass}}" data-group="primary" data-tab="talents">
     {{#*inline "actions"}}
     <td class="shrink">
-        <a class="document-chat" title="{{localize 'FT.actor.sheet.button.chat'}}"><i class="fa fa-comment"></i></a>
-        <a class="document-edit" title="{{localize 'FT.actor.sheet.button.edit'}}"><i class="fas fa-edit"></i></a>
-        <a class="document-delete" title="{{localize 'FT.actor.sheet.button.delete'}}"><i class="fas fa-trash"></i></a>
+        <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.talent.chat'}}"><i
+                class="fa fa-comment"></i></a>
+        <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.talent.edit'}}"><i
+                class="fas fa-edit"></i></a>
+        <a data-action="deleteItem" title="{{localize 'FT.actor.sheet.action.talent.delete'}}"><i
+                class="fas fa-trash"></i></a>
     </td>
     {{/inline}}
 
@@ -18,8 +21,8 @@
                 <th>{{localize 'FT.actor.sheet.table.talents.iq'}}</th>
                 <th>{{localize 'FT.actor.sheet.table.talents.cost'}}</th>
                 <th></th>
-                <th><a class="document-create" data-type="talent" title="{{localize 'FT.actor.sheet.button.create'}}"><i
-                            class="fa fa-plus"></i></a></th>
+                <th><a data-action="createItem" data-type="talent"
+                        title="{{localize 'FT.actor.sheet.action.talent.create'}}"><i class="fa fa-plus"></i></a></th>
             </tr>
         </thead>
         {{#each (sort talents 'name') as |talent|}}
@@ -32,8 +35,9 @@
                 talent.system.defaultAttribute)}}{{/if}}</td>
             <td>{{talent.system.minIQ}}</td>
             <td>{{talent.system.actualIQCost}}</td>
-            <td>{{#if talent.system.isReady}}<a class="px-[2px] action" data-action="talent-roll">{{localize
-                    "FT.actor.sheet.button.roll"}}</a>{{/if}}
+            <td>{{#if talent.system.isReady}}<a class="sheet-button" data-action="talentRoll">{{localize
+                    "FT.actor.sheet.action.talent.roll"
+                    name=talent.name}}</a>{{/if}}
             </td>
             {{> actions}}
         </tr>
@@ -47,4 +51,4 @@
         </tfoot>
     </table>
     {{/if}}
-</div>
+</section>

@@ -35,6 +35,7 @@ FT:
           max: MA
           value: adjMA
     sheet:
+      title: "Character Sheet: {name}"
       tab:
         character: Character
         notes: Notes
@@ -97,12 +98,23 @@ FT:
           iq: IQ
           cost: Cost
           st: ST
-      button:
-        attributeRoll: Attribute Roll
-        chat: Send to chat
-        create: Add
-        edit: Edit
-        delete: Delete
-        roll: Roll
-        cast: Cast
-        cancel: Cancel
+      action:
+        attribute:
+          roll: Attriute Roll
+        notes:
+          edit: Edit Notes
+        talent:
+          chat: Chat Talent
+          create: Add Talent
+          edit: Edit Talent
+          delete: Delete Talent
+          roll: Roll
+        item:
+          chat: Chat Item
+          create: Add Item
+          edit: Edit Item
+          delete: Delete Item
+        spell:
+          create: Add Spell
+          cast: Cast
+          cancel: Cancel

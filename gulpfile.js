@@ -231,7 +231,7 @@ function watchUpdates() {
   gulp.watch(["src/system.yml"], compileYaml);
   gulp.watch(["src/lang/**/*.yml"], compileLangs);
   gulp.watch(["src/packs/**/*"], compilePacks);
-  gulp.watch(["src/**/*.css"], compileCss);
+  gulp.watch(["src/**/*.css", "src/module/system/config.mjs"], compileCss);
   gulp.watch(["src/LICENSE", "src/assets/**/*", "src/lib/**/*"], copyFiles);
   gulp.watch(["src/templates/**/*"], gulp.parallel(copyFiles, compileCss));
 }

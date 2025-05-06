@@ -108,7 +108,7 @@ export class FTEquipmentData extends FTBaseItemData {
       wt: new NumberField({ initial: 0 }),
       qty: new NumberField({ initial: 1 }),
       //
-      location: new StringField(),
+      location: new StringField({ initial: "carried" }),
       capacity: new NumberField({ initial: 0 }),
       container: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
     });
