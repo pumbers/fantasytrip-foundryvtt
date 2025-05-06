@@ -1,120 +1,63 @@
 {{!-- Character Tab --}}
 <section id="{{partId}}" class="tab {{tabs.character.cssClass}}" data-group="primary" data-tab="character">
     <div class="flex flex-col gap-2">
-        {{!-- Type, Race, Job --}}
-        <div class="grid grid-cols-5 gap-1 m-0 p-0">
-            <div class="field col-span-2">
-                <label>{{localize "FT.actor.sheet.label.type"}}</label>
-                <select name="system.type">
-                    {{selectOptions FT.actor.types selected=system.type localize=true
-                    }}
-                </select>
-            </div>
-            <div class="field col-span-2">
-                <label>{{localize "FT.actor.sheet.label.race"}}</label>
-                <input type="text" name="system.race" value="{{system.race}}" list="race">
-                <datalist id="race">
-                    {{#each FT.actor.races}}
-                    <option value="{{localize .}}">{{localize .}}</option>
-                    {{/each}}
-                </datalist>
-            </div>
-            <div class="field">
-                <label>{{localize "FT.actor.sheet.label.age"}}</label>
-                <input type="number" name="system.age" value="{{system.age}}" min="16">
-            </div>
-            <div class="field col-span-2">
-                <label>{{localize "FT.actor.sheet.label.job"}}</label>
-                <input type="text" name="system.job.name" value="{{system.job.name}}">
-            </div>
-            <div class="field">
-                <label>{{localize "FT.actor.sheet.label.pay"}}</label>
-                <input type="number" name="system.job.pay" value="{{system.job.pay}}">
-            </div>
-            <div class="field col-span-2">
-                <label>{{localize "FT.actor.sheet.label.risk"}}</label>
-                <div class="grid grid-cols-2 gap-1">
-                    <input type="number" name="system.job.risk.low" value="{{system.job.risk.low}}" min=" 3" max="11">
-                    <input type="number" name="system.job.risk.high" value="{{system.job.risk.high}}" min="12" max="18">
-                </div>
+        {{!-- Stats --}}
+        {{!-- Attribute Partial --}}
+        {{#*inline "attribute"}}
+        <div class="flex flex-row gap-0 justify-between">
+            <label
+                class="m-0 p-1 h-6 bg-stone-900 text-stone-200 dark:bg-stone-200 dark:text-stone-900 text-center uppercase min-w-8 rounded-none">{{localize
+                (concat "FT.actor.attribute." key ".max")}}</label>
+            <div class="flex flex-row gap-0">
+                <input class="m-0 !text-center !w-12" type="number" name="system.{{key}}.max" min="0"
+                    value="{{attr.max}}" />
+                <a class="block m-0 p-1 h-6 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
+                    data-action="attributeRoll" data-attribute="{{key}}" data-path="{{key}}.max" data-type="save"><i
+                        class="icon-d6"></i></a>
             </div>
         </div>
-
-        {{!-- Attributes --}}
-        <div class="flex flex-row gap-1 justify-between m-0 my-1 p-0">
-            <div class="flex flex-col gap-1">
-                {{!-- Attribute Partial --}}
-                {{#*inline "attribute"}}
-                <div class="flex flex-row gap-1 justify-start" data-attribute="{{key}}">
-                    <label
-                        class="m-0 p-1 bg-stone-900 text-stone-200 dark:bg-stone-200 dark:text-stone-900 text-xl text-center uppercase min-w-10 rounded-none">{{localize
-                        (concat "FT.actor.attribute." key ".max")}}</label>
-                    <div class="flex flex-row gap-0">
-                        <input class="m-0 !text-center !text-xl !h-full !w-14" type="number" name="system.{{key}}.max"
-                            min="0" value="{{attr.max}}" />
-                        <a title="{{title}}"
-                            class="!p-2 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
-                            data-action="attributeRoll" data-attribute="{{key}}.max" data-type="save"><i
-                                class="icon-d6 text-xl"></i></a>
-                    </div>
-                    <div class="field w-14">
-                        <label>{{localize "FT.actor.sheet.label.adjusted"}}</label>
-                        {{#if roll}}
-                        <div class="flex flex-row gap-0">
-                            <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                            <a title="{{title}}"
-                                class="!p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
-                                data-action="attributeRoll" data-attribute="{{key}}.value" data-type="save"><i
-                                    class="icon-d6"></i></a>
-                        </div>
-                        {{else if action}}
-                        <div class="flex flex-row gap-0">
-                            <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                            <a title="{{title}}"
-                                class="!p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
-                                data-action="{{name}}"><i class="{{icon}}"></i></a>
-                        </div>
-                        {{else}}
-                        <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />\
-                        {{/if}}
-                    </div>
-                </div>
-                {{/inline}}
-                {{!-- Attribute Block --}}
-                {{> attribute key="st" attr=system.st roll=true title=(localize
-                "FT.actor.sheet.action.attribute.roll")}}
-                {{> attribute key="dx" attr=system.dx roll=true title=(localize
-                "FT.actor.sheet.action.attribute.roll")}}
-                {{> attribute key="iq" attr=system.iq roll=true title=(localize
-                "FT.actor.sheet.action.attribute.roll")}}
-                {{> attribute key=(concat "ma." system.ma.mode) attr=system.currentMA action=true
-                name="changeMovement" icon=(concat "icon-" system.ma.mode) title=(localize (concat
-                "FT.actor.attribute.ma.mode."
-                system.ma.mode))}}
+        <div class="field w-14 ml-auto">
+            {{#if roll}}
+            <div title="{{title}}" class="flex flex-row gap-0">
+                <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+                <a class="block m-0 p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
+                    data-action="attributeRoll" data-attribute="adj{{key}}" data-path="{{key}}.value"
+                    data-type="save"><i class="icon-d6"></i></a>
             </div>
-            {{!-- <div class="flex flex-col gap-1 justify-between w-full">
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">A</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">B</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">C</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">D</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">E</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">F</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">G</span>
-            </div> --}}
-            <img class="profile-img" src="{{actor.img}}" data-action="editImage" data-edit="img"
-                title="{{actor.name}}" />
+            {{else if action}}
+            <div class="flex flex-row gap-0">
+                <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+                <a title="{{title}}"
+                    class="block m-0 p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
+                    data-action="{{name}}"><i class="{{icon}}"></i></a>
+            </div>
+            {{else}}
+            <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />\
+            {{/if}}
+        </div>
+        {{/inline}}
+        {{!-- Attribute Block --}}
+        <div class="grid grid-flow-col grid-rows-2 gap-1">
+            {{> attribute key="st" attr=system.st roll=true title=(localize "FT.actor.sheet.action.attribute.roll")}}
+            {{> attribute key="dx" attr=system.dx roll=true title=(localize "FT.actor.sheet.action.attribute.roll")}}
+            {{> attribute key="iq" attr=system.iq roll=true title=(localize "FT.actor.sheet.action.attribute.roll")}}
+            {{> attribute key=(concat "ma." system.ma.mode) attr=system.currentMA action=true
+            name="changeMovement" icon=(concat "icon-" system.ma.mode) title=(localize (concat
+            "FT.actor.attribute.ma.mode."
+            system.ma.mode))}}
         </div>
 
         <div class="flex flex-col gap-1">
             {{!-- Encumbrance --}}
             <div class="grid grid-cols-8 gap-1 text-xs text-center">
-                <span class="border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 dark:bg-stone-700"
+                <span
+                    class="border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 bg-stone-200 dark:bg-stone-700"
                     title="{{localize 'FT.actor.sheet.label.encumbrance'}}">
                     <i class="icon-knapsack"></i>
                 </span>
                 {{#each system.encumbrance.capacity as |capacity|}}
                 <span
-                    class="border-[1px] border-stone-900 text-stone-900 dark:text-stone-200 dark:border-stone-400 rounded-none m-0 p-0 {{#if (eq @index ../system.encumbrance.level)}}{{lookup ../FT.actor.tracks.encumbrance.colors @index}}{{/if}}"
+                    class="border-[1px] border-stone-900 text-stone-900 dark:text-stone-200 dark:border-stone-400 rounded-none m-0 p-0 {{lookup ../FT.actor.tracks.encumbrance.colors @index}}{{#unless (eq @index ../system.encumbrance.level)}}-50{{else}}-500{{/unless}}"
                     title="{{localize (concat 'FT.actor.sheet.label.encumbranceLevel.' @index)}}">
                     {{numberFormat capacity decimals=0}}&thinsp;{{localize 'FT.actor.sheet.table.items.unit'}}
                 </span>
@@ -144,8 +87,7 @@
                 </span>
             </div>
 
-            {{!-- Staff Mana (if a wizard) --}}
-            {{#if (eq system.type "wizard")}}
+            {{!-- Mana (for NPC wizards) --}}
             <div class="grid grid-cols-8 gap-1 text-xs text-center">
                 <span
                     class="border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 bg-stone-200 text-stone-400 dark:bg-stone-700 dark:text-stone-200"
@@ -162,7 +104,6 @@
                     {{/each}}
                 </span>
             </div>
-            {{/if}}
 
             {{!-- Damage, Fatigue and stats modifiers --}}
             <div class="flex flex-row gap-1 text-xs text-center">
@@ -170,12 +111,9 @@
                         name="system.fatigue" value="{{system.fatigue}}" min="0"></div>
                 <div class="field"><label>{{localize "FT.actor.sheet.label.damage"}}</label><input type="number"
                         name="system.damage" value="{{system.damage}}" min="0"></div>
-                {{#if (eq system.type "wizard")}}
-                {{!-- TODO Why does this input having a min cause the value to vanish?? --}}
                 <div class="field"><label>{{localize "FT.actor.sheet.label.mana"}}</label><input type="number"
                         name="system.mana.value" value="{{system.mana.value}}" max="{{system.mana.max}}">
                 </div>
-                {{/if}}
                 <div class="field"><label>{{localize "FT.actor.sheet.label.stMod"}}</label><input type="number"
                         name="system.st.mod" value="{{system.st.mod}}">
                 </div>
@@ -188,16 +126,12 @@
                 <div class="field"><label>{{localize "FT.actor.sheet.label.maMod"}}</label><input type="number"
                         name="{{concat 'system.ma.' system.ma.mode '.mod' }}" value="{{system.currentMA.mod}}">
                 </div>
-                <div class="field"><label>{{localize
-                        "FT.actor.sheet.label.initiative"}}</label><input type="number"
-                        name="system.initiative.situation" value="{{system.initiative.situation}}">
-                </div>
             </div>
         </div>
 
         <div class="flex flex-col gap-1">
 
-            {{!-- Offenses --}}
+            {{!-- Offensives --}}
             {{#each offenses as | offense |}}
             <div data-item-id="{{offense._id}}"
                 class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
@@ -253,8 +187,8 @@
                 {{#each castable.system.spells}}
                 {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
                 <span><i class="icon-pentacle"></i>&nbsp;{{data.system.castingST}}</span>
-                <a class="sheet-button px-1 col-span-2" data-action="castItem" data-index="{{@index}}">
-                    <i class="icon-magic-swirl mr-1"
+                <a class="px-1 sheet-button" data-action="castItem" data-index="{{@index}}">
+                    <i class="{{property ../../FT.item.spell.icon data.system.type}} mr-1"
                         title="{{localize (concat 'FT.item.spell.type.' data.system.type)}}"></i>
                     {{localize "FT.actor.sheet.action.spell.cast"}}&nbsp;{{data.name}}</a>
                 {{/each}}
@@ -274,6 +208,5 @@
             </div>
             {{/each}}
         </div>
-
     </div>
 </section>

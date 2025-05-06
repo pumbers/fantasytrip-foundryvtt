@@ -23,7 +23,7 @@ export class FTActor extends Actor {
   // Actor.prepareDerivedData()
 
   prepareDerivedData() {
-    // console.log("FTActor.prepareDerivedData()", this);
+    console.log("FTActor.prepareDerivedData()", this);
     super.prepareDerivedData();
     const system = this.system;
 

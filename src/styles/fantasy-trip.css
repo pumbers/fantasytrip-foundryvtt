@@ -107,7 +107,7 @@
   }
 
   [data-action].sheet-button {
-    @apply block m-0 p-0 px-1 cursor-pointer bg-yellow-100 text-stone-900 dark:bg-yellow-900 dark:text-stone-200;
+    @apply block cursor-pointer bg-yellow-100 text-stone-900 dark:bg-yellow-900 dark:text-stone-200;
     &:hover {
       @apply bg-yellow-300 dark:bg-yellow-700;
     }
@@ -140,5 +140,9 @@
 
   button {
     @apply bg-stone-300 text-stone-900;
+  }
+
+  .draggable {
+    @apply cursor-grab;
   }
 }

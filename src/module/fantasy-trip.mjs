@@ -149,7 +149,7 @@ Hooks.once("init", async function () {
   /* -------------------------------------------- */
 
   // Actor document configuration
-  CONFIG.Actor.dataModels = { character: FTActorData, nps: FTActorData };
+  CONFIG.Actor.dataModels = { character: FTActorData, npc: FTActorData };
   CONFIG.Actor.documentClass = FTActor;
   foundry.documents.collections.Actors.unregisterSheet("core", ActorSheet);
   foundry.documents.collections.Actors.registerSheet("FT", FTCharacterSheet, {

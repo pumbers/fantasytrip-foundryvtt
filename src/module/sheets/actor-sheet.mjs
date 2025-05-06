@@ -17,12 +17,6 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
 
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    id: "character-sheet",
-    classes: ["fantasy-trip", "character", "sheet"],
-    position: {
-      width: 430,
-      height: 640,
-    },
     form: {
       submitOnChange: true,
     },
@@ -52,22 +46,6 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     },
   };
 
-  /** @inheritdoc */
-  static TABS = {
-    primary: {
-      tabs: [
-        { id: "character" },
-        { id: "notes" },
-        { id: "talents" },
-        { id: "inventory" },
-        { id: "spells" },
-        { id: "effects" },
-      ],
-      initial: "character",
-      labelPrefix: "FT.actor.sheet.tab",
-    },
-  };
-
   get title() {
     return game.i18n.format("FT.actor.sheet.title", { name: this.actor.name });
   }
@@ -78,7 +56,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
 
   /** @inheritdoc */
   async _prepareContext(options) {
-    console.log("_prepareContext()", options);
+    console.log("_prepareContext()", this, options);
     const context = Object.assign(await super._prepareContext(options), {
       // General Documents, Settings & Config
       FT: CONFIG.FT,
@@ -305,6 +283,33 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
 
 export class FTCharacterSheet extends FTBaseCharacterSheet {
   /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    id: "character-sheet",
+    classes: ["fantasy-trip", "character", "sheet"],
+    position: {
+      width: 430,
+      height: 640,
+    },
+  };
+
+  /** @inheritdoc */
+  /** @inheritdoc */
+  static TABS = {
+    primary: {
+      tabs: [
+        { id: "character" },
+        { id: "notes" },
+        { id: "talents" },
+        { id: "inventory" },
+        { id: "spells" },
+        { id: "effects" },
+      ],
+      initial: "character",
+      labelPrefix: "FT.actor.sheet.tab",
+    },
+  };
+
+  /** @inheritdoc */
   static PARTS = {
     header: {
       template: `${FT.path}/templates/sheet/character/header.hbs`,
@@ -338,14 +343,46 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
  * Fantasy Trip NPC Sheet
  * @extends {ActorSheet} Extends the FTCHaracterSheet
  */
-export class FTNPCSheet extends FTCharacterSheet {
-  /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["fantasy-trip", "npc", "sheet"],
-      template: `${CONFIG.FT.path}/templates/sheet/npc/npc-sheet.hbs`,
+export class FTNPCSheet extends FTBaseCharacterSheet {
+  /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    id: "npc-sheet",
+    classes: ["fantasy-trip", "npc", "sheet"],
+    position: {
       width: 445,
-      height: 400,
-    });
-  }
+      height: 430,
+    },
+  };
+
+  /** @inheritdoc */
+  static TABS = {
+    primary: {
+      tabs: [{ id: "character" }, { id: "notes" }, { id: "inventory" }, { id: "effects" }],
+      initial: "character",
+      labelPrefix: "FT.actor.sheet.tab",
+    },
+  };
+
+  /** @inheritdoc */
+  static PARTS = {
+    header: {
+      template: `${FT.path}/templates/sheet/npc/header.hbs`,
+    },
+    tabs: {
+      // Foundry-provided generic template
+      template: "templates/generic/tab-navigation.hbs",
+    },
+    character: {
+      template: `${FT.path}/templates/sheet/npc/tab-character.hbs`,
+    },
+    notes: {
+      template: `${FT.path}/templates/sheet/npc/tab-notes.hbs`,
+    },
+    inventory: {
+      template: `${FT.path}/templates/sheet/npc/tab-inventory.hbs`,
+    },
+    effects: {
+      template: `${FT.path}/templates/sheet/npc/tab-effects.hbs`,
+    },
+  };
 }

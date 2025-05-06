@@ -39,9 +39,10 @@
             <td>{{spell.system.castingST}}</td>
             <td>
                 {{#if spell.system.isReady}}
-                <a class="sheet-button" data-action="cancelSpell">{{localize "FT.actor.sheet.action.spell.cancel"}}</a>
+                <a class="px-1 sheet-button" data-action="cancelSpell">{{localize
+                    "FT.actor.sheet.action.spell.cancel"}}</a>
                 {{else if spell.system.type}}
-                <a class="sheet-button" data-action="castSpell">{{localize "FT.actor.sheet.action.spell.cast"}}</a>
+                <a class="px-1 sheet-button" data-action="castSpell">{{localize "FT.actor.sheet.action.spell.cast"}}</a>
                 {{/if}}
             </td>
             {{> actions}}

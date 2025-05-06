@@ -1,14 +1,13 @@
 @reference "./fantasy-trip.css";
 
 .fantasy-trip.character.sheet {
-  /*  */
   .window-content {
     @apply m-0 p-0 bg-stone-100 dark:bg-current;
 
     .sheet-header {
       @apply p-2;
       input.name {
-        @apply w-full m-0 py-5 px-2 text-3xl font-bold;
+        @apply w-full h-10 m-0 p-2 text-3xl font-bold;
       }
     }
 
@@ -16,11 +15,6 @@
       @apply rounded-none w-[179px] h-[179px] object-cover;
     }
 
-    .draggable {
-      @apply cursor-grab;
-    }
-
-    /*  */
     section[data-tab="notes"] {
       .prosemirror.editor {
         @apply min-h-[28rem];

@@ -1,6 +1,7 @@
 {{!-- Effects Tab --}}
-<div class="tab effects" data-group="primary" data-tab="effects">
+<section id="{{partId}}" class="tab {{tabs.effects.cssClass}}" data-group="primary" data-tab="effects">
     <div class="flex flex-col gap-2 scroll-auto">
+        {{!-- {{log effects}} --}}
         {{#each effects as |effect|}}
         <fieldset class="effect" data-effect-id="{{effect._id}}">
             <legend>{{effect.parent.name}}:&nbsp;{{effect.name}}&nbsp;{{#if effect.disabled}}{{localize
@@ -22,17 +23,16 @@
                 </tbody>
             </table>
             <div class="actions">
-                {{#if (eq parent.name "Actor")}}
-                <button data-action="edit-effect">{{localize "FT.effect.action.edit"}}</button>
-                <button data-action="toggle-effect">{{localize "FT.effect.action.toggle"}}</button>
-                <button data-action="delete-effect">{{localize "FT.effect.action.delete"}}</button>
+                {{#if (eq parent.name ../actor.name)}}
+                <button data-action="editEffect">{{localize "FT.effect.action.edit"}}</button>
+                <button data-action="toggleEffect">{{localize "FT.effect.action.toggle"}}</button>
+                <button data-action="deleteEffect">{{localize "FT.effect.action.delete"}}</button>
                 {{/if}}
             </div>
         </fieldset>
         {{/each}}
         <div>
-            <button class="ml-auto mr-0" data-action="create-effect">{{localize
-                "FT.effect.action.create"}}</button>
+            <button class="ml-auto mr-0" data-action="createEffect">{{localize "FT.effect.action.create"}}</button>
         </div>
     </div>
-</div>
+    </div>

@@ -1,10 +1,10 @@
 {{!-- Items Tab --}}
-<div class="tab inventory" data-group="primary" data-tab="inventory">
+<section id="{{partId}}" class="tab {{tabs.inventory.cssClass}}" data-group="primary" data-tab="inventory">
     <div class="flex flex-col gap-2">
         {{!-- Table Row Partial --}}
         {{#*inline "table-row"}}
-        <tr data-item-id="{{item._id}}" {{#if (eq item.type "equipment" )}}draggable="true" {{/if}}
-            class="item {{#if item.system.isContainer}}item-container{{/if}}">
+        <tr data-item-id="{{item._id}}" class="item {{#if item.system.isContainer}}item-container{{/if}} {{#if (eq item.type 'equipment'
+            )}}draggable{{/if}}">
             {{!-- Common Columns --}}
             {{#if showItemIcon}}
             <td><img src="{{item.img}}" /></td>
@@ -13,18 +13,19 @@
             {{!-- Talent --}}
             {{#if (eq item.type "talent")}}
             <td>
-                <a class="px-[2px] action" data-action="talent-roll">{{localize
-                    "FT.actor.sheet.button.roll"}}</a>
+                <a class="px-1 sheet-button" data-action="talentRoll">{{localize
+                    "FT.actor.sheet.action.talent.roll"}}</a>
             </td>
             <td></td>
             {{!-- Spell --}}
             {{else if (eq item.type "spell")}}
             <td>
                 {{#if item.system.isReady}}
-                <a class="px-[2px] action" data-action="cancel-spell">{{localize
-                    "FT.actor.sheet.button.cancel"}}</a>
+                <a class="px-1 sheet-button" data-action="cancelSpell">{{localize
+                    "FT.actor.sheet.action.spell.cancel"}}</a>
                 {{else}}
-                <a class="px-[2px] action" data-action="cast-spell">{{localize "FT.actor.sheet.button.cast"}}</a>
+                <a class="px-1 sheet-button" data-action="castSpell">{{localize
+                    "FT.actor.sheet.action.spell.cast"}}</a>
                 {{/if}}
             </td>
             <td></td>
@@ -33,18 +34,18 @@
             <td></td>
             <td>
                 {{#unless item.system.container}}
-                <a class="mr-2" data-action="item-change-location"
+                <a class="mr-2" data-action="changeItemLocation"
                     title="{{localize (concat 'FT.actor.sheet.label.location.' item.system.location)}}"><i
                         class="{{property FT.item.inventory.icons item.system.location}}"></i></a>
                 {{/unless}}
             </td>
             {{/if}}
             <td class="flex flex-row gap-[2px]">
-                <a class="document-chat" title="{{localize 'FT.actor.sheet.button.chat'}}"><i
+                <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.item.chat'}}"><i
                         class="fa fa-comment"></i></a>
-                <a class="document-edit" title="{{localize 'FT.actor.sheet.button.edit'}}"><i
+                <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.item.edit'}}"><i
                         class="fas fa-edit"></i></a>
-                <a data-action="item-delete" title="{{localize 'FT.actor.sheet.button.delete'}}"><i
+                <a data-action="deleteItem" title="{{localize 'FT.actor.sheet.action.item.delete'}}"><i
                         class="fas fa-trash"></i></a>
             </td>
         </tr>
@@ -80,4 +81,4 @@
             </tbody>
         </table>
     </div>
-</div>
+</section>
