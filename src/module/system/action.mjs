@@ -291,7 +291,7 @@ export function attackRoll(actor, weapon, options) {
         modifiers,
         totalModifiers,
         targetNumber: totalAttributes + totalModifiers,
-        unskilled: !talent,
+        unskilled: item.type !== "equipment" && !talent,
         roll,
         multiplier:
           weapon.type === "spell" ? weapon.system.stSpent ?? 1 : roll.total === 3 ? 3 : roll.total === 4 ? 2 : 1,
