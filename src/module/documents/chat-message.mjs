@@ -6,14 +6,17 @@ export class FTChatMessage extends ChatMessage {}
  * Hook into chat message rendering to add listeners for damage buttons.
  */
 Hooks.on("renderChatMessageHTML", async (chatMessage, html, messageData) => {
-  // TODO Fix for v13
-  // html.find("[data-ft-action='damage-roll']").click(onDamageRoll.bind(chatMessage));
-  // html.find("[data-ft-action='apply-damage']").click(onApplyDamage.bind(chatMessage));
-  // // Hide restricted elements (like buttons)
-  // html.find(".ft-restricted").hide();
-  // // Then show them again if they are marked for the GM or a specific user
-  // if (game.user.isGM) html.find(".ft-show-gm").show();
-  // html.find(`.ft-show-${game.user.id}`).show();
+  html
+    .querySelectorAll("[data-ft-action='damage-roll']")
+    .forEach((e) => e.addEventListener("click", onDamageRoll.bind(chatMessage)));
+  html
+    .querySelectorAll("[data-ft-action='apply-damage']")
+    .forEach((e) => e.addEventListener("click", onApplyDamage.bind(chatMessage)));
+  // Hide restricted elements (like buttons)
+  html.querySelectorAll(".ft-restricted").forEach((e) => (e.style.display = "none"));
+  // Then show them again if they are marked for the GM or a specific use
+  if (game.user.isGM) html.querySelectorAll(".ft-show-gm").forEach((e) => (e.style.display = "block"));
+  html.querySelectorAll(`.ft-show-${game.user.id}`).forEach((e) => (e.style.display = "block"));
 });
 
 /**

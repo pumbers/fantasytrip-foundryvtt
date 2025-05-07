@@ -281,7 +281,7 @@ export function attackRoll(actor, weapon, options) {
         message = message.concat(" ", game.i18n.format("FT.system.roll.result.broken", { weapon: item?.name }));
       }
 
-      const content = await renderTemplate(`${FT.path}/templates/chat/dice-roll.hbs`, {
+      const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/dice-roll.hbs`, {
         actor,
         token: actor.parent,
         item,
@@ -369,12 +369,15 @@ export function damageRoll(actor, weapon, options = {}) {
             total: roll.total,
           });
 
-          const content = await renderTemplate(`${FT.path}/templates/chat/damage-roll.hbs`, {
-            token,
-            actor: token.actor,
-            roll,
-            parts: roll.dice.map((d) => d.getTooltipData()),
-          });
+          const content = await foundry.applications.handlebars.renderTemplate(
+            `${FT.path}/templates/chat/damage-roll.hbs`,
+            {
+              token,
+              actor: token.actor,
+              roll,
+              parts: roll.dice.map((d) => d.getTooltipData()),
+            }
+          );
 
           roll.toMessage(
             {
@@ -426,7 +429,7 @@ export async function applyDamage(actor, damage, options) {
   }
 
   // Create a dialog for the GM to select applicable defenses
-  const content = await renderTemplate(`${FT.path}/templates/dialog/apply-damage.hbs`, {
+  const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/dialog/apply-damage.hbs`, {
     damage,
     items,
   });
@@ -574,15 +577,14 @@ export function castingRoll(actor, spell, options = {}) {
         }),
       });
 
-      // TODO Move to attack roll?
-      // if (roll.total === 17) {
-      //   message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
-      //   message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeDropped"));
-      // } else if (roll.total === 18) {
-      //   message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeBroken"));
-      //   message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
-      //   message = message.concat(" ", game.i18n.format("FT.system.roll.result.knockdown"));
-      // }
+      if (roll.total === 17) {
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeDropped"));
+      } else if (roll.total === 18) {
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeBroken"));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.knockdown"));
+      }
 
       roll.toMessage(
         {

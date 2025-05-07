@@ -131,7 +131,10 @@ export class FTActor extends Actor {
    * Send character details to chat
    */
   async chat() {
-    const content = await renderTemplate(`${CONFIG.FT.path}/templates/chat/character.hbs`, this);
+    const content = await foundry.applications.handlebars.renderTemplate(
+      `${CONFIG.FT.path}/templates/chat/character.hbs`,
+      this
+    );
     ChatMessage.create({
       content: content,
       flavor: this.name,
