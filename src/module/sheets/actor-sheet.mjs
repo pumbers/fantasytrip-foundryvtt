@@ -79,6 +79,9 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       defenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasDefenses),
       castables: this.actor.items.filter((item) => item.system.isReady && item.system.hasSpells),
       cast: this.actor.items.filter((item) => item.type === "spell" && item.system.isReady && !item.system.hasActions),
+      //
+      effects: Array.from(this.actor.allApplicableEffects()),
+      enrichedNotes: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.notes),
     });
 
     // Sort inventory items into their containers
@@ -94,13 +97,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       })
       .flat(2);
 
-    // Applied Active Effects
-    context.effects = Array.from(this.actor.allApplicableEffects());
-
-    // Prepare HTML data
-    context.enrichedNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.notes);
-
-    console.log("... context", context);
+    console.log("... actor context", context);
     return context;
   }
 
@@ -322,7 +319,7 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
       template: `${FT.path}/templates/sheet/character/tab-character.hbs`,
     },
     notes: {
-      template: `${FT.path}/templates/sheet/character/tab-notes.hbs`,
+      template: `${FT.path}/templates/sheet/tab-notes.hbs`,
     },
     talents: {
       template: `${FT.path}/templates/sheet/character/tab-talents.hbs`,
@@ -334,7 +331,7 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
       template: `${FT.path}/templates/sheet/character/tab-spells.hbs`,
     },
     effects: {
-      template: `${FT.path}/templates/sheet/character/tab-effects.hbs`,
+      template: `${FT.path}/templates/sheet/tab-effects.hbs`,
     },
   };
 }
@@ -376,13 +373,13 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
       template: `${FT.path}/templates/sheet/npc/tab-character.hbs`,
     },
     notes: {
-      template: `${FT.path}/templates/sheet/npc/tab-notes.hbs`,
+      template: `${FT.path}/templates/sheet/tab-notes.hbs`,
     },
     inventory: {
       template: `${FT.path}/templates/sheet/npc/tab-inventory.hbs`,
     },
     effects: {
-      template: `${FT.path}/templates/sheet/npc/tab-effects.hbs`,
+      template: `${FT.path}/templates/sheet/tab-effects.hbs`,
     },
   };
 }

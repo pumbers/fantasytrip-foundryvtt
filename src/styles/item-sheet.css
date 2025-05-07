@@ -1,42 +1,24 @@
 @reference "./fantasy-trip.css";
 
 .fantasy-trip.item.sheet {
-  /*  */
-  & .window-content {
+  .window-content {
     @apply bg-none m-0 p-0 bg-stone-100 dark:bg-current;
-  }
 
-  /*  */
-  & .sheet-content {
-    @apply p-2 bg-stone-100 dark:bg-current;
-
-    & .sheet-header {
-      @apply mb-2;
-      & img.item-img {
-        @apply rounded-none h-[70px] w-[70px] object-cover;
-      }
-      & input.name {
-        @apply w-full m-0 py-5 px-2 text-3xl font-bold;
+    .sheet-header {
+      @apply p-2 flex flex-row gap-2;
+      input.name {
+        @apply w-full h-8 m-0 p-2 px-2 text-3xl font-bold;
       }
     }
 
-    & .sheet-body {
-      @apply flex flex-col gap-2 justify-start;
+    img.item-img {
+      @apply rounded-none size-[70px] object-cover;
     }
 
-    & .sheet-tabs {
-      @apply m-0;
-      & .tab {
-        @apply overflow-auto;
+    section[data-tab="notes"] {
+      .prosemirror.editor {
+        @apply min-h-[28rem];
       }
-      & .item {
-        @apply m-0 p-0.5 text-xs uppercase;
-      }
-    }
-
-    & .editor-content,
-    & .tox.tox-tinymce {
-      @apply h-[18rem] text-stone-900 dark:text-stone-200;
     }
   }
 }

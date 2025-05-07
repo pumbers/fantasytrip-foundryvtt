@@ -12,7 +12,7 @@
     }
 
     img.profile-img {
-      @apply rounded-none w-[179px] h-[179px] object-cover;
+      @apply rounded-none size-[179px] object-cover;
     }
 
     section[data-tab="notes"] {

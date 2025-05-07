@@ -6,7 +6,15 @@
  * @param {HTMLElement} target  The HTMLElement where the event occurred
  */
 export function onManageActiveEffect(owner, event, target) {
-  // console.log("Effects.onManageActiveEffect()", owner.name, target.dataset, target?.closest("[data-effect-id]"));
+  // console.log(
+  //   "Effects.onManageActiveEffect()",
+  //   "owner",
+  //   owner.name,
+  //   "dataset",
+  //   target.dataset,
+  //   "effect",
+  //   target?.closest("[data-effect-id]")?.dataset
+  // );
   const effectId = target?.closest("[data-effect-id]")?.dataset.effectId;
   const effect = effectId ? owner.effects.get(effectId) : null;
 
@@ -28,6 +36,6 @@ export function onManageActiveEffect(owner, event, target) {
     case "toggleEffect":
       return effect.update({ disabled: !effect.disabled });
     default:
-      console.error("CS5 | Unknown effect action", target.dataset.action);
+      console.error("FT | Unknown effect action", target.dataset.action);
   }
 }

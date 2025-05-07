@@ -21,8 +21,10 @@ FT:
     chat:
       burn: "{name} disappears in burst of flame and smoke."
     sheet:
+      title: "Item: {name}"
       tab:
-        description: Description
+        notes: Notes
+        settings: Settings
         actions: Actions
         effects: Effects
       label:

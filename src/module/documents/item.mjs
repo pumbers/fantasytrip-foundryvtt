@@ -1,3 +1,5 @@
+import { FT } from "../system/config.mjs";
+
 /**
  * Fantasy Trip Item
  * @extends {Item} Extends the basic Item
@@ -12,7 +14,7 @@ export class FTItem extends Item {
     super.prepareDerivedData();
 
     // Turn on ActiveEffects if equipped, off otherwise, only for inventory items
-    if (this.type === "equipment") {
+    if (FT.item.inventory.types.includes(this.type)) {
       this.getEmbeddedCollection("ActiveEffect").forEach((effect) =>
         effect.update({ disabled: this.system.location !== "equipped" })
       );
@@ -44,7 +46,7 @@ export class FTItem extends Item {
 Hooks.on("preUpdateItem", (item, changes, options, userId) => {
   // console.log("Hooks.preUpdateItem", item.type, item, "changes", changes, "options", options, "userId", userId);
 
-  Object.values(changes.system.spells ?? [])
+  Object.values(changes.system?.spells ?? [])
     .filter((s) => s.id !== s.data?._id)
     .forEach((spell) => {
       spell.data = game.items.get(spell.id);

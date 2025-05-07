@@ -106,6 +106,10 @@
     text-shadow: none;
   }
 
+  [data-action] {
+    @apply cursor-pointer;
+  }
+
   [data-action].sheet-button {
     @apply block cursor-pointer bg-yellow-100 text-stone-900 dark:bg-yellow-900 dark:text-stone-200;
     &:hover {

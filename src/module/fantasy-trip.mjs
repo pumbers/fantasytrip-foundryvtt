@@ -151,7 +151,7 @@ Hooks.once("init", async function () {
   // Actor document configuration
   CONFIG.Actor.dataModels = { character: FTActorData, npc: FTActorData };
   CONFIG.Actor.documentClass = FTActor;
-  foundry.documents.collections.Actors.unregisterSheet("core", ActorSheet);
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.applications.sheets.ActorSheetV2);
   foundry.documents.collections.Actors.registerSheet("FT", FTCharacterSheet, {
     types: ["character", "npc"],
     makeDefault: true,
@@ -165,7 +165,7 @@ Hooks.once("init", async function () {
     equipment: FTEquipmentData,
   };
   CONFIG.Item.documentClass = FTItem;
-  foundry.documents.collections.Items.unregisterSheet("core", ItemSheet);
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
   foundry.documents.collections.Items.registerSheet("FT", FTItemSheet, { makeDefault: true });
 
   // Other document configuration
@@ -190,24 +190,6 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("startsWith", Helpers.startsWith);
 
   foundry.applications.handlebars.loadTemplates([
-    `${CONFIG.FT.path}/templates/sheet/npc/npc-sheet.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_header.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_navigation.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_tab-character.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_stats.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_status.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_action.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_tab-notes.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_tab-inventory.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_tab-effects.hbs`,
-    //
-    `${CONFIG.FT.path}/templates/sheet/item/item-sheet.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/item/_header.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/item/_navigation.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/item/_tab-description.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/item/_tab-actions.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/item/_tab-effects.hbs`,
-    //
     `${CONFIG.FT.path}/templates/chat/dice-roll.hbs`,
     `${CONFIG.FT.path}/templates/chat/damage-roll.hbs`,
     //

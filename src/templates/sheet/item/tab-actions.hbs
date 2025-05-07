@@ -1,10 +1,10 @@
 {{!-- Actions Tab --}}
-<div class="tab" data-group="primary" data-tab="actions">
+<section id="{{partId}}" class="tab {{tabs.actions.cssClass}}" data-group="primary" data-tab="actions">
     <div class="flex flex-col gap-2">
         {{!-- Attacks --}}
         <fieldset class="flex flex-col gap-4 justify-start">
             <legend>{{localize "FT.item.sheet.label.attacks"}}&nbsp;<i class="fa fa-plus-square"
-                    data-action="add-attack"></i></legend>
+                    data-action="addAttack"></i></legend>
             {{#each system.attacks as | attack |}}
             <div class="grid grid-cols-4 gap-1">
                 <div class="field col-span-2">
@@ -12,7 +12,7 @@
                     <div class="flex flex-row gap-0">
                         <span
                             class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] border-stone-900 dark:border-stone-400 text-xs dark:bg-stone-200"
-                            data-action="delete-attack" data-index="{{@index}}"><i class="fas fa-trash"></i></span>
+                            data-action="deleteAttack" data-index="{{@index}}"><i class="fas fa-trash"></i></span>
                         <input class="!rounded-l-none" type="text" name="system.attacks.{{@index}}.action"
                             value="{{attack.action}}">
                     </div>
@@ -55,14 +55,14 @@
         {{!-- Defenses --}}
         <fieldset class="flex flex-col gap-1 justify-start">
             <legend>{{localize "FT.item.sheet.label.defenses"}}&nbsp;<i class="fa fa-plus-square"
-                    data-action="add-defense"></i></legend>
+                    data-action="addDefense"></i></legend>
             {{#each system.defenses as | defense |}}
             <div class="grid grid-cols-4 gap-1">
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.defenseAction"}}</label>
                     <div class="flex flex-row gap-0">
                         <span class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs"
-                            data-action="delete-defense" data-index="{{@index}}"><i class="fas fa-trash"></i></span>
+                            data-action="deleteDefense" data-index="{{@index}}"><i class="fas fa-trash"></i></span>
                         <input class="!rounded-l-none" type="text" name="system.defenses.{{@index}}.action"
                             value="{{defense.action}}">
                     </div>
@@ -79,13 +79,13 @@
         {{#unless (eq item.type "spell")}}
         <fieldset class="flex flex-col gap-1 justify-start">
             <legend>{{localize "FT.item.sheet.label.spells"}}&nbsp;<i class="fa fa-plus-square"
-                    data-action="add-spell"></i></legend>
+                    data-action="addSpell"></i></legend>
             {{#each system.spells as | spell |}}
             <div class="grid grid-cols-3 gap-1">
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.name"}}</label>
                     <div class="flex flex-row gap-0">
-                        <span class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="delete-spell"
+                        <span class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="deleteSpell"
                             data-index="{{@index}}"><i class="fas fa-trash"></i></span>
                         <select name="system.spells.{{@index}}.id">
                             <option value=""></option>
@@ -96,7 +96,7 @@
                 {{#if spell.data}}
                 <div class="field">
                     <label>{{localize "FT.item.sheet.label.burn"}}</label>
-                    <input class="!size-8" type="checkbox" name="system.spells.{{@index}}.burn" {{#if
+                    <input class="!size-4" type="checkbox" name="system.spells.{{@index}}.burn" {{#if
                         spell.burn}}checked{{/if}} />
                 </div>
                 {{/if}}
@@ -105,4 +105,4 @@
         </fieldset>
         {{/unless}}
     </div>
-</div>
+</section>
