@@ -39,6 +39,7 @@ Hooks.once("init", async function () {
 
   // Combat
   CONFIG.Combat.initiative.formula = "1d6+@initiative.situation+@initiative.self+(1d6/10)+(1d6/100)";
+  CONFIG.Actor.trackableAttributes = { character: { bar: ["st"], value: [] }, npc: { bar: ["st"], value: [] } };
 
   /* -------------------------------------------- */
   /*  Game Settings                            
