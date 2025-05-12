@@ -1,0 +1,21 @@
+type: Item
+folder: null
+name: Spells
+color: null
+sorting: a
+_id: z6G7klGELi876v85
+description: ''
+sort: 0
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.342'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1747069575098
+  modifiedTime: 1747069575098
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+_key: '!folders!z6G7klGELi876v85'
+

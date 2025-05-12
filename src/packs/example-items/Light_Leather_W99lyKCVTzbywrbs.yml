@@ -1,0 +1,76 @@
+name: Light Leather
+type: equipment
+img: icons/equipment/chest/shirt-collared-yellow.webp
+system:
+  notes: ''
+  cost: 10
+  wt: 2
+  qty: 1
+  capacity: 0
+  container: null
+  attacks: []
+  defenses:
+    - action: Armor
+      hitsStopped: 1
+  spells: []
+  location: carried
+effects:
+  - name: Encumbrance
+    origin: Item.Jw7YqDm907MrMKXI
+    img: icons/svg/aura.svg
+    _id: sWzgfvlGoA3AOkBz
+    type: base
+    system: {}
+    changes:
+      - key: system.ma.walk.value
+        mode: 3
+        value: '8'
+        priority: null
+      - key: system.dx.value
+        mode: 2
+        value: '-2'
+        priority: null
+    disabled: true
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    description: ''
+    tint: '#ffffff'
+    transfer: true
+    statuses: []
+    sort: 0
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      exportSource: null
+      coreVersion: '13.342'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      lastModifiedBy: null
+    _key: '!items.effects!W99lyKCVTzbywrbs.sWzgfvlGoA3AOkBz'
+folder: Cu0OSpKB1x0ZlU1d
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.342'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1747069158857
+  modifiedTime: 1747069180662
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+ownership:
+  default: 0
+  4jN5Lbw1IbyHFDNM: 3
+  DoJEEiLZ8CgYIaAq: 3
+_id: W99lyKCVTzbywrbs
+sort: 150000
+_key: '!items!W99lyKCVTzbywrbs'
+
