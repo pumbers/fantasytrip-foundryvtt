@@ -102,21 +102,6 @@
     }
   }
 
-  a {
-    text-shadow: none;
-  }
-
-  [data-action] {
-    @apply cursor-pointer;
-  }
-
-  [data-action].sheet-button {
-    @apply block cursor-pointer bg-yellow-100 text-stone-900 dark:bg-yellow-900 dark:text-stone-200;
-    &:hover {
-      @apply bg-yellow-300 dark:bg-yellow-700;
-    }
-  }
-
   .effect {
     @apply border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1 flex flex-row gap-2;
     legend {
@@ -148,5 +133,20 @@
 
   .draggable {
     @apply cursor-grab;
+  }
+
+  a {
+    text-shadow: none;
+  }
+
+  [data-action] {
+    @apply cursor-pointer;
+  }
+
+  [data-action].sheet-button {
+    @apply block bg-yellow-100 text-stone-900 dark:bg-yellow-900 dark:text-stone-200;
+    &:hover {
+      @apply bg-yellow-300 dark:bg-yellow-700;
+    }
   }
 }
