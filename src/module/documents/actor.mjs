@@ -75,7 +75,7 @@ export class FTActor extends Actor {
       .forEach((container) => {
         const wt = this.items
           .filter((item) => item.system.container === container._id)
-          .reduce((wt, item) => wt + item.system.wt, 0);
+          .reduce((wt, item) => wt + item.system.totalWt, 0);
         container.system.remaining = container.system.capacity - wt;
       });
 
