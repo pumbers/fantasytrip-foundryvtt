@@ -1,0 +1,54 @@
+FT:
+  item:
+    type:
+      talent: Talent
+      spell: Spell
+      equipment: Equipment
+    attack:
+      type:
+        natural: Natural
+        hth: Hand-to-Hand
+        melee: Melee
+        polearm: Polearm
+        thrown: Thrown
+        missile: Missile
+    spell:
+      type:
+        missile: Missile
+        thrown: Thrown
+        creation: Creation
+        special: Special
+    chat:
+      burn: "{name} disappears in burst of flame and smoke."
+    sheet:
+      title: "Item: {name}"
+      tab:
+        notes: Notes
+        settings: Settings
+        actions: Actions
+        effects: Effects
+      label:
+        name: Name
+        container: Container
+        cost: Cost $ (each)
+        wt: Wt Lbs (each)
+        qty: Quantity
+        minIQ: IQ Level
+        iqCost: Cost to Acquire
+        minST: Min ST to use
+        type: Type
+        minStToCast: Min ST to Cast
+        maxStToCast: Max ST to Cast
+        stToMaintain: ST to Maintain
+        talent: Talent to Use
+        hitsStopped: Hits Stopped
+        capacity: Capacity
+        defaultAttribute: Default Attribute
+        attackAction: Attack Action
+        defenseAction: Defense Action
+        toHitMod: To Hit Mod
+        baseDamage: Base Damage
+        burn: Burn item when cast
+        attacks: Attacks
+        defenses: Defenses
+        spells: Spells

@@ -9,7 +9,7 @@
   input,
   textarea,
   select {
-    @apply w-full h-6 border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1 !appearance-auto bg-transparent text-stone-900 dark:text-stone-200;
+    @apply w-full h-6 border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1 !appearance-auto bg-white text-stone-900 dark:text-stone-200;
     &::placeholder {
       @apply opacity-80;
     }
@@ -25,17 +25,17 @@
   }
 
   table {
-    @apply text-xs m-0 text-stone-900 dark:text-stone-200;
+    @apply text-xs m-0 p-0 text-stone-900 dark:text-stone-200;
     thead {
       text-shadow: none;
-      @apply border-none bg-stone-900 text-stone-200 dark:bg-stone-200 dark:text-stone-900;
+      @apply m-0 p-0 border-none bg-stone-700 text-stone-200 dark:bg-stone-200 dark:text-stone-900;
     }
     tr:nth-child(even) {
       @apply bg-stone-300 dark:bg-stone-700;
     }
     th,
     td {
-      @apply px-1 whitespace-nowrap text-center;
+      @apply p-1 whitespace-nowrap text-center;
       &:first-child {
         @apply text-left w-4;
       }
@@ -51,58 +51,61 @@
     }
     tfoot {
       text-shadow: none;
-      @apply border-none bg-stone-400 text-stone-900 dark:bg-stone-900 dark:text-stone-200;
+      @apply m-0 p-0 border-none bg-stone-400 text-stone-900 dark:bg-stone-900 dark:text-stone-200;
     }
   }
 
-  & .sheet-tabs {
-    @apply !mb-2;
-    & .tab {
-      @apply overflow-auto;
+  .sheet-tabs.tabs {
+    @apply m-2 text-[0.6rem] uppercase text-stone-900 dark:text-stone-200;
+    .active {
+      /* text-shadow: none; */
+      @apply font-bold;
     }
-    & .item {
-      @apply m-0 !p-1 text-[0.6rem] uppercase text-stone-900 dark:text-stone-200;
+  }
+
+  section.tab {
+    @apply overflow-y-auto m-2 p-0;
+  }
+
+  section[data-tab="notes"] {
+    .prosemirror.editor {
+      .editor-content {
+        @apply mt-6 block;
+      }
+      .editor-container {
+        @apply mt-6 hidden;
+      }
       &.active {
-        text-shadow: none;
-        @apply font-bold;
+        a {
+          @apply hidden;
+        }
+        .editor-content {
+          @apply hidden;
+        }
+        .editor-container {
+          @apply m-0 p-0 block h-[30rem];
+        }
       }
     }
   }
 
-  & fieldset {
-    & legend {
+  fieldset {
+    @apply border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1;
+    legend {
       @apply text-stone-900 dark:text-stone-200;
     }
   }
 
-  & .field {
+  .field {
     @apply flex flex-col gap-1 mt-auto mb-0 !leading-2;
-    & label {
+    label {
       @apply m-0 p-0 text-[0.5rem] !text-left uppercase text-stone-900 dark:text-stone-200;
     }
   }
 
-  a {
-    text-shadow: none;
-  }
-
-  & [data-action] {
-    @apply cursor-pointer;
-    &.action {
-      @apply bg-yellow-100 text-stone-900 dark:bg-yellow-900 dark:text-stone-200;
-      &:hover {
-        @apply bg-yellow-300 dark:bg-yellow-700;
-      }
-    }
-  }
-
   .effect {
-    @apply border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1 flex flex-row gap-2;
     legend {
       @apply font-bold uppercase;
-    }
-    img {
-      @apply w-12 h-12 border-none;
     }
     table {
       @apply h-4;
@@ -123,5 +126,24 @@
 
   button {
     @apply bg-stone-300 text-stone-900;
+  }
+
+  .draggable {
+    @apply cursor-grab;
+  }
+
+  a {
+    text-shadow: none;
+  }
+
+  [data-action] {
+    @apply cursor-pointer;
+  }
+
+  [data-action].sheet-button {
+    @apply block bg-yellow-100 text-stone-900 dark:bg-yellow-900 dark:text-stone-200;
+    &:hover {
+      @apply bg-yellow-300 dark:bg-yellow-700;
+    }
   }
 }

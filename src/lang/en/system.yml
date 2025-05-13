@@ -1,0 +1,103 @@
+FT:
+  system:
+    roll:
+      dice: "{dice}D6"
+      type:
+        save: Save
+        talent: Talent
+        attack: Attack
+        damage: Damage
+        cast: Cast
+      cost:
+        st: ST Cost
+      modifier:
+        situationMod: Situation
+        attributeMod: Attribute
+        minSTMod: Min ST
+        toHitMod: To Hit
+        attackTypeMod: Type
+        rangeMod: Range
+        unskilled: Unskilled
+        casting: Spell Casting
+      targetNumber: Target
+      flavor:
+        save:
+          - Attempts a {attributes} save... {result}
+          - Tries valiantly to make a {attributes} save... {result}
+          - Effortlessly tries to make a {attributes} save... {result}
+          - By the power of their unyielding spirit, they strive to make a daring {attributes} save... {result}
+          - Summoning every last shred of strength, they try to muster up a {attributes} save... {result}
+          - Flinging caution to the winds, they attempt to roll with a reckless abandon that might just pay off in a {attributes} save... {result}
+        talent:
+          - Draws upon deep wellspring of expertise to make an expert {talent} check... {result}
+          - Puts every effort into a {talent} check... {result}
+          - Effortlessly tries to make a {talent} check... {result}
+          - Goes for broke on a {talent} check, trusting in their skill... {result}
+          - Utilizes years of practice to nail a precise {talent} check... {result}
+          - Makes a hesitant attempt at a {talent} check, hoping not to blow it... {result}
+        attack:
+          - Attempts to {attack} {targets} with their {item}... {result}
+          - Firecely tries to {attack} {targets} with their {item}... {result}
+          - Brings all their might to bear to {attack} {targets} with their {item}... {result}
+          - Hurls themselves into the fray, determined to make a {attack} that will leave the enemy reeling... {result}
+          - Burns with a fierce determination, determined to {attack} {targets} with their {item} until the job is done... {result}
+          - Takes a wild swing, hoping for the best... {result}
+        cast:
+          - Attempts to cast {spell}... {result}
+          - Weaves mana to cast {spell}... {result}
+          - Waves and mutters, casting {spell}... {result}
+          - Shapes mana and casts {spell}... {result}
+          - With confidence, casts {spell}... {result}
+          - Concentrates then casts {spell}... {result}
+        damage:
+          - Unleashes a flurry of blows, striking for a total of {total} point(s) of hurt.
+          - Unleashes a devastating blast that deals {total} point(s) of damage to their foe.
+          - Strikes with the full force of their fury, landing a full {total} point hit that leaves their opponent reeling.
+          - Feels a surge of adrenaline as they strike for {total} point(s) of damage.
+          - Narrows their sights and deal a precise {total} point hit to the enemy.
+          - Senses the fear in their enemy's eyes as they realize they're taking {total} point(s) of hurt from the attack.
+      result:
+        exact: Success! Just made it!
+        automaticSuccess: Automatic success!
+        success: Success! Made it by {margin}
+        failure: and misses by {margin}
+        criticalFailure: Critical failure!
+        dropped: The {weapon} escapes their grasp and tumbles to the ground!
+        maybeDropped: Their staff, if readied, drops to the ground!
+        broken: The {weapon} shatters into pieces!
+        maybeBroken: Their staff, if readied, breaks in twain!
+        fatigued: A wave of fatigue staggers them.
+        knockdown: They fall to the ground!
+        damage: They take {damage} damage from cuts & bruises.
+    combat:
+      phase:
+        movement: Movement
+        combat: Combat
+      notification:
+        notActive: "{name} is not active in this scene."
+      chat:
+        damaged: "{name} takes {damageTaken} damage."
+        stunned:
+          - "{name} is struck for a total of {damageTaken} point(s), leaving them reeling."
+          - "{name} stumbles around, trying to clear their head after taking {damageTaken} point(s) of damage from the attack."
+          - "{name} takes a moment to catch their breath after being struck for a total of {damageTaken} point(s) of damage."
+          - "{name} realizes that they're in trouble, taking a devastating {damageTaken} point hit that leaves them weakened and battered."
+          - "{name} takes {damageTaken} point(s) of damage from the attack."
+          - "{name} is caught off guard by a brutal {damageTaken} point onslaught that leaves them stumbling back."
+        down:
+          - "{name} takes {damageTaken} point(s) and falls motionless to the ground, unaware of anything except the searing pain of their wounds."
+          - "{name} is consumed by pain as they take a {damageTaken} point hit, losing consciousness from the sheer force of it all."
+          - "{name} takes {damageTaken} point(s) and is trapped in a world of darkness and agony, unable to escape the effects of the attack."
+          - "{name} can't even lift their head off the ground as they take {damageTaken} point(s) of damage from the attack."
+          - "{name} loses all sense of reality as they stumble backward, unable to stay conscious after taking {damageTaken} point(s) of damage."
+          - "{name} is struck with such force that they're unable to even react, falling unconscious after being raked up for {damageTaken} point(s) of damage."
+        dead:
+          - "{name} stumbles and falls, the light in their eyes dying as they take {damageTaken} point(s) of damage."
+          - "{name} takes a fatal hit, their body shutting down as they fall lifeless to the ground after taking {damageTaken} damage."
+          - "{name} is battered into oblivion with strikes that add up to a total of {damageTaken} point(s) of damage."
+          - "{name} slips away into the shadows, their body going limp as they fall dead to the ground nafter {damageTaken} damage."
+          - "{name} falls into a deep and permanent sleep, lost to the world after taking {damageTaken} damage."
+          - "{name} is dragged into the darkness, unable to survive {damageTaken} point(s) of damage."
+        button:
+          rollDamage: Roll Damage
+          applyDamage: Apply {damage} Damage to {name}

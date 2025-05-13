@@ -1,0 +1,68 @@
+{{!-- Settings Tab --}}
+<section id="{{partId}}" class="tab {{tabs.settings.cssClass}}" data-group="primary" data-tab="settings">
+    <div class="grid grid-cols-4 gap-1">
+        {{!-- Equipment --}}
+        {{#if (eq item.type "equipment")}}
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.cost"}}</label>
+            <input type="number" name="system.cost" value="{{system.cost}}" min="0">
+        </div>
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.wt"}}</label>
+            <input type="number" name="system.wt" value="{{system.wt}}" min="0">
+        </div>
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.qty"}}</label>
+            <input type="number" name="system.qty" value="{{system.qty}}" min="0">
+        </div>
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.capacity"}}</label>
+            <input type="number" name="system.capacity" value="{{system.capacity}}" min="0">
+        </div>
+        {{/if}}
+        {{!-- Talents & Spells --}}
+        {{#if (or (eq item.type "talent") (eq item.type "spell"))}}
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.minIQ"}}</label>
+            <input type="number" name="system.minIQ" value="{{system.minIQ}}" min="0">
+        </div>
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.iqCost"}}</label>
+            <input type="number" name="system.iqCost" value="{{system.iqCost}}" min="0">
+        </div>
+        {{/if}}
+        {{!-- Talents Only --}}
+        {{#if (eq item.type "talent")}}
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.defaultAttribute"}}</label>
+            <select name="system.defaultAttribute">
+                <option value="">{{localize 'FT.options.none'}}</option>
+                {{selectOptions selectOptions.attributes selected=system.defaultAttribute localize=true}}
+            </select>
+        </div>
+        {{/if}}
+        {{!-- Spells Only --}}
+        {{#if (eq item.type "spell")}}
+        <div class="field col-span-2">
+            <label>{{localize "FT.item.sheet.label.type"}}</label>
+            <select name="system.type">
+                <option value="">{{localize 'FT.options.none'}}</option>
+                {{selectOptions selectOptions.spellTypes selected=system.type localize=true}}
+            </select>
+        </div>
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.minStToCast"}}</label>
+            <input type="number" name="system.stToCast.min" value="{{system.stToCast.min}}" min="0">
+        </div>
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.maxStToCast"}}</label>
+            <input type="number" name="system.stToCast.max" value="{{system.stToCast.max}}"
+                min="{{system.stToCast.min}}">
+        </div>
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.stToMaintain"}}</label>
+            <input type="number" name="system.stToMaintain" value="{{system.stToMaintain}}" min="0">
+        </div>
+        {{/if}}
+    </div>
+</section>

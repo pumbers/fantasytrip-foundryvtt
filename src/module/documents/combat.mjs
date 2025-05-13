@@ -1,14 +1,16 @@
+import { FT } from "../system/config.mjs";
 /**
  * Hook into Combat Tracker rendering to display the round type in the header
  */
 Hooks.on("renderCombatTracker", async (app, html, data) => {
-  if (game.settings.get("fantasy-trip", "useFTInitiative") && !!data.combat) {
+  // console.log("Hooks.renderCombatTracker", data);
+  if (game.settings.get(FT.id, "useFTInitiative") && data.combat?.started) {
     html
-      .find("h3.encounter-title")
+      .querySelector(".encounter-title")
       .append(
-        `&nbsp;<span>${game.i18n.localize(
+        ` - ${game.i18n.localize(
           data.combat?.isMovementRound ? "FT.system.combat.phase.movement" : "FT.system.combat.phase.combat"
-        )}</span>`
+        )}`
       );
   }
 });
@@ -18,7 +20,7 @@ Hooks.on("renderCombatTracker", async (app, html, data) => {
  *
  * @inheritdoc
  */
-export class FTCombat extends Combat {
+export class FTCombat extends foundry.documents.Combat {
   /**
    * @inheritdoc
    */
@@ -26,7 +28,7 @@ export class FTCombat extends Combat {
     // console.log("Combat.nextRound()", this.round, this.turn);
 
     // If not using Fantasy Trip initiative, use Foundry default
-    const useFTInitiative = game.settings.get("fantasy-trip", "useFTInitiative");
+    const useFTInitiative = game.settings.get(FT.id, "useFTInitiative");
     if (!useFTInitiative) return super.nextRound();
 
     if (this.isMovementRound) {
@@ -78,9 +80,9 @@ export class FTCombat extends Combat {
     //   messageOptions
     // );
 
-    const useFTInitiative = game.settings.get("fantasy-trip", "useFTInitiative");
-    const pcGroupInitiative = game.settings.get("fantasy-trip", "pcGroupInitiative");
-    const npcGroupInitiative = game.settings.get("fantasy-trip", "npcGroupInitiative");
+    const useFTInitiative = game.settings.get(FT.id, "useFTInitiative");
+    const pcGroupInitiative = game.settings.get(FT.id, "pcGroupInitiative");
+    const npcGroupInitiative = game.settings.get(FT.id, "npcGroupInitiative");
 
     // console.log("... useFTInitiative", useFTInitiative, "combatGroupInitiative", combatGroupInitiative);
 
@@ -100,7 +102,7 @@ export class FTCombat extends Combat {
     if (npcGroupInitiative) npcGroupRoll = (await new Roll(`1d6`).evaluate()).total;
 
     // Roll PC initiative
-    await super.rollInitiative(
+    super.rollInitiative(
       pcCombatants.map((c) => c._id),
       {
         formula: [
@@ -118,7 +120,7 @@ export class FTCombat extends Combat {
     );
 
     // Roll NPC initiative
-    await super.rollInitiative(
+    super.rollInitiative(
       npcCombatants.map((c) => c._id),
       {
         formula: [
@@ -136,7 +138,7 @@ export class FTCombat extends Combat {
     );
 
     // Set all defeated combatants initiative to 0
-    await Promise.all(combatants.filter((c) => c.isDefeated).map((c) => this.setInitiative(_id, c._id, 0)));
+    Promise.all(combatants.filter((c) => c.isDefeated).map((c) => this.setInitiative(_id, c._id, 0)));
 
     return this;
   }
@@ -146,7 +148,7 @@ export class FTCombat extends Combat {
  * Check for possible conflicting modules
  */
 Hooks.on("ready", async () => {
-  if (game.modules.get("monks-combat-details")?.active && game.settings.get("fantasy-trip", "useFTInitiative")) {
+  if (game.modules.get("monks-combat-details")?.active && game.settings.get(FT.id, "useFTInitiative")) {
     ui.notifications.warn(game.i18n.localize("FT.messages.monksWarning"));
   }
 });

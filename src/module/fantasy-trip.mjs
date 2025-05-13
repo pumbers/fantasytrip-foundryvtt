@@ -19,7 +19,7 @@ const { StringField, NumberField, BooleanField } = foundry.data.fields;
 /* -------------------------------------------- */
 
 Hooks.once("init", async function () {
-  console.info(`FT | Initializing the Fantasy Trip Game System`);
+  console.info(FT.prefix, "Initializing the Fantasy Trip Game System");
 
   /* -------------------------------------------- */
   /*  Config                            
@@ -39,12 +39,13 @@ Hooks.once("init", async function () {
 
   // Combat
   CONFIG.Combat.initiative.formula = "1d6+@initiative.situation+@initiative.self+(1d6/10)+(1d6/100)";
+  CONFIG.Actor.trackableAttributes = { character: { bar: ["st"], value: [] }, npc: { bar: ["st"], value: [] } };
 
   /* -------------------------------------------- */
   /*  Game Settings                            
   /* -------------------------------------------- */
 
-  game.settings.register("fantasy-trip", "initialAP", {
+  game.settings.register(FT.id, "initialAP", {
     name: game.i18n.localize("FT.game.settings.initialAP.name"),
     hint: game.i18n.localize("FT.game.settings.initialAP.hint"),
     scope: "world",
@@ -52,7 +53,7 @@ Hooks.once("init", async function () {
     config: true,
   });
 
-  game.settings.register("fantasy-trip", "useFTInitiative", {
+  game.settings.register(FT.id, "useFTInitiative", {
     name: game.i18n.localize("FT.game.settings.useFTInitiative.name"),
     hint: game.i18n.localize("FT.game.settings.useFTInitiative.hint"),
     scope: "world",
@@ -66,7 +67,7 @@ Hooks.once("init", async function () {
     requiresReload: false,
   });
 
-  game.settings.register("fantasy-trip", "pcGroupInitiative", {
+  game.settings.register(FT.id, "pcGroupInitiative", {
     name: game.i18n.localize("FT.game.settings.pcGroupInitiative.name"),
     hint: game.i18n.localize("FT.game.settings.pcGroupInitiative.hint"),
     scope: "world",
@@ -80,7 +81,7 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
-  game.settings.register("fantasy-trip", "npcGroupInitiative", {
+  game.settings.register(FT.id, "npcGroupInitiative", {
     name: game.i18n.localize("FT.game.settings.npcGroupInitiative.name"),
     hint: game.i18n.localize("FT.game.settings.npcGroupInitiative.hint"),
     scope: "world",
@@ -94,7 +95,7 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
-  game.settings.register("fantasy-trip", "damageMultiplierStrategy", {
+  game.settings.register(FT.id, "damageMultiplierStrategy", {
     name: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.name"),
     hint: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.hint"),
     scope: "world",
@@ -112,7 +113,7 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
-  game.settings.register("fantasy-trip", "addCastingFatigueAuto", {
+  game.settings.register(FT.id, "addCastingFatigueAuto", {
     name: game.i18n.localize("FT.game.settings.addCastingFatigueAuto.name"),
     hint: game.i18n.localize("FT.game.settings.addCastingFatigueAuto.hint"),
     scope: "world",
@@ -124,7 +125,7 @@ Hooks.once("init", async function () {
     config: true,
   });
 
-  game.settings.register("fantasy-trip", "cancelAttackSpellAuto", {
+  game.settings.register(FT.id, "cancelAttackSpellAuto", {
     name: game.i18n.localize("FT.game.settings.cancelAttackSpellAuto.name"),
     hint: game.i18n.localize("FT.game.settings.cancelAttackSpellAuto.hint"),
     scope: "world",
@@ -136,7 +137,19 @@ Hooks.once("init", async function () {
     config: true,
   });
 
-  game.settings.register("fantasy-trip", "showItemIcons", {
+  game.settings.register(FT.id, "applySpellEffectsAuto", {
+    name: game.i18n.localize("FT.game.settings.applySpellEffectsAuto.name"),
+    hint: game.i18n.localize("FT.game.settings.applySpellEffectsAuto.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: true,
+    }),
+    config: true,
+  });
+
+  game.settings.register(FT.id, "showItemIcons", {
     name: game.i18n.localize("FT.game.settings.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.settings.showItemIcons.hint"),
     scope: "world",
@@ -149,12 +162,14 @@ Hooks.once("init", async function () {
   /* -------------------------------------------- */
 
   // Actor document configuration
-  CONFIG.Actor.dataModels.character = FTActorData;
-  CONFIG.Actor.dataModels.npc = FTActorData;
+  CONFIG.Actor.dataModels = { character: FTActorData, npc: FTActorData };
   CONFIG.Actor.documentClass = FTActor;
-  Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("FT", FTCharacterSheet, { types: ["character", "npc"], makeDefault: true });
-  Actors.registerSheet("FT", FTNPCSheet, { types: ["npc"], makeDefault: true });
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.applications.sheets.ActorSheetV2);
+  foundry.documents.collections.Actors.registerSheet("FT", FTCharacterSheet, {
+    types: ["character", "npc"],
+    makeDefault: true,
+  });
+  foundry.documents.collections.Actors.registerSheet("FT", FTNPCSheet, { types: ["npc"], makeDefault: true });
 
   // Item document configuration
   CONFIG.Item.dataModels = {
@@ -163,8 +178,8 @@ Hooks.once("init", async function () {
     equipment: FTEquipmentData,
   };
   CONFIG.Item.documentClass = FTItem;
-  Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("FT", FTItemSheet, { makeDefault: true });
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
+  foundry.documents.collections.Items.registerSheet("FT", FTItemSheet, { makeDefault: true });
 
   // Other document configuration
   CONFIG.Combat.documentClass = FTCombat;
@@ -186,39 +201,9 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("includes", Helpers.includes);
   Handlebars.registerHelper("between", Helpers.between);
   Handlebars.registerHelper("startsWith", Helpers.startsWith);
+  Handlebars.registerHelper("statusEffect", Helpers.statusEffect);
 
-  loadTemplates([
-    `${CONFIG.FT.path}/templates/sheet/character/character-sheet.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_header.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_navigation.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_tab-character.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_stats.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_status.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_action.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_tab-notes.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_tab-talents.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_tab-inventory.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_tab-spells.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/character/_tab-effects.hbs`,
-    //
-    `${CONFIG.FT.path}/templates/sheet/npc/npc-sheet.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_header.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_navigation.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_tab-character.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_stats.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_status.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_action.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_tab-notes.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_tab-inventory.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/npc/_tab-effects.hbs`,
-    //
-    `${CONFIG.FT.path}/templates/sheet/item/item-sheet.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/item/_header.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/item/_navigation.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/item/_tab-description.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/item/_tab-actions.hbs`,
-    `${CONFIG.FT.path}/templates/sheet/item/_tab-effects.hbs`,
-    //
+  foundry.applications.handlebars.loadTemplates([
     `${CONFIG.FT.path}/templates/chat/dice-roll.hbs`,
     `${CONFIG.FT.path}/templates/chat/damage-roll.hbs`,
     //
@@ -234,4 +219,5 @@ Hooks.once("init", async function () {
 Hooks.on("ready", async () => {
   ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
   ui.notifications.info(game.i18n.localize("FT.messages.notice"));
+  console.info(FT.prefix, "System ready");
 });

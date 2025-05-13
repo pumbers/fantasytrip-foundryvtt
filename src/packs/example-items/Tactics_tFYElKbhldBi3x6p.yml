@@ -1,0 +1,67 @@
+name: Tactics
+type: talent
+img: icons/skills/melee/maneuver-greatsword-yellow.webp
+system:
+  notes: ''
+  minIQ: 11
+  iqCost: 1
+  defaultAttribute: iq.max
+  attacks: []
+  defenses: []
+  spells: []
+effects:
+  - name: Initiative Bonus
+    origin: Item.7AdSRjbkzvjaj9Js
+    img: icons/svg/aura.svg
+    _id: EAyrYOx3POH4qo1J
+    type: base
+    system: {}
+    changes:
+      - key: system.initiative.party
+        mode: 4
+        value: '1'
+        priority: null
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    description: ''
+    tint: '#ffffff'
+    transfer: true
+    statuses: []
+    sort: 0
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      exportSource: null
+      coreVersion: '13.342'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      lastModifiedBy: null
+    _key: '!items.effects!tFYElKbhldBi3x6p.EAyrYOx3POH4qo1J'
+folder: zykFIiR8rqmUFXtR
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.342'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1747069835493
+  modifiedTime: 1747069837951
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+ownership:
+  default: 0
+  4jN5Lbw1IbyHFDNM: 3
+  DoJEEiLZ8CgYIaAq: 3
+_id: tFYElKbhldBi3x6p
+sort: 400000
+_key: '!items!tFYElKbhldBi3x6p'
+

@@ -102,12 +102,14 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
+      coreVersion: '13.342'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
       modifiedTime: 1743095055012
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      exportSource: null
+    category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.Ahcj5Hf12oLopn4U'
   - sort: 200000
     name: Character Sheet
@@ -295,12 +297,14 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
+      coreVersion: '13.342'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
       modifiedTime: 1743713784392
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      exportSource: null
+    category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.8QpHd2w3fWyC0Oke'
   - sort: 300000
     name: Items and the Item Sheet
@@ -319,7 +323,7 @@ pages:
         implementation for Foundry, there are three types of
         Item:</p><ul><li><p><strong>Talents</strong> are a direct translation of
         Talents from the rulebook.</p></li><li><p><strong>Spells</strong> are
-        also a direct translation of spells from the
+        also a direct translation of Spells from the
         rulebook.</p></li><li><p><strong>Equipment</strong> is everything else,
         which can include weapons, armor, scrolls, books, bags &amp; packs,
         tools, potions… pretty much any physical object a character can
@@ -482,12 +486,14 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
+      coreVersion: '13.342'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
-      modifiedTime: 1743717088260
-      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      modifiedTime: 1747068867418
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
+      exportSource: null
+    category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.AGDQOLKibDzbaHh8'
   - sort: 800000
     name: Writing Effects
@@ -584,12 +590,14 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
+      coreVersion: '13.342'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110064087
       modifiedTime: 1743185286511
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      exportSource: null
+    category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.ZC0ir9H0OUqr0Ehw'
   - sort: 500000
     name: Dice Rolls
@@ -614,12 +622,14 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
+      coreVersion: '13.342'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110077275
       modifiedTime: 1743110079971
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      exportSource: null
+    category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.7MY6ZNV0LvIRGWOF'
   - sort: 600000
     name: Combat
@@ -644,12 +654,14 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
+      coreVersion: '13.342'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110089455
       modifiedTime: 1743110091972
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      exportSource: null
+    category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.taYa6XujJcawZlXZ'
   - sort: 700000
     name: Casting Spells
@@ -674,12 +686,14 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '12.331'
+      coreVersion: '13.342'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110384981
       modifiedTime: 1743110388114
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      exportSource: null
+    category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.6iNkXDrerMY8ltYw'
 folder: null
 flags: {}
@@ -687,17 +701,18 @@ _stats:
   compendiumSource: >-
     Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.lRHycMkpzFAIyGPx
   duplicateSource: null
-  coreVersion: '12.331'
+  coreVersion: '13.342'
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1743093080563
   modifiedTime: 1743095976875
   lastModifiedBy: 4jN5Lbw1IbyHFDNM
+  exportSource: null
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
 _id: KaQZyogQKvA3r2vi
 sort: 100000
-_key: '!journal!KaQZyogQKvA3r2vi'
 categories: []
+_key: '!journal!KaQZyogQKvA3r2vi'
 

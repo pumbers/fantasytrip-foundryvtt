@@ -1,0 +1,212 @@
+{{!-- Character Tab --}}
+<section id="{{partId}}" class="tab {{tabs.character.cssClass}}" data-group="primary" data-tab="character">
+    <div class="flex flex-col gap-2">
+        {{!-- Stats --}}
+        {{!-- Attribute Partial --}}
+        {{#*inline "attribute"}}
+        <div class="flex flex-row gap-0 justify-between">
+            <label
+                class="m-0 p-1 h-6 bg-stone-900 text-stone-200 dark:bg-stone-200 dark:text-stone-900 text-center uppercase min-w-8 rounded-none">{{localize
+                (concat "FT.actor.attribute." key ".max")}}</label>
+            <div class="flex flex-row gap-0">
+                <input class="m-0 !text-center !w-12" type="number" name="system.{{key}}.max" min="0"
+                    value="{{attr.max}}" />
+                <a class="block m-0 p-1 h-6 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
+                    data-action="attributeRoll" data-attribute="{{key}}" data-path="{{key}}.max" data-type="save"><i
+                        class="icon-d6"></i></a>
+            </div>
+        </div>
+        <div class="field w-14 ml-auto">
+            {{#if roll}}
+            <div title="{{title}}" class="flex flex-row gap-0">
+                <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+                <a class="block m-0 p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
+                    data-action="attributeRoll" data-attribute="adj{{key}}" data-path="{{key}}.value"
+                    data-type="save"><i class="icon-d6"></i></a>
+            </div>
+            {{else if action}}
+            <div class="flex flex-row gap-0">
+                <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+                <a title="{{title}}"
+                    class="block m-0 p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
+                    data-action="{{name}}"><i class="{{icon}}"></i></a>
+            </div>
+            {{else}}
+            <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />\
+            {{/if}}
+        </div>
+        {{/inline}}
+        {{!-- Attribute Block --}}
+        <div class="grid grid-flow-col grid-rows-2 gap-1">
+            {{> attribute key="st" attr=system.st roll=true title=(localize "FT.actor.sheet.action.attribute.roll")}}
+            {{> attribute key="dx" attr=system.dx roll=true title=(localize "FT.actor.sheet.action.attribute.roll")}}
+            {{> attribute key="iq" attr=system.iq roll=true title=(localize "FT.actor.sheet.action.attribute.roll")}}
+            {{> attribute key=(concat "ma." system.ma.mode) attr=system.currentMA action=true
+            name="changeMovement" icon=(concat "icon-" system.ma.mode) title=(localize (concat
+            "FT.actor.attribute.ma.mode."
+            system.ma.mode))}}
+        </div>
+
+        <div class="flex flex-col gap-1">
+            {{!-- Encumbrance --}}
+            <div class="grid grid-cols-8 gap-1 text-xs text-center">
+                <span
+                    class="border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 bg-stone-200 dark:bg-stone-700"
+                    title="{{localize 'FT.actor.sheet.label.encumbrance'}}">
+                    <i class="icon-knapsack"></i>
+                </span>
+                {{#each system.encumbrance.capacity as |capacity|}}
+                <span
+                    class="border-[1px] border-stone-900 text-stone-900 dark:text-stone-200 dark:border-stone-400 rounded-none m-0 p-0 {{lookup ../FT.actor.tracks.encumbrance.colors @index}}{{#unless (eq @index ../system.encumbrance.level)}}-50{{else}}-500{{/unless}}"
+                    title="{{localize (concat 'FT.actor.sheet.label.encumbranceLevel.' @index)}}">
+                    {{numberFormat capacity decimals=0}}&thinsp;{{localize 'FT.actor.sheet.table.items.unit'}}
+                </span>
+                {{/each }}
+            </div>
+
+            {{!-- Fatigue & Damage --}}
+            <div class="grid grid-cols-8 gap-1 text-xs text-center">
+                <span
+                    class="border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 bg-stone-200 dark:bg-stone-700"
+                    title="{{localize 'FT.actor.sheet.label.health'}}">
+                    <i class="icon-death-skull"></i>
+                </span>
+                <span
+                    class="col-span-7 border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 flex flex-row gap-0">
+                    {{#each (range system.damage)}}
+                    <span class="grow {{../FT.actor.tracks.damage.color}}"
+                        title="{{localize 'FT.actor.sheet.label.damage'}}"></span>
+                    {{/each}}
+                    {{#each (range system.fatigue)}}
+                    <span class="grow {{../FT.actor.tracks.fatigue.color}}"
+                        title="{{localize 'FT.actor.sheet.label.fatigue'}}"></span>
+                    {{/each}}
+                    {{#each (range system.st.value)}}
+                    <span class="grow bg-transparent"></span>
+                    {{/each}}
+                </span>
+            </div>
+
+            {{!-- Mana (for NPC wizards) --}}
+            <div class="grid grid-cols-8 gap-1 text-xs text-center">
+                <span
+                    class="border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 bg-stone-200 text-stone-400 dark:bg-stone-700 dark:text-stone-200"
+                    title="{{localize 'FT.actor.sheet.label.mana'}}">
+                    <i class="icon-wizard-staff"></i>
+                </span>
+                <span
+                    class="col-span-7 border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 flex flex-row gap-0">
+                    {{#each (range system.mana.value)}}
+                    <span class="grow {{../FT.actor.tracks.mana.color}}"></span>
+                    {{/each}}
+                    {{#each (range system.mana.used)}}
+                    <span class="grow bg-transparent"></span>
+                    {{/each}}
+                </span>
+            </div>
+
+            {{!-- Damage, Fatigue and stats modifiers --}}
+            <div class="flex flex-row gap-1 text-xs text-center">
+                <div class="field"><label>{{localize "FT.actor.sheet.label.fatigue"}}</label><input type="number"
+                        name="system.fatigue" value="{{system.fatigue}}" min="0"></div>
+                <div class="field"><label>{{localize "FT.actor.sheet.label.damage"}}</label><input type="number"
+                        name="system.damage" value="{{system.damage}}" min="0"></div>
+                <div class="field"><label>{{localize "FT.actor.sheet.label.mana"}}</label><input type="number"
+                        name="system.mana.value" value="{{system.mana.value}}" max="{{system.mana.max}}">
+                </div>
+                <div class="field"><label>{{localize "FT.actor.sheet.label.stMod"}}</label><input type="number"
+                        name="system.st.mod" value="{{system.st.mod}}">
+                </div>
+                <div class="field"><label>{{localize "FT.actor.sheet.label.dxMod"}}</label><input type="number"
+                        name="system.dx.mod" value="{{system.dx.mod}}">
+                </div>
+                <div class="field"><label>{{localize "FT.actor.sheet.label.iqMod"}}</label><input type="number"
+                        name="system.iq.mod" value="{{system.iq.mod}}">
+                </div>
+                <div class="field"><label>{{localize "FT.actor.sheet.label.maMod"}}</label><input type="number"
+                        name="{{concat 'system.ma.' system.ma.mode '.mod' }}" value="{{system.currentMA.mod}}">
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-1">
+
+            {{!-- Offensives --}}
+            {{#each offenses as | offense |}}
+            <div data-item-id="{{offense._id}}"
+                class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
+                <img class="w-4 h-4" src="{{offense.img}}" alt="">
+                <span>{{offense.name}}</span>
+                {{#each offense.system.attacks}}
+                {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
+                <span>
+                    {{#unless (eq minST 0)}}
+                    <i
+                        class="icon-weight-lifting-up mr-1 {{#unless (gte ../../system.st.max minST)}}warning{{/unless}}"></i>{{localize
+                    "FT.actor.attribute.st.max"}}&nbsp;{{minST}}
+                    {{/unless}}
+                    {{#if (eq offense.type "spell")}}
+                    <span><i class="icon-pentacle mr-1"></i>{{offense.system.stSpent}}</span>
+                    {{/if}}
+                </span>
+                <a class="px-1 sheet-button" data-action="attackRoll" data-attack-index="{{@index}}">
+                    <i class="{{property ../../FT.item.attack.icon type}} mr-1"
+                        title="{{localize (concat 'FT.item.attack.type.' type)}}"></i>
+                    {{action}}&thinsp;{{dice}}/{{localize
+                    (concat "FT.actor.attribute." attribute)}}&thinsp;{{toHit}}</a>
+                {{#if damage}}
+                <a class="px-1 sheet-button" data-action="damageRoll" data-attack-index="{{@index}}"><i
+                        class="icon-death-skull mr-1"></i>{{damage}}
+                </a>
+                {{else}}
+                <span></span>
+                {{/if}}
+                {{/each}}
+            </div>
+            {{/each}}
+
+            {{!-- Defenses --}}
+            {{#each defenses as | defense |}}
+            <div data-item-id="{{defense._id}}"
+                class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
+                <img class="w-4 h-4" src="{{defense.img}}" alt="">
+                <span>{{defense.name}}</span>
+                {{#each defense.system.defenses}}
+                {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
+                <span><i class="icon-chest-armor mr-1"></i>{{hitsStopped}}</span>
+                {{/each}}
+            </div>
+            {{/each}}
+
+            {{!-- Castable Items --}}
+            {{#each castables as | castable |}}
+            <div data-item-id="{{castable._id}}"
+                class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
+                <img class="w-4 h-4" src="{{castable.img}}" alt="">
+                <span>{{castable.name}}</span>
+                {{#each castable.system.spells}}
+                {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
+                <span><i class="icon-pentacle"></i>&nbsp;{{data.system.castingST}}</span>
+                <a class="px-1 sheet-button" data-action="castItem" data-index="{{@index}}">
+                    <i class="{{property ../../FT.item.spell.icon data.system.type}} mr-1"
+                        title="{{localize (concat 'FT.item.spell.type.' data.system.type)}}"></i>
+                    {{localize "FT.actor.sheet.action.spell.cast"}}&nbsp;{{data.name}}</a>
+                {{/each}}
+            </div>
+            {{/each}}
+
+            {{!-- Active Spells --}}
+            {{#each cast as | spell |}}
+            <div data-item-id="{{spell._id}}"
+                class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
+                <img class="w-4 h-4" src="{{spell.img}}" alt="">
+                <span>{{spell.name}}</span>
+                <span><i class="icon-pentacle mr-1"></i>{{spell.system.stSpent}}/{{spell.system.stToMaintain}}</span>
+                <div></div>
+                <a class="px-1 sheet-button" data-action="cancelSpell"><i class="icon-magic-swirl mr-1"></i>{{localize
+                    "FT.actor.sheet.action.spell.cancel"}}</a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

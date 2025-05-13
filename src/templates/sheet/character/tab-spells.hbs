@@ -1,0 +1,60 @@
+{{!-- Spells Tab --}}
+<section id="{{partId}}" class="tab {{tabs.spells.cssClass}}" data-group="primary" data-tab="spells">
+    {{#*inline "actions"}}
+    <td class="shrink">
+        <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.item.chat'}}"><i
+                class="fa fa-comment"></i></a>
+        <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.item.edit'}}"><i class="fas fa-edit"></i></a>
+        <a data-action="deleteItem" title="{{localize 'FT.actor.sheet.action.item.delete'}}"><i
+                class="fas fa-trash"></i></a>
+    </td>
+    {{/inline}}
+
+    {{#if spells}}
+    <table>
+        <thead>
+            <tr>
+                {{#if settings.showItemIcons}}<th></th>{{/if}}
+                <th class="w-full">{{localize 'FT.actor.sheet.table.spells.name'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.spells.type'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.spells.iq'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.spells.cost'}}</th>
+                <th>{{localize 'FT.actor.sheet.table.spells.st'}}</th>
+                <th></th>
+                <th><a data-action="createItem" data-type="spell"
+                        title="{{localize 'FT.actor.sheet.action.spell.create'}}"><i class="fa fa-plus"></i></a></th>
+            </tr>
+        </thead>
+        {{#each (sort spells 'name') as |spell|}}
+        <tr data-item-id="{{spell._id}}">
+            {{#if ../settings.showItemIcons}}
+            <td><img src="{{spell.img}}" /> </td>
+            {{/if}}
+            <td>{{spell.name}}</td>
+            <td>{{#if spell.system.type}}<i title="{{localize (concat 'FT.item.spell.type.' spell.system.type)}}"
+                    class="{{property ../FT.item.spell.icon system.type}}"></i>{{/if}}
+            </td>
+            <td>{{spell.system.minIQ}}</td>
+            <td>{{spell.system.actualIQCost}}</td>
+            <td>{{spell.system.castingST}}</td>
+            <td>
+                {{#if spell.system.isReady}}
+                <a class="px-1 sheet-button" data-action="cancelSpell">{{localize
+                    "FT.actor.sheet.action.spell.cancel"}}</a>
+                {{else if spell.system.type}}
+                <a class="px-1 sheet-button" data-action="castSpell">{{localize "FT.actor.sheet.action.spell.cast"}}</a>
+                {{/if}}
+            </td>
+            {{> actions}}
+        </tr>
+        {{/each}}
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td class="!text-center">{{system.totalIQCost.spells}}</td>
+                <td colspan="3"></td>
+            </tr>
+        </tfoot>
+    </table>
+    {{/if}}
+    </div>

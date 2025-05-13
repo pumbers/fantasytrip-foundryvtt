@@ -1,0 +1,38 @@
+name: Scroll of Glamor
+type: equipment
+img: icons/sundries/scrolls/scroll-bound-green.webp
+system:
+  notes: ''
+  attacks: []
+  defenses: []
+  spells:
+    - id: E6yWmvDanwqzfwRU
+      data: E6yWmvDanwqzfwRU
+      burn: true
+  cost: 300
+  wt: 0.5
+  qty: 1
+  capacity: 0
+  container: null
+  location: carried
+effects: []
+folder: 2u1kCOSRDcZqX7GK
+ownership:
+  default: 0
+  4jN5Lbw1IbyHFDNM: 3
+  DoJEEiLZ8CgYIaAq: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.342'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1747069780831
+  modifiedTime: 1747073382193
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+_id: AKq15aZvG1X39l96
+sort: 0
+_key: '!items!AKq15aZvG1X39l96'
+

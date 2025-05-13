@@ -1,0 +1,57 @@
+{{!-- Effects Tab --}}
+<section id="{{partId}}" class="tab {{tabs.effects.cssClass}}" data-group="primary" data-tab="effects">
+    <div class="flex flex-col gap-2 scroll-auto">
+        {{#each effects as |effect|}}
+        <fieldset class="effect  flex flex-col gap-1" data-effect-id="{{effect._id}}">
+            <legend>{{effect.parent.name}}:&nbsp;{{effect.name}}&nbsp;{{#if effect.disabled}}{{localize
+                "FT.effect.label.disabled"}}{{/if}}</legend>
+            <div class="text-xs">
+                {{{effect.description}}}
+            </div>
+            <div class="flex flex-row gap-1">
+                <table>
+                    <thead>
+                        <th>{{localize "FT.effect.label.attribute"}}</th>
+                        <th>{{localize "FT.effect.label.change"}}</th>
+                        <th>{{localize "FT.effect.label.value"}}</th>
+                    </thead>
+                    <tbody>
+                        {{#each effect.changes as |change|}}
+                        <tr>
+                            <td>{{abbrev change.key len=35 ellipsis=true}}</td>
+                            <td>{{localize (concat "FT.effect.modes." change.mode)}}</td>
+                            <td>{{change.value}}</td>
+                        </tr>
+                        {{/each}}
+                        {{#if effect.statuses.size}}
+                        <tr>
+                            <td>{{localize "FT.effect.label.status"}}</td>
+                            <td>{{localize "FT.effect.label.statusAction"}}</td>
+                            <td class="flex flex-row gap-2">
+                                {{#each effect.statuses as | status |}}
+                                {{#with (statusEffect status)}}
+                                <img class="size-3 invert-100" src="{{img}}" title="{{localize name}}">
+                                {{/with}}
+                                {{/each}}
+                            </td>
+                        </tr>
+                        {{/if}}
+                    </tbody>
+                </table>
+                <div class="actions">
+                    {{#if (eq ../document.documentName effect.parent.documentName)}}
+                    <button data-action="editEffect">{{localize "FT.effect.action.edit"}}</button>
+                    {{#unless (eq parent.type "equipment")}}
+                    <button data-action="toggleEffect">{{localize "FT.effect.action.toggle"}}</button>
+                    {{/unless}}
+                    <button data-action="deleteEffect">{{localize "FT.effect.action.delete"}}</button>
+                    {{/if}}
+                </div>
+            </div>
+        </fieldset>
+        {{/each}}
+        <div>
+            <button class="ml-auto mr-0" data-action="createEffect">{{localize "FT.effect.action.create"}}</button>
+        </div>
+    </div>
+</section>

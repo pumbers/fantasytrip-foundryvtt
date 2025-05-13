@@ -1,12 +1,12 @@
 id: fantasy-trip
 version: 0.1.0
 title: Fantasy Trip
-description: Fantasy Trip for FoundryVTT (Unofficial)
+description: Fantasy Trip for FoundryVTT (Unofficial - Alpha)
 compatibility:
-  minimum: "12"
-  verified: "12.331"
+  minimum: "13"
+  verified: "13.342"
 authors:
-  - name: 3rd Dog
+  - name: 3rdDog
 license: LICENSE
 url: https://github.com/pumbers/fantasytrip-foundryvtt
 manifest: "#{MANIFEST}#"
@@ -27,11 +27,17 @@ packs:
     path: /packs/using-fantasy-trip-for-foundry-vtt
     type: JournalEntry
     system: fantasy-trip
+  - name: example-items
+    label: Example Items
+    path: /packs/example-items
+    type: Item
+    system: fantasy-trip
 languages:
   - lang: en
     name: English
     path: lang/en.json
 grid:
+  type: 2
   distance: 5
   units: ft
 primaryTokenAttribute: st

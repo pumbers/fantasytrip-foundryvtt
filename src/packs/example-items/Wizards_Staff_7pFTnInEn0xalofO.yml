@@ -1,0 +1,116 @@
+name: Wizards Staff
+type: equipment
+img: icons/weapons/staves/staff-simple-carved.webp
+system:
+  notes: >-
+    <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Ornare lectus quis
+    sem et per placerat. Sociosqu dapibus torquent aliquam sem lacinia. Et
+    tristique finibus ultricies nisl quisque praesent libero. Arcu molestie
+    habitant sem venenatis iaculis augue. Quis dui condimentum sagittis
+    fermentum; sit primis conubia pulvinar. Tempor pellentesque dictum
+    ullamcorper class fusce sodales.</p>
+
+    <p>Mollis ligula ultricies efficitur id dis sed taciti netus. Hendrerit
+    tempus per pretium bibendum class semper sapien! Aneque finibus senectus
+    enim maecenas tortor. Justo mauris gravida, pretium posuere nisl non. Nibh
+    id viverra vestibulum cras nam aenean risus. Et semper litora viverra neque
+    sed. Ut massa aliquam eget conubia hendrerit vivamus, aliquam ac orci.
+    Ullamcorper sollicitudin sollicitudin hac et metus duis sem. Potenti pretium
+    nisi potenti dapibus ridiculus tristique pulvinar dictum.</p>
+
+    <p>Himenaeos senectus malesuada imperdiet suspendisse molestie vivamus
+    tincidunt. Ornare dignissim semper sagittis vivamus rhoncus nascetur.
+    Inceptos ac mollis lacus vitae diam orci sit nascetur. Iaculis at mauris
+    dictum finibus curae. Enim hendrerit primis habitant enim parturient orci
+    interdum. Etiam aliquet maximus lobortis proin blandit libero fringilla.
+    Mauris nulla nulla fermentum bibendum mattis vestibulum, rhoncus nulla.</p>
+
+    <p>Eget arcu eget non etiam amet vehicula urna potenti mi. Hendrerit a quis
+    urna quam et etiam. Vestibulum curabitur est maecenas lobortis condimentum
+    condimentum. Pretium dis at a parturient habitant non vulputate pulvinar.
+    Nascetur velit nibh nascetur inceptos sollicitudin penatibus. Fermentum
+    commodo justo fermentum sapien volutpat sollicitudin posuere. Maximus augue
+    eros tristique at himenaeos quis aliquet semper. Ex risus porttitor metus
+    cubilia sodales quam. Augue phasellus id eu dictum quam volutpat felis
+    metus?</p>
+
+    <p>Aenean parturient enim viverra mus fusce sollicitudin lorem hendrerit.
+    Egestas hac ultrices habitasse, sapien nibh quam ligula porta. Morbi nisl
+    pharetra bibendum accumsan amet integer. Sit neque cursus, hac suscipit hac
+    placerat class! Accumsan sem sociosqu varius mi bibendum accumsan ridiculus.
+    Duis elit lacinia pretium hendrerit faucibus. Vitae venenatis cras iaculis
+    nascetur nullam nisl rutrum viverra gravida. Diam vivamus mauris
+    condimentum; egestas nec nec. Pulvinar himenaeos aliquam lobortis morbi
+    maecenas congue. Tristique mi quis curabitur turpis aliquam litora
+    rhoncus.</p>
+  cost: 300
+  wt: 5
+  qty: 1
+  capacity: 0
+  container: null
+  attacks:
+    - action: Strike
+      type: melee
+      toHitMod: 0
+      baseDamage: 1d6+2
+      minST: 11
+      talent: null
+  defenses: []
+  spells: []
+  location: carried
+effects:
+  - name: Mana
+    origin: Item.CX16fF724RK57pCN
+    img: icons/svg/aura.svg
+    _id: olwx2f549hLy86ex
+    type: base
+    system: {}
+    changes:
+      - key: system.mana.max
+        mode: 2
+        value: '10'
+        priority: null
+    disabled: true
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    description: ''
+    tint: '#ffffff'
+    transfer: true
+    statuses: []
+    sort: 0
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      exportSource: null
+      coreVersion: '13.342'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      lastModifiedBy: null
+    _key: '!items.effects!7pFTnInEn0xalofO.olwx2f549hLy86ex'
+folder: Cu0OSpKB1x0ZlU1d
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.342'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1747069164060
+  modifiedTime: 1747069187323
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+ownership:
+  default: 0
+  4jN5Lbw1IbyHFDNM: 3
+  DoJEEiLZ8CgYIaAq: 3
+_id: 7pFTnInEn0xalofO
+sort: 106250
+_key: '!items!7pFTnInEn0xalofO'
+

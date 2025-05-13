@@ -1,0 +1,108 @@
+{{!-- Actions Tab --}}
+<section id="{{partId}}" class="tab {{tabs.actions.cssClass}}" data-group="primary" data-tab="actions">
+    <div class="flex flex-col gap-2">
+        {{!-- Attacks --}}
+        <fieldset class="flex flex-col gap-4 justify-start">
+            <legend>{{localize "FT.item.sheet.label.attacks"}}&nbsp;<i class="fa fa-plus-square"
+                    data-action="addAttack"></i></legend>
+            {{#each system.attacks as | attack |}}
+            <div class="grid grid-cols-4 gap-1">
+                <div class="field col-span-2">
+                    <label>{{localize "FT.item.sheet.label.attackAction"}}</label>
+                    <div class="flex flex-row gap-0">
+                        <span
+                            class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] border-stone-900 dark:border-stone-400 text-xs dark:bg-stone-200"
+                            data-action="deleteAttack" data-index="{{@index}}"><i class="fas fa-trash"></i></span>
+                        <input class="!rounded-l-none" type="text" name="system.attacks.{{@index}}.action"
+                            value="{{attack.action}}">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>{{localize "FT.item.sheet.label.type"}}</label>
+                    <select name="system.attacks.{{@index}}.type">
+                        <option value="">{{localize 'FT.options.none'}}</option>
+                        {{selectOptions ../selectOptions.attackTypes selected=attack.type localize=true}}
+                    </select>
+                </div>
+                <div class="field">
+                    <label>{{localize "FT.item.sheet.label.toHitMod"}}</label>
+                    <input type="number" name="system.attacks.{{@index}}.toHitMod" value="{{attack.toHitMod}}">
+                </div>
+                <div class="field">
+                    <label>{{localize "FT.item.sheet.label.baseDamage"}}</label>
+                    <input type="text" name="system.attacks.{{@index}}.baseDamage" value="{{attack.baseDamage}}">
+                </div>
+                {{!-- If equipment, there's a min ST to use --}}
+                {{#if (eq ../item.type "equipment")}}
+                <div class="field">
+                    <label>{{localize "FT.item.sheet.label.minST"}}</label>
+                    <input type="number" name="system.attacks.{{@index}}.minST" value="{{attack.minST}}" min="0">
+                </div>
+                {{!-- If owned equipment, there may be a talent required --}}
+                {{#if ../owned}}
+                <div class="field col-span-2">
+                    <label>{{localize "FT.item.sheet.label.talent"}}</label>
+                    <select name="system.attacks.{{@index}}.talent">
+                        <option value="">{{localize 'FT.options.unskilled'}}</option>
+                        {{selectOptions ../selectOptions.talents selected=attack.talent}}
+                    </select>
+                </div>
+                {{/if}}
+                {{/if}}
+            </div>
+            {{/each}}
+        </fieldset>
+        {{!-- Defenses --}}
+        <fieldset class="flex flex-col gap-1 justify-start">
+            <legend>{{localize "FT.item.sheet.label.defenses"}}&nbsp;<i class="fa fa-plus-square"
+                    data-action="addDefense"></i></legend>
+            {{#each system.defenses as | defense |}}
+            <div class="grid grid-cols-4 gap-1">
+                <div class="field col-span-2">
+                    <label>{{localize "FT.item.sheet.label.defenseAction"}}</label>
+                    <div class="flex flex-row gap-0">
+                        <span class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs"
+                            data-action="deleteDefense" data-index="{{@index}}"><i class="fas fa-trash"></i></span>
+                        <input class="!rounded-l-none" type="text" name="system.defenses.{{@index}}.action"
+                            value="{{defense.action}}">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>{{localize "FT.item.sheet.label.hitsStopped"}}</label>
+                    <input type="number" name="system.defenses.{{@index}}.hitsStopped" value="{{defense.hitsStopped}}"
+                        min="0">
+                </div>
+            </div>
+            {{/each}}
+        </fieldset>
+        {{!-- Spells --}}
+        {{#unless (eq item.type "spell")}}
+        <fieldset class="flex flex-col gap-1 justify-start">
+            <legend>{{localize "FT.item.sheet.label.spells"}}&nbsp;<i class="fa fa-plus-square"
+                    data-action="addSpell"></i></legend>
+            {{#each system.spells as | spell |}}
+            <div class="grid grid-cols-3 gap-1">
+                <div class="field col-span-2">
+                    <label>{{localize "FT.item.sheet.label.name"}}</label>
+                    <div class="flex flex-row gap-0">
+                        <span class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="deleteSpell"
+                            data-index="{{@index}}"><i class="fas fa-trash"></i></span>
+                        <select name="system.spells.{{@index}}.id">
+                            <option value=""></option>
+                            {{selectOptions ../selectOptions.worldSpells selected=spell.id}}
+                        </select>
+                    </div>
+                </div>
+                {{#if spell.data}}
+                <div class="field">
+                    <label>{{localize "FT.item.sheet.label.burn"}}</label>
+                    <input class="!size-4" type="checkbox" name="system.spells.{{@index}}.burn" {{#if
+                        spell.burn}}checked{{/if}} />
+                </div>
+                {{/if}}
+            </div>
+            {{/each}}
+        </fieldset>
+        {{/unless}}
+    </div>
+</section>

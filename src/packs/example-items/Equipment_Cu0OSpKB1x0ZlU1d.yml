@@ -1,0 +1,21 @@
+type: Item
+folder: null
+name: Equipment
+color: null
+sorting: a
+_id: Cu0OSpKB1x0ZlU1d
+description: ''
+sort: 0
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.342'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1747069127801
+  modifiedTime: 1747069127801
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+_key: '!folders!Cu0OSpKB1x0ZlU1d'
+

@@ -26,19 +26,11 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
         }),
         { initial: [] }
       ),
-      spells: new ArrayField(
-        new SchemaField({
-          id: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
-          data: new ForeignDocumentField(foundry.documents.BaseItem),
-          burn: new BooleanField({ initial: true, nullable: false }),
-        }),
-        { initial: [] }
-      ),
     };
   }
 
   get hasActions() {
-    return this.attacks.length > 0 || this.defenses.length > 0 || this.spells.length > 0;
+    return this.attacks.length > 0 || this.defenses.length > 0 || this.spells?.length > 0;
   }
 
   get hasAttacks() {
@@ -50,7 +42,7 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
   }
 
   get hasSpells() {
-    return this.spells.length > 0;
+    return this.spells?.length > 0;
   }
 }
 
@@ -60,8 +52,8 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
 export class FTTalentData extends FTBaseItemData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
-      minIQ: new NumberField({ initial: 0 }),
-      iqCost: new NumberField({ initial: 0 }),
+      minIQ: new NumberField({ initial: 7 }),
+      iqCost: new NumberField({ initial: 1 }),
       defaultAttribute: new StringField(),
     });
   }
@@ -96,6 +88,10 @@ export class FTSpellData extends FTTalentData {
   get castingST() {
     return this.stToCast.min === this.stToCast.max ? this.stToCast.max : `${this.stToCast.min}-${this.stToCast.max}`;
   }
+
+  get canBeMaintained() {
+    return this.stToMaintain > 0;
+  }
 }
 
 /**
@@ -108,9 +104,18 @@ export class FTEquipmentData extends FTBaseItemData {
       wt: new NumberField({ initial: 0 }),
       qty: new NumberField({ initial: 1 }),
       //
-      location: new StringField(),
+      location: new StringField({ initial: "carried" }),
       capacity: new NumberField({ initial: 0 }),
       container: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+      //
+      spells: new ArrayField(
+        new SchemaField({
+          id: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+          data: new ForeignDocumentField(foundry.documents.BaseItem),
+          burn: new BooleanField({ initial: true, nullable: false }),
+        }),
+        { initial: [] }
+      ),
     });
   }
 

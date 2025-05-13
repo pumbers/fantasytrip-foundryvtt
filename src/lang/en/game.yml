@@ -1,0 +1,65 @@
+FT:
+  # Game
+  game:
+    settings:
+      initialAP:
+        name: Attribute Points for new characters
+        hint: The number of Attribute Points a new character is allowed to spend.
+      useFTInitiative:
+        name: Use Fantasy Trip Initiative
+        hint: Use Fantasy Trip split movement/combat initiative and make initiative rolls every round automatically.
+      pcGroupInitiative:
+        name: PC Group Initiatve
+        hint: Roll initiative for Player Characters as a group rather than individually for each combatant.
+      npcGroupInitiative:
+        name: NPC Group Initiatve
+        hint: Roll initiative for NPC's as a group rather than individually for each combatant.
+      damageMultiplierStrategy:
+        name: Calculate Increased Damage
+        hint: When a damage roll calls for double or triple damage...
+        options:
+          rollTimes: Roll the damage a number of times
+          multiply: Roll the damage once and multiply
+      applySpellEffectsAuto:
+        name: Apply Spell Effects Automatically
+        hint: If a spell has Active Effects, apply them automatically to any targeted tokens when successfully cast.
+      showItemIcons:
+        name: Show Item Icons
+        hint: Show icons in item tables?
+      combatantNPCGroupByActor:
+        name: Group NPC Combatants by Actor
+        hint: >
+          When using group initiative, group NPC combatants by the Actor name rather than a single NPC group, eg: all goblins, all trolls, etc.
+      addCastingFatigueAuto:
+        name: Add Casting Fatigue Automatically
+        hint: >
+          When a spell is cast, add the appropriate ST cost to the character's fatigue automatically.
+      cancelAttackSpellAuto:
+        name: Cancel Attack Spells Automatically
+        hint: >
+          Cancel an attack spell automatically after an attack roll has been made, whether it succeeds or not.
+    rollMode:
+      roll: Default
+      publicroll: Public
+      gmroll: With GM
+      blindroll: Blind
+      selfroll: Self
+  # General Messages
+  messages:
+    disclaimer: >
+      The material presented here is my original creation, intended for use with the <a href="https://www.thefantasytrip.game/"><b><i>The Fantasy Trip</i></b></a> 
+      system from <a href="http://www.sjgames.com/">Steve Jackson Games</a>. This material is not official and is not endorsed by Steve Jackson Games.
+    notice: >
+      <b>The Fantasy Trip: In the Labyrinth</b> is a trademark of Steve Jackson Games, and its rules and art are copyrighted by Steve Jackson Games. 
+      All rights are reserved by Steve Jackson Games. This game aid is the original creation of Paul Umbers and is released for free distribution, 
+      and not for resale, under the permissions granted in the <a href="http://www.sjgames.com/general/online_policy.html">Steve Jackson Games Online Policy</a>.
+    monksWarning: >
+      Please ensure the setting "Reroll Initiative" in the module <b>Monk's Combat Details</b> is disabled as it may interfere with Fantasy Trip initiative.
+    noCapacity: "{container} is not big enough."
+    noDropContainer: "{item} is a container and cannot be dropped onto another container."
+    # createHotbarMacroItemNotOwned: You can only create macro buttons for owned Items.
+    # useItemMacroItemNotOwned: Your controlled Actor does not have that item.
+    # useItemMacroCannotDetermineActor: You need to select a token so that I can determine who's acting.
+  options:
+    none: -- None --
+    unskilled: -- Unskilled --

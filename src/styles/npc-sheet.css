@@ -1,28 +1,24 @@
 @reference "./fantasy-trip.css";
 
 .fantasy-trip.npc.sheet {
-  /*  */
-  & .window-content {
-    @apply bg-none m-0 p-0 bg-stone-100 dark:bg-current;
-  }
+  .window-content {
+    @apply m-0 p-0 bg-stone-100 dark:bg-current;
 
-  /*  */
-  & .sheet-content {
-    @apply p-2 bg-stone-100 dark:bg-current;
-
-    & .sheet-header {
-      @apply mb-2;
-      & img.profile-img {
-        @apply rounded-none w-[42px] h-[42px] object-cover flex-none;
-      }
-      & input.name {
-        @apply w-full m-0 py-5 px-2 text-3xl font-bold;
+    .sheet-header {
+      @apply p-2 flex flex-row gap-2;
+      input.name {
+        @apply w-full h-10 m-0 p-1 text-3xl font-bold;
       }
     }
 
-    & .editor-content,
-    & .tox.tox-tinymce {
-      @apply h-[25rem] text-stone-900 dark:text-stone-100;
+    img.profile-img {
+      @apply rounded-none size-10 object-cover flex-none;
+    }
+
+    section[data-tab="notes"] {
+      .prosemirror.editor {
+        @apply min-h-[28rem];
+      }
     }
   }
 }

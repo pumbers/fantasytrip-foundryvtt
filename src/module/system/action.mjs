@@ -71,7 +71,7 @@ function determineRollResult(dice, target, roll) {
       if (roll.total >= 28) return "criticalFailure";
       return roll.total <= target ? "success" : "failure";
     default:
-      console.error("FT | Incorrect number of dice rolled", dice);
+      console.error(FT.prefix, "Incorrect number of dice rolled", dice);
       break;
   }
 }
@@ -281,7 +281,7 @@ export function attackRoll(actor, weapon, options) {
         message = message.concat(" ", game.i18n.format("FT.system.roll.result.broken", { weapon: item?.name }));
       }
 
-      const content = await renderTemplate(`${FT.path}/templates/chat/dice-roll.hbs`, {
+      const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/dice-roll.hbs`, {
         actor,
         token: actor.parent,
         item,
@@ -291,7 +291,7 @@ export function attackRoll(actor, weapon, options) {
         modifiers,
         totalModifiers,
         targetNumber: totalAttributes + totalModifiers,
-        unskilled: !talent,
+        unskilled: item.type !== "equipment" && !talent,
         roll,
         multiplier:
           weapon.type === "spell" ? weapon.system.stSpent ?? 1 : roll.total === 3 ? 3 : roll.total === 4 ? 2 : 1,
@@ -314,7 +314,7 @@ export function attackRoll(actor, weapon, options) {
       );
 
       // If the item was an attack spell, cancel it if the settings says so
-      if (item.type === "spell" && game.settings.get("fantasy-trip", "cancelAttackSpellAuto"))
+      if (item.type === "spell" && game.settings.get(FT.id, "cancelAttackSpellAuto"))
         item.update({ "system.stSpent": 0 });
     },
   };
@@ -344,7 +344,7 @@ export function damageRoll(actor, weapon, options = {}) {
     formula: attack.damage,
     multiplier: options.multiplier ?? 1,
     damageMultiplierStrategy:
-      weapon.type === "spell" ? "rollTimes" : game.settings.get("fantasy-trip", "damageMultiplierStrategy"),
+      weapon.type === "spell" ? "rollTimes" : game.settings.get(FT.id, "damageMultiplierStrategy"),
     submit: (data) => {
       // console.log("Action.damageRoll().submit()", "data", data);
 
@@ -369,12 +369,15 @@ export function damageRoll(actor, weapon, options = {}) {
             total: roll.total,
           });
 
-          const content = await renderTemplate(`${FT.path}/templates/chat/damage-roll.hbs`, {
-            token,
-            actor: token.actor,
-            roll,
-            parts: roll.dice.map((d) => d.getTooltipData()),
-          });
+          const content = await foundry.applications.handlebars.renderTemplate(
+            `${FT.path}/templates/chat/damage-roll.hbs`,
+            {
+              token,
+              actor: token.actor,
+              roll,
+              parts: roll.dice.map((d) => d.getTooltipData()),
+            }
+          );
 
           roll.toMessage(
             {
@@ -426,14 +429,14 @@ export async function applyDamage(actor, damage, options) {
   }
 
   // Create a dialog for the GM to select applicable defenses
-  const content = await renderTemplate(`${FT.path}/templates/dialog/apply-damage.hbs`, {
+  const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/dialog/apply-damage.hbs`, {
     damage,
     items,
   });
 
   new foundry.applications.api.DialogV2({
     id: "ft-apply-damage",
-    classes: ["fantasy-trip", "apply-damage"],
+    classes: [FT.id, "apply-damage"],
     window: {
       title: game.i18n.format("FT.dialog.damage.title", { name: actor.parent?.name ?? actor.name, damage }),
     },
@@ -556,13 +559,33 @@ export function castingRoll(actor, spell, options = {}) {
       const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
       const margin = totalAttributes + totalModifiers - roll.total;
 
-      // Mark the spell as cast and/or subtract the fatigue
       if (margin >= 0) {
-        spell.update({ "system.stSpent": cost.st.value ?? 0 });
+        // Mark the spell as cast and/or subtract the fatigue
+        if (spell.system.canBeMaintained) spell.update({ "system.stSpent": cost.st.value ?? 0 });
+
+        if (game.settings.get(FT.id, "applySpellEffectsAuto")) {
+          // Transfer spell effects to targets
+          game.user.targets.forEach((t) => {
+            t.actor.createEmbeddedDocuments(
+              "ActiveEffect",
+              Array.from(spell.effects).map((e) => {
+                return {
+                  ...e,
+                  name: `${spell.name}/${e.name}`,
+                  changes: e.changes.map((c) => {
+                    // Replace "ST" with casting cost of spell
+                    c.value = parseInt(c.value.replace("ST", cost.st.value));
+                    return c;
+                  }),
+                };
+              })
+            );
+          });
+        }
       }
 
       // Subtract the fatigue even if the spell failed on a roll of 17+
-      if ((margin >= 0 || roll.total >= 17) && game.settings.get("fantasy-trip", "addCastingFatigueAuto")) {
+      if ((margin >= 0 || roll.total >= 17) && game.settings.get(FT.id, "addCastingFatigueAuto")) {
         actor.update({ "system.fatigue": actor.system.fatigue + parseInt(cost.st.value) });
       }
 

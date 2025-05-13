@@ -1,0 +1,25 @@
+FT:
+  effect:
+    name: Effect
+    modes:
+      - Custom
+      - Multiply
+      - Add
+      - Downgrade
+      - Upgrade
+      - Override
+    source:
+      name: Source
+      type: Type
+    label:
+      attribute: Attribute
+      change: Change
+      value: Value
+      disabled: (Disabled)
+      status: Statuses
+      statusAction: Apply
+    action:
+      create: Create
+      edit: Edit
+      toggle: Toggle
+      delete: Delete

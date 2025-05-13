@@ -1,0 +1,62 @@
+{{!-- Inventory Tab --}}
+<section id="{{partId}}" class="tab {{tabs.inventory.cssClass}}" data-group="primary" data-tab="inventory">
+    <div class="flex flex-col gap-2">
+
+        {{#*inline "actions"}}
+        <td class="flex flex-row gap-[2px]">
+            <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.item.chat'}}"><i
+                    class="fa fa-comment"></i></a>
+            <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.item.edit'}}"><i
+                    class="fas fa-edit"></i></a>
+            <a data-action="deleteItem" title="{{localize 'FT.actor.sheet.action.item.delete'}}"><i
+                    class="fas fa-trash"></i></a>
+        </td>
+        {{/inline}}
+
+        {{!-- Items --}}
+        {{#if inventory}}
+        <table>
+            <thead>
+                <tr>
+                    {{#if settings.showItemIcons}}<th></th>{{/if}}
+                    <th class="w-full">{{localize 'FT.actor.sheet.table.items.name'}}</th>
+                    <th class="!text-right">{{localize 'FT.actor.sheet.table.items.cost'}}</th>
+                    <th class="!text-right">{{localize 'FT.actor.sheet.table.items.wt'}}</th>
+                    <th>{{localize 'FT.actor.sheet.table.items.qty'}}</th>
+                    <th>{{localize 'FT.actor.sheet.table.items.capacity'}}</th>
+                    <th>{{localize 'FT.actor.sheet.table.items.location'}}</th>
+                    <th><a data-action="createItem" data-type="equipment" data-location="carried"
+                            title="{{localize 'FT.actor.sheet.action.item.create'}}"><i class="fa fa-plus"></i></a></th>
+                </tr>
+            </thead>
+            {{#each inventory as |item|}}
+            <tr data-item-id="{{item._id}}" class="item {{#if item.system.isContainer}}item-container{{/if}} draggable">
+                {{#if ../settings.showItemIcons}}<td><img src="{{item.img}}" /></td>{{/if}}
+                <td>{{#if item.system.isContained}}&rdsh;&nbsp;{{/if}}{{item.name}}</td>
+                <td class="!text-right">{{numberFormat item.system.totalCost decimals=1}}</td>
+                <td class="!text-right">{{numberFormat item.system.totalWt decimals=1}}</td>
+                <td>{{item.system.qty}}</td>
+                <td>{{#if item.system.isContainer}}{{numberFormat item.system.remaining decimals=1}}{{/if}}</td>
+                <td>
+                    {{#unless item.system.container}}
+                    <a class="mr-2" data-action="changeItemLocation"
+                        title="{{localize (concat 'FT.actor.sheet.label.location.' item.system.location)}}"><i
+                            class="{{property ../FT.item.inventory.icons item.system.location}}"></i></a>
+                    {{/unless}}
+                </td>
+                {{> actions}}
+            </tr>
+            {{/each}}
+            <tfoot>
+                <tr>
+                    {{#if settings.showItemIcons}}<td></td>{{/if}}
+                    <td colspan="2" class="!text-right">{{localize 'FT.actor.sheet.table.items.carried'}}</td>
+                    <td>{{numberFormat system.encumbrance.load decimals=1}}&nbsp;{{localize
+                        'FT.actor.sheet.table.items.unit'}}</td>
+                    <td colspan="4"></td>
+                </tr>
+            </tfoot>
+        </table>
+        {{/if}}
+    </div>
+</section>

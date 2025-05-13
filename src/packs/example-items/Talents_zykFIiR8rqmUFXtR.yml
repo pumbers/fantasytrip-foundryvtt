@@ -1,0 +1,20 @@
+type: Item
+folder: null
+name: Talents
+color: null
+sorting: a
+_id: zykFIiR8rqmUFXtR
+description: ''
+sort: 100000
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.342'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+  modifiedTime: 1747069565545
+_key: '!folders!zykFIiR8rqmUFXtR'
+

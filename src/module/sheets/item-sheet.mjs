@@ -1,29 +1,91 @@
+import { FT } from "../system/config.mjs";
 import * as Effects from "../util/effects.mjs";
+
+const { HandlebarsApplicationMixin } = foundry.applications.api;
 
 /**
  * Fantasy Trip Item Sheet
  *
  * @extends {ItemSheet}
  */
-export class FTItemSheet extends ItemSheet {
-  /** @override */
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      template: `${CONFIG.FT.path}/templates/sheet/item/item-sheet.hbs`,
-      classes: ["fantasy-trip", "item", "sheet"],
+export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
+  /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    id: "item-sheet",
+    classes: [FT.id, "item", "sheet"],
+    position: {
       width: 380,
       height: 520,
-      resizable: true,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
-    });
+    },
+    form: {
+      submitOnChange: true,
+    },
+    actions: {
+      //
+      editHTML: FTItemSheet._editHTML,
+      //
+      addAttack: FTItemSheet._addAttack,
+      deleteAttack: FTItemSheet._deleteAttack,
+      addDefense: FTItemSheet._addDefense,
+      deleteDefense: FTItemSheet._deleteDefense,
+      addSpell: FTItemSheet._addSpell,
+      deleteSpell: FTItemSheet._deleteSpell,
+      //
+      createEffect: FTItemSheet._manageEffect,
+      editEffect: FTItemSheet._manageEffect,
+      deleteEffect: FTItemSheet._manageEffect,
+      toggleEffect: FTItemSheet._manageEffect,
+    },
+  };
+
+  /** @inheritdoc */
+  /** @inheritdoc */
+  static TABS = {
+    primary: {
+      tabs: [{ id: "notes" }, { id: "settings" }, { id: "actions" }, { id: "effects" }],
+      initial: "notes",
+      labelPrefix: "FT.item.sheet.tab",
+    },
+  };
+
+  /** @inheritdoc */
+  static PARTS = {
+    header: {
+      template: `${FT.path}/templates/sheet/item/header.hbs`,
+    },
+    tabs: {
+      // Foundry-provided generic template
+      template: "templates/generic/tab-navigation.hbs",
+    },
+    notes: {
+      template: `${FT.path}/templates/sheet/tab-notes.hbs`,
+    },
+    settings: {
+      template: `${FT.path}/templates/sheet/item/tab-settings.hbs`,
+    },
+    actions: {
+      template: `${FT.path}/templates/sheet/item/tab-actions.hbs`,
+    },
+    effects: {
+      template: `${FT.path}/templates/sheet/tab-effects.hbs`,
+    },
+  };
+
+  get title() {
+    return game.i18n.format("FT.item.sheet.title", { name: this.item.name });
   }
 
-  /** @override */
-  getData() {
-    const context = {
-      ...super.getData(),
+  /* ------------------------------------------- */
+  /*  Sheet Data Preparation                     */
+  /* ------------------------------------------- */
+
+  /** @inheritdoc */
+  async _prepareContext(options) {
+    console.log("_prepareContext()", this, options);
+    const context = Object.assign(await super._prepareContext(options), {
       // General Documents, Settings & Config
       FT: CONFIG.FT,
+      item: foundry.utils.deepClone(this.item),
       system: foundry.utils.deepClone(this.item.system),
       flags: foundry.utils.deepClone(this.item.flags),
       owned: !!this.item.parent,
@@ -42,7 +104,12 @@ export class FTItemSheet extends ItemSheet {
           .filter((item) => item.type === "spell")
           .reduce((spells, spell) => ({ ...spells, [spell._id]: spell.name }), {}),
       },
-    };
+      //
+      effects: this.item.effects,
+      enrichedNotes: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.notes),
+    });
+
+    console.log("... item context", context);
     return context;
   }
 
@@ -50,77 +117,95 @@ export class FTItemSheet extends ItemSheet {
   /*  Sheet Listeners & Handlers                 */
   /* ------------------------------------------- */
 
-  /** @override */
-  activateListeners(html) {
-    super.activateListeners(html);
-
-    // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) return;
-
-    // Sheet Actions
-    html.find("[data-action]").click(this.click.bind(this));
+  static _addAttack(event, target) {
+    console.log("_addAttack", target.dataset);
+    this.item.system.attacks.push({
+      name: "Attack",
+      type: "melee",
+      toHitMod: 0,
+      baseDamage: "1d6",
+      minST: 7,
+      talent: null,
+    });
+    this.item.update({ "system.attacks": this.item.system.attacks });
   }
 
-  /**
-   * Handle a sheet click event
-   *
-   * @param {Event} event
-   */
-  click(event) {
-    event.preventDefault();
-    const element = $(event?.currentTarget);
-    const dataset = element?.data();
+  static _deleteAttack(event, target) {
+    console.log("_deleteAttack", target.dataset);
+    this.item.system.attacks.splice(target.dataset.index, 1);
+    this.item.update({ "system.attacks": this.item.system.attacks });
+  }
 
-    switch (dataset.action) {
-      case "add-attack":
-        // console.log("click():add-attack");
-        this.item.system.attacks.push({
-          name: "Attack",
-          type: "melee",
-          toHitMod: 0,
-          baseDamage: "1d6",
-          minST: 7,
-          talent: null,
-        });
-        this.item.update({ "system.attacks": this.item.system.attacks });
-        break;
-      case "delete-attack":
-        // console.log("click():delete-attack", dataset.index);
-        this.item.system.attacks.splice(dataset.index, 1);
-        this.item.update({ "system.attacks": this.item.system.attacks });
-        break;
-      case "add-defense":
-        // console.log("click():add-defense");
-        this.item.system.defenses.push({
-          name: "Defend",
-          hitsStopped: 0,
-        });
-        this.item.update({ "system.defenses": this.item.system.defenses });
-        break;
-      case "delete-defense":
-        // console.log("click():delete-attack", dataset.index);
-        this.item.system.defenses.splice(dataset.index, 1);
-        this.item.update({ "system.defenses": this.item.system.defenses });
-        break;
-      case "add-spell":
-        // console.log("click():add-spell", dataset);
-        this.item.system.spells.push({ id: null, item: null });
-        this.item.update({ "system.spells": this.item.system.spells });
-        break;
-      case "delete-spell":
-        // console.log("click():delete-spell", dataset.index);
-        this.item.system.spells.splice(dataset.index, 1);
-        this.item.update({ "system.spells": this.item.system.spells });
-        break;
-      case "create-effect":
-      case "edit-effect":
-      case "toggle-effect":
-      case "delete-effect":
-        Effects.onManageActiveEffect.call(this.item, event);
-        break;
-      default:
-        console.error(`FT | Unimplemented action: ${dataset.action}`);
-        break;
+  static _addDefense(event, target) {
+    console.log("_addDefense", target.dataset);
+    this.item.system.defenses.push({
+      name: "Defend",
+      hitsStopped: 0,
+    });
+    this.item.update({ "system.defenses": this.item.system.defenses });
+  }
+
+  static _deleteDefense(event, target) {
+    console.log("_deleteDefense", target.dataset);
+    this.item.system.defenses.splice(target.dataset.index, 1);
+    this.item.update({ "system.defenses": this.item.system.defenses });
+  }
+
+  static _addSpell(event, target) {
+    console.log("_addSpell", target.dataset);
+    this.item.system.spells.push({ id: null, item: null });
+    this.item.update({ "system.spells": this.item.system.spells });
+  }
+
+  static _deleteSpell(event, target) {
+    console.log("_deleteSpell", target.dataset);
+    this.item.system.spells.splice(target.dataset.index, 1);
+    this.item.update({ "system.spells": this.item.system.spells });
+  }
+
+  static _manageEffect(event, target) {
+    console.log("_manageEffect", target.dataset);
+    Effects.onManageActiveEffect(this.item, event, target);
+  }
+
+  editor = null;
+
+  static async _editHTML(event, target) {
+    console.log("_editHTML()", this.item, target.dataset);
+    const tab = target.closest("section.tab");
+    const wrapper = tab.querySelector(".prosemirror.editor");
+
+    wrapper.classList.add("active");
+    const editorContainer = wrapper.querySelector(".editor-container");
+    const content = foundry.utils.getProperty(this.item, target.dataset.fieldName);
+
+    this.editor = await foundry.applications.ux.ProseMirrorEditor.create(editorContainer, content, {
+      document: this.item,
+      fieldName: target.dataset.fieldName,
+      relativeLinks: true,
+      collaborate: true,
+      plugins: {
+        menu: ProseMirror.ProseMirrorMenu.build(ProseMirror.defaultSchema, {
+          destroyOnSave: true,
+          onSave: this._saveEditor.bind(this),
+        }),
+        keyMaps: ProseMirror.ProseMirrorKeyMaps.build(ProseMirror.defaultSchema, {
+          onSave: this._saveEditor.bind(this),
+        }),
+      },
+    });
+  }
+
+  async _saveEditor() {
+    console.log("_saveEditor()", this.editor);
+    const newValue = ProseMirror.dom.serializeString(this.editor.view.state.doc.content);
+    const [uuid, fieldName] = this.editor.uuid.split("#");
+    this.editor.destroy();
+    this.editor = null;
+    const currentValue = foundry.utils.getProperty(this.item, fieldName);
+    if (newValue !== currentValue) {
+      await this.item.update({ [fieldName]: newValue });
     }
+    this.render(true);
   }
 }

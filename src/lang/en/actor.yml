@@ -1,0 +1,120 @@
+FT:
+  actor:
+    type:
+      hero: Hero
+      wizard: Wizard
+    race:
+      human: Human
+      elf: Elf
+      dwarf: Dwarf
+      halfling: Halfling
+      orc: Orc
+      goblin: Goblin
+    attribute:
+      st:
+        max: ST
+        value: adjST
+      dx:
+        max: DX
+        value: adjDX
+      iq:
+        max: IQ
+        value: adjIQ
+      ma:
+        mode:
+          walk: Walk
+          swim: Swim
+          fly: Fly
+        walk:
+          max: MA
+          value: adjMA
+        swim:
+          max: MA
+          value: adjMA
+        fly:
+          max: MA
+          value: adjMA
+    sheet:
+      title: "Character Sheet: {name}"
+      tab:
+        character: Character
+        notes: Notes
+        talents: Talents
+        inventory: Inventory
+        spells: Spells
+        effects: Effects
+      label:
+        type: Type
+        race: Race
+        age: Age
+        job: Job
+        pay: Pay
+        risk: Risk
+        ap: AP
+        xp: XP
+        encumbrance: Encumbrance
+        encumbranceLevel:
+          - No penalties
+          - Swimming at -2 DX
+          - Swimming at -5 DX
+          - No swimming, combat MA 8
+          - Combat MA 6, -1 DX
+          - Combat MA 4, -2 DX
+          - ST reduced by 1 every 10 minutes
+        adjusted: Adj.
+        damage: Damage
+        fatigue: Fatigue
+        health: Health
+        mana: Mana
+        stMod: ST Mod
+        dxMod: DX Mod
+        iqMod: IQ Mod
+        maMod: MA Mod
+        initiative: Init. Mod
+        location:
+          equipped: Equipped
+          carried: Carried
+          dropped: Dropped
+          stowed: Stowed
+          stored: Stored
+      table:
+        talents:
+          name: Talent
+          attribute: Attr.
+          iq: IQ
+          cost: Cost
+        items:
+          name: Item
+          cost: $
+          wt: Wt
+          qty: Qty
+          capacity: Cap
+          location: Loc
+          carried: Carried
+          unit: lb
+        spells:
+          name: Name
+          type: Type
+          iq: IQ
+          cost: Cost
+          st: ST
+      action:
+        attribute:
+          roll: Attriute Roll
+        notes:
+          edit: Edit Notes
+        talent:
+          chat: Chat Talent
+          create: Add Talent
+          edit: Edit Talent
+          delete: Delete Talent
+          roll: Roll
+        item:
+          chat: Chat Item
+          create: Add Item
+          edit: Edit Item
+          delete: Delete Item
+        spell:
+          create: Add Spell
+          cast: Cast
+          cancel: Cancel
