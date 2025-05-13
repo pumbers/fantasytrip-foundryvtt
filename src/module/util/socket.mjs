@@ -1,3 +1,5 @@
+import { FT } from "../system/config.mjs";
+
 export default class CS5SocketHandler {
   constructor() {
     this.identifier = "system.fantasy-trip";
@@ -8,7 +10,7 @@ export default class CS5SocketHandler {
    * Set up the system socket handlers
    */
   registerSocketHandlers() {
-    console.info("FT | Registering FT Socket Handlers");
+    console.info(FT.prefix, "Registering FT Socket Handlers");
     game.socket.on(this.identifier, ({ type, payload }) => {
       console.log("socket.on", type, payload);
       switch (type) {
@@ -16,7 +18,7 @@ export default class CS5SocketHandler {
           this.#handleAction(payload);
           break;
         default:
-          console.error("FT | Unknown socket message type", type);
+          console.error(FT.prefix, "Unknown socket message type", type);
       }
     });
   }

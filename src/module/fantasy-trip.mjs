@@ -19,7 +19,7 @@ const { StringField, NumberField, BooleanField } = foundry.data.fields;
 /* -------------------------------------------- */
 
 Hooks.once("init", async function () {
-  console.info(`FT | Initializing the Fantasy Trip Game System`);
+  console.info(FT.prefix, "Initializing the Fantasy Trip Game System");
 
   /* -------------------------------------------- */
   /*  Config                            
@@ -216,7 +216,8 @@ Hooks.once("init", async function () {
 /*  Startup Messages                           
 /* -------------------------------------------- */
 
-// Hooks.on("ready", async () => {
-//   ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
-//   ui.notifications.info(game.i18n.localize("FT.messages.notice"));
-// });
+Hooks.on("ready", async () => {
+  ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
+  ui.notifications.info(game.i18n.localize("FT.messages.notice"));
+  console.info(FT.prefix, "System ready");
+});

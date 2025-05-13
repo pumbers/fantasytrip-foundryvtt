@@ -71,7 +71,7 @@ function determineRollResult(dice, target, roll) {
       if (roll.total >= 28) return "criticalFailure";
       return roll.total <= target ? "success" : "failure";
     default:
-      console.error("FT | Incorrect number of dice rolled", dice);
+      console.error(FT.prefix, "Incorrect number of dice rolled", dice);
       break;
   }
 }

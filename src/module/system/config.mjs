@@ -6,6 +6,7 @@ export const FT = {};
 
 FT.id = "fantasy-trip";
 FT.path = "systems/fantasy-trip";
+FT.prefix = "Fantasy Trip |";
 
 FT.settings = {
   damageMultiplierStrategy: {

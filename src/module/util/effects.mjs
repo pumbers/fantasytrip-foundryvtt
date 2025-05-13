@@ -1,3 +1,5 @@
+import { FT } from "../system/config.mjs";
+
 /**
  * Manage Active Effect instances through an Actor or Item Sheet via effect control buttons.
  *
@@ -37,6 +39,6 @@ export function onManageActiveEffect(owner, event, target) {
     case "toggleEffect":
       return effect.update({ disabled: !effect.disabled });
     default:
-      console.error("FT | Unknown effect action", target.dataset.action);
+      console.error(FT.prefix, "Unknown effect action", target.dataset.action);
   }
 }
