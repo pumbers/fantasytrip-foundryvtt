@@ -20,14 +20,12 @@ FT:
         options:
           rollTimes: Roll the damage a number of times
           multiply: Roll the damage once and multiply
+      applySpellEffectsAuto:
+        name: Apply Spell Effects Automatically
+        hint: If a spell has Active Effects, apply them automatically to any targeted tokens when successfully cast.
       showItemIcons:
         name: Show Item Icons
         hint: Show icons in item tables?
-      allowTalentSpendOnIQIncrease:
-        name: Allow Talent Spend on IQ Increase
-        hint: >
-          If a character increases their IQ, do they automatically get a point to acquire a new Talent
-          or Spell, or must they spend XP instead?
       combatantNPCGroupByActor:
         name: Group NPC Combatants by Actor
         hint: >

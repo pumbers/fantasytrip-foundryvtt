@@ -88,6 +88,10 @@ export class FTSpellData extends FTTalentData {
   get castingST() {
     return this.stToCast.min === this.stToCast.max ? this.stToCast.max : `${this.stToCast.min}-${this.stToCast.max}`;
   }
+
+  get canBeMaintained() {
+    return this.stToMaintain > 0;
+  }
 }
 
 /**

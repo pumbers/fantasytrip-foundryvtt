@@ -559,9 +559,29 @@ export function castingRoll(actor, spell, options = {}) {
       const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
       const margin = totalAttributes + totalModifiers - roll.total;
 
-      // Mark the spell as cast and/or subtract the fatigue
       if (margin >= 0) {
-        spell.update({ "system.stSpent": cost.st.value ?? 0 });
+        // Mark the spell as cast and/or subtract the fatigue
+        if (spell.system.canBeMaintained) spell.update({ "system.stSpent": cost.st.value ?? 0 });
+
+        if (game.settings.get(FT.id, "applySpellEffectsAuto")) {
+          // Transfer spell effects to targets
+          game.user.targets.forEach((t) => {
+            t.actor.createEmbeddedDocuments(
+              "ActiveEffect",
+              Array.from(spell.effects).map((e) => {
+                return {
+                  ...e,
+                  name: `${spell.name}/${e.name}`,
+                  changes: e.changes.map((c) => {
+                    // Replace "ST" with casting cost of spell
+                    c.value = parseInt(c.value.replace("ST", cost.st.value));
+                    return c;
+                  }),
+                };
+              })
+            );
+          });
+        }
       }
 
       // Subtract the fatigue even if the spell failed on a roll of 17+

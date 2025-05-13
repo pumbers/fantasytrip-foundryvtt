@@ -137,6 +137,18 @@ Hooks.once("init", async function () {
     config: true,
   });
 
+  game.settings.register(FT.id, "applySpellEffectsAuto", {
+    name: game.i18n.localize("FT.game.settings.applySpellEffectsAuto.name"),
+    hint: game.i18n.localize("FT.game.settings.applySpellEffectsAuto.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: true,
+    }),
+    config: true,
+  });
+
   game.settings.register(FT.id, "showItemIcons", {
     name: game.i18n.localize("FT.game.settings.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.settings.showItemIcons.hint"),
@@ -189,6 +201,7 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("includes", Helpers.includes);
   Handlebars.registerHelper("between", Helpers.between);
   Handlebars.registerHelper("startsWith", Helpers.startsWith);
+  Handlebars.registerHelper("statusEffect", Helpers.statusEffect);
 
   foundry.applications.handlebars.loadTemplates([
     `${CONFIG.FT.path}/templates/chat/dice-roll.hbs`,

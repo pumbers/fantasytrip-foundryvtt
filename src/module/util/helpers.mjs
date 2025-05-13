@@ -115,3 +115,7 @@ export function between(value, min, max) {
 export function startsWith(text, value) {
   return text?.startsWith(value);
 }
+
+export function statusEffect(value) {
+  return CONFIG.statusEffects.find((s) => s.id === value);
+}

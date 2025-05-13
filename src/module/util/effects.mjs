@@ -27,6 +27,7 @@ export function onManageActiveEffect(owner, event, target) {
           }),
           icon: "icons/svg/aura.svg",
           origin: owner.uuid,
+          transfer: owner.type !== "spell",
         },
       ]);
     case "editEffect":

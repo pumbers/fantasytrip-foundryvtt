@@ -16,6 +16,8 @@ FT:
       change: Change
       value: Value
       disabled: (Disabled)
+      status: Statuses
+      statusAction: Apply
     action:
       create: Create
       edit: Edit
