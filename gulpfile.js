@@ -218,6 +218,7 @@ function createDist() {
   return gulp
     .src(["LICENSE", `${BUILD_DIR}/**/*`], {
       nodir: true,
+      encoding: false,
     })
     .pipe(gulp.dest(DIST_DIR));
 }
