@@ -15,9 +15,10 @@
       @apply rounded-none size-[70px] object-cover;
     }
 
-    section[data-tab="notes"] {
+    section#item-sheet-notes {
+      @apply grow;
       .prosemirror.editor {
-        @apply min-h-[28rem];
+        @apply h-full;
       }
     }
   }

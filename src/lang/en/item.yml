@@ -24,7 +24,6 @@ FT:
       title: "Item: {name}"
       tab:
         notes: Notes
-        settings: Settings
         actions: Actions
         effects: Effects
       label:

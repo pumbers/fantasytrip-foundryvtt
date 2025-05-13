@@ -42,7 +42,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
   /** @inheritdoc */
   static TABS = {
     primary: {
-      tabs: [{ id: "notes" }, { id: "settings" }, { id: "actions" }, { id: "effects" }],
+      tabs: [{ id: "notes" }, { id: "actions" }, { id: "effects" }],
       initial: "notes",
       labelPrefix: "FT.item.sheet.tab",
     },
@@ -57,11 +57,11 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       // Foundry-provided generic template
       template: "templates/generic/tab-navigation.hbs",
     },
-    notes: {
-      template: `${FT.path}/templates/sheet/tab-notes.hbs`,
-    },
     settings: {
       template: `${FT.path}/templates/sheet/item/tab-settings.hbs`,
+    },
+    notes: {
+      template: `${FT.path}/templates/sheet/tab-notes.hbs`,
     },
     actions: {
       template: `${FT.path}/templates/sheet/item/tab-actions.hbs`,
