@@ -4,6 +4,7 @@ export const FT = {};
 /*  Game System Config & Options                  */
 /* ------------------------------------------- */
 
+FT.id = "fantasy-trip";
 FT.path = "systems/fantasy-trip";
 
 FT.settings = {

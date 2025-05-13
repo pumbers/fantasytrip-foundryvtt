@@ -45,7 +45,7 @@ Hooks.once("init", async function () {
   /*  Game Settings                            
   /* -------------------------------------------- */
 
-  game.settings.register("fantasy-trip", "initialAP", {
+  game.settings.register(FT.id, "initialAP", {
     name: game.i18n.localize("FT.game.settings.initialAP.name"),
     hint: game.i18n.localize("FT.game.settings.initialAP.hint"),
     scope: "world",
@@ -53,7 +53,7 @@ Hooks.once("init", async function () {
     config: true,
   });
 
-  game.settings.register("fantasy-trip", "useFTInitiative", {
+  game.settings.register(FT.id, "useFTInitiative", {
     name: game.i18n.localize("FT.game.settings.useFTInitiative.name"),
     hint: game.i18n.localize("FT.game.settings.useFTInitiative.hint"),
     scope: "world",
@@ -67,7 +67,7 @@ Hooks.once("init", async function () {
     requiresReload: false,
   });
 
-  game.settings.register("fantasy-trip", "pcGroupInitiative", {
+  game.settings.register(FT.id, "pcGroupInitiative", {
     name: game.i18n.localize("FT.game.settings.pcGroupInitiative.name"),
     hint: game.i18n.localize("FT.game.settings.pcGroupInitiative.hint"),
     scope: "world",
@@ -81,7 +81,7 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
-  game.settings.register("fantasy-trip", "npcGroupInitiative", {
+  game.settings.register(FT.id, "npcGroupInitiative", {
     name: game.i18n.localize("FT.game.settings.npcGroupInitiative.name"),
     hint: game.i18n.localize("FT.game.settings.npcGroupInitiative.hint"),
     scope: "world",
@@ -95,7 +95,7 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
-  game.settings.register("fantasy-trip", "damageMultiplierStrategy", {
+  game.settings.register(FT.id, "damageMultiplierStrategy", {
     name: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.name"),
     hint: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.hint"),
     scope: "world",
@@ -113,7 +113,7 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
-  game.settings.register("fantasy-trip", "addCastingFatigueAuto", {
+  game.settings.register(FT.id, "addCastingFatigueAuto", {
     name: game.i18n.localize("FT.game.settings.addCastingFatigueAuto.name"),
     hint: game.i18n.localize("FT.game.settings.addCastingFatigueAuto.hint"),
     scope: "world",
@@ -125,7 +125,7 @@ Hooks.once("init", async function () {
     config: true,
   });
 
-  game.settings.register("fantasy-trip", "cancelAttackSpellAuto", {
+  game.settings.register(FT.id, "cancelAttackSpellAuto", {
     name: game.i18n.localize("FT.game.settings.cancelAttackSpellAuto.name"),
     hint: game.i18n.localize("FT.game.settings.cancelAttackSpellAuto.hint"),
     scope: "world",
@@ -137,7 +137,7 @@ Hooks.once("init", async function () {
     config: true,
   });
 
-  game.settings.register("fantasy-trip", "showItemIcons", {
+  game.settings.register(FT.id, "showItemIcons", {
     name: game.i18n.localize("FT.game.settings.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.settings.showItemIcons.hint"),
     scope: "world",

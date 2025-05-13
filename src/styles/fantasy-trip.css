@@ -90,6 +90,7 @@
   }
 
   fieldset {
+    @apply border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1;
     legend {
       @apply text-stone-900 dark:text-stone-200;
     }
@@ -103,12 +104,8 @@
   }
 
   .effect {
-    @apply border border-stone-900 dark:border-stone-400 rounded-none m-0 p-1 flex flex-row gap-2;
     legend {
       @apply font-bold uppercase;
-    }
-    img {
-      @apply w-12 h-12 border-none;
     }
     table {
       @apply h-4;

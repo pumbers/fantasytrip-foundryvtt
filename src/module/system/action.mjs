@@ -314,7 +314,7 @@ export function attackRoll(actor, weapon, options) {
       );
 
       // If the item was an attack spell, cancel it if the settings says so
-      if (item.type === "spell" && game.settings.get("fantasy-trip", "cancelAttackSpellAuto"))
+      if (item.type === "spell" && game.settings.get(FT.id, "cancelAttackSpellAuto"))
         item.update({ "system.stSpent": 0 });
     },
   };
@@ -344,7 +344,7 @@ export function damageRoll(actor, weapon, options = {}) {
     formula: attack.damage,
     multiplier: options.multiplier ?? 1,
     damageMultiplierStrategy:
-      weapon.type === "spell" ? "rollTimes" : game.settings.get("fantasy-trip", "damageMultiplierStrategy"),
+      weapon.type === "spell" ? "rollTimes" : game.settings.get(FT.id, "damageMultiplierStrategy"),
     submit: (data) => {
       // console.log("Action.damageRoll().submit()", "data", data);
 
@@ -436,7 +436,7 @@ export async function applyDamage(actor, damage, options) {
 
   new foundry.applications.api.DialogV2({
     id: "ft-apply-damage",
-    classes: ["fantasy-trip", "apply-damage"],
+    classes: [FT.id, "apply-damage"],
     window: {
       title: game.i18n.format("FT.dialog.damage.title", { name: actor.parent?.name ?? actor.name, damage }),
     },
@@ -565,7 +565,7 @@ export function castingRoll(actor, spell, options = {}) {
       }
 
       // Subtract the fatigue even if the spell failed on a roll of 17+
-      if ((margin >= 0 || roll.total >= 17) && game.settings.get("fantasy-trip", "addCastingFatigueAuto")) {
+      if ((margin >= 0 || roll.total >= 17) && game.settings.get(FT.id, "addCastingFatigueAuto")) {
         actor.update({ "system.fatigue": actor.system.fatigue + parseInt(cost.st.value) });
       }
 

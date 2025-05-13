@@ -12,7 +12,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     id: "item-sheet",
-    classes: ["fantasy-trip", "item", "sheet"],
+    classes: [FT.id, "item", "sheet"],
     position: {
       width: 380,
       height: 520,

@@ -1,9 +1,10 @@
+import { FT } from "../system/config.mjs";
 /**
  * Hook into Combat Tracker rendering to display the round type in the header
  */
 Hooks.on("renderCombatTracker", async (app, html, data) => {
   // console.log("Hooks.renderCombatTracker", data);
-  if (game.settings.get("fantasy-trip", "useFTInitiative") && data.combat?.started) {
+  if (game.settings.get(FT.id, "useFTInitiative") && data.combat?.started) {
     html
       .querySelector(".encounter-title")
       .append(
@@ -27,7 +28,7 @@ export class FTCombat extends foundry.documents.Combat {
     // console.log("Combat.nextRound()", this.round, this.turn);
 
     // If not using Fantasy Trip initiative, use Foundry default
-    const useFTInitiative = game.settings.get("fantasy-trip", "useFTInitiative");
+    const useFTInitiative = game.settings.get(FT.id, "useFTInitiative");
     if (!useFTInitiative) return super.nextRound();
 
     if (this.isMovementRound) {
@@ -79,9 +80,9 @@ export class FTCombat extends foundry.documents.Combat {
     //   messageOptions
     // );
 
-    const useFTInitiative = game.settings.get("fantasy-trip", "useFTInitiative");
-    const pcGroupInitiative = game.settings.get("fantasy-trip", "pcGroupInitiative");
-    const npcGroupInitiative = game.settings.get("fantasy-trip", "npcGroupInitiative");
+    const useFTInitiative = game.settings.get(FT.id, "useFTInitiative");
+    const pcGroupInitiative = game.settings.get(FT.id, "pcGroupInitiative");
+    const npcGroupInitiative = game.settings.get(FT.id, "npcGroupInitiative");
 
     // console.log("... useFTInitiative", useFTInitiative, "combatGroupInitiative", combatGroupInitiative);
 
@@ -147,7 +148,7 @@ export class FTCombat extends foundry.documents.Combat {
  * Check for possible conflicting modules
  */
 Hooks.on("ready", async () => {
-  if (game.modules.get("monks-combat-details")?.active && game.settings.get("fantasy-trip", "useFTInitiative")) {
+  if (game.modules.get("monks-combat-details")?.active && game.settings.get(FT.id, "useFTInitiative")) {
     ui.notifications.warn(game.i18n.localize("FT.messages.monksWarning"));
   }
 });

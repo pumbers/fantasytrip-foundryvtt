@@ -63,10 +63,10 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       actor: foundry.utils.deepClone(this.actor),
       system: foundry.utils.deepClone(this.actor.system),
       flags: foundry.utils.mergeObject(foundry.utils.deepClone(this.actor.flags), {
-        apExceeded: this.actor.system.ap > game.settings.get("fantasy-trip", "initialAP") && this.actor.system.xp === 0,
+        apExceeded: this.actor.system.ap > game.settings.get(FT.id, "initialAP") && this.actor.system.xp === 0,
       }),
       settings: {
-        showItemIcons: game.settings.get("fantasy-trip", "showItemIcons"),
+        showItemIcons: game.settings.get(FT.id, "showItemIcons"),
       },
       // Categorized items
       talents: this.actor.items.filter((item) => item.type === "talent").sort((a, b) => a.name.localeCompare(b.name)),
@@ -282,7 +282,7 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     id: "character-sheet",
-    classes: ["fantasy-trip", "character", "sheet"],
+    classes: [FT.id, "character", "sheet"],
     position: {
       width: 430,
       height: 640,
@@ -344,7 +344,7 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     id: "npc-sheet",
-    classes: ["fantasy-trip", "npc", "sheet"],
+    classes: [FT.id, "npc", "sheet"],
     position: {
       width: 445,
       height: 430,

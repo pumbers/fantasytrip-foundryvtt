@@ -8,7 +8,7 @@ const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: "ft-dice-roller",
-    classes: ["fantasy-trip", "dice-roller"],
+    classes: [FT.id, "dice-roller"],
     tag: "form",
     window: {
       title: "Dice Roller",
