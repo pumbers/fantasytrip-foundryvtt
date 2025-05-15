@@ -7,7 +7,7 @@ compatibility:
   verified: "13.342"
 authors:
   - name: 3rdDog
-license: LICENSE
+license: LICENSE.txt
 url: https://github.com/pumbers/fantasytrip-foundryvtt
 manifest: "#{MANIFEST}#"
 download: "#{DOWNLOAD}#"
@@ -17,10 +17,10 @@ esmodules:
 styles:
   - styles/fantasy-trip.css
   - styles/icons.css
+  - styles/applications.css
   - styles/character-sheet.css
   - styles/npc-sheet.css
   - styles/item-sheet.css
-  - styles/applications.css
 packs:
   - name: using-fantasy-trip-for-foundry-vtt
     label: Using Fantasy Trip for Foundry VTT

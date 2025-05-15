@@ -1,3 +1,4 @@
+import { FT } from "../system/config.mjs";
 import * as Dice from "../util/dice.mjs";
 
 /**
@@ -40,7 +41,7 @@ export class FTActor extends Actor {
 
     const load = Array.from(this.items)
       .filter((item) => item.type === "equipment")
-      .filter((item) => CONFIG.FT.item.inventory.encumbering.includes(item.system.location))
+      .filter((item) => FT.item.inventory.encumbering.includes(item.system.location))
       .reduce((load, item) => load + item.system.totalWt, 0);
     const level = capacity.findIndex((val) => val > load);
 
@@ -130,15 +131,14 @@ export class FTActor extends Actor {
   /**
    * Send character details to chat
    */
-  async chat() {
-    const content = await foundry.applications.handlebars.renderTemplate(
-      `${CONFIG.FT.path}/templates/chat/character.hbs`,
-      this
+  chat(speaker) {
+    // console.log("chat()", this);
+    foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/character.hbs`, this).then((content) =>
+      ChatMessage.create({
+        content: content,
+        flavor: this.name,
+        speaker,
+      })
     );
-    ChatMessage.create({
-      content: content,
-      flavor: this.name,
-      speaker: ChatMessage.getSpeaker({ actor: this }),
-    });
   }
 }

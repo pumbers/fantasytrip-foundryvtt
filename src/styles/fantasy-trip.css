@@ -58,7 +58,6 @@
   .sheet-tabs.tabs {
     @apply m-2 text-[0.6rem] uppercase text-stone-900 dark:text-stone-200;
     .active {
-      /* text-shadow: none; */
       @apply font-bold;
     }
   }

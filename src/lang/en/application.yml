@@ -5,6 +5,9 @@ FT:
       label:
         formula: Dice Formula
         multiplier: Multiplier
+      action:
+        submit: Roll
+        cancel: Cancel
   dialog:
     damage:
       title: Apply {damage} Damage to {name}

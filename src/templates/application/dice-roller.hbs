@@ -25,6 +25,7 @@
     </div>
 
     {{#unless (eq type "damage")}}
+
     {{!-- Attribute --}}
     <div class="grid grid-flow-col grid-rows-2 gap-1">
         {{#each (array "st.max" "st.value" "dx.max" "dx.value" "iq.max" "iq.value") as | attribute |}}
@@ -36,6 +37,7 @@
         </span>
         {{/each}}
     </div>
+
     {{!-- Spell Strength --}}
     {{#if (eq type "cast")}}
     <div class="grid grid-cols-16 gap-1">
@@ -48,6 +50,7 @@
         {{/each}}
     </div>
     {{/if}}
+
     {{!-- Modifiers --}}
     {{#each modifiers as | modifier name|}}
     <div class="grid grid-cols-16 gap-1">
@@ -61,6 +64,7 @@
         {{/each}}
     </div>
     {{/each}}
+
     {{!-- Dice --}}
     <div class="grid grid-cols-8 gap-1">
         {{#each (range 1 8) as | dice |}}
@@ -70,7 +74,9 @@
         </span>
         {{/each}}
     </div>
+
     {{else}}
+
     {{!-- Damage Formula --}}
     <div class="w-full flex flex-row gap-1 justify-between">
         <div class="field w-24">
@@ -89,6 +95,7 @@
             </select>
         </div>
     </div>
+
     {{/unless}}
 
     {{!-- Roll Mode --}}
@@ -102,8 +109,11 @@
         {{/each}}
     </div>
 
+    {{!-- Buttons --}}
     <div class="flex flex-row justify-end gap-4 mt-6">
-        <button type="cancel" value="cancel">Cancel</button>
-        <button type="submit" form="ft-dice-roller" value="submit">Roll</button>
+        <button type="cancel" value="cancel"><i class="fa fa-times-circle"></i>{{localize
+            "FT.app.dice.action.cancel"}}</button>
+        <button type="submit" form="ft-dice-roller" value="submit"><i class="fa fa-dice"></i>{{localize
+            "FT.app.dice.action.submit"}}</button>
     </div>
 </div>

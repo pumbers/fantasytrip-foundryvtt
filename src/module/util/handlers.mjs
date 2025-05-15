@@ -80,31 +80,15 @@ export function onIemChangeLocation(actor, locations, event, target) {
 }
 
 /**
- * Handle activation of item "use"
+ * Send item details to chat
+ * @param {Actor} actor  The actor
  * @param {Event} event   The originating click event
+ * @param {Target} target  The target element for the event
  */
-// export function onUseItem(event) {
-//   event.preventDefault();
-//   const element = $(event?.currentTarget);
-//   const { shiftKey, ctrlKey, altKey } = event;
-//   let itemId = element?.closest("[data-item-id]").data("itemId");
-//   if (itemId) {
-//     const item = this.actor.getEmbeddedDocument("Item", itemId);
-//     item?.use();
-//   }
-// }
-
-/**
- * Handle activation of item "chat"
- * @param {Event} event   The originating click event
- */
-// export function onChatItem(event) {
-//   event.preventDefault();
-//   const element = $(event?.currentTarget);
-//   const { shiftKey, ctrlKey, altKey } = event;
-//   let itemId = element?.closest("[data-item-id]").data("itemId");
-//   if (itemId) {
-//     const item = this.actor.getEmbeddedDocument("Item", itemId);
-//     item?.chat();
-//   }
-// }
+export function onChatItem(actor, event, target) {
+  const itemId = target?.closest("[data-item-id]").dataset?.itemId;
+  if (!itemId) return;
+  const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
+  if (!item) return;
+  item.chat(ChatMessage.getSpeaker({ actor }));
+}
