@@ -39,6 +39,7 @@ FT:
         minStToCast: Min ST to Cast
         maxStToCast: Max ST to Cast
         stToMaintain: ST to Maintain
+        effects: Additional Effects
         talent: Talent to Use
         hitsStopped: Hits Stopped
         capacity: Capacity

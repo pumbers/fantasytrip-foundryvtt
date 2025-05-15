@@ -50,12 +50,12 @@ FT:
           - With confidence, casts {spell}... {result}
           - Concentrates then casts {spell}... {result}
         damage:
-          - Unleashes a flurry of blows, striking for a total of {total} point(s) of hurt.
-          - Unleashes a devastating blast that deals {total} point(s) of damage to their foe.
-          - Strikes with the full force of their fury, landing a full {total} point hit that leaves their opponent reeling.
-          - Feels a surge of adrenaline as they strike for {total} point(s) of damage.
-          - Narrows their sights and deal a precise {total} point hit to the enemy.
-          - Senses the fear in their enemy's eyes as they realize they're taking {total} point(s) of hurt from the attack.
+          - Unleashes a flurry of blows, striking for a total of {total} point(s) of hurt. {effects}
+          - Unleashes a devastating blast that deals {total} point(s) of damage to their foe. {effects}
+          - Strikes with the full force of their fury, landing a full {total} point hit that leaves their opponent reeling. {effects}
+          - Feels a surge of adrenaline as they strike for {total} point(s) of damage. {effects}
+          - Narrows their sights and deal a precise {total} point hit to the enemy. {effects}
+          - Senses the fear in their enemy's eyes as they realize they're taking {total} point(s) of hurt from the attack. {effects}
       result:
         exact: Success! Just made it!
         automaticSuccess: Automatic success!
@@ -98,6 +98,6 @@ FT:
           - "{name} slips away into the shadows, their body going limp as they fall dead to the ground nafter {damageTaken} damage."
           - "{name} falls into a deep and permanent sleep, lost to the world after taking {damageTaken} damage."
           - "{name} is dragged into the darkness, unable to survive {damageTaken} point(s) of damage."
-        button:
+        action:
           rollDamage: Roll Damage
           applyDamage: Apply {damage} Damage to {name}

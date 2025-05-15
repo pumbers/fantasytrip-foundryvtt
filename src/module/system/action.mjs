@@ -366,6 +366,7 @@ export function damageRoll(actor, weapon, options = {}) {
             name: token.name,
             weapon: weapon.name,
             attack: attack.action?.toLowerCase(),
+            effects: attack.effects,
             total: roll.total,
           });
 
@@ -397,6 +398,7 @@ export function damageRoll(actor, weapon, options = {}) {
               flavor: game.i18n.format(`FT.system.roll.flavor.damage.${Math.floor(Math.random() * 6)}`, {
                 weapon: weapon.name,
                 attack: attack.action?.toLowerCase(),
+                effects: attack.effects,
                 total: roll.total,
               }),
             },

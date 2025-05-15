@@ -11,10 +11,11 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
       attacks: new ArrayField(
         new SchemaField({
           action: new StringField(),
+          minST: new NumberField({ initial: 0 }),
           type: new StringField(),
           toHitMod: new NumberField({ initial: 0 }),
           baseDamage: new StringField({ nullable: true }),
-          minST: new NumberField({ initial: 0 }),
+          effects: new StringField(),
           talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
         }),
         { initial: [] }
