@@ -1,6 +1,19 @@
 {{!-- Items Tab --}}
 <section id="{{partId}}" class="tab {{tabs.inventory.cssClass}}" data-group="primary" data-tab="inventory">
     <div class="flex flex-col gap-2">
+        {{!-- Tbale Header Partial --}}
+        {{#*inline "table-header"}}
+        <thead>
+            <tr>
+                {{#if settings.showItemIcons}}<th></th>{{/if}}
+                <th class="w-full">{{localize itemName}}</th>
+                <th></th>
+                <th>{{#if location}}{{localize 'FT.actor.sheet.table.items.location'}}{{/if}}</th>
+                <th><a data-action="createItem" data-type="{{itemType}}" data-location="carried"
+                        title="{{localize 'FT.actor.sheet.action.item.create'}}"><i class="fa fa-plus"></i></a></th>
+            </tr>
+        </thead>
+        {{/inline}}
         {{!-- Table Row Partial --}}
         {{#*inline "table-row"}}
         <tr data-item-id="{{item._id}}" class="item {{#if item.system.isContainer}}item-container{{/if}} {{#if (eq item.type 'equipment'
@@ -52,28 +65,22 @@
         {{/inline}}
         {{!-- Inventory Table --}}
         <table>
-            <thead>
-                <tr>
-                    {{#if settings.showItemIcons}}<th></th>{{/if}}
-                    <th class="w-full">{{localize 'FT.actor.sheet.table.items.name'}}</th>
-                    <th></th>
-                    <th>{{localize 'FT.actor.sheet.table.items.location'}}</th>
-                    <th></th>
-                </tr>
-            </thead>
             {{!-- Talents --}}
+            {{> "table-header" itemName="FT.item.type.talent" itemType="talent" location=false}}
             <tbody class="border-b">
                 {{#each talents as |item|}}
                 {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
                 {{/each}}
             </tbody>
             {{!-- Inventory --}}
+            {{> "table-header" itemName="FT.item.type.equipment" itemType="equipment" location=true}}
             <tbody class="border-b">
                 {{#each inventory as |item|}}
                 {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
                 {{/each}}
             </tbody>
             {{!-- Spells --}}
+            {{> "table-header" itemName="FT.item.type.spell" itemType="spell" location=false}}
             <tbody class="border-b">
                 {{#each spells as |item|}}
                 {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
