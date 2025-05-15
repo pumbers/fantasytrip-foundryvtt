@@ -1,0 +1,35 @@
+folder: z6G7klGELi876v85
+name: Staff I
+type: spell
+_id: 3yOKlqZiZvbFdKCB
+img: icons/weapons/staves/staff-crescent-green.webp
+system:
+  notes: ''
+  attacks: []
+  defenses: []
+  minIQ: 8
+  iqCost: 1
+  stToCast:
+    min: 5
+    max: 5
+  stToMaintain: 0
+  stSpent: 0
+  type: special
+effects: []
+sort: 0
+ownership:
+  default: 0
+  DoJEEiLZ8CgYIaAq: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.342'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1747173557698
+  modifiedTime: 1747173659610
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+_key: '!items!3yOKlqZiZvbFdKCB'
+

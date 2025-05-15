@@ -4,7 +4,7 @@ img: icons/skills/melee/unarmed-punch-fist-yellow-red.webp
 system:
   notes: ''
   attacks:
-    - action: Slam
+    - action: Punch
       type: missile
       toHitMod: 0
       baseDamage: 1d6-2
@@ -35,7 +35,7 @@ _stats:
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1747069748610
-  modifiedTime: 1747069748610
+  modifiedTime: 1747172881969
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 _id: KXm7M6KuQnaT2o0z
 sort: 0

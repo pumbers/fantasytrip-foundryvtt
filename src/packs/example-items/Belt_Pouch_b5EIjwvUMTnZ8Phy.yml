@@ -3,10 +3,10 @@ type: equipment
 img: icons/containers/bags/coinpouch-simple-leather-silver-brown.webp
 system:
   notes: ''
-  cost: 3
-  wt: 1
+  cost: 5
+  wt: 0.5
   qty: 1
-  capacity: 5
+  capacity: 1
   container: null
   attacks: []
   defenses: []
@@ -23,7 +23,7 @@ _stats:
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1747069149509
-  modifiedTime: 1747069178578
+  modifiedTime: 1747171990865
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 ownership:
   default: 0

@@ -211,7 +211,7 @@ pages:
         Quantity will be 1, and the cost &amp; weight shown will be for a single
         item. Where the Quantity is higher, the cost &amp; weight are calculated
         accordingly.</p></li><li><p>If an item is a <strong>Container</strong> -
-        a Container is any item that has a Capacity of greater than 0 - then.
+        a Container is any item that has a Capacity of greater than 0 - then
         that Capacity will be shown. More about Containers
         below.</p></li><li><p>A single icon shows the item(s)
         <strong>Location</strong>. Clicking on the current icon cycles to the
@@ -301,8 +301,8 @@ pages:
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
-      modifiedTime: 1743713784392
-      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      modifiedTime: 1747174574955
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.8QpHd2w3fWyC0Oke'
@@ -337,7 +337,7 @@ pages:
         that requires an attack roll and does
         damage</p></li><li><p><strong>Defenses</strong> - any way in which the
         item stops incoming damage</p></li><li><p><strong>Spells</strong> - any
-        spells written opn or bound into the item that can be cast by the user
+        spells written on or bound into the item that can be cast by the user
         when the item is readied.</p></li></ul></li><li><p>The
         <strong>Effects</strong> tab shows any Active Effects that the item has.
         More about Active Effects can be found <a
@@ -490,7 +490,7 @@ pages:
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
-      modifiedTime: 1747068867418
+      modifiedTime: 1747174863514
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null

@@ -3,8 +3,8 @@ type: equipment
 img: icons/containers/bags/case-leather-tan.webp
 system:
   notes: ''
-  cost: 3
-  wt: 2
+  cost: 40
+  wt: 4
   qty: 1
   capacity: 10
   container: null
@@ -23,7 +23,7 @@ _stats:
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1747069144573
-  modifiedTime: 1747069176717
+  modifiedTime: 1747171968307
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 ownership:
   default: 0

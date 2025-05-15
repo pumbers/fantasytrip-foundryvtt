@@ -1,0 +1,30 @@
+folder: zykFIiR8rqmUFXtR
+name: Pole Weapons
+type: talent
+_id: 3yeibZ2JfCgzkmkZ
+img: icons/skills/melee/hand-grip-staff-yellow-brown.webp
+system:
+  notes: ''
+  attacks: []
+  defenses: []
+  minIQ: 8
+  iqCost: 2
+  defaultAttribute: dx.value
+effects: []
+sort: 0
+ownership:
+  default: 0
+  DoJEEiLZ8CgYIaAq: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.342'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1747172672013
+  modifiedTime: 1747172728627
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+_key: '!items!3yeibZ2JfCgzkmkZ'
+
