@@ -1,5 +1,6 @@
 import { FT } from "../system/config.mjs";
 import * as Effects from "../util/effects.mjs";
+import * as Editor from "../util/editor.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -22,19 +23,19 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     },
     actions: {
       //
-      editHTML: FTItemSheet._editHTML,
+      editHTML: FTItemSheet.#editHTML,
       //
-      addAttack: FTItemSheet._addAttack,
-      deleteAttack: FTItemSheet._deleteAttack,
-      addDefense: FTItemSheet._addDefense,
-      deleteDefense: FTItemSheet._deleteDefense,
-      addSpell: FTItemSheet._addSpell,
-      deleteSpell: FTItemSheet._deleteSpell,
+      addAttack: FTItemSheet.#addAttack,
+      deleteAttack: FTItemSheet.#deleteAttack,
+      addDefense: FTItemSheet.#addDefense,
+      deleteDefense: FTItemSheet.#deleteDefense,
+      addSpell: FTItemSheet.#addSpell,
+      deleteSpell: FTItemSheet.#deleteSpell,
       //
-      createEffect: FTItemSheet._manageEffect,
-      editEffect: FTItemSheet._manageEffect,
-      deleteEffect: FTItemSheet._manageEffect,
-      toggleEffect: FTItemSheet._manageEffect,
+      createEffect: FTItemSheet.#manageEffect,
+      editEffect: FTItemSheet.#manageEffect,
+      deleteEffect: FTItemSheet.#manageEffect,
+      toggleEffect: FTItemSheet.#manageEffect,
     },
   };
 
@@ -117,7 +118,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
   /*  Sheet Listeners & Handlers                 */
   /* ------------------------------------------- */
 
-  static _addAttack(event, target) {
+  static #addAttack(event, target) {
     console.log("_addAttack", target.dataset);
     this.item.system.attacks.push({
       name: "Attack",
@@ -130,13 +131,13 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     this.item.update({ "system.attacks": this.item.system.attacks });
   }
 
-  static _deleteAttack(event, target) {
+  static #deleteAttack(event, target) {
     console.log("_deleteAttack", target.dataset);
     this.item.system.attacks.splice(target.dataset.index, 1);
     this.item.update({ "system.attacks": this.item.system.attacks });
   }
 
-  static _addDefense(event, target) {
+  static #addDefense(event, target) {
     console.log("_addDefense", target.dataset);
     this.item.system.defenses.push({
       name: "Defend",
@@ -145,67 +146,32 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     this.item.update({ "system.defenses": this.item.system.defenses });
   }
 
-  static _deleteDefense(event, target) {
+  static #deleteDefense(event, target) {
     console.log("_deleteDefense", target.dataset);
     this.item.system.defenses.splice(target.dataset.index, 1);
     this.item.update({ "system.defenses": this.item.system.defenses });
   }
 
-  static _addSpell(event, target) {
+  static #addSpell(event, target) {
     console.log("_addSpell", target.dataset);
     this.item.system.spells.push({ id: null, item: null });
     this.item.update({ "system.spells": this.item.system.spells });
   }
 
-  static _deleteSpell(event, target) {
+  static #deleteSpell(event, target) {
     console.log("_deleteSpell", target.dataset);
     this.item.system.spells.splice(target.dataset.index, 1);
     this.item.update({ "system.spells": this.item.system.spells });
   }
 
-  static _manageEffect(event, target) {
+  static #manageEffect(event, target) {
     console.log("_manageEffect", target.dataset);
     Effects.onManageActiveEffect(this.item, event, target);
   }
 
   editor = null;
 
-  static async _editHTML(event, target) {
-    console.log("_editHTML()", this.item, target.dataset);
-    const tab = target.closest("section.tab");
-    const wrapper = tab.querySelector(".prosemirror.editor");
-
-    wrapper.classList.add("active");
-    const editorContainer = wrapper.querySelector(".editor-container");
-    const content = foundry.utils.getProperty(this.item, target.dataset.fieldName);
-
-    this.editor = await foundry.applications.ux.ProseMirrorEditor.create(editorContainer, content, {
-      document: this.item,
-      fieldName: target.dataset.fieldName,
-      relativeLinks: true,
-      collaborate: true,
-      plugins: {
-        menu: ProseMirror.ProseMirrorMenu.build(ProseMirror.defaultSchema, {
-          destroyOnSave: true,
-          onSave: this._saveEditor.bind(this),
-        }),
-        keyMaps: ProseMirror.ProseMirrorKeyMaps.build(ProseMirror.defaultSchema, {
-          onSave: this._saveEditor.bind(this),
-        }),
-      },
-    });
-  }
-
-  async _saveEditor() {
-    console.log("_saveEditor()", this.editor);
-    const newValue = ProseMirror.dom.serializeString(this.editor.view.state.doc.content);
-    const [uuid, fieldName] = this.editor.uuid.split("#");
-    this.editor.destroy();
-    this.editor = null;
-    const currentValue = foundry.utils.getProperty(this.item, fieldName);
-    if (newValue !== currentValue) {
-      await this.item.update({ [fieldName]: newValue });
-    }
-    this.render(true);
+  static async #editHTML(event, target) {
+    Editor.editHTML.call(this, event, target);
   }
 }

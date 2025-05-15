@@ -2,13 +2,14 @@ import { FT } from "../system/config.mjs";
 import * as Handlers from "../util/handlers.mjs";
 import * as Effects from "../util/effects.mjs";
 import * as Action from "../system/action.mjs";
+import * as Editor from "../util/editor.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
 /**
  * Fantasy Trip Base Character Sheet
  *
- * @extends {ActorSheet} Extends the basic ActorSheet
+ * @extends {ActorSheetV2} Extends the basic ActorSheetV2
  */
 class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
   /* -------------------------------------------- */
@@ -21,28 +22,31 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       submitOnChange: true,
     },
     actions: {
-      attributeRoll: FTBaseCharacterSheet._attributeRoll,
-      changeMovement: FTBaseCharacterSheet._changeMovement,
-      attackRoll: FTBaseCharacterSheet._attackRoll,
-      damageRoll: FTBaseCharacterSheet._damageRoll,
+      chat: FTBaseCharacterSheet.#chat,
+      chatItem: FTBaseCharacterSheet.#chatItem,
       //
-      editHTML: FTBaseCharacterSheet._editHTML,
+      attributeRoll: FTBaseCharacterSheet.#attributeRoll,
+      changeMovement: FTBaseCharacterSheet.#changeMovement,
+      attackRoll: FTBaseCharacterSheet.#attackRoll,
+      damageRoll: FTBaseCharacterSheet.#damageRoll,
       //
-      talentRoll: FTBaseCharacterSheet._talentRoll,
+      editHTML: FTBaseCharacterSheet.#editHTML,
       //
-      createItem: FTBaseCharacterSheet._createItem,
-      editItem: FTBaseCharacterSheet._editItem,
-      deleteItem: FTBaseCharacterSheet._deleteItem,
-      changeItemLocation: FTBaseCharacterSheet._changeItemLocation,
-      castItem: FTBaseCharacterSheet._castItem,
+      talentRoll: FTBaseCharacterSheet.#talentRoll,
       //
-      castSpell: FTBaseCharacterSheet._castSpell,
-      cancelSpell: FTBaseCharacterSheet._cancelSpell,
+      createItem: FTBaseCharacterSheet.#createItem,
+      editItem: FTBaseCharacterSheet.#editItem,
+      deleteItem: FTBaseCharacterSheet.#deleteItem,
+      changeItemLocation: FTBaseCharacterSheet.#changeItemLocation,
+      castItem: FTBaseCharacterSheet.#castItem,
       //
-      createEffect: FTBaseCharacterSheet._manageEffect,
-      editEffect: FTBaseCharacterSheet._manageEffect,
-      deleteEffect: FTBaseCharacterSheet._manageEffect,
-      toggleEffect: FTBaseCharacterSheet._manageEffect,
+      castSpell: FTBaseCharacterSheet.#castSpell,
+      cancelSpell: FTBaseCharacterSheet.#cancelSpell,
+      //
+      createEffect: FTBaseCharacterSheet.#manageEffect,
+      editEffect: FTBaseCharacterSheet.#manageEffect,
+      deleteEffect: FTBaseCharacterSheet.#manageEffect,
+      toggleEffect: FTBaseCharacterSheet.#manageEffect,
     },
   };
 
@@ -105,27 +109,37 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   /*  Action Functions                       
   /* -------------------------------------------- */
 
-  static _createItem(event, target) {
+  static #chat(event, target) {
+    console.log("_chat()", target.dataset);
+    this.actor.chat();
+  }
+
+  static #chatItem(event, target) {
+    console.log("_chatItem()", target.dataset);
+    return Handlers.onChatItem(this.actor, event, target);
+  }
+
+  static #createItem(event, target) {
     console.log("_createItem()", target.dataset);
     Handlers.onCreateItem(this.actor, event, target).then((item) => item.sheet.render(true));
   }
 
-  static _editItem(event, target) {
+  static #editItem(event, target) {
     console.log("_editItem()", target.dataset);
     return Handlers.onEditItem(this.actor, event, target);
   }
 
-  static _deleteItem(event, target) {
+  static #deleteItem(event, target) {
     console.log("_deleteItem()", target.dataset);
     return Handlers.onDeleteItem(this.actor, event, target);
   }
 
-  static _changeItemLocation(event, target) {
+  static #changeItemLocation(event, target) {
     console.log("_changeItemLocation()", target.dataset);
     return Handlers.onIemChangeLocation(this.actor, FT.item.inventory.locations, event, target);
   }
 
-  static _changeMovement(event, target) {
+  static #changeMovement(event, target) {
     console.log("_changeMovement()", target.dataset);
     const modes = Object.keys(CONFIG.FT.actor.ma.modes);
     this.actor.update({
@@ -133,12 +147,12 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     });
   }
 
-  static _attributeRoll(event, target) {
+  static #attributeRoll(event, target) {
     console.log("_attributeRoll", target.dataset);
     Action.attributeRoll(this.actor, target.dataset);
   }
 
-  static _talentRoll(event, target) {
+  static #talentRoll(event, target) {
     console.log("_talentRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     if (!itemId) return;
@@ -146,7 +160,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     Action.talentRoll(this.actor, item, target.dataset);
   }
 
-  static _attackRoll(event, target) {
+  static #attackRoll(event, target) {
     console.log("_attackRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     if (!itemId) return;
@@ -154,7 +168,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     Action.attackRoll(this.actor, item, target.dataset);
   }
 
-  static _damageRoll(event, target) {
+  static #damageRoll(event, target) {
     console.log("_damageRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     if (!itemId) return;
@@ -162,7 +176,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     Action.damageRoll(this.actor, item, target.dataset);
   }
 
-  static _castSpell(event, target) {
+  static #castSpell(event, target) {
     console.log("_castSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     if (!itemId) return;
@@ -170,7 +184,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     Action.castingRoll(this.actor, item, target.dataset);
   }
 
-  static _cancelSpell(event, target) {
+  static #cancelSpell(event, target) {
     console.log("_cancelSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     if (!itemId) return;
@@ -178,7 +192,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     item.update({ "system.stSpent": 0 });
   }
 
-  static _castItem(event, target) {
+  static #castItem(event, target) {
     console.log("_castItem", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     if (!itemId) return;
@@ -187,55 +201,15 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     Action.castingRoll(this.actor, spell.data, { ...target.dataset, burn: spell.burn, item });
   }
 
-  static _manageEffect(event, target) {
+  static #manageEffect(event, target) {
     console.log("_manageEffect", target.dataset);
     Effects.onManageActiveEffect(this.actor, event, target);
   }
 
   editor = null;
 
-  static async _editHTML(event, target) {
-    console.log("_editHTML()", this.actor);
-    const tab = target.closest("section.tab");
-    const wrapper = tab.querySelector(".prosemirror.editor");
-
-    wrapper.classList.add("active");
-    const editorContainer = wrapper.querySelector(".editor-container");
-    const content = foundry.utils.getProperty(this.actor, target.dataset.fieldName);
-
-    this.editor = await foundry.applications.ux.ProseMirrorEditor.create(editorContainer, content, {
-      document: this.actor,
-      fieldName: target.dataset.fieldName,
-      relativeLinks: true,
-      collaborate: true,
-      plugins: {
-        menu: ProseMirror.ProseMirrorMenu.build(ProseMirror.defaultSchema, {
-          destroyOnSave: true,
-          onSave: this._saveEditor.bind(this),
-        }),
-        keyMaps: ProseMirror.ProseMirrorKeyMaps.build(ProseMirror.defaultSchema, {
-          onSave: this._saveEditor.bind(this),
-        }),
-      },
-    });
-  }
-
-  async _saveEditor() {
-    console.log("_saveEditor()", this.editor);
-    const newValue = ProseMirror.dom.serializeString(this.editor.view.state.doc.content);
-    const [uuid, fieldName] = this.editor.uuid.split("#");
-    this.editor.destroy();
-    this.editor = null;
-    const currentValue = foundry.utils.getProperty(this.actor, fieldName);
-    if (newValue !== currentValue) {
-      await this.actor.update({ [fieldName]: newValue });
-    }
-    this.render(true);
-  }
-
-  async _onDragStart(event) {
-    console.log("_onDragStart()", event.target?.dataset);
-    super._onDragStart(event);
+  static async #editHTML(event, target) {
+    Editor.editHTML.call(this, event, target);
   }
 
   async _onDrop(event) {
@@ -289,7 +263,6 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
     },
   };
 
-  /** @inheritdoc */
   /** @inheritdoc */
   static TABS = {
     primary: {

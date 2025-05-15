@@ -26,8 +26,6 @@ export function property(obj, key) {
 
 /**
  * Abbreviate a string to the first n characters (default 3)
- * @param {*} str
- * @param {*} options
  */
 export function abbrev(str, options) {
   return (
@@ -38,9 +36,6 @@ export function abbrev(str, options) {
 
 /**
  * Offset (+/-) a value by a given amount
- * @param {*} value
- * @param {*} offset
- * @param {*} options
  */
 export function offset(value, offset) {
   return Number(value) + Number(offset);
@@ -116,6 +111,9 @@ export function startsWith(text, value) {
   return text?.startsWith(value);
 }
 
-export function statusEffect(value) {
-  return CONFIG.statusEffects.find((s) => s.id === value);
+/**
+ * Find details of a status effect based on its symbolic id
+ */
+export function statusEffect(id) {
+  return CONFIG.statusEffects.find((s) => s.id === id);
 }
