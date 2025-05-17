@@ -38,7 +38,7 @@ languages:
     path: lang/en.json
 grid:
   type: 2
-  distance: 5
+  distance: 4
   units: ft
 primaryTokenAttribute: st
 documentTypes:

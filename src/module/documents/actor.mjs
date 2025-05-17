@@ -133,7 +133,7 @@ export class FTActor extends Actor {
    */
   chat(speaker) {
     // console.log("chat()", this);
-    foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/character.hbs`, this).then((content) =>
+    foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/actor.hbs`, this).then((content) =>
       ChatMessage.create({
         content: content,
         flavor: this.name,

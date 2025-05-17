@@ -99,6 +99,7 @@ FT:
           cost: Cost
           st: ST
       action:
+        chat: Send to chat
         attribute:
           roll: Attriute Roll
         notes:
