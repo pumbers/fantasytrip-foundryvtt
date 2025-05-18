@@ -2,17 +2,20 @@
 
 .fantasy-trip.character.sheet {
   .window-content {
-    @apply m-0 p-0 bg-stone-100 dark:bg-current;
-
     .sheet-header {
-      @apply p-2;
       input.name {
-        @apply w-full h-10 m-0 p-2 text-3xl font-bold;
+        @apply w-full h-10 m-0 p-1 text-3xl font-bold;
       }
     }
 
     img.profile-img {
       @apply rounded-none size-[179px] object-cover;
+    }
+
+    section#actions {
+      .action-group {
+        @apply grid grid-cols-[1fr_5fr_3fr_6fr_3fr] gap-1 border border-ft-dark rounded-none m-0 p-[2px] text-xs leading-4;
+      }
     }
 
     section#character-sheet-notes {

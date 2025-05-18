@@ -2,10 +2,8 @@
 
 .fantasy-trip.npc.sheet {
   .window-content {
-    @apply m-0 p-0 bg-stone-100 dark:bg-current;
-
     .sheet-header {
-      @apply p-2 flex flex-row gap-2;
+      @apply flex flex-row gap-2;
       input.name {
         @apply w-full h-10 m-0 p-1 text-3xl font-bold;
       }
@@ -15,9 +13,16 @@
       @apply rounded-none size-10 object-cover flex-none;
     }
 
-    section[data-tab="notes"] {
+    section#actions {
+      .action-group {
+        @apply grid grid-cols-[1fr_5fr_3fr_6fr_3fr] gap-1 border border-ft-dark rounded-none m-0 p-[2px] text-xs leading-4;
+      }
+    }
+
+    section#character-sheet-notes {
+      @apply grow;
       .prosemirror.editor {
-        @apply min-h-[28rem];
+        @apply h-full;
       }
     }
   }

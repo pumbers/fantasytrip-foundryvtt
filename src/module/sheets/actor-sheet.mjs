@@ -319,7 +319,7 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
     id: "npc-sheet",
     classes: [FT.id, "npc", "sheet"],
     position: {
-      width: 445,
+      width: 460,
       height: 430,
     },
   };

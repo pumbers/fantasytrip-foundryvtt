@@ -2,7 +2,7 @@
 <section id="{{partId}}" class="tab {{tabs.character.cssClass}}" data-group="primary" data-tab="character">
     <div class="flex flex-col gap-2">
         {{!-- Type, Race, Job --}}
-        <div class="grid grid-cols-5 gap-1 m-0 p-0">
+        <section id="character" class="grid grid-cols-5 gap-1 m-0 p-0">
             <div class="field col-span-2">
                 <label>{{localize "FT.actor.sheet.label.type"}}</label>
                 <select name="system.type">
@@ -38,22 +38,21 @@
                     <input type="number" name="system.job.risk.high" value="{{system.job.risk.high}}" min="12" max="18">
                 </div>
             </div>
-        </div>
+        </section>
 
         {{!-- Attributes --}}
-        <div class="flex flex-row gap-1 justify-between m-0 my-1 p-0">
+        <section id="attributes" class="flex flex-row gap-1 justify-between m-0 my-1 p-0">
             <div class="flex flex-col gap-1">
                 {{!-- Attribute Partial --}}
                 {{#*inline "attribute"}}
                 <div class="flex flex-row gap-1 justify-start" data-attribute="{{key}}">
                     <label
-                        class="m-0 p-1 bg-stone-900 text-stone-200 dark:bg-stone-200 dark:text-stone-900 text-xl text-center uppercase min-w-10 rounded-none">{{localize
+                        class="m-0 p-1 bg-ft-dark text-ft-light text-xl text-center uppercase min-w-10 rounded-none leading-8">{{localize
                         (concat "FT.actor.attribute." key ".max")}}</label>
                     <div class="flex flex-row gap-0">
                         <input class="m-0 !text-center !text-xl !h-full !w-14" type="number" name="system.{{key}}.max"
                             min="0" value="{{attr.max}}" />
-                        <a title="{{title}}"
-                            class="!p-2 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
+                        <a title="{{title}}" class="!p-2 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
                             data-action="attributeRoll" data-attribute="{{key}}.max" data-type="save"><i
                                 class="icon-d6 text-xl"></i></a>
                     </div>
@@ -62,16 +61,14 @@
                         {{#if roll}}
                         <div class="flex flex-row gap-0">
                             <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                            <a title="{{title}}"
-                                class="!p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
+                            <a title="{{title}}" class="!p-1 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
                                 data-action="attributeRoll" data-attribute="{{key}}.value" data-type="save"><i
                                     class="icon-d6"></i></a>
                         </div>
                         {{else if action}}
                         <div class="flex flex-row gap-0">
                             <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                            <a title="{{title}}"
-                                class="!p-1 border-y-[1px] border-r-[1px] border-stone-900 dark:border-stone-400 sheet-button"
+                            <a title="{{title}}" class="!p-1 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
                                 data-action="{{name}}"><i class="{{icon}}"></i></a>
                         </div>
                         {{else}}
@@ -103,18 +100,18 @@
             </div> --}}
             <img class="profile-img" src="{{actor.img}}" data-action="editImage" data-edit="img"
                 title="{{actor.name}}" />
-        </div>
+        </section>
 
-        <div class="flex flex-col gap-1">
+        <section id="status" class="flex flex-col gap-1">
             {{!-- Encumbrance --}}
             <div class="grid grid-cols-8 gap-1 text-xs text-center">
-                <span class="border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 dark:bg-stone-700"
+                <span class="m-0 p-0 border border-ft-dark bg-ft-dark/10 rounded-none"
                     title="{{localize 'FT.actor.sheet.label.encumbrance'}}">
                     <i class="icon-knapsack"></i>
                 </span>
                 {{#each system.encumbrance.capacity as |capacity|}}
                 <span
-                    class="border-[1px] border-stone-900 text-stone-900 dark:text-stone-200 dark:border-stone-400 rounded-none m-0 p-0 {{#if (eq @index ../system.encumbrance.level)}}{{lookup ../FT.actor.tracks.encumbrance.colors @index}}{{/if}}"
+                    class="border border-ft-dark rounded-none m-0 p-0 {{#if (eq @index ../system.encumbrance.level)}}{{lookup ../FT.actor.tracks.encumbrance.colors @index}}{{/if}}"
                     title="{{localize (concat 'FT.actor.sheet.label.encumbranceLevel.' @index)}}">
                     {{numberFormat capacity decimals=0}}&thinsp;{{localize 'FT.actor.sheet.table.items.unit'}}
                 </span>
@@ -123,12 +120,11 @@
 
             {{!-- Fatigue & Damage --}}
             <div class="grid grid-cols-8 gap-1 text-xs text-center">
-                <span class="border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 dark:bg-stone-700"
+                <span class="m-0 p-0 border border-ft-dark bg-ft-dark/10 rounded-none"
                     title="{{localize 'FT.actor.sheet.label.health'}}">
                     <i class="icon-death-skull"></i>
                 </span>
-                <span
-                    class="col-span-7 border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 flex flex-row gap-0">
+                <span class="col-span-7 border border-ft-dark rounded-none m-0 p-0 flex flex-row gap-0">
                     {{#each (range system.damage)}}
                     <span class="grow {{../FT.actor.tracks.damage.color}}"
                         title="{{localize 'FT.actor.sheet.label.damage'}}"></span>
@@ -146,12 +142,11 @@
             {{!-- Staff Mana (if a wizard) --}}
             {{#if (eq system.type "wizard")}}
             <div class="grid grid-cols-8 gap-1 text-xs text-center">
-                <span class="border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 dark:bg-stone-700"
+                <span class="m-0 p-0 border border-ft-dark bg-ft-dark/10 rounded-none"
                     title="{{localize 'FT.actor.sheet.label.mana'}}">
                     <i class="icon-wizard-staff"></i>
                 </span>
-                <span
-                    class="col-span-7 border-[1px] border-stone-900 dark:border-stone-400 rounded-none m-0 p-0 flex flex-row gap-0">
+                <span class="col-span-7 border border-ft-dark rounded-none m-0 p-0 flex flex-row gap-0">
                     {{#each (range system.mana.value)}}
                     <span class="grow {{../FT.actor.tracks.mana.color}}"></span>
                     {{/each}}
@@ -191,14 +186,13 @@
                         name="system.initiative.situation" value="{{system.initiative.situation}}">
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="flex flex-col gap-1">
+        <section id="actions" class="flex flex-col gap-1">
 
             {{!-- Offenses --}}
             {{#each offenses as | offense |}}
-            <div data-item-id="{{offense._id}}"
-                class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
+            <div data-item-id="{{offense._id}}" class="action-group">
                 <img class="w-4 h-4" src="{{offense.img}}" alt="">
                 <span>{{offense.name}}</span>
                 {{#each offense.system.attacks}}
@@ -231,8 +225,7 @@
 
             {{!-- Defenses --}}
             {{#each defenses as | defense |}}
-            <div data-item-id="{{defense._id}}"
-                class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
+            <div data-item-id="{{defense._id}}" class="action-group">
                 <img class="w-4 h-4" src="{{defense.img}}" alt="">
                 <span>{{defense.name}}</span>
                 {{#each defense.system.defenses}}
@@ -244,8 +237,7 @@
 
             {{!-- Castable Items --}}
             {{#each castables as | castable |}}
-            <div data-item-id="{{castable._id}}"
-                class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
+            <div data-item-id="{{castable._id}}" class="action-group">
                 <img class="w-4 h-4" src="{{castable.img}}" alt="">
                 <span>{{castable.name}}</span>
                 {{#each castable.system.spells}}
@@ -261,8 +253,7 @@
 
             {{!-- Active Spells --}}
             {{#each cast as | spell |}}
-            <div data-item-id="{{spell._id}}"
-                class="grid grid-cols-[1fr_6fr_3fr_6fr_3fr] gap-1 border-[1px] dark:border-stone-400 dark:text-stone-200 rounded-none m-0 p-[2px] text-xs leading-4">
+            <div data-item-id="{{spell._id}}" class="action-group">
                 <img class="w-4 h-4" src="{{spell.img}}" alt="">
                 <span>{{spell.name}}</span>
                 <span><i class="icon-pentacle mr-1"></i>{{spell.system.stSpent}}/{{spell.system.stToMaintain}}</span>
@@ -271,7 +262,7 @@
                     "FT.actor.sheet.action.spell.cancel"}}</a>
             </div>
             {{/each}}
-        </div>
+    </div>
 
     </div>
 </section>

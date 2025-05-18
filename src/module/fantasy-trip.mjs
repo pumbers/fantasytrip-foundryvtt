@@ -217,7 +217,7 @@ Hooks.once("init", async function () {
 /* -------------------------------------------- */
 
 Hooks.on("ready", async () => {
-  ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
-  ui.notifications.info(game.i18n.localize("FT.messages.notice"));
+  // ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
+  // ui.notifications.info(game.i18n.localize("FT.messages.notice"));
   console.info(FT.prefix, "System ready");
 });
