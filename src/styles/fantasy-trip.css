@@ -87,7 +87,7 @@
           @apply mt-6 block;
         }
         .editor-container {
-          @apply mt-6 hidden;
+          @apply mt-6 hidden overflow-y-auto;
         }
         &.active {
           a {

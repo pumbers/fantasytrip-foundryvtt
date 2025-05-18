@@ -40,7 +40,7 @@
       }
     }
 
-    section#character-sheet-notes {
+    section#npc-sheet-notes {
       @apply grow;
       .prosemirror.editor {
         @apply h-full;
