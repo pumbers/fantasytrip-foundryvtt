@@ -3,7 +3,7 @@
     {{#each items as | item |}}
     {{#each item.system.defenses as | defense |}}
     <div
-        class="grid grid-cols-[1fr_1fr_6fr_4fr_3fr] gap-1 border-[1px] border-stone-900 dark:border-stone-400 rounded-none text-stone-900 dark:text-stone-200 m-0 p-[2px] text-xs leading-4">
+        class="grid grid-cols-[1fr_1fr_6fr_4fr_3fr] gap-1 border-[1px] border-ft-dark dark:border-ft-light rounded-none text-ft-dark dark:text-ft-light m-0 p-[2px] text-xs leading-4">
         <input class="!my-0" type="checkbox" id="defense" value="{{defense.hitsStopped}}" checked>
         <img src="{{item.img}}" class="w-[1.5em] h-[1.5em]">
         <div>{{item.name}}</div>

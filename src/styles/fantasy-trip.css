@@ -5,20 +5,23 @@
 @source "../module/system/config.mjs";
 
 @theme {
-  --color-ft-light: oklch(97% 0 0);
+  --color-ft-sheet: oklch(97% 0 0);
+  --color-ft-light: oklch(87% 0 0);
   --color-ft-dark: oklch(26.9% 0 0);
   /* --color-ft-dark: oklch(76.8% 0.233 130.85); */
 }
 
+@custom-variant dark (&:where(.theme-dark, .theme-dark *));
+
 .fantasy-trip,
 .fantasy-trip.application {
   .window-content {
-    @apply bg-ft-light text-ft-dark dark:bg-ft-dark dark:text-ft-light;
+    @apply bg-ft-sheet text-ft-dark dark:bg-ft-dark dark:text-ft-light;
 
     input,
     textarea,
     select {
-      @apply !appearance-auto w-full h-6 border rounded-none m-0 p-1 leading-4 border-ft-dark bg-ft-dark/10 text-ft-dark;
+      @apply !appearance-auto w-full h-6 border rounded-none m-0 p-1 leading-4 border-ft-dark dark:border-ft-light bg-ft-dark/10 text-ft-dark dark:bg-ft-light/10 dark:text-ft-light;
       &::placeholder {
         @apply opacity-80;
       }
@@ -29,18 +32,18 @@
         @apply cursor-not-allowed bg-transparent;
       }
       &[disabled] {
-        @apply cursor-not-allowed text-ft-dark/500 border-none;
+        @apply cursor-not-allowed text-ft-dark/50 dark:text-ft-light/50 border-none;
       }
     }
 
     table {
-      @apply text-xs m-0 p-0 text-ft-dark;
+      @apply text-xs m-0 p-0 text-ft-dark dark:text-ft-light;
       thead {
         text-shadow: none;
-        @apply m-0 p-0 border-none bg-ft-dark text-ft-light;
+        @apply m-0 p-0 border-none bg-ft-dark dark:bg-ft-light/40 text-ft-light;
       }
       tr:nth-child(even) {
-        @apply bg-ft-dark/10;
+        @apply bg-ft-dark/10 dark:bg-ft-light/10;
       }
       th,
       td {
@@ -60,14 +63,14 @@
       }
       tfoot {
         text-shadow: none;
-        @apply m-0 p-0 border-none bg-ft-dark/40 text-ft-light;
+        @apply m-0 p-0 border-none bg-ft-dark/40 dark:bg-ft-light/20 text-ft-light;
       }
     }
 
     nav.sheet-tabs.tabs {
-      @apply my-2 border-ft-dark text-[0.6rem] uppercase;
+      @apply my-2 border-ft-dark dark:border-ft-light text-[0.6rem] uppercase;
       a {
-        @apply text-ft-dark;
+        @apply text-ft-dark dark:text-ft-light;
         &.active {
           @apply font-bold;
         }
@@ -101,7 +104,7 @@
     }
 
     fieldset {
-      @apply border border-ft-dark rounded-none m-0 p-1;
+      @apply border border-ft-dark dark:border-ft-light rounded-none m-0 p-2;
     }
 
     .field {
@@ -133,7 +136,7 @@
     }
 
     button {
-      @apply border-ft-dark bg-ft-dark/10 text-ft-dark;
+      @apply border-ft-dark dark:border-ft-light bg-ft-dark/10 text-ft-dark dark:bg-ft-light/10 dark:text-ft-light;
     }
 
     .draggable {
@@ -149,9 +152,9 @@
     }
 
     [data-action].sheet-button {
-      @apply block bg-yellow-100 dark:bg-yellow-900;
+      @apply block bg-yellow-100 dark:bg-yellow-100/40;
       &:hover {
-        @apply bg-yellow-300 dark:bg-yellow-700;
+        @apply bg-yellow-300 dark:bg-yellow-300/40;
       }
     }
   }

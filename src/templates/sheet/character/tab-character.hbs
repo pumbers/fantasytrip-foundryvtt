@@ -46,30 +46,27 @@
                 {{!-- Attribute Partial --}}
                 {{#*inline "attribute"}}
                 <div class="flex flex-row gap-1 justify-start" data-attribute="{{key}}">
-                    <label
-                        class="m-0 p-1 bg-ft-dark text-ft-light text-xl text-center uppercase min-w-10 rounded-none leading-8">{{localize
+                    <label class="attribute text-xl text-center min-w-10 leading-8">{{localize
                         (concat "FT.actor.attribute." key ".max")}}</label>
                     <div class="flex flex-row gap-0">
                         <input class="m-0 !text-center !text-xl !h-full !w-14" type="number" name="system.{{key}}.max"
                             min="0" value="{{attr.max}}" />
-                        <a title="{{title}}" class="!p-2 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
-                            data-action="attributeRoll" data-attribute="{{key}}.max" data-type="save"><i
-                                class="icon-d6 text-xl"></i></a>
+                        <a title="{{title}}" class="!p-2 sheet-button" data-action="attributeRoll"
+                            data-attribute="{{key}}.max" data-type="save"><i class="icon-d6 text-xl"></i></a>
                     </div>
                     <div class="field w-14">
                         <label>{{localize "FT.actor.sheet.label.adjusted"}}</label>
                         {{#if roll}}
                         <div class="flex flex-row gap-0">
                             <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                            <a title="{{title}}" class="!p-1 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
-                                data-action="attributeRoll" data-attribute="{{key}}.value" data-type="save"><i
-                                    class="icon-d6"></i></a>
+                            <a title="{{title}}" class="!p-1 sheet-button" data-action="attributeRoll"
+                                data-attribute="{{key}}.value" data-type="save"><i class="icon-d6"></i></a>
                         </div>
                         {{else if action}}
                         <div class="flex flex-row gap-0">
                             <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                            <a title="{{title}}" class="!p-1 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
-                                data-action="{{name}}"><i class="{{icon}}"></i></a>
+                            <a title="{{title}}" class="!p-1 sheet-button" data-action="{{name}}"><i
+                                    class="{{icon}}"></i></a>
                         </div>
                         {{else}}
                         <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />\
@@ -104,14 +101,13 @@
 
         <section id="status" class="flex flex-col gap-1">
             {{!-- Encumbrance --}}
-            <div class="grid grid-cols-8 gap-1 text-xs text-center">
-                <span class="m-0 p-0 border border-ft-dark bg-ft-dark/10 rounded-none"
-                    title="{{localize 'FT.actor.sheet.label.encumbrance'}}">
+            <div class="track">
+                <span class="track-type" title="{{localize 'FT.actor.sheet.label.encumbrance'}}">
                     <i class="icon-knapsack"></i>
                 </span>
                 {{#each system.encumbrance.capacity as |capacity|}}
                 <span
-                    class="border border-ft-dark rounded-none m-0 p-0 {{#if (eq @index ../system.encumbrance.level)}}{{lookup ../FT.actor.tracks.encumbrance.colors @index}}{{/if}}"
+                    class="track-gauge {{#if (eq @index ../system.encumbrance.level)}}{{lookup ../FT.actor.tracks.encumbrance.colors @index}}{{/if}}"
                     title="{{localize (concat 'FT.actor.sheet.label.encumbranceLevel.' @index)}}">
                     {{numberFormat capacity decimals=0}}&thinsp;{{localize 'FT.actor.sheet.table.items.unit'}}
                 </span>
@@ -119,12 +115,11 @@
             </div>
 
             {{!-- Fatigue & Damage --}}
-            <div class="grid grid-cols-8 gap-1 text-xs text-center">
-                <span class="m-0 p-0 border border-ft-dark bg-ft-dark/10 rounded-none"
-                    title="{{localize 'FT.actor.sheet.label.health'}}">
+            <div class="track">
+                <span class="track-type" title="{{localize 'FT.actor.sheet.label.health'}}">
                     <i class="icon-death-skull"></i>
                 </span>
-                <span class="col-span-7 border border-ft-dark rounded-none m-0 p-0 flex flex-row gap-0">
+                <span class="track-gauge col-span-7  flex flex-row gap-0">
                     {{#each (range system.damage)}}
                     <span class="grow {{../FT.actor.tracks.damage.color}}"
                         title="{{localize 'FT.actor.sheet.label.damage'}}"></span>
@@ -141,12 +136,11 @@
 
             {{!-- Staff Mana (if a wizard) --}}
             {{#if (eq system.type "wizard")}}
-            <div class="grid grid-cols-8 gap-1 text-xs text-center">
-                <span class="m-0 p-0 border border-ft-dark bg-ft-dark/10 rounded-none"
-                    title="{{localize 'FT.actor.sheet.label.mana'}}">
+            <div class="track">
+                <span class="track-type" title="{{localize 'FT.actor.sheet.label.mana'}}">
                     <i class="icon-wizard-staff"></i>
                 </span>
-                <span class="col-span-7 border border-ft-dark rounded-none m-0 p-0 flex flex-row gap-0">
+                <span class="track-gauge col-span-7 flex flex-row gap-0">
                     {{#each (range system.mana.value)}}
                     <span class="grow {{../FT.actor.tracks.mana.color}}"></span>
                     {{/each}}

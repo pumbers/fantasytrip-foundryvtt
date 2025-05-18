@@ -3,16 +3,17 @@
     <div class="flex flex-col gap-2">
         {{!-- Attacks --}}
         <fieldset class="flex flex-col gap-4 justify-start">
-            <legend>{{localize "FT.item.sheet.label.attacks"}}&nbsp;<i class="fa fa-plus-square"
-                    data-action="addAttack"></i></legend>
+            <legend>{{localize "FT.item.sheet.label.attacks"}}&nbsp;<a data-action="addAttack"> <i
+                        title="{{localize 'FT.item.sheet.action.addAction'}}" class="fa fa-plus-square"></i> </a>
+            </legend>
             {{#each system.attacks as | attack |}}
             <div class="grid grid-cols-5 gap-1">
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.attackAction"}}</label>
                     <div class="flex flex-row gap-0">
-                        <span
-                            class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] border-stone-900 dark:border-stone-400 text-xs dark:bg-stone-200"
-                            data-action="deleteAttack" data-index="{{@index}}"><i class="fas fa-trash"></i></span>
+                        <a title="{{localize 'FT.item.sheet.action.deleteAction'}}"
+                            class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="deleteAttack"
+                            data-index="{{@index}}"><i class="fas fa-trash"></i></a>
                         <input class="!rounded-l-none" type="text" name="system.attacks.{{@index}}.action"
                             value="{{attack.action}}">
                     </div>
@@ -59,15 +60,17 @@
         </fieldset>
         {{!-- Defenses --}}
         <fieldset class="flex flex-col gap-1 justify-start">
-            <legend>{{localize "FT.item.sheet.label.defenses"}}&nbsp;<i class="fa fa-plus-square"
-                    data-action="addDefense"></i></legend>
+            <legend>{{localize "FT.item.sheet.label.defenses"}}&nbsp;<a data-action="addDefense"> <i
+                        title="{{localize 'FT.item.sheet.action.addAction'}}" class="fa fa-plus-square"></i> </a>
+            </legend>
             {{#each system.defenses as | defense |}}
             <div class="grid grid-cols-4 gap-1">
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.defenseAction"}}</label>
                     <div class="flex flex-row gap-0">
-                        <span class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs"
-                            data-action="deleteDefense" data-index="{{@index}}"><i class="fas fa-trash"></i></span>
+                        <a title="{{localize 'FT.item.sheet.action.deleteAction'}}"
+                            class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="deleteDefense"
+                            data-index="{{@index}}"><i class="fas fa-trash"></i></a>
                         <input class="!rounded-l-none" type="text" name="system.defenses.{{@index}}.action"
                             value="{{defense.action}}">
                     </div>
@@ -83,15 +86,17 @@
         {{!-- Spells --}}
         {{#if (eq item.type "equipment")}}
         <fieldset class="flex flex-col gap-1 justify-start">
-            <legend>{{localize "FT.item.sheet.label.spells"}}&nbsp;<i class="fa fa-plus-square"
-                    data-action="addSpell"></i></legend>
+            <legend>{{localize "FT.item.sheet.label.spells"}}&nbsp;<a data-action="addSpell"> <i
+                        title="{{localize 'FT.item.sheet.action.addAction'}}" class="fa fa-plus-square"></i> </a>
+            </legend>
             {{#each system.spells as | spell |}}
             <div class="grid grid-cols-3 gap-1">
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.name"}}</label>
                     <div class="flex flex-row gap-0">
-                        <span class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="deleteSpell"
-                            data-index="{{@index}}"><i class="fas fa-trash"></i></span>
+                        <a title="{{localize 'FT.item.sheet.action.deleteAction'}}"
+                            class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="deleteSpell"
+                            data-index="{{@index}}"><i class="fas fa-trash"></i></a>
                         <select name="system.spells.{{@index}}.id">
                             <option value=""></option>
                             {{selectOptions ../selectOptions.worldSpells selected=spell.id}}

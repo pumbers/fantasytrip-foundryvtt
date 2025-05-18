@@ -1,24 +1,19 @@
 @reference "./fantasy-trip.css";
 
 .fantasy-trip.application {
-  & .window-content {
-    @apply bg-none m-0 p-4 bg-stone-100 dark:bg-stone-900;
-  }
-
   &#ft-dice-roller {
-    @apply text-stone-900 dark:text-stone-200;
     & input[type="radio"],
     input[type="checkbox"] {
       @apply hidden;
     }
     & input ~ label {
-      @apply inline-block w-full p-1 cursor-pointer border border-stone-900 dark:border-stone-400 text-center text-xs;
+      @apply inline-block w-full p-1 cursor-pointer border border-ft-dark dark:border-ft-light text-center text-xs;
       &:hover {
-        @apply bg-amber-100;
+        @apply bg-yellow-100 dark:bg-yellow-100/50;
       }
     }
     & input:checked ~ label {
-      @apply bg-yellow-300 text-stone-900 dark:bg-yellow-900 dark:text-stone-200;
+      @apply bg-yellow-300 dark:bg-yellow-300/40 text-ft-dark dark:text-ft-light;
     }
   }
 

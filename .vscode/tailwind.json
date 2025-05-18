@@ -80,6 +80,16 @@
           "url": "https://tailwindcss.com/docs/theme"
         }
       ]
+    },
+    {
+      "name": "@custom-variant",
+      "description": "",
+      "references": [
+        {
+          "name": "Tailwind Documentation",
+          "url": "https://tailwindcss.com/docs/adding-custom-styles"
+        }
+      ]
     }
   ]
 }

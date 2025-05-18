@@ -12,9 +12,30 @@
       @apply rounded-none size-[179px] object-cover;
     }
 
+    section#attributes {
+      label.attribute {
+        @apply m-0 p-1 border border-ft-dark dark:border-ft-light bg-ft-dark text-ft-light uppercase rounded-none;
+      }
+      .sheet-button {
+        @apply border-y-[1px] border-r-[1px] border-ft-dark dark:border-ft-light;
+      }
+    }
+
+    section#status {
+      .track {
+        @apply grid grid-cols-8 gap-1 text-xs text-center;
+        .track-type {
+          @apply m-0 p-0 border border-ft-dark dark:border-ft-light bg-ft-dark/10 dark:bg-ft-light/10 rounded-none;
+        }
+        .track-gauge {
+          @apply border border-ft-dark dark:border-ft-light rounded-none m-0 p-0;
+        }
+      }
+    }
+
     section#actions {
       .action-group {
-        @apply grid grid-cols-[1fr_5fr_3fr_6fr_3fr] gap-1 border border-ft-dark rounded-none m-0 p-[2px] text-xs leading-4;
+        @apply grid grid-cols-[1fr_5fr_3fr_6fr_3fr] gap-1 border border-ft-dark dark:border-ft-light rounded-none m-0 p-[2px] text-xs leading-4;
       }
     }
 
