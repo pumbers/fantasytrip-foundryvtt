@@ -64,5 +64,12 @@
             <input type="number" name="system.stToMaintain" value="{{system.stToMaintain}}" min="0">
         </div>
         {{/if}}
+        {{!-- Abilities --}}
+        {{#if (eq item.type "ability")}}
+        <div class="field">
+            <label>{{localize "FT.item.sheet.label.alwaysOn"}}</label>
+            <input class="!size-4" type="checkbox" name="system.isAlwaysOn" {{#if system.isAlwaysOn}}checked{{/if}} />
+        </div>
+        {{/if}}
     </div>
 </section>

@@ -83,6 +83,9 @@ FT:
           attribute: Attr.
           iq: IQ
           cost: Cost
+        abilities:
+          name: Ability
+          active: Active
         items:
           name: Item
           cost: $
@@ -105,11 +108,10 @@ FT:
         notes:
           edit: Edit Notes
         talent:
-          chat: Chat Talent
-          create: Add Talent
-          edit: Edit Talent
-          delete: Delete Talent
           roll: Roll
+        ability:
+          activate: Activate
+          cancel: Cancel
         item:
           chat: Chat Item
           create: Add Item

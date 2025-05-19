@@ -42,6 +42,12 @@
         text-shadow: none;
         @apply m-0 p-0 border-none bg-ft-dark dark:bg-ft-light/40 text-ft-light;
       }
+      tbody.break {
+        &:after {
+          content: "";
+          @apply block h-4;
+        }
+      }
       tr:nth-child(even) {
         @apply bg-ft-dark/10 dark:bg-ft-light/10;
       }
@@ -105,6 +111,9 @@
 
     fieldset {
       @apply border border-ft-dark dark:border-ft-light rounded-none m-0 p-2;
+      legend {
+        @apply font-bold uppercase;
+      }
     }
 
     .field {
@@ -115,9 +124,6 @@
     }
 
     .effect {
-      legend {
-        @apply font-bold uppercase;
-      }
       table {
         @apply h-4;
       }

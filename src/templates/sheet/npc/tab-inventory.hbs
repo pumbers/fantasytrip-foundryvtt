@@ -30,6 +30,25 @@
                     "FT.actor.sheet.action.talent.roll"}}</a>
             </td>
             <td></td>
+            {{!-- Ability --}}
+            {{else if (eq item.type "ability")}}
+            <td>
+                {{#unless item.system.isAlwaysOn}}
+                {{#if item.system.isReady}}
+                <a class="px-1 sheet-button" data-action="setItemField" data-field="system.isActive"
+                    data-value="false">{{localize
+                    "FT.actor.sheet.action.ability.cancel"}}</a>
+                {{else}}
+                <a class="px-1 sheet-button" data-action="setItemField" data-field="system.isActive"
+                    data-value="true">{{localize
+                    "FT.actor.sheet.action.ability.activate"}}</a>
+                {{/if}}
+                {{/unless}}
+            </td>
+            <td>{{#if item.system.isReady}}
+                <i title="{{localize 'FT.actor.sheet.table.abilities.active'}}"
+                    class="icon-embrassed-energy mr-2"></i>{{/if}}
+            </td>
             {{!-- Spell --}}
             {{else if (eq item.type "spell")}}
             <td>
@@ -53,7 +72,7 @@
                 {{/unless}}
             </td>
             {{/if}}
-            <td class="flex flex-row gap-[2px]">
+            <td>
                 <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.item.chat'}}"><i
                         class="fa fa-comment"></i></a>
                 <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.item.edit'}}"><i
@@ -67,23 +86,30 @@
         <table>
             {{!-- Talents --}}
             {{> "table-header" itemName="FT.item.type.talent" itemType="talent" location=false}}
-            <tbody class="border-b">
-                {{#each talents as |item|}}
-                {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
+            <tbody class="break">
+                {{#each talents as |talent|}}
+                {{> "table-row" item=talent showItemIcon=../settings.showItemIcons FT=../FT}}
+                {{/each}}
+            </tbody>
+            {{!-- Abilities --}}
+            {{> "table-header" itemName="FT.item.type.ability" itemType="ability" location=false}}
+            <tbody class="break">
+                {{#each abilities as |ability|}}
+                {{> "table-row" item=ability showItemIcon=../settings.showItemIcons FT=../FT}}
                 {{/each}}
             </tbody>
             {{!-- Inventory --}}
             {{> "table-header" itemName="FT.item.type.equipment" itemType="equipment" location=true}}
-            <tbody class="border-b">
+            <tbody class="break">
                 {{#each inventory as |item|}}
                 {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
                 {{/each}}
             </tbody>
             {{!-- Spells --}}
             {{> "table-header" itemName="FT.item.type.spell" itemType="spell" location=false}}
-            <tbody class="border-b">
-                {{#each spells as |item|}}
-                {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
+            <tbody class="break">
+                {{#each spells as |spell|}}
+                {{> "table-row" item=spell showItemIcon=../settings.showItemIcons FT=../FT}}
                 {{/each}}
             </tbody>
         </table>

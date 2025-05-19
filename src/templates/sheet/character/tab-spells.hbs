@@ -1,15 +1,13 @@
 {{!-- Spells Tab --}}
 <section id="{{partId}}" class="tab {{tabs.spells.cssClass}}" data-group="primary" data-tab="spells">
     {{#*inline "actions"}}
-    <td class="shrink">
-        <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.item.chat'}}"><i
-                class="fa fa-comment"></i></a>
-        <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.item.edit'}}"><i class="fas fa-edit"></i></a>
-        <a data-action="deleteItem" title="{{localize 'FT.actor.sheet.action.item.delete'}}"><i
-                class="fas fa-trash"></i></a>
-    </td>
+    <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.item.chat'}}"><i class="fa fa-comment"></i></a>
+    <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.item.edit'}}"><i class="fas fa-edit"></i></a>
+    <a data-action="deleteItem" title="{{localize 'FT.actor.sheet.action.item.delete'}}"><i
+            class="fas fa-trash"></i></a>
     {{/inline}}
 
+    {{!-- Spells --}}
     <table>
         <thead>
             <tr>
@@ -44,7 +42,7 @@
                 <a class="px-1 sheet-button" data-action="castSpell">{{localize "FT.actor.sheet.action.spell.cast"}}</a>
                 {{/if}}
             </td>
-            {{> actions}}
+            <td>{{> actions}}</td>
         </tr>
         {{/each}}
         <tfoot>

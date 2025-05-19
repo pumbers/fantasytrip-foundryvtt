@@ -65,6 +65,22 @@ export class FTTalentData extends FTBaseItemData {
 }
 
 /**
+ * Fantasy Trip Ability Data Model
+ */
+export class FTAbilityData extends FTBaseItemData {
+  static defineSchema() {
+    return Object.assign(super.defineSchema(), {
+      isActive: new BooleanField({ initial: false }),
+      isAlwaysOn: new BooleanField({ initial: false }),
+    });
+  }
+
+  get isReady() {
+    return this.isActive || this.isAlwaysOn;
+  }
+}
+
+/**
  * Fantasy Trip Spell Data Model
  */
 export class FTSpellData extends FTTalentData {

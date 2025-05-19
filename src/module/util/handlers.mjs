@@ -80,6 +80,23 @@ export function onIemChangeLocation(actor, locations, event, target) {
 }
 
 /**
+ * Set a field on an item
+ * @param {Actor} actor  The actor
+ * @param {Event} event   The originating click event
+ * @param {Target} target  The target element for the event
+ */
+export function onSetItemField(actor, event, target) {
+  const itemId = target?.closest("[data-item-id]").dataset?.itemId;
+  if (!itemId) return;
+  const item = actor.items.get(itemId);
+  if (!item) return;
+  const field = target.dataset.field;
+  const value = target.dataset.value;
+  if (!item || !value) return;
+  item.update({ [field]: value });
+}
+
+/**
  * Send item details to chat
  * @param {Actor} actor  The actor
  * @param {Event} event   The originating click event

@@ -19,6 +19,11 @@ export class FTItem extends Item {
         effect.update({ disabled: this.system.location !== "equipped" })
       );
     }
+
+    // Turn effects on for abilities only if active or always on
+    if (this.type === "ability") {
+      this.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: !this.system.isReady }));
+    }
   }
 
   /* ------------------------------------------- */

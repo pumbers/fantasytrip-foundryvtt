@@ -58,6 +58,9 @@
   & .icon-wizard-staff::before {
     content: url("../assets/icons/wizard-staff.svg");
   }
+  & .icon-embrassed-energy::before {
+    content: url("../assets/icons/embrassed-energy.svg");
+  }
 
   /* Actions */
   & .icon-sword-brandish::before {

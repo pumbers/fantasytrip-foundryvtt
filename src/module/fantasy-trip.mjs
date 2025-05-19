@@ -5,7 +5,7 @@ import { FTActor } from "./documents/actor.mjs";
 import { FTCharacterSheet, FTNPCSheet } from "./sheets/actor-sheet.mjs";
 
 import { FTItem } from "./documents/item.mjs";
-import { FTEquipmentData, FTTalentData, FTSpellData } from "./data/item-data.mjs";
+import { FTEquipmentData, FTTalentData, FTSpellData, FTAbilityData } from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
 import { FTCombat } from "./documents/combat.mjs";
@@ -174,8 +174,9 @@ Hooks.once("init", async function () {
   // Item document configuration
   CONFIG.Item.dataModels = {
     talent: FTTalentData,
-    spell: FTSpellData,
     equipment: FTEquipmentData,
+    spell: FTSpellData,
+    ability: FTAbilityData,
   };
   CONFIG.Item.documentClass = FTItem;
   foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);

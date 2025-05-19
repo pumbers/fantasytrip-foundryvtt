@@ -39,6 +39,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       deleteItem: FTBaseCharacterSheet.#deleteItem,
       changeItemLocation: FTBaseCharacterSheet.#changeItemLocation,
       castItem: FTBaseCharacterSheet.#castItem,
+      setItemField: FTBaseCharacterSheet.#setItemField,
       //
       castSpell: FTBaseCharacterSheet.#castSpell,
       cancelSpell: FTBaseCharacterSheet.#cancelSpell,
@@ -78,6 +79,9 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       inventory: this.actor.items
         .filter((item) => item.type === "equipment")
         .sort((a, b) => a.name.localeCompare(b.name)),
+      abilities: this.actor.items
+        .filter((item) => item.type === "ability")
+        .sort((a, b) => a.name.localeCompare(b.name)),
       // Attacks, Defenses, Magic Items, Readied Spells
       offenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasAttacks),
       defenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasDefenses),
@@ -110,33 +114,38 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   /* -------------------------------------------- */
 
   static #chat(event, target) {
-    console.log("_chat()", target.dataset);
+    console.log("#chat()", target.dataset);
     this.actor.chat();
   }
 
   static #chatItem(event, target) {
-    console.log("_chatItem()", target.dataset);
+    console.log("#chatItem()", target.dataset);
     return Handlers.onChatItem(this.actor, event, target);
   }
 
   static #createItem(event, target) {
-    console.log("_createItem()", target.dataset);
+    console.log("#createItem()", target.dataset);
     Handlers.onCreateItem(this.actor, event, target).then((item) => item.sheet.render(true));
   }
 
   static #editItem(event, target) {
-    console.log("_editItem()", target.dataset);
+    console.log("#editItem()", target.dataset);
     return Handlers.onEditItem(this.actor, event, target);
   }
 
   static #deleteItem(event, target) {
-    console.log("_deleteItem()", target.dataset);
+    console.log("#deleteItem()", target.dataset);
     return Handlers.onDeleteItem(this.actor, event, target);
   }
 
   static #changeItemLocation(event, target) {
-    console.log("_changeItemLocation()", target.dataset);
+    console.log("#changeItemLocation()", target.dataset);
     return Handlers.onIemChangeLocation(this.actor, FT.item.inventory.locations, event, target);
+  }
+
+  static #setItemField(event, target) {
+    console.log("#setItemField()", target.dataset);
+    return Handlers.onSetItemField(this.actor, event, target);
   }
 
   static #changeMovement(event, target) {

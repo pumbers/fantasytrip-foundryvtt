@@ -2,8 +2,9 @@ FT:
   item:
     type:
       talent: Talent
-      spell: Spell
       equipment: Equipment
+      spell: Spell
+      ability: Ability
     attack:
       type:
         natural: Natural
@@ -52,6 +53,7 @@ FT:
         attacks: Attacks
         defenses: Defenses
         spells: Spells
+        alwaysOn: Always on
       action:
         addAction: Add
         deleteAction: Delete
