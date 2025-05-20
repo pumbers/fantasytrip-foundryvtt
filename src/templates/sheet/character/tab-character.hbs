@@ -223,9 +223,7 @@
                 <img class="w-4 h-4" src="{{defense.img}}" alt="">
                 <span>{{defense.name}}</span>
                 {{#each defense.system.defenses}}
-                {{#unless @first}}
-                <span class="col-span-2"></span>
-                {{/unless}}
+                {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
                 <span><i class="icon-chest-armor mr-1"></i>{{hitsStopped}}</span>
                 <span>{{action}}</span>
                 {{/each}}

@@ -1,5 +1,33 @@
-const { HTMLField, SchemaField, NumberField, StringField, ArrayField, ForeignDocumentField, BooleanField } =
-  foundry.data.fields;
+const {
+  HTMLField,
+  SchemaField,
+  NumberField,
+  StringField,
+  ArrayField,
+  EmbeddedDataField,
+  ForeignDocumentField,
+  BooleanField,
+} = foundry.data.fields;
+
+class FTAttack extends foundry.abstract.DataModel {
+  static defineSchema() {
+    return {
+      action: new StringField(),
+      minST: new NumberField({ initial: 0 }),
+      type: new StringField(),
+      toHitMod: new NumberField({ initial: 0 }),
+      baseDamage: new StringField({ nullable: true }),
+      effects: new StringField(),
+      talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+    };
+  }
+}
+
+class FTDefense extends foundry.abstract.DataModel {
+  static defineSchema() {
+    return { action: new StringField(), hitsStopped: new NumberField({ initial: 0 }) };
+  }
+}
 
 /**
  * Fantasy Trip Base Item Data Model
@@ -8,25 +36,8 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
       notes: new HTMLField(),
-      attacks: new ArrayField(
-        new SchemaField({
-          action: new StringField(),
-          minST: new NumberField({ initial: 0 }),
-          type: new StringField(),
-          toHitMod: new NumberField({ initial: 0 }),
-          baseDamage: new StringField({ nullable: true }),
-          effects: new StringField(),
-          talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
-        }),
-        { initial: [] }
-      ),
-      defenses: new ArrayField(
-        new SchemaField({
-          action: new StringField(),
-          hitsStopped: new NumberField({ initial: 0 }),
-        }),
-        { initial: [] }
-      ),
+      attacks: new ArrayField(new EmbeddedDataField(FTAttack), { initial: [] }),
+      defenses: new ArrayField(new EmbeddedDataField(FTDefense), { initial: [] }),
     };
   }
 
@@ -87,7 +98,7 @@ export class FTSpellData extends FTTalentData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
       type: new StringField(),
-      stToCast: new SchemaField({ min: new NumberField({ initial: 0 }), max: new NumberField({ initial: 0 }) }),
+      stToCast: new SchemaField({ min: new NumberField({ initial: 1 }), max: new NumberField({ initial: 1 }) }),
       stToMaintain: new NumberField({ initial: 0 }),
       stSpent: new NumberField({ initial: 0 }),
     });
