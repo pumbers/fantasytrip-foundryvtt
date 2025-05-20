@@ -106,8 +106,8 @@ export class FTSpellData extends FTTalentData {
     return this.stToCast.min === this.stToCast.max ? this.stToCast.max : `${this.stToCast.min}-${this.stToCast.max}`;
   }
 
-  get canBeMaintained() {
-    return this.stToMaintain > 0;
+  get isPersistent() {
+    return this.stToMaintain > 0 || this.hasAttacks || this.hasDefenses;
   }
 }
 

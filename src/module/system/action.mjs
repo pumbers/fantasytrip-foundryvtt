@@ -563,7 +563,7 @@ export function castingRoll(actor, spell, options = {}) {
 
       if (margin >= 0) {
         // Mark the spell as cast and/or subtract the fatigue
-        if (spell.system.canBeMaintained) spell.update({ "system.stSpent": cost.st.value ?? 0 });
+        if (spell.system.isPersistent) spell.update({ "system.stSpent": cost.st.value ?? 0 });
 
         if (game.settings.get(FT.id, "applySpellEffectsAuto")) {
           // Transfer spell effects to targets
