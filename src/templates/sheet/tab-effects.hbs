@@ -40,18 +40,19 @@
                 </table>
                 <div class="actions">
                     {{#if (eq ../document.documentName effect.parent.documentName)}}
-                    <button data-action="editEffect">{{localize "FT.effect.action.edit"}}</button>
+                    <button type="button" data-action="editEffect">{{localize "FT.effect.action.edit"}}</button>
                     {{#unless (eq parent.type "equipment")}}
-                    <button data-action="toggleEffect">{{localize "FT.effect.action.toggle"}}</button>
+                    <button type="button" data-action="toggleEffect">{{localize "FT.effect.action.toggle"}}</button>
                     {{/unless}}
-                    <button data-action="deleteEffect">{{localize "FT.effect.action.delete"}}</button>
+                    <button type="button" data-action="deleteEffect">{{localize "FT.effect.action.delete"}}</button>
                     {{/if}}
                 </div>
             </div>
         </fieldset>
         {{/each}}
         <div>
-            <button class="ml-auto mr-0" data-action="createEffect">{{localize "FT.effect.action.create"}}</button>
+            <button type="button" class="ml-auto mr-0" data-action="createEffect">{{localize
+                "FT.effect.action.create"}}</button>
         </div>
     </div>
 </section>

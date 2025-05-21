@@ -61,7 +61,7 @@
         </div>
     </div>
     {{#if showDamageButton}}
-    <button class="!mt-4 ft-restricted ft-show-gm {{showOwnerClasses}}" data-ft-action="damage-roll"
+    <button type="button" class="!mt-4 ft-restricted ft-show-gm {{showOwnerClasses}}" data-ft-action="damage-roll"
         data-token-id="{{token._id}}" data-actor-id="{{actor._id}}" data-item-id="{{item._id}}"
         data-attack-index="{{attackIndex}}" data-multiplier="{{multiplier}}"><i
             class="icon-sword-brandish mr-2"></i>{{localize
