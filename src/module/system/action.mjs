@@ -479,7 +479,6 @@ function _applyDamage(actor, damageTaken, options = {}) {
   // console.log("Action._applyDamage", actor, damageTaken, options);
   actor.update({ "system.damage": actor.system.damage + damageTaken }).then((updatedActor) => {
     if (updatedActor?.system.isDead) {
-      updatedActor.toggleStatusEffect("dead", { active: true });
       ChatMessage.create({
         flavor: game.i18n.format(`FT.system.combat.chat.dead.${Math.floor(Math.random() * 6)}`, {
           name: actor.parent?.name ?? actor.name,
@@ -487,7 +486,6 @@ function _applyDamage(actor, damageTaken, options = {}) {
         }),
       });
     } else if (updatedActor?.system.isDown) {
-      updatedActor.toggleStatusEffect("unconscious", { active: true });
       ChatMessage.create({
         flavor: game.i18n.format(`FT.system.combat.chat.down.${Math.floor(Math.random() * 6)}`, {
           name: actor.parent?.name ?? actor.name,
