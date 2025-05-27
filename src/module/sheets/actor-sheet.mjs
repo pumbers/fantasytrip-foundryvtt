@@ -38,10 +38,11 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       editItem: FTBaseCharacterSheet.#editItem,
       deleteItem: FTBaseCharacterSheet.#deleteItem,
       changeItemLocation: FTBaseCharacterSheet.#changeItemLocation,
-      castItem: FTBaseCharacterSheet.#castItem,
+      castSpellFromItem: FTBaseCharacterSheet.#castSpellFromItem,
       setItemField: FTBaseCharacterSheet.#setItemField,
       //
       castSpell: FTBaseCharacterSheet.#castSpell,
+      maintainSpell: FTBaseCharacterSheet.#maintainSpell,
       cancelSpell: FTBaseCharacterSheet.#cancelSpell,
       //
       createEffect: FTBaseCharacterSheet.#manageEffect,
@@ -75,19 +76,30 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       },
       // Categorized items
       talents: this.actor.items.filter((item) => item.type === "talent").sort((a, b) => a.name.localeCompare(b.name)),
-      spells: this.actor.items.filter((item) => item.type === "spell").sort((a, b) => a.name.localeCompare(b.name)),
+      spells: this.actor.items
+        .filter((item) => item.type === "spell" && item.system.isKnown)
+        .sort((a, b) => a.name.localeCompare(b.name)),
       inventory: this.actor.items
         .filter((item) => item.type === "equipment")
         .sort((a, b) => a.name.localeCompare(b.name)),
       abilities: this.actor.items
         .filter((item) => item.type === "ability")
         .sort((a, b) => a.name.localeCompare(b.name)),
-      // Attacks, Defenses, Magic Items, Readied Spells
-      offenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasAttacks),
-      defenses: this.actor.items.filter((item) => item.system.isReady && item.system.hasDefenses),
-      castables: this.actor.items.filter((item) => item.system.isReady && item.system.hasSpells),
-      cast: this.actor.items.filter((item) => item.type === "spell" && item.system.isReady && !item.system.hasActions),
-      //
+      // Readied Attacks, Defenses, Magic Items, Active Spells
+      readied: this.actor.items
+        .filter((item) => item.system.isReady)
+        .map((item) => {
+          item.system.spells
+            ?.filter((spell) => !!spell.uuid)
+            .forEach((spell) => {
+              foundry.utils.fromUuid(spell.uuid).then((found) => {
+                spell.name = found.name;
+                spell.casting = found.system.casting;
+              });
+            });
+          return item;
+        })
+        .sort((a, b) => a.type.localeCompare(b.type) || a.name.localeCompare(b.name)),
       effects: Array.from(this.actor.allApplicableEffects()),
       enrichedNotes: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.notes),
     });
@@ -164,50 +176,64 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   static #talentRoll(event, target) {
     console.log("_talentRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-    if (!itemId) return;
     const item = this.actor.items.get(itemId);
+    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
     Action.talentRoll(this.actor, item, target.dataset);
   }
 
   static #attackRoll(event, target) {
     console.log("_attackRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-    if (!itemId) return;
     const item = this.actor.items.get(itemId);
+    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
     Action.attackRoll(this.actor, item, target.dataset);
   }
 
   static #damageRoll(event, target) {
     console.log("_damageRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-    if (!itemId) return;
     const item = this.actor.items.get(itemId);
+    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
     Action.damageRoll(this.actor, item, target.dataset);
   }
 
   static #castSpell(event, target) {
     console.log("_castSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-    if (!itemId) return;
     const item = this.actor.items.get(itemId);
+    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
     Action.castingRoll(this.actor, item, target.dataset);
+  }
+
+  static #maintainSpell(event, target) {
+    console.log("_maintainSpell", target.dataset);
+    const itemId = target?.closest("[data-item-id]").dataset?.itemId;
+    const item = this.actor.items.get(itemId);
+    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    this.actor.update({ "system.fatigue": this.actor.system.fatigue + item.system.stToMaintain });
   }
 
   static #cancelSpell(event, target) {
     console.log("_cancelSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-    if (!itemId) return;
-    const item = this.actor.items.get(itemId);
-    item.update({ "system.stSpent": 0 });
+    const spell = this.actor.items.get(itemId);
+    if (spell.system.isKnown) {
+      // Known spell, just set the casting ST to 0
+      spell.update({ "system.stSpent": 0 });
+    } else {
+      // Cast from item, so remove the spell
+      spell.delete();
+    }
   }
 
-  static #castItem(event, target) {
-    console.log("_castItem", target.dataset);
+  static #castSpellFromItem(event, target) {
+    console.log("_castSpellFromItem", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-    if (!itemId) return;
     const item = this.actor.items.get(itemId);
-    const spell = item.system.spells[target.dataset.index];
-    Action.castingRoll(this.actor, spell.data, { ...target.dataset, burn: spell.burn, item });
+    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    const spell = foundry.utils.fromUuidSync(target.dataset.spellUuid);
+    if (!spell) return console.error(FT.prefix, "Unable to find spell", target.dataset.spellUuid);
+    Action.castingRoll(this.actor, spell, { ...target.dataset, burn: target.dataset.burn, item });
   }
 
   static #manageEffect(event, target) {
@@ -267,8 +293,8 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
     id: "character-sheet",
     classes: [FT.id, "character", "sheet"],
     position: {
-      width: 430,
-      height: 640,
+      width: 450,
+      height: 670,
     },
   };
 
@@ -329,7 +355,7 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
     classes: [FT.id, "npc", "sheet"],
     position: {
       width: 460,
-      height: 430,
+      height: 450,
     },
   };
 

@@ -1,3 +1,4 @@
+import { FT } from "../system/config.mjs";
 import * as Action from "../system/action.mjs";
 
 export class FTChatMessage extends ChatMessage {}
@@ -7,10 +8,10 @@ export class FTChatMessage extends ChatMessage {}
  */
 Hooks.on("renderChatMessageHTML", async (chatMessage, html, messageData) => {
   html
-    .querySelectorAll("[data-ft-action='damage-roll']")
+    .querySelectorAll("[data-ft-action='damageRoll']")
     .forEach((e) => e.addEventListener("click", onDamageRoll.bind(chatMessage)));
   html
-    .querySelectorAll("[data-ft-action='apply-damage']")
+    .querySelectorAll("[data-ft-action='applyDamage']")
     .forEach((e) => e.addEventListener("click", onApplyDamage.bind(chatMessage)));
   // Hide restricted elements (like buttons)
   html.querySelectorAll(".ft-restricted").forEach((e) => (e.style.display = "none"));
@@ -25,16 +26,14 @@ Hooks.on("renderChatMessageHTML", async (chatMessage, html, messageData) => {
  * @param {Event} event
  */
 const onDamageRoll = async (event) => {
-  event.preventDefault();
-  const element = $(event?.currentTarget);
-  const dataset = element?.data();
-
+  // console.log("onDamageRoll()", event.target.dataset);
+  const dataset = event.target.dataset;
+  const item = await foundry.utils.fromUuid(dataset.itemUuid);
+  if (!item) return console.error(FT.prefix, "Unable to find item", dataset.itemUuid, "for damage roll");
   const actor = game.actors.tokens[dataset.tokenId] ?? game.actors.get(dataset.actorId);
-  const item = actor.items.get(dataset.itemId);
-  const attackIndex = dataset.attackIndex;
-  const multiplier = dataset.multiplier;
+  if (!actor) return console.error(FT.prefix, "Unable to find actor for damage roll");
 
-  Action.damageRoll(actor, item, { attackIndex, multiplier });
+  Action.damageRoll(actor, item, event.target.dataset);
 };
 
 /**
@@ -43,15 +42,10 @@ const onDamageRoll = async (event) => {
  * @param {Event} event
  */
 const onApplyDamage = async (event) => {
-  event.preventDefault();
-  const element = $(event?.currentTarget);
-  const dataset = element?.data();
+  // console.log("onApplyDamage()", event.target.dataset);
+  const dataset = event.target.dataset;
   const actor = game.actors.tokens[dataset.tokenId] ?? game.actors.get(dataset.actorId);
-
-  if (!actor) {
-    ui.notifications.warn(game.i18n.format("FT.system.combat.notification.notActive", { name: dataset.tokenName }));
-    return;
-  }
+  if (!actor) return console.error(FT.prefix, "Unable to find actor for apply damage");
 
   Action.applyDamage(actor, dataset.damage);
 };

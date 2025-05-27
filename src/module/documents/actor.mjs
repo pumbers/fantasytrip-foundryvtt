@@ -101,7 +101,7 @@ export class FTActor extends Actor {
 
           // Damage
           attack.stDamageMod = Math.ceil(Math.min(this.system.st.max - attack.minST, 0) / 2);
-          attack.damage = Dice.simplifyRollFormula(attack.baseDamage?.concat("+", attack.stDamageMod));
+          attack.finalDamage = Dice.simplifyRollFormula(attack.baseDamage?.concat("+", attack.stDamageMod));
         });
       });
 

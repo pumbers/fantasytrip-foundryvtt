@@ -81,6 +81,9 @@
   & .icon-pentacle::before {
     content: url("../assets/icons/pentacle.svg");
   }
+  & .icon-flame::before {
+    content: url("../assets/icons/flame.svg");
+  }
 
   /* Weapons */
   & .icon-fist::before {

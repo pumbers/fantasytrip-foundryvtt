@@ -21,7 +21,7 @@
     input,
     textarea,
     select {
-      @apply !appearance-auto w-full h-6 border rounded-none m-0 p-1 leading-4 border-ft-dark dark:border-ft-light bg-ft-dark/10 text-ft-dark dark:bg-ft-light/10 dark:text-ft-light;
+      @apply !appearance-auto w-full h-6 shadow-none border rounded-none m-0 p-1 leading-4 border-ft-dark dark:border-ft-light bg-ft-dark/10 text-ft-dark dark:bg-ft-light/10 dark:text-ft-light;
       &::placeholder {
         @apply opacity-80;
       }
@@ -84,7 +84,7 @@
     }
 
     section.tab {
-      @apply overflow-y-auto;
+      @apply pr-4 overflow-y-auto;
     }
 
     section[data-tab="notes"] {

@@ -35,8 +35,17 @@
     }
 
     section#actions {
-      .action-group {
-        @apply grid grid-cols-[1fr_5fr_3fr_6fr_3fr] gap-1 border border-ft-dark dark:border-ft-light rounded-none m-0 p-[2px] text-xs leading-4;
+      .action-item {
+        @apply flex flex-row gap-4 border border-ft-dark dark:border-ft-light rounded-none m-0 p-1 text-xs;
+        img {
+          @apply size-4;
+        }
+        legend {
+          @apply normal-case;
+        }
+        .action-item-details {
+          @apply grid grid-cols-[3fr_6fr_4fr] gap-1 grow;
+        }
       }
     }
 

@@ -9,7 +9,7 @@ const {
   BooleanField,
 } = foundry.data.fields;
 
-class FTAttack extends foundry.abstract.DataModel {
+class FTEmbeddedAttack extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
       action: new StringField(),
@@ -21,11 +21,24 @@ class FTAttack extends foundry.abstract.DataModel {
       talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
     };
   }
+
+  get damage() {
+    return this.finalDamage ?? this.baseDamage;
+  }
 }
 
-class FTDefense extends foundry.abstract.DataModel {
+class FTEmbeddedDefense extends foundry.abstract.DataModel {
   static defineSchema() {
     return { action: new StringField(), hitsStopped: new NumberField({ initial: 0 }) };
+  }
+}
+
+class FTEmbeddedSpell extends foundry.abstract.DataModel {
+  static defineSchema() {
+    return {
+      uuid: new StringField({ nullable: false }),
+      burn: new BooleanField({ initial: false, nullable: false }),
+    };
   }
 }
 
@@ -36,8 +49,8 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
       notes: new HTMLField(),
-      attacks: new ArrayField(new EmbeddedDataField(FTAttack), { initial: [] }),
-      defenses: new ArrayField(new EmbeddedDataField(FTDefense), { initial: [] }),
+      attacks: new ArrayField(new EmbeddedDataField(FTEmbeddedAttack), { initial: [] }),
+      defenses: new ArrayField(new EmbeddedDataField(FTEmbeddedDefense), { initial: [] }),
     };
   }
 
@@ -71,7 +84,7 @@ export class FTTalentData extends FTBaseItemData {
   }
 
   get isReady() {
-    return !!this.defaultAttribute;
+    return !!this.defaultAttribute && this.hasActions;
   }
 }
 
@@ -101,6 +114,7 @@ export class FTSpellData extends FTTalentData {
       stToCast: new SchemaField({ min: new NumberField({ initial: 1 }), max: new NumberField({ initial: 1 }) }),
       stToMaintain: new NumberField({ initial: 0 }),
       stSpent: new NumberField({ initial: 0 }),
+      wasCastFromItem: new BooleanField({ initial: false }),
     });
   }
 
@@ -109,16 +123,23 @@ export class FTSpellData extends FTTalentData {
     this.stToCast.max = Math.max(this.stToCast.min, this.stToCast.max);
   }
 
+  get isKnown() {
+    return !this.wasCastFromItem;
+  }
+
   get isReady() {
     return this.stSpent > 0;
   }
 
-  get castingST() {
-    return this.stToCast.min === this.stToCast.max ? this.stToCast.max : `${this.stToCast.min}-${this.stToCast.max}`;
+  get casting() {
+    const cast =
+      this.stToCast.min === this.stToCast.max ? this.stToCast.max : `${this.stToCast.min}-${this.stToCast.max}`;
+    const maintain = this.stToMaintain ? ` (${this.stToMaintain})` : "";
+    return cast + maintain;
   }
 
-  get isPersistent() {
-    return this.stToMaintain > 0 || this.hasAttacks || this.hasDefenses;
+  get canBeMaintained() {
+    return this.stToMaintain > 0;
   }
 }
 
@@ -136,14 +157,7 @@ export class FTEquipmentData extends FTBaseItemData {
       capacity: new NumberField({ initial: 0 }),
       container: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
       //
-      spells: new ArrayField(
-        new SchemaField({
-          id: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
-          data: new ForeignDocumentField(foundry.documents.BaseItem),
-          burn: new BooleanField({ initial: true, nullable: false }),
-        }),
-        { initial: [] }
-      ),
+      spells: new ArrayField(new EmbeddedDataField(FTEmbeddedSpell), { initial: [] }),
     });
   }
 

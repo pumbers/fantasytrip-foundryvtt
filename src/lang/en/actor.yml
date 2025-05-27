@@ -120,4 +120,5 @@ FT:
         spell:
           create: Add Spell
           cast: Cast
+          maintain: Maintain
           cancel: Cancel

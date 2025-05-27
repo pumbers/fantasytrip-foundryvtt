@@ -17,8 +17,7 @@ FT:
         toHitMod: To Hit
         attackTypeMod: Type
         rangeMod: Range
-        unskilled: Unskilled
-        casting: Spell Casting
+        unskilledMod: Unskilled
       targetNumber: Target
       flavor:
         save:
@@ -36,11 +35,11 @@ FT:
           - Utilizes years of practice to nail a precise {talent} check... {result}
           - Makes a hesitant attempt at a {talent} check, hoping not to blow it... {result}
         attack:
-          - Attempts to {attack} {targets} with their {item}... {result}
-          - Firecely tries to {attack} {targets} with their {item}... {result}
-          - Brings all their might to bear to {attack} {targets} with their {item}... {result}
-          - Hurls themselves into the fray, determined to make a {attack} that will leave the enemy reeling... {result}
-          - Burns with a fierce determination, determined to {attack} {targets} with their {item} until the job is done... {result}
+          - Attempts to {action} {targets} with their {item}... {result}
+          - Firecely tries to {action} {targets} with their {item}... {result}
+          - Brings all their might to bear to {action} {targets} with their {item}... {result}
+          - Hurls themselves into the fray, determined to make a {action} that will leave the enemy reeling... {result}
+          - Burns with a fierce determination, determined to {action} {targets} with their {item} until the job is done... {result}
           - Takes a wild swing, hoping for the best... {result}
         cast:
           - Attempts to cast {spell}... {result}
@@ -50,7 +49,7 @@ FT:
           - With confidence, casts {spell}... {result}
           - Concentrates then casts {spell}... {result}
         damage:
-          - Unleashes a flurry of blows, striking for a total of {total} point(s) of hurt. {effects}
+          - Unleashes hell, striking for a total of {total} point(s) of hurt. {effects}
           - Unleashes a devastating blast that deals {total} point(s) of damage to their foe. {effects}
           - Strikes with the full force of their fury, landing a full {total} point hit that leaves their opponent reeling. {effects}
           - Feels a surge of adrenaline as they strike for {total} point(s) of damage. {effects}
@@ -73,8 +72,6 @@ FT:
       phase:
         movement: Movement
         combat: Combat
-      notification:
-        notActive: "{name} is not active in this scene."
       chat:
         damaged: "{name} takes {damageTaken} damage."
         stunned:

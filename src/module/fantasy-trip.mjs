@@ -137,18 +137,6 @@ Hooks.once("init", async function () {
     config: true,
   });
 
-  game.settings.register(FT.id, "applySpellEffectsAuto", {
-    name: game.i18n.localize("FT.game.settings.applySpellEffectsAuto.name"),
-    hint: game.i18n.localize("FT.game.settings.applySpellEffectsAuto.hint"),
-    scope: "world",
-    type: new BooleanField({
-      required: true,
-      nullable: false,
-      initial: true,
-    }),
-    config: true,
-  });
-
   game.settings.register(FT.id, "showItemIcons", {
     name: game.i18n.localize("FT.game.settings.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.settings.showItemIcons.hint"),

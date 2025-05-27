@@ -26,7 +26,7 @@
                                 </li>
                                 {{#if unskilled}}
                                 <li class="flex flex-row justify-between px-[5px]">
-                                    <span>{{localize "FT.system.roll.modifier.unskilled"}}</span>
+                                    <span>{{localize "FT.system.roll.modifier.unskilledMod"}}</span>
                                     <span>{{roll.formula}}</span>
                                 </li>
                                 {{/if}}
@@ -54,16 +54,16 @@
                         {{/each}}
                     </section>
                 </div>
-
             </div>
             {{!-- Roll Total --}}
-            <h4 class="dice-total {{resultClass}}">{{roll.total}}</h4>
+            <h4 class="dice-total">{{roll.total}}</h4>
         </div>
     </div>
-    {{#if showDamageButton}}
-    <button type="button" class="!mt-4 ft-restricted ft-show-gm {{showOwnerClasses}}" data-ft-action="damage-roll"
-        data-token-id="{{token._id}}" data-actor-id="{{actor._id}}" data-item-id="{{item._id}}"
-        data-attack-index="{{attackIndex}}" data-multiplier="{{multiplier}}"><i
+    {{#if damage}}
+    <button type="button" class="!mt-4 ft-restricted ft-show-gm {{ownerClasses}}" data-ft-action="damageRoll"
+        data-token-id="{{token._id}}" data-actor-id="{{actor._id}}" data-item-uuid="{{item.uuid}}"
+        data-attack-index="{{attackIndex}}" data-minimum="{{damage.minimum}}" data-multiplier="{{damage.multiplier}}"
+        data-damage-multiplier-strategy="{{damage.damageMultiplierStrategy}}"><i
             class="icon-sword-brandish mr-2"></i>{{localize
         "FT.system.combat.chat.action.rollDamage"}}</button>
     {{/if}}

@@ -4,6 +4,7 @@ FT:
       title: Dice Roller
       label:
         formula: Dice Formula
+        minimum: Min Damage
         multiplier: Multiplier
       action:
         submit: Roll

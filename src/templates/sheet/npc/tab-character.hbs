@@ -119,80 +119,64 @@
             </div>
         </section>
 
+        {{!-- Actions --}}
         <section id="actions" class="flex flex-col gap-1">
-
-            {{!-- Offensives --}}
-            {{#each offenses as | offense |}}
-            <div data-item-id="{{offense._id}}" class="action-group">
-                <img class="w-4 h-4" src="{{offense.img}}" alt="">
-                <span>{{offense.name}}</span>
-                {{#each offense.system.attacks}}
-                {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
-                <span>
-                    {{#unless (eq minST 0)}}
-                    <i
-                        class="icon-weight-lifting-up mr-1 {{#unless (gte ../../system.st.max minST)}}warning{{/unless}}"></i>{{localize
-                    "FT.actor.attribute.st.max"}}&nbsp;{{minST}}
-                    {{/unless}}
-                    {{#if (eq offense.type "spell")}}
-                    <span><i class="icon-pentacle mr-1"></i>{{offense.system.stSpent}}</span>
+            {{#each readied as | item |}}
+            <fieldset class="action-item" data-item-id="{{item._id}}">
+                <legend>{{item.name}}</legend>
+                <img src="{{item.img}}" alt="">
+                <div class="action-item-details">
+                    {{!-- Active Spell --}}
+                    {{#if (eq item.type "spell")}}
+                    <span><i class="icon-pentacle mr-1"></i>{{item.system.stSpent}}/{{item.system.stToMaintain}}</span>
+                    <a class="px-1 sheet-button" data-action="maintainSpell"><i
+                            class="icon-magic-swirl mr-1"></i>{{localize
+                        "FT.actor.sheet.action.spell.maintain"}}</a>
+                    <a class="px-1 sheet-button" data-action="cancelSpell"><i
+                            class="icon-magic-swirl mr-1"></i>{{localize
+                        "FT.actor.sheet.action.spell.cancel"}}</a>
+                    <span></span>
                     {{/if}}
-                </span>
-                <a class="px-1 sheet-button" data-action="attackRoll" data-attack-index="{{@index}}">
-                    <i class="{{property ../../FT.item.attack.icon type}} mr-1"
-                        title="{{localize (concat 'FT.item.attack.type.' type)}}"></i>
-                    {{action}}&thinsp;{{dice}}/{{localize
-                    (concat "FT.actor.attribute." attribute)}}&thinsp;{{toHit}}</a>
-                {{#if damage}}
-                <a class="px-1 sheet-button" data-action="damageRoll" data-attack-index="{{@index}}"><i
-                        class="icon-death-skull mr-1"></i>{{damage}}
-                </a>
-                {{else}}
-                <span></span>
-                {{/if}}
-                {{/each}}
-            </div>
-            {{/each}}
-
-            {{!-- Defenses --}}
-            {{#each defenses as | defense |}}
-            <div data-item-id="{{defense._id}}" class="action-group">
-                <img class="w-4 h-4" src="{{defense.img}}" alt="">
-                <span>{{defense.name}}</span>
-                {{#each defense.system.defenses}}
-                {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
-                <span><i class="icon-chest-armor mr-1"></i>{{hitsStopped}}</span>
-                {{/each}}
-            </div>
-            {{/each}}
-
-            {{!-- Castable Items --}}
-            {{#each castables as | castable |}}
-            <div data-item-id="{{castable._id}}" class="action-group">
-                <img class="w-4 h-4" src="{{castable.img}}" alt="">
-                <span>{{castable.name}}</span>
-                {{#each castable.system.spells}}
-                {{#unless @first}}<span class="col-span-2"></span>{{/unless}}
-                <span><i class="icon-pentacle"></i>&nbsp;{{data.system.castingST}}</span>
-                <a class="px-1 sheet-button" data-action="castItem" data-index="{{@index}}">
-                    <i class="{{property ../../FT.item.spell.icon data.system.type}} mr-1"
-                        title="{{localize (concat 'FT.item.spell.type.' data.system.type)}}"></i>
-                    {{localize "FT.actor.sheet.action.spell.cast"}}&nbsp;{{data.name}}</a>
-                {{/each}}
-            </div>
-            {{/each}}
-
-            {{!-- Active Spells --}}
-            {{#each cast as | spell |}}
-            <div data-item-id="{{spell._id}}" class="action-group">
-                <img class="w-4 h-4" src="{{spell.img}}" alt="">
-                <span>{{spell.name}}</span>
-                <span><i class="icon-pentacle mr-1"></i>{{spell.system.stSpent}}/{{spell.system.stToMaintain}}</span>
-                <div></div>
-                <a class="px-1 sheet-button" data-action="cancelSpell"><i class="icon-magic-swirl mr-1"></i>{{localize
-                    "FT.actor.sheet.action.spell.cancel"}}</a>
-            </div>
+                    {{!-- Attacks --}}
+                    {{#each item.system.attacks as | attack |}}
+                    <span>
+                        {{#if attack.minST}}
+                        <i
+                            class="icon-weight-lifting-up mr-1 {{#unless (gte ../../system.st.max minST)}}warning{{/unless}}"></i>{{localize
+                        "FT.actor.attribute.st.max"}}&nbsp;{{minST}}
+                        {{/if}}
+                    </span>
+                    <a class="px-1 sheet-button" data-action="attackRoll" data-attack-index="{{@index}}"
+                        title="{{localize (concat 'FT.item.attack.type.' type)}}">
+                        <i class="{{property ../../FT.item.attack.icon type}} mr-1"></i>
+                        {{action}}&thinsp;{{dice}}/{{localize
+                        (concat "FT.actor.attribute." attribute)}}&thinsp;{{toHit}}</a>
+                    <a class="px-1 sheet-button" data-action="damageRoll" data-attack-index="{{@index}}"><i
+                            class="icon-death-skull mr-1"></i>{{damage}}
+                    </a>
+                    {{/each}}
+                    {{!-- Defenses --}}
+                    {{#each item.system.defenses as | defense |}}
+                    <span><i class="icon-chest-armor mr-1"></i>{{hitsStopped}}</span>
+                    <span class="px-1">{{action}}</span>
+                    <span></span>
+                    {{/each}}
+                    {{!-- Spells --}}
+                    {{#each item.system.spells as | spell |}}
+                    <span>
+                        <i class="icon-pentacle mr-2"></i>{{spell.casting}}&thinsp;{{#if spell.burn}}<i
+                            class="icon-flame"></i>{{/if}}
+                    </span>
+                    <a class="sheet-button px-1" data-action="castSpellFromItem" data-spell-uuid="{{spell.uuid}}"
+                        data-burn="{{spell.burn}}"
+                        title="{{localize 'FT.actor.sheet.action.spell.cast'}} {{spell.name}}">
+                        <i class="icon-magic-swirl mr-1"></i>{{spell.name}}</a>
+                    <span></span>
+                    {{/each}}
+                </div>
+            </fieldset>
             {{/each}}
         </section>
+
     </div>
 </section>

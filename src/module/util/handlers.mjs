@@ -32,7 +32,7 @@ export function onCreateItem(actor, event, target) {
  */
 export function onEditItem(actor, event, target) {
   const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-  if (!itemId) return;
+  if (!itemId) return console.error(FT.prefix, "Unable to find item", itemId);
   const item = actor.items.get(itemId);
   item?.sheet.render(true);
 }
@@ -45,7 +45,7 @@ export function onEditItem(actor, event, target) {
  */
 export function onDeleteItem(actor, event, target) {
   const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-  if (!itemId) return;
+  if (!itemId) return console.error(FT.prefix, "Unable to find item", itemId);
   const item = actor.items.get(itemId);
   const changes = [];
   if (item.system.isContainer) {
@@ -60,7 +60,7 @@ export function onDeleteItem(actor, event, target) {
 
 export function onIemChangeLocation(actor, locations, event, target) {
   const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-  if (!itemId) return;
+  if (!itemId) return console.error(FT.prefix, "Unable to find item", itemId);
   const item = actor.items.get(itemId);
   const changes = [];
 
@@ -87,7 +87,7 @@ export function onIemChangeLocation(actor, locations, event, target) {
  */
 export function onSetItemField(actor, event, target) {
   const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-  if (!itemId) return;
+  if (!itemId) return console.error(FT.prefix, "Unable to find item", itemId);
   const item = actor.items.get(itemId);
   if (!item) return;
   const field = target.dataset.field;
@@ -104,7 +104,7 @@ export function onSetItemField(actor, event, target) {
  */
 export function onChatItem(actor, event, target) {
   const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-  if (!itemId) return;
+  if (!itemId) return console.error(FT.prefix, "Unable to find item", itemId);
   const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
   if (!item) return;
   item.chat(ChatMessage.getSpeaker({ actor }));

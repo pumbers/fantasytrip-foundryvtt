@@ -2,9 +2,13 @@
 <section id="{{partId}}" class="tab {{tabs.actions.cssClass}}" data-group="primary" data-tab="actions">
     <div class="flex flex-col gap-2">
         {{!-- Attacks --}}
+        {{#if flags.maxAttacks}}
         <fieldset class="flex flex-col gap-4 justify-start">
-            <legend>{{localize "FT.item.sheet.label.attacks"}}&nbsp;<a data-action="addAttack"> <i
-                        title="{{localize 'FT.item.sheet.action.addAction'}}" class="fa fa-plus-square"></i> </a>
+            <legend>{{localize "FT.item.sheet.label.attacks"}}
+                {{#if (lt system.attacks.length flags.maxAttacks)}}
+                &nbsp;<a data-action="addAttack"> <i title="{{localize 'FT.item.sheet.action.addAction'}}"
+                        class="fa fa-plus-square"></i> </a>
+                {{/if}}
             </legend>
             {{#each system.attacks as | attack |}}
             <div class="grid grid-cols-5 gap-1">
@@ -58,7 +62,10 @@
             </div>
             {{/each}}
         </fieldset>
+        {{/if}}
+
         {{!-- Defenses --}}
+        {{#if flags.maxDefenses}}
         <fieldset class="flex flex-col gap-1 justify-start">
             <legend>{{localize "FT.item.sheet.label.defenses"}}&nbsp;<a data-action="addDefense"> <i
                         title="{{localize 'FT.item.sheet.action.addAction'}}" class="fa fa-plus-square"></i> </a>
@@ -83,8 +90,10 @@
             </div>
             {{/each}}
         </fieldset>
+        {{/if}}
+
         {{!-- Spells --}}
-        {{#if (eq item.type "equipment")}}
+        {{#if flags.maxSpells}}
         <fieldset class="flex flex-col gap-1 justify-start">
             <legend>{{localize "FT.item.sheet.label.spells"}}&nbsp;<a data-action="addSpell"> <i
                         title="{{localize 'FT.item.sheet.action.addAction'}}" class="fa fa-plus-square"></i> </a>
@@ -97,13 +106,13 @@
                         <a title="{{localize 'FT.item.sheet.action.deleteAction'}}"
                             class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="deleteSpell"
                             data-index="{{@index}}"><i class="fas fa-trash"></i></a>
-                        <select name="system.spells.{{@index}}.id">
-                            <option value=""></option>
-                            {{selectOptions ../selectOptions.worldSpells selected=spell.id}}
+                        <select name="system.spells.{{@index}}.uuid">
+                            <option>{{localize "FT.options.select"}}</option>
+                            {{selectOptions ../selectOptions.spells selected=spell.uuid}}
                         </select>
                     </div>
                 </div>
-                {{#if spell.data}}
+                {{#if spell.uuid}}
                 <div class="field">
                     <label>{{localize "FT.item.sheet.label.burn"}}</label>
                     <input class="!size-4" type="checkbox" name="system.spells.{{@index}}.burn" {{#if

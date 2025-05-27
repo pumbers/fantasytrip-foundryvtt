@@ -88,7 +88,29 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       FT: CONFIG.FT,
       item: foundry.utils.deepClone(this.item),
       system: foundry.utils.deepClone(this.item.system),
-      flags: foundry.utils.deepClone(this.item.flags),
+      flags: {
+        ...foundry.utils.deepClone(this.item.flags),
+        ...(this.item.type === "equipment" && {
+          maxAttacks: FT.item.flags.maxAttacks,
+          maxDefenses: FT.item.flags.maxDefenses,
+          maxSpells: FT.item.flags.maxSpells,
+        }),
+        ...(this.item.type === "talent" && {
+          maxAttacks: FT.item.flags.maxAttacks,
+          maxDefenses: FT.item.flags.maxDefenses,
+          maxSpells: 0,
+        }),
+        ...(this.item.type === "spell" && {
+          maxAttacks: this.item.system.type === "missile" ? 1 : 0,
+          maxDefenses: FT.item.flags.maxDefenses,
+          maxSpells: 0,
+        }),
+        ...(this.item.type === "ability" && {
+          maxAttacks: FT.item.flags.maxAttacks,
+          maxDefenses: FT.item.flags.maxDefenses,
+          maxSpells: FT.item.flags.maxSpells,
+        }),
+      },
       owned: !!this.item.parent,
       selectOptions: {
         attributes: CONFIG.FT.actor.attributes,
@@ -100,10 +122,10 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
             .filter((item) => item.type === "talent")
             .reduce((talents, talent) => ({ ...talents, [talent._id]: talent.name }), {}),
         }),
-        // World Compendia Spells for Magic Items
-        worldSpells: Array.from(game.items.values())
+        // World Spells for Magic Items
+        spells: Array.from(game.items.values())
           .filter((item) => item.type === "spell")
-          .reduce((spells, spell) => ({ ...spells, [spell._id]: spell.name }), {}),
+          .reduce((spells, spell) => ({ ...spells, [spell.uuid]: spell.name }), {}),
       },
       //
       effects: this.item.effects,

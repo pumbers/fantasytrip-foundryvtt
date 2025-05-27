@@ -20,9 +20,6 @@ FT:
         options:
           rollTimes: Roll the damage a number of times
           multiply: Roll the damage once and multiply
-      applySpellEffectsAuto:
-        name: Apply Spell Effects Automatically
-        hint: If a spell has Active Effects, apply them automatically to any targeted tokens when successfully cast.
       showItemIcons:
         name: Show Item Icons
         hint: Show icons in item tables?
@@ -61,5 +58,6 @@ FT:
     # useItemMacroItemNotOwned: Your controlled Actor does not have that item.
     # useItemMacroCannotDetermineActor: You need to select a token so that I can determine who's acting.
   options:
+    select: -- Select One --
     none: -- None --
     unskilled: -- Unskilled --

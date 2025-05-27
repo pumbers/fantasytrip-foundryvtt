@@ -34,9 +34,11 @@
                     talent.system.defaultAttribute)}}{{/if}}</td>
                 <td>{{talent.system.minIQ}}</td>
                 <td>{{talent.system.actualIQCost}}</td>
-                <td>{{#if talent.system.isReady}}<a class="px-1 sheet-button" data-action="talentRoll">{{localize
-                        "FT.actor.sheet.action.talent.roll"
-                        name=talent.name}}</a>{{/if}}
+                <td>
+                    {{#if talent.system.defaultAttribute}}
+                    <a class="px-1 sheet-button" data-action="talentRoll">{{localize "FT.actor.sheet.action.talent.roll"
+                        name=talent.name}}</a>
+                    {{/if}}
                 </td>
                 <td>{{> actions}}</td>
             </tr>

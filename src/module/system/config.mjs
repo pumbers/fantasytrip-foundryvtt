@@ -27,7 +27,7 @@ FT.roll = {
   },
   modifiers: {
     default: { min: -6, max: 6 },
-    range: { min: -9, max: 0 },
+    range: { min: -12, max: 0 },
   },
   result: {
     automaticSuccess: "FT.system.roll.result.automaticSuccess",
@@ -103,6 +103,11 @@ FT.item = {
       stored: "icon-white-tower",
     },
     encumbering: ["carried", "equipped"],
+  },
+  flags: {
+    maxAttacks: 5,
+    maxDefenses: 5,
+    maxSpells: 99,
   },
   attack: {
     types: {

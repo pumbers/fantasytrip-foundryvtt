@@ -19,6 +19,7 @@ function extractRollParameters(data) {
     0
   );
   const totalModifiers = Object.values(data.modifiers ?? []).reduce((total, modifier) => total + parseInt(modifier), 0);
+  data.cost.st.value = parseInt(data.cost.st.value ?? 0);
 
   return {
     ...data,
@@ -32,9 +33,9 @@ function extractRollParameters(data) {
 /**
  * Determine the result (level of success) of a dice roll.
  *
- * @param {Number} dice
- * @param {Number} target
- * @param {Roll} evaluated roll
+ * @param {Number} dice Number of dice rolled
+ * @param {Number} target Target number
+ * @param {Roll} evaluated roll The Foundry dice roll (with results)
  * @returns
  */
 function determineRollResult(dice, target, roll) {
@@ -98,26 +99,42 @@ export function attributeRoll(actor, options) {
       // console.log("Action.attributeRoll().submit()", "data", data);
 
       // Extract roll parameters
-      const { actor, attributes, dice, totalAttributes, totalModifiers, rollMode } = extractRollParameters(data);
+      const { actor, dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode } =
+        extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
-      new Roll(`${dice}D6`).evaluate().then((roll) => {
+      new Roll(`${dice}D6`).evaluate().then(async (roll) => {
         // Determine roll result and margin of success/failure
         const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
         const margin = totalAttributes + totalModifiers - roll.total;
 
         // Create a chat message for the result
-        const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
+        const message = game.i18n.format(`FT.system.roll.flavor.attribute.${Math.floor(Math.random() * 6)}`, {
           attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
           result: game.i18n.format(`FT.system.roll.result.${result}`, {
             margin: Math.abs(margin),
           }),
         });
 
+        const content = await foundry.applications.handlebars.renderTemplate(
+          `${FT.path}/templates/chat/dice-roll.hbs`,
+          {
+            actor,
+            attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
+            totalAttributes,
+            modifiers,
+            totalModifiers,
+            targetNumber: totalAttributes + totalModifiers,
+            roll,
+            parts: roll.dice.map((d) => d.getTooltipData()),
+          }
+        );
+
         roll.toMessage(
           {
             speaker: ChatMessage.getSpeaker({ actor }),
             flavor: message,
+            content,
           },
           { rollMode }
         );
@@ -150,7 +167,8 @@ export async function talentRoll(actor, talent, options) {
       // console.log("Action.talentRoll().submit()", "data", data);
 
       // Extract roll parameters
-      const { actor, talent, dice, totalAttributes, totalModifiers, rollMode } = extractRollParameters(data);
+      const { actor, talent, dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode } =
+        extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
       const roll = await new Roll(`${dice}D6`).evaluate();
@@ -160,17 +178,31 @@ export async function talentRoll(actor, talent, options) {
       const margin = totalAttributes + totalModifiers - roll.total;
 
       // Create a chat message for the result
-      const message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
+      const message = game.i18n.format(`FT.system.roll.flavor.talent.${Math.floor(Math.random() * 6)}`, {
         talent: talent.name,
         result: game.i18n.format(`FT.system.roll.result.${result}`, {
           margin: Math.abs(margin),
         }),
       });
 
+      const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/dice-roll.hbs`, {
+        actor,
+        token: actor.getDependentTokens()[0],
+        item: talent,
+        attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
+        totalAttributes,
+        modifiers,
+        totalModifiers,
+        targetNumber: totalAttributes + totalModifiers,
+        roll,
+        parts: roll.dice.map((d) => d.getTooltipData()),
+      });
+
       roll.toMessage(
         {
           speaker: ChatMessage.getSpeaker({ actor }),
           flavor: message,
+          content,
         },
         { rollMode }
       );
@@ -184,23 +216,25 @@ export async function talentRoll(actor, talent, options) {
  * Make an Attack Roll for the specified Actor
  *
  * @param {Actor} actor
- * @param {Item} weapon
+ * @param {Item} item
  * @param {Object} options
  */
-export function attackRoll(actor, weapon, options) {
-  // console.log("Action.attackRoll()", actor, weapon, options);
+export function attackRoll(actor, item, options) {
+  // console.log("Action.attackRoll()", actor, item, options);
 
-  const attack = weapon.system.attacks[options.attackIndex ?? 0];
+  const attack = item.system.attacks[options.attackIndex ?? 0];
   const talent = !!attack.talent ? actor.items.get(attack.talent) : null;
 
+  // Set up the dice roller context
   const context = {
     force: true,
     //
     type: "attack",
-    dice: attack.dice,
     actor,
+    item,
     talent,
-    item: weapon,
+    //
+    dice: attack.dice,
     attribute: attack.attribute,
     modifiers: {
       ...(attack.toHitMod !== 0
@@ -239,7 +273,10 @@ export function attackRoll(actor, weapon, options) {
             },
           }
         : {}),
-      ...(attack.type === "thrown" || attack.type === "missile"
+      ...(attack.type === "thrown"
+        ? { rangeMod: { min: FT.roll.modifiers.range.min * 2, max: FT.roll.modifiers.range.max, value: 0 } }
+        : {}),
+      ...(attack.type === "missile"
         ? { rangeMod: { min: FT.roll.modifiers.range.min, max: FT.roll.modifiers.range.max, value: 0 } }
         : {}),
     },
@@ -249,8 +286,7 @@ export function attackRoll(actor, weapon, options) {
       // console.log("Action.attackRoll().submit()", "data", data);
 
       // Extract roll parameters
-      const { type, actor, talent, item, dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode } =
-        extractRollParameters(data);
+      const { dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode } = extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
       const roll = await new Roll(`${dice}D6`).evaluate();
@@ -260,10 +296,9 @@ export function attackRoll(actor, weapon, options) {
       const margin = totalAttributes + totalModifiers - roll.total;
 
       // Create a chat message for the result
-      let message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
-        talent: talent?.name,
+      let message = game.i18n.format(`FT.system.roll.flavor.attack.${Math.floor(Math.random() * 6)}`, {
         item: item?.name,
-        attack: attack.action?.toLowerCase(),
+        action: attack.action?.toLowerCase(),
         targets: Array.from(game.user.targets)
           .map((t) => t.name)
           .join(", "),
@@ -272,20 +307,27 @@ export function attackRoll(actor, weapon, options) {
         }),
       });
 
-      if (roll.total >= 17 && (weapon.system.type === "natural" || weapon.system.type === "natural")) {
-        const damage = await new Roll("1d6").evaluate().total;
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.damage", { damage }));
+      // On 17+, bad things happen to the attacker
+      if (roll.total >= 17 && item.system.type === "natural") {
+        // Natural weapons take 1d6 damage
+        message = message.concat(
+          " ",
+          game.i18n.format("FT.system.roll.result.damage", { damage: await new Roll("1d6").evaluate().total })
+        );
       } else if (roll.total === 17) {
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.dropped", { weapon: item?.name }));
+        // Item is dropped
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.dropped", { item: item?.name }));
       } else if (roll.total === 18) {
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.broken", { weapon: item?.name }));
+        // Item is broken
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.broken", { item: item?.name }));
       }
 
+      // Full chat message content, including roll parameters & result
       const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/dice-roll.hbs`, {
         actor,
-        token: actor.parent,
+        token: actor.getDependentTokens()[0],
         item,
-        attackIndex: options.attackIndex,
+        attackIndex: options.attackIndex ?? 0,
         attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
         totalAttributes,
         modifiers,
@@ -293,15 +335,160 @@ export function attackRoll(actor, weapon, options) {
         targetNumber: totalAttributes + totalModifiers,
         unskilled: item.type !== "equipment" && !talent,
         roll,
-        multiplier:
-          weapon.type === "spell" ? weapon.system.stSpent ?? 1 : roll.total === 3 ? 3 : roll.total === 4 ? 2 : 1,
         parts: roll.dice.map((d) => d.getTooltipData()),
-        showDamageButton: type === "attack" && margin >= 0 && item.system.attacks[options.attackIndex].damage,
-        resultClass: margin >= 0 ? "success" : "failure",
-        showOwnerClasses: Array.from(Object.entries(actor.ownership))
-          .filter(([id, level]) => level === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
-          .map(([id, level]) => `ft-show-${id}`)
-          .join(" "),
+        ...(margin >= 0 &&
+          item.system.attacks[options.attackIndex].damage && {
+            damage: {
+              ownerClasses: Array.from(Object.entries(actor.ownership))
+                .filter(([id, level]) => level === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
+                .map(([id, level]) => `ft-show-${id}`)
+                .join(" "),
+              minimum: 0,
+              multiplier: roll.total === 3 ? 3 : roll.total === 4 ? 2 : 1,
+              damageMultiplierStrategy: game.settings.get(FT.id, "damageMultiplierStrategy"),
+            },
+          }),
+      });
+
+      roll.toMessage(
+        {
+          speaker: ChatMessage.getSpeaker({ actor }),
+          flavor: message,
+          content,
+        },
+        { rollMode }
+      );
+    },
+  };
+
+  DICE_ROLLER.render(context);
+}
+
+/**
+ * Make a Spell Casting Roll for the specified Actor
+ *
+ * @param {Actor} actor
+ * @param {Item} spell
+ * @param {Object} options
+ */
+export function castingRoll(actor, spell, options = {}) {
+  // console.log("Action.castingRoll()", actor, spell, options);
+
+  const context = {
+    force: true,
+    //
+    type: "cast",
+    dice: 3,
+    actor,
+    spell,
+    attribute: FT.item.spell.castAttribute[spell.system.type],
+    modifiers: {
+      ...(spell.system.type === "missile" && {
+        rangeMod: {
+          min: FT.roll.modifiers.default.min,
+          max: 0,
+          value: 0,
+        },
+      }),
+      ...(spell.system.type === "thrown" && {
+        rangeMod: {
+          min: FT.roll.modifiers.default.min * 2,
+          max: 0,
+          value: 0,
+        },
+      }),
+    },
+    cost: {
+      st: {
+        min: spell.system.stToCast.min,
+        max: spell.system.stToCast.max,
+        value: spell.system.stToCast.min,
+      },
+    },
+    //
+    submit: async (data) => {
+      // console.log("Action.castingRoll().submit()", "data", data);
+
+      // Extract roll parameters
+      const { cost, dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode } =
+        extractRollParameters(data);
+
+      console.log(cost, dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode);
+      // Create & evaluate a roll based on the set parameters
+      const roll = await new Roll(`${dice}D6`).evaluate();
+
+      // Determine roll result and margin of success/failure
+      const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
+      const margin = totalAttributes + totalModifiers - roll.total;
+
+      if (margin >= 0) {
+        // Add fatigue for successful casting
+        actor.update({ "system.fatigue": actor.system.fatigue + cost.st.value });
+        if (spell.system.canBeMaintained) {
+          // Record how much ST was spent
+          spell.update({ "system.stSpent": cost.st.value });
+          // if cast from item, temporarily add to actors items
+          if (options.item) {
+            actor.createEmbeddedDocuments("Item", [
+              foundry.utils.mergeObject(spell.toObject(), { "system.wasCastFromItem": true }),
+            ]);
+          }
+        }
+      } else {
+        // Missile spells cost full ST on failure, other spells cost 1 ST
+        actor.update({
+          "system.fatigue":
+            actor.system.fatigue + (spell.system.type === "missile" || margin >= 17 ? cost.st.value : 1),
+        });
+      }
+
+      // Create a chat message for the result
+      let message = game.i18n.format(`FT.system.roll.flavor.cast.${Math.floor(Math.random() * 6)}`, {
+        spell: spell.name,
+        targets: Array.from(game.user.targets)
+          .map((t) => t.name)
+          .join(", "),
+        result: game.i18n.format(`FT.system.roll.result.${result}`, {
+          margin: Math.abs(margin),
+        }),
+      });
+
+      // Bad stuff happens on a 17 or 18
+      if (roll.total === 17) {
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeDropped"));
+      } else if (roll.total === 18) {
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeBroken"));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.knockdown"));
+      }
+
+      const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/dice-roll.hbs`, {
+        actor,
+        token: actor.getDependentTokens()[0],
+        item: spell,
+        attackIndex: options.attackIndex ?? 0,
+        attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
+        totalAttributes,
+        modifiers,
+        unskilled: false,
+        totalModifiers,
+        targetNumber: totalAttributes + totalModifiers,
+        roll,
+        parts: roll.dice.map((d) => d.getTooltipData()),
+        ...(margin >= 0 &&
+          spell.system.attacks[0]?.damage && {
+            damage: {
+              ownerClasses: Array.from(Object.entries(actor.ownership))
+                .filter(([id, level]) => level === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
+                .map(([id, level]) => `ft-show-${id}`)
+                .join(" "),
+              minimum: 0,
+              multiplier: spell.system.type === "missile" ? cost.st.value : 1,
+              damageMultiplierStrategy:
+                spell.system.type === "missile" ? "rollTimes" : game.settings.get(FT.id, "damageMultiplierStrategy"),
+            },
+          }),
       });
 
       roll.toMessage(
@@ -313,9 +500,14 @@ export function attackRoll(actor, weapon, options) {
         { rollMode }
       );
 
-      // If the item was an attack spell, cancel it if the settings says so
-      if (item.type === "spell" && game.settings.get(FT.id, "cancelAttackSpellAuto"))
-        item.update({ "system.stSpent": 0 });
+      // If the spell is cast from an item, then it may get burned (deleted)
+      if (!!options.item && options.burn === "true") {
+        actor.deleteEmbeddedDocuments("Item", [options.item._id]);
+        ChatMessage.create({
+          flavor: game.i18n.format("FT.item.chat.burn", { name: options.item.name }),
+          whisper: Object.keys(actor.ownership).filter((k) => k !== "default"),
+        });
+      }
     },
   };
 
@@ -326,34 +518,37 @@ export function attackRoll(actor, weapon, options) {
  * Make a Damage Roll for the specified Actor & attack
  *
  * @param {Actor} actor
- * @param {Item} weapon
+ * @param {Item} item
  * @param {Object} options
  */
-export function damageRoll(actor, weapon, options = {}) {
-  // console.log("Action.damageRoll()", "actor", actor, "weapon", weapon, "options", options);
+export function damageRoll(actor, item, options = {}) {
+  // console.log("Action.damageRoll()", "actor", actor, "item", item, "options", options);
+
+  const attack = item.system.attacks[options.attackIndex ?? 0];
 
   // Create a damage roll
-  const attack = weapon.system.attacks[options.attackIndex];
-
   const context = {
     force: true,
     //
     type: "damage",
     actor,
-    item: weapon,
+    item,
     formula: attack.damage,
+    minimum: options.minimum ?? 0,
     multiplier: options.multiplier ?? 1,
     damageMultiplierStrategy:
-      weapon.type === "spell" ? "rollTimes" : game.settings.get(FT.id, "damageMultiplierStrategy"),
+      item.type === "spell" ? "rollTimes" : game.settings.get(FT.id, "damageMultiplierStrategy"),
     submit: (data) => {
       // console.log("Action.damageRoll().submit()", "data", data);
 
       // Extract roll parameters
-      const { actor, formula, multiplier, damageMultiplierStrategy, rollMode } = extractRollParameters(data);
+      const { actor, formula, minimum, multiplier, damageMultiplierStrategy, rollMode } = extractRollParameters(data);
+
+      // Build a damage formula
       const finalFormula =
         damageMultiplierStrategy === "rollTimes"
-          ? new Array(multiplier ?? 1).fill(`max(${formula},0)`).join("+")
-          : `(max(${formula ?? 0},0))*${multiplier ?? 1}`;
+          ? new Array(multiplier ?? 1).fill(`max(${formula},${minimum})`).join("+")
+          : `(max(${formula ?? minimum},${minimum}))*${multiplier ?? 1}`;
 
       // Roll and generate a chat message for each target
       if (!!game.user.targets.size) {
@@ -364,8 +559,6 @@ export function damageRoll(actor, weapon, options = {}) {
           // Create a chat message for the result
           const message = game.i18n.format(`FT.system.roll.flavor.damage.${Math.floor(Math.random() * 6)}`, {
             name: token.name,
-            weapon: weapon.name,
-            attack: attack.action?.toLowerCase(),
             effects: attack.effects,
             total: roll.total,
           });
@@ -396,10 +589,9 @@ export function damageRoll(actor, weapon, options = {}) {
             {
               speaker: ChatMessage.getSpeaker({ actor }),
               flavor: game.i18n.format(`FT.system.roll.flavor.damage.${Math.floor(Math.random() * 6)}`, {
-                weapon: weapon.name,
-                attack: attack.action?.toLowerCase(),
-                effects: attack.effects,
+                item: item.name,
                 total: roll.total,
+                effects: attack.effects,
               }),
             },
             { rollMode }
@@ -511,119 +703,4 @@ function _applyDamage(actor, damageTaken, options = {}) {
       });
     }
   });
-}
-
-/**
- * Make a Spell Casting Roll for the specified Actor
- *
- * @param {Actor} actor
- * @param {Item} spell
- * @param {Object} options
- */
-export function castingRoll(actor, spell, options = {}) {
-  // console.log("Action.castingRoll()", actor, spell, options);
-
-  const context = {
-    force: true,
-    //
-    type: "cast",
-    dice: 3,
-    modifiers: {
-      casting: {
-        min: FT.roll.modifiers.default.min,
-        max: FT.roll.modifiers.default.max,
-        value: actor.system.dx.modFor.casting ?? 0,
-      },
-    },
-    actor,
-    spell,
-    attribute: FT.item.spell.castAttribute[spell.system.type],
-    cost: {
-      st: {
-        min: spell.system.stToCast.min,
-        max: spell.system.stToCast.max,
-        value: spell.system.stToCast.min,
-      },
-    },
-    //
-    submit: async (data) => {
-      // console.log("Action.castingRoll().submit()", "data", data);
-
-      // Extract roll parameters
-      const { actor, spell, cost, dice, totalAttributes, totalModifiers, rollMode } = extractRollParameters(data);
-
-      // Create & evaluate a roll based on the set parameters
-      const roll = await new Roll(`${dice}D6`).evaluate();
-
-      // Determine roll result and margin of success/failure
-      const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
-      const margin = totalAttributes + totalModifiers - roll.total;
-
-      if (margin >= 0) {
-        // Mark the spell as cast and/or subtract the fatigue
-        if (spell.system.isPersistent) spell.update({ "system.stSpent": cost.st.value ?? 0 });
-
-        if (game.settings.get(FT.id, "applySpellEffectsAuto")) {
-          // Transfer spell effects to targets
-          game.user.targets.forEach((t) => {
-            t.actor.createEmbeddedDocuments(
-              "ActiveEffect",
-              Array.from(spell.effects).map((e) => {
-                return {
-                  ...e,
-                  name: `${spell.name}/${e.name}`,
-                  changes: e.changes.map((c) => {
-                    // Replace "ST" with casting cost of spell
-                    c.value = parseInt(c.value.replace("ST", cost.st.value));
-                    return c;
-                  }),
-                };
-              })
-            );
-          });
-        }
-      }
-
-      // Subtract the fatigue even if the spell failed on a roll of 17+
-      if ((margin >= 0 || roll.total >= 17) && game.settings.get(FT.id, "addCastingFatigueAuto")) {
-        actor.update({ "system.fatigue": actor.system.fatigue + parseInt(cost.st.value) });
-      }
-
-      // Create a chat message for the result
-      let message = game.i18n.format(`FT.system.roll.flavor.${data.type}.${Math.floor(Math.random() * 6)}`, {
-        spell: spell.name,
-        result: game.i18n.format(`FT.system.roll.result.${result}`, {
-          margin: Math.abs(margin),
-        }),
-      });
-
-      if (roll.total === 17) {
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeDropped"));
-      } else if (roll.total === 18) {
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeBroken"));
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.knockdown"));
-      }
-
-      roll.toMessage(
-        {
-          speaker: ChatMessage.getSpeaker({ actor }),
-          flavor: message,
-        },
-        { rollMode }
-      );
-
-      // If the spell is cast from an item, then it may get burned (deleted)
-      if (!!options.item && options.burn) {
-        actor.deleteEmbeddedDocuments("Item", [options.item._id]);
-        ChatMessage.create({
-          flavor: game.i18n.format("FT.item.chat.burn", { name: options.item.name }),
-          whisper: Object.keys(actor.ownership).filter((k) => k !== "default"),
-        });
-      }
-    },
-  };
-
-  DICE_ROLLER.render(context);
 }
