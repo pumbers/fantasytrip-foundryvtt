@@ -43,7 +43,8 @@ export class FTActor extends Actor {
       .filter((item) => item.type === "equipment")
       .filter((item) => FT.item.inventory.encumbering.includes(item.system.location))
       .reduce((load, item) => load + item.system.totalWt, 0);
-    const level = capacity.findIndex((val) => val > load);
+
+    const level = capacity.findIndex((val, index) => val > load || index === capacity.length - 1);
 
     system.encumbrance = { capacity, load, level };
 
