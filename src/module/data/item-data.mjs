@@ -114,7 +114,6 @@ export class FTSpellData extends FTTalentData {
       stToCast: new SchemaField({ min: new NumberField({ initial: 1 }), max: new NumberField({ initial: 1 }) }),
       stToMaintain: new NumberField({ initial: 0 }),
       stSpent: new NumberField({ initial: 0 }),
-      wasCastFromItem: new BooleanField({ initial: false }),
     });
   }
 
@@ -123,12 +122,12 @@ export class FTSpellData extends FTTalentData {
     this.stToCast.max = Math.max(this.stToCast.min, this.stToCast.max);
   }
 
-  get isKnown() {
-    return !this.wasCastFromItem;
+  get isCast() {
+    return this.stSpent > 0;
   }
 
   get isReady() {
-    return this.stSpent > 0;
+    return this.isCast;
   }
 
   get casting() {

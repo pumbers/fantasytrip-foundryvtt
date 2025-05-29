@@ -19,7 +19,7 @@ function extractRollParameters(data) {
     0
   );
   const totalModifiers = Object.values(data.modifiers ?? []).reduce((total, modifier) => total + parseInt(modifier), 0);
-  data.cost.st.value = parseInt(data.cost.st.value ?? 0);
+  if (data.cost) data.cost.st.value = parseInt(data.cost.st.value ?? 0);
 
   return {
     ...data,
@@ -436,14 +436,8 @@ export function castingRoll(actor, spell, options = {}) {
 
       // If the spell can be maintained...
       if (margin >= 0 && spell.system.canBeMaintained) {
-        // Record how much ST was spent
-        spell.update({ "system.stSpent": cost.st.value });
-        // if cast from item, temporarily add to actors items
-        if (options.item) {
-          actor.createEmbeddedDocuments("Item", [
-            foundry.utils.mergeObject(spell.toObject(), { "system.wasCastFromItem": true }),
-          ]);
-        }
+        // Create a "cast" spell clone and record the ST spent
+        actor.createEmbeddedDocuments("Item", [spell.clone({ "system.stSpent": stCost + manaCost })]);
       }
 
       // Create a chat message for the result

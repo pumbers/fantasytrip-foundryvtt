@@ -77,7 +77,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       // Categorized items
       talents: this.actor.items.filter((item) => item.type === "talent").sort((a, b) => a.name.localeCompare(b.name)),
       spells: this.actor.items
-        .filter((item) => item.type === "spell" && item.system.isKnown)
+        .filter((item) => item.type === "spell" && !item.system.isCast)
         .sort((a, b) => a.name.localeCompare(b.name)),
       inventory: this.actor.items
         .filter((item) => item.type === "equipment")
@@ -217,13 +217,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("_cancelSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const spell = this.actor.items.get(itemId);
-    if (spell.system.isKnown) {
-      // Known spell, just set the casting ST to 0
-      spell.update({ "system.stSpent": 0 });
-    } else {
-      // Cast from item, so remove the spell
-      spell.delete();
-    }
+    spell.delete();
   }
 
   static #castSpellFromItem(event, target) {
