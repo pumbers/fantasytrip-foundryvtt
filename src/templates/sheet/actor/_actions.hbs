@@ -1,0 +1,53 @@
+{{!-- Actions --}}
+{{#each readied as | item |}}
+<fieldset class="action-item" data-item-id="{{item._id}}">
+    <legend>{{item.name}}</legend>
+    <img src="{{item.img}}" alt="">
+    <div class="action-item-details">
+        {{!-- Active Spell --}}
+        {{#if (eq item.type "spell")}}
+        <span><i class="icon-pentacle mr-1"></i>{{item.system.stSpent}}/{{item.system.stToMaintain}}</span>
+        <a class="px-1 sheet-button" data-action="maintainSpell"><i class="icon-magic-swirl mr-1"></i>{{localize
+            "FT.actor.sheet.action.spell.maintain"}}</a>
+        <a class="px-1 sheet-button" data-action="cancelSpell"><i class="icon-magic-swirl mr-1"></i>{{localize
+            "FT.actor.sheet.action.spell.cancel"}}</a>
+        <span></span>
+        {{/if}}
+        {{!-- Attacks --}}
+        {{#each item.system.attacks as | attack |}}
+        <span>
+            {{#if attack.minST}}
+            <i
+                class="icon-weight-lifting-up mr-1 {{#unless (gte ../../system.st.max minST)}}warning{{/unless}}"></i>{{localize
+            "FT.actor.attribute.st.max"}}&nbsp;{{minST}}
+            {{/if}}
+        </span>
+        <a class="px-1 sheet-button" data-action="attackRoll" data-attack-index="{{@index}}"
+            title="{{localize (concat 'FT.item.attack.type.' type)}}">
+            <i class="{{property ../../FT.item.attack.icon type}} mr-1"></i>
+            {{action}}&thinsp;{{dice}}/{{localize
+            (concat "FT.actor.attribute." attribute)}}&thinsp;{{toHit}}</a>
+        <a class="px-1 sheet-button" data-action="damageRoll" data-attack-index="{{@index}}"><i
+                class="icon-death-skull mr-1"></i>{{damage}}
+        </a>
+        {{/each}}
+        {{!-- Defenses --}}
+        {{#each item.system.defenses as | defense |}}
+        <span><i class="icon-chest-armor mr-1"></i>{{hitsStopped}}</span>
+        <span class="px-1">{{action}}</span>
+        <span></span>
+        {{/each}}
+        {{!-- Spells --}}
+        {{#each item.system.spells as | spell |}}
+        <span>
+            <i class="icon-pentacle mr-2"></i>{{spell.casting}}&thinsp;{{#if spell.burn}}<i
+                class="icon-flame"></i>{{/if}}
+        </span>
+        <a class="sheet-button px-1" data-action="castSpellFromItem" data-spell-uuid="{{spell.uuid}}"
+            data-burn="{{spell.burn}}" title="{{localize 'FT.actor.sheet.action.spell.cast'}} {{spell.name}}">
+            <i class="icon-magic-swirl mr-1"></i>{{spell.name}}</a>
+        <span></span>
+        {{/each}}
+    </div>
+</fieldset>
+{{/each}}

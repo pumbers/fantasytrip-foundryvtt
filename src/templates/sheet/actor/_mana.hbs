@@ -1,0 +1,14 @@
+{{!-- Artifact & Staff Mana --}}
+<div class="track">
+    <span class="track-type" title="{{localize 'FT.actor.sheet.label.mana'}}">
+        <i class="icon-wizard-staff"></i>
+    </span>
+    <span class="track-gauge col-span-7 flex flex-row gap-0">
+        {{#each (range system.mana.value)}}
+        <span class="grow {{../FT.actor.tracks.mana.color}}"></span>
+        {{/each}}
+        {{#each (range system.mana.used)}}
+        <span class="grow bg-transparent"></span>
+        {{/each}}
+    </span>
+</div>

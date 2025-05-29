@@ -1,0 +1,118 @@
+{{!-- Character Tab --}}
+<section id="{{partId}}" class="tab {{tabs.character.cssClass}}" data-group="primary" data-tab="character">
+    <div class="flex flex-col gap-2">
+        {{!-- Type, Race, Job --}}
+        <section id="character" class="grid grid-cols-5 gap-1 m-0 p-0">
+            <div class="field col-span-2">
+                <label>{{localize "FT.actor.sheet.label.type"}}</label>
+                <select name="system.type">
+                    {{selectOptions FT.actor.types selected=system.type localize=true
+                    }}
+                </select>
+            </div>
+            <div class="field col-span-2">
+                <label>{{localize "FT.actor.sheet.label.race"}}</label>
+                <input type="text" name="system.race" value="{{system.race}}" list="race">
+                <datalist id="race">
+                    {{#each FT.actor.races}}
+                    <option value="{{localize .}}">{{localize .}}</option>
+                    {{/each}}
+                </datalist>
+            </div>
+            <div class="field">
+                <label>{{localize "FT.actor.sheet.label.age"}}</label>
+                <input type="number" name="system.age" value="{{system.age}}" min="16">
+            </div>
+            <div class="field col-span-2">
+                <label>{{localize "FT.actor.sheet.label.job"}}</label>
+                <input type="text" name="system.job.name" value="{{system.job.name}}">
+            </div>
+            <div class="field">
+                <label>{{localize "FT.actor.sheet.label.pay"}}</label>
+                <input type="number" name="system.job.pay" value="{{system.job.pay}}">
+            </div>
+            <div class="field col-span-2">
+                <label>{{localize "FT.actor.sheet.label.risk"}}</label>
+                <div class="grid grid-cols-2 gap-1">
+                    <input type="number" name="system.job.risk.low" value="{{system.job.risk.low}}" min=" 3" max="11">
+                    <input type="number" name="system.job.risk.high" value="{{system.job.risk.high}}" min="12" max="18">
+                </div>
+            </div>
+        </section>
+
+        {{!-- Attributes --}}
+        <section id="attributes" class="flex flex-row gap-1 justify-between m-0 my-1 p-0">
+            <div class="flex flex-col gap-1">
+                {{!-- Attribute Partial --}}
+                {{#*inline "attribute"}}
+                <div class="flex flex-row gap-1 justify-start" data-attribute="{{key}}">
+                    <label class="attribute text-xl text-center min-w-10 leading-8">{{localize
+                        (concat "FT.actor.attribute." key ".max")}}</label>
+                    <div class="flex flex-row gap-0">
+                        <input class="m-0 !text-center !text-xl !h-full !w-14" type="number" name="system.{{key}}.max"
+                            min="0" value="{{attr.max}}" />
+                        <a title="{{title}}" class="!p-2 sheet-button" data-action="attributeRoll"
+                            data-attribute="{{key}}.max" data-type="save"><i class="icon-d6 text-xl"></i></a>
+                    </div>
+                    <div class="field w-14">
+                        <label>{{localize "FT.actor.sheet.label.adjusted"}}</label>
+                        {{#if roll}}
+                        <div class="flex flex-row gap-0">
+                            <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+                            <a title="{{title}}" class="!p-1 sheet-button" data-action="attributeRoll"
+                                data-attribute="{{key}}.value" data-type="save"><i class="icon-d6"></i></a>
+                        </div>
+                        {{else if action}}
+                        <div class="flex flex-row gap-0">
+                            <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+                            <a title="{{title}}" class="!p-1 sheet-button" data-action="{{name}}"><i
+                                    class="{{icon}}"></i></a>
+                        </div>
+                        {{else}}
+                        <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />\
+                        {{/if}}
+                    </div>
+                </div>
+                {{/inline}}
+                {{!-- Attribute Block --}}
+                {{> attribute key="st" attr=system.st roll=true title=(localize
+                "FT.actor.sheet.action.attribute.roll")}}
+                {{> attribute key="dx" attr=system.dx roll=true title=(localize
+                "FT.actor.sheet.action.attribute.roll")}}
+                {{> attribute key="iq" attr=system.iq roll=true title=(localize
+                "FT.actor.sheet.action.attribute.roll")}}
+                {{> attribute key=(concat "ma." system.ma.mode) attr=system.currentMA action=true
+                name="changeMovement" icon=(concat "icon-" system.ma.mode) title=(localize (concat
+                "FT.actor.attribute.ma.mode."
+                system.ma.mode))}}
+            </div>
+            {{!-- <div class="flex flex-col gap-1 justify-between w-full">
+                <span class="text-xs text-center mx-1 sheet-button" data-action="A">A</span>
+                <span class="text-xs text-center mx-1 sheet-button" data-action="A">B</span>
+                <span class="text-xs text-center mx-1 sheet-button" data-action="A">C</span>
+                <span class="text-xs text-center mx-1 sheet-button" data-action="A">D</span>
+                <span class="text-xs text-center mx-1 sheet-button" data-action="A">E</span>
+                <span class="text-xs text-center mx-1 sheet-button" data-action="A">F</span>
+                <span class="text-xs text-center mx-1 sheet-button" data-action="A">G</span>
+            </div> --}}
+            <img class="profile-img" src="{{actor.img}}" data-action="editImage" data-edit="img"
+                title="{{actor.name}}" />
+        </section>
+
+        {{!-- Character Status --}}
+        <section id="status" class="flex flex-col gap-1">
+            {{> (concat FT.path "/templates/sheet/actor/_encumbrance.hbs")}}
+            {{> (concat FT.path "/templates/sheet/actor/_health.hbs")}}
+            {{#if (eq system.type "wizard")}}
+            {{> (concat FT.path "/templates/sheet/actor/_mana.hbs")}}
+            {{/if}}
+            {{> (concat FT.path "/templates/sheet/actor/_modifiers.hbs")}}
+        </section>
+
+        {{!-- Character Actions --}}
+        <section id="actions" class="flex flex-col gap-1">
+            {{> (concat FT.path "/templates/sheet/actor/_actions.hbs")}}
+        </section>
+
+    </div>
+</section>

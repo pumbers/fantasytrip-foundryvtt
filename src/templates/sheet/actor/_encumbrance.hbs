@@ -1,0 +1,13 @@
+{{!-- Encumbrance --}}
+<div class="track">
+    <span class="track-type" title="{{localize 'FT.actor.sheet.label.encumbrance'}}">
+        <i class="icon-knapsack"></i>
+    </span>
+    {{#each system.encumbrance.capacity as |capacity|}}
+    <span
+        class="track-gauge {{#if (eq @index ../system.encumbrance.level)}}{{lookup ../FT.actor.tracks.encumbrance.colors @index}}{{/if}}"
+        title="{{localize (concat 'FT.actor.sheet.label.encumbranceLevel.' @index)}}">
+        {{numberFormat capacity decimals=0}}&thinsp;{{localize 'FT.actor.sheet.table.items.unit'}}
+    </span>
+    {{/each }}
+</div>

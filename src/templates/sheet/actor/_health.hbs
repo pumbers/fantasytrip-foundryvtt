@@ -1,0 +1,19 @@
+{{!-- Fatigue & Damage --}}
+<div class="track">
+    <span class="track-type" title="{{localize 'FT.actor.sheet.label.health'}}">
+        <i class="icon-death-skull"></i>
+    </span>
+    <span class="track-gauge col-span-7  flex flex-row gap-0">
+        {{#each (range system.damage)}}
+        <span class="grow {{../FT.actor.tracks.damage.color}}"
+            title="{{localize 'FT.actor.sheet.label.damage'}}"></span>
+        {{/each}}
+        {{#each (range system.fatigue)}}
+        <span class="grow {{../FT.actor.tracks.fatigue.color}}"
+            title="{{localize 'FT.actor.sheet.label.fatigue'}}"></span>
+        {{/each}}
+        {{#each (range system.st.value)}}
+        <span class="grow bg-transparent"></span>
+        {{/each}}
+    </span>
+</div>

@@ -1,0 +1,39 @@
+{{!-- Damage, Fatigue and stats modifiers --}}
+<div class="flex flex-row gap-1 text-xs text-center">
+  <div class="field">
+    <label>{{localize "FT.actor.sheet.label.fatigue"}}</label><input type="number" name="system.fatigue"
+      value="{{ system.fatigue }}" min="0" />
+  </div>
+  <div class="field">
+    <label>{{localize "FT.actor.sheet.label.damage"}}</label><input type="number" name="system.damage"
+      value="{{ system.damage }}" min="0" />
+  </div>
+  {{#if (eq system.type "wizard")}}
+  {{!-- TODO Why does this input having a min cause the value to vanish?? --}}
+  <div class="field">
+    <label>{{localize "FT.actor.sheet.label.mana"}}</label><input type="number" name="system.mana.value"
+      value="{{ system.mana.value }}" max="{{ system.mana.max }}" />
+  </div>
+  {{/if}}
+  <div class="field">
+    <label>{{localize "FT.actor.sheet.label.stMod"}}</label><input type="number" name="system.st.mod"
+      value="{{ system.st.mod }}" />
+  </div>
+  <div class="field">
+    <label>{{localize "FT.actor.sheet.label.dxMod"}}</label><input type="number" name="system.dx.mod"
+      value="{{ system.dx.mod }}" />
+  </div>
+  <div class="field">
+    <label>{{localize "FT.actor.sheet.label.iqMod"}}</label><input type="number" name="system.iq.mod"
+      value="{{ system.iq.mod }}" />
+  </div>
+  <div class="field">
+    <label>{{localize "FT.actor.sheet.label.maMod"}}</label><input type="number"
+      name="{{concat 'system.ma.' system.ma.mode '.mod' }}" value="{{ system.currentMA.mod }}" />
+  </div>
+  <div class="field">
+    <label>{{localize
+      "FT.actor.sheet.label.initiative"}}</label><input type="number" name="system.initiative.situation"
+      value="{{ system.initiative.situation }}" />
+  </div>
+</div>

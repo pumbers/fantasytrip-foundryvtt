@@ -317,26 +317,26 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
   /** @inheritdoc */
   static PARTS = {
     header: {
-      template: `${FT.path}/templates/sheet/character/header.hbs`,
+      template: `${FT.path}/templates/sheet/actor/character/header.hbs`,
     },
     tabs: {
       // Foundry-provided generic template
       template: "templates/generic/tab-navigation.hbs",
     },
     character: {
-      template: `${FT.path}/templates/sheet/character/tab-character.hbs`,
+      template: `${FT.path}/templates/sheet/actor/character/tab-character.hbs`,
     },
     notes: {
       template: `${FT.path}/templates/sheet/tab-notes.hbs`,
     },
     talents: {
-      template: `${FT.path}/templates/sheet/character/tab-talents.hbs`,
+      template: `${FT.path}/templates/sheet/actor/character/tab-talents.hbs`,
     },
     inventory: {
-      template: `${FT.path}/templates/sheet/character/tab-inventory.hbs`,
+      template: `${FT.path}/templates/sheet/actor/character/tab-inventory.hbs`,
     },
     spells: {
-      template: `${FT.path}/templates/sheet/character/tab-spells.hbs`,
+      template: `${FT.path}/templates/sheet/actor/character/tab-spells.hbs`,
     },
     effects: {
       template: `${FT.path}/templates/sheet/tab-effects.hbs`,
@@ -371,20 +371,20 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
   /** @inheritdoc */
   static PARTS = {
     header: {
-      template: `${FT.path}/templates/sheet/npc/header.hbs`,
+      template: `${FT.path}/templates/sheet/actor/npc/header.hbs`,
     },
     tabs: {
       // Foundry-provided generic template
       template: "templates/generic/tab-navigation.hbs",
     },
     character: {
-      template: `${FT.path}/templates/sheet/npc/tab-character.hbs`,
+      template: `${FT.path}/templates/sheet/actor/npc/tab-character.hbs`,
     },
     notes: {
       template: `${FT.path}/templates/sheet/tab-notes.hbs`,
     },
     inventory: {
-      template: `${FT.path}/templates/sheet/npc/tab-inventory.hbs`,
+      template: `${FT.path}/templates/sheet/actor/npc/tab-inventory.hbs`,
     },
     effects: {
       template: `${FT.path}/templates/sheet/tab-effects.hbs`,
