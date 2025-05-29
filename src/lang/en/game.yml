@@ -31,6 +31,10 @@ FT:
         name: Add Casting Fatigue Automatically
         hint: >
           When a spell is cast, add the appropriate ST cost to the character's fatigue automatically.
+      useManaFirst:
+        name: Use item mana first when casting spells
+        hint: >
+          When casting spells, use mana from equipped items before character ST.
       cancelAttackSpellAuto:
         name: Cancel Attack Spells Automatically
         hint: >

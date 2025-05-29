@@ -125,6 +125,18 @@ Hooks.once("init", async function () {
     config: true,
   });
 
+  game.settings.register(FT.id, "useManaFirst", {
+    name: game.i18n.localize("FT.game.settings.useManaFirst.name"),
+    hint: game.i18n.localize("FT.game.settings.useManaFirst.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: true,
+    }),
+    config: true,
+  });
+
   game.settings.register(FT.id, "cancelAttackSpellAuto", {
     name: game.i18n.localize("FT.game.settings.cancelAttackSpellAuto.name"),
     hint: game.i18n.localize("FT.game.settings.cancelAttackSpellAuto.hint"),

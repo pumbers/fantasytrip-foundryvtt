@@ -413,7 +413,6 @@ export function castingRoll(actor, spell, options = {}) {
       const { cost, dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode } =
         extractRollParameters(data);
 
-      console.log(cost, dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode);
       // Create & evaluate a roll based on the set parameters
       const roll = await new Roll(`${dice}D6`).evaluate();
 
@@ -421,25 +420,30 @@ export function castingRoll(actor, spell, options = {}) {
       const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
       const margin = totalAttributes + totalModifiers - roll.total;
 
-      if (margin >= 0) {
-        // Add fatigue for successful casting
-        actor.update({ "system.fatigue": actor.system.fatigue + cost.st.value });
-        if (spell.system.canBeMaintained) {
-          // Record how much ST was spent
-          spell.update({ "system.stSpent": cost.st.value });
-          // if cast from item, temporarily add to actors items
-          if (options.item) {
-            actor.createEmbeddedDocuments("Item", [
-              foundry.utils.mergeObject(spell.toObject(), { "system.wasCastFromItem": true }),
-            ]);
-          }
+      // Calculate item mana cost and/or actor ST cost for the casting
+      let manaCost = 0;
+      let stCost = margin >= 0 || spell.system.type === "missile" || roll.total >= 17 ? cost.st.value : 1;
+      if (game.settings.get(FT.id, "useManaFirst")) {
+        manaCost = Math.min(actor.system.mana.value, stCost);
+        stCost = stCost - manaCost;
+      }
+
+      // Add fatigue and/or subtract item mana for successful casting
+      if (game.settings.get(FT.id, "addCastingFatigueAuto")) {
+        actor.update({ "system.fatigue": actor.system.fatigue + stCost });
+        actor.update({ "system.mana.value": actor.system.mana.value - manaCost });
+      }
+
+      // If the spell can be maintained...
+      if (margin >= 0 && spell.system.canBeMaintained) {
+        // Record how much ST was spent
+        spell.update({ "system.stSpent": cost.st.value });
+        // if cast from item, temporarily add to actors items
+        if (options.item) {
+          actor.createEmbeddedDocuments("Item", [
+            foundry.utils.mergeObject(spell.toObject(), { "system.wasCastFromItem": true }),
+          ]);
         }
-      } else {
-        // Missile spells cost full ST on failure, other spells cost 1 ST
-        actor.update({
-          "system.fatigue":
-            actor.system.fatigue + (spell.system.type === "missile" || margin >= 17 ? cost.st.value : 1),
-        });
       }
 
       // Create a chat message for the result
