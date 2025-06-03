@@ -84,7 +84,10 @@ function determineRollResult(dice, target, roll) {
  * @param {Object} options
  */
 export function attributeRoll(actor, options) {
-  // console.log("Action.attributeRoll()", actor, options);
+  console.log("Action.attributeRoll()", actor, options);
+
+  const attribute = options.attribute.split(".")[0];
+  const saveMod = actor.system[attribute].modFor.save;
 
   const context = {
     //
@@ -94,6 +97,17 @@ export function attributeRoll(actor, options) {
     dice: 3,
     actor,
     attribute: options.attribute,
+    modifiers: {
+      ...(saveMod !== 0
+        ? {
+            saveMod: {
+              min: FT.roll.modifiers.default.min,
+              max: FT.roll.modifiers.default.max,
+              value: saveMod,
+            },
+          }
+        : {}),
+    },
     //
     submit: (data) => {
       // console.log("Action.attributeRoll().submit()", "data", data);

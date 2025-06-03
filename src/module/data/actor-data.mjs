@@ -24,7 +24,6 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
-          damage: new NumberField({ initial: 0 }), // Modifier to damage done
         }),
       }),
       dx: new SchemaField({
@@ -126,5 +125,9 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
 
   get isDead() {
     return this.damage > this.st.max;
+  }
+
+  static migrateData(source) {
+    console.log("migrateData()", source);
   }
 }

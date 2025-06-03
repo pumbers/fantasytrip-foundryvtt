@@ -13,6 +13,7 @@ FT:
       modifier:
         situationMod: Situation
         attributeMod: Attribute
+        saveMod: Save Roll
         minSTMod: Min ST
         toHitMod: To Hit
         attackTypeMod: Type
