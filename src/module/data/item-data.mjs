@@ -69,6 +69,10 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
   get hasSpells() {
     return this.spells?.length > 0;
   }
+
+  static migrateData(source) {
+    // console.log("migrateData()", source);
+  }
 }
 
 /**

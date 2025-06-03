@@ -130,6 +130,6 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
   }
 
   static migrateData(source) {
-    console.log("migrateData()", source);
+    // console.log("migrateData()", source);
   }
 }
