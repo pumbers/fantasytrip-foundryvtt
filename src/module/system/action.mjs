@@ -397,6 +397,13 @@ export function castingRoll(actor, spell, options = {}) {
     spell,
     attribute: FT.item.spell.castAttribute[spell.system.type],
     modifiers: {
+      ...(actor.system.dx.modFor.casting !== 0 && {
+        attributeMod: {
+          min: FT.roll.modifiers.default.min,
+          max: FT.roll.modifiers.default.max,
+          value: actor.system.dx.modFor.casting,
+        },
+      }),
       ...(spell.system.type === "missile" && {
         rangeMod: {
           min: FT.roll.modifiers.default.min,

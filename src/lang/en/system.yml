@@ -16,7 +16,7 @@ FT:
         saveMod: Save Roll
         minSTMod: Min ST
         toHitMod: To Hit
-        attackTypeMod: Type
+        attackTypeMod: Attack Type
         rangeMod: Range
         unskilledMod: Unskilled
       targetNumber: Target

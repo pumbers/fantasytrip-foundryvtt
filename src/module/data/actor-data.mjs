@@ -32,12 +32,14 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
+          //
           hth: new NumberField({ initial: 0 }), // Modifier to HTH attacks
           natural: new NumberField({ initial: 0 }), // Modifier to natural wepon attacks
           melee: new NumberField({ initial: 0 }), // Modifier to melee attacks
           polearm: new NumberField({ initial: 0 }), // Modifier to polearm attacks
           thrown: new NumberField({ initial: 0 }), // Modifier to thrown weapon attacks
           missile: new NumberField({ initial: 0 }), // Modifier to missile weapon attacks
+          //
           casting: new NumberField({ initial: 0 }), // Modifier to spell casting
         }),
       }),
