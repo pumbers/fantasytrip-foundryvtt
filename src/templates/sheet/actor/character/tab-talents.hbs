@@ -24,7 +24,7 @@
                     </th>
                 </tr>
             </thead>
-            {{#each (sort talents 'name') as |talent|}}
+            {{#each talents as |talent|}}
             <tr data-item-id="{{talent._id}}">
                 {{#if ../settings.showItemIcons}}
                 <td><img src="{{talent.img}}" /> </td>
@@ -38,6 +38,8 @@
                     {{#if talent.system.defaultAttribute}}
                     <a class="px-1 sheet-button" data-action="talentRoll">{{localize "FT.actor.sheet.action.talent.roll"
                         name=talent.name}}</a>
+                    {{else}}
+                    <i class="icon-skills warning" title="{{localize 'FT.actor.sheet.tooltip.noSkill'}}"></i>
                     {{/if}}
                 </td>
                 <td>{{> actions}}</td>

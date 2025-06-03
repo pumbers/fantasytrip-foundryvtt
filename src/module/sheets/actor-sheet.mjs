@@ -77,7 +77,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       // Categorized items
       talents: this.actor.items.filter((item) => item.type === "talent").sort((a, b) => a.name.localeCompare(b.name)),
       spells: this.actor.items
-        .filter((item) => item.type === "spell" && !item.system.isCast)
+        .filter((item) => item.type === "spell" && !item.isReady)
         .sort((a, b) => a.name.localeCompare(b.name)),
       inventory: this.actor.items
         .filter((item) => item.type === "equipment")
@@ -87,7 +87,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
         .sort((a, b) => a.name.localeCompare(b.name)),
       // Readied Attacks, Defenses, Magic Items, Active Spells
       readied: this.actor.items
-        .filter((item) => item.system.isReady)
+        .filter((item) => item.system.isReady && item.system.hasActions)
         .map((item) => {
           item.system.spells
             ?.filter((spell) => !!spell.uuid)

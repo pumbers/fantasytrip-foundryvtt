@@ -84,6 +84,9 @@
   & .icon-flame::before {
     content: url("../assets/icons/flame.svg");
   }
+  & .icon-skills::before {
+    content: url("../assets/icons/skills.svg");
+  }
 
   /* Weapons */
   & .icon-fist::before {

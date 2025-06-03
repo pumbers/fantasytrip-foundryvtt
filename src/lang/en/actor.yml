@@ -77,6 +77,8 @@ FT:
           dropped: Dropped
           stowed: Stowed
           stored: Stored
+      tooltip:
+        noSkill: No default skill selected
       table:
         talents:
           name: Talent

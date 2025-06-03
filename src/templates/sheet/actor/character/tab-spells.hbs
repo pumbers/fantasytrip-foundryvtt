@@ -22,7 +22,7 @@
                         title="{{localize 'FT.actor.sheet.action.spell.create'}}"><i class="fa fa-plus"></i></a></th>
             </tr>
         </thead>
-        {{#each (sort spells 'name') as |spell|}}
+        {{#each spells as |spell|}}
         <tr data-item-id="{{spell._id}}">
             {{#if ../settings.showItemIcons}}
             <td><img src="{{spell.img}}" /> </td>

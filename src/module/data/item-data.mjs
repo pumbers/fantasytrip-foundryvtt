@@ -84,7 +84,7 @@ export class FTTalentData extends FTBaseItemData {
   }
 
   get isReady() {
-    return !!this.defaultAttribute && this.hasActions;
+    return !!this.defaultAttribute;
   }
 }
 
@@ -122,12 +122,12 @@ export class FTSpellData extends FTTalentData {
     this.stToCast.max = Math.max(this.stToCast.min, this.stToCast.max);
   }
 
-  get isCast() {
+  get isReady() {
     return this.stSpent > 0;
   }
 
-  get isReady() {
-    return this.isCast;
+  get hasActions() {
+    return true;
   }
 
   get casting() {
