@@ -84,7 +84,7 @@ function determineRollResult(dice, target, roll) {
  * @param {Object} options
  */
 export function attributeRoll(actor, options) {
-  console.log("Action.attributeRoll()", actor, options);
+  // console.log("Action.attributeRoll()", actor, options);
 
   const attribute = options.attribute.split(".")[0];
   const saveMod = actor.system[attribute].modFor.save;
@@ -502,7 +502,7 @@ export function castingRoll(actor, spell, options = {}) {
                 .filter(([id, level]) => level === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER)
                 .map(([id, level]) => `ft-show-${id}`)
                 .join(" "),
-              minimum: 0,
+              minimum: spell.system.type === "missile" ? cost.st.value : 0,
               multiplier: spell.system.type === "missile" ? cost.st.value : 1,
               damageMultiplierStrategy:
                 spell.system.type === "missile" ? "rollTimes" : game.settings.get(FT.id, "damageMultiplierStrategy"),
@@ -566,8 +566,8 @@ export function damageRoll(actor, item, options = {}) {
       // Build a damage formula
       const finalFormula =
         damageMultiplierStrategy === "rollTimes"
-          ? new Array(multiplier ?? 1).fill(`max(${formula},${minimum})`).join("+")
-          : `(max(${formula ?? minimum},${minimum}))*${multiplier ?? 1}`;
+          ? "max(" + new Array(multiplier ?? 1).fill(`max(${formula},0)`).join("+") + `,${minimum})`
+          : `max(max(${formula},0)*${multiplier ?? 1},${minimum ?? 0})`;
 
       // Roll and generate a chat message for each target
       if (!!game.user.targets.size) {

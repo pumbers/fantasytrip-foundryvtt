@@ -23,6 +23,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         mod: new NumberField({ initial: 0 }), // Manually set modifier
         value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
+          // Attribute save mod
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
         }),
       }),
@@ -31,15 +32,16 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         mod: new NumberField({ initial: 0 }), // Manually set modifier
         value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
+          // Attribute save mod
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
-          //
+          // Weapon type mods
           hth: new NumberField({ initial: 0 }), // Modifier to HTH attacks
           natural: new NumberField({ initial: 0 }), // Modifier to natural wepon attacks
           melee: new NumberField({ initial: 0 }), // Modifier to melee attacks
           polearm: new NumberField({ initial: 0 }), // Modifier to polearm attacks
           thrown: new NumberField({ initial: 0 }), // Modifier to thrown weapon attacks
           missile: new NumberField({ initial: 0 }), // Modifier to missile weapon attacks
-          //
+          // Spell casting mod
           casting: new NumberField({ initial: 0 }), // Modifier to spell casting
         }),
       }),
@@ -48,6 +50,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         mod: new NumberField({ initial: 0 }), // Manually set modifier
         value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
+          // Attribute save mod
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
         }),
       }),

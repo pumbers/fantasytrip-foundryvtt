@@ -161,7 +161,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   }
 
   static #changeMovement(event, target) {
-    console.log("_changeMovement()", target.dataset);
+    console.log("#changeMovement()", target.dataset);
     const modes = Object.keys(CONFIG.FT.actor.ma.modes);
     this.actor.update({
       "system.ma.mode": modes[(modes.findIndex((m) => m === this.actor.system.ma.mode) + 1) % modes.length],
@@ -169,12 +169,12 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   }
 
   static #attributeRoll(event, target) {
-    console.log("_attributeRoll", target.dataset);
+    console.log("#attributeRoll", target.dataset);
     Action.attributeRoll(this.actor, target.dataset);
   }
 
   static #talentRoll(event, target) {
-    console.log("_talentRoll", target.dataset);
+    console.log("#talentRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
     if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
@@ -182,7 +182,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   }
 
   static #attackRoll(event, target) {
-    console.log("_attackRoll", target.dataset);
+    console.log("#attackRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
     if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
@@ -190,7 +190,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   }
 
   static #damageRoll(event, target) {
-    console.log("_damageRoll", target.dataset);
+    console.log("#damageRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
     if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
@@ -198,7 +198,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   }
 
   static #castSpell(event, target) {
-    console.log("_castSpell", target.dataset);
+    console.log("#castSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
     if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
@@ -206,7 +206,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   }
 
   static #maintainSpell(event, target) {
-    console.log("_maintainSpell", target.dataset);
+    console.log("#maintainSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
     if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
@@ -214,14 +214,14 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   }
 
   static #cancelSpell(event, target) {
-    console.log("_cancelSpell", target.dataset);
+    console.log("#cancelSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const spell = this.actor.items.get(itemId);
     spell.delete();
   }
 
   static #castSpellFromItem(event, target) {
-    console.log("_castSpellFromItem", target.dataset);
+    console.log("#castSpellFromItem", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
     if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
@@ -231,7 +231,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   }
 
   static #manageEffect(event, target) {
-    console.log("_manageEffect", target.dataset);
+    console.log("#manageEffect", target.dataset);
     Effects.onManageActiveEffect(this.actor, event, target);
   }
 

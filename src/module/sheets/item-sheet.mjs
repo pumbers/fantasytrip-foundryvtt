@@ -141,7 +141,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
   /* ------------------------------------------- */
 
   static #addAttack(event, target) {
-    console.log("_addAttack", target.dataset);
+    console.log("#addAttack", target.dataset);
     this.item.system.attacks.push({
       name: "Attack",
       type: "melee",
@@ -154,13 +154,13 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
   }
 
   static #deleteAttack(event, target) {
-    console.log("_deleteAttack", target.dataset);
+    console.log("#deleteAttack", target.dataset);
     this.item.system.attacks.splice(target.dataset.index, 1);
     this.item.update({ "system.attacks": this.item.system.attacks });
   }
 
   static #addDefense(event, target) {
-    console.log("_addDefense", target.dataset);
+    console.log("#addDefense", target.dataset);
     this.item.system.defenses.push({
       name: "Defend",
       hitsStopped: 0,
@@ -169,25 +169,25 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
   }
 
   static #deleteDefense(event, target) {
-    console.log("_deleteDefense", target.dataset);
+    console.log("#deleteDefense", target.dataset);
     this.item.system.defenses.splice(target.dataset.index, 1);
     this.item.update({ "system.defenses": this.item.system.defenses });
   }
 
   static #addSpell(event, target) {
-    console.log("_addSpell", target.dataset);
+    console.log("#addSpell", target.dataset);
     this.item.system.spells.push({ id: null, item: null });
     this.item.update({ "system.spells": this.item.system.spells });
   }
 
   static #deleteSpell(event, target) {
-    console.log("_deleteSpell", target.dataset);
+    console.log("#deleteSpell", target.dataset);
     this.item.system.spells.splice(target.dataset.index, 1);
     this.item.update({ "system.spells": this.item.system.spells });
   }
 
   static #manageEffect(event, target) {
-    console.log("_manageEffect", target.dataset);
+    console.log("#manageEffect", target.dataset);
     Effects.onManageActiveEffect(this.item, event, target);
   }
 
