@@ -8,13 +8,10 @@
     <label>{{localize "FT.actor.sheet.label.damage"}}</label><input type="number" name="system.damage"
       value="{{ system.damage }}" min="0" />
   </div>
-  {{#if (eq system.type "wizard")}}
-  {{!-- TODO Why does this input having a min cause the value to vanish?? --}}
   <div class="field">
     <label>{{localize "FT.actor.sheet.label.mana"}}</label><input type="number" name="system.mana.value"
       value="{{ system.mana.value }}" max="{{ system.mana.max }}" />
   </div>
-  {{/if}}
   <div class="field">
     <label>{{localize "FT.actor.sheet.label.stMod"}}</label><input type="number" name="system.st.mod"
       value="{{ system.st.mod }}" />
