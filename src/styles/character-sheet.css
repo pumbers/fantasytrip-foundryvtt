@@ -34,6 +34,7 @@
     }
 
     section#actions {
+      @apply h-[10em];
       .action-item {
         @apply flex flex-row gap-4 border border-ft-dark dark:border-ft-light rounded-none m-0 p-1 text-xs;
         img {
@@ -53,6 +54,19 @@
       .prosemirror.editor {
         @apply h-full;
       }
+    }
+
+    section#actions,
+    section#character-sheet-notes,
+    section#character-sheet-talents,
+    section#character-sheet-inventory,
+    section#character-sheet-spells,
+    section#character-sheet-effects {
+      @apply overflow-y-scroll;
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      scrollbar-width: none;
     }
   }
 }

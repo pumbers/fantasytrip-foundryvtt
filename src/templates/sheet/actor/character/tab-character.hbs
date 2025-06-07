@@ -1,6 +1,7 @@
 {{!-- Character Tab --}}
 <section id="{{partId}}" class="tab {{tabs.character.cssClass}}" data-group="primary" data-tab="character">
     <div class="flex flex-col gap-2">
+
         {{!-- Type, Race, Job --}}
         <section id="character" class="grid grid-cols-5 gap-1 m-0 p-0">
             <div class="field col-span-2">
@@ -86,15 +87,6 @@
                 "FT.actor.attribute.ma.mode."
                 system.ma.mode))}}
             </div>
-            {{!-- <div class="flex flex-col gap-1 justify-between w-full">
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">A</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">B</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">C</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">D</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">E</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">F</span>
-                <span class="text-xs text-center mx-1 sheet-button" data-action="A">G</span>
-            </div> --}}
             <img class="profile-img" src="{{actor.img}}" data-action="editImage" data-edit="img"
                 title="{{actor.name}}" />
         </section>
@@ -103,9 +95,7 @@
         <section id="status" class="flex flex-col gap-1">
             {{> (concat FT.path "/templates/sheet/actor/_encumbrance.hbs")}}
             {{> (concat FT.path "/templates/sheet/actor/_health.hbs")}}
-            {{#if (eq system.type "wizard")}}
             {{> (concat FT.path "/templates/sheet/actor/_mana.hbs")}}
-            {{/if}}
             {{> (concat FT.path "/templates/sheet/actor/_modifiers.hbs")}}
         </section>
 

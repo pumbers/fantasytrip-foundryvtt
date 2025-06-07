@@ -1,8 +1,9 @@
 {{!-- Effects Tab --}}
 <section id="{{partId}}" class="tab {{tabs.effects.cssClass}}" data-group="primary" data-tab="effects">
     <div class="flex flex-col gap-2 scroll-auto">
+
         {{#each effects as |effect|}}
-        <fieldset class="effect  flex flex-col gap-1" data-effect-id="{{effect._id}}">
+        <fieldset id="effect-{{effect._id}}" class="effect flex flex-col gap-1" data-effect-id="{{effect._id}}">
             <legend>{{effect.parent.name}}:&nbsp;{{effect.name}}&nbsp;{{#if effect.disabled}}{{localize
                 "FT.effect.label.disabled"}}{{/if}}</legend>
             <div class="text-xs">
@@ -50,9 +51,11 @@
             </div>
         </fieldset>
         {{/each}}
+
         <div>
             <button type="button" class="ml-auto mr-0" data-action="createEffect">{{localize
                 "FT.effect.action.create"}}</button>
         </div>
+
     </div>
 </section>

@@ -1,6 +1,6 @@
 {{!-- Actions --}}
 {{#each readied as | item |}}
-<fieldset class="action-item" data-item-id="{{item._id}}">
+<fieldset id="action-item-{{item._id}}" class="action-item" data-item-id="{{item._id}}">
     <legend>{{item.name}}</legend>
     <img src="{{item.img}}" alt="">
     <div class="action-item-details">

@@ -83,14 +83,10 @@
       }
     }
 
-    section.tab {
-      @apply pr-4 overflow-y-auto;
-    }
-
     section[data-tab="notes"] {
       .prosemirror.editor {
         .editor-content {
-          @apply mt-6 block;
+          @apply mt-6 pr-4 block;
         }
         .editor-container {
           @apply mt-6 hidden overflow-y-auto;

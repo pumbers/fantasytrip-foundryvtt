@@ -1,16 +1,17 @@
 {{!-- Talents Tab --}}
 <section id="{{partId}}" class="tab {{tabs.talents.cssClass}}" data-group="primary" data-tab="talents">
-    {{#*inline "actions"}}
-    <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.item.chat'}}"><i class="fa fa-comment"></i></a>
-    <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.item.edit'}}"><i class="fas fa-edit"></i></a>
-    <a data-action="deleteItem" title="{{localize 'FT.actor.sheet.action.item.delete'}}"><i
-            class="fas fa-trash"></i></a>
-    {{/inline}}
+    <div class="flex flex-col gap-2">
 
-    <div class="flex flex-col gap-4">
+        {{#*inline "actions"}}
+        <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.item.chat'}}"><i
+                class="fa fa-comment"></i></a>
+        <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.item.edit'}}"><i class="fas fa-edit"></i></a>
+        <a data-action="deleteItem" title="{{localize 'FT.actor.sheet.action.item.delete'}}"><i
+                class="fas fa-trash"></i></a>
+        {{/inline}}
 
         {{!-- Talents --}}
-        <table>
+        <table id="talents">
             <thead>
                 <tr>
                     {{#if settings.showItemIcons}}<th></th>{{/if}}
@@ -55,7 +56,7 @@
         </table>
 
         {{!-- Abilities --}}
-        <table>
+        <table id="abilities">
             <thead>
                 <tr>
                     {{#if settings.showItemIcons}}<th></th>{{/if}}

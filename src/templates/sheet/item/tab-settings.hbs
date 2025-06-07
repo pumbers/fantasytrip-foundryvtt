@@ -1,6 +1,7 @@
 {{!-- Settings Tab --}}
 <section id="{{partId}}" class="tab {{tabs.notes.cssClass}}" data-group="primary" data-tab="notes">
     <div class="grid grid-cols-4 gap-1">
+
         {{!-- Equipment --}}
         {{#if (eq item.type "equipment")}}
         <div class="field">
@@ -20,6 +21,7 @@
             <input type="number" name="system.capacity" value="{{system.capacity}}" min="0">
         </div>
         {{/if}}
+
         {{!-- Talents & Spells --}}
         {{#if (or (eq item.type "talent") (eq item.type "spell"))}}
         <div class="field">
@@ -31,6 +33,7 @@
             <input type="number" name="system.iqCost" value="{{system.iqCost}}" min="0">
         </div>
         {{/if}}
+
         {{!-- Talents Only --}}
         {{#if (eq item.type "talent")}}
         <div class="field">
@@ -41,6 +44,7 @@
             </select>
         </div>
         {{/if}}
+
         {{!-- Spells Only --}}
         {{#if (eq item.type "spell")}}
         <div class="field col-span-2">
@@ -64,6 +68,7 @@
             <input type="number" name="system.stToMaintain" value="{{system.stToMaintain}}" min="0">
         </div>
         {{/if}}
+
         {{!-- Abilities --}}
         {{#if (eq item.type "ability")}}
         <div class="field">
@@ -71,5 +76,6 @@
             <input class="!size-4" type="checkbox" name="system.isAlwaysOn" {{#if system.isAlwaysOn}}checked{{/if}} />
         </div>
         {{/if}}
+
     </div>
 </section>

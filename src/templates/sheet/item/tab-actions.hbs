@@ -1,9 +1,10 @@
 {{!-- Actions Tab --}}
 <section id="{{partId}}" class="tab {{tabs.actions.cssClass}}" data-group="primary" data-tab="actions">
     <div class="flex flex-col gap-2">
+
         {{!-- Attacks --}}
         {{#if flags.maxAttacks}}
-        <fieldset class="flex flex-col gap-4 justify-start">
+        <fieldset id="attacks" class="flex flex-col gap-4 justify-start">
             <legend>{{localize "FT.item.sheet.label.attacks"}}
                 {{#if (lt system.attacks.length flags.maxAttacks)}}
                 &nbsp;<a data-action="addAttack"> <i title="{{localize 'FT.item.sheet.action.addAction'}}"
@@ -11,7 +12,7 @@
                 {{/if}}
             </legend>
             {{#each system.attacks as | attack |}}
-            <div class="grid grid-cols-5 gap-1">
+            <div id="attack-{{@index}}" class="grid grid-cols-5 gap-1">
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.attackAction"}}</label>
                     <div class="flex flex-row gap-0">
@@ -66,12 +67,12 @@
 
         {{!-- Defenses --}}
         {{#if flags.maxDefenses}}
-        <fieldset class="flex flex-col gap-1 justify-start">
+        <fieldset id="defenses" class="flex flex-col gap-1 justify-start">
             <legend>{{localize "FT.item.sheet.label.defenses"}}&nbsp;<a data-action="addDefense"> <i
                         title="{{localize 'FT.item.sheet.action.addAction'}}" class="fa fa-plus-square"></i> </a>
             </legend>
             {{#each system.defenses as | defense |}}
-            <div class="grid grid-cols-4 gap-1">
+            <div id="defense-{{@index}}" class="grid grid-cols-4 gap-1">
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.defenseAction"}}</label>
                     <div class="flex flex-row gap-0">
@@ -94,12 +95,12 @@
 
         {{!-- Spells --}}
         {{#if flags.maxSpells}}
-        <fieldset class="flex flex-col gap-1 justify-start">
+        <fieldset id="spells" class="flex flex-col gap-1 justify-start">
             <legend>{{localize "FT.item.sheet.label.spells"}}&nbsp;<a data-action="addSpell"> <i
                         title="{{localize 'FT.item.sheet.action.addAction'}}" class="fa fa-plus-square"></i> </a>
             </legend>
             {{#each system.spells as | spell |}}
-            <div class="grid grid-cols-3 gap-1">
+            <div id="spell-{{@index}}" class="grid grid-cols-3 gap-1">
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.name"}}</label>
                     <div class="flex flex-row gap-0">
@@ -123,5 +124,6 @@
             {{/each}}
         </fieldset>
         {{/if}}
+
     </div>
 </section>

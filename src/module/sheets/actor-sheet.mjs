@@ -288,7 +288,7 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
     classes: [FT.id, "character", "sheet"],
     position: {
       width: 450,
-      height: 670,
+      height: 680,
     },
   };
 
@@ -349,7 +349,7 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
     classes: [FT.id, "npc", "sheet"],
     position: {
       width: 460,
-      height: 450,
+      height: 440,
     },
   };
 

@@ -89,7 +89,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
 
   prepareBaseData() {
     super.prepareBaseData();
-    // console.log("FTActorData.prepareDerivedData()", this);
+    // console.log("FTActorData.prepareBaseData()", this);
 
     // Calculate attribute points
     const { st, dx, iq } = this;
