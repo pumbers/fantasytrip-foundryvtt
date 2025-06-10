@@ -1,0 +1,153 @@
+@reference "./fantasy-trip.css";
+
+.fantasy-trip.application {
+  /* Common Elements */
+  .window-content {
+    @apply bg-ft-sheet text-ft-dark dark:bg-ft-dark dark:text-ft-light;
+
+    input,
+    textarea,
+    select {
+      @apply !appearance-auto border rounded-none border-ft-dark dark:border-ft-light bg-ft-dark/10 text-ft-dark dark:bg-ft-light/10 dark:text-ft-light;
+      &[readonly] {
+        @apply bg-transparent;
+      }
+      &[disabled] {
+        @apply text-ft-dark/50 dark:text-ft-light/50 border-none;
+      }
+    }
+
+    table {
+      @apply text-ft-dark dark:text-ft-light;
+      thead {
+        @apply border-none bg-ft-dark dark:bg-ft-light/40 text-ft-light;
+      }
+      tr:nth-child(even) {
+        @apply bg-ft-dark/10 dark:bg-ft-light/10;
+      }
+      th,
+      td {
+        img {
+          @apply border-none;
+        }
+      }
+      tfoot {
+        text-shadow: none;
+        @apply border-none bg-ft-dark/40 dark:bg-ft-light/20 text-ft-light;
+      }
+    }
+
+    nav.sheet-tabs.tabs {
+      @apply border-ft-dark dark:border-ft-light uppercase;
+      a {
+        @apply text-ft-dark dark:text-ft-light;
+        &.active {
+          @apply font-bold;
+        }
+      }
+    }
+
+    fieldset {
+      @apply border border-ft-dark dark:border-ft-light rounded-none;
+      legend {
+        @apply font-bold uppercase;
+      }
+    }
+
+    button {
+      @apply border-ft-dark dark:border-ft-light bg-ft-dark/10 text-ft-dark dark:bg-ft-light/10 dark:text-ft-light;
+    }
+
+    .effect {
+      .actions {
+        button[data-action] {
+          @apply border-none;
+        }
+      }
+    }
+
+    [data-action].sheet-button {
+      @apply bg-yellow-100 dark:bg-yellow-100/40;
+      &:hover {
+        @apply bg-yellow-300 dark:bg-yellow-300/40;
+      }
+    }
+  }
+
+  /* Character Sheet */
+  &.character.sheet .window-content {
+    section#attributes {
+      label.attribute {
+        @apply border border-ft-dark dark:border-ft-light bg-ft-dark text-ft-light uppercase rounded-none;
+      }
+      .sheet-button {
+        @apply border-y-[1px] border-r-[1px] border-ft-dark dark:border-ft-light;
+      }
+    }
+  }
+
+  section#status {
+    .track {
+      .track-type {
+        @apply border border-ft-dark dark:border-ft-light bg-ft-dark/10 dark:bg-ft-light/10 rounded-none;
+      }
+      .track-gauge {
+        @apply border border-ft-dark dark:border-ft-light rounded-none;
+      }
+    }
+  }
+
+  section#actions {
+    .action-item {
+      @apply border border-ft-dark dark:border-ft-light rounded-none;
+    }
+  }
+
+  /* NPC Sheet */
+  &.npc.sheet .window-content {
+    section#attributes {
+      label.attribute {
+        @apply border-ft-dark dark:border-ft-light bg-ft-dark text-ft-light uppercase rounded-none;
+      }
+      .sheet-button {
+        @apply border-y-[1px] border-r-[1px] border-ft-dark dark:border-ft-light;
+      }
+    }
+
+    section#status {
+      .track {
+        .track-type {
+          @apply border border-ft-dark dark:border-ft-light bg-ft-dark/10 dark:bg-ft-light/10 rounded-none;
+        }
+        .track-gauge {
+          @apply border border-ft-dark dark:border-ft-light rounded-none;
+        }
+      }
+    }
+
+    section#actions {
+      .action-item {
+        @apply border border-ft-dark dark:border-ft-light rounded-none;
+      }
+    }
+  }
+
+  /* Applications */
+  &#ft-dice-roller {
+    & input ~ label {
+      @apply border border-ft-dark dark:border-ft-light;
+      &:hover {
+        @apply bg-yellow-100 dark:bg-yellow-100/50;
+      }
+    }
+    & input:checked ~ label {
+      @apply bg-yellow-300 dark:bg-yellow-300/40 text-ft-dark dark:text-ft-light;
+    }
+  }
+
+  &#ft-apply-damage {
+    .defense {
+      @apply border-[1px] border-ft-dark dark:border-ft-light rounded-none text-ft-dark dark:text-ft-light;
+    }
+  }
+}

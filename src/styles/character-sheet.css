@@ -14,10 +14,7 @@
 
     section#attributes {
       label.attribute {
-        @apply m-0 p-1 border border-ft-dark dark:border-ft-light bg-ft-dark text-ft-light uppercase rounded-none;
-      }
-      .sheet-button {
-        @apply border-y-[1px] border-r-[1px] border-ft-dark dark:border-ft-light;
+        @apply m-0 p-1;
       }
     }
 
@@ -25,10 +22,10 @@
       .track {
         @apply grid grid-cols-8 gap-1 text-xs text-center;
         .track-type {
-          @apply m-0 p-0 border border-ft-dark dark:border-ft-light bg-ft-dark/10 dark:bg-ft-light/10 rounded-none;
+          @apply m-0 p-0;
         }
         .track-gauge {
-          @apply border border-ft-dark dark:border-ft-light rounded-none m-0 p-0;
+          @apply m-0 p-0;
         }
       }
     }
@@ -36,7 +33,7 @@
     section#actions {
       @apply h-[10em];
       .action-item {
-        @apply flex flex-row gap-4 border border-ft-dark dark:border-ft-light rounded-none m-0 p-1 text-xs;
+        @apply flex flex-row gap-4 m-0 p-1 text-xs;
         img {
           @apply size-4;
         }

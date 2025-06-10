@@ -17,6 +17,7 @@ esmodules:
 styles:
   - styles/fantasy-trip.css
   - styles/icons.css
+  - styles/theme.css
   - styles/applications.css
   - styles/character-sheet.css
   - styles/npc-sheet.css

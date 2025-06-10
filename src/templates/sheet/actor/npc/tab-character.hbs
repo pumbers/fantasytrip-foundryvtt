@@ -47,9 +47,7 @@
         <section id="status" class="flex flex-col gap-1">
             {{> (concat FT.path "/templates/sheet/actor/_encumbrance.hbs")}}
             {{> (concat FT.path "/templates/sheet/actor/_health.hbs")}}
-            {{#if (eq system.type "wizard")}}
             {{> (concat FT.path "/templates/sheet/actor/_mana.hbs")}}
-            {{/if}}
             {{> (concat FT.path "/templates/sheet/actor/_modifiers.hbs")}}
         </section>
 

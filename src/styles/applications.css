@@ -7,19 +7,16 @@
       @apply hidden;
     }
     & input ~ label {
-      @apply inline-block w-full p-1 cursor-pointer border border-ft-dark dark:border-ft-light text-center text-xs;
-      &:hover {
-        @apply bg-yellow-100 dark:bg-yellow-100/50;
-      }
-    }
-    & input:checked ~ label {
-      @apply bg-yellow-300 dark:bg-yellow-300/40 text-ft-dark dark:text-ft-light;
+      @apply inline-block w-full p-1 cursor-pointer text-center text-xs;
     }
   }
 
   &#ft-apply-damage {
     input[type="checkbox"] {
-      @apply w-5 h-5;
+      @apply size-4;
+    }
+    .defense {
+      @apply grid grid-cols-[1fr_1fr_6fr_4fr_3fr] gap-1 m-0 p-[2px] text-xs leading-4;
     }
   }
 }

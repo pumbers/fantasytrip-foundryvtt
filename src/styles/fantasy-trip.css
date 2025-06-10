@@ -4,6 +4,8 @@
 
 @source "../module/system/config.mjs";
 
+@custom-variant dark (&:where(.theme-dark, .theme-dark *));
+
 @theme {
   --color-ft-sheet: oklch(97% 0 0);
   --color-ft-light: oklch(87% 0 0);
@@ -11,45 +13,36 @@
   /* --color-ft-dark: oklch(76.8% 0.233 130.85); */
 }
 
-@custom-variant dark (&:where(.theme-dark, .theme-dark *));
-
 .fantasy-trip,
 .fantasy-trip.application {
   .window-content {
-    @apply bg-ft-sheet text-ft-dark dark:bg-ft-dark dark:text-ft-light;
-
     input,
     textarea,
     select {
-      @apply !appearance-auto w-full h-6 shadow-none border rounded-none m-0 p-1 leading-4 border-ft-dark dark:border-ft-light bg-ft-dark/10 text-ft-dark dark:bg-ft-light/10 dark:text-ft-light;
+      @apply w-full h-6 shadow-none m-0 p-1 leading-4;
       &::placeholder {
         @apply opacity-80;
       }
       &:focus {
         @apply outline-none shadow-none;
       }
-      &[readonly] {
-        @apply cursor-not-allowed bg-transparent;
-      }
+      &[readonly],
       &[disabled] {
-        @apply cursor-not-allowed text-ft-dark/50 dark:text-ft-light/50 border-none;
+        @apply cursor-not-allowed;
       }
     }
 
     table {
-      @apply text-xs m-0 p-0 text-ft-dark dark:text-ft-light;
+      @apply text-xs m-0 p-0;
       thead {
         text-shadow: none;
-        @apply m-0 p-0 border-none bg-ft-dark dark:bg-ft-light/40 text-ft-light;
+        @apply m-0 p-0;
       }
       tbody.break {
         &:after {
           content: "";
           @apply block h-4;
         }
-      }
-      tr:nth-child(even) {
-        @apply bg-ft-dark/10 dark:bg-ft-light/10;
       }
       th,
       td {
@@ -64,23 +57,17 @@
           @apply text-right;
         }
         img {
-          @apply border-none m-0 p-0 min-w-[1em] min-h-[1em];
+          @apply m-0 p-0 min-w-[1em] min-h-[1em];
         }
       }
       tfoot {
         text-shadow: none;
-        @apply m-0 p-0 border-none bg-ft-dark/40 dark:bg-ft-light/20 text-ft-light;
+        @apply m-0 p-0;
       }
     }
 
     nav.sheet-tabs.tabs {
-      @apply my-2 border-ft-dark dark:border-ft-light text-[0.6rem] uppercase;
-      a {
-        @apply text-ft-dark dark:text-ft-light;
-        &.active {
-          @apply font-bold;
-        }
-      }
+      @apply my-2 text-[0.6rem];
     }
 
     section[data-tab="notes"] {
@@ -106,10 +93,7 @@
     }
 
     fieldset {
-      @apply border border-ft-dark dark:border-ft-light rounded-none m-0 p-2;
-      legend {
-        @apply font-bold uppercase;
-      }
+      @apply m-0 p-2;
     }
 
     .field {
@@ -132,13 +116,9 @@
       .actions {
         @apply flex flex-col gap-1 justify-start;
         button[data-action] {
-          @apply border-none w-auto px-1 cursor-pointer text-xs;
+          @apply w-auto px-1 cursor-pointer text-xs;
         }
       }
-    }
-
-    button {
-      @apply border-ft-dark dark:border-ft-light bg-ft-dark/10 text-ft-dark dark:bg-ft-light/10 dark:text-ft-light;
     }
 
     .draggable {
@@ -154,10 +134,7 @@
     }
 
     [data-action].sheet-button {
-      @apply block bg-yellow-100 dark:bg-yellow-100/40;
-      &:hover {
-        @apply bg-yellow-300 dark:bg-yellow-300/40;
-      }
+      @apply block;
     }
   }
 }
