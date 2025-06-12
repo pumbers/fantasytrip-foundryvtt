@@ -19,5 +19,11 @@
         @apply h-full;
       }
     }
+
+    section[id$="-notes"],
+    section[id$="-actions"],
+    section[id$="-effects"] {
+      @apply pr-4 overflow-y-scroll;
+    }
   }
 }

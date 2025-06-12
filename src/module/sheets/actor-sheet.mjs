@@ -284,7 +284,6 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
 export class FTCharacterSheet extends FTBaseCharacterSheet {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    id: "character-sheet",
     classes: [FT.id, "character", "sheet"],
     position: {
       width: 450,
@@ -345,7 +344,6 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
 export class FTNPCSheet extends FTBaseCharacterSheet {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    id: "npc-sheet",
     classes: [FT.id, "npc", "sheet"],
     position: {
       width: 460,

@@ -12,7 +12,6 @@ const { HandlebarsApplicationMixin } = foundry.applications.api;
 export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
-    id: "item-sheet",
     classes: [FT.id, "item", "sheet"],
     position: {
       width: 380,

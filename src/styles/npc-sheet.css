@@ -53,14 +53,10 @@
     }
 
     section#actions,
-    section#character-sheet-notes,
-    section#character-sheet-inventory,
-    section#character-sheet-effects {
-      @apply overflow-y-scroll;
-      ::-webkit-scrollbar {
-        display: none;
-      }
-      scrollbar-width: none;
+    section[id$="-notes"],
+    section[id$="-inventory"],
+    section[id$="-effects"] {
+      @apply pr-4 overflow-y-scroll;
     }
   }
 }
