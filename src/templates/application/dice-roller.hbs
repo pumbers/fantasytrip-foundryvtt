@@ -54,7 +54,8 @@
     {{!-- Modifiers --}}
     {{#each modifiers as | modifier name|}}
     <div class="grid grid-cols-16 gap-1">
-        <label class="text-xs col-span-3">{{localize (concat "FT.system.roll.modifier." name)}}</label>
+        <label class="text-xs col-span-3">{{localize (concat "FT.system.roll.modifier."
+            name)}}{{#if modifier.note}}&thinsp;({{modifier.note}}){{/if}}</label>
         {{#each (range modifier.min modifier.max) as | set |}}
         <span>
             <input type="radio" name="modifiers.{{name}}" id="modifiers-{{name}}-{{set}}" value="{{set}}" {{#if (eq

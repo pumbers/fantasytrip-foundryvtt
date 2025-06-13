@@ -23,13 +23,20 @@
                             value="{{attack.action}}">
                     </div>
                 </div>
-                <div class="field">
+                <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.type"}}</label>
                     <select name="system.attacks.{{@index}}.type">
                         <option value="">{{localize 'FT.options.none'}}</option>
                         {{selectOptions ../selectOptions.attackTypes selected=attack.type localize=true}}
                     </select>
                 </div>
+                {{!-- If equipment, there's a min ST to use --}}
+                {{#if (eq ../item.type "equipment")}}
+                <div class="field">
+                    <label>{{localize "FT.item.sheet.label.minST"}}</label>
+                    <input type="number" name="system.attacks.{{@index}}.minST" value="{{attack.minST}}" min="0">
+                </div>
+                {{/if}}
                 <div class="field">
                     <label>{{localize "FT.item.sheet.label.toHitMod"}}</label>
                     <input type="number" name="system.attacks.{{@index}}.toHitMod" value="{{attack.toHitMod}}">
@@ -38,14 +45,8 @@
                     <label>{{localize "FT.item.sheet.label.baseDamage"}}</label>
                     <input type="text" name="system.attacks.{{@index}}.baseDamage" value="{{attack.baseDamage}}">
                 </div>
-                {{!-- If equipment, there's a min ST to use --}}
-                {{#if (eq ../item.type "equipment")}}
-                <div class="field">
-                    <label>{{localize "FT.item.sheet.label.minST"}}</label>
-                    <input type="number" name="system.attacks.{{@index}}.minST" value="{{attack.minST}}" min="0">
-                </div>
                 {{!-- If owned equipment, there may be a talent required --}}
-                {{#if ../owned}}
+                {{#if (and (eq ../item.type "equipment") ../owned)}}
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.talent"}}</label>
                     <select name="system.attacks.{{@index}}.talent">
@@ -53,7 +54,6 @@
                         {{selectOptions ../selectOptions.talents selected=attack.talent}}
                     </select>
                 </div>
-                {{/if}}
                 {{/if}}
                 <div class="field col-span-full">
                     <label>{{localize "FT.item.sheet.label.effects"}}</label>

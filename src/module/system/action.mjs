@@ -288,10 +288,24 @@ export function attackRoll(actor, item, options) {
           }
         : {}),
       ...(attack.type === "thrown"
-        ? { rangeMod: { min: FT.roll.modifiers.range.min * 2, max: FT.roll.modifiers.range.max, value: 0 } }
+        ? {
+            rangeMod: {
+              note: game.i18n.localize("FT.system.combat.range.scale.thrown"),
+              min: FT.roll.modifiers.range.min,
+              max: FT.roll.modifiers.range.max,
+              value: 0,
+            },
+          }
         : {}),
       ...(attack.type === "missile"
-        ? { rangeMod: { min: FT.roll.modifiers.range.min, max: FT.roll.modifiers.range.max, value: 0 } }
+        ? {
+            rangeMod: {
+              note: game.i18n.localize("FT.system.combat.range.scale.missile"),
+              min: FT.roll.modifiers.range.min,
+              max: FT.roll.modifiers.range.max,
+              value: 0,
+            },
+          }
         : {}),
     },
     ...options,
@@ -404,16 +418,18 @@ export function castingRoll(actor, spell, options = {}) {
           value: actor.system.dx.modFor.casting,
         },
       }),
-      ...(spell.system.type === "missile" && {
+      ...(spell.system.type === "thrown" && {
         rangeMod: {
-          min: FT.roll.modifiers.default.min,
+          note: game.i18n.localize("FT.system.combat.range.scale.thrown"),
+          min: FT.roll.modifiers.default.min * 2,
           max: 0,
           value: 0,
         },
       }),
-      ...(spell.system.type === "thrown" && {
+      ...(spell.system.type === "missile" && {
         rangeMod: {
-          min: FT.roll.modifiers.default.min * 2,
+          note: game.i18n.localize("FT.system.combat.range.scale.missile"),
+          min: FT.roll.modifiers.default.min,
           max: 0,
           value: 0,
         },

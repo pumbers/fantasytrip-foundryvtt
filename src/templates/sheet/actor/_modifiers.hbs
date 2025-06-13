@@ -1,5 +1,5 @@
 {{!-- Damage, Fatigue and stats modifiers --}}
-<div id="modifiers" class="flex flex-row gap-1 text-xs text-center">
+<section id="modifiers">
   <div class="field">
     <label>{{localize "FT.actor.sheet.label.fatigue"}}</label><input type="number" name="system.fatigue"
       value="{{ system.fatigue }}" min="0" />
@@ -8,10 +8,12 @@
     <label>{{localize "FT.actor.sheet.label.damage"}}</label><input type="number" name="system.damage"
       value="{{ system.damage }}" min="0" />
   </div>
+  {{#if (or (eq actor.type "npc") (eq system.type "wizard"))}}
   <div class="field">
     <label>{{localize "FT.actor.sheet.label.mana"}}</label><input type="number" name="system.mana.value"
-      value="{{ system.mana.value }}" max="{{ system.mana.max }}" />
+      value="{{ system.mana.value }}" min="0" max="{{ system.mana.max }}" />
   </div>
+  {{/if}}
   <div class="field">
     <label>{{localize "FT.actor.sheet.label.stMod"}}</label><input type="number" name="system.st.mod"
       value="{{ system.st.mod }}" />
@@ -33,4 +35,4 @@
       "FT.actor.sheet.label.initiative"}}</label><input type="number" name="system.initiative.situation"
       value="{{ system.initiative.situation }}" />
   </div>
-</div>
+</section>

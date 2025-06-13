@@ -145,7 +145,7 @@ pages:
         etc.</p></li><li><p>The button with a dice icon to the right of each
         attribute triggers an Attribute Roll against that
         attribute.</p></li><li><p>The button next to the Adjusted Movement
-        Allowance indicates the current movement m ode (Walk/Run, Swim, Fly) and
+        Allowance indicates the current movement mode (Walk/Run, Swim, Fly) and
         can be used to with between the three. MA can be changed independently
         for each mode.</p></li><li><p>To the right of the attributes is the
         character portrait. Click on this to change it.</p></li><li><p>The next
@@ -158,28 +158,26 @@ pages:
         <em>Stowed</em> (nearby, such as on a horse or cart), or <em>Stored</em>
         (some distance away, such as in a home) does not count towards
         encumbrance. Adjustments to attributes from encumbrance are made
-        automatically. On the sheet above, you can see the character is heavily
-        encumbered and their DX and MA hav been adjusted
-        accordingly.</p></li><li><p><strong>Health</strong> - this bar shows the
-        character's state of health. Normally, it's blank. When the character
-        becomes fatigued it shows here as an amber bar. When they take damage it
-        shows as a red bar. Both can be shown at the same time. On the sheet
-        above, the character has taken damage and is fatigued, so their ST has
-        been adjusted automatically.</p></li><li><p><strong>Mana</strong> - for
-        Player Characters, this bar will show only if they're a Wizard. It shows
-        any Mana available to them from objects they have equipped, such as
+        automatically.</p></li><li><p><strong>Health</strong> - this bar shows
+        the character's state of health. Normally, it's blank. When the
+        character becomes fatigued it shows here as an amber bar. When they take
+        damage it shows as a red bar. Both can be shown at the same
+        time.</p></li><li><p><strong>Mana</strong> - this shows any Mana
+        available to the character from objects they have equipped, such as
         their Staff.</p></li><li><p>Finally, there are a series of fields to
         record current <strong>Fatigue</strong> or <strong>Damage</strong>
         taken, Mana available, and a series of modifiers for ST, DX, IQ, MA, and
         Initiative. These can be adjusted manually at any
         time.</p></li></ul></li><li><p>Lastly on this tab is the
-        <strong>Actions</strong> area. Here, each line represents an available
-        action, such as a ready weapon, equipped armor, cast spells, etc. Most
+        <strong>Actions</strong> area. Here, each block represents available
+        actions, such as a ready weapon, equipped armor, cast spells, etc. Most
         of these will have buttons that can be used to trigger dice rolls such
         as attacks or damage.</p><ul><li><p>Weapons also show the required ST
         for a weapon and an icon that turns amber if the ST requirement is not
         met.</p></li><li><p>Armor shows the number of hits the armor will
-        absorb.</p></li></ul></li></ul><h2>Notes Tab</h2><img
+        absorb.</p></li><li><p>Spells show a button used to maintain the spell
+        (and spend the appropriate fatigue), or to cancel the
+        spell.</p></li></ul></li></ul><h2>Notes Tab</h2><img
         src="systems/fantasy-trip/assets/images/instructions/character_notes_tab_0.1.0.webp"
         /><p>The <strong>Notes</strong> tab is just one big freeform text
         notebook. Hover the mouse cursor over the top right corner and click the
@@ -195,8 +193,8 @@ pages:
         points).</p></li><li><p>The last line of the table shows the total IQ
         cost of all Talents.</p></li><li><p>Note that the cost shown will change
         depending on whether the character is a Hero or Wizard. as shown above,
-        because this character is a Wizard, each Talent costs 2 IQ and not
-        1.</p></li><li><p>There is a small Roll button which can be used to
+        because this character is a Wizard, each Talent costs
+        double.</p></li><li><p>There is a small Roll button which can be used to
         trigger a Talent roll.</p></li><li><p>The last three icons are for
         managing the Talent details. In order, they are:</p><ul><li><p>Send the
         Talent description to the Chat Log.</p></li><li><p>Edit the
@@ -297,11 +295,11 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.342'
+      coreVersion: '13.344'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
-      modifiedTime: 1747174574955
+      modifiedTime: 1749576624623
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
@@ -327,20 +325,24 @@ pages:
         rulebook.</p></li><li><p><strong>Equipment</strong> is everything else,
         which can include weapons, armor, scrolls, books, bags &amp; packs,
         tools, potions… pretty much any physical object a character can
-        carry.</p></li></ul><p>Items are created and edited from the Item Sheet,
-        which has three tabs:</p><ul><li><p>The <strong>Description</strong> tab
-        has a free form text field for entering notes on the item, and a series
-        of fields that set the parameters of the item. These fields will vary
-        depending on the type of item.</p></li><li><p>The
-        <strong>Actions</strong> tab shows any actions that can be taken with
-        the item, they are:</p><ul><li><p><strong>Attacks</strong> - an action
-        that requires an attack roll and does
-        damage</p></li><li><p><strong>Defenses</strong> - any way in which the
-        item stops incoming damage</p></li><li><p><strong>Spells</strong> - any
-        spells written on or bound into the item that can be cast by the user
-        when the item is readied.</p></li></ul></li><li><p>The
-        <strong>Effects</strong> tab shows any Active Effects that the item has.
-        More about Active Effects can be found <a
+        carry.</p></li><li><p><strong>Abilities</strong> represent any other
+        powers or innate capabilities. These might be supernatural powers (such
+        as a Lich's damage absorption), natural weapons or defenses, or the
+        ability to cast spells innately.</p></li></ul><p>Items are created and
+        edited from the Item Sheet, which has three tabs:</p><ul><li><p>The
+        <strong>Description</strong> tab has a free form text field for entering
+        notes on the item, and a series of fields that set the parameters of the
+        item. These fields will vary depending on the type of
+        item.</p></li><li><p>The <strong>Actions</strong> tab shows any actions
+        that can be taken with the item, they
+        are:</p><ul><li><p><strong>Attacks</strong> - an action that requires an
+        attack roll and does damage</p></li><li><p><strong>Defenses</strong> -
+        any way in which the item stops incoming
+        damage</p></li><li><p><strong>Spells</strong> - any spells written on or
+        bound into the item that can be cast by the user when the item is
+        readied.</p></li></ul></li><li><p>The <strong>Effects</strong> tab shows
+        any Active Effects that the item has. More about Active Effects can be
+        found <a
         href="https://foundryvtt.com/article/active-effects/">here</a>.</p></li></ul><h2>Talents</h2><img
         src="systems/fantasy-trip/assets/images/instructions/talent_description_tab_0.1.0.webp"
         /><p>Talents have only three descriptive fields:</p><ul><li><p>The IQ
@@ -387,9 +389,7 @@ pages:
         hits it's capacity, you;ll see a warning and the item you're dragging
         will not be accepted.</p><h2>Actions</h2><p>Much like any piece of
         equipment, any Item can have <strong>Actions</strong> associated with it
-        - Attacks, Defenses, and Spells. It may seem counter-intuitive to think
-        that <strong>any</strong> item can have these actions, but in fact it
-        makes for a very flexible system.</p><p>Firstly, there are the obvious
+        - Attacks, Defenses, and Spells.</p><p>Firstly, there are the obvious
         examples:</p><ul><li><p>A weapon (such as a sword) will have one or more
         Attacks.</p></li><li><p>A piece of armor or a shield will have one or
         more Defenses.</p></li><li><p>A scroll or spellbook will have one or
@@ -405,10 +405,11 @@ pages:
         the Actions are, in this implementation they only become available for
         use if the Item is <strong>readied</strong>, which
         means:</p><ul><li><p>A Talent is readied automatically and its actions
-        are always available.</p></li><li><p>A piece of equipment is readied
-        only when it's location is <strong>equipped</strong>.</p></li><li><p>A
-        Spell is readied only after it has been successfully
-        cast.</p></li></ul><h3>Attacks</h3><img
+        are always available.</p></li><li><p>An Ability is readied if it is
+        always on or if it is activated.</p></li><li><p>A piece of equipment is
+        readied only when it's location is
+        <strong>equipped</strong>.</p></li><li><p>A Spell is readied only after
+        it has been successfully cast.</p></li></ul><h3>Attacks</h3><img
         src="systems/fantasy-trip/assets/images/instructions/item_attacks_0.1.0.webp"
         /><p>Attacks include the following fields:</p><ul><li><p>The
         <strong>Attack Action</strong> is used purely descriptively, so names
@@ -462,7 +463,11 @@ pages:
         (whether successful or not). So, for spell books this setting is turned
         off (the book doesn't disappear when a spell is cast), and for scrolls
         or potions it would be turned on.</p></li></ul><p>There is no limit to
-        the number of spells an item can have.</p><h2>Effects</h2><img
+        the number of spells an item can have.</p><p><em>Note that due to the
+        limitations of Foundry VTT, only spells that are known by the player or
+        otherwise imported into the game world can be bound to an item. Spells
+        in a compendium or known to other players will not be available for
+        selection.</em></p><h2>Effects</h2><img
         src="systems/fantasy-trip/assets/images/instructions/equipment_effects_tab_0.1.0.webp"
         /><p>The <strong>Effects</strong> tab details any Foundry Active Effects
         the item has <strong>that will be transferred to the character that has
@@ -486,11 +491,11 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.342'
+      coreVersion: '13.344'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
-      modifiedTime: 1747174863514
+      modifiedTime: 1749576554155
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null

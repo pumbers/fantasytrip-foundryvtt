@@ -18,6 +18,9 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
 
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
+    window: {
+      resizable: true,
+    },
     form: {
       submitOnChange: true,
     },
@@ -99,7 +102,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
             });
           return item;
         })
-        .sort((a, b) => a.type.localeCompare(b.type) || a.name.localeCompare(b.name)),
+        .sort((a, b) => a.system.actionOrder - b.system.actionOrder),
       effects: Array.from(this.actor.allApplicableEffects()),
       enrichedNotes: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.notes),
     });

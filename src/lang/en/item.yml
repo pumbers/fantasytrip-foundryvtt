@@ -46,7 +46,7 @@ FT:
         capacity: Capacity
         defaultAttribute: Default Attribute
         attackAction: Attack Action
-        defenseAction: Defense Action
+        defenseAction: Defense Action/Location
         toHitMod: To Hit Mod
         baseDamage: Base Damage
         burn: Burn item when cast

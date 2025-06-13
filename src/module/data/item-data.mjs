@@ -87,6 +87,10 @@ export class FTTalentData extends FTBaseItemData {
     });
   }
 
+  get actionOrder() {
+    return 1;
+  }
+
   get isReady() {
     return !!this.defaultAttribute;
   }
@@ -101,6 +105,10 @@ export class FTAbilityData extends FTBaseItemData {
       isActive: new BooleanField({ initial: false }),
       isAlwaysOn: new BooleanField({ initial: false }),
     });
+  }
+
+  get actionOrder() {
+    return 2;
   }
 
   get isReady() {
@@ -124,6 +132,10 @@ export class FTSpellData extends FTTalentData {
   prepareDerivedData() {
     super.prepareDerivedData();
     this.stToCast.max = Math.max(this.stToCast.min, this.stToCast.max);
+  }
+
+  get actionOrder() {
+    return 3;
   }
 
   get isReady() {
@@ -168,6 +180,10 @@ export class FTEquipmentData extends FTBaseItemData {
     super.prepareDerivedData();
     this.totalWt = this.wt * this.qty;
     this.totalCost = this.cost * this.qty;
+  }
+
+  get actionOrder() {
+    return this.hasAttacks ? 0 : 4;
   }
 
   get isContainer() {

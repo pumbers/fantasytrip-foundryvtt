@@ -30,6 +30,13 @@
       }
     }
 
+    section#modifiers {
+      @apply w-full flex flex-row gap-1 text-xs text-center;
+      .field {
+        @apply min-w-12 grow;
+      }
+    }
+
     section#actions {
       @apply h-[10em];
       .action-item {

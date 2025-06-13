@@ -106,7 +106,7 @@ FT:
       action:
         chat: Send to chat
         attribute:
-          roll: Attriute Roll
+          roll: Attribute Roll
         notes:
           edit: Edit Notes
         talent:

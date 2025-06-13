@@ -99,3 +99,7 @@ FT:
         action:
           rollDamage: Roll Damage
           applyDamage: Apply {damage} Damage to {name}
+      range:
+        scale:
+          thrown: -1/hex
+          missile: -1/megahex
