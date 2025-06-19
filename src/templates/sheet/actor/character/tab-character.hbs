@@ -52,8 +52,12 @@
                     <div class="flex flex-row gap-0">
                         <input class="m-0 !text-center !text-xl !h-full !w-14" type="number" name="system.{{key}}.max"
                             min="0" value="{{attr.max}}" />
+                        {{#if roll}}
                         <a title="{{title}}" class="!p-2 sheet-button" data-action="attributeRoll"
                             data-attribute="{{key}}.max" data-type="save"><i class="icon-d6 text-xl"></i></a>
+                        {{else}}
+                        <div class="!p-2"><i class="{{icon}} text-xl"></i></div>
+                        {{/if}}
                     </div>
                     <div class="field w-14">
                         <label>{{localize "FT.actor.sheet.label.adjusted"}}</label>
