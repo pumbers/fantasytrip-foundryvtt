@@ -84,7 +84,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     console.log("_prepareContext()", this, options);
     const context = Object.assign(await super._prepareContext(options), {
       // General Documents, Settings & Config
-      FT: CONFIG.FT,
+      FT,
       item: foundry.utils.deepClone(this.item),
       system: foundry.utils.deepClone(this.item.system),
       flags: {
@@ -112,9 +112,13 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       },
       owned: !!this.item.parent,
       selectOptions: {
-        attributes: CONFIG.FT.actor.attributes,
-        spellTypes: CONFIG.FT.item.spell.types,
-        attackTypes: CONFIG.FT.item.attack.types,
+        attributes: FT.actor.attributes,
+        inventoryLocations: FT.item.inventory.locations.reduce(
+          (options, location) => Object.assign(options, { [location]: `FT.actor.sheet.label.location.${location}` }),
+          {}
+        ),
+        spellTypes: FT.item.spell.types,
+        attackTypes: FT.item.attack.types,
         // Applicable skill options from the parent actor
         ...(!!this.item.parent && {
           talents: Array.from(this.item.parent?.items.values())

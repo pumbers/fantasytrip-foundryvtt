@@ -13,10 +13,10 @@ export class FTItem extends Item {
     // console.log("FTItem.prepareDerivedData()", this);
     super.prepareDerivedData();
 
-    // Turn on ActiveEffects if equipped, off otherwise, only for inventory items
+    // Turn on ActiveEffects if in a tagged location, only for inventory items
     if (FT.item.inventory.types.includes(this.type)) {
       this.getEmbeddedCollection("ActiveEffect").forEach((effect) =>
-        effect.update({ disabled: this.system.location !== "equipped" })
+        effect.update({ disabled: !this.system.applyEffectsWhen.includes(this.system.location) })
       );
     }
 

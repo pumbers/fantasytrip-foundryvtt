@@ -54,6 +54,7 @@ FT:
         defenses: Defenses
         spells: Spells
         alwaysOn: Always on
+        applyEffectsWhen: Apply Effects When...
       action:
         addAction: Add
         deleteAction: Delete
