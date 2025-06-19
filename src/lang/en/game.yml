@@ -35,10 +35,6 @@ FT:
         name: Use item mana first when casting spells
         hint: >
           When casting spells, use mana from equipped items before character ST.
-      cancelAttackSpellAuto:
-        name: Cancel Attack Spells Automatically
-        hint: >
-          Cancel an attack spell automatically after an attack roll has been made, whether it succeeds or not.
     rollMode:
       roll: Default
       publicroll: Public
