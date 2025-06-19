@@ -295,11 +295,11 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.344'
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
-      modifiedTime: 1749576624623
+      modifiedTime: 1750356006424
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
@@ -327,9 +327,10 @@ pages:
         tools, potions… pretty much any physical object a character can
         carry.</p></li><li><p><strong>Abilities</strong> represent any other
         powers or innate capabilities. These might be supernatural powers (such
-        as a Lich's damage absorption), natural weapons or defenses, or the
-        ability to cast spells innately.</p></li></ul><p>Items are created and
-        edited from the Item Sheet, which has three tabs:</p><ul><li><p>The
+        as a Lich's damage absorption), natural weapons or defenses (such as
+        those gained by a werewolf in their wolf form), or the ability to cast
+        spells innately.</p></li></ul><p>Items are created and edited from the
+        Item Sheet, which has three tabs:</p><ul><li><p>The
         <strong>Description</strong> tab has a free form text field for entering
         notes on the item, and a series of fields that set the parameters of the
         item. These fields will vary depending on the type of
@@ -368,10 +369,11 @@ pages:
         /><p>Every item of equipment has the following fields:</p><ul><li><p>The
         unit cost in $ of the item.</p></li><li><p>The unit weight in lbs of the
         item.</p></li><li><p>The quantity of the item to hand.</p></li><li><p>A
-        lbs Capacity if the item is to be a container.</p></li></ul><p>Note that
-        when added to the character sheet, the unit cost &amp; weight of an item
-        will be multiplied by the quantity to give a total cost &amp; weight
-        carried.</p><h3>Containers</h3><img
+        lbs Capacity if the item is to be a container.</p></li><li><p>A field
+        which specifies when any Active Effects on the item will apply to the
+        character.</p></li></ul><p>Note that when added to the character sheet,
+        the unit cost &amp; weight of an item will be multiplied by the quantity
+        to give a total cost &amp; weight carried.</p><h3>Containers</h3><img
         src="systems/fantasy-trip/assets/images/instructions/equipment_container_tab_0.1.0.webp"
         /><p><strong>Containers</strong> are a special kind of equipment in that
         a Container is allowed to hold other items. The only difference between
@@ -470,16 +472,29 @@ pages:
         selection.</em></p><h2>Effects</h2><img
         src="systems/fantasy-trip/assets/images/instructions/equipment_effects_tab_0.1.0.webp"
         /><p>The <strong>Effects</strong> tab details any Foundry Active Effects
-        the item has <strong>that will be transferred to the character that has
-        the item readied</strong>. Let's explain that some more.</p><p>In the
-        above example, the Wizard's Staff has a <strong>Mana</strong> effect.
-        When this item is <strong>readied</strong> (location set to
+        the item has that will be transferred to the character. This varies
+        depending on the type of item:</p><ul><li><p>Effects on
+        <strong>Talents</strong> will always be applied.</p></li><li><p>Effects
+        on <strong>Abilities</strong> will be applied when the ability is
+        activated, or if it is always on.</p></li><li><p><strong>Spell</strong>
+        effects are never applied (so far, spells are still "in
+        development").</p></li><li><p><strong>Equipment</strong> effects are
+        applied if the item is in a location specified in the
+        settings.</p></li></ul><p>In the above example, the Wizard's Staff has a
+        <strong>Mana</strong> effect set to apply only when the staff is
+        equipped. When this item is <strong>readied</strong> (location set to
         <em>equipped</em>), then the effect <strong>will be applied to the
         character</strong>, boosting their available maximum available mana
         score. An item can have any number of effects, and they will all be
-        applied to the character.</p><p>See the pages on
-        @UUID[.ZC0ir9H0OUqr0Ehw]{Writing Effects} for details on which character
-        attributes can be changed by an effect.</p>
+        applied to the character.</p><p>By varying the <em>Apply Effects
+        When…</em> field, a variety of items can be created.</p><ul><li><p>A
+        Ring of Giant Strength would only apply the increased STR effect when
+        worn (equipped).</p></li><li><p>A backpack applies it's encumbrance (DX
+        reduction) either when equipped or carried (ie: on the character's
+        person).</p></li><li><p>A cursed item might apply an effect if the
+        character simply owns it (any location).</p></li></ul><p>See the pages
+        on @UUID[.ZC0ir9H0OUqr0Ehw]{Writing Effects} for details on which
+        character attributes can be changed by an effect.</p>
     video:
       controls: true
       volume: 0.5
@@ -491,11 +506,11 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.344'
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
-      modifiedTime: 1749576554155
+      modifiedTime: 1750357202588
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
