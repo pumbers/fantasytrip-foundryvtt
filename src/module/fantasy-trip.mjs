@@ -153,11 +153,11 @@ Hooks.once("init", async function () {
   CONFIG.Actor.dataModels = { character: FTActorData, npc: FTActorData };
   CONFIG.Actor.documentClass = FTActor;
   foundry.documents.collections.Actors.unregisterSheet("core", foundry.applications.sheets.ActorSheetV2);
-  foundry.documents.collections.Actors.registerSheet("FT", FTCharacterSheet, {
+  foundry.documents.collections.Actors.registerSheet(FT.id, FTCharacterSheet, {
     types: ["character", "npc"],
     makeDefault: true,
   });
-  foundry.documents.collections.Actors.registerSheet("FT", FTNPCSheet, { types: ["npc"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet(FT.id, FTNPCSheet, { types: ["npc"], makeDefault: true });
 
   // Item document configuration
   CONFIG.Item.dataModels = {
@@ -168,7 +168,7 @@ Hooks.once("init", async function () {
   };
   CONFIG.Item.documentClass = FTItem;
   foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
-  foundry.documents.collections.Items.registerSheet("FT", FTItemSheet, { makeDefault: true });
+  foundry.documents.collections.Items.registerSheet(FT.id, FTItemSheet, { makeDefault: true });
 
   // Other document configuration
   CONFIG.Combat.documentClass = FTCombat;
