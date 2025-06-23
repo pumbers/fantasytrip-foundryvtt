@@ -260,15 +260,6 @@ export function attackRoll(actor, item, options) {
             },
           }
         : {}),
-      ...(attack.minSTMod !== 0
-        ? {
-            minSTMod: {
-              min: FT.roll.modifiers.default.min,
-              max: FT.roll.modifiers.default.max,
-              value: attack.minSTMod,
-            },
-          }
-        : {}),
       ...(attack.attackTypeMod !== 0
         ? {
             attackTypeMod: {

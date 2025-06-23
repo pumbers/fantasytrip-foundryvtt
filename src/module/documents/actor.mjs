@@ -100,9 +100,14 @@ export class FTActor extends Actor {
             attack.attackTypeMod +
             attack.attributeMod;
 
-          // Damage
-          attack.stDamageMod = Math.ceil(Math.min(this.system.st.max - attack.minST, 0) / 2);
+          // Adjust Damage based on weapon min ST
+          attack.stDamageMod = Math.floor(Math.min(system.st.max - attack.minST, 0) / 2);
           attack.finalDamage = Dice.simplifyRollFormula(attack.baseDamage?.concat("+", attack.stDamageMod));
+
+          // Modify attribute based on weapon min ST
+          if (weapon.system.isReady) {
+            system.dx.value = system.dx.value + attack.minSTMod;
+          }
         });
       });
 
@@ -125,11 +130,8 @@ export class FTActor extends Actor {
     });
 
     // Apply status effects if character is down or dead
-    if (this.system.isDown) {
-      this.toggleStatusEffect("unconscious", { active: true });
-    } else if (this.system.isDead) {
-      this.toggleStatusEffect("dead", { active: true });
-    }
+    this.toggleStatusEffect("unconscious", { active: this.system.isDown });
+    this.toggleStatusEffect("dead", { active: this.system.isDead });
   }
 
   /* ------------------------------------------- */
