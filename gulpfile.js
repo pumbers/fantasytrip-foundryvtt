@@ -216,7 +216,7 @@ function copyFiles() {
 
 function createDist() {
   return gulp
-    .src(["LICENSE", `${BUILD_DIR}/**/*`], {
+    .src(["LICENSE.txt", `${BUILD_DIR}/**/*`], {
       nodir: true,
       encoding: false,
     })
@@ -233,7 +233,7 @@ function watchUpdates() {
   gulp.watch(["src/lang/**/*.yml"], compileLangs);
   gulp.watch(["src/packs/**/*"], compilePacks);
   gulp.watch(["src/**/*.css", "src/module/system/config.mjs"], compileCss);
-  gulp.watch(["src/LICENSE", "src/assets/**/*", "src/lib/**/*"], copyFiles);
+  gulp.watch(["LICENSE.txt", "src/assets/**/*", "src/lib/**/*"], copyFiles);
   gulp.watch(["src/templates/**/*"], gulp.parallel(copyFiles, compileCss));
 }
 
