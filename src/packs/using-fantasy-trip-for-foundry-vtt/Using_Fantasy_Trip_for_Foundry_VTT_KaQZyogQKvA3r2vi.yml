@@ -510,7 +510,7 @@ pages:
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
-      modifiedTime: 1750357202588
+      modifiedTime: 1750874867410
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
@@ -630,7 +630,41 @@ pages:
     image: {}
     text:
       format: 1
-      content: ''
+      content: >-
+        <h2>Shortcut Buttons</h2><p>Within the Fantasy Trip system, all the
+        usual dice rolling mechanisms of Foundry still work - rolls via the chat
+        log, modules like Dice Tray, etc. The implementation adds short-uts for
+        most of the rolls in the game system - attribute saves, talent checks,
+        spell casting, attack &amp; damage rolls, etc.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/dice_rolls_1.webp"
+        /><p>Wherever you see pale yellow button on the character (or NPC)
+        sheet, that's a shortcut for a dice roll.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/dice_rolls_2.webp"
+        /><p></p><img
+        src="systems/fantasy-trip/assets/images/instructions/dice_rolls_3.webp"
+        /><p>The button might have an icon, some text that describes the roll,
+        or even more detailed text showing the relevant attribute &amp; target
+        number.</p><h2>The Dice Roller</h2><p>Whenever you use a shortcut to
+        trigger a dice roll, the Dice Roller app will open and be configured for
+        that type of roll with its various values preset.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/dice_roller_attack.webp"
+        /><p>It will show the type of roll, the relevant attribute rolled
+        against and it's current value, a series of modifiers, the number of
+        dice to be rolled, and the mode of the roll (see <a
+        href="https://foundryvtt.com/article/dice/">Roll Modes</a>).</p><p>For
+        any given roll, everything but the roll type can be changed.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/dice_roller_cast.webp"
+        /><p>For spell casting rolls, if the amount of ST used to cast the spell
+        can be varied, the Dice Roller will show buttons so that the required ST
+        can be selected.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/dice_roller_damage.webp"
+        /><p>For damage rolls, the fields allow you to enter or change the dice
+        formula, select a minimum damage, a damage multiplier, and how increased
+        damage is calculated.</p><p>If the damage roll is triggered using a chat
+        log button as part of an attack sequence (see
+        @UUID[Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.KaQZyogQKvA3r2vi.JournalEntryPage.taYa6XujJcawZlXZ]{Combat}
+        ) and a critical hit was landed, then these values will be preset
+        accordingly.</p>
     video:
       controls: true
       volume: 0.5
@@ -642,12 +676,12 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.342'
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110077275
-      modifiedTime: 1743110079971
-      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      modifiedTime: 1750874947077
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.7MY6ZNV0LvIRGWOF'
@@ -662,7 +696,101 @@ pages:
     image: {}
     text:
       format: 1
-      content: ''
+      content: >-
+        <h2>Design Note</h2><p><em>Foundry has a pretty much set combat
+        structure of initiative/round/turn that is difficult to change and often
+        results in fragile (ie: easily breakable) code. With the following
+        implementation, I've tried to adapt it to Fantasy Trip's "split
+        initiative" structure as simply as possible to avoid problems. This  may
+        change, but for now, here it is.</em></p><h2>Starting
+        Combat</h2><p>Combat is initiated in the standard Foundry manner. Create
+        a scene, create an encounter, add the combatants, roll starting
+        initiative, and start the encounter.</p><h2>Initiative and
+        Rounds</h2><p>Fantasy Trip features a "split initiative" flow, where 1D6
+        is rolled for movement initiative, then all movement takes place, then
+        combat takes place in order of adjusted DX (using the rolled initiative
+        as a tie breaker).</p><p>In Foundry, this is implemented within the
+        standard round/turn structure with even numbered rounds as movement
+        rounds with a rolled initiative and odd numbered rounds as combat
+        rounds. For example:</p><img
+        src="systems/fantasy-trip/assets/images/instructions/combat_encounter_1.webp"
+        /><p>Uldor has unexpectedly run into a lone Goblin. The GM creates an
+        encounter and adds them both, then rolls initiative using the
+        <strong>Roll All</strong> button at the top of the Combat Tracker.
+        Initiative is rolled as 1D6 (with an additional 1D61D6 as decimals to
+        act as a tie breaker). The <strong>Combat Tracker</strong> shows this is
+        a <strong>Movement Round</strong>.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/combat_encounter_2.webp"
+        /><p>When both combatants have taken their turn moving, Foundry moves on
+        to the next round and recalculates initiative. In this case, the Combat
+        Tracker shows this is a <strong>Combat Round</strong>. Initiative is now
+        based on adjusted DX with the previous initiative added as decimals to
+        act as a tie breaker.</p><p>The GM can step through each combatant turn
+        and the following rounds with Foundry automatically re-rolling
+        initiative as required.</p><h2>Attacks &amp; Damage</h2><p>To make an
+        attack, a combatant MUST have an appropriate talent or equipped weapon.
+        Buttons for attacks &amp; damage show as readied items at the bottom of
+        the Character tab.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/dice_rolls_1.webp"
+        /><p>Click on the button, and the Dice Roller will open with the
+        required values preset. The various modifiers (situation, range, etc)
+        can then be changed as needed. When the <strong>Roll</strong> button is
+        clicked, a chat message will appear with the result of the roll.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/combat_chat_1.webp"
+        /><p>This will show whether the attack succeeded or failed, and whether
+        it was a critical success or failure.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/combat_chat_2.webp"
+        /><p>You can check to see how the target number and roll were calculated
+        by click either on the dice formula or result.</p><p>The GM and player
+        owning the combatant will also see a <strong>Roll Damage</strong>
+        button. Clicking this will reopen the dice roller, preset with the
+        appropriate values.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/combat_chat_3.webp"
+        /><p>When the damage is rolled, the result will show as another chat
+        message, one for each target hit.</p><p>In this case, the GM (and only
+        the GM) will see an <strong>Apply x Damage to Y button</strong> - if and
+        only if a specific combatant was targeted. If no combatant was targeted,
+        then the button will not show and the GM must apply damage
+        manually.</p><p>Clicking the <strong>Apply Damage</strong> button brings
+        up a small dialog showing any defenses the target has (armor, shields,
+        spells, etc), and the GM can select or deselect any that apply to the
+        blow (such as deselecting a shield for blows from behind).</p><img
+        src="systems/fantasy-trip/assets/images/instructions/combat_apply_damage.webp"
+        /><p>Once the <strong>Apply Damage</strong> button is clicked, the
+        player who owns the the targeted token, and the GM, will see a final
+        chat message. The appropriate damage is automatically added to the
+        targeted character or NPC.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/combat_chat_4.webp"
+        /><h2>Targeting</h2><p>Foundry has a mechanism for specifying which
+        combatants are the target of an attack, appropriately called
+        <strong>Targeting</strong> (see <a
+        href="https://foundryvtt.com/article/tokens/">Token Controls</a>). You
+        don't <strong>have</strong> to use targeting in combat, but it really
+        speeds up and eases combat if you do.</p><p>When you have one or more
+        tokens targeted for an attack…</p><ul><li><p>The names of those tokens
+        appear in any chat log messages for the attack</p></li><li><p>The GM
+        will see a separate chat log message for each target
+        hit</p></li><li><p>The GM will have an Apply Damage button for each
+        target in the chat log</p></li></ul><h2>Combat Settings</h2><p>To allow
+        for different GM's wanting to run combat in different ways, the
+        following settings can be changed using Foundry's Game Settings
+        dialog:</p><ul><li><p><strong>Use Fantasy Trip Initiative</strong>: On
+        by default, turning this off reverts back to Foundry's basic round/turn
+        structure with 1D6.1D61D6 rolls for
+        initiative.</p></li><li><p><strong>PC Group Initiative</strong>: Off by
+        default, movement initiative is rolled separately for each PC. Turning
+        this on makes only a single initiative roll that applies to every
+        PC.</p></li><li><p><strong>NPC Group Initiative</strong>: On by default,
+        movement initiative is rolled once and applies to every NPC. Turning
+        this on makes a separate initiative roll for each
+        NPC.</p></li></ul><h2>Initiative Bonuses</h2><p>Each character sheet has
+        an <strong>Init Mod</strong> field that can be used as a temporary bonus
+        to that character's individual initiative.</p><p>Active Affects can also
+        be used to add to both individual initiative or party initiative, as for
+        the <strong>Tactics</strong> and <strong>Strategy</strong> talents, for
+        example (see
+        @UUID[Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.KaQZyogQKvA3r2vi.JournalEntryPage.ZC0ir9H0OUqr0Ehw]{Writing
+        Effects}).</p>
     video:
       controls: true
       volume: 0.5
@@ -674,12 +802,12 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.342'
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110089455
-      modifiedTime: 1743110091972
-      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      modifiedTime: 1750877592639
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.taYa6XujJcawZlXZ'

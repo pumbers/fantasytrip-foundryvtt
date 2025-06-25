@@ -228,7 +228,7 @@ function createDist() {
 /* ----------------------------------------- */
 
 function watchUpdates() {
-  gulp.watch([, "src/**/*.js", "src/**/*.mjs"], bundleJs);
+  gulp.watch(["src/**/*.js", "src/**/*.mjs"], bundleJs);
   gulp.watch(["src/system.yml"], compileYaml);
   gulp.watch(["src/lang/**/*.yml"], compileLangs);
   gulp.watch(["src/packs/**/*"], compilePacks);
