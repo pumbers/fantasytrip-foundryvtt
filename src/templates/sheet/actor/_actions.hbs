@@ -25,8 +25,7 @@
         <a class="px-1 sheet-button" data-action="attackRoll" data-attack-index="{{@index}}"
             title="{{localize (concat 'FT.item.attack.type.' type)}}">
             <i class="{{property ../../FT.item.attack.icon type}} mr-1"></i>
-            {{action}}&thinsp;{{dice}}/{{localize
-            (concat "FT.actor.attribute." attribute)}}&thinsp;{{toHit}}</a>
+            {{action}}&thinsp;{{dice}}/{{localize "FT.actor.attribute.dx.value"}}&thinsp;{{toHit}}</a>
         <a class="px-1 sheet-button" data-action="damageRoll" data-attack-index="{{@index}}"><i
                 class="icon-death-skull mr-1"></i>{{damage}}
         </a>

@@ -249,7 +249,7 @@ export function attackRoll(actor, item, options) {
     talent,
     //
     dice: attack.dice,
-    attribute: attack.attribute,
+    attribute: "dx.value",
     modifiers: {
       ...(attack.toHitMod !== 0
         ? {
@@ -266,15 +266,6 @@ export function attackRoll(actor, item, options) {
               min: FT.roll.modifiers.default.min,
               max: FT.roll.modifiers.default.max,
               value: attack.attackTypeMod,
-            },
-          }
-        : {}),
-      ...(attack.attributeMod !== 0
-        ? {
-            attributeMod: {
-              min: FT.roll.modifiers.default.min,
-              max: FT.roll.modifiers.default.max,
-              value: attack.attributeMod,
             },
           }
         : {}),
