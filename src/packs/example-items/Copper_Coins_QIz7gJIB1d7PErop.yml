@@ -14,6 +14,9 @@ system:
   capacity: 0
   container: null
   spells: []
+  applyEffectsWhen:
+    - equipped
+    - carried
 effects: []
 sort: 0
 ownership:
@@ -24,11 +27,11 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.342'
+  coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1747171170512
-  modifiedTime: 1747171204593
+  modifiedTime: 1750884957409
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 _key: '!items!QIz7gJIB1d7PErop'
 

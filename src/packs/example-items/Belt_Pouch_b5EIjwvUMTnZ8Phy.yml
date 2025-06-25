@@ -12,6 +12,9 @@ system:
   defenses: []
   spells: []
   location: carried
+  applyEffectsWhen:
+    - equipped
+    - carried
 effects: []
 folder: Cu0OSpKB1x0ZlU1d
 flags: {}
@@ -19,11 +22,11 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.342'
+  coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1747069149509
-  modifiedTime: 1747171990865
+  modifiedTime: 1750884948978
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 ownership:
   default: 0

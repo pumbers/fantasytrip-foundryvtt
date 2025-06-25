@@ -1,0 +1,42 @@
+name: Fireball
+type: spell
+img: icons/magic/fire/flame-burning-earth-yellow.webp
+system:
+  notes: ''
+  attacks:
+    - action: Blast
+      type: missile
+      toHitMod: 0
+      baseDamage: 1d6-1
+      minST: 0
+      talent: null
+  defenses: []
+  minIQ: 12
+  iqCost: 1
+  stToCast:
+    min: 0
+    max: 0
+  type: missile
+  stToMaintain: 0
+  stSpent: 0
+effects: []
+folder: z6G7klGELi876v85
+ownership:
+  default: 0
+  4jN5Lbw1IbyHFDNM: 3
+  DoJEEiLZ8CgYIaAq: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.345'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1750885281188
+  modifiedTime: 1750885281199
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+_id: J9GNf2wmk80vvaze
+sort: 100000
+_key: '!items!J9GNf2wmk80vvaze'
+

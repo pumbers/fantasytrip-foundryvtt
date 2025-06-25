@@ -11,9 +11,10 @@ system:
   attacks:
     - action: Shot
       type: missile
-      toHitMod: 0
-      baseDamage: 1d6
       minST: 11
+      toHitMod: 0
+      baseDamage: 1d6+2
+      effects: ''
       talent: null
   defenses: []
   spells: []
@@ -25,11 +26,11 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.342'
+  coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1747069168141
-  modifiedTime: 1747069182708
+  modifiedTime: 1750885193600
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 ownership:
   default: 0

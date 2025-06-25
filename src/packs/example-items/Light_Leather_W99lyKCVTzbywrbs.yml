@@ -3,15 +3,15 @@ type: equipment
 img: icons/equipment/chest/shirt-collared-yellow.webp
 system:
   notes: ''
-  cost: 10
-  wt: 2
+  cost: 100
+  wt: 16
   qty: 1
   capacity: 0
   container: null
   attacks: []
   defenses:
-    - action: Armor
-      hitsStopped: 1
+    - action: Chest
+      hitsStopped: 2
   spells: []
   location: carried
 effects:
@@ -60,11 +60,11 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.342'
+  coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1747069158857
-  modifiedTime: 1747069180662
+  modifiedTime: 1750885163535
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 ownership:
   default: 0

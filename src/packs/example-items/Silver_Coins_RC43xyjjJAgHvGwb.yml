@@ -9,7 +9,7 @@ system:
   defenses: []
   cost: 1
   wt: 0.01
-  qty: 16
+  qty: 1
   location: carried
   capacity: 0
   container: null
@@ -24,11 +24,11 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.342'
+  coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1747170981651
-  modifiedTime: 1747171036622
+  modifiedTime: 1750885238402
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 _key: '!items!RC43xyjjJAgHvGwb'
 
