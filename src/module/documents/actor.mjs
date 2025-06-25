@@ -92,13 +92,11 @@ export class FTActor extends Actor {
           attack.dice = weapon.type === "equipment" && !talent ? 4 : 3;
           attack.minSTMod = Math.min(this.system.st.max - attack.minST, 0);
           attack.attackTypeMod = this.system.dx.modFor[attack.type];
-          attack.attributeMod = this.system.dx.mod;
           attack.toHit =
             foundry.utils.getProperty(this.system, attack.attribute) +
             attack.toHitMod +
             attack.minSTMod +
-            attack.attackTypeMod +
-            attack.attributeMod;
+            attack.attackTypeMod;
 
           // Adjust Damage based on weapon min ST
           attack.stDamageMod = Math.floor(Math.min(system.st.max - attack.minST, 0) / 2);
