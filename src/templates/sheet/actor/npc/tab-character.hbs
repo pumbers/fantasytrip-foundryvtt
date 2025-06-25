@@ -9,11 +9,10 @@
                 (concat "FT.actor.attribute." key ".max")}}</label>
             <input class="m-0 !text-center grow" type="number" name="system.{{key}}.max" min="0" value="{{attr.max}}" />
             {{#if roll}}
-            <a class="block m-0 p-1 h-6 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
-                data-action="attributeRoll" data-attribute="{{key}}" data-path="{{key}}.max" data-type="save"><i
-                    class="icon-d6"></i></a>
+            <a class="!p-1 h-6 sheet-button" data-action="attributeRoll" data-attribute="{{key}}"
+                data-path="{{key}}.max" data-type="save"><i class="icon-d6"></i></a>
             {{else}}
-            <div class="!p-2"><i class="{{icon}}"></i></div>
+            <a class="!p-1 h-6 sheet-button" disabled><i class="{{icon}}"></i></a>
             {{/if}}
         </div>
         <div class="field w-14 ml-auto">

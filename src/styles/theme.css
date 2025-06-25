@@ -71,6 +71,9 @@
       &:hover {
         @apply bg-yellow-300 dark:bg-yellow-300/40;
       }
+      &:disabled {
+        @apply bg-transparent;
+      }
     }
   }
 
