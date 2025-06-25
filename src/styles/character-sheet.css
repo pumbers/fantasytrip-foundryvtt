@@ -61,7 +61,6 @@
     }
 
     section#actions,
-    section[id$="-notes"],
     section[id$="-talents"],
     section[id$="-inventory"],
     section[id$="-spells"],

@@ -60,7 +60,6 @@
     }
 
     section#actions,
-    section[id$="-notes"],
     section[id$="-inventory"],
     section[id$="-effects"] {
       @apply pr-4 overflow-y-scroll;
