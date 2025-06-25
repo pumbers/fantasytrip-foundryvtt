@@ -822,7 +822,31 @@ pages:
     image: {}
     text:
       format: 1
-      content: ''
+      content: >-
+        <p>Casting a spell using this implementation is easy. Spells appear on
+        the Spells tab on the character sheet (or the Inventory tab on the NPC
+        sheet), and each spell has a <strong>Cast</strong> button next to it.
+        Click that button, and the Dice roller appears, preset for casting that
+        spell.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/dice_roller_cast.webp"
+        /><p>If the spell has a variable ST cost, that can be altered before the
+        roll is made. Any situation or range modifiers can be selected as
+        well.</p><h2>Spell Effects</h2><p>For the most part, spell effects need
+        to be interpreted manually - since spells can have such a wide ranging
+        set of effects. This may change in future, but for now it's the easiest
+        way to cope with such a variety of spell effects. Two mechanisms have
+        been implemented though:</p><h3>Attack Spells</h3><p>Spells which have
+        an attack component, like Fireball or Lightning, will behave like weapon
+        attacks. Hit messages, Roll Damage buttons, etc (see
+        @UUID[Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.KaQZyogQKvA3r2vi.JournalEntryPage.taYa6XujJcawZlXZ#attacks-and-damage]{Attacks
+        &amp; Damage}).</p><h3>Maintained Spells</h3><p>Spells which have
+        effects that last longer than a single round, that is they have a
+        maintenance cost, will show as readied actions on the Character tab of
+        the character sheet. They will show <strong>Maintain</strong> and
+        <strong>Cancel</strong> buttons. When it comes time for the spell to be
+        maintained, clicking the Maintain button will automatically add the
+        fatigue cost, while cancel will remove the spell from the readied
+        actions.</p>
     video:
       controls: true
       volume: 0.5
@@ -834,12 +858,12 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.342'
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110384981
-      modifiedTime: 1743110388114
-      lastModifiedBy: 4jN5Lbw1IbyHFDNM
+      modifiedTime: 1750882829513
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.6iNkXDrerMY8ltYw'
