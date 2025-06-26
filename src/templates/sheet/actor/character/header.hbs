@@ -4,8 +4,7 @@
         <input class="name" name="name" type="text" value="{{actor.name}}" placeholder="Name" />
         <div class="field w-12">
             <label>{{localize "FT.actor.sheet.label.ap"}}</label>
-            <input {{#if flags.apExceeded}}class="font-bold !text-red-500" {{/if}} type="text" value="{{system.ap}}"
-                readonly>
+            <input type="text" value="{{system.ap}}" readonly>
         </div>
         <div class="field w-28">
             <label>{{localize "FT.actor.sheet.label.xp"}}</label>

@@ -20,7 +20,7 @@
             <label>{{localize "FT.item.sheet.label.capacity"}}</label>
             <input type="number" name="system.capacity" value="{{system.capacity}}" min="0">
         </div>
-        <div class="field col-span-2">
+        <div class="field col-span-3">
             <label>{{localize "FT.item.sheet.label.applyEffectsWhen"}}</label>
             <multi-select name="system.applyEffectsWhen" multiple>
                 {{selectOptions selectOptions.inventoryLocations selected=system.applyEffectsWhen localize=true}}

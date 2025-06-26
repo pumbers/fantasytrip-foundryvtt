@@ -136,5 +136,9 @@
     [data-action].sheet-button {
       @apply block;
     }
+
+    div.tags.input-element-tags {
+      @apply justify-start;
+    }
   }
 }
