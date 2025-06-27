@@ -55,6 +55,8 @@ FT:
         spells: Spells
         alwaysOn: Always on
         applyEffectsWhen: Apply Effects When...
+        pdfReference: PDF (code#page)
       action:
         addAction: Add
         deleteAction: Delete
+        openPDF: Open PDF

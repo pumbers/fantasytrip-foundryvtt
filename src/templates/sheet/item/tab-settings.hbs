@@ -2,6 +2,7 @@
 <section id="{{partId}}" class="tab {{tabs.notes.cssClass}}" data-group="primary" data-tab="notes">
     <div class="grid grid-cols-4 gap-1 mb-4">
 
+
         {{!-- Equipment --}}
         {{#if (eq item.type "equipment")}}
         <div class="field">
@@ -83,5 +84,10 @@
         </div>
         {{/if}}
 
+        {{!-- Optional PDF reference --}}
+        {{#if settings.pdfPagerEnabled}}
+        <div class="field"><label>{{localize "FT.item.sheet.label.pdfReference"}}</label><input type="text"
+                name="system.pdfReference" value="{{system.pdfReference}}"></div>
+        {{/if}}
     </div>
 </section>

@@ -48,6 +48,7 @@ class FTEmbeddedSpell extends foundry.abstract.DataModel {
 class FTBaseItemData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
+      pdfReference: new StringField(),
       notes: new HTMLField(),
       attacks: new ArrayField(new EmbeddedDataField(FTEmbeddedAttack), { initial: [] }),
       defenses: new ArrayField(new EmbeddedDataField(FTEmbeddedDefense), { initial: [] }),

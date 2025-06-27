@@ -145,6 +145,11 @@ Hooks.once("init", async function () {
     config: true,
   });
 
+  game.settings.register(FT.id, "pdfPagerEnabled", {
+    scope: "world",
+    type: new BooleanField({ initial: false }),
+  });
+
   /* -------------------------------------------- */
   /*  Define Documents & Sheets                           
   /* -------------------------------------------- */
@@ -212,7 +217,13 @@ Hooks.once("init", async function () {
 /* -------------------------------------------- */
 
 Hooks.on("ready", async () => {
-  // ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
-  // ui.notifications.info(game.i18n.localize("FT.messages.notice"));
+  ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
+  ui.notifications.info(game.i18n.localize("FT.messages.notice"));
   console.info(FT.prefix, "System ready");
+
+  // Check for PDF Pager module and enable integration if active
+  if (game.modules.has("pdf-pager")) {
+    game.settings.set(FT.id, "pdfPagerEnabled", game.modules.get("pdf-pager")?.active);
+    console.info(FT.prefix, "PDF Pager module found, setting PDF references", game.modules.get("pdf-pager")?.active);
+  }
 });

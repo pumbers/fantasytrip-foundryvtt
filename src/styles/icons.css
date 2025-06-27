@@ -130,4 +130,9 @@
   & .icon-pentagram-rose::before {
     content: url("../assets/icons/pentagram-rose.svg");
   }
+
+  /* Misc */
+  & .icon-open-book::before {
+    content: url("../assets/icons/open-book.svg");
+  }
 }

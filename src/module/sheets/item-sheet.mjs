@@ -22,6 +22,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     },
     actions: {
       //
+      openPDF: FTItemSheet.#openPDF,
       editHTML: FTItemSheet.#editHTML,
       //
       addAttack: FTItemSheet.#addAttack,
@@ -87,6 +88,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       FT,
       item: foundry.utils.deepClone(this.item),
       system: foundry.utils.deepClone(this.item.system),
+      settings: { pdfPagerEnabled: game.settings.get(FT.id, "pdfPagerEnabled") },
       flags: {
         ...foundry.utils.deepClone(this.item.flags),
         ...(this.item.type === "equipment" && {
@@ -198,5 +200,13 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
 
   static async #editHTML(event, target) {
     Editor.editHTML.call(this, event, target);
+  }
+
+  static #openPDF(event, target) {
+    console.log("#openPDF", target.dataset);
+    const re = /^([a-zA-Z0-9_]*)#(\d*)$/m;
+    if (!re.test(target.dataset.reference)) return;
+    const [_, code, page] = target.dataset.reference.match(re);
+    ui.pdfpager?.openPDFByCode(code, { page });
   }
 }

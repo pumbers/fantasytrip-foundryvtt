@@ -5,8 +5,11 @@
         <input class="name" name="name" type="text" value="{{item.name}}" placeholder="Name" />
         <div class="flex flex-row justify-between font-bold uppercase mt-2">
             <span>{{localize (concat "FT.item.type." item.type)}}</span>
-            <span>{{#if system.isContainer}}{{localize
-                "FT.item.sheet.label.container"}}{{/if}}</span>
+            {{#if (and settings.pdfPagerEnabled system.pdfReference)}}
+            <a title="{{localize 'FT.item.sheet.action.openPDF'}}" data-action="openPDF"
+                data-reference="{{system.pdfReference}}"><i
+                    class="icon-open-book"></i>&thinsp;{{system.pdfReference}}</a>
+            {{/if}}
         </div>
     </div>
 </header>
