@@ -21,7 +21,6 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       st: new SchemaField({
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
-        value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
           // Attribute save mod
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
@@ -30,7 +29,6 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       dx: new SchemaField({
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
-        value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
           // Attribute save mod
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
@@ -48,7 +46,6 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       iq: new SchemaField({
         max: new NumberField({ initial: 8 }), // Maximum or base value
         mod: new NumberField({ initial: 0 }), // Manually set modifier
-        value: new NumberField({ initial: 8 }), // Current or adjusted value
         modFor: new SchemaField({
           // Attribute save mod
           save: new NumberField({ initial: 0 }), // Modifier to save rolls
@@ -59,17 +56,14 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
         walk: new SchemaField({
           max: new NumberField({ initial: 10 }), // Maximum or base value
           mod: new NumberField({ initial: 0 }), // Manually set modifier
-          value: new NumberField({ initial: 10 }), // Current or adjusted value
         }),
         swim: new SchemaField({
           max: new NumberField({ initial: 10 }), // Maximum or base value
           mod: new NumberField({ initial: 0 }), // Manually set modifier
-          value: new NumberField({ initial: 10 }), // Current or adjusted value
         }),
         fly: new SchemaField({
           max: new NumberField({ initial: 0 }), // Maximum or base value
           mod: new NumberField({ initial: 0 }), // Manually set modifier
-          value: new NumberField({ initial: 0 }), // Current or adjusted value
         }),
       }),
       //
@@ -106,6 +100,7 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
 
   prepareDerivedData() {
     super.prepareDerivedData();
+    // console.log("FTActorData.prepareDerivedData()", this);
 
     // Calculate available mana (from staff if a wizard)
     this.mana.value = Math.min(this.mana.max, this.mana.value);
@@ -130,9 +125,5 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
 
   get isDead() {
     return this.damage > this.st.max;
-  }
-
-  static migrateData(source) {
-    // console.log("migrateData()", source);
   }
 }

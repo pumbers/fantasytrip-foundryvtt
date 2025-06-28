@@ -37,17 +37,24 @@
     }
 
     section#actions {
-      @apply h-[10em];
+      @apply h-[9em];
       .action-item {
-        @apply flex flex-row gap-4 m-0 p-1 text-xs;
-        img {
+        @apply grid grid-cols-[5%_30%_65%] gap-2 text-xs m-0 p-1;
+        img.action-item__image {
           @apply size-4;
         }
-        legend {
-          @apply normal-case;
+        span.action-item__name {
+          @apply w-32;
         }
-        .action-item-details {
-          @apply grid grid-cols-[3fr_6fr_4fr] gap-1 grow;
+        .action-item__details {
+          @apply flex flex-row gap-2 flex-wrap;
+          i[class^="icon-"] {
+            @apply mr-1;
+          }
+          a,
+          span {
+            @apply px-1 shrink whitespace-nowrap;
+          }
         }
       }
     }

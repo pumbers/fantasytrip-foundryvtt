@@ -21,7 +21,7 @@ FT:
         unskilledMod: Unskilled
       targetNumber: Target
       flavor:
-        save:
+        attribute:
           - Attempts a {attributes} save... {result}
           - Tries valiantly to make a {attributes} save... {result}
           - Effortlessly tries to make a {attributes} save... {result}
