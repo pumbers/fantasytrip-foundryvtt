@@ -1,52 +1,44 @@
 {{!-- Actions --}}
 {{#each readied as | item |}}
-<fieldset id="action-item-{{item._id}}" class="action-item" data-item-id="{{item._id}}">
-    <legend>{{item.name}}</legend>
-    <img src="{{item.img}}" alt="">
-    <div class="action-item-details">
-        {{!-- Active Spell --}}
-        {{#if (eq item.type "spell")}}
-        <span><i class="icon-pentacle mr-1"></i>{{item.system.stSpent}}/{{item.system.stToMaintain}}</span>
-        <a class="px-1 sheet-button" data-action="maintainSpell"><i class="icon-magic-swirl mr-1"></i>{{localize
-            "FT.actor.sheet.action.spell.maintain"}}</a>
-        <a class="px-1 sheet-button" data-action="cancelSpell"><i class="icon-magic-swirl mr-1"></i>{{localize
-            "FT.actor.sheet.action.spell.cancel"}}</a>
-        <span></span>
-        {{/if}}
+<div id="action-item-{{item._id}}" class="action-item" data-item-id="{{item._id}}">
+    <img class="action-item__image" src="{{item.img}}" alt="">
+    <span class="action-item__name">{{item.name}}</span>
+    <div class="action-item__details">
+
         {{!-- Attacks --}}
         {{#each item.system.attacks as | attack |}}
-        <span>
-            {{#if attack.minST}}
-            <i
-                class="icon-weight-lifting-up mr-1 {{#unless (gte ../../system.st.max minST)}}warning{{/unless}}"></i>{{localize
-            "FT.actor.attribute.st.max"}}&nbsp;{{minST}}
-            {{/if}}
-        </span>
-        <a class="px-1 sheet-button" data-action="attackRoll" data-attack-index="{{@index}}"
+        <a class="sheet-button" data-action="attackRoll" data-attack-index="{{@index}}"
             title="{{localize (concat 'FT.item.attack.type.' type)}}">
-            <i class="{{property ../../FT.item.attack.icon type}} mr-1"></i>
-            {{action}}&thinsp;{{dice}}/{{localize "FT.actor.attribute.dx.value"}}&thinsp;{{toHit}}</a>
-        <a class="px-1 sheet-button" data-action="damageRoll" data-attack-index="{{@index}}"><i
-                class="icon-death-skull mr-1"></i>{{damage}}
+            <i
+                class="{{property ../../FT.item.attack.icon type}} mr-1 {{#unless (gte ../../system.st.max minST)}}warning{{/unless}}"></i>
+            &thinsp;{{action}}&thinsp;{{dice}}/{{localize "FT.actor.attribute.dx.value"}}&thinsp;{{toHit}}</a>
+        <a class="sheet-button" data-action="damageRoll" data-attack-index="{{@index}}"><i
+                class="icon-death-skull"></i>{{action}}&thinsp;{{damage}}
         </a>
         {{/each}}
+
         {{!-- Defenses --}}
         {{#each item.system.defenses as | defense |}}
-        <span><i class="icon-chest-armor mr-1"></i>{{hitsStopped}}</span>
-        <span class="px-1">{{action}}</span>
-        <span></span>
+        <span>{{action}}&thinsp;<i class="icon-chest-armor"></i>{{hitsStopped}}</span>
         {{/each}}
-        {{!-- Spells --}}
+
+        {{!-- Embedded Spells --}}
         {{#each item.system.spells as | spell |}}
-        <span>
-            <i class="icon-pentacle mr-2"></i>{{spell.casting}}&thinsp;{{#if spell.burn}}<i
-                class="icon-flame"></i>{{/if}}
-        </span>
-        <a class="sheet-button px-1" data-action="castSpellFromItem" data-spell-uuid="{{spell.uuid}}"
+        <a class="sheet-button" data-action="castSpellFromItem" data-spell-uuid="{{spell.uuid}}"
             data-burn="{{spell.burn}}" title="{{localize 'FT.actor.sheet.action.spell.cast'}} {{spell.name}}">
-            <i class="icon-magic-swirl mr-1"></i>{{spell.name}}</a>
-        <span></span>
+            <i class="icon-magic-swirl"></i>{{spell.casting}}&thinsp;{{spell.name}}</a>
         {{/each}}
+
+        {{!-- Active Spell --}}
+        {{#if (eq item.type "spell")}}
+        <a class="sheet-button" data-action="maintainSpell"><i
+                class="icon-magic-swirl"></i>{{item.system.stToMaintain}}&thinsp;{{localize
+            "FT.actor.sheet.action.spell.maintain"}}</a>
+        <a class="sheet-button" data-action="cancelSpell"><i class="icon-magic-swirl"></i>{{localize
+            "FT.actor.sheet.action.spell.cancel"}}</a>
+        {{/if}}
+
     </div>
-</fieldset>
+
+</div>
 {{/each}}

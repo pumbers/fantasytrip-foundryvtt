@@ -139,11 +139,5 @@ FT.item = {
       creation: "icon-magic-swirl",
       special: "icon-pentagram-rose",
     },
-    castAttribute: {
-      missile: "dx.value",
-      thrown: "dx.value",
-      creation: "dx.value",
-      special: "dx.value",
-    },
   },
 };

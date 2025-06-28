@@ -391,7 +391,7 @@ export function castingRoll(actor, spell, options = {}) {
     dice: 3,
     actor,
     spell,
-    attribute: FT.item.spell.castAttribute[spell.system.type],
+    attribute: "dx.value",
     modifiers: {
       ...(actor.system.dx.modFor.casting !== 0 && {
         attributeMod: {
