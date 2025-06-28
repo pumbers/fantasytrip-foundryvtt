@@ -80,7 +80,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       // Categorized items
       talents: this.actor.items.filter((item) => item.type === "talent").sort((a, b) => a.name.localeCompare(b.name)),
       spells: this.actor.items
-        .filter((item) => item.type === "spell" && !item.isReady)
+        .filter((item) => item.type === "spell" && !item.system.isReady)
         .sort((a, b) => a.name.localeCompare(b.name)),
       inventory: this.actor.items
         .filter((item) => item.type === "equipment")
