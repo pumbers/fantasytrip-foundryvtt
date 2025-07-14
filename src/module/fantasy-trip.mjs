@@ -53,6 +53,20 @@ Hooks.once("init", async function () {
     config: true,
   });
 
+  game.settings.register(FT.id, "checkIQForLearned", {
+    name: game.i18n.localize("FT.game.settings.checkIQForLearned.name"),
+    hint: game.i18n.localize("FT.game.settings.checkIQForLearned.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: true,
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: false,
+  });
+
   game.settings.register(FT.id, "useFTInitiative", {
     name: game.i18n.localize("FT.game.settings.useFTInitiative.name"),
     hint: game.i18n.localize("FT.game.settings.useFTInitiative.hint"),
