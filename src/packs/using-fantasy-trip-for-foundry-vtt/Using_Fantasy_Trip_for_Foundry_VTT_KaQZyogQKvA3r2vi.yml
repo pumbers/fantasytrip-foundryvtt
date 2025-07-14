@@ -867,6 +867,132 @@ pages:
       exportSource: null
     category: null
     _key: '!journal.pages!KaQZyogQKvA3r2vi.6iNkXDrerMY8ltYw'
+  - sort: 900000
+    name: Creating Characters
+    type: text
+    _id: GES2Dzee8OJ1xWUj
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: >-
+        <h1>Player Characters</h1><h2>Create the Actor</h2><ol><li><p>Switch to
+        the <strong>Actors</strong> tab in the sidebar</p></li><li><p>Click on
+        <strong>Create Actor</strong></p></li><li><p>Enter the character's
+        name</p></li><li><p>Ensure the <strong>Type</strong> is set to
+        character</p></li><li><p>Click <strong>Create
+        Actor</strong></p></li></ol><h2>Add Basic Details</h2><ol><li><p>Select
+        the character type (Hero or Wizard)</p></li><li><p>Enter race and
+        age</p></li><li><p>Add job details (job, pay, and
+        risk)</p></li></ol><h2>Enter Attributes</h2><ol><li><p>Enter or adjust
+        the character's base Attributes (ST, DX, IQ, MA)</p></li><li><p>The
+        <strong>AP</strong> box at the top of the character sheet will show the
+        <strong>Attribute Point</strong> total for the character. This should be
+        32 for a starting character (or more if the GM allows
+        it).</p></li></ol><h2>Add Talents</h2><ol><li><p>From the available
+        Talents loaded into Foundry ore from a compendium, drag &amp; drop any
+        you want for your character onto the character sheet, they will appear
+        under the <strong>Talents</strong> tab.</p></li><li><p>If your character
+        has insufficient IQ to learn a Talent, an error message will be
+        shown.</p></li><li><p>There is (currently) no check made to ensure you
+        don't "over spend" your IQ when buying Talents, but the total cost of
+        the Talents you've added is shown at bottom of the Talent list. Your GM
+        needs to trust you.</p></li></ol><h2>Add Spells</h2><ol><li><p>From the
+        available Spells loaded into Foundry ore from a compendium, drag &amp;
+        drop any you want for your character onto the character sheet, they will
+        appear under the <strong>Spells</strong> tab.</p></li><li><p>If your
+        character has insufficient IQ to learn a Spell, an error message will be
+        shown.</p></li><li><p>There is (currently) no check made to ensure you
+        don't "over spend" your IQ when buying Spells, but the total cost of the
+        Spells you've added is shown at bottom of the Spell list. Your GM needs
+        to trust you.</p></li></ol><h2>Add Equipment</h2><ol><li><p>Simply drag
+        &amp; drop any items of equipment from Foundry or a compendium onto the
+        character sheet, they will appear under the <strong>Inventory</strong>
+        tab.</p></li><li><p>If any items have Attacks, you should edit each
+        attack to reference a specific Talent - a Heavy Crossbow, for example,
+        would reference the Crossbow skill; a Broadsword would reference the
+        Sword skill, and so on. If an attack does not reference a Talent, the
+        weapon use will be consider Unskilled and you'll be rolling 4D6 instead
+        of 3D6 for the attack.</p></li></ol><h1>Non-Player
+        Characters</h1><p>When creating non-player characters, the GM has two
+        choices.</p><p>The GM can create a <strong>character</strong> or an
+        <strong>npc</strong>. The only difference is that a character can use
+        the Character Sheet or the NPC Sheet, while an npc can only use the NPC
+        Sheet. Also, an npc will have a Mana stat, regardless of whether they're
+        a Wizard or not.</p><p>Aside from that, editing attributes and setting
+        up talents, spells, and equipment is identical.</p>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    category: null
+    ownership:
+      default: -1
+      DoJEEiLZ8CgYIaAq: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      exportSource: null
+      coreVersion: '13.345'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      createdTime: 1752514256515
+      modifiedTime: 1752527462068
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.GES2Dzee8OJ1xWUj'
+  - sort: 1000000
+    name: Other Modules
+    type: text
+    _id: FUYQKlKYTXd1fZUb
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: >-
+        <h1>PDF Pager</h1><p>Fantasy Trip for Foundry VTT includes support for
+        the <a href="https://foundryvtt.com/packages/pdf-pager">PDF Pager module
+        by Farling</a>. Specifically:</p><ul><li><p>You can create a PDF Journal
+        Entry using any of the Fantasy Trip rulebooks or
+        adventures.</p></li><li><p>When the module is enabled in Foundry
+        settings, an extra field appears on item sheets which allows you to
+        reference a PDF document and page number. A link in the item header
+        allows you to click through directly to the document and page number
+        without having to look anything up.</p></li><li><p>When a PDF Pager
+        document is set up, it is given a <strong>PDF Code</strong> that acts as
+        a document reference.</p></li><li><p>When entering or editing an item's
+        PDF reference, use the format <strong>&lt;PDF Code&gt;#&lt;Page
+        Number&gt;</strong>. So, if the core Fantasy Trip rulebook has a PDF
+        Code of "FTL", then the Brawling talent reference would be
+        "FTL#35".</p></li><li><p>Example items provided already include this
+        link, with the PDF Code set to
+        <strong>FTL</strong>.</p></li></ul><p></p>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    category: null
+    ownership:
+      default: -1
+      DoJEEiLZ8CgYIaAq: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      exportSource: null
+      coreVersion: '13.345'
+      systemId: fantasy-trip
+      systemVersion: 0.1.0
+      createdTime: 1752528433730
+      modifiedTime: 1752529193814
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.FUYQKlKYTXd1fZUb'
 folder: null
 flags: {}
 _stats:

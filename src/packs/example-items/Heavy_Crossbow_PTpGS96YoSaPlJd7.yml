@@ -1,0 +1,44 @@
+name: Heavy Crossbow
+type: equipment
+img: icons/weapons/crossbows/crossbow-purple.webp
+system:
+  notes: <p>Fires every 3rd turn, or every other turn if adjDX 16+</p>
+  attacks:
+    - action: Shot
+      type: missile
+      toHitMod: 0
+      baseDamage: 3d6
+      minST: 15
+      effects: ''
+      talent: null
+  defenses: []
+  cost: 80
+  wt: 10
+  qty: 1
+  location: carried
+  capacity: 0
+  container: null
+  spells: []
+  applyEffectsWhen:
+    - equipped
+  pdfReference: FTL#109
+effects: []
+folder: null
+ownership:
+  default: 0
+  DoJEEiLZ8CgYIaAq: 3
+flags: {}
+_stats:
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+  coreVersion: '13.345'
+  systemId: fantasy-trip
+  systemVersion: 0.1.0
+  createdTime: 1752529340020
+  modifiedTime: 1752529349283
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+_id: PTpGS96YoSaPlJd7
+sort: 500000
+_key: '!items!PTpGS96YoSaPlJd7'
+

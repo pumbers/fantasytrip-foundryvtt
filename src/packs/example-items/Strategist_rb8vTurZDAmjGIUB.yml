@@ -1,36 +1,27 @@
-name: Light Leather
-type: equipment
-img: icons/equipment/chest/shirt-collared-yellow.webp
+name: Strategist
+type: talent
+img: icons/skills/melee/maneuver-sword-katana-yellow.webp
 system:
   notes: ''
-  cost: 100
-  wt: 16
-  qty: 1
-  capacity: 0
-  container: null
+  minIQ: 13
+  iqCost: 2
+  defaultAttribute: iq.max
+  pdfReference: FTL#43
   attacks: []
-  defenses:
-    - action: Chest
-      hitsStopped: 2
-  spells: []
-  location: carried
+  defenses: []
 effects:
-  - name: Encumbrance
-    origin: Item.Jw7YqDm907MrMKXI
+  - name: Initiative Bonus
+    origin: Item.0bhu72bXQTHjwq4F
     img: icons/svg/aura.svg
-    _id: sWzgfvlGoA3AOkBz
+    _id: VfMuENyDYERSr9S4
     type: base
     system: {}
     changes:
-      - key: system.ma.walk.value
-        mode: 3
-        value: '8'
+      - key: system.initiative.party
+        mode: 4
+        value: '2'
         priority: null
-      - key: system.dx.value
-        mode: 2
-        value: '-2'
-        priority: null
-    disabled: true
+    disabled: false
     duration:
       startTime: null
       seconds: null
@@ -49,12 +40,12 @@ effects:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.342'
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       lastModifiedBy: null
-    _key: '!items.effects!W99lyKCVTzbywrbs.sWzgfvlGoA3AOkBz'
-folder: Cu0OSpKB1x0ZlU1d
+    _key: '!items.effects!rb8vTurZDAmjGIUB.VfMuENyDYERSr9S4'
+folder: null
 flags: {}
 _stats:
   compendiumSource: null
@@ -63,14 +54,14 @@ _stats:
   coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1747069158857
-  modifiedTime: 1750885163535
+  createdTime: 1752529315138
+  modifiedTime: 1752529349283
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
   DoJEEiLZ8CgYIaAq: 3
-_id: W99lyKCVTzbywrbs
-sort: 150000
-_key: '!items!W99lyKCVTzbywrbs'
+_id: rb8vTurZDAmjGIUB
+sort: 700000
+_key: '!items!rb8vTurZDAmjGIUB'
 

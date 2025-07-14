@@ -1,21 +1,21 @@
-folder: z6G7klGELi876v85
-name: Dark Vision
+name: Glamor
 type: spell
-img: icons/magic/perception/eye-ringed-glow-angry-teal.webp
+img: icons/magic/control/silhouette-hold-change-green.webp
 system:
   notes: ''
   attacks: []
   defenses: []
-  minIQ: 9
+  minIQ: 14
   iqCost: 1
-  stToCast:
-    min: 3
-    max: 3
-  stToMaintain: 0
-  stSpent: 0
   type: thrown
-  spells: []
+  stToCast:
+    min: 10
+    max: 10
+  stToMaintain: 1
+  pdfReference: FTL#27
+  stSpent: 0
 effects: []
+folder: null
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
@@ -25,13 +25,13 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.342'
+  coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1747069756833
-  modifiedTime: 1747069756833
+  createdTime: 1752529326893
+  modifiedTime: 1752529349283
   lastModifiedBy: DoJEEiLZ8CgYIaAq
-_id: 2RZFdjGKxb9wKJk4
-sort: 0
-_key: '!items!2RZFdjGKxb9wKJk4'
+_id: 7z1jLuotiHn45LXq
+sort: 900000
+_key: '!items!7z1jLuotiHn45LXq'
 

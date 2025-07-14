@@ -1,24 +1,24 @@
-folder: Cu0OSpKB1x0ZlU1d
-name: Copper Coins
+name: Small Shield
 type: equipment
-_id: QIz7gJIB1d7PErop
-img: icons/commodities/currency/coins-assorted-mix-copper.webp
+img: icons/equipment/shield/buckler-wooden-boss-brown.webp
 system:
   notes: ''
   attacks: []
-  defenses: []
-  cost: 0.1
-  wt: 0.01
-  qty: 8
+  defenses:
+    - action: Block
+      hitsStopped: 1
+  cost: 30
+  wt: 10
+  qty: 1
   location: carried
   capacity: 0
   container: null
   spells: []
+  pdfReference: FTL#110
   applyEffectsWhen:
     - equipped
-    - carried
 effects: []
-sort: 0
+folder: null
 ownership:
   default: 0
   DoJEEiLZ8CgYIaAq: 3
@@ -30,8 +30,10 @@ _stats:
   coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1747171170512
-  modifiedTime: 1750884957409
+  createdTime: 1752529349261
+  modifiedTime: 1752529349283
   lastModifiedBy: DoJEEiLZ8CgYIaAq
-_key: '!items!QIz7gJIB1d7PErop'
+_id: ZXm5Lm0iFl42CZ0n
+sort: 200000
+_key: '!items!ZXm5Lm0iFl42CZ0n'
 

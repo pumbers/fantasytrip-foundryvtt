@@ -1,38 +1,47 @@
-name: Tactics
-type: talent
-img: icons/skills/melee/maneuver-greatsword-yellow.webp
+name: Backpack
+type: equipment
+img: icons/containers/bags/case-leather-tan.webp
 system:
   notes: ''
-  minIQ: 11
-  iqCost: 1
-  defaultAttribute: iq.max
+  cost: 40
+  wt: 4
+  qty: 1
+  capacity: 20
+  container: null
   attacks: []
-  defenses: []
+  defenses:
+    - action: Rear Only
+      hitsStopped: 1
+  applyEffectsWhen:
+    - equipped
+    - carried
+  pdfReference: FTL#67
+  location: carried
   spells: []
 effects:
-  - name: Initiative Bonus
-    origin: Item.7AdSRjbkzvjaj9Js
+  - name: Encumbrance
+    origin: Compendium.fantasytrip-compendia.equipment.Item.yFJnKLHu3OYi7LQH
+    transfer: true
     img: icons/svg/aura.svg
-    _id: EAyrYOx3POH4qo1J
+    _id: 3Rbr9vGNzl4DLR79
     type: base
     system: {}
     changes:
-      - key: system.initiative.party
-        mode: 4
-        value: '1'
+      - key: system.dx.value
+        mode: 2
+        value: '-1'
         priority: null
     disabled: false
     duration:
       startTime: null
-      seconds: null
       combat: null
+      seconds: null
       rounds: null
       turns: null
       startRound: null
       startTurn: null
     description: ''
     tint: '#ffffff'
-    transfer: true
     statuses: []
     sort: 0
     flags: {}
@@ -40,28 +49,28 @@ effects:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.342'
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       lastModifiedBy: null
-    _key: '!items.effects!tFYElKbhldBi3x6p.EAyrYOx3POH4qo1J'
-folder: zykFIiR8rqmUFXtR
+    _key: '!items.effects!kBHJlaeVCUjmrwQ6.3Rbr9vGNzl4DLR79'
+folder: null
 flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.342'
+  coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1747069835493
-  modifiedTime: 1747069837951
+  createdTime: 1752529334078
+  modifiedTime: 1752529349283
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
   DoJEEiLZ8CgYIaAq: 3
-_id: tFYElKbhldBi3x6p
-sort: 400000
-_key: '!items!tFYElKbhldBi3x6p'
+_id: kBHJlaeVCUjmrwQ6
+sort: 1000000
+_key: '!items!kBHJlaeVCUjmrwQ6'
 

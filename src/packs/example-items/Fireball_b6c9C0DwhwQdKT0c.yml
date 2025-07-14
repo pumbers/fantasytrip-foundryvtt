@@ -8,6 +8,7 @@ system:
       type: missile
       toHitMod: 0
       baseDamage: 1d6-1
+      effects: ''
       minST: 0
       talent: null
   defenses: []
@@ -17,10 +18,11 @@ system:
     min: 0
     max: 0
   type: missile
+  pdfReference: FTL#24
   stToMaintain: 0
   stSpent: 0
 effects: []
-folder: z6G7klGELi876v85
+folder: null
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
@@ -33,10 +35,10 @@ _stats:
   coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1750885281188
-  modifiedTime: 1750885281199
+  createdTime: 1752529324543
+  modifiedTime: 1752529349283
   lastModifiedBy: DoJEEiLZ8CgYIaAq
-_id: J9GNf2wmk80vvaze
-sort: 100000
-_key: '!items!J9GNf2wmk80vvaze'
+_id: b6c9C0DwhwQdKT0c
+sort: 800000
+_key: '!items!b6c9C0DwhwQdKT0c'
 

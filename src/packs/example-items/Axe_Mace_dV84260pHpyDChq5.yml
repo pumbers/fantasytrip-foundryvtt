@@ -1,17 +1,16 @@
-folder: zykFIiR8rqmUFXtR
-name: Pole Weapons
+name: Axe/Mace
 type: talent
-_id: 3yeibZ2JfCgzkmkZ
-img: icons/skills/melee/hand-grip-staff-yellow-brown.webp
+img: icons/weapons/maces/mace-spiked-banded-wood.webp
 system:
   notes: ''
   attacks: []
   defenses: []
-  minIQ: 8
+  minIQ: 7
   iqCost: 2
   defaultAttribute: dx.value
+  pdfReference: FTL#36
 effects: []
-sort: 0
+folder: null
 ownership:
   default: 0
   DoJEEiLZ8CgYIaAq: 3
@@ -20,11 +19,13 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.342'
+  coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1747172672013
-  modifiedTime: 1747172728627
+  createdTime: 1752529307281
+  modifiedTime: 1752529349283
   lastModifiedBy: DoJEEiLZ8CgYIaAq
-_key: '!items!3yeibZ2JfCgzkmkZ'
+_id: dV84260pHpyDChq5
+sort: 600000
+_key: '!items!dV84260pHpyDChq5'
 

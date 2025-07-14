@@ -1,32 +1,32 @@
-name: Sword
+name: 'Language: Human'
 type: talent
-img: icons/skills/melee/hand-grip-sword-white-brown.webp
+img: icons/skills/social/wave-halt-stop.webp
 system:
   notes: ''
-  defaultAttribute: dx.value
-  iqCost: 1
-  minIQ: 7
+  defaultAttribute: iq.max
+  iqCost: 0
+  minIQ: 4
+  pdfReference: ''
   attacks: []
   defenses: []
-  spells: []
 effects: []
-folder: zykFIiR8rqmUFXtR
+folder: null
 flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.342'
+  coreVersion: '13.345'
   systemId: fantasy-trip
   systemVersion: 0.1.0
-  createdTime: 1747069837940
-  modifiedTime: 1747069837951
+  createdTime: 1752529297363
+  modifiedTime: 1752529349283
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 ownership:
   default: 0
   4jN5Lbw1IbyHFDNM: 3
   DoJEEiLZ8CgYIaAq: 3
-_id: QGggalhjgxJtHKXR
-sort: 300000
-_key: '!items!QGggalhjgxJtHKXR'
+_id: lnAeCPYceOEYYhgm
+sort: 400000
+_key: '!items!lnAeCPYceOEYYhgm'
 
