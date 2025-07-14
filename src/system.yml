@@ -1,10 +1,10 @@
 id: fantasy-trip
-version: 0.1.0
+version: 0.1.1
 title: Fantasy Trip
 description: Fantasy Trip for FoundryVTT (Unofficial - Alpha)
 compatibility:
   minimum: "13"
-  verified: "13.342"
+  verified: "13.345"
 authors:
   - name: 3rdDog
 license: LICENSE.txt
