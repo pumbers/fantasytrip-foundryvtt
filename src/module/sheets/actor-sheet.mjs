@@ -278,6 +278,11 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
           });
           return item;
         }
+      } else if (FT.item.learned.types.includes(item.type)) {
+        if (item.system.minIQ > this.actor.system.iq.max) {
+          ui.notifications.error(game.i18n.format("FT.messages.insufficientIQ", { name: item.name }));
+          return;
+        }
       }
     }
     return super._onDrop(event);

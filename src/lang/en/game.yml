@@ -5,6 +5,9 @@ FT:
       initialAP:
         name: Attribute Points for new characters
         hint: The number of Attribute Points a new character is allowed to spend.
+      checkIQForLearned:
+        name: Check for sufficient IQ
+        hint: Check that a character has sufficient IQ to learn a talent or spell when they are dropped onto the character sheet.
       useFTInitiative:
         name: Use Fantasy Trip Initiative
         hint: Use Fantasy Trip split movement/combat initiative and make initiative rolls every round automatically.
@@ -54,6 +57,7 @@ FT:
       Please ensure the setting "Reroll Initiative" in the module <b>Monk's Combat Details</b> is disabled as it may interfere with Fantasy Trip initiative.
     noCapacity: "{container} is not big enough."
     noDropContainer: "{item} is a container and cannot be dropped onto another container."
+    insufficientIQ: Sorry, you don't have the IQ to learn {name}.
     # createHotbarMacroItemNotOwned: You can only create macro buttons for owned Items.
     # useItemMacroItemNotOwned: Your controlled Actor does not have that item.
     # useItemMacroCannotDetermineActor: You need to select a token so that I can determine who's acting.

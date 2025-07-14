@@ -104,6 +104,9 @@ FT.item = {
     },
     encumbering: ["carried", "equipped"],
   },
+  learned: {
+    types: ["talent", "spell"],
+  },
   flags: {
     maxAttacks: 5,
     maxDefenses: 5,
