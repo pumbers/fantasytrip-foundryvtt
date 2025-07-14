@@ -97,7 +97,7 @@
     }
 
     .field {
-      @apply flex flex-col gap-1 mt-auto mb-0 !leading-2;
+      @apply flex flex-col gap-0.5 mt-auto mb-0 !leading-2;
       label {
         @apply m-0 p-0 text-[0.5rem] !text-left uppercase;
       }

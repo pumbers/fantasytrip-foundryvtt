@@ -1,7 +1,7 @@
 export const FT = {};
 
 /* ------------------------------------------- */
-/*  Game System Config & Options                  */
+/*  Game System Config & Options               */
 /* ------------------------------------------- */
 
 FT.id = "fantasy-trip";

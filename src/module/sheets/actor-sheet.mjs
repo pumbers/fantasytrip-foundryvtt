@@ -68,10 +68,10 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("_prepareContext()", this, options);
     const context = Object.assign(await super._prepareContext(options), {
       // General Documents, Settings & Config
-      FT: CONFIG.FT,
+      FT,
       actor: foundry.utils.deepClone(this.actor),
       system: foundry.utils.deepClone(this.actor.system),
-      flags: foundry.utils.mergeObject(foundry.utils.deepClone(this.actor.flags), {
+      flags: foundry.utils.mergeObject(foundry.utils.deepClone(this.actor.flags[FT.id] ?? {}), {
         apExceeded: this.actor.system.ap > game.settings.get(FT.id, "initialAP") && this.actor.system.xp === 0,
       }),
       settings: {
@@ -321,18 +321,22 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
     },
     character: {
       template: `${FT.path}/templates/sheet/actor/character/tab-character.hbs`,
+      scrollable: ["#actions"],
     },
     notes: {
       template: `${FT.path}/templates/sheet/tab-notes.hbs`,
     },
     talents: {
       template: `${FT.path}/templates/sheet/actor/character/tab-talents.hbs`,
+      scrollable: [""],
     },
     inventory: {
       template: `${FT.path}/templates/sheet/actor/character/tab-inventory.hbs`,
+      scrollable: [""],
     },
     spells: {
       template: `${FT.path}/templates/sheet/actor/character/tab-spells.hbs`,
+      scrollable: [""],
     },
     effects: {
       template: `${FT.path}/templates/sheet/tab-effects.hbs`,

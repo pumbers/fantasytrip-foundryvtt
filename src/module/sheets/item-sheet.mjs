@@ -90,7 +90,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       system: foundry.utils.deepClone(this.item.system),
       settings: { pdfPagerEnabled: game.settings.get(FT.id, "pdfPagerEnabled") },
       flags: {
-        ...foundry.utils.deepClone(this.item.flags),
+        ...foundry.utils.deepClone(this.item.flags[FT.id] ?? {}),
         ...(this.item.type === "equipment" && {
           maxAttacks: FT.item.flags.maxAttacks,
           maxDefenses: FT.item.flags.maxDefenses,
