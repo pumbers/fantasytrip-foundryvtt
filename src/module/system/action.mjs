@@ -394,7 +394,7 @@ export function castingRoll(actor, spell, options = {}) {
     attribute: "dx.value",
     modifiers: {
       ...(actor.system.dx.modFor.casting !== 0 && {
-        attributeMod: {
+        effectMod: {
           min: FT.roll.modifiers.default.min,
           max: FT.roll.modifiers.default.max,
           value: actor.system.dx.modFor.casting,
