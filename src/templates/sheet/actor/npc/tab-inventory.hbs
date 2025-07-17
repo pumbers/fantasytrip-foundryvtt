@@ -8,7 +8,7 @@
             <tr>
                 {{#if settings.showItemIcons}}<th></th>{{/if}}
                 <th class="w-full">{{localize itemName}}</th>
-                <th></th>
+                <th>{{#if qty}}{{localize 'FT.actor.sheet.table.items.qty'}}{{/if}}</th>
                 <th>{{#if location}}{{localize 'FT.actor.sheet.table.items.location'}}{{/if}}</th>
                 <th><a data-action="createItem" data-type="{{itemType}}" data-location="carried"
                         title="{{localize 'FT.actor.sheet.action.item.create'}}"><i class="fa fa-plus"></i></a></th>
@@ -69,7 +69,7 @@
             <td></td>
             {{!-- Equipment --}}
             {{else}}
-            <td></td>
+            <td>{{item.system.qty}}</td>
             <td>
                 {{#unless item.system.container}}
                 <a class="mr-2" data-action="changeItemLocation"
@@ -106,7 +106,7 @@
                 {{/each}}
             </tbody>
             {{!-- Inventory --}}
-            {{> "table-header" itemName="FT.item.type.equipment" itemType="equipment" location=true}}
+            {{> "table-header" itemName="FT.item.type.equipment" itemType="equipment" qty=true location=true}}
             <tbody class="break">
                 {{#each inventory as |item|}}
                 {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
