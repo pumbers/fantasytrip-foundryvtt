@@ -78,6 +78,7 @@ FT:
           stowed: Stowed
           stored: Stored
       tooltip:
+        noAttribute: No default attribute selected
         noSkill: No default skill selected
       table:
         talents:
