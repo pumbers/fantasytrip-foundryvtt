@@ -389,6 +389,7 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
     },
     inventory: {
       template: `${FT.path}/templates/sheet/actor/npc/tab-inventory.hbs`,
+      scrollable: [""],
     },
     effects: {
       template: `${FT.path}/templates/sheet/tab-effects.hbs`,
