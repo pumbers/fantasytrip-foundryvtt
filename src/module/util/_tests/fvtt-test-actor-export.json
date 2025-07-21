@@ -1,0 +1,1036 @@
+{
+  "name": "Uldor",
+  "type": "character",
+  "img": "worlds/trip-world/avatars/Uldor.png",
+  "system": {
+    "type": "wizard",
+    "race": "Human",
+    "age": 18,
+    "job": {
+      "pay": 0,
+      "risk": {
+        "low": 3,
+        "high": 18
+      },
+      "name": ""
+    },
+    "xp": 0,
+    "notes": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque placerat malesuada ante, et interdum ligula commodo eget. Etiam id placerat mauris. Aenean venenatis porttitor purus, eu iaculis odio vulputate vel. Aenean pulvinar, sapien eu tincidunt finibus, ex odio pretium enim, nec dignissim felis augue sit amet tortor. Sed aliquet ultricies nisl, nec tincidunt enim varius quis. Suspendisse consectetur maximus massa, sed hendrerit arcu sagittis ac. Praesent facilisis pulvinar urna in dictum. Morbi nec ante ante. Mauris posuere vel ante et fringilla. Vivamus facilisis nec justo sed posuere.</p><p>Proin eget nibh quis ante pharetra ultricies eu nec risus. Phasellus hendrerit felis eget efficitur elementum. Maecenas scelerisque fermentum odio sit amet laoreet. Quisque porta accumsan felis, in consequat diam molestie mollis. Aenean maximus, ipsum non pellentesque auctor, dui orci dignissim tellus, vitae maximus ex nulla id orci. Etiam porttitor velit eu iaculis posuere. Maecenas ac mauris iaculis, faucibus sem et, fermentum lectus. Vivamus tempus, turpis at vulputate interdum, erat augue gravida mauris, dignissim feugiat risus urna eget eros. Sed dapibus orci ac turpis pharetra porta. Sed orci libero, luctus vitae nisl a, consequat egestas sapien. Morbi ut purus odio. Integer tristique tortor vitae eleifend tincidunt. Nam mauris augue, luctus sit amet velit at, tempus porttitor magna. Sed dui turpis, pharetra eu turpis ac, convallis ultrices purus. Mauris vitae mattis turpis, in ultricies quam.</p><p>Donec eget convallis turpis. Fusce eleifend nunc et urna pretium, ut venenatis nulla pharetra. Donec convallis lorem porta tristique tristique. Nulla sed leo tempor, dignissim arcu eget, feugiat nibh. Nunc pretium molestie elementum. Phasellus tempor enim at nulla congue accumsan. Ut faucibus libero sit amet arcu vehicula, quis facilisis metus mattis. Mauris at sapien consequat, lobortis elit nec, sagittis arcu. Etiam elit erat, varius et libero id, euismod posuere massa. Maecenas maximus lectus nibh, sit amet sodales metus posuere vel. Duis ac tellus tellus. Sed fermentum rutrum enim. Duis ut elit accumsan, blandit lectus at, dictum urna. Duis auctor pellentesque volutpat.</p>",
+    "st": {
+      "max": 9,
+      "mod": 0,
+      "modFor": {
+        "save": 0
+      }
+    },
+    "dx": {
+      "max": 8,
+      "mod": 0,
+      "modFor": {
+        "save": 0,
+        "hth": 0,
+        "natural": 0,
+        "melee": 0,
+        "polearm": 0,
+        "thrown": 0,
+        "missile": 0,
+        "casting": 0
+      }
+    },
+    "iq": {
+      "max": 16,
+      "mod": 0,
+      "modFor": {
+        "save": 0
+      }
+    },
+    "ma": {
+      "mode": "walk",
+      "walk": {
+        "max": 10,
+        "mod": 0
+      },
+      "swim": {
+        "max": 10,
+        "mod": 0
+      },
+      "fly": {
+        "max": 0,
+        "mod": 0
+      }
+    },
+    "initiative": {
+      "situation": 0,
+      "self": 0,
+      "party": 0
+    },
+    "fatigue": 6,
+    "damage": 0,
+    "mana": {
+      "max": 0,
+      "value": 0
+    }
+  },
+  "prototypeToken": {
+    "name": "Uldor",
+    "displayName": 50,
+    "actorLink": true,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "worlds/trip-world/avatars/tokens/Uldor%20-%20Token.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 50,
+    "bar1": {
+      "attribute": "st"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": true,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 0,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": "spin",
+      "src": null,
+      "disposition": true
+    },
+    "movementAction": "walk",
+    "flags": {},
+    "randomImg": false,
+    "appendNumber": false,
+    "prependAdjective": false
+  },
+  "items": [
+    {
+      "name": "Light Leather",
+      "type": "equipment",
+      "img": "icons/equipment/chest/shirt-collared-yellow.webp",
+      "system": {
+        "notes": "",
+        "cost": 10,
+        "wt": 2,
+        "qty": 1,
+        "capacity": 0,
+        "container": null,
+        "attacks": [],
+        "defenses": [
+          {
+            "action": "Chest",
+            "hitsStopped": 1
+          }
+        ],
+        "spells": [],
+        "location": "equipped",
+        "pdfReference": "",
+        "applyEffectsWhen": ["equipped"]
+      },
+      "effects": [
+        {
+          "name": "Encumbrance",
+          "origin": "Item.Jw7YqDm907MrMKXI",
+          "img": "icons/svg/aura.svg",
+          "_id": "sWzgfvlGoA3AOkBz",
+          "type": "base",
+          "system": {},
+          "changes": [
+            {
+              "key": "system.ma.walk.value",
+              "mode": 3,
+              "value": "8",
+              "priority": null
+            },
+            {
+              "key": "system.dx.value",
+              "mode": 2,
+              "value": "-2",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": 38,
+            "seconds": null,
+            "combat": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "transfer": true,
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "coreVersion": "13.345",
+            "systemId": "fantasy-trip",
+            "systemVersion": "0.1.0",
+            "lastModifiedBy": "DoJEEiLZ8CgYIaAq",
+            "modifiedTime": 1751140642506
+          }
+        }
+      ],
+      "folder": "Cu0OSpKB1x0ZlU1d",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.0",
+        "createdTime": 1747171435888,
+        "modifiedTime": 1751140642479,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      },
+      "_id": "W99lyKCVTzbywrbs",
+      "sort": 150000
+    },
+    {
+      "name": "Wizards Staff",
+      "type": "equipment",
+      "img": "icons/weapons/staves/staff-simple-carved.webp",
+      "system": {
+        "notes": "<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Ornare lectus quis sem et per placerat. Sociosqu dapibus torquent aliquam sem lacinia. Et tristique finibus ultricies nisl quisque praesent libero. Arcu molestie habitant sem venenatis iaculis augue. Quis dui condimentum sagittis fermentum; sit primis conubia pulvinar. Tempor pellentesque dictum ullamcorper class fusce sodales.</p><p>Mollis ligula ultricies efficitur id dis sed taciti netus. Hendrerit tempus per pretium bibendum class semper sapien! Aneque finibus senectus enim maecenas tortor. Justo mauris gravida, pretium posuere nisl non. Nibh id viverra vestibulum cras nam aenean risus. Et semper litora viverra neque sed. Ut massa aliquam eget conubia hendrerit vivamus, aliquam ac orci. Ullamcorper sollicitudin sollicitudin hac et metus duis sem. Potenti pretium nisi potenti dapibus ridiculus tristique pulvinar dictum.</p><p>Himenaeos senectus malesuada imperdiet suspendisse molestie vivamus tincidunt. Ornare dignissim semper sagittis vivamus rhoncus nascetur. Inceptos ac mollis lacus vitae diam orci sit nascetur. Iaculis at mauris dictum finibus curae. Enim hendrerit primis habitant enim parturient orci interdum. Etiam aliquet maximus lobortis proin blandit libero fringilla. Mauris nulla nulla fermentum bibendum mattis vestibulum, rhoncus nulla.</p><p>Eget arcu eget non etiam amet vehicula urna potenti mi. Hendrerit a quis urna quam et etiam. Vestibulum curabitur est maecenas lobortis condimentum condimentum. Pretium dis at a parturient habitant non vulputate pulvinar. Nascetur velit nibh nascetur inceptos sollicitudin penatibus. Fermentum commodo justo fermentum sapien volutpat sollicitudin posuere. Maximus augue eros tristique at himenaeos quis aliquet semper. Ex risus porttitor metus cubilia sodales quam. Augue phasellus id eu dictum quam volutpat felis metus?</p><p>Aenean parturient enim viverra mus fusce sollicitudin lorem hendrerit. Egestas hac ultrices habitasse, sapien nibh quam ligula porta. Morbi nisl pharetra bibendum accumsan amet integer. Sit neque cursus, hac suscipit hac placerat class! Accumsan sem sociosqu varius mi bibendum accumsan ridiculus. Duis elit lacinia pretium hendrerit faucibus. Vitae venenatis cras iaculis nascetur nullam nisl rutrum viverra gravida. Diam vivamus mauris condimentum; egestas nec nec. Pulvinar himenaeos aliquam lobortis morbi maecenas congue. Tristique mi quis curabitur turpis aliquam litora rhoncus.</p>",
+        "cost": 300,
+        "wt": 5,
+        "qty": 1,
+        "capacity": 0,
+        "container": null,
+        "attacks": [
+          {
+            "action": "Strike",
+            "type": "melee",
+            "minST": 11,
+            "toHitMod": 0,
+            "baseDamage": "1d6+3",
+            "talent": "GDxwYLknGFZ7U4AL",
+            "effects": ""
+          }
+        ],
+        "defenses": [],
+        "spells": [],
+        "location": "equipped",
+        "pdfReference": "",
+        "applyEffectsWhen": ["equipped"]
+      },
+      "effects": [
+        {
+          "name": "Mana",
+          "origin": "Actor.gkm4Gg61HoPzVVZv.Item.7pFTnInEn0xalofO",
+          "transfer": true,
+          "img": "icons/svg/aura.svg",
+          "_id": "kAhcKSpLpSBRuLTP",
+          "type": "base",
+          "system": {},
+          "changes": [
+            {
+              "key": "system.mana.max",
+              "mode": 2,
+              "value": "8",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "coreVersion": "13.345",
+            "systemId": "fantasy-trip",
+            "systemVersion": "0.1.0",
+            "createdTime": 1749769884868,
+            "modifiedTime": 1751140655897,
+            "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+          }
+        }
+      ],
+      "folder": "Cu0OSpKB1x0ZlU1d",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1747171438090,
+        "modifiedTime": 1753121528933,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      },
+      "_id": "7pFTnInEn0xalofO",
+      "sort": 106250
+    },
+    {
+      "folder": "Cu0OSpKB1x0ZlU1d",
+      "name": "Silver Coins",
+      "type": "equipment",
+      "_id": "RC43xyjjJAgHvGwb",
+      "img": "icons/commodities/currency/coins-assorted-mix-silver.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "cost": 1,
+        "wt": 0.01,
+        "qty": 16,
+        "location": "carried",
+        "capacity": 0,
+        "container": "e3SnZ29JFGc8juoP",
+        "spells": [],
+        "applyEffectsWhen": ["equipped"]
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1747171445472,
+        "modifiedTime": 1753120776430,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "folder": "zykFIiR8rqmUFXtR",
+      "name": "Literacy",
+      "type": "talent",
+      "_id": "B9zHU7MNt2bGmhxK",
+      "img": "icons/sundries/books/book-backed-wood-tan.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "minIQ": 8,
+        "iqCost": 1,
+        "defaultAttribute": "iq.max"
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.0",
+        "createdTime": 1747504271254,
+        "modifiedTime": 1747504271254,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "folder": "zykFIiR8rqmUFXtR",
+      "name": "Area Knowledge",
+      "type": "talent",
+      "img": "icons/sundries/survival/bedroll-worn-beige.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "minIQ": 8,
+        "iqCost": 1,
+        "defaultAttribute": "iq.max"
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.342",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.0",
+        "createdTime": 1747504274035,
+        "modifiedTime": 1747504274035,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      },
+      "_id": "1VusjYSZkcysoA62",
+      "sort": 100000
+    },
+    {
+      "folder": "Cu0OSpKB1x0ZlU1d",
+      "name": "Copper Coins",
+      "type": "equipment",
+      "_id": "QIz7gJIB1d7PErop",
+      "img": "icons/commodities/currency/coins-assorted-mix-copper.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "cost": 0.1,
+        "wt": 0.01,
+        "qty": 8,
+        "location": "carried",
+        "capacity": 0,
+        "container": "e3SnZ29JFGc8juoP",
+        "spells": [],
+        "applyEffectsWhen": ["equipped"]
+      },
+      "effects": [],
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1747504333632,
+        "modifiedTime": 1753120770122,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "name": "Summon Gargoyle",
+      "type": "spell",
+      "_id": "WmgUxrfzbesXj9b6",
+      "img": "icons/creatures/magical/spirit-undead-winged-ghost.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "minIQ": 13,
+        "iqCost": 1,
+        "stToCast": {
+          "min": 4,
+          "max": 4
+        },
+        "stToMaintain": 1,
+        "stSpent": 0,
+        "type": "creation"
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.344",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.0",
+        "createdTime": 1747935725876,
+        "modifiedTime": 1748553082479,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "name": "Drain Strength",
+      "type": "spell",
+      "_id": "vDmwlKsFb2K0Zk9F",
+      "img": "icons/magic/life/heart-hand-gold-green.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "minIQ": 12,
+        "iqCost": 1,
+        "stToCast": {
+          "min": 0,
+          "max": 0
+        },
+        "stToMaintain": 0,
+        "stSpent": 0,
+        "type": "special"
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.344",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.0",
+        "createdTime": 1747935825336,
+        "modifiedTime": 1747935825336,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "folder": "PtUhVlBjD5BtnYkr",
+      "name": "Shortsword",
+      "type": "equipment",
+      "_id": "aL7eCidDdhdLzmXz",
+      "img": "icons/weapons/swords/shortsword-simple.webp",
+      "system": {
+        "notes": "",
+        "cost": 60,
+        "wt": 4,
+        "qty": 1,
+        "capacity": 0,
+        "container": "ZOsah9Vzu2M1UISn",
+        "attacks": [
+          {
+            "action": "Strike",
+            "type": "melee",
+            "toHitMod": 0,
+            "baseDamage": "2d6-1",
+            "minST": 11,
+            "talent": null
+          }
+        ],
+        "defenses": [],
+        "location": "carried",
+        "spells": [],
+        "applyEffectsWhen": ["equipped"]
+      },
+      "effects": [
+        {
+          "name": "Iron Weapon",
+          "origin": "Actor.gkm4Gg61HoPzVVZv.Item.aL7eCidDdhdLzmXz",
+          "transfer": true,
+          "img": "icons/svg/aura.svg",
+          "_id": "umUONByKyDR7z7G2",
+          "type": "base",
+          "system": {},
+          "changes": [
+            {
+              "key": "system.dx.modFor.casting",
+              "mode": 5,
+              "value": "-4",
+              "priority": null
+            }
+          ],
+          "disabled": true,
+          "duration": {
+            "startTime": null,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": null,
+            "startTurn": null
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "coreVersion": "13.345",
+            "systemId": "fantasy-trip",
+            "systemVersion": "0.1.1",
+            "createdTime": 1752681875548,
+            "modifiedTime": 1753121369619,
+            "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+          }
+        }
+      ],
+      "sort": 300000,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1747940953114,
+        "modifiedTime": 1753121369587,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "name": "Longbow",
+      "type": "equipment",
+      "img": "icons/weapons/bows/longbow-recurve-leather-red.webp",
+      "system": {
+        "notes": "",
+        "cost": 40,
+        "wt": 4,
+        "qty": 1,
+        "capacity": 0,
+        "container": "ZOsah9Vzu2M1UISn",
+        "attacks": [
+          {
+            "action": "Shot",
+            "type": "missile",
+            "toHitMod": 0,
+            "baseDamage": "1d6",
+            "minST": 11,
+            "talent": null
+          }
+        ],
+        "defenses": [],
+        "location": "carried",
+        "spells": [],
+        "applyEffectsWhen": ["equipped"]
+      },
+      "effects": [],
+      "folder": "PtUhVlBjD5BtnYkr",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1747940967234,
+        "modifiedTime": 1753121365990,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      },
+      "_id": "37ilY763d4IGiORF",
+      "sort": 200000
+    },
+    {
+      "folder": "AYuxj8Cq0awoIRaz",
+      "name": "Quarterstaff",
+      "type": "talent",
+      "img": "icons/skills/melee/hand-grip-staff-blue.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "minIQ": 8,
+        "iqCost": 1,
+        "defaultAttribute": "dx.value"
+      },
+      "effects": [],
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.344",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.0",
+        "createdTime": 1748361710067,
+        "modifiedTime": 1748361710067,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      },
+      "_id": "GDxwYLknGFZ7U4AL",
+      "sort": 50000
+    },
+    {
+      "name": "Book of Shadows",
+      "type": "equipment",
+      "img": "icons/sundries/books/book-face-blue.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "spells": [
+          {
+            "uuid": "Item.jqd0C2kJizQUXif6",
+            "burn": false
+          },
+          {
+            "uuid": "Item.1krG4Vs4MLm664TA",
+            "burn": false
+          }
+        ],
+        "cost": 1000,
+        "wt": 0,
+        "qty": 1,
+        "capacity": 0,
+        "container": "ZOsah9Vzu2M1UISn",
+        "location": "carried",
+        "applyEffectsWhen": ["equipped"]
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1748364763689,
+        "modifiedTime": 1753121362686,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      },
+      "_id": "nAJEw98aAjD3zWZD",
+      "sort": 0
+    },
+    {
+      "name": "Fireball",
+      "type": "spell",
+      "_id": "pJH1pC9DQ6w721PV",
+      "img": "icons/magic/fire/flame-burning-earth-yellow.webp",
+      "system": {
+        "notes": "",
+        "attacks": [
+          {
+            "action": "Blast",
+            "type": "missile",
+            "toHitMod": 0,
+            "baseDamage": "1d6-1",
+            "effects": "Target starts to burn.",
+            "minST": 0,
+            "talent": null
+          }
+        ],
+        "defenses": [],
+        "minIQ": 12,
+        "iqCost": 1,
+        "stToCast": {
+          "min": 1,
+          "max": 3
+        },
+        "type": "missile",
+        "stToMaintain": 0,
+        "stSpent": 0
+      },
+      "effects": [],
+      "folder": "A0BCLwg7anBpVI6K",
+      "sort": 300000,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.344",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.0",
+        "createdTime": 1748378712098,
+        "modifiedTime": 1748380062484,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "name": "Carousing",
+      "type": "talent",
+      "_id": "kCK2p1OKte84LLxJ",
+      "img": "icons/skills/social/thumbsup-approval-like.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "minIQ": 7,
+        "iqCost": 1,
+        "defaultAttribute": "iq.max",
+        "pdfReference": "FTL#35"
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.0",
+        "createdTime": 1750974596278,
+        "modifiedTime": 1750974596278,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "name": "Belt Pouch",
+      "type": "equipment",
+      "img": "icons/containers/bags/coinpouch-simple-leather-silver-brown.webp",
+      "system": {
+        "notes": "",
+        "cost": 5,
+        "wt": 0.5,
+        "qty": 1,
+        "capacity": 1,
+        "container": null,
+        "attacks": [],
+        "defenses": [],
+        "pdfReference": "FTL#67",
+        "applyEffectsWhen": ["equipped", "carried"],
+        "location": "carried",
+        "spells": []
+      },
+      "effects": [],
+      "folder": null,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1753120763312,
+        "modifiedTime": 1753120763312,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      },
+      "_id": "e3SnZ29JFGc8juoP",
+      "sort": 400000
+    },
+    {
+      "name": "Language (Common)",
+      "type": "talent",
+      "_id": "G47ONMIA4cBtBNOd",
+      "img": "icons/skills/social/wave-halt-stop.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "minIQ": 4,
+        "iqCost": 0,
+        "pdfReference": "",
+        "defaultAttribute": "iq.max"
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 137500,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1753120819473,
+        "modifiedTime": 1753122499968,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "name": "Backpack",
+      "type": "equipment",
+      "img": "icons/containers/bags/case-leather-tan.webp",
+      "system": {
+        "notes": "",
+        "cost": 40,
+        "wt": 4,
+        "qty": 1,
+        "capacity": 20,
+        "container": null,
+        "attacks": [],
+        "defenses": [
+          {
+            "action": "Rear Only",
+            "hitsStopped": 1
+          }
+        ],
+        "applyEffectsWhen": ["equipped", "carried"],
+        "pdfReference": "FTL#67",
+        "location": "carried",
+        "spells": []
+      },
+      "effects": [
+        {
+          "name": "Encumbrance",
+          "origin": "Compendium.fantasytrip-compendia.equipment.Item.yFJnKLHu3OYi7LQH",
+          "transfer": true,
+          "img": "icons/svg/aura.svg",
+          "_id": "3Rbr9vGNzl4DLR79",
+          "type": "base",
+          "system": {},
+          "changes": [
+            {
+              "key": "system.dx.value",
+              "mode": 2,
+              "value": "-1",
+              "priority": null
+            }
+          ],
+          "disabled": false,
+          "duration": {
+            "startTime": 48,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": 2,
+            "startTurn": 0
+          },
+          "description": "",
+          "tint": "#ffffff",
+          "statuses": [],
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "coreVersion": "13.345",
+            "systemId": "fantasy-trip",
+            "systemVersion": "0.1.1",
+            "lastModifiedBy": null
+          }
+        }
+      ],
+      "folder": "W5sk6GB4uee5DuUB",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1753121041346,
+        "modifiedTime": 1753121041346,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      },
+      "_id": "ZOsah9Vzu2M1UISn",
+      "sort": 0
+    },
+    {
+      "folder": "W5sk6GB4uee5DuUB",
+      "name": "Torch",
+      "type": "equipment",
+      "_id": "pmrCcwR4LaEpfily",
+      "img": "icons/sundries/lights/torch-brown-lit.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "cost": 1,
+        "wt": 0.5,
+        "qty": 1,
+        "location": "carried",
+        "applyEffectsWhen": ["equipped"],
+        "capacity": 0,
+        "container": null,
+        "spells": [],
+        "pdfReference": ""
+      },
+      "effects": [],
+      "sort": 100000,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1753121041346,
+        "modifiedTime": 1753121041346,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "name": "Language (Goblin)",
+      "type": "talent",
+      "_id": "UIUhAyzdo8IZMbjk",
+      "img": "icons/skills/social/wave-halt-stop.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "minIQ": 4,
+        "iqCost": 1,
+        "pdfReference": "",
+        "defaultAttribute": "iq.max"
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1753122488606,
+        "modifiedTime": 1753122488606,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    },
+    {
+      "name": "Language (Human)",
+      "type": "talent",
+      "img": "icons/skills/social/wave-halt-stop.webp",
+      "system": {
+        "notes": "",
+        "defaultAttribute": "iq.max",
+        "iqCost": 0,
+        "minIQ": 4,
+        "pdfReference": "",
+        "attacks": [],
+        "defenses": []
+      },
+      "effects": [],
+      "folder": "oOf6spXXGGiOYgFY",
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1753122490580,
+        "modifiedTime": 1753122490580,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      },
+      "_id": "K0EoMcwoZwzhLqJw",
+      "sort": 200000
+    },
+    {
+      "name": "Language (Sorcerors' Tongue)",
+      "type": "talent",
+      "_id": "eJmbRSr3KocJWocw",
+      "img": "icons/skills/social/wave-halt-stop.webp",
+      "system": {
+        "notes": "",
+        "attacks": [],
+        "defenses": [],
+        "minIQ": 16,
+        "iqCost": 0,
+        "pdfReference": "",
+        "defaultAttribute": "iq.max"
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {},
+      "_stats": {
+        "coreVersion": "13.345",
+        "systemId": "fantasy-trip",
+        "systemVersion": "0.1.1",
+        "createdTime": 1753122575188,
+        "modifiedTime": 1753122575188,
+        "lastModifiedBy": "DoJEEiLZ8CgYIaAq"
+      }
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "13.345",
+    "systemId": "fantasy-trip",
+    "systemVersion": "0.1.1",
+    "createdTime": 1747171351170,
+    "modifiedTime": 1753122383319,
+    "lastModifiedBy": "DoJEEiLZ8CgYIaAq",
+    "exportSource": {
+      "worldId": "trip-world",
+      "uuid": "Actor.gkm4Gg61HoPzVVZv",
+      "coreVersion": "13.345",
+      "systemId": "fantasy-trip",
+      "systemVersion": "0.1.1"
+    }
+  }
+}

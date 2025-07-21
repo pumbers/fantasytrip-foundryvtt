@@ -1,4 +1,4 @@
-name: 'Language: Human'
+name: Language (Common)
 type: talent
 img: icons/skills/social/wave-halt-stop.webp
 system:
@@ -20,7 +20,7 @@ _stats:
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1752529297363
-  modifiedTime: 1752529349283
+  modifiedTime: 1753133142196
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 ownership:
   default: 0

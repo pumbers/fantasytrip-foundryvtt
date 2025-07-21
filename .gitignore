@@ -11,3 +11,4 @@ import
 build
 dist
 .DS_Store
+coverage

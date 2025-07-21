@@ -14,3 +14,13 @@ FT:
       title: Apply {damage} Damage to {name}
       label:
         stops: Stops {hits}
+      action:
+        apply: Apply Damage
+        cancel: Cancel
+    import:
+      title: Import Actor
+      label:
+        instructions: Paste data here, or upload a file
+      action:
+        import: Import
+        cancel: Cancel

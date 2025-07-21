@@ -655,11 +655,11 @@ export async function applyDamage(actor, damage, options) {
     buttons: [
       {
         action: "cancel",
-        label: "Cancel",
+        label: game.i18n.localize("FT.dialog.damage.action.cancel"),
       },
       {
         action: "apply",
-        label: "Apply Damage",
+        label: game.i18n.localize("FT.dialog.damage.action.apply"),
         default: true,
         callback: (event, button, dialog) => ({
           action: "apply",

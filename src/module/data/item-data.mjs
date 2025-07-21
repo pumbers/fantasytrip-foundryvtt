@@ -12,12 +12,12 @@ const {
 class FTEmbeddedAttack extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
-      action: new StringField(),
-      minST: new NumberField({ initial: 0 }),
-      type: new StringField(),
+      action: new StringField({ required: true }),
+      minST: new NumberField({ initial: 4 }),
+      type: new StringField({ initial: "melee" }),
       toHitMod: new NumberField({ initial: 0 }),
-      baseDamage: new StringField({ nullable: true }),
-      effects: new StringField(),
+      baseDamage: new StringField({ required: true, nullable: false }),
+      effects: new StringField({ nullable: true }),
       talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
     };
   }
@@ -29,14 +29,14 @@ class FTEmbeddedAttack extends foundry.abstract.DataModel {
 
 class FTEmbeddedDefense extends foundry.abstract.DataModel {
   static defineSchema() {
-    return { action: new StringField(), hitsStopped: new NumberField({ initial: 0 }) };
+    return { action: new StringField({ required: TextTrackCueList }), hitsStopped: new NumberField({ initial: 0 }) };
   }
 }
 
 class FTEmbeddedSpell extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
-      uuid: new StringField({ nullable: false }),
+      uuid: new StringField({ required: true, nullable: false }),
       burn: new BooleanField({ initial: false, nullable: false }),
     };
   }

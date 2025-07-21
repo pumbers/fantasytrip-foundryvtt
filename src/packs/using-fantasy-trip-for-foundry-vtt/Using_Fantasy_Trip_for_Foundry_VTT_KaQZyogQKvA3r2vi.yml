@@ -993,6 +993,75 @@ pages:
       modifiedTime: 1752529193814
       lastModifiedBy: DoJEEiLZ8CgYIaAq
     _key: '!journal.pages!KaQZyogQKvA3r2vi.FUYQKlKYTXd1fZUb'
+  - sort: 950000
+    name: Transferring Characters
+    type: text
+    _id: 6ABA8cUE9l81EOWO
+    system: {}
+    title:
+      show: true
+      level: 1
+    image: {}
+    text:
+      format: 1
+      content: >-
+        <h2>Importing</h2><p>Rather than create a character or NPC by hand, you
+        can import them from other apps or sources. This
+        includes:</p><ul><li><p>SJG Standard Text Format as detailed <a
+        href="https://www.sjgames.com/general/guidelines/authors/writing-thefantasytrip/">here</a>.</p></li><li><p>Fantasy
+        Trip Helper App for iOS &amp; Android (TBA)</p></li><li><p>Roll 20
+        Fantasy Trip (TBA)</p></li></ul><p>To import a character, go to the
+        dropdown menu at the top of the character sheet (three vertical dots at
+        the top right) and select <strong>Import Actor</strong>. The import data
+        can be pasted into the box provided, or loaded from a file. The file
+        should be a plain text file in UTF-8 encoding - this is pretty standard
+        for most text files these days.</p><p>When importing, character details
+        such as their name, type (Hero/Wizard) and age will be imported along
+        with their basic stats (ST, DX, IQ, MA). Everything else (Equipment,
+        Armor, Weapons, Spells, Talents, etc) will be imported as items with the
+        appropriate item type.</p><p><em>Note that when importing items, if an
+        item with a matching name exists in the game world (ie: it has been
+        created or imported into the world's item collection from a compendium)
+        then a copy of that item will be added to the character. So, for
+        example, if the text format includes <strong>Backpack</strong> as an
+        item of equipment and a <strong>Backpack</strong> item exists in the
+        world, then the item details will be pulled from the world collection
+        and the imported item will have the correct cost, weight, effects, etc.
+        For languages, this should be a Talent with the name <strong>Language
+        (&lt;name&gt;)</strong>, eg: <strong>Language
+        (Common)</strong>.</em></p><p>If an item is imported that does not
+        exist, a new item is added to the character with only default details
+        set.</p><p><em>Note also that cutting &amp; pasting text from an SJG or
+        third-party publication <strong>should</strong> work, if the format is
+        as described in the SJG document. Unfortunately, parsing free format
+        text is not always guaranteed, so the text may need some editing to
+        match the expected format. If something won't import, you can check the
+        browser';s console log for error
+        messages.</em></p><h2>Exporting</h2><p>If you have a character you'd
+        like to use outside Foundry VTT, you can export that character to
+        Standard Text Format.</p><p>Go to the dropdown menu at the top of the
+        character sheet and select the export format. The character data will be
+        downloaded and saved to a file with an appropriate name.</p>
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    category: null
+    ownership:
+      default: -1
+      DoJEEiLZ8CgYIaAq: 3
+    flags: {}
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      exportSource: null
+      coreVersion: '13.345'
+      systemId: fantasy-trip
+      systemVersion: 0.1.1
+      createdTime: 1753131038022
+      modifiedTime: 1753133419152
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.6ABA8cUE9l81EOWO'
 folder: null
 flags: {}
 _stats:

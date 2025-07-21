@@ -7,7 +7,9 @@
     "dist": "gulp dist",
     "dev": "gulp",
     "import": "gulp importPacks",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "test": "node --experimental-vm-modules $(yarn bin jest)",
+    "watch": "node --experimental-vm-modules $(yarn bin jest) --watchAll"
   },
   "browserslist": [
     "last 3 versions"
@@ -37,6 +39,7 @@
     "gulp-webp": "^5.0.0",
     "gulp-yaml": "^2.0.4",
     "gulp-zip": "^6.1.0",
+    "jest": "^30.0.4",
     "postcss": "^8.5.1",
     "rollup": "^4.34.6",
     "tailwindcss": "^4.0.6"

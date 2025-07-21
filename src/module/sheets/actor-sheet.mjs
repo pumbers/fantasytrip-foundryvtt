@@ -3,6 +3,7 @@ import * as Handlers from "../util/handlers.mjs";
 import * as Effects from "../util/effects.mjs";
 import * as Action from "../system/action.mjs";
 import * as Editor from "../util/editor.mjs";
+import * as Transfer from "../util/transfer.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -20,6 +21,23 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
   static DEFAULT_OPTIONS = {
     window: {
       resizable: true,
+      controls: [
+        {
+          icon: "fa fa-upload",
+          label: "Import Actor",
+          action: "import",
+        },
+        {
+          icon: "fa fa-download",
+          label: "Export to Standard Text Format",
+          action: "exportStandardText",
+        },
+        // {
+        //   icon: "fa fa-download",
+        //   label: "Export to XML",
+        //   action: "exportXML",
+        // },
+      ],
     },
     form: {
       submitOnChange: true,
@@ -52,6 +70,10 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       editEffect: FTBaseCharacterSheet.#manageEffect,
       deleteEffect: FTBaseCharacterSheet.#manageEffect,
       toggleEffect: FTBaseCharacterSheet.#manageEffect,
+      //
+      import: FTBaseCharacterSheet.#import,
+      exportStandardText: FTBaseCharacterSheet.#exportStandardText,
+      // exportXML: FTBaseCharacterSheet.#exportXML,
     },
   };
 
@@ -267,40 +289,40 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     if (!this.actor.isOwner) return false;
 
     // If the drop was an item....
-      const item = await Item.implementation.fromDropData(data);
-      // If it was an equipment item type...
-      if (FT.item.inventory.types.includes(item.type)) {
-        // Check if it was dropped on a container item
-        const element = $(event?.target);
-        const containerId = element?.closest(".item-container").data("itemId");
-        const container = !!containerId ? await this.actor.getEmbeddedDocument("Item", containerId) : null;
+    const item = await Item.implementation.fromDropData(data);
+    // If it was an equipment item type...
+    if (FT.item.inventory.types.includes(item.type)) {
+      // Check if it was dropped on a container item
+      const element = $(event?.target);
+      const containerId = element?.closest(".item-container").data("itemId");
+      const container = !!containerId ? await this.actor.getEmbeddedDocument("Item", containerId) : null;
 
-        // Check if the item is a container itself and is being dropped on a container
-        if (!!container && item.system.isContainer) {
-          ui.notifications.warn(game.i18n.format("FT.messages.noDropContainer", { item: item.name }));
-          return item;
-        }
-
-        // Check if it's an existing ionventory item
-        if (item?.parent?._id === this.actor._id) {
-          // Check if the container has remaining capacity...
-          if (item.system.wt > container?.system.remaining) {
-            ui.notifications.warn(game.i18n.format("FT.messages.noCapacity", { container: container.name }));
-            return item;
-          }
-          // Set the container and location
-          await item.update({
-            "system.container": containerId ?? null,
-            "system.location": container?.system.location ?? "carried",
-          });
-          return item;
-        }
-      } else if (game.settings.get(FT.id, "checkIQForLearned") && FT.item.learned.types.includes(item.type)) {
-        if (item.system.minIQ > this.actor.system.iq.max) {
-          ui.notifications.error(game.i18n.format("FT.messages.insufficientIQ", { name: item.name }));
-          return;
-        }
+      // Check if the item is a container itself and is being dropped on a container
+      if (!!container && item.system.isContainer) {
+        ui.notifications.warn(game.i18n.format("FT.messages.noDropContainer", { item: item.name }));
+        return item;
       }
+
+      // Check if it's an existing ionventory item
+      if (item?.parent?._id === this.actor._id) {
+        // Check if the container has remaining capacity...
+        if (item.system.wt > container?.system.remaining) {
+          ui.notifications.warn(game.i18n.format("FT.messages.noCapacity", { container: container.name }));
+          return item;
+        }
+        // Set the container and location
+        await item.update({
+          "system.container": containerId ?? null,
+          "system.location": container?.system.location ?? "carried",
+        });
+        return item;
+      }
+    } else if (game.settings.get(FT.id, "checkIQForLearned") && FT.item.learned.types.includes(item.type)) {
+      if (item.system.minIQ > this.actor.system.iq.max) {
+        ui.notifications.error(game.i18n.format("FT.messages.insufficientIQ", { name: item.name }));
+        return;
+      }
+    }
 
     return this._onDropItemCreate(item, event);
   }
@@ -311,7 +333,29 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     return this.actor.createEmbeddedDocuments("Item", data);
   }
 
+  /* -------------------------------------------- */
+  /*  Import/Export Functions                       
+  /* -------------------------------------------- */
+
+  static async #import() {
+    console.log("#import()");
+    Transfer.importActor(this.actor);
   }
+
+  static #exportStandardText() {
+    console.log("#exportStandardText()");
+    const text = Transfer.exportStandardText(this.actor);
+    const a = document.createElement("a");
+    const url = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
+    a.setAttribute("href", url);
+    a.setAttribute("download", `Fantasy Trip FVTT Export - ${this.actor.name}.txt`);
+    a.click();
+    a.remove();
+  }
+
+  // static #exportXML() {
+  //   console.log("#exportXML()");
+  // }
 }
 
 export class FTCharacterSheet extends FTBaseCharacterSheet {
