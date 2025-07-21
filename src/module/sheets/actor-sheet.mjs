@@ -244,12 +244,29 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     Editor.editHTML.call(this, event, target);
   }
 
-  async _onDrop(event) {
-    const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
-    console.log("_onDrop()", "event", event, "data", data);
+  /* -------------------------------------------- */
+  /*  Drag/Drop Functions                       
+  /* -------------------------------------------- */
+
+  async _onDropFolder(event, data) {
+    console.log("_onDropFolder()", "event", event, "data", data);
+    if (!this.actor.isOwner) return [];
+    const folder = await Folder.implementation.fromDropData(data);
+    if (folder.type !== "Item") return [];
+    const droppedItemData = await Promise.all(
+      folder.contents.map(async (item) => {
+        if (!(document instanceof Item)) item = await fromUuid(item.uuid);
+        return item;
+      })
+    );
+    return this._onDropItemCreate(droppedItemData, event);
+  }
+
+  async _onDropItem(event, data) {
+    console.log("_onDropItem()", "event", event, "data", data);
+    if (!this.actor.isOwner) return false;
 
     // If the drop was an item....
-    if (data.type === "Item") {
       const item = await Item.implementation.fromDropData(data);
       // If it was an equipment item type...
       if (FT.item.inventory.types.includes(item.type)) {
@@ -284,8 +301,16 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
           return;
         }
       }
-    }
-    return super._onDrop(event);
+
+    return this._onDropItemCreate(item, event);
+  }
+
+  async _onDropItemCreate(data, event) {
+    console.log("_onDropItemCreate()", event, data);
+    data = data instanceof Array ? data : [data];
+    return this.actor.createEmbeddedDocuments("Item", data);
+  }
+
   }
 }
 
