@@ -63,7 +63,7 @@ jobs:
           artifacts: "./dist/system.json, ./dist/system.zip"
           allowUpdates: true
           name: ${{ github.event.release.name }}
-          draft: ${{ github.event.release.unpublished }}
+          # draft: ${{ github.event.release.unpublished }}
           prerelease: ${{ github.event.release.prerelease }}
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.event.release.tag_name }}
