@@ -303,13 +303,14 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
         return item;
       }
 
+      // Check if the container has remaining capacity...
+      if (item.system.wt > container?.system.remaining) {
+        ui.notifications.warn(game.i18n.format("FT.messages.noCapacity", { container: container.name }));
+        return item;
+      }
+
       // Check if it's an existing ionventory item
       if (item?.parent?._id === this.actor._id) {
-        // Check if the container has remaining capacity...
-        if (item.system.wt > container?.system.remaining) {
-          ui.notifications.warn(game.i18n.format("FT.messages.noCapacity", { container: container.name }));
-          return item;
-        }
         // Set the container and location
         await item.update({
           "system.container": containerId ?? null,
