@@ -1,5 +1,4 @@
 import { FT } from "../system/config.mjs";
-import * as Dice from "../util/dice.mjs";
 
 /**
  * Fantasy Trip Actor
@@ -95,7 +94,10 @@ export class FTActor extends Actor {
 
           // Adjust Damage based on weapon min ST
           attack.stDamageMod = Math.floor(Math.min(system.st.max - attack.minST, 0) / 2);
-          attack.finalDamage = Dice.simplifyRollFormula(attack.baseDamage?.concat("+", attack.stDamageMod));
+          attack.finalDamage = attack.baseDamage?.concat(
+            attack.stDamageMod <= 0 ? "" : "+",
+            attack.stDamageMod === 0 ? "" : attack.stDamageMod
+          );
 
           // Modify attribute based on weapon min ST
           if (weapon.system.isReady) {
