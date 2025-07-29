@@ -526,7 +526,11 @@ pages:
         scroll</strong></p></td><td><p>An item of <strong>equipment</strong>,
         usually with only a single <strong>spell</strong> action marked such
         that the item is burned when the spell is
-        cast.</p></td></tr></tbody></table>
+        cast.</p></td></tr><tr><td><p><strong>A power item, such as a wizard's
+        staff or powerstone</strong></p></td><td><p>An item of
+        <strong>equipment</strong> (with or without attacks), with an
+        <strong>effect</strong> that overrides or adds to
+        <strong>system.mana.max</strong>.</p></td></tr></tbody></table>
     video:
       controls: true
       volume: 0.5
@@ -542,7 +546,7 @@ pages:
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
-      modifiedTime: 1753821522238
+      modifiedTime: 1753826610678
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
