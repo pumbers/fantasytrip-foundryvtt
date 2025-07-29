@@ -1,5 +1,7 @@
 # Fantasy Trip: In the Labyrinth for Foundry VTT by 3rdDog
 
+This system implements the rules from <a href="https://warehouse23.com/products/the-fantasy-trip-in-the-labyrinth">Steve Jackson Games **Fantasy Trip: In the Labyrinth**</a> for Foundry VTT.
+
 The material presented here is my original creation, intended for use with the <a href="https://www.thefantasytrip.game/"><b><i>The Fantasy Trip</i></b></a> system from <a href="http://www.sjgames.com/">Steve Jackson Games</a>. This material is not official and is not endorsed by Steve Jackson Games.
 
 <b>The Fantasy Trip: In the Labyrinth</b> is a trademark of Steve Jackson Games, and its rules and art are copyrighted by Steve Jackson Games. All rights are reserved by Steve Jackson Games. This game aid is the original creation of Paul Umbers and is released for free distribution, and not for resale, under the permissions granted in the <a href="http://www.sjgames.com/general/online_policy.html">Steve Jackson Games Online Policy</a>.
