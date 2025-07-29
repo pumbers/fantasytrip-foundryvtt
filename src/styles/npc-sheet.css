@@ -59,13 +59,6 @@
       }
     }
 
-    section#npc-sheet-notes {
-      @apply grow;
-      .prosemirror.editor {
-        @apply h-full;
-      }
-    }
-
     section#actions,
     section[id$="-inventory"],
     section[id$="-effects"] {

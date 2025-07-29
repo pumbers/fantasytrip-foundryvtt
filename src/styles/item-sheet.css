@@ -13,13 +13,6 @@
       @apply rounded-none size-[70px] object-cover;
     }
 
-    section#item-sheet-notes {
-      @apply mt-2 grow;
-      .prosemirror.editor {
-        @apply h-full;
-      }
-    }
-
     section[id$="-actions"],
     section[id$="-effects"] {
       @apply pr-4 overflow-y-scroll;

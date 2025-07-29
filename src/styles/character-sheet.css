@@ -60,13 +60,6 @@
       }
     }
 
-    section[id$="-notes"] {
-      @apply grow;
-      .prosemirror.editor {
-        @apply h-full;
-      }
-    }
-
     section#actions,
     section[id$="-talents"],
     section[id$="-inventory"],

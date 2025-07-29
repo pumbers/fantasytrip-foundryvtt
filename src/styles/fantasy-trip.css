@@ -70,8 +70,10 @@
       @apply my-2 text-[0.6rem];
     }
 
-    section[data-tab="notes"] {
+    section[id$="-notes"] {
+      @apply grow;
       .prosemirror.editor {
+        @apply h-full;
         .editor-content {
           @apply mt-6 pr-4 block;
         }
