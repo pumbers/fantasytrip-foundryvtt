@@ -494,7 +494,39 @@ pages:
         person).</p></li><li><p>A cursed item might apply an effect if the
         character simply owns it (any location).</p></li></ul><p>See the pages
         on @UUID[.ZC0ir9H0OUqr0Ehw]{Writing Effects} for details on which
-        character attributes can be changed by an effect.</p>
+        character attributes can be changed by an effect.</p><h1>How to Create
+        Items</h1><p>The item system should be flexible enough to create almost
+        anything you need in the game world. For guidance, here are some
+        examples:</p><p></p><table><tbody><tr><td><p><strong>Weapon</strong></p></td><td><p>An
+        item of <strong>equipment</strong> with one or more
+        <strong>attack</strong> actions. You can add more than one attack - a
+        spear, for example, can be used as a melee weapon or a missile weapon.
+        This would have a melee attack and a missile
+        attack.</p></td></tr><tr><td><p><strong>Armor</strong></p></td><td><p>An
+        item of <strong>equipment</strong> with one or more
+        <strong>defense</strong> actions (usually only
+        one).</p></td></tr><tr><td><p><strong>Shield</strong></p></td><td><p>An
+        item of <strong>equipment</strong> with one or more
+        <strong>defense</strong> actions (usually only
+        one).</p></td></tr><tr><td><p><strong>Backpack/Pouch,
+        etc</strong></p></td><td><p>An item of <strong>equipment</strong> with a
+        capacity greater than 0.</p></td></tr><tr><td><p><strong>A disease or
+        condition</strong></p></td><td><p>An <strong>ability</strong> with
+        <strong>effects</strong> that reduce attributes or apply negative
+        modifiers to tasks, marked as <strong>always
+        on</strong>.</p></td></tr><tr><td><p><strong>An intermittent condition,
+        such as Lycanthropy</strong></p></td><td><p>An <strong>ability</strong>
+        with <strong>effects</strong> that alter attributes (higher or lower).
+        Activating the ability applies the
+        effects.</p></td></tr><tr><td><p><strong>A wizard's
+        spellbook</strong></p></td><td><p>An item of <strong>equipment</strong>
+        with one or more <strong>spell</strong> actions. Each should be marked
+        so that the item is NOT burned when the spell is
+        cast.</p></td></tr><tr><td><p><strong>A magic
+        scroll</strong></p></td><td><p>An item of <strong>equipment</strong>,
+        usually with only a single <strong>spell</strong> action marked such
+        that the item is burned when the spell is
+        cast.</p></td></tr></tbody></table>
     video:
       controls: true
       volume: 0.5
@@ -506,11 +538,11 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.345'
+      coreVersion: '13.346'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
-      modifiedTime: 1750874867410
+      modifiedTime: 1753821522238
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null

@@ -6,7 +6,7 @@ system:
   defaultAttribute: iq.max
   iqCost: 0
   minIQ: 4
-  pdfReference: ''
+  pdfReference: FTL#44
   attacks: []
   defenses: []
 effects: []
@@ -16,11 +16,11 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.345'
+  coreVersion: '13.346'
   systemId: fantasy-trip
-  systemVersion: 0.1.0
+  systemVersion: 0.2.0
   createdTime: 1752529297363
-  modifiedTime: 1753133142196
+  modifiedTime: 1753811505967
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 ownership:
   default: 0
