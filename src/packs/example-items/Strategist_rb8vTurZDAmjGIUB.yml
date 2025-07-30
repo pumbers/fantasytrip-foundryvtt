@@ -2,11 +2,11 @@ name: Strategist
 type: talent
 img: icons/skills/melee/maneuver-sword-katana-yellow.webp
 system:
-  notes: ''
+  notes: ""
   minIQ: 13
   iqCost: 2
   defaultAttribute: iq.max
-  pdfReference: FTL#43
+  pdfReference: ITL#43
   attacks: []
   defenses: []
 effects:
@@ -19,7 +19,7 @@ effects:
     changes:
       - key: system.initiative.party
         mode: 4
-        value: '2'
+        value: "2"
         priority: null
     disabled: false
     duration:
@@ -30,8 +30,8 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: ''
-    tint: '#ffffff'
+    description: ""
+    tint: "#ffffff"
     transfer: true
     statuses: []
     sort: 0
@@ -40,18 +40,18 @@ effects:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       lastModifiedBy: null
-    _key: '!items.effects!rb8vTurZDAmjGIUB.VfMuENyDYERSr9S4'
+    _key: "!items.effects!rb8vTurZDAmjGIUB.VfMuENyDYERSr9S4"
 folder: null
 flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.345'
+  coreVersion: "13.345"
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1752529315138
@@ -63,5 +63,4 @@ ownership:
   DoJEEiLZ8CgYIaAq: 3
 _id: rb8vTurZDAmjGIUB
 sort: 700000
-_key: '!items!rb8vTurZDAmjGIUB'
-
+_key: "!items!rb8vTurZDAmjGIUB"

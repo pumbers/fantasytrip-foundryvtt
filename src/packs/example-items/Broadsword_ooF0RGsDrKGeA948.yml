@@ -2,14 +2,14 @@ name: Broadsword
 type: equipment
 img: icons/weapons/swords/greatsword-blue.webp
 system:
-  notes: ''
+  notes: ""
   attacks:
     - action: Strike
       type: melee
       toHitMod: 0
       baseDamage: 2d6
       minST: 12
-      effects: ''
+      effects: ""
       talent: null
   defenses: []
   cost: 80
@@ -19,7 +19,7 @@ system:
   capacity: 0
   container: null
   spells: []
-  pdfReference: FTL#109
+  pdfReference: ITL#109
   applyEffectsWhen:
     - equipped
 effects: []
@@ -32,7 +32,7 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.345'
+  coreVersion: "13.345"
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1752529342989
@@ -40,5 +40,4 @@ _stats:
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 _id: ooF0RGsDrKGeA948
 sort: 100000
-_key: '!items!ooF0RGsDrKGeA948'
-
+_key: "!items!ooF0RGsDrKGeA948"

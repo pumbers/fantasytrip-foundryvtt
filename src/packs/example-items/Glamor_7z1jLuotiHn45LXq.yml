@@ -2,7 +2,7 @@ name: Glamor
 type: spell
 img: icons/magic/control/silhouette-hold-change-green.webp
 system:
-  notes: ''
+  notes: ""
   attacks: []
   defenses: []
   minIQ: 14
@@ -12,7 +12,7 @@ system:
     min: 10
     max: 10
   stToMaintain: 1
-  pdfReference: FTL#27
+  pdfReference: ITL#27
   stSpent: 0
 effects: []
 folder: null
@@ -25,7 +25,7 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.345'
+  coreVersion: "13.345"
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1752529326893
@@ -33,5 +33,4 @@ _stats:
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 _id: 7z1jLuotiHn45LXq
 sort: 900000
-_key: '!items!7z1jLuotiHn45LXq'
-
+_key: "!items!7z1jLuotiHn45LXq"

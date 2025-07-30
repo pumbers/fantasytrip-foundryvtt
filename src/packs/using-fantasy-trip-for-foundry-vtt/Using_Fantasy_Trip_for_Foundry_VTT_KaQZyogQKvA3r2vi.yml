@@ -102,7 +102,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.342'
+      coreVersion: "13.342"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
@@ -110,7 +110,7 @@ pages:
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.Ahcj5Hf12oLopn4U'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.Ahcj5Hf12oLopn4U"
   - sort: 200000
     name: Character Sheet
     type: text
@@ -295,7 +295,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
@@ -303,7 +303,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.8QpHd2w3fWyC0Oke'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.8QpHd2w3fWyC0Oke"
   - sort: 300000
     name: Items and the Item Sheet
     type: text
@@ -542,7 +542,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.346'
+      coreVersion: "13.346"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
@@ -550,7 +550,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.AGDQOLKibDzbaHh8'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.AGDQOLKibDzbaHh8"
   - sort: 800000
     name: Writing Effects
     type: text
@@ -646,7 +646,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.342'
+      coreVersion: "13.342"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110064087
@@ -654,7 +654,7 @@ pages:
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.ZC0ir9H0OUqr0Ehw'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.ZC0ir9H0OUqr0Ehw"
   - sort: 500000
     name: Dice Rolls
     type: text
@@ -712,7 +712,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110077275
@@ -720,7 +720,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.7MY6ZNV0LvIRGWOF'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.7MY6ZNV0LvIRGWOF"
   - sort: 600000
     name: Combat
     type: text
@@ -838,7 +838,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110089455
@@ -846,7 +846,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.taYa6XujJcawZlXZ'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.taYa6XujJcawZlXZ"
   - sort: 700000
     name: Casting Spells
     type: text
@@ -894,7 +894,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110384981
@@ -902,7 +902,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.6iNkXDrerMY8ltYw'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.6iNkXDrerMY8ltYw"
   - sort: 900000
     name: Creating Characters
     type: text
@@ -973,13 +973,13 @@ pages:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1752514256515
       modifiedTime: 1752527462068
       lastModifiedBy: DoJEEiLZ8CgYIaAq
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.GES2Dzee8OJ1xWUj'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.GES2Dzee8OJ1xWUj"
   - sort: 1000000
     name: Other Modules
     type: text
@@ -1005,10 +1005,10 @@ pages:
         a document reference.</p></li><li><p>When entering or editing an item's
         PDF reference, use the format <strong>&lt;PDF Code&gt;#&lt;Page
         Number&gt;</strong>. So, if the core Fantasy Trip rulebook has a PDF
-        Code of "FTL", then the Brawling talent reference would be
-        "FTL#35".</p></li><li><p>Example items provided already include this
+        Code of "ITL", then the Brawling talent reference would be
+        "ITL#35".</p></li><li><p>Example items provided already include this
         link, with the PDF Code set to
-        <strong>FTL</strong>.</p></li></ul><p></p>
+        <strong>ITL</strong>.</p></li></ul><p></p>
     video:
       controls: true
       volume: 0.5
@@ -1022,13 +1022,13 @@ pages:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1752528433730
       modifiedTime: 1752529193814
       lastModifiedBy: DoJEEiLZ8CgYIaAq
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.FUYQKlKYTXd1fZUb'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.FUYQKlKYTXd1fZUb"
   - sort: 950000
     name: Transferring Characters
     type: text
@@ -1091,20 +1091,20 @@ pages:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.1
       createdTime: 1753131038022
       modifiedTime: 1753133419152
       lastModifiedBy: DoJEEiLZ8CgYIaAq
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.6ABA8cUE9l81EOWO'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.6ABA8cUE9l81EOWO"
 folder: null
 flags: {}
 _stats:
   compendiumSource: >-
     Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.lRHycMkpzFAIyGPx
   duplicateSource: null
-  coreVersion: '13.342'
+  coreVersion: "13.342"
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1743093080563
@@ -1117,5 +1117,4 @@ ownership:
 _id: KaQZyogQKvA3r2vi
 sort: 100000
 categories: []
-_key: '!journal!KaQZyogQKvA3r2vi'
-
+_key: "!journal!KaQZyogQKvA3r2vi"

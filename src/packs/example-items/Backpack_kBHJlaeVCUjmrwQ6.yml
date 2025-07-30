@@ -2,7 +2,7 @@ name: Backpack
 type: equipment
 img: icons/containers/bags/case-leather-tan.webp
 system:
-  notes: ''
+  notes: ""
   cost: 40
   wt: 4
   qty: 1
@@ -15,7 +15,7 @@ system:
   applyEffectsWhen:
     - equipped
     - carried
-  pdfReference: FTL#67
+  pdfReference: ITL#67
   location: carried
   spells: []
 effects:
@@ -29,7 +29,7 @@ effects:
     changes:
       - key: system.dx.value
         mode: 2
-        value: '-1'
+        value: "-1"
         priority: null
     disabled: false
     duration:
@@ -40,8 +40,8 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: ''
-    tint: '#ffffff'
+    description: ""
+    tint: "#ffffff"
     statuses: []
     sort: 0
     flags: {}
@@ -49,18 +49,18 @@ effects:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       lastModifiedBy: null
-    _key: '!items.effects!kBHJlaeVCUjmrwQ6.3Rbr9vGNzl4DLR79'
+    _key: "!items.effects!kBHJlaeVCUjmrwQ6.3Rbr9vGNzl4DLR79"
 folder: null
 flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.345'
+  coreVersion: "13.345"
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1752529334078
@@ -72,5 +72,4 @@ ownership:
   DoJEEiLZ8CgYIaAq: 3
 _id: kBHJlaeVCUjmrwQ6
 sort: 1000000
-_key: '!items!kBHJlaeVCUjmrwQ6'
-
+_key: "!items!kBHJlaeVCUjmrwQ6"

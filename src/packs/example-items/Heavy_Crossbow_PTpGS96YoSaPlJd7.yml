@@ -9,7 +9,7 @@ system:
       toHitMod: 0
       baseDamage: 3d6
       minST: 15
-      effects: ''
+      effects: ""
       talent: null
   defenses: []
   cost: 80
@@ -21,7 +21,7 @@ system:
   spells: []
   applyEffectsWhen:
     - equipped
-  pdfReference: FTL#109
+  pdfReference: ITL#109
 effects: []
 folder: null
 ownership:
@@ -32,7 +32,7 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.345'
+  coreVersion: "13.345"
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1752529340020
@@ -40,5 +40,4 @@ _stats:
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 _id: PTpGS96YoSaPlJd7
 sort: 500000
-_key: '!items!PTpGS96YoSaPlJd7'
-
+_key: "!items!PTpGS96YoSaPlJd7"

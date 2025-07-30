@@ -2,7 +2,7 @@ name: Small Shield
 type: equipment
 img: icons/equipment/shield/buckler-wooden-boss-brown.webp
 system:
-  notes: ''
+  notes: ""
   attacks: []
   defenses:
     - action: Block
@@ -14,7 +14,7 @@ system:
   capacity: 0
   container: null
   spells: []
-  pdfReference: FTL#110
+  pdfReference: ITL#110
   applyEffectsWhen:
     - equipped
 effects: []
@@ -27,7 +27,7 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.345'
+  coreVersion: "13.345"
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1752529349261
@@ -35,5 +35,4 @@ _stats:
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 _id: ZXm5Lm0iFl42CZ0n
 sort: 200000
-_key: '!items!ZXm5Lm0iFl42CZ0n'
-
+_key: "!items!ZXm5Lm0iFl42CZ0n"

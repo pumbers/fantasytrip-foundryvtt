@@ -2,13 +2,13 @@ name: Fireball
 type: spell
 img: icons/magic/fire/flame-burning-earth-yellow.webp
 system:
-  notes: ''
+  notes: ""
   attacks:
     - action: Blast
       type: missile
       toHitMod: 0
       baseDamage: 1d6-1
-      effects: ''
+      effects: ""
       minST: 0
       talent: null
   defenses: []
@@ -18,7 +18,7 @@ system:
     min: 0
     max: 0
   type: missile
-  pdfReference: FTL#24
+  pdfReference: ITL#24
   stToMaintain: 0
   stSpent: 0
 effects: []
@@ -32,7 +32,7 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.345'
+  coreVersion: "13.345"
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1752529324543
@@ -40,5 +40,4 @@ _stats:
   lastModifiedBy: DoJEEiLZ8CgYIaAq
 _id: b6c9C0DwhwQdKT0c
 sort: 800000
-_key: '!items!b6c9C0DwhwQdKT0c'
-
+_key: "!items!b6c9C0DwhwQdKT0c"

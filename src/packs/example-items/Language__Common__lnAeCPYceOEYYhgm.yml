@@ -2,11 +2,11 @@ name: Language (Common)
 type: talent
 img: icons/skills/social/wave-halt-stop.webp
 system:
-  notes: ''
+  notes: ""
   defaultAttribute: iq.max
   iqCost: 0
   minIQ: 4
-  pdfReference: FTL#44
+  pdfReference: ITL#44
   attacks: []
   defenses: []
 effects: []
@@ -16,7 +16,7 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.346'
+  coreVersion: "13.346"
   systemId: fantasy-trip
   systemVersion: 0.2.0
   createdTime: 1752529297363
@@ -28,5 +28,4 @@ ownership:
   DoJEEiLZ8CgYIaAq: 3
 _id: lnAeCPYceOEYYhgm
 sort: 400000
-_key: '!items!lnAeCPYceOEYYhgm'
-
+_key: "!items!lnAeCPYceOEYYhgm"

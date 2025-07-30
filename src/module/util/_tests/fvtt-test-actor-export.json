@@ -751,7 +751,7 @@
         "minIQ": 7,
         "iqCost": 1,
         "defaultAttribute": "iq.max",
-        "pdfReference": "FTL#35"
+        "pdfReference": "ITL#35"
       },
       "effects": [],
       "folder": null,
@@ -779,7 +779,7 @@
         "container": null,
         "attacks": [],
         "defenses": [],
-        "pdfReference": "FTL#67",
+        "pdfReference": "ITL#67",
         "applyEffectsWhen": ["equipped", "carried"],
         "location": "carried",
         "spells": []
@@ -844,7 +844,7 @@
           }
         ],
         "applyEffectsWhen": ["equipped", "carried"],
-        "pdfReference": "FTL#67",
+        "pdfReference": "ITL#67",
         "location": "carried",
         "spells": []
       },
