@@ -251,6 +251,15 @@ export function attackRoll(actor, item, options) {
     dice: attack.dice,
     attribute: "dx.value",
     modifiers: {
+      ...(attack.minSTMod !== 0
+        ? {
+            minSTMod: {
+              min: FT.roll.modifiers.default.min,
+              max: FT.roll.modifiers.default.max,
+              value: attack.minSTMod,
+            },
+          }
+        : {}),
       ...(attack.toHitMod !== 0
         ? {
             toHitMod: {

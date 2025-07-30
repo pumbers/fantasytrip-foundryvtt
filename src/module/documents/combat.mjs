@@ -37,7 +37,7 @@ export class FTCombat extends foundry.documents.Combat {
         "Combatant",
         this.combatants.map((c) => ({
           _id: c._id,
-          initiative: c.isDefeated ? 0 : c.actor?.system?.dx?.value + c.initiative / 10,
+          initiative: c.isDefeated ? 0 : c.actor?.system.initiative.dx + c.initiative / 10,
         }))
       );
     } else {

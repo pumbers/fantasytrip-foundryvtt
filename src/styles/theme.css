@@ -137,13 +137,13 @@
 
   /* Applications */
   &#ft-dice-roller {
-    & input ~ label {
+    input ~ label {
       @apply border border-ft-dark dark:border-ft-light;
-      &:hover {
-        @apply bg-yellow-100 dark:bg-yellow-100/50;
-      }
     }
-    & input:checked ~ label {
+    input:enabled ~ label:hover {
+      @apply bg-yellow-100 dark:bg-yellow-100/50;
+    }
+    input:checked ~ label {
       @apply bg-yellow-300 dark:bg-yellow-300/40 text-ft-dark dark:text-ft-light;
     }
   }

@@ -90,7 +90,7 @@ export class FTActor extends Actor {
           attack.dice = weapon.type === "equipment" && !talent ? 4 : 3;
           attack.minSTMod = Math.min(this.system.st.max - attack.minST, 0);
           attack.attackTypeMod = this.system.dx.modFor[attack.type];
-          attack.toHit = this.system.dx.value + attack.toHitMod + attack.minSTMod + attack.attackTypeMod;
+          attack.toHit = this.system.dx.value + attack.minSTMod + attack.toHitMod + attack.attackTypeMod;
 
           // Adjust Damage based on weapon min ST
           attack.stDamageMod = Math.floor(Math.min(system.st.max - attack.minST, 0) / 2);
@@ -99,9 +99,9 @@ export class FTActor extends Actor {
             attack.stDamageMod === 0 ? "" : attack.stDamageMod
           );
 
-          // Modify attribute based on weapon min ST
+          // Calculate worst initiative DX using readied weapons
           if (weapon.system.isReady) {
-            system.dx.value = system.dx.value + attack.minSTMod;
+            this.system.initiative.dx = Math.min(this.system.initiative.dx, this.system.dx.value + attack.minSTMod);
           }
         });
       });
