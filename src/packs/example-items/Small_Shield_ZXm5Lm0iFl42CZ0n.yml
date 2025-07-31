@@ -10,13 +10,13 @@ system:
   cost: 30
   wt: 10
   qty: 1
-  location: carried
+  location: packed
   capacity: 0
   container: null
   spells: []
   pdfReference: ITL#110
   applyEffectsWhen:
-    - equipped
+    - readied
 effects: []
 folder: null
 ownership:

@@ -50,9 +50,9 @@ system:
   container: null
   attacks: []
   defenses: []
-  location: carried
+  location: packed
   applyEffectsWhen:
-    - equipped
+    - readied
   spells: []
 effects:
   - name: Mana
@@ -64,7 +64,7 @@ effects:
     changes:
       - key: system.mana.max
         mode: 2
-        value: '10'
+        value: "10"
         priority: null
     disabled: true
     duration:
@@ -75,8 +75,8 @@ effects:
       turns: null
       startRound: null
       startTurn: null
-    description: ''
-    tint: '#ffffff'
+    description: ""
+    tint: "#ffffff"
     transfer: true
     statuses: []
     sort: 0
@@ -85,18 +85,18 @@ effects:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.346'
+      coreVersion: "13.346"
       systemId: fantasy-trip
       systemVersion: 0.2.0
       lastModifiedBy: null
-    _key: '!items.effects!7quTRzbQHQzZfhqF.olwx2f549hLy86ex'
+    _key: "!items.effects!7quTRzbQHQzZfhqF.olwx2f549hLy86ex"
 folder: null
 flags: {}
 _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: '13.346'
+  coreVersion: "13.346"
   systemId: fantasy-trip
   systemVersion: 0.2.0
   createdTime: 1753826283062
@@ -108,5 +108,4 @@ ownership:
   DoJEEiLZ8CgYIaAq: 3
 _id: 7quTRzbQHQzZfhqF
 sort: 0
-_key: '!items!7quTRzbQHQzZfhqF'
-
+_key: "!items!7quTRzbQHQzZfhqF"

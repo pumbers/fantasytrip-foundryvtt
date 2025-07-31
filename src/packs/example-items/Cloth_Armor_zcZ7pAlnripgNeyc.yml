@@ -10,13 +10,13 @@ system:
   cost: 50
   wt: 14
   qty: 1
-  location: carried
+  location: packed
   capacity: 0
   container: null
   spells: []
   pdfReference: ITL#110
   applyEffectsWhen:
-    - equipped
+    - readied
 effects:
   - name: Encumbrance
     origin: Item.SE2fJ4WlfiUrhMPP

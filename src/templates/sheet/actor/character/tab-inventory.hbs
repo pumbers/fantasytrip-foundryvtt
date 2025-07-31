@@ -21,7 +21,7 @@
                     <th>{{localize 'FT.actor.sheet.table.items.qty'}}</th>
                     <th>{{localize 'FT.actor.sheet.table.items.capacity'}}</th>
                     <th>{{localize 'FT.actor.sheet.table.items.location'}}</th>
-                    <th><a data-action="createItem" data-type="equipment" data-location="carried"
+                    <th><a data-action="createItem" data-type="equipment" data-location="packed"
                             title="{{localize 'FT.actor.sheet.action.item.create'}}"><i class="fa fa-plus"></i></a></th>
                 </tr>
             </thead>
@@ -46,7 +46,7 @@
             <tfoot>
                 <tr>
                     {{#if settings.showItemIcons}}<td></td>{{/if}}
-                    <td colspan="2" class="!text-right">{{localize 'FT.actor.sheet.table.items.carried'}}</td>
+                    <td colspan="2" class="!text-right">{{localize 'FT.actor.sheet.table.items.packed'}}</td>
                     <td>{{numberFormat system.encumbrance.load decimals=1}}&nbsp;{{localize
                         'FT.actor.sheet.table.items.unit'}}</td>
                     <td colspan="4"></td>

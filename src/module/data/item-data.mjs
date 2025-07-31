@@ -169,8 +169,8 @@ export class FTEquipmentData extends FTBaseItemData {
       wt: new NumberField({ initial: 0 }),
       qty: new NumberField({ initial: 1 }),
       //
-      location: new StringField({ initial: "carried" }),
-      applyEffectsWhen: new ArrayField(new StringField(), { initial: ["equipped"] }),
+      location: new StringField({ initial: "packed" }),
+      applyEffectsWhen: new ArrayField(new StringField(), { initial: ["readied"] }),
       capacity: new NumberField({ initial: 0 }),
       container: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
       //
@@ -197,6 +197,6 @@ export class FTEquipmentData extends FTBaseItemData {
   }
 
   get isReady() {
-    return this.location === "equipped";
+    return this.location === "readied";
   }
 }

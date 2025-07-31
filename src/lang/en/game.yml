@@ -37,7 +37,7 @@ FT:
       useManaFirst:
         name: Use item mana first when casting spells
         hint: >
-          When casting spells, use mana from equipped items before character ST.
+          When casting spells, use mana from readied items before character ST.
     rollMode:
       roll: Default
       publicroll: Public

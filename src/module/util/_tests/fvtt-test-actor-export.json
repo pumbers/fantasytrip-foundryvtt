@@ -185,9 +185,9 @@
           }
         ],
         "spells": [],
-        "location": "equipped",
+        "location": "readied",
         "pdfReference": "",
-        "applyEffectsWhen": ["equipped"]
+        "applyEffectsWhen": ["readied"]
       },
       "effects": [
         {
@@ -273,9 +273,9 @@
         ],
         "defenses": [],
         "spells": [],
-        "location": "equipped",
+        "location": "readied",
         "pdfReference": "",
-        "applyEffectsWhen": ["equipped"]
+        "applyEffectsWhen": ["readied"]
       },
       "effects": [
         {
@@ -345,11 +345,11 @@
         "cost": 1,
         "wt": 0.01,
         "qty": 16,
-        "location": "carried",
+        "location": "packed",
         "capacity": 0,
         "container": "e3SnZ29JFGc8juoP",
         "spells": [],
-        "applyEffectsWhen": ["equipped"]
+        "applyEffectsWhen": ["readied"]
       },
       "effects": [],
       "sort": 0,
@@ -428,11 +428,11 @@
         "cost": 0.1,
         "wt": 0.01,
         "qty": 8,
-        "location": "carried",
+        "location": "packed",
         "capacity": 0,
         "container": "e3SnZ29JFGc8juoP",
         "spells": [],
-        "applyEffectsWhen": ["equipped"]
+        "applyEffectsWhen": ["readied"]
       },
       "effects": [],
       "sort": 0,
@@ -534,9 +534,9 @@
           }
         ],
         "defenses": [],
-        "location": "carried",
+        "location": "packed",
         "spells": [],
-        "applyEffectsWhen": ["equipped"]
+        "applyEffectsWhen": ["readied"]
       },
       "effects": [
         {
@@ -613,9 +613,9 @@
           }
         ],
         "defenses": [],
-        "location": "carried",
+        "location": "packed",
         "spells": [],
-        "applyEffectsWhen": ["equipped"]
+        "applyEffectsWhen": ["readied"]
       },
       "effects": [],
       "folder": "PtUhVlBjD5BtnYkr",
@@ -680,8 +680,8 @@
         "qty": 1,
         "capacity": 0,
         "container": "ZOsah9Vzu2M1UISn",
-        "location": "carried",
-        "applyEffectsWhen": ["equipped"]
+        "location": "packed",
+        "applyEffectsWhen": ["readied"]
       },
       "effects": [],
       "folder": null,
@@ -780,8 +780,8 @@
         "attacks": [],
         "defenses": [],
         "pdfReference": "ITL#67",
-        "applyEffectsWhen": ["equipped", "carried"],
-        "location": "carried",
+        "applyEffectsWhen": ["readied", "packed"],
+        "location": "packed",
         "spells": []
       },
       "effects": [],
@@ -843,9 +843,9 @@
             "hitsStopped": 1
           }
         ],
-        "applyEffectsWhen": ["equipped", "carried"],
+        "applyEffectsWhen": ["readied", "packed"],
         "pdfReference": "ITL#67",
-        "location": "carried",
+        "location": "packed",
         "spells": []
       },
       "effects": [
@@ -914,8 +914,8 @@
         "cost": 1,
         "wt": 0.5,
         "qty": 1,
-        "location": "carried",
-        "applyEffectsWhen": ["equipped"],
+        "location": "packed",
+        "applyEffectsWhen": ["readied"],
         "capacity": 0,
         "container": null,
         "spells": [],

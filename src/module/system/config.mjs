@@ -94,15 +94,15 @@ FT.actor = {
 FT.item = {
   inventory: {
     types: ["equipment"],
-    locations: ["equipped", "dropped", "carried", "stowed", "stored"],
+    locations: ["readied", "dropped", "packed", "stowed", "stored"],
     icons: {
-      equipped: "icon-battle-gear",
-      carried: "icon-knapsack",
+      readied: "icon-battle-gear",
+      packed: "icon-knapsack",
       dropped: "icon-drop-weapon",
       stowed: "icon-chest",
       stored: "icon-white-tower",
     },
-    encumbering: ["carried", "equipped"],
+    encumbering: ["packed", "readied"],
   },
   learned: {
     types: ["talent", "spell"],

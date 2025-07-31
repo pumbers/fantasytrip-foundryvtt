@@ -64,12 +64,12 @@ pages:
         damage, spell casting, etc.</p><p>Encumbrance calculation though, is a
         chore, so I've automated that. A player can have as many items in their
         inventory as they like, they can choose each item's location (dropped,
-        equipped, carried, stowed, stored) and the character's total encumbrance
-        (based on carried or equipped items) is calculated automatically. That
+        readied, packed, stowed, stored) and the character's total encumbrance
+        (based on packed or readied items) is calculated automatically. That
         encumbrance level is shown on the character sheet and attribute
         penalties are applied automatically. I even added a "container" feature
         so that a character can put items in a backpack which counts them
-        against encumbrance when carried, but if the backpack is dropped (say,
+        against encumbrance when packed, but if the backpack is dropped (say,
         for combat) then all the items in it are also dropped and the combat
         penalties come off immediately.</p><p>Hopefully, this design philosophy
         achieves what I set out to do: make it easy for old and new players to
@@ -153,8 +153,8 @@ pages:
         they are:</p><ul><li><p><strong>Encumbrance</strong> - this shows the
         weight the character can carry at each encumbrance level, and the
         current encumbrance level calculated from the equipment the character is
-        carrying. Note that only equipment marked as <em>Equipped</em> or
-        <em>Carried</em> counts for encumbrance. Anything <em>Dropped</em>,
+        carrying. Note that only equipment marked as <em>Readied</em> or
+        <em>Packed</em> counts for encumbrance. Anything <em>Dropped</em>,
         <em>Stowed</em> (nearby, such as on a horse or cart), or <em>Stored</em>
         (some distance away, such as in a home) does not count towards
         encumbrance. Adjustments to attributes from encumbrance are made
@@ -163,14 +163,14 @@ pages:
         character becomes fatigued it shows here as an amber bar. When they take
         damage it shows as a red bar. Both can be shown at the same
         time.</p></li><li><p><strong>Mana</strong> - this shows any Mana
-        available to the character from objects they have equipped, such as
+        available to the character from objects they have readied, such as
         their Staff.</p></li><li><p>Finally, there are a series of fields to
         record current <strong>Fatigue</strong> or <strong>Damage</strong>
         taken, Mana available, and a series of modifiers for ST, DX, IQ, MA, and
         Initiative. These can be adjusted manually at any
         time.</p></li></ul></li><li><p>Lastly on this tab is the
         <strong>Actions</strong> area. Here, each block represents available
-        actions, such as a ready weapon, equipped armor, cast spells, etc. Most
+        actions, such as a ready weapon, readied armor, cast spells, etc. Most
         of these will have buttons that can be used to trigger dice rolls such
         as attacks or damage.</p><ul><li><p>Weapons also show the required ST
         for a weapon and an icon that turns amber if the ST requirement is not
@@ -214,16 +214,16 @@ pages:
         below.</p></li><li><p>A single icon shows the item(s)
         <strong>Location</strong>. Clicking on the current icon cycles to the
         next location. The locations are:</p><ul><li><p><strong>Dropped</strong>
-        - somewhere on the ground nearby</p></li><li><p><strong>Carried</strong>
+        - somewhere on the ground nearby</p></li><li><p><strong>Packed</strong>
         - on the character's person but not readied (say, in a backpack or
         pouch)</p></li><li><p><strong>Stowed</strong> - somewhere safe nearby,
         say on a horse or cart</p></li><li><p><strong>Stored</strong> -
         somewhere far away, at home or at an inn, not immediately
-        available</p></li><li><p><strong>Equipped</strong> - on the character's
+        available</p></li><li><p><strong>Readied</strong> - on the character's
         person and ready for use</p></li></ul></li><li><p>As mentioned before,
-        only <strong>Carried</strong> or <strong>Equipped</strong> items count
+        only <strong>Packed</strong> or <strong>Readied</strong> items count
         against the character's encumbrance.</p></li><li><p>Weapons and armor
-        are only considered ready if <strong>Equipped</strong>. Any other
+        are only considered ready if <strong>Readied</strong>. Any other
         location, and they will not show in the Actions section of the Character
         Tab.</p></li><li><p>As with Talents, the Chat, Edit, and Delete icons
         are on the far
@@ -267,14 +267,14 @@ pages:
         add to the character's ST, Boots of Running could increase the
         character's MA. All of these changes can happen automatically when a
         character has the item in their Inventory. In this system, the item
-        <strong>must</strong> also be Equipped for the effect to be
+        <strong>must</strong> also be Readied for the effect to be
         active.</p><p>More information on Active Effects can be found on the <a
         href="https://foundryvtt.com/article/active-effects/">Foundry VTT web
         site</a>.</p><img
         src="systems/fantasy-trip/assets/images/instructions/character_effects_tab_0.1.0.webp"
         /><p>The <strong>Effects</strong> tab shows any Active Effects attached
         to items in the character's possession. If the character has an item but
-        it is not Equipped, the effect will not be listed. Each effect also
+        it is not Readied, the effect will not be listed. Each effect also
         shows the changes that it makes to the character. Note that effects
         derived from an item cannot be edited here, they must be edited on the
         item itself. See the Item Sheet instructions for more.</p><p>You can
@@ -373,7 +373,7 @@ pages:
         which specifies when any Active Effects on the item will apply to the
         character.</p></li></ul><p>Note that when added to the character sheet,
         the unit cost &amp; weight of an item will be multiplied by the quantity
-        to give a total cost &amp; weight carried.</p><h3>Containers</h3><img
+        to give a total cost &amp; weight packed.</p><h3>Containers</h3><img
         src="systems/fantasy-trip/assets/images/instructions/equipment_container_tab_0.1.0.webp"
         /><p><strong>Containers</strong> are a special kind of equipment in that
         a Container is allowed to hold other items. The only difference between
@@ -410,7 +410,7 @@ pages:
         are always available.</p></li><li><p>An Ability is readied if it is
         always on or if it is activated.</p></li><li><p>A piece of equipment is
         readied only when it's location is
-        <strong>equipped</strong>.</p></li><li><p>A Spell is readied only after
+        <strong>readied</strong>.</p></li><li><p>A Spell is readied only after
         it has been successfully cast.</p></li></ul><h3>Attacks</h3><img
         src="systems/fantasy-trip/assets/images/instructions/item_attacks_0.1.0.webp"
         /><p>Attacks include the following fields:</p><ul><li><p>The
@@ -482,15 +482,15 @@ pages:
         applied if the item is in a location specified in the
         settings.</p></li></ul><p>In the above example, the Wizard's Staff has a
         <strong>Mana</strong> effect set to apply only when the staff is
-        equipped. When this item is <strong>readied</strong> (location set to
-        <em>equipped</em>), then the effect <strong>will be applied to the
+        readied. When this item is <strong>readied</strong> (location set to
+        <em>readied</em>), then the effect <strong>will be applied to the
         character</strong>, boosting their available maximum available mana
         score. An item can have any number of effects, and they will all be
         applied to the character.</p><p>By varying the <em>Apply Effects
         When…</em> field, a variety of items can be created.</p><ul><li><p>A
         Ring of Giant Strength would only apply the increased STR effect when
-        worn (equipped).</p></li><li><p>A backpack applies it's encumbrance (DX
-        reduction) either when equipped or carried (ie: on the character's
+        worn (readied).</p></li><li><p>A backpack applies it's encumbrance (DX
+        reduction) either when readied or packed (ie: on the character's
         person).</p></li><li><p>A cursed item might apply an effect if the
         character simply owns it (any location).</p></li></ul><p>See the pages
         on @UUID[.ZC0ir9H0OUqr0Ehw]{Writing Effects} for details on which
@@ -764,7 +764,7 @@ pages:
         act as a tie breaker.</p><p>The GM can step through each combatant turn
         and the following rounds with Foundry automatically re-rolling
         initiative as required.</p><h2>Attacks &amp; Damage</h2><p>To make an
-        attack, a combatant MUST have an appropriate talent or equipped weapon.
+        attack, a combatant MUST have an appropriate talent or readied weapon.
         Buttons for attacks &amp; damage show as readied items at the bottom of
         the Character tab.</p><img
         src="systems/fantasy-trip/assets/images/instructions/dice_rolls_1.webp"

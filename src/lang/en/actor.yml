@@ -72,8 +72,8 @@ FT:
         maMod: MA Mod
         initiative: Init. Mod
         location:
-          equipped: Equipped
-          carried: Carried
+          readied: Readied
+          packed: Packed
           dropped: Dropped
           stowed: Stowed
           stored: Stored
@@ -96,7 +96,7 @@ FT:
           qty: Qty
           capacity: Cap
           location: Loc
-          carried: Carried
+          packed: Packed
           unit: lb
         spells:
           name: Name

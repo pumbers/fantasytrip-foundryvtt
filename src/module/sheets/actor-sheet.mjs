@@ -314,7 +314,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
         // Set the container and location
         await item.update({
           "system.container": containerId ?? null,
-          "system.location": container?.system.location ?? "carried",
+          "system.location": container?.system.location ?? "packed",
         });
         return item;
       }

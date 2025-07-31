@@ -13,10 +13,10 @@ system:
     - action: Rear Only
       hitsStopped: 1
   applyEffectsWhen:
-    - equipped
-    - carried
+    - readied
+    - packed
   pdfReference: ITL#67
-  location: carried
+  location: packed
   spells: []
 effects:
   - name: Encumbrance
