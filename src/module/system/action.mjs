@@ -335,10 +335,10 @@ export function attackRoll(actor, item, options) {
         );
       } else if (roll.total === 17) {
         // Item is dropped
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.dropped", { item: item?.name }));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.dropped", { weapon: item?.name }));
       } else if (roll.total === 18) {
         // Item is broken
-        message = message.concat(" ", game.i18n.format("FT.system.roll.result.broken", { item: item?.name }));
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.broken", { weapon: item?.name }));
       }
 
       // Full chat message content, including roll parameters & result
