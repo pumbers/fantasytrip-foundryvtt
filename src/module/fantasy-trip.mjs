@@ -212,17 +212,11 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("statusEffect", Helpers.statusEffect);
 
   foundry.applications.handlebars.loadTemplates([
-    `${FT.path}/templates/sheet/actor/_encumbrance.hbs`,
-    `${FT.path}/templates/sheet/actor/_health.hbs`,
-    `${FT.path}/templates/sheet/actor/_mana.hbs`,
-    `${FT.path}/templates/sheet/actor/_modifiers.hbs`,
-    `${FT.path}/templates/sheet/actor/_actions.hbs`,
     //
     `${FT.path}/templates/chat/dice-roll.hbs`,
     `${FT.path}/templates/chat/damage-roll.hbs`,
     //
     `${FT.path}/templates/dialog/apply-damage.hbs`,
-    `${FT.path}/templates/application/dice-roller.hbs`,
   ]);
 });
 

@@ -396,6 +396,9 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
     },
     character: {
       template: `${FT.path}/templates/sheet/actor/character/tab-character.hbs`,
+      templates: ["_actions.hbs", "_encumbrance.hbs", "_health.hbs", "_mana.hbs", "_modifiers.hbs"].map(
+        (t) => `${FT.path}/templates/sheet/actor/${t}`
+      ),
       scrollable: ["#actions"],
     },
     notes: {
@@ -453,6 +456,10 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
     },
     character: {
       template: `${FT.path}/templates/sheet/actor/npc/tab-character.hbs`,
+      templates: ["_actions.hbs", "_encumbrance.hbs", "_health.hbs", "_mana.hbs", "_modifiers.hbs"].map(
+        (t) => `${FT.path}/templates/sheet/actor/${t}`
+      ),
+      scrollable: ["#actions"],
     },
     notes: {
       template: `${FT.path}/templates/sheet/tab-notes.hbs`,
