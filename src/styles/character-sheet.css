@@ -38,9 +38,9 @@
     }
 
     section#actions {
-      @apply h-[10em];
+      @apply h-[12em];
       .action-item {
-        @apply grid grid-cols-[5%_30%_65%] gap-2 text-xs m-0 p-1;
+        @apply grid grid-cols-[5%_30%_65%] gap-1 text-xs m-0 p-1;
         img.action-item__image {
           @apply size-4;
         }
@@ -65,7 +65,7 @@
     section[id$="-inventory"],
     section[id$="-spells"],
     section[id$="-effects"] {
-      @apply pr-4 overflow-y-scroll;
+      @apply pr-3 overflow-y-scroll;
     }
   }
 }

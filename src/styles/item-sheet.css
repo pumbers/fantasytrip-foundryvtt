@@ -15,7 +15,7 @@
 
     section[id$="-actions"],
     section[id$="-effects"] {
-      @apply pr-4 overflow-y-scroll;
+      @apply pr-3 overflow-y-scroll;
     }
   }
 }
