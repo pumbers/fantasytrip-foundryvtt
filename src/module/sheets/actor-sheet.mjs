@@ -2,7 +2,6 @@ import { FT } from "../system/config.mjs";
 import * as Handlers from "../util/handlers.mjs";
 import * as Effects from "../util/effects.mjs";
 import * as Action from "../system/action.mjs";
-import * as Editor from "../util/editor.mjs";
 import * as Transfer from "../util/transfer.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
@@ -50,8 +49,6 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       changeMovement: FTBaseCharacterSheet.#changeMovement,
       attackRoll: FTBaseCharacterSheet.#attackRoll,
       damageRoll: FTBaseCharacterSheet.#damageRoll,
-      //
-      editHTML: FTBaseCharacterSheet.#editHTML,
       //
       talentRoll: FTBaseCharacterSheet.#talentRoll,
       //
@@ -126,7 +123,6 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
         })
         .sort((a, b) => a.system.actionOrder - b.system.actionOrder),
       effects: Array.from(this.actor.allApplicableEffects()),
-      enrichedNotes: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.actor.system.notes),
     });
 
     // Sort inventory items into their containers
@@ -260,19 +256,12 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     Effects.onManageActiveEffect(this.actor, event, target);
   }
 
-  editor = null;
-
-  static async #editHTML(event, target) {
-    Editor.editHTML.call(this, event, target);
-  }
-
   /* -------------------------------------------- */
   /*  Drag/Drop Functions                       
   /* -------------------------------------------- */
 
   async _onDropFolder(event, data) {
     console.log("_onDropFolder()", "event", event, "data", data);
-    if (!this.actor.isOwner) return [];
     const folder = await Folder.implementation.fromDropData(data);
     if (folder.type !== "Item") return [];
     const droppedItemData = await Promise.all(
@@ -286,7 +275,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
 
   async _onDropItem(event, data) {
     console.log("_onDropItem()", "event", event, "data", data);
-    if (!this.actor.isOwner) return false;
+    // if (!this.actor.isOwner) return false;
 
     // If the drop was an item....
     const item = await Item.implementation.fromDropData(data);
@@ -299,13 +288,13 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
 
       // Check if the item is a container itself and is being dropped on a container
       if (!!container && item.system.isContainer) {
-        ui.notifications.warn(game.i18n.format("FT.messages.noDropContainer", { item: item.name }));
+        ui.notifications.warn(game.i18n.format("FT.game.message.noDropContainer", { item: item.name }));
         return item;
       }
 
       // Check if the container has remaining capacity...
       if (item.system.wt > container?.system.remaining) {
-        ui.notifications.warn(game.i18n.format("FT.messages.noCapacity", { container: container.name }));
+        ui.notifications.warn(game.i18n.format("FT.game.message.noCapacity", { container: container.name }));
         return item;
       }
 
@@ -320,7 +309,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       }
     } else if (game.settings.get(FT.id, "checkIQForLearned") && FT.item.learned.types.includes(item.type)) {
       if (item.system.minIQ > this.actor.system.iq.max) {
-        ui.notifications.error(game.i18n.format("FT.messages.insufficientIQ", { name: item.name }));
+        ui.notifications.error(game.i18n.format("FT.game.message.insufficientIQ", { name: item.name }));
         return;
       }
     }
@@ -402,7 +391,7 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
       scrollable: ["#actions"],
     },
     notes: {
-      template: `${FT.path}/templates/sheet/tab-notes.hbs`,
+      template: `${FT.path}/templates/sheet/actor/tab-notes.hbs`,
     },
     talents: {
       template: `${FT.path}/templates/sheet/actor/character/tab-talents.hbs`,
@@ -462,7 +451,8 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
       scrollable: ["#actions"],
     },
     notes: {
-      template: `${FT.path}/templates/sheet/tab-notes.hbs`,
+      template: `${FT.path}/templates/sheet/actor/tab-notes.hbs`,
+      templates: [`${FT.path}/templates/sheet/_notes.hbs`],
     },
     inventory: {
       template: `${FT.path}/templates/sheet/actor/npc/tab-inventory.hbs`,

@@ -26,7 +26,7 @@
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.type"}}</label>
                     <select name="system.attacks.{{@index}}.type">
-                        <option value="">{{localize 'FT.options.none'}}</option>
+                        <option value="">{{localize 'FT.game.option.none'}}</option>
                         {{selectOptions ../selectOptions.attackTypes selected=attack.type localize=true}}
                     </select>
                 </div>
@@ -50,7 +50,7 @@
                 <div class="field col-span-2">
                     <label>{{localize "FT.item.sheet.label.talent"}}</label>
                     <select name="system.attacks.{{@index}}.talent">
-                        <option value="">{{localize 'FT.options.unskilled'}}</option>
+                        <option value="">{{localize 'FT.game.option.unskilled'}}</option>
                         {{selectOptions ../selectOptions.talents selected=attack.talent}}
                     </select>
                 </div>
@@ -108,7 +108,7 @@
                             class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="deleteSpell"
                             data-index="{{@index}}"><i class="fas fa-trash"></i></a>
                         <select name="system.spells.{{@index}}.uuid">
-                            <option>{{localize "FT.options.select"}}</option>
+                            <option>{{localize "FT.game.option.select"}}</option>
                             {{selectOptions ../selectOptions.spells selected=spell.uuid}}
                         </select>
                     </div>

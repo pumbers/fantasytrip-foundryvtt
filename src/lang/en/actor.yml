@@ -108,8 +108,6 @@ FT:
         chat: Send to chat
         attribute:
           roll: Attribute Roll
-        notes:
-          edit: Edit Notes
         talent:
           roll: Roll
         ability:

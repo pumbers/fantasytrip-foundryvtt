@@ -1,6 +1,5 @@
 import { FT } from "../system/config.mjs";
 import * as Effects from "../util/effects.mjs";
-import * as Editor from "../util/editor.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
@@ -23,7 +22,6 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     actions: {
       //
       openPDF: FTItemSheet.#openPDF,
-      editHTML: FTItemSheet.#editHTML,
       //
       addAttack: FTItemSheet.#addAttack,
       deleteAttack: FTItemSheet.#deleteAttack,
@@ -43,8 +41,8 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
   /** @inheritdoc */
   static TABS = {
     primary: {
-      tabs: [{ id: "notes" }, { id: "actions" }, { id: "effects" }],
-      initial: "notes",
+      tabs: [{ id: "settings" }, { id: "actions" }, { id: "effects" }],
+      initial: "settings",
       labelPrefix: "FT.item.sheet.tab",
     },
   };
@@ -60,9 +58,6 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     },
     settings: {
       template: `${FT.path}/templates/sheet/item/tab-settings.hbs`,
-    },
-    notes: {
-      template: `${FT.path}/templates/sheet/tab-notes.hbs`,
     },
     actions: {
       template: `${FT.path}/templates/sheet/item/tab-actions.hbs`,
@@ -86,6 +81,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     const context = Object.assign(await super._prepareContext(options), {
       // General Documents, Settings & Config
       FT,
+      uuid: this.item.uuid,
       item: foundry.utils.deepClone(this.item),
       system: foundry.utils.deepClone(this.item.system),
       settings: { pdfPagerEnabled: game.settings.get(FT.id, "pdfPagerEnabled") },
@@ -134,7 +130,6 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       },
       //
       effects: this.item.effects,
-      enrichedNotes: await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.notes),
     });
 
     console.log("... item context", context);
@@ -194,12 +189,6 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
   static #manageEffect(event, target) {
     console.log("#manageEffect", target.dataset);
     Effects.onManageActiveEffect(this.item, event, target);
-  }
-
-  editor = null;
-
-  static async #editHTML(event, target) {
-    Editor.editHTML.call(this, event, target);
   }
 
   static #openPDF(event, target) {

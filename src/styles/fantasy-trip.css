@@ -70,28 +70,8 @@
       @apply my-2 text-[0.6rem];
     }
 
-    section[id$="-notes"] {
+    section.tab {
       @apply grow;
-      .prosemirror.editor {
-        @apply h-full;
-        .editor-content {
-          @apply mt-6 pr-4 block;
-        }
-        .editor-container {
-          @apply mt-6 hidden overflow-y-auto;
-        }
-        &.active {
-          a {
-            @apply hidden;
-          }
-          .editor-content {
-            @apply hidden;
-          }
-          .editor-container {
-            @apply m-0 p-0 block h-[30rem];
-          }
-        }
-      }
     }
 
     fieldset {

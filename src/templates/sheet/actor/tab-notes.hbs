@@ -1,0 +1,7 @@
+{{!-- Notes Tab --}}
+<section id="{{partId}}" class="tab {{tabs.notes.cssClass}}" data-group="primary" data-tab="notes">
+    <div class="flex flex-col gap-1 h-full">
+        <prose-mirror toggled enriched name="system.notes" value="{{system.notes}}"
+            class="grow">{{{system.notes}}}</prose-mirror>
+    </div>
+</section>

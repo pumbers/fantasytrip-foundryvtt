@@ -46,16 +46,16 @@ Hooks.once("init", async function () {
   /* -------------------------------------------- */
 
   game.settings.register(FT.id, "initialAP", {
-    name: game.i18n.localize("FT.game.settings.initialAP.name"),
-    hint: game.i18n.localize("FT.game.settings.initialAP.hint"),
+    name: game.i18n.localize("FT.game.setting.initialAP.name"),
+    hint: game.i18n.localize("FT.game.setting.initialAP.hint"),
     scope: "world",
     type: new NumberField({ initial: 32 }),
     config: true,
   });
 
   game.settings.register(FT.id, "checkIQForLearned", {
-    name: game.i18n.localize("FT.game.settings.checkIQForLearned.name"),
-    hint: game.i18n.localize("FT.game.settings.checkIQForLearned.hint"),
+    name: game.i18n.localize("FT.game.setting.checkIQForLearned.name"),
+    hint: game.i18n.localize("FT.game.setting.checkIQForLearned.hint"),
     scope: "world",
     type: new BooleanField({
       required: true,
@@ -68,8 +68,8 @@ Hooks.once("init", async function () {
   });
 
   game.settings.register(FT.id, "useFTInitiative", {
-    name: game.i18n.localize("FT.game.settings.useFTInitiative.name"),
-    hint: game.i18n.localize("FT.game.settings.useFTInitiative.hint"),
+    name: game.i18n.localize("FT.game.setting.useFTInitiative.name"),
+    hint: game.i18n.localize("FT.game.setting.useFTInitiative.hint"),
     scope: "world",
     type: new BooleanField({
       required: true,
@@ -82,8 +82,8 @@ Hooks.once("init", async function () {
   });
 
   game.settings.register(FT.id, "pcGroupInitiative", {
-    name: game.i18n.localize("FT.game.settings.pcGroupInitiative.name"),
-    hint: game.i18n.localize("FT.game.settings.pcGroupInitiative.hint"),
+    name: game.i18n.localize("FT.game.setting.pcGroupInitiative.name"),
+    hint: game.i18n.localize("FT.game.setting.pcGroupInitiative.hint"),
     scope: "world",
     type: new BooleanField({
       required: true,
@@ -96,8 +96,8 @@ Hooks.once("init", async function () {
   });
 
   game.settings.register(FT.id, "npcGroupInitiative", {
-    name: game.i18n.localize("FT.game.settings.npcGroupInitiative.name"),
-    hint: game.i18n.localize("FT.game.settings.npcGroupInitiative.hint"),
+    name: game.i18n.localize("FT.game.setting.npcGroupInitiative.name"),
+    hint: game.i18n.localize("FT.game.setting.npcGroupInitiative.hint"),
     scope: "world",
     type: new BooleanField({
       required: true,
@@ -110,13 +110,13 @@ Hooks.once("init", async function () {
   });
 
   game.settings.register(FT.id, "damageMultiplierStrategy", {
-    name: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.name"),
-    hint: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.hint"),
+    name: game.i18n.localize("FT.game.setting.damageMultiplierStrategy.name"),
+    hint: game.i18n.localize("FT.game.setting.damageMultiplierStrategy.hint"),
     scope: "world",
     type: new StringField({
       choices: {
-        rollTimes: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.options.rollTimes"),
-        multiply: game.i18n.localize("FT.game.settings.damageMultiplierStrategy.options.multiply"),
+        rollTimes: game.i18n.localize("FT.game.setting.damageMultiplierStrategy.options.rollTimes"),
+        multiply: game.i18n.localize("FT.game.setting.damageMultiplierStrategy.options.multiply"),
       },
       required: true,
       nullable: false,
@@ -128,8 +128,8 @@ Hooks.once("init", async function () {
   });
 
   game.settings.register(FT.id, "addCastingFatigueAuto", {
-    name: game.i18n.localize("FT.game.settings.addCastingFatigueAuto.name"),
-    hint: game.i18n.localize("FT.game.settings.addCastingFatigueAuto.hint"),
+    name: game.i18n.localize("FT.game.setting.addCastingFatigueAuto.name"),
+    hint: game.i18n.localize("FT.game.setting.addCastingFatigueAuto.hint"),
     scope: "world",
     type: new BooleanField({
       required: true,
@@ -140,8 +140,8 @@ Hooks.once("init", async function () {
   });
 
   game.settings.register(FT.id, "useManaFirst", {
-    name: game.i18n.localize("FT.game.settings.useManaFirst.name"),
-    hint: game.i18n.localize("FT.game.settings.useManaFirst.hint"),
+    name: game.i18n.localize("FT.game.setting.useManaFirst.name"),
+    hint: game.i18n.localize("FT.game.setting.useManaFirst.hint"),
     scope: "world",
     type: new BooleanField({
       required: true,
@@ -152,8 +152,8 @@ Hooks.once("init", async function () {
   });
 
   game.settings.register(FT.id, "showItemIcons", {
-    name: game.i18n.localize("FT.game.settings.showItemIcons.name"),
-    hint: game.i18n.localize("FT.game.settings.showItemIcons.hint"),
+    name: game.i18n.localize("FT.game.setting.showItemIcons.name"),
+    hint: game.i18n.localize("FT.game.setting.showItemIcons.hint"),
     scope: "world",
     type: new BooleanField({ initial: true }),
     config: true,
@@ -225,8 +225,8 @@ Hooks.once("init", async function () {
 /* -------------------------------------------- */
 
 Hooks.on("ready", async () => {
-  ui.notifications.info(game.i18n.localize("FT.messages.disclaimer"));
-  ui.notifications.info(game.i18n.localize("FT.messages.notice"));
+  ui.notifications.info(game.i18n.localize("FT.game.message.disclaimer"));
+  ui.notifications.info(game.i18n.localize("FT.game.message.notice"));
   console.info(FT.prefix, "System ready");
 
   // Check for PDF Pager module and enable integration if active
