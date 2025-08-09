@@ -38,7 +38,12 @@
     }
 
     section#actions {
-      @apply h-[12em];
+      &.character__hero {
+        @apply h-[12em];
+      }
+      &.character__wizard {
+        @apply h-[9.5rem];
+      }
       .action-item {
         @apply grid grid-cols-[5%_30%_65%] gap-1 text-xs m-0 p-1;
         img.action-item__image {
