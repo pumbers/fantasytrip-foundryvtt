@@ -1,12 +1,14 @@
 id: fantasy-trip
-version: 0.3.0
+version: 0.3.1
 title: Fantasy Trip
 description: Fantasy Trip for FoundryVTT (Unofficial - Alpha)
 compatibility:
   minimum: "13"
-  verified: "13.346"
+  verified: "13.347"
 authors:
   - name: 3rdDog
+    email: paul.umbers@gmail.com
+    discord: 3rddogpaul
 license: LICENSE.txt
 url: https://github.com/pumbers/fantasytrip-foundryvtt
 manifest: "#{MANIFEST}#"

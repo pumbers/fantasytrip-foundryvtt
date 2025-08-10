@@ -1,6 +1,6 @@
 {
   "name": "fantasy-trip",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Fantasy Trip for Foundry VTT",
   "scripts": {
     "build": "gulp build",
