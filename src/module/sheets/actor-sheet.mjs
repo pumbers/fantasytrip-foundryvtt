@@ -452,7 +452,6 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
     },
     notes: {
       template: `${FT.path}/templates/sheet/actor/tab-notes.hbs`,
-      templates: [`${FT.path}/templates/sheet/_notes.hbs`],
     },
     inventory: {
       template: `${FT.path}/templates/sheet/actor/npc/tab-inventory.hbs`,
