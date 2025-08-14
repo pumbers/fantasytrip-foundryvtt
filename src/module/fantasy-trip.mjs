@@ -130,33 +130,39 @@ Hooks.once("init", async function () {
   game.settings.register(FT.id, "addCastingFatigueAuto", {
     name: game.i18n.localize("FT.game.setting.addCastingFatigueAuto.name"),
     hint: game.i18n.localize("FT.game.setting.addCastingFatigueAuto.hint"),
-    scope: "world",
+    scope: "user",
     type: new BooleanField({
       required: true,
       nullable: false,
       initial: true,
     }),
     config: true,
+    restricted: false,
+    requiresReload: false,
   });
 
   game.settings.register(FT.id, "useManaFirst", {
     name: game.i18n.localize("FT.game.setting.useManaFirst.name"),
     hint: game.i18n.localize("FT.game.setting.useManaFirst.hint"),
-    scope: "world",
+    scope: "user",
     type: new BooleanField({
       required: true,
       nullable: false,
       initial: true,
     }),
     config: true,
+    restricted: false,
+    requiresReload: false,
   });
 
   game.settings.register(FT.id, "showItemIcons", {
     name: game.i18n.localize("FT.game.setting.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.setting.showItemIcons.hint"),
-    scope: "world",
+    scope: "user",
     type: new BooleanField({ initial: true }),
     config: true,
+    restricted: false,
+    requiresReload: false,
   });
 
   game.settings.register(FT.id, "pdfPagerEnabled", {

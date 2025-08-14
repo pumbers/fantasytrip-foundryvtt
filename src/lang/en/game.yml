@@ -23,13 +23,6 @@ FT:
         options:
           rollTimes: Roll the damage a number of times
           multiply: Roll the damage once and multiply
-      showItemIcons:
-        name: Show Item Icons
-        hint: Show icons in item tables?
-      combatantNPCGroupByActor:
-        name: Group NPC Combatants by Actor
-        hint: >
-          When using group initiative, group NPC combatants by the Actor name rather than a single NPC group, eg: all goblins, all trolls, etc.
       addCastingFatigueAuto:
         name: Add Casting Fatigue Automatically
         hint: >
@@ -38,6 +31,9 @@ FT:
         name: Use item mana first when casting spells
         hint: >
           When casting spells, use mana from readied items before character ST.
+      showItemIcons:
+        name: Show Item Icons
+        hint: Show icons in item tables?
     rollMode:
       roll: Default
       publicroll: Public
@@ -58,6 +54,10 @@ FT:
       noCapacity: "{container} is not big enough."
       noDropContainer: "{item} is a container and cannot be dropped onto another container."
       insufficientIQ: Sorry, you don't have the IQ to learn {name}.
+      combat:
+        start: First Round - Movement!
+        movement: New round - Movement!
+        fight: New Round - Combat!
     label:
       notes: Notes
     option:
