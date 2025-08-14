@@ -68,6 +68,7 @@ FT:
         broken: The {weapon} shatters into pieces!
         maybeBroken: Their staff, if readied, breaks in twain!
         fatigued: A wave of fatigue staggers them.
+        strained: A wave of fatigue hits and they fall to the ground from the strain.
         knockdown: They fall to the ground!
         damage: They take {damage} damage from cuts & bruises.
     combat:
@@ -85,7 +86,7 @@ FT:
           - "{name} is caught off guard by a brutal {damageTaken} point onslaught that leaves them stumbling back."
         down:
           - "{name} takes {damageTaken} point(s) and falls motionless to the ground, unaware of anything except the searing pain of their wounds."
-          - "{name} is consumed by pain as they take a {damageTaken} point hit, losing consciousness from the sheer force of it all."
+          - "{name} is consumed by pain as they take a {damageTaken} point hit, losing consciousness from the sheer strain of it all."
           - "{name} takes {damageTaken} point(s) and is trapped in a world of darkness and agony, unable to escape the effects of the attack."
           - "{name} can't even lift their head off the ground as they take {damageTaken} point(s) of damage from the attack."
           - "{name} loses all sense of reality as they stumble backward, unable to stay conscious after taking {damageTaken} point(s) of damage."

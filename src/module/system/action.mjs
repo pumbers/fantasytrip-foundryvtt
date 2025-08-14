@@ -458,8 +458,8 @@ export function castingRoll(actor, spell, options = {}) {
 
       // Add fatigue and/or subtract item mana for successful casting
       if (game.settings.get(FT.id, "addCastingFatigueAuto")) {
-        actor.update({ "system.fatigue": actor.system.fatigue + stCost });
-        actor.update({ "system.mana.value": actor.system.mana.value - manaCost });
+        await actor.update({ "system.fatigue": actor.system.fatigue + stCost });
+        await actor.update({ "system.mana.value": actor.system.mana.value - manaCost });
       }
 
       // If the spell can be maintained...
@@ -487,6 +487,13 @@ export function castingRoll(actor, spell, options = {}) {
         message = message.concat(" ", game.i18n.format("FT.system.roll.result.maybeBroken"));
         message = message.concat(" ", game.i18n.format("FT.system.roll.result.fatigued"));
         message = message.concat(" ", game.i18n.format("FT.system.roll.result.knockdown"));
+      }
+
+      // If the actor used all their fatigue...
+      console.log("CASTING", "ST", actor.system.st.value, "FATIGUE", actor.system.fatigue, actor.system.isDown);
+      if (actor.system.isDown) {
+        actor.toggleStatusEffect("unconscious", { active: true, overlay: true });
+        message = message.concat(" ", game.i18n.format("FT.system.roll.result.strained"));
       }
 
       const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/dice-roll.hbs`, {
@@ -697,6 +704,7 @@ function _applyDamage(actor, damageTaken, options = {}) {
   // console.log("Action._applyDamage", actor, damageTaken, options);
   actor.update({ "system.damage": actor.system.damage + damageTaken }).then((updatedActor) => {
     if (updatedActor?.system.isDead) {
+      updatedActor.toggleStatusEffect("dead", { active: true, overlay: true });
       ChatMessage.create({
         flavor: game.i18n.format(`FT.system.combat.chat.dead.${Math.floor(Math.random() * 6)}`, {
           name: actor.parent?.name ?? actor.name,
@@ -704,6 +712,7 @@ function _applyDamage(actor, damageTaken, options = {}) {
         }),
       });
     } else if (updatedActor?.system.isDown) {
+      updatedActor.toggleStatusEffect("unconscious", { active: true, overlay: true });
       ChatMessage.create({
         flavor: game.i18n.format(`FT.system.combat.chat.down.${Math.floor(Math.random() * 6)}`, {
           name: actor.parent?.name ?? actor.name,
@@ -711,7 +720,7 @@ function _applyDamage(actor, damageTaken, options = {}) {
         }),
       });
     } else if (damageTaken >= 8) {
-      updatedActor.toggleStatusEffect("stun", { active: true });
+      updatedActor.toggleStatusEffect("stun", { active: true, overlay: true });
       ChatMessage.create({
         flavor: game.i18n.format(`FT.system.combat.chat.stunned.${Math.floor(Math.random() * 6)}`, {
           name: actor.parent?.name ?? actor.name,

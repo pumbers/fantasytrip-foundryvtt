@@ -123,10 +123,6 @@ export class FTActor extends Actor {
           break;
       }
     });
-
-    // Apply status effects if character is down or dead
-    this.toggleStatusEffect("unconscious", { active: this.system.isDown });
-    this.toggleStatusEffect("dead", { active: this.system.isDead });
   }
 
   /* ------------------------------------------- */
