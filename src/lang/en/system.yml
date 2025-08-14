@@ -77,6 +77,7 @@ FT:
         combat: Combat
       chat:
         damaged: "{name} takes {damageTaken} damage."
+        unaffected: "{name} is unaffected by the {damageTaken} damage making it past their defenses."
         stunned:
           - "{name} is struck for a total of {damageTaken} point(s), leaving them reeling."
           - "{name} stumbles around, trying to clear their head after taking {damageTaken} point(s) of damage from the attack."

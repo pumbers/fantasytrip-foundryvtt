@@ -34,7 +34,9 @@
         </div>
     </div>
 </div>
+{{#if roll.total}}
 <button type="button" class="!mt-4 w-full ft-restricted ft-show-gm" data-ft-action="applyDamage"
     data-token-id="{{token.id}}" data-token-name="{{token.name}}" data-actor-id="{{actor.id}}"
     data-damage="{{roll.total}}">{{localize "FT.system.combat.chat.action.applyDamage" name=token.name
     damage=roll.total}}</button>
+{{/if}}

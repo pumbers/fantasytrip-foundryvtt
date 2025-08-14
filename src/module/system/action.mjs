@@ -701,7 +701,20 @@ export async function applyDamage(actor, damage, options) {
  * @param {Object} options
  */
 function _applyDamage(actor, damageTaken, options = {}) {
-  // console.log("Action._applyDamage", actor, damageTaken, options);
+  console.log("Action._applyDamage", actor, damageTaken, options);
+
+  // If net damage is zero, don't bother applying it
+  if (damageTaken === 0) {
+    ChatMessage.create({
+      flavor: game.i18n.format("FT.system.combat.chat.unaffected", {
+        name: actor.parent?.name ?? actor.name,
+        damageTaken,
+      }),
+    });
+    return;
+  }
+
+  // Otherwise, apply it to the target
   actor.update({ "system.damage": actor.system.damage + damageTaken }).then((updatedActor) => {
     if (updatedActor?.system.isDead) {
       updatedActor.toggleStatusEffect("dead", { active: true, overlay: true });
