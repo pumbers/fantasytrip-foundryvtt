@@ -149,6 +149,6 @@ export class FTCombat extends foundry.documents.Combat {
  */
 Hooks.on("ready", async () => {
   if (game.modules.get("monks-combat-details")?.active && game.settings.get(FT.id, "useFTInitiative")) {
-    ui.notifications.warn(game.i18n.localize("FT.game.message.monksWarning"));
+    ui.notifications.warn("FT.game.message.monksWarning", { localize: true });
   }
 });

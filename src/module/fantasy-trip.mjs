@@ -231,8 +231,8 @@ Hooks.once("init", async function () {
 /* -------------------------------------------- */
 
 Hooks.on("ready", async () => {
-  ui.notifications.info(game.i18n.localize("FT.game.message.disclaimer"));
-  ui.notifications.info(game.i18n.localize("FT.game.message.notice"));
+  ui.notifications.info("FT.game.message.disclaimer", { localize: true });
+  ui.notifications.info("FT.game.message.notice", { localize: true });
   console.info(FT.prefix, "System ready");
 
   // Check for PDF Pager module and enable integration if active

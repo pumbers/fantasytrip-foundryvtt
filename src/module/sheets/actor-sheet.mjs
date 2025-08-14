@@ -288,13 +288,21 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
 
       // Check if the item is a container itself and is being dropped on a container
       if (!!container && item.system.isContainer) {
-        ui.notifications.warn(game.i18n.format("FT.game.message.noDropContainer", { item: item.name }));
+        ui.notifications.warn("FT.game.message.noDropContainer", {
+          localize: true,
+          console: false,
+          format: { item: item.name },
+        });
         return item;
       }
 
       // Check if the container has remaining capacity...
       if (item.system.wt > container?.system.remaining) {
-        ui.notifications.warn(game.i18n.format("FT.game.message.noCapacity", { container: container.name }));
+        ui.notifications.warn("FT.game.message.noCapacity", {
+          localize: true,
+          console: false,
+          format: { container: container.name },
+        });
         return item;
       }
 
@@ -309,7 +317,10 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       }
     } else if (game.settings.get(FT.id, "checkIQForLearned") && FT.item.learned.types.includes(item.type)) {
       if (item.system.minIQ > this.actor.system.iq.max) {
-        ui.notifications.error(game.i18n.format("FT.game.message.insufficientIQ", { name: item.name }));
+        ui.notifications.error("FT.game.message.insufficientIQ", {
+          localize: true,
+          format: { actor: this.actor.name, talent: item.name },
+        });
         return;
       }
     }

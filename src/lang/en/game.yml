@@ -53,7 +53,7 @@ FT:
         Please ensure the setting "Reroll Initiative" in the module <b>Monk's Combat Details</b> is disabled as it may interfere with Fantasy Trip initiative.
       noCapacity: "{container} is not big enough."
       noDropContainer: "{item} is a container and cannot be dropped onto another container."
-      insufficientIQ: Sorry, you don't have the IQ to learn {name}.
+      insufficientIQ: "Sorry, {actor} doesn't have the IQ to learn {talent}."
       combat:
         start: First Round - Movement!
         movement: New round - Movement!
