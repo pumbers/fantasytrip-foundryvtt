@@ -11,8 +11,8 @@ FT.prefix = "Fantasy Trip |";
 FT.settings = {
   damageMultiplierStrategy: {
     options: {
-      rollTimes: "FT.game.settings.damageMultiplierStrategy.options.rollTimes",
-      multiply: "FT.game.settings.damageMultiplierStrategy.options.multiply",
+      rollTimes: "FT.game.setting.damageMultiplierStrategy.options.rollTimes",
+      multiply: "FT.game.setting.damageMultiplierStrategy.options.multiply",
     },
   },
 };
