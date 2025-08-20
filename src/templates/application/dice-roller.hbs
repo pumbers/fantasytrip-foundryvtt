@@ -1,5 +1,7 @@
 <div class="flex flex-col gap-2 justify-between">
     {{!-- {{log .}} --}}
+
+    {{!-- Roll Icons --}}
     <div class="flex flex-row gap-4">
         <img class="w-16 h-16" src="{{actor.img}}" alt="{{actor.name}}" title="{{actor.name}}">
         {{#if talent}}
@@ -121,4 +123,5 @@
         <button type="submit" form="ft-dice-roller" value="submit"><i class="fa fa-dice"></i>{{localize
             "FT.app.dice.action.submit"}}</button>
     </div>
+
 </div>

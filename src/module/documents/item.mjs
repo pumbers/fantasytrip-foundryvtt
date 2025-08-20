@@ -34,10 +34,7 @@ export class FTItem extends Item {
    * Send item details to chat
    */
   async chat() {
-    const content = await foundry.applications.handlebars.renderTemplate(
-      `${CONFIG.FT.path}/templates/chat/item.hbs`,
-      this
-    );
+    const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/item.hbs`, this);
     ChatMessage.create({
       content: content,
       flavor: this.name,
