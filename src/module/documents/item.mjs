@@ -1,13 +1,13 @@
 import { FT } from "../system/config.mjs";
 
-/**
+/*****************************************************************************
  * Fantasy Trip Item
- * @extends {Item} Extends the basic Item
- */
-export class FTItem extends Item {
-  /* ------------------------------------------- */
-  /*  Data Preparation                           */
-  /* ------------------------------------------- */
+ *****************************************************************************/
+
+export class FTItem extends foundry.documents.Item {
+  /**
+   * Data Preparation
+   */
 
   prepareDerivedData() {
     // console.log("FTItem.prepareDerivedData()", this);
@@ -26,13 +26,10 @@ export class FTItem extends Item {
     }
   }
 
-  /* ------------------------------------------- */
-  /*  Action & Utility Functions                 */
-  /* ------------------------------------------- */
-
   /**
-   * Send item details to chat
+   * Action & Utility Functions
    */
+
   async chat() {
     const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/item.hbs`, this);
     ChatMessage.create({

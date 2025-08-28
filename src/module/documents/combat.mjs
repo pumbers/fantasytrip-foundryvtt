@@ -17,8 +17,6 @@ Hooks.on("renderCombatTracker", async (app, html, data) => {
 
 /**
  * Override Combat class functions to implement Fantasy Trip initiative.
- *
- * @inheritdoc
  */
 export class FTCombat extends foundry.documents.Combat {
   /**

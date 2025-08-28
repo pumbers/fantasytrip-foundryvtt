@@ -14,16 +14,16 @@ import * as Helpers from "./util/helpers.mjs";
 
 const { StringField, NumberField, BooleanField } = foundry.data.fields;
 
-/* -------------------------------------------- */
-/*  Define Module Structure                         
-/* -------------------------------------------- */
+/**
+ /*  Define Module Structure                         
+ */
 
 Hooks.once("init", async function () {
   console.info(FT.prefix, "Initializing the Fantasy Trip Game System");
 
-  /* -------------------------------------------- */
-  /*  Config                            
-  /* -------------------------------------------- */
+  /**
+   *  Config
+   */
 
   // Add custom constants for configuration.
   CONFIG.FT = FT;
@@ -41,9 +41,9 @@ Hooks.once("init", async function () {
   CONFIG.Combat.initiative.formula = "1d6+@initiative.situation+@initiative.self+(1d6/10)+(1d6/100)";
   CONFIG.Actor.trackableAttributes = { character: { bar: ["st"], value: [] }, npc: { bar: ["st"], value: [] } };
 
-  /* -------------------------------------------- */
-  /*  Game Settings                            
-  /* -------------------------------------------- */
+  /**
+   * Game Settings
+   */
 
   game.settings.register(FT.id, "initialAP", {
     name: game.i18n.localize("FT.game.setting.initialAP.name"),
@@ -170,9 +170,9 @@ Hooks.once("init", async function () {
     type: new BooleanField({ initial: false }),
   });
 
-  /* -------------------------------------------- */
-  /*  Define Documents & Sheets                           
-  /* -------------------------------------------- */
+  /**
+   * Define Documents & Sheets
+   */
 
   // Actor document configuration
   CONFIG.Actor.dataModels = { character: FTActorData, npc: FTActorData };
@@ -198,9 +198,9 @@ Hooks.once("init", async function () {
   // Other document configuration
   CONFIG.Combat.documentClass = FTCombat;
 
-  /* -------------------------------------------- */
-  /*  Handlebars Helpers & Partials                      
-  /* -------------------------------------------- */
+  /**
+   * Handlebars Helpers & Partials
+   */
 
   Handlebars.registerHelper("log", Helpers.log);
   Handlebars.registerHelper("stringify", Helpers.stringify);
@@ -226,9 +226,9 @@ Hooks.once("init", async function () {
   ]);
 });
 
-/* -------------------------------------------- */
-/*  Startup Messages                           
-/* -------------------------------------------- */
+/**
+ * Startup Messages
+ */
 
 Hooks.on("ready", async () => {
   ui.notifications.info("FT.game.message.disclaimer", { localize: true });

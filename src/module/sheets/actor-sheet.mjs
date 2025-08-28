@@ -6,15 +6,14 @@ import * as Transfer from "../util/transfer.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
-/**
+/*****************************************************************************
  * Fantasy Trip Base Character Sheet
- *
- * @extends {ActorSheetV2} Extends the basic ActorSheetV2
- */
+ *****************************************************************************/
+
 class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
-  /* -------------------------------------------- */
-  /*  Sheet Setup                     
-  /* -------------------------------------------- */
+  /**
+   * Sheet Setup
+   */
 
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
@@ -31,11 +30,6 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
           label: "Export to Standard Text Format",
           action: "exportStandardText",
         },
-        // {
-        //   icon: "fa fa-download",
-        //   label: "Export to XML",
-        //   action: "exportXML",
-        // },
       ],
     },
     form: {
@@ -70,7 +64,6 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       //
       import: FTBaseCharacterSheet.#import,
       exportStandardText: FTBaseCharacterSheet.#exportStandardText,
-      // exportXML: FTBaseCharacterSheet.#exportXML,
     },
   };
 
@@ -78,9 +71,9 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     return game.i18n.format("FT.actor.sheet.title", { name: this.actor.name });
   }
 
-  /* ------------------------------------------- */
-  /*  Sheet Data Preparation                     */
-  /* ------------------------------------------- */
+  /**
+   * Data Preparation
+   */
 
   /** @inheritdoc */
   async _prepareContext(options) {
@@ -142,9 +135,9 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     return context;
   }
 
-  /* -------------------------------------------- */
-  /*  Action Functions                       
-  /* -------------------------------------------- */
+  /**
+   * Action & Utility Functions
+   */
 
   static #chat(event, target) {
     console.log("#chat()", target.dataset);
@@ -256,9 +249,9 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     Effects.onManageActiveEffect(this.actor, event, target);
   }
 
-  /* -------------------------------------------- */
-  /*  Drag/Drop Functions                       
-  /* -------------------------------------------- */
+  /**
+   * Drag/Drop Functions
+   */
 
   async _onDropFolder(event, data) {
     console.log("_onDropFolder()", "event", event, "data", data);
@@ -334,9 +327,9 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     return this.actor.createEmbeddedDocuments("Item", data);
   }
 
-  /* -------------------------------------------- */
-  /*  Import/Export Functions                       
-  /* -------------------------------------------- */
+  /**
+   * Import/Export Functions
+   */
 
   static async #import() {
     console.log("#import()");
@@ -353,13 +346,17 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     a.click();
     a.remove();
   }
-
-  // static #exportXML() {
-  //   console.log("#exportXML()");
-  // }
 }
 
+/*****************************************************************************
+ * Fantasy Trip Character Sheet
+ *****************************************************************************/
+
 export class FTCharacterSheet extends FTBaseCharacterSheet {
+  /**
+   * Sheet Setup
+   */
+
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes: [FT.id, "character", "sheet"],
@@ -422,10 +419,14 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
   };
 }
 
-/**
+/*****************************************************************************
  * Fantasy Trip NPC Sheet
- * @extends {ActorSheet} Extends the FTCHaracterSheet
+ *****************************************************************************/
+
+/**
+ * Sheet Setup
  */
+
 export class FTNPCSheet extends FTBaseCharacterSheet {
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {

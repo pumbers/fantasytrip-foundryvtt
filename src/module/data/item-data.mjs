@@ -9,6 +9,10 @@ const {
   BooleanField,
 } = foundry.data.fields;
 
+/*****************************************************************************
+ * Embedded Models
+ *****************************************************************************/
+
 class FTEmbeddedAttack extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
@@ -42,9 +46,10 @@ class FTEmbeddedSpell extends foundry.abstract.DataModel {
   }
 }
 
-/**
+/*****************************************************************************
  * Fantasy Trip Base Item Data Model
- */
+ *****************************************************************************/
+
 class FTBaseItemData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {
@@ -76,9 +81,10 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
   }
 }
 
-/**
+/*****************************************************************************
  * Fantasy Trip Talent Data Model
- */
+ *****************************************************************************/
+
 export class FTTalentData extends FTBaseItemData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
@@ -97,9 +103,10 @@ export class FTTalentData extends FTBaseItemData {
   }
 }
 
-/**
+/*****************************************************************************
  * Fantasy Trip Ability Data Model
- */
+ *****************************************************************************/
+
 export class FTAbilityData extends FTBaseItemData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
@@ -117,9 +124,10 @@ export class FTAbilityData extends FTBaseItemData {
   }
 }
 
-/**
+/*****************************************************************************
  * Fantasy Trip Spell Data Model
- */
+ *****************************************************************************/
+
 export class FTSpellData extends FTTalentData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
@@ -159,9 +167,10 @@ export class FTSpellData extends FTTalentData {
   }
 }
 
-/**
+/*****************************************************************************
  * Fantasy Trip Equipment Data Model
- */
+ *****************************************************************************/
+
 export class FTEquipmentData extends FTBaseItemData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {

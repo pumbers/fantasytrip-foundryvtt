@@ -1,14 +1,13 @@
 import { FT } from "../system/config.mjs";
 
-/**
+/*****************************************************************************
  * Fantasy Trip Actor
- *
- * @extends {Actor} Extends the basic Actor
- */
-export class FTActor extends Actor {
-  /* ------------------------------------------- */
-  /*  Data Preparation                           */
-  /* ------------------------------------------- */
+ *****************************************************************************/
+
+export class FTActor extends foundry.documents.Actor {
+  /**
+   * Data Preparation
+   */
 
   // Call sequence is:
   // ActorDataModel.prepareBaseData()
@@ -125,13 +124,10 @@ export class FTActor extends Actor {
     });
   }
 
-  /* ------------------------------------------- */
-  /*  Action & Utility Functions                 */
-  /* ------------------------------------------- */
-
   /**
-   * Send character details to chat
+   * Action & Utility Functions
    */
+
   chat(speaker) {
     // console.log("chat()", this);
     foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/actor.hbs`, this).then((content) =>

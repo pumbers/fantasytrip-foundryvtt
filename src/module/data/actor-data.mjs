@@ -1,9 +1,10 @@
 import { FT } from "../system/config.mjs";
-const { SchemaField, NumberField, StringField, HTMLField, BooleanField } = foundry.data.fields;
+const { SchemaField, NumberField, StringField, HTMLField } = foundry.data.fields;
 
-/**
+/*****************************************************************************
  * Fantasy Trip Actor Data Model
- */
+ *****************************************************************************/
+
 export class FTActorData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     return {

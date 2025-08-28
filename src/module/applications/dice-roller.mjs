@@ -2,10 +2,15 @@ import { FT } from "../system/config.mjs";
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
 
-/**
+/*****************************************************************************
  * Dice Roller Application
- */
+ *****************************************************************************/
+
 export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
+  /**
+   * App Setup
+   */
+
   static DEFAULT_OPTIONS = {
     id: "ft-dice-roller",
     classes: [FT.id, "dice-roller"],
@@ -29,6 +34,10 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
     },
   };
 
+  /**
+   * Data Preparation
+   */
+
   static #context = {};
 
   async _prepareContext(options) {
@@ -51,6 +60,10 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
     // console.log("FTDiceRollerApp._prepareContext()", "#context", FTDiceRollerApp.#context);
     return FTDiceRollerApp.#context;
   }
+
+  /**
+   * Action & Utility Functions
+   */
 
   static onSubmit(event, _, formData) {
     // console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);

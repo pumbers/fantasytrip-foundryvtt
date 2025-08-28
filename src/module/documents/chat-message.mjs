@@ -22,8 +22,6 @@ Hooks.on("renderChatMessageHTML", async (chatMessage, html, messageData) => {
 
 /**
  * Collect damage roll parameters and evaluate the roll.
- *
- * @param {Event} event
  */
 const onDamageRoll = async (event) => {
   // console.log("onDamageRoll()", event.target.dataset);
@@ -38,8 +36,6 @@ const onDamageRoll = async (event) => {
 
 /**
  * Collect damage parameters and apply them to a target actor.
- *
- * @param {Event} event
  */
 const onApplyDamage = async (event) => {
   // console.log("onApplyDamage()", event.target.dataset);

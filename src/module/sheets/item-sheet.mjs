@@ -3,12 +3,15 @@ import * as Effects from "../util/effects.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 
-/**
+/*****************************************************************************
  * Fantasy Trip Item Sheet
- *
- * @extends {ItemSheet}
- */
+ *****************************************************************************/
+
 export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
+  /**
+   * Sheet Setup
+   */
+
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     classes: [FT.id, "item", "sheet"],
@@ -37,7 +40,6 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     },
   };
 
-  /** @inheritdoc */
   /** @inheritdoc */
   static TABS = {
     primary: {
@@ -71,9 +73,9 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     return game.i18n.format("FT.item.sheet.title", { name: this.item.name });
   }
 
-  /* ------------------------------------------- */
-  /*  Sheet Data Preparation                     */
-  /* ------------------------------------------- */
+  /**
+   * Data Preparation
+   */
 
   /** @inheritdoc */
   async _prepareContext(options) {
@@ -136,9 +138,9 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     return context;
   }
 
-  /* ------------------------------------------- */
-  /*  Sheet Listeners & Handlers                 */
-  /* ------------------------------------------- */
+  /**
+   * Action & Utility Functions
+   */
 
   static #addAttack(event, target) {
     console.log("#addAttack", target.dataset);
