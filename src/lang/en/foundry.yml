@@ -1,0 +1,9 @@
+TYPES:
+  Actor:
+    character: Player Character
+    npc: Non-Player Character
+  Item:
+    equipment: Equipment
+    talent: Talent
+    spell: Spell
+    ability: Ability
