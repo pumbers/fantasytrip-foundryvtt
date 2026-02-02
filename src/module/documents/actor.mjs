@@ -86,7 +86,8 @@ export class FTActor extends foundry.documents.Actor {
         weapon.system.attacks.forEach((attack) => {
           // To Hit
           const talent = this.getEmbeddedDocument("Item", attack.talent);
-          attack.dice = weapon.type === "equipment" && !talent ? 4 : 3;
+          attack.dice =
+            weapon.type === "equipment" && !talent ? (game.settings.get(FT.id, "defaultUnskilled4d6") ? 4 : 3) : 3;
           attack.minSTMod = Math.min(this.system.st.max - attack.minST, 0);
           attack.attackTypeMod = this.system.dx.modFor[attack.type];
           attack.toHit = this.system.dx.value + attack.minSTMod + attack.toHitMod + attack.attackTypeMod;
@@ -95,7 +96,7 @@ export class FTActor extends foundry.documents.Actor {
           attack.stDamageMod = Math.floor(Math.min(system.st.max - attack.minST, 0) / 2);
           attack.finalDamage = attack.baseDamage?.concat(
             attack.stDamageMod <= 0 ? "" : "+",
-            attack.stDamageMod === 0 ? "" : attack.stDamageMod
+            attack.stDamageMod === 0 ? "" : attack.stDamageMod,
           );
 
           // Calculate worst initiative DX using readied weapons
@@ -135,7 +136,7 @@ export class FTActor extends foundry.documents.Actor {
         content: content,
         flavor: this.name,
         speaker,
-      })
+      }),
     );
   }
 }

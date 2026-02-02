@@ -155,6 +155,20 @@ Hooks.once("init", async function () {
     requiresReload: false,
   });
 
+  game.settings.register(FT.id, "defaultUnskilled4d6", {
+    name: game.i18n.localize("FT.game.setting.defaultUnskilled4d6.name"),
+    hint: game.i18n.localize("FT.game.setting.defaultUnskilled4d6.hint"),
+    scope: "user",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: true,
+    }),
+    config: true,
+    restricted: false,
+    requiresReload: true,
+  });
+
   game.settings.register(FT.id, "showItemIcons", {
     name: game.i18n.localize("FT.game.setting.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.setting.showItemIcons.hint"),
