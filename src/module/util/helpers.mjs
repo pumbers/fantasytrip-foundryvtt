@@ -7,7 +7,7 @@
  * Send an object to the console log for debugging
  */
 export function log(obj) {
-  console.log(obj);
+  console.log(...Array.from(arguments).slice(0, -1));
 }
 
 /**
