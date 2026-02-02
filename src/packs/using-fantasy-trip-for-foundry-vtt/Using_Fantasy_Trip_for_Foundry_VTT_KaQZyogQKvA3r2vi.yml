@@ -426,7 +426,10 @@ pages:
         fine or magical weapons, such as a +1 sword.</p></li><li><p>The
         <strong>Base Damage</strong> is the damage the attack does under normal
         circumstances. This may be multiplied for critical
-        hits.</p></li><li><p>The <strong>Min ST to Use</strong> is the minimum
+        hits.</p></li><li><p>The <strong>Talent To Use</strong> sets which character
+        Talent will be used to make the attack. If no talent is set (Unskilled),
+        then the number of dice rolled to make the attack may change (depending
+        on game settings).</p></li><li><p>The <strong>Min ST to Use</strong> is the minimum
         ST the character needs to wield the weapon. If they don't meet this
         requirement, then attack penalties are automatically
         applied.</p></li></ul><p>It will probably be an item of equipment that
