@@ -749,8 +749,8 @@ pages:
         is rolled for movement initiative, then all movement takes place, then
         combat takes place in order of adjusted DX (using the rolled initiative
         as a tie breaker).</p><p>In Foundry, this is implemented within the
-        standard round/turn structure with even numbered rounds as movement
-        rounds with a rolled initiative and odd numbered rounds as combat
+        standard round/turn structure with odd numbered rounds as movement
+        rounds with a rolled initiative and even numbered rounds as combat
         rounds. For example:</p><img
         src="systems/fantasy-trip/assets/images/instructions/combat_encounter_1.webp"
         /><p>Uldor has unexpectedly run into a lone Goblin. The GM creates an
