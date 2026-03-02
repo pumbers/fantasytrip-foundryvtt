@@ -104,5 +104,5 @@ FT:
           applyDamage: Apply {damage} Damage to {name}
       range:
         scale:
-          thrown: -1/hex
-          missile: -1/megahex
+          thrown: -1/H
+          missile: -1/2 MH
