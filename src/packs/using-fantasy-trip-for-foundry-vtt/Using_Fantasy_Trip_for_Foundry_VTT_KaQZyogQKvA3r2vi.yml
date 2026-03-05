@@ -102,7 +102,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "13.342"
+      coreVersion: '13.342'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
@@ -110,7 +110,7 @@ pages:
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
       exportSource: null
     category: null
-    _key: "!journal.pages!KaQZyogQKvA3r2vi.Ahcj5Hf12oLopn4U"
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.Ahcj5Hf12oLopn4U'
   - sort: 200000
     name: Character Sheet
     type: text
@@ -163,11 +163,11 @@ pages:
         character becomes fatigued it shows here as an amber bar. When they take
         damage it shows as a red bar. Both can be shown at the same
         time.</p></li><li><p><strong>Mana</strong> - this shows any Mana
-        available to the character from objects they have readied, such as
-        their Staff.</p></li><li><p>Finally, there are a series of fields to
-        record current <strong>Fatigue</strong> or <strong>Damage</strong>
-        taken, Mana available, and a series of modifiers for ST, DX, IQ, MA, and
-        Initiative. These can be adjusted manually at any
+        available to the character from objects they have readied, such as their
+        Staff.</p></li><li><p>Finally, there are a series of fields to record
+        current <strong>Fatigue</strong> or <strong>Damage</strong> taken, Mana
+        available, and a series of modifiers for ST, DX, IQ, MA, and Initiative.
+        These can be adjusted manually at any
         time.</p></li></ul></li><li><p>Lastly on this tab is the
         <strong>Actions</strong> area. Here, each block represents available
         actions, such as a ready weapon, readied armor, cast spells, etc. Most
@@ -274,11 +274,11 @@ pages:
         src="systems/fantasy-trip/assets/images/instructions/character_effects_tab_0.1.0.webp"
         /><p>The <strong>Effects</strong> tab shows any Active Effects attached
         to items in the character's possession. If the character has an item but
-        it is not Readied, the effect will not be listed. Each effect also
-        shows the changes that it makes to the character. Note that effects
-        derived from an item cannot be edited here, they must be edited on the
-        item itself. See the Item Sheet instructions for more.</p><p>You can
-        also create Active Effects directly on the character from here using the
+        it is not Readied, the effect will not be listed. Each effect also shows
+        the changes that it makes to the character. Note that effects derived
+        from an item cannot be edited here, they must be edited on the item
+        itself. See the Item Sheet instructions for more.</p><p>You can also
+        create Active Effects directly on the character from here using the
         Create button. Effects created in this way can be edited,
         enabled/disabled, and deleted from this tab. These can be used to
         represent spells, curses, diseases, and so on. Any changes made via
@@ -295,7 +295,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "13.345"
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
@@ -303,7 +303,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: "!journal.pages!KaQZyogQKvA3r2vi.8QpHd2w3fWyC0Oke"
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.8QpHd2w3fWyC0Oke'
   - sort: 300000
     name: Items and the Item Sheet
     type: text
@@ -426,20 +426,20 @@ pages:
         fine or magical weapons, such as a +1 sword.</p></li><li><p>The
         <strong>Base Damage</strong> is the damage the attack does under normal
         circumstances. This may be multiplied for critical
-        hits.</p></li><li><p>The <strong>Talent To Use</strong> sets which character
-        Talent will be used to make the attack. If no talent is set (Unskilled),
-        then the number of dice rolled to make the attack may change (depending
-        on game settings).</p></li><li><p>The <strong>Min ST to Use</strong> is the minimum
-        ST the character needs to wield the weapon. If they don't meet this
-        requirement, then attack penalties are automatically
-        applied.</p></li></ul><p>It will probably be an item of equipment that
-        has attacks, such as a sword, knife, staff, etc. But Spells and Talents
-        can also have attacks.</p><p>If a Talent has attacks, they might be
-        Martial Arts blows or natural weapons. If a spell has attacks, it might
-        be something like Fireball, Magic Fist, or Lightning. Remember, Talents
-        are always considered ready, so those attacks are always available. A
-        spell only becomes ready, and it's attacks available, if it is
-        successfully cast.</p><h3>Defenses</h3><img
+        hits.</p></li><li><p>The <strong>Talent To Use</strong> sets which
+        character Talent will be used to make the attack. If no talent is set
+        (Unskilled), then the number of dice rolled to make the attack may
+        change (depending on game settings).</p></li><li><p>The <strong>Min ST
+        to Use</strong> is the minimum ST the character needs to wield the
+        weapon. If they don't meet this requirement, then attack penalties are
+        automatically applied.</p></li></ul><p>It will probably be an item of
+        equipment that has attacks, such as a sword, knife, staff, etc. But
+        Spells and Talents can also have attacks.</p><p>If a Talent has attacks,
+        they might be Martial Arts blows or natural weapons. If a spell has
+        attacks, it might be something like Fireball, Magic Fist, or Lightning.
+        Remember, Talents are always considered ready, so those attacks are
+        always available. A spell only becomes ready, and it's attacks
+        available, if it is successfully cast.</p><h3>Defenses</h3><img
         src="systems/fantasy-trip/assets/images/instructions/item_defenses_o.1.0.webp"
         /><p>Each defense has just:</p><ul><li><p>A <strong>Defense
         Action</strong>, which is used purely descriptively, such as Block,
@@ -545,7 +545,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "13.346"
+      coreVersion: '13.346'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
@@ -553,7 +553,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: "!journal.pages!KaQZyogQKvA3r2vi.AGDQOLKibDzbaHh8"
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.AGDQOLKibDzbaHh8'
   - sort: 800000
     name: Writing Effects
     type: text
@@ -649,7 +649,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "13.342"
+      coreVersion: '13.342'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110064087
@@ -657,7 +657,7 @@ pages:
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
       exportSource: null
     category: null
-    _key: "!journal.pages!KaQZyogQKvA3r2vi.ZC0ir9H0OUqr0Ehw"
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.ZC0ir9H0OUqr0Ehw'
   - sort: 500000
     name: Dice Rolls
     type: text
@@ -715,7 +715,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "13.345"
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110077275
@@ -723,7 +723,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: "!journal.pages!KaQZyogQKvA3r2vi.7MY6ZNV0LvIRGWOF"
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.7MY6ZNV0LvIRGWOF'
   - sort: 600000
     name: Combat
     type: text
@@ -740,7 +740,7 @@ pages:
         structure of initiative/round/turn that is difficult to change and often
         results in fragile (ie: easily breakable) code. With the following
         implementation, I've tried to adapt it to Fantasy Trip's "split
-        initiative" structure as simply as possible to avoid problems. This  may
+        initiative" structure as simply as possible to avoid problems. This may
         change, but for now, here it is.</em></p><h2>Starting
         Combat</h2><p>Combat is initiated in the standard Foundry manner. Create
         a scene, create an encounter, add the combatants, roll starting
@@ -766,10 +766,23 @@ pages:
         based on adjusted DX with the previous initiative added as decimals to
         act as a tie breaker.</p><p>The GM can step through each combatant turn
         and the following rounds with Foundry automatically re-rolling
-        initiative as required.</p><h2>Attacks &amp; Damage</h2><p>To make an
-        attack, a combatant MUST have an appropriate talent or readied weapon.
-        Buttons for attacks &amp; damage show as readied items at the bottom of
-        the Character tab.</p><img
+        initiative as required.</p><h2>Movement</h2><p>Tokens are moved around
+        the map using the usual Foundry mechanisms: dragging with a mouse or
+        using the keyboard arrow keys.</p><p>As a token is moved, it's path is
+        highlighted on the map. Any movement less than the token's current MA is
+        highlighted in green, anything over it's MA is in red. This doesn't stop
+        you from moving a token too far, it just lets you know when you
+        are.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/character_movement.webp"
+        /><p></p><h3>Movement Type</h3><p>The token's current movement action is
+        shown on the character sheet next to the MA attribute: walk, fly, or
+        swim. It can be changed either from the character sheet using the button
+        next to the MA attribute, or from the token HUD using the <strong>Select
+        Movement Action</strong> icon. The two are linked, so changing one
+        changes the other.</p><h2>Attacks &amp; Damage</h2><p>To make an attack,
+        a combatant MUST have an appropriate talent or readied weapon. Buttons
+        for attacks &amp; damage show as readied items at the bottom of the
+        Character tab.</p><img
         src="systems/fantasy-trip/assets/images/instructions/dice_rolls_1.webp"
         /><p>Click on the button, and the Dice Roller will open with the
         required values preset. The various modifiers (situation, range, etc)
@@ -841,15 +854,15 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "13.345"
+      coreVersion: '13.351'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110089455
-      modifiedTime: 1750877592639
+      modifiedTime: 1772665560849
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: "!journal.pages!KaQZyogQKvA3r2vi.taYa6XujJcawZlXZ"
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.taYa6XujJcawZlXZ'
   - sort: 700000
     name: Casting Spells
     type: text
@@ -897,7 +910,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "13.345"
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110384981
@@ -905,7 +918,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: "!journal.pages!KaQZyogQKvA3r2vi.6iNkXDrerMY8ltYw"
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.6iNkXDrerMY8ltYw'
   - sort: 900000
     name: Creating Characters
     type: text
@@ -976,13 +989,13 @@ pages:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: "13.345"
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1752514256515
       modifiedTime: 1752527462068
       lastModifiedBy: DoJEEiLZ8CgYIaAq
-    _key: "!journal.pages!KaQZyogQKvA3r2vi.GES2Dzee8OJ1xWUj"
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.GES2Dzee8OJ1xWUj'
   - sort: 1000000
     name: Other Modules
     type: text
@@ -1025,13 +1038,13 @@ pages:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: "13.345"
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1752528433730
       modifiedTime: 1752529193814
       lastModifiedBy: DoJEEiLZ8CgYIaAq
-    _key: "!journal.pages!KaQZyogQKvA3r2vi.FUYQKlKYTXd1fZUb"
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.FUYQKlKYTXd1fZUb'
   - sort: 950000
     name: Transferring Characters
     type: text
@@ -1094,20 +1107,20 @@ pages:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: "13.345"
+      coreVersion: '13.345'
       systemId: fantasy-trip
       systemVersion: 0.1.1
       createdTime: 1753131038022
       modifiedTime: 1753133419152
       lastModifiedBy: DoJEEiLZ8CgYIaAq
-    _key: "!journal.pages!KaQZyogQKvA3r2vi.6ABA8cUE9l81EOWO"
+    _key: '!journal.pages!KaQZyogQKvA3r2vi.6ABA8cUE9l81EOWO'
 folder: null
 flags: {}
 _stats:
   compendiumSource: >-
     Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.lRHycMkpzFAIyGPx
   duplicateSource: null
-  coreVersion: "13.342"
+  coreVersion: '13.342'
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1743093080563
@@ -1120,4 +1133,5 @@ ownership:
 _id: KaQZyogQKvA3r2vi
 sort: 100000
 categories: []
-_key: "!journal!KaQZyogQKvA3r2vi"
+_key: '!journal!KaQZyogQKvA3r2vi'
+

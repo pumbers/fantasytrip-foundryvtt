@@ -8,6 +8,7 @@ import { FTItem } from "./documents/item.mjs";
 import { FTEquipmentData, FTTalentData, FTSpellData, FTAbilityData } from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
+import { FTTokenRuler } from "./canvas/token-ruler.mjs";
 import { FTCombat } from "./documents/combat.mjs";
 import * as ChatMessage from "./documents/chat-message.mjs";
 import * as Helpers from "./util/helpers.mjs";
@@ -40,6 +41,10 @@ Hooks.once("init", async function () {
   // Combat
   CONFIG.Combat.initiative.formula = "1d6+@initiative.situation+@initiative.self+(1d6/10)+(1d6/100)";
   CONFIG.Actor.trackableAttributes = { character: { bar: ["st"], value: [] }, npc: { bar: ["st"], value: [] } };
+
+  // Canvas
+  CONFIG.Token.rulerClass = FTTokenRuler;
+  FTTokenRuler.applyFTMovementConfig();
 
   /**
    * Game Settings

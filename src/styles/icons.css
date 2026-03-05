@@ -114,7 +114,7 @@
     content: url("../assets/icons/walk.svg");
   }
   & .icon-swim::before {
-    content: url("../assets/icons/salmon.svg");
+    content: url("../assets/icons/whale-tail.svg");
   }
   & .icon-fly::before {
     content: url("../assets/icons/feathered-wing.svg");

@@ -140,3 +140,20 @@ export class FTActor extends foundry.documents.Actor {
     );
   }
 }
+
+// When a token movement action is updated, update the attached character as well
+Hooks.on("updateToken", (token, changes) => {
+  if (changes.movementAction) {
+    console.log("... actor", token.actor);
+    console.log("... movementAction", changes.movementAction);
+    token.actor.update({ system: { ma: { mode: changes.movementAction } } });
+  }
+});
+
+// When a character movement mode is updated, update their token if they have one
+Hooks.on("updateActor", (actor, changes) => {
+  if (actor.token && changes.system?.ma?.mode) {
+    console.log("... changing token movement", changes.system.ma.mode);
+    actor.token.update({ movementAction: changes.system.ma.mode });
+  }
+});
