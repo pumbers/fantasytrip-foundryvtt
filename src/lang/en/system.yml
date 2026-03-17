@@ -8,6 +8,7 @@ FT:
         attack: Attack
         damage: Damage
         cast: Cast
+        toMiss: Roll to miss
       cost:
         st: ST Cost
       modifier:
@@ -57,6 +58,9 @@ FT:
           - Feels a surge of adrenaline as they strike for {total} point(s) of damage. {effects}
           - Narrows their sights and deal a precise {total} point hit to the enemy. {effects}
           - Senses the fear in their enemy's eyes as they realize they're taking {total} point(s) of hurt from the attack. {effects}
+        lof:
+          thrown: Throwing their {item} - {result}
+          missile: Shooting their {item} - {result}
       result:
         exact: Success! Just made it!
         automaticSuccess: Automatic success!
@@ -71,6 +75,21 @@ FT:
         strained: A wave of fatigue hits and they fall to the ground from the strain.
         knockdown: They fall to the ground!
         damage: They take {damage} damage from cuts & bruises.
+        lof:
+          thrown:
+            miss:
+              hostile: the throw whizzes past {name}.
+              friendly: the throw whizzes past {name}.
+            hit:
+              hostile: the throw hits {name}, but falls to the ground leaving them unharmed.
+              friendly: the throw accientally hits {name}, nasty end first.
+          missile:
+            miss:
+              hostile: the shot whistles past {name}.
+              friendly: the shot whistles past {name}.
+            hit:
+              hostile: the shot hits {name}, but falls to the ground doing no damage.
+              friendly: the shot accidentally hits {name}, nasty end first.
     combat:
       phase:
         movement: Movement

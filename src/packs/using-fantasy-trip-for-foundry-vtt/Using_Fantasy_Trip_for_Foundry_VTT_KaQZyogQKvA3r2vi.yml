@@ -102,7 +102,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.342'
+      coreVersion: "13.342"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
@@ -110,7 +110,7 @@ pages:
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.Ahcj5Hf12oLopn4U'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.Ahcj5Hf12oLopn4U"
   - sort: 200000
     name: Character Sheet
     type: text
@@ -295,7 +295,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: null
@@ -303,7 +303,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.8QpHd2w3fWyC0Oke'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.8QpHd2w3fWyC0Oke"
   - sort: 300000
     name: Items and the Item Sheet
     type: text
@@ -545,7 +545,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.346'
+      coreVersion: "13.346"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110034476
@@ -553,7 +553,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.AGDQOLKibDzbaHh8'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.AGDQOLKibDzbaHh8"
   - sort: 800000
     name: Writing Effects
     type: text
@@ -649,7 +649,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.342'
+      coreVersion: "13.342"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110064087
@@ -657,7 +657,7 @@ pages:
       lastModifiedBy: 4jN5Lbw1IbyHFDNM
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.ZC0ir9H0OUqr0Ehw'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.ZC0ir9H0OUqr0Ehw"
   - sort: 500000
     name: Dice Rolls
     type: text
@@ -715,7 +715,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110077275
@@ -723,7 +723,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.7MY6ZNV0LvIRGWOF'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.7MY6ZNV0LvIRGWOF"
   - sort: 600000
     name: Combat
     type: text
@@ -813,7 +813,7 @@ pages:
         chat message. The appropriate damage is automatically added to the
         targeted character or NPC.</p><img
         src="systems/fantasy-trip/assets/images/instructions/combat_chat_4.webp"
-        /><h2>Targeting</h2><p>Foundry has a mechanism for specifying which
+        /><h3>Targeting</h3><p>Foundry has a mechanism for specifying which
         combatants are the target of an attack, appropriately called
         <strong>Targeting</strong> (see <a
         href="https://foundryvtt.com/article/tokens/">Token Controls</a>). You
@@ -823,23 +823,48 @@ pages:
         appear in any chat log messages for the attack</p></li><li><p>The GM
         will see a separate chat log message for each target
         hit</p></li><li><p>The GM will have an Apply Damage button for each
-        target in the chat log</p></li></ul><h2>Combat Settings</h2><p>To allow
-        for different GM's wanting to run combat in different ways, the
-        following settings can be changed using Foundry's Game Settings
-        dialog:</p><ul><li><p><strong>Use Fantasy Trip Initiative</strong>: On
-        by default, turning this off reverts back to Foundry's basic round/turn
-        structure with 1D6.1D61D6 rolls for
-        initiative.</p></li><li><p><strong>PC Group Initiative</strong>: Off by
-        default, movement initiative is rolled separately for each PC. Turning
-        this on makes only a single initiative roll that applies to every
-        PC.</p></li><li><p><strong>NPC Group Initiative</strong>: On by default,
-        movement initiative is rolled once and applies to every NPC. Turning
-        this on makes a separate initiative roll for each
-        NPC.</p></li></ul><h2>Initiative Bonuses</h2><p>Each character sheet has
-        an <strong>Init Mod</strong> field that can be used as a temporary bonus
-        to that character's individual initiative.</p><p>Active Affects can also
-        be used to add to both individual initiative or party initiative, as for
-        the <strong>Tactics</strong> and <strong>Strategy</strong> talents, for
+        target in the chat log</p></li></ul><h3>Line of Fire</h3><p>When
+        attacking with a thrown or missile weapon, it's possible that figures in
+        the line-of-fire may be hit accidentally before the weapon reaches its
+        target, as per p114 of the In the Labyrinth rules (2nd edition, 2nd
+        printing).</p><p>The Fantasy Trip system can automatically identify
+        figures in the line-of-fire (any token in a hex that lies on a straight
+        line from attacker to target) and make rolls to miss those figures as
+        part of the attack. For example:</p><img
+        src="systems/fantasy-trip/assets/images/instructions/combat_line_of_fire_1.png"
+        /><p>If Fuller targets <em>Cynical Goblin (1)</em>, there are no other
+        figures in the line of fire, so the attack proceeds normally. If he
+        targets <em>Lonely Goblin (1)</em>, the system will find that
+        <em>Edulf</em> and <em>Goblin Leader</em> are in the line-of-fire and
+        add them as possible unintended targets to the dice roller.</p><img
+        src="systems/fantasy-trip/assets/images/instructions/combat_line_of_fire_2.png"
+        /><p>Figures added are selected by default, and to-miss rolls will be
+        made automatically. If the player or GM does not want a figure to be in
+        the line-of-fire, it can be deselected and no roll will be
+        made.</p><p>As per the rulebook, a to-miss roll is the same as the
+        attackers adjDX to-hit roll, but will only do normal damage, not double or
+        triple damage if a critical is rolled. Damage is calculated
+        automatically and can be applied to any figure hit by the GM as usual.
+        If a figure is hit, then the attack fails.</p><p>Automatic line-of-fire
+        determination can be turned off in the system settings if
+        desired. It also requires a scene to have a hexagonal grid.</p>
+        <h2>Combat Settings</h2><p>To allow for different GM's
+        wanting to run combat in different ways, the following settings can be
+        changed using Foundry's Game Settings dialog:</p><ul><li><p><strong>Use
+        Fantasy Trip Initiative</strong>: On by default, turning this off
+        reverts back to Foundry's basic round/turn structure with 1D6.1D61D6
+        rolls for initiative.</p></li><li><p><strong>PC Group
+        Initiative</strong>: Off by default, movement initiative is rolled
+        separately for each PC. Turning this on makes only a single initiative
+        roll that applies to every PC.</p></li><li><p><strong>NPC Group
+        Initiative</strong>: On by default, movement initiative is rolled once
+        and applies to every NPC. Turning this on makes a separate initiative
+        roll for each NPC.</p></li></ul><h2>Initiative Bonuses</h2><p>Each
+        character sheet has an <strong>Init Mod</strong> field that can be used
+        as a temporary bonus to that character's individual
+        initiative.</p><p>Active Affects can also be used to add to both
+        individual initiative or party initiative, as for the
+        <strong>Tactics</strong> and <strong>Strategy</strong> talents, for
         example (see
         @UUID[Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.KaQZyogQKvA3r2vi.JournalEntryPage.ZC0ir9H0OUqr0Ehw]{Writing
         Effects}).</p>
@@ -854,15 +879,15 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.351'
+      coreVersion: "13.351"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110089455
-      modifiedTime: 1772665560849
+      modifiedTime: 1773763355073
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.taYa6XujJcawZlXZ'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.taYa6XujJcawZlXZ"
   - sort: 700000
     name: Casting Spells
     type: text
@@ -910,7 +935,7 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110384981
@@ -918,7 +943,7 @@ pages:
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.6iNkXDrerMY8ltYw'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.6iNkXDrerMY8ltYw"
   - sort: 900000
     name: Creating Characters
     type: text
@@ -989,13 +1014,13 @@ pages:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1752514256515
       modifiedTime: 1752527462068
       lastModifiedBy: DoJEEiLZ8CgYIaAq
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.GES2Dzee8OJ1xWUj'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.GES2Dzee8OJ1xWUj"
   - sort: 1000000
     name: Other Modules
     type: text
@@ -1038,13 +1063,13 @@ pages:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1752528433730
       modifiedTime: 1752529193814
       lastModifiedBy: DoJEEiLZ8CgYIaAq
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.FUYQKlKYTXd1fZUb'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.FUYQKlKYTXd1fZUb"
   - sort: 950000
     name: Transferring Characters
     type: text
@@ -1107,20 +1132,20 @@ pages:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: '13.345'
+      coreVersion: "13.345"
       systemId: fantasy-trip
       systemVersion: 0.1.1
       createdTime: 1753131038022
       modifiedTime: 1753133419152
       lastModifiedBy: DoJEEiLZ8CgYIaAq
-    _key: '!journal.pages!KaQZyogQKvA3r2vi.6ABA8cUE9l81EOWO'
+    _key: "!journal.pages!KaQZyogQKvA3r2vi.6ABA8cUE9l81EOWO"
 folder: null
 flags: {}
 _stats:
   compendiumSource: >-
     Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.lRHycMkpzFAIyGPx
   duplicateSource: null
-  coreVersion: '13.342'
+  coreVersion: "13.342"
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1743093080563
@@ -1133,5 +1158,4 @@ ownership:
 _id: KaQZyogQKvA3r2vi
 sort: 100000
 categories: []
-_key: '!journal!KaQZyogQKvA3r2vi'
-
+_key: "!journal!KaQZyogQKvA3r2vi"

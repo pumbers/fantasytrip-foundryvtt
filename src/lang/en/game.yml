@@ -34,6 +34,9 @@ FT:
       defaultUnskilled4d6:
         name: Default unskilled attacks to 4/DX
         hint: "When set, weapon actions with no talent attached (ie: unskilled) will default to a 4/DX roll instead of 3/DX."
+      resolveLoF:
+        name: Resolve Line of Fire
+        hint: When making missile or thrown attacks, identify targets in the line of fire and automatically make rolls to miss them.
       showItemIcons:
         name: Show Item Icons
         hint: Show icons in item tables?
@@ -57,6 +60,7 @@ FT:
       noCapacity: "{container} is not big enough."
       noDropContainer: "{item} is a container and cannot be dropped onto another container."
       insufficientIQ: "Sorry, {actor} doesn't have the IQ to learn {talent}."
+      lofWarning: Cannot resolve line of fire for more than one target.
       combat:
         start: First Round - Movement!
         movement: New round - Movement!

@@ -16,10 +16,13 @@ function extractRollParameters(data) {
   const attributes = JSON.parse(data.attributes ?? "[]").filter((a) => !!a);
   const totalAttributes = attributes.reduce(
     (total, attribute) => total + foundry.utils.getProperty(data.actor.getRollData(), attribute),
-    0
+    0,
   );
   const totalModifiers = Object.values(data.modifiers ?? []).reduce((total, modifier) => total + parseInt(modifier), 0);
   if (data.cost) data.cost.st.value = parseInt(data.cost.st.value ?? 0);
+  const lof = Object.entries(data.lof ?? {})
+    .filter(([_id, value]) => value === "true")
+    .map(([_id, _]) => canvas.tokens.getDocuments().get(_id));
 
   return {
     ...data,
@@ -27,6 +30,7 @@ function extractRollParameters(data) {
     attributes,
     totalAttributes,
     totalModifiers,
+    lof,
   };
 }
 
@@ -75,6 +79,113 @@ function determineRollResult(dice, target, roll) {
       console.error(FT.prefix, "Incorrect number of dice rolled", dice);
       break;
   }
+}
+
+/**
+ * Determine line of fire for thrown & missile weapons
+ *
+ * @param {Actor} actor
+ * @param {Object} attack
+ * @returns {Array[Object]}
+ */
+function determineLoF(actor, attack) {
+  if (
+    game.settings.get(FT.id, "resolveLoF") &&
+    canvas.grid.isHexagonal &&
+    (attack.type === "missile" || attack.type === "thrown")
+  ) {
+    if (game.user.targets.size > 1) {
+      ui.notifications.warn("FT.game.message.lofWarning", {
+        localize: true,
+      });
+      return [];
+    }
+
+    // Pick the first target
+    const [target] = game.user.targets;
+    if (target) {
+      // Find the direct path from the attacking actor to the target
+      const from = actor.token.getSnappedPosition();
+      const to = target.getSnappedPosition();
+      const path = game.canvas.grid.getDirectPath([
+        { i: 0, j: 0, ...canvas.grid.getOffset(from), k: 0 },
+        { i: 0, j: 0, ...canvas.grid.getOffset(to), k: 0 },
+      ]);
+
+      // Remove the attacking actor and target from the path
+      path.shift();
+      path.pop();
+
+      // Find which tokens fall in that path and set the line of fire
+      const tokens = canvas.tokens.getDocuments().map((token) => ({
+        _id: token._id,
+        name: token.name,
+        disposition: token.disposition,
+        position: canvas.grid.getOffset(token.getSnappedPosition()),
+      }));
+
+      return path
+        .map((hex) => tokens.find((token) => hex.i === token.position.i && hex.j === token.position.j))
+        .filter((token) => token);
+    }
+  } else {
+    return [];
+  }
+}
+
+/**
+ * Resolve misses for any tokens in line of fire
+ *
+ * @param {Actor} actor
+ * @param {Object} attack
+ * @param {Number} dice
+ * @param {Array[Token]} lof
+ */
+async function resolveLoF(actor, item, attack, dice, attributes, totalAttributes, modifiers, totalModifiers, lof) {
+  for (const token of lof) {
+    const lofRoll = await new Roll(`${dice}D6`).evaluate();
+    const lofResult = ["failure", "criticalFailure"].includes(
+      determineRollResult(dice, totalAttributes + totalModifiers, lofRoll),
+    )
+      ? "hit"
+      : "miss";
+    const lofTarget = token.disposition < CONST.TOKEN_DISPOSITIONS.NEUTRAL ? "hostile" : "friendly";
+
+    foundry.applications.handlebars
+      .renderTemplate(`${FT.path}/templates/chat/lof-roll.hbs`, {
+        token,
+        roll: lofRoll,
+        attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
+        totalAttributes,
+        modifiers,
+        totalModifiers,
+        targetNumber: totalAttributes + totalModifiers,
+        parts: lofRoll.dice.map((d) => d.getTooltipData()),
+        result: lofResult,
+        damage:
+          lofResult === "hit" && lofTarget === "friendly"
+            ? (await new Roll(`max(${attack.baseDamage},0)`).evaluate()).total
+            : undefined,
+      })
+      .then((content) => {
+        lofRoll.toMessage({
+          speaker: ChatMessage.getSpeaker({ actor }),
+          flavor: game.i18n.format(`FT.system.roll.flavor.lof.${attack.type}`, {
+            item: item.name,
+            result: game.i18n.format(`FT.system.roll.result.lof.${attack.type}.${lofResult}.${lofTarget}`, {
+              name: token.name,
+            }),
+          }),
+          content,
+        });
+      });
+
+    // If we got a hit, stop there
+    if (lofResult === "hit") return true;
+  }
+
+  // LoF check did not hit any collateral targets
+  return false;
 }
 
 /**
@@ -141,7 +252,7 @@ export function attributeRoll(actor, options) {
             targetNumber: totalAttributes + totalModifiers,
             roll,
             parts: roll.dice.map((d) => d.getTooltipData()),
-          }
+          },
         );
 
         roll.toMessage(
@@ -150,7 +261,7 @@ export function attributeRoll(actor, options) {
             flavor: message,
             content,
           },
-          { rollMode }
+          { rollMode },
         );
       });
     },
@@ -218,7 +329,7 @@ export async function talentRoll(actor, talent, options) {
           flavor: message,
           content,
         },
-        { rollMode }
+        { rollMode },
       );
     },
   };
@@ -236,6 +347,7 @@ export async function talentRoll(actor, talent, options) {
 export function attackRoll(actor, item, options) {
   // console.log("Action.attackRoll()", actor, item, options);
 
+  // Get the attack details
   const attack = item.system.attacks[options.attackIndex ?? 0];
   const talent = !!attack.talent ? actor.items.get(attack.talent) : null;
 
@@ -246,6 +358,7 @@ export function attackRoll(actor, item, options) {
     type: "attack",
     actor,
     item,
+    attack,
     talent,
     //
     dice: attack.dice,
@@ -299,13 +412,22 @@ export function attackRoll(actor, item, options) {
           }
         : {}),
     },
+    lof: determineLoF(actor, attack),
     ...options,
     //
     submit: async (data) => {
       // console.log("Action.attackRoll().submit()", "data", data);
 
       // Extract roll parameters
-      const { dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode } = extractRollParameters(data);
+      const { dice, attributes, totalAttributes, modifiers, totalModifiers, lof, rollMode } =
+        extractRollParameters(data);
+
+      // If resolving lof misses results in a hit, don't roll for the attack
+      if (
+        lof?.length &&
+        (await resolveLoF(actor, item, attack, dice, attributes, totalAttributes, modifiers, totalModifiers, lof))
+      )
+        return;
 
       // Create & evaluate a roll based on the set parameters
       const roll = await new Roll(`${dice}D6`).evaluate();
@@ -331,7 +453,7 @@ export function attackRoll(actor, item, options) {
         // Natural weapons take 1d6 damage
         message = message.concat(
           " ",
-          game.i18n.format("FT.system.roll.result.damage", { damage: await new Roll("1d6").evaluate().total })
+          game.i18n.format("FT.system.roll.result.damage", { damage: await new Roll("1d6").evaluate().total }),
         );
       } else if (roll.total === 17) {
         // Item is dropped
@@ -375,7 +497,7 @@ export function attackRoll(actor, item, options) {
           flavor: message,
           content,
         },
-        { rollMode }
+        { rollMode },
       );
     },
   };
@@ -490,7 +612,6 @@ export function castingRoll(actor, spell, options = {}) {
       }
 
       // If the actor used all their fatigue...
-      console.log("CASTING", "ST", actor.system.st.value, "FATIGUE", actor.system.fatigue, actor.system.isDown);
       if (actor.system.isDown) {
         actor.toggleStatusEffect("unconscious", { active: true, overlay: true });
         message = message.concat(" ", game.i18n.format("FT.system.roll.result.strained"));
@@ -530,7 +651,7 @@ export function castingRoll(actor, spell, options = {}) {
           flavor: message,
           content,
         },
-        { rollMode }
+        { rollMode },
       );
 
       // If the spell is cast from an item, then it may get burned (deleted)
@@ -603,7 +724,7 @@ export function damageRoll(actor, item, options = {}) {
               actor: token.actor,
               roll,
               parts: roll.dice.map((d) => d.getTooltipData()),
-            }
+            },
           );
 
           roll.toMessage(
@@ -612,7 +733,7 @@ export function damageRoll(actor, item, options = {}) {
               flavor: message,
               content,
             },
-            { rollMode }
+            { rollMode },
           );
         });
       } else {
@@ -627,7 +748,7 @@ export function damageRoll(actor, item, options = {}) {
                 effects: attack.effects,
               }),
             },
-            { rollMode }
+            { rollMode },
           );
         });
       }
@@ -701,7 +822,7 @@ export async function applyDamage(actor, damage, options) {
  * @param {Object} options
  */
 function _applyDamage(actor, damageTaken, options = {}) {
-  console.log("Action._applyDamage", actor, damageTaken, options);
+  // console.log("Action._applyDamage", actor, damageTaken, options);
 
   // If net damage is zero, don't bother applying it
   if (damageTaken === 0) {

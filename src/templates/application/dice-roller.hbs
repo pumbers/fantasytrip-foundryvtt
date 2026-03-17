@@ -1,5 +1,5 @@
 <div class="flex flex-col gap-2 justify-between">
-    {{!-- {{log .}} --}}
+    {{!-- {{log "DICE_ROLLER" .}} --}}
 
     {{!-- Roll Icons --}}
     <div class="flex flex-row gap-4">
@@ -67,6 +67,21 @@
         {{/each}}
     </div>
     {{/each}}
+
+    {{!-- Roll to miss targets in LoF for missile/thrown --}}
+    {{#if lof}}
+    <div class="grid grid-cols-16 gap-1">
+        <label class="text-xs col-span-3">{{localize "FT.system.roll.type.toMiss"}}</label>
+        <div class="col-span-13 flex flex-row gap-1">
+            {{#each lof as | token |}}
+            <span>
+                <input type="checkbox" name="lof.{{token._id}}" id="lof-{{token._id}}" checked>
+                <label for="lof-{{token._id}}">{{token.name}}</label>
+            </span>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
 
     {{!-- Dice --}}
     <div class="grid grid-cols-8 gap-1">

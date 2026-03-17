@@ -174,6 +174,20 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
+  game.settings.register(FT.id, "resolveLoF", {
+    name: game.i18n.localize("FT.game.setting.resolveLoF.name"),
+    hint: game.i18n.localize("FT.game.setting.resolveLoF.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: true,
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: false,
+  });
+
   game.settings.register(FT.id, "showItemIcons", {
     name: game.i18n.localize("FT.game.setting.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.setting.showItemIcons.hint"),
