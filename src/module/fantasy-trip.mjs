@@ -264,13 +264,13 @@ Hooks.once("init", async function () {
  */
 
 Hooks.on("ready", async () => {
-  ui.notifications.info("FT.game.message.disclaimer", { localize: true });
-  ui.notifications.info("FT.game.message.notice", { localize: true });
-  console.info(FT.prefix, "System ready");
-
   // Check for PDF Pager module and enable integration if active
   if (game.modules.has("pdf-pager")) {
     game.settings.set(FT.id, "pdfPagerEnabled", game.modules.get("pdf-pager")?.active);
     console.info(FT.prefix, "PDF Pager module found, setting PDF references", game.modules.get("pdf-pager")?.active);
   }
+
+  ui.notifications.info("FT.game.message.disclaimer", { localize: true });
+  ui.notifications.info("FT.game.message.notice", { localize: true });
+  console.info(FT.prefix, "System ready");
 });

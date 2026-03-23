@@ -1,7 +1,7 @@
 import { FT } from "../system/config.mjs";
 import * as Handlers from "../util/handlers.mjs";
 import * as Effects from "../util/effects.mjs";
-import * as Action from "../system/action.mjs";
+import * as Action from "../system/action/_module.mjs";
 import * as Transfer from "../util/transfer.mjs";
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
@@ -261,7 +261,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       folder.contents.map(async (item) => {
         if (!(document instanceof Item)) item = await fromUuid(item.uuid);
         return item;
-      })
+      }),
     );
     return this._onDropItemCreate(droppedItemData, event);
   }
@@ -394,7 +394,7 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
     character: {
       template: `${FT.path}/templates/sheet/actor/character/tab-character.hbs`,
       templates: ["_actions.hbs", "_encumbrance.hbs", "_health.hbs", "_mana.hbs", "_modifiers.hbs"].map(
-        (t) => `${FT.path}/templates/sheet/actor/${t}`
+        (t) => `${FT.path}/templates/sheet/actor/${t}`,
       ),
       scrollable: ["#actions"],
     },
@@ -458,7 +458,7 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
     character: {
       template: `${FT.path}/templates/sheet/actor/npc/tab-character.hbs`,
       templates: ["_actions.hbs", "_encumbrance.hbs", "_health.hbs", "_mana.hbs", "_modifiers.hbs"].map(
-        (t) => `${FT.path}/templates/sheet/actor/${t}`
+        (t) => `${FT.path}/templates/sheet/actor/${t}`,
       ),
       scrollable: ["#actions"],
     },

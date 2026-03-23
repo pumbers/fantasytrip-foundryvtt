@@ -1,5 +1,5 @@
 import { FT } from "../system/config.mjs";
-import * as Action from "../system/action.mjs";
+import * as Action from "../system/action/_module.mjs";
 
 export class FTChatMessage extends ChatMessage {}
 
