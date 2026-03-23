@@ -114,6 +114,24 @@ Hooks.once("init", async function () {
     requiresReload: true,
   });
 
+  game.settings.register(FT.id, "failureRollResults", {
+    name: game.i18n.localize("FT.game.setting.failureRollResults.name"),
+    hint: game.i18n.localize("FT.game.setting.failureRollResults.hint"),
+    scope: "world",
+    type: new StringField({
+      choices: {
+        classic: game.i18n.localize("FT.game.setting.failureRollResults.options.classic"),
+        legacy: game.i18n.localize("FT.game.setting.failureRollResults.options.legacy"),
+      },
+      required: true,
+      nullable: false,
+      initial: "legacy",
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: false,
+  });
+
   game.settings.register(FT.id, "damageMultiplierStrategy", {
     name: game.i18n.localize("FT.game.setting.damageMultiplierStrategy.name"),
     hint: game.i18n.localize("FT.game.setting.damageMultiplierStrategy.hint"),

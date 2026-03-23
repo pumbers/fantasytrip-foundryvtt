@@ -14,6 +14,12 @@ FT:
       pcGroupInitiative:
         name: PC Group Initiatve
         hint: Roll initiative for Player Characters as a group rather than individually for each combatant.
+      failureRollResults:
+        name: Apply dice roll failure values
+        hint: Apply dice roll failure results as per classic or legacy rules.
+        options:
+          classic: Classic
+          legacy: Legacy
       npcGroupInitiative:
         name: NPC Group Initiatve
         hint: Roll initiative for NPC's as a group rather than individually for each combatant.
