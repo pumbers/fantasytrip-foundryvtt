@@ -13,16 +13,20 @@ export class FTItem extends foundry.documents.Item {
     // console.log("FTItem.prepareDerivedData()", this);
     super.prepareDerivedData();
 
-    // Turn on ActiveEffects if in a tagged location, only for inventory items
-    if (FT.item.inventory.types.includes(this.type)) {
-      this.getEmbeddedCollection("ActiveEffect").forEach((effect) =>
-        effect.update({ disabled: !this.system.applyEffectsWhen.includes(this.system.location) })
-      );
-    }
+    if (!this.inCompendium) {
+      // Turn on ActiveEffects if in a tagged location, only for inventory items
+      if (FT.item.inventory.types.includes(this.type)) {
+        this.getEmbeddedCollection("ActiveEffect").forEach((effect) =>
+          effect.update({ disabled: !this.system.applyEffectsWhen.includes(this.system.location) }),
+        );
+      }
 
-    // Turn effects on for abilities only if active or always on
-    if (this.type === "ability") {
-      this.getEmbeddedCollection("ActiveEffect").forEach((effect) => effect.update({ disabled: !this.system.isReady }));
+      // Turn effects on for abilities only if active or always on
+      if (this.type === "ability") {
+        this.getEmbeddedCollection("ActiveEffect").forEach((effect) =>
+          effect.update({ disabled: !this.system.isReady }),
+        );
+      }
     }
   }
 
