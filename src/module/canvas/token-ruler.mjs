@@ -2,26 +2,22 @@ import { FT } from "../system/config.mjs";
 
 export class FTTokenRuler extends foundry.canvas.placeables.tokens.TokenRuler {
   static applyFTMovementConfig() {
-    foundry.utils.mergeObject(
-      CONFIG.Token.movement.actions,
-      {
-        walk: {
-          canSelect: (token) => !(token instanceof TokenDocument) || !token.hasStatusEffect("prone"),
-        },
-        fly: {
-          canSelect: (token) => !(token instanceof TokenDocument) || !token.hasStatusEffect("prone"),
-        },
-        swim: {
-          canSelect: (token) => !(token instanceof TokenDocument) || !token.hasStatusEffect("prone"),
-        },
-        "-=burrow": null,
-        "-=crawl": null,
-        "-=climb": null,
-        "-=jump": null,
-        "-=blink": null,
+    foundry.utils.mergeObject(CONFIG.Token.movement.actions, {
+      walk: {
+        canSelect: (token) => !(token instanceof TokenDocument) || !token.hasStatusEffect("prone"),
       },
-      { performDeletions: true },
-    );
+      fly: {
+        canSelect: (token) => !(token instanceof TokenDocument) || !token.hasStatusEffect("prone"),
+      },
+      swim: {
+        canSelect: (token) => !(token instanceof TokenDocument) || !token.hasStatusEffect("prone"),
+      },
+      burrow: { canSelect: false },
+      crawl: { canSelect: false },
+      climb: { canSelect: false },
+      jump: { canSelect: false },
+      blink: { canSelect: false },
+    });
   }
 
   _getSegmentStyle(waypoint) {
