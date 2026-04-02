@@ -1,13 +1,14 @@
 FT:
   effect:
     name: Effect
-    modes:
-      - Custom
-      - Multiply
-      - Add
-      - Downgrade
-      - Upgrade
-      - Override
+    types:
+      add: Add
+      custom: Custom
+      downgrade: Downgrade
+      multiply: Multiply
+      override: Override
+      subtract: Subtract
+      upgrade: Upgrade
     source:
       name: Source
       type: Type
