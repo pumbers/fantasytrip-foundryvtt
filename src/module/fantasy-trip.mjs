@@ -29,11 +29,6 @@ Hooks.once("init", async function () {
   // Add custom constants for configuration.
   CONFIG.FT = FT;
 
-  // Active Effects are never copied to the Actor,
-  // but will still apply to the Actor from within the Item
-  // if the transfer property on the Active Effect is true.
-  CONFIG.ActiveEffect.legacyTransferral = false;
-
   // Time settings
   CONFIG.time.roundTime = 1;
   CONFIG.time.turnTime = 1;
@@ -288,7 +283,7 @@ Hooks.on("ready", async () => {
     console.info(FT.prefix, "PDF Pager module found, setting PDF references", game.modules.get("pdf-pager")?.active);
   }
 
-  ui.notifications.info("FT.game.message.disclaimer", { localize: true });
-  ui.notifications.info("FT.game.message.notice", { localize: true });
+  // ui.notifications.info("FT.game.message.disclaimer", { localize: true });
+  // ui.notifications.info("FT.game.message.notice", { localize: true });
   console.info(FT.prefix, "System ready");
 });
