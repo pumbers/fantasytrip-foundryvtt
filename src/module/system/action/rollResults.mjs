@@ -14,9 +14,12 @@ export function extractRollParameters(data) {
   );
   const totalModifiers = Object.values(data.modifiers ?? []).reduce((total, modifier) => total + parseInt(modifier), 0);
   if (data.cost) data.cost.st.value = parseInt(data.cost.st.value ?? 0);
+
+  console.log("LOF", data.lof);
+
   const lof = Object.entries(data.lof ?? {})
     .filter(([_id, value]) => value === "true")
-    .map(([_id, _]) => canvas.tokens.getDocuments().get(_id));
+    .map(([_id, _]) => canvas.tokens.viewedDocuments().find((token) => token._id === _id));
 
   return {
     ...data,

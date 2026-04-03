@@ -14,39 +14,57 @@ export function determineLoF(actor, attack) {
     canvas.grid.isHexagonal &&
     (attack.type === "missile" || attack.type === "thrown")
   ) {
+    // Check for number of targets
     if (game.user.targets.size > 1) {
-      ui.notifications.warn("FT.game.message.lofWarning", {
+      ui.notifications.warn("FT.game.message.lof.tooManyTargets", {
+        localize: true,
+      });
+      return [];
+    }
+
+    // Check for number of active actor tokens
+    if (actor.getActiveTokens().length > 1) {
+      ui.notifications.warn("FT.game.message.lof.tooManyTokens", {
+        localize: true,
+      });
+      return [];
+    } else if (actor.getActiveTokens().length === 0) {
+      ui.notifications.warn("FT.game.message.lof.noToken", {
         localize: true,
       });
       return [];
     }
 
     // Pick the first target
+    const token = actor.getActiveTokens()[0];
     const [target] = game.user.targets;
+
     if (target) {
       // Find the direct path from the attacking actor to the target
-      const from = actor.token.getSnappedPosition();
+      const from = token.getSnappedPosition();
       const to = target.getSnappedPosition();
       const path = game.canvas.grid.getDirectPath([
         { i: 0, j: 0, ...canvas.grid.getOffset(from), k: 0 },
         { i: 0, j: 0, ...canvas.grid.getOffset(to), k: 0 },
       ]);
 
-      // Remove the attacking actor and target from the path
+      // Remove the attacking actor and target hexes from the path
       path.shift();
       path.pop();
 
       // Find which tokens fall in that path and set the line of fire
-      const tokens = canvas.tokens.getDocuments().map((token) => ({
-        _id: token._id,
-        name: token.name,
-        disposition: token.disposition,
-        position: canvas.grid.getOffset(token.getSnappedPosition()),
-      }));
+      const lof = canvas.tokens
+        .viewedDocuments()
+        .map((token) => ({
+          _id: token._id,
+          name: token.name,
+          disposition: token.disposition,
+          position: canvas.grid.getOffset(token.getSnappedPosition()),
+        }))
+        .filter((token) => !!path.find((hex) => hex.i === token.position.i && hex.j === token.position.j))
+        .toArray();
 
-      return path
-        .map((hex) => tokens.find((token) => hex.i === token.position.i && hex.j === token.position.j))
-        .filter((token) => token);
+      return lof;
     }
   } else {
     return [];
@@ -56,10 +74,16 @@ export function determineLoF(actor, attack) {
 /**
  * Resolve misses for any tokens in line of fire
  *
- * @param {Actor} actor
- * @param {Object} attack
- * @param {Number} dice
- * @param {Array[Token]} lof
+ * @param {*} actor
+ * @param {*} item
+ * @param {*} attack
+ * @param {*} dice
+ * @param {*} attributes
+ * @param {*} totalAttributes
+ * @param {*} modifiers
+ * @param {*} totalModifiers
+ * @param {Token} lof
+ * @returns {Boolean} true if a token in lof was hit
  */
 export async function resolveLoF(
   actor,

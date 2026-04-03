@@ -66,7 +66,10 @@ FT:
       noCapacity: "{container} is not big enough."
       noDropContainer: "{item} is a container and cannot be dropped onto another container."
       insufficientIQ: "Sorry, {actor} doesn't have the IQ to learn {talent}."
-      lofWarning: Cannot resolve line of fire for more than one target.
+      lof:
+        tooManyTargets: Cannot resolve line of fire for more than one target.
+        tooManyTokens: Cannot resolve line of fire when this actor has more than one token in the scene.
+        noToken: Cannot resolve line of fire when this actor has no token in the scene.
       combat:
         start: First Round - Movement!
         movement: New round - Movement!
