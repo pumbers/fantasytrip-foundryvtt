@@ -151,6 +151,23 @@ export default function castingRoll(actor, spell, options = {}) {
         { rollMode },
       );
 
+      // Apply spell effects to target
+      console.log("SPELL", spell.name, spell.effects);
+      if (spell.effects.size && game.user.targets.size) {
+        ChatMessage.create({
+          flavor: game.i18n.format("FT.effect.result.spell", {
+            spell: spell.name,
+            targets: Array.from(game.user.targets)
+              .map((target) => target.name)
+              .join(", "),
+          }),
+        });
+
+        for (const target of game.user.targets) {
+          target.actor.createEmbeddedDocuments("ActiveEffect", Array.from(spell.effects));
+        }
+      }
+
       // If the spell is cast from an item, then it may get burned (deleted)
       if (!!options.item && options.burn === "true") {
         actor.deleteEmbeddedDocuments("Item", [options.item._id]);

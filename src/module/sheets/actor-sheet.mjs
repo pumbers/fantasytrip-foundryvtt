@@ -414,7 +414,7 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
       scrollable: [""],
     },
     effects: {
-      template: `${FT.path}/templates/sheet/tab-effects.hbs`,
+      template: `${FT.path}/templates/sheet/actor/tab-effects.hbs`,
     },
   };
 }
@@ -470,7 +470,7 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
       scrollable: [""],
     },
     effects: {
-      template: `${FT.path}/templates/sheet/tab-effects.hbs`,
+      template: `${FT.path}/templates/sheet/actor/tab-effects.hbs`,
     },
   };
 }

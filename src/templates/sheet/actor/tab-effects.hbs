@@ -1,0 +1,57 @@
+{{!-- Effects Tab --}}
+<section id="{{partId}}" class="tab {{tabs.effects.cssClass}}" data-group="primary" data-tab="effects">
+    <div class="flex flex-col gap-2 scroll-auto">
+
+        {{#each effects as |effect|}}
+        <fieldset id="effect-{{effect._id}}" class="effect" data-effect-id="{{effect._id}}"
+            data-item-uuid="{{effect.item.uuid}}">
+            <legend>
+                <img src="{{effect.img}}" />
+                {{#if item}}
+                <span>{{effect.item.name}}</span>
+                <a data-action="editItem" title="{{localize 'FT.effect.action.editItem'}}"> <i
+                        class="fa fa-file"></i></a>
+                {{/if}}
+                <span>{{effect.name}}</span>
+                {{#unless effect.item}}
+                <a data-action="editEffect" title="{{localize 'FT.effect.action.edit'}}"><i class="fa fa-edit"></i></a>
+                {{#if effect.disabled}}
+                <a data-action="toggleEffect" title="{{localize 'FT.effect.action.toggle.on'}}"><i
+                        class="fa fa-toggle-off"></i></a>
+                {{else}}
+                <a data-action="toggleEffect" title="{{localize 'FT.effect.action.toggle.off'}}"><i
+                        class="fa fa-toggle-on"></i></a>
+                {{/if}}
+                <a data-action="deleteEffect" title="{{localize 'FT.effect.action.delete'}}"><i
+                        class=" fa fa-trash"></i></a>
+                {{/unless}}
+            </legend>
+            {{#if effect.description}}
+            <p class="description"> {{{effect.description}}} </p>
+            {{/if}}
+            <table class="changes">
+                {{#each effect.changes as |change|}}
+                <tr class="change">
+                    <td>{{change.key}}</td>
+                    <td>{{localize (concat "FT.effect.types." change.type)}}</td>
+                    <td>{{change.value}}</td>
+                </tr>
+                {{/each}}
+            </table>
+            {{#if effect.statuses.size}}
+            <div class="statuses">
+                {{#each effect.statuses as | status |}}
+                {{#with (statusEffect status)}}
+                <span class="status">{{localize name}}</span>
+                {{/with}}
+                {{/each}}
+            </div>
+            {{/if}}
+        </fieldset>
+        {{/each}}
+        <div>
+            <button type="button" class="ml-auto mr-0" data-action="createEffect">{{localize
+                "FT.effect.action.create"}}</button>
+        </div>
+    </div>
+</section>

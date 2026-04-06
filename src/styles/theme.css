@@ -58,14 +58,6 @@
       @apply border-ft-dark dark:border-ft-light bg-ft-dark/10 text-ft-dark dark:bg-ft-light/10 dark:text-ft-light;
     }
 
-    .effect {
-      .actions {
-        button[data-action] {
-          @apply border-none;
-        }
-      }
-    }
-
     [data-action].sheet-button {
       @apply bg-yellow-100 dark:bg-yellow-100/40;
       &:hover {

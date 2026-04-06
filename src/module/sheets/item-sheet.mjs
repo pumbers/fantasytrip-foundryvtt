@@ -65,7 +65,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       template: `${FT.path}/templates/sheet/item/tab-actions.hbs`,
     },
     effects: {
-      template: `${FT.path}/templates/sheet/tab-effects.hbs`,
+      template: `${FT.path}/templates/sheet/item/tab-effects.hbs`,
     },
   };
 
@@ -115,7 +115,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
         attributes: FT.actor.attributes,
         inventoryLocations: FT.item.inventory.locations.reduce(
           (options, location) => Object.assign(options, { [location]: `FT.actor.sheet.label.location.${location}` }),
-          {}
+          {},
         ),
         spellTypes: FT.item.spell.types,
         attackTypes: FT.item.attack.types,
@@ -199,5 +199,14 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     if (!re.test(target.dataset.reference)) return;
     const [_, code, page] = target.dataset.reference.match(re);
     ui.pdfpager?.openPDFByCode(code, { page });
+  }
+
+  /**
+   * Drag/Drop Functions
+   */
+
+  async _onDropActiveEffect(event, data) {
+    console.log("_onDropActiveEffect()", "event", event, "data", data);
+    this.item.createEmbeddedDocuments("ActiveEffect", [data]);
   }
 }

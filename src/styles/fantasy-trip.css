@@ -78,28 +78,40 @@
       @apply m-0 p-2;
     }
 
+    fieldset.effect {
+      @apply flex flex-col gap-1 text-xs;
+      legend {
+        @apply flex flex-row gap-1;
+        img {
+          @apply size-4;
+        }
+        a[data-action] {
+          @apply opacity-30;
+          &:hover {
+            @apply opacity-100;
+          }
+        }
+      }
+      .description {
+        @apply text-xs;
+      }
+      .changes {
+        td:first-child {
+          @apply w-full;
+        }
+      }
+      .statuses {
+        @apply flex flex-row gap-1;
+        .status {
+          @apply p-0.5 bg-gray-200;
+        }
+      }
+    }
+
     .field {
       @apply flex flex-col gap-0.5 mt-auto mb-0 !leading-2;
       label {
         @apply m-0 p-0 text-[0.5rem] !text-left uppercase;
-      }
-    }
-
-    .effect {
-      table {
-        @apply h-4;
-      }
-      th,
-      td {
-        &:last-child {
-          @apply text-left;
-        }
-      }
-      .actions {
-        @apply flex flex-col gap-1 justify-start;
-        button[data-action] {
-          @apply w-auto px-1 cursor-pointer text-xs;
-        }
       }
     }
 

@@ -1,0 +1,42 @@
+{{!-- Effects Tab --}}
+<section id="{{partId}}" class="tab {{tabs.effects.cssClass}}" data-group="primary" data-tab="effects">
+    <div class="flex flex-col gap-2 scroll-auto">
+
+        <p class="text-xs">{{localize (concat "FT.effect.note." item.type)}} </p>
+
+        {{#each effects as |effect|}}
+        <fieldset id="effect-{{effect._id}}" class="effect flex flex-col gap-1" data-effect-id="{{effect._id}}">
+            <legend>
+                <img src="{{effect.img}}">
+                <span>{{effect.name}}</span>
+                <a data-action="editEffect" title="{{localize 'FT.effect.action.edit'}}"><i class="fa fa-edit"></i></a>
+                <a data-action="deleteEffect" title="{{localize 'FT.effect.action.delete'}}"><i
+                        class=" fa fa-trash"></i></a>
+            </legend>
+            <div class="description"> {{{effect.description}}} </div>
+            <table class="changes">
+                {{#each effect.changes as |change|}}
+                <tr>
+                    <td>{{change.key}}</td>
+                    <td>{{localize (concat "FT.effect.types." change.type)}}</td>
+                    <td>{{change.value}}</td>
+                </tr>
+                {{/each}}
+            </table>
+            {{#if effect.statuses.size}}
+            <div class="statuses">
+                {{#each effect.statuses as | status |}}
+                {{#with (statusEffect status)}}
+                <span class="status">{{localize name}}</span>
+                {{/with}}
+                {{/each}}
+            </div>
+            {{/if}}
+        </fieldset>
+        {{/each}}
+        <div>
+            <button type="button" class="ml-auto mr-0" data-action="createEffect">{{localize
+                "FT.effect.action.create"}}</button>
+        </div>
+    </div>
+</section>

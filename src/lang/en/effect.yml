@@ -9,18 +9,18 @@ FT:
       override: Override
       subtract: Subtract
       upgrade: Upgrade
-    source:
-      name: Source
-      type: Type
-    label:
-      attribute: Attribute
-      change: Change
-      value: Value
-      disabled: (Disabled)
-      status: Statuses
-      statusAction: Apply
+    note:
+      spell: The following effects will be applied to the target of the spell if it is succesfully cast.
+      equipment: The following effects will be applied to the owner of this item when it is in any of the locations specified in the Settings.
+      ability: The following effects will be applied to the character, but can be toggled on or off at any time.
+      talent: The following effects will be applied to the character, but can be toggled on or off at any time.
+    result:
+      spell: The effects of {spell} are applied to {targets}.
     action:
       create: Create
-      edit: Edit
-      toggle: Toggle
-      delete: Delete
+      edit: Edit Effect
+      editItem: Edit Item
+      toggle:
+        on: Toggle On
+        off: Toggle Off
+      delete: Delete Effect
