@@ -1,10 +1,10 @@
 id: fantasy-trip
-version: 1.1.0
+version: 1.2.0
 title: Fantasy Trip
 description: Fantasy Trip for FoundryVTT (Unofficial)
 compatibility:
-  minimum: "13"
-  verified: "13.351"
+  minimum: "14.359"
+  verified: "14.359"
 authors:
   - name: 3rdDog
     email: paul.umbers@gmail.com
