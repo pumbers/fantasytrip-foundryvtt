@@ -4,6 +4,15 @@
 
         <p class="text-xs">{{localize (concat "FT.effect.note." item.type)}} </p>
 
+        {{#if (eq item.type "equipment")}}
+        <div class="field col-span-4">
+            <label>{{localize "FT.item.sheet.label.applyEffectsWhen"}}</label>
+            <multi-select name="system.applyEffectsWhen" multiple>
+                {{selectOptions selectOptions.inventoryLocations selected=system.applyEffectsWhen localize=true}}
+            </multi-select>
+        </div>
+        {{/if}}
+
         {{#each effects as |effect|}}
         <fieldset id="effect-{{effect._id}}" class="effect flex flex-col gap-1" data-effect-id="{{effect._id}}">
             <legend>

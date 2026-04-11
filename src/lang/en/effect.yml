@@ -11,7 +11,7 @@ FT:
       upgrade: Upgrade
     note:
       spell: The following effects will be applied to the target of the spell if it is succesfully cast.
-      equipment: The following effects will be applied to the owner of this item when it is in any of the locations specified in the Settings.
+      equipment: The following effects will be applied to the owner of this item when it is in any of the locations specified.
       ability: The following effects will be applied to the character, but can be toggled on or off at any time.
       talent: The following effects will be applied to the character, but can be toggled on or off at any time.
     result:

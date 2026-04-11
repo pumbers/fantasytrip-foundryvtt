@@ -22,16 +22,20 @@ export function onManageActiveEffect(owner, event, target) {
 
   switch (target.dataset.action) {
     case "createEffect":
-      return owner.createEmbeddedDocuments("ActiveEffect", [
-        {
-          name: game.i18n.format("DOCUMENT.New", {
-            type: game.i18n.localize("DOCUMENT.ActiveEffect"),
-          }),
-          icon: "icons/svg/aura.svg",
-          origin: owner.uuid,
-          transfer: owner.type !== "spell",
-        },
-      ]);
+      return owner.createEmbeddedDocuments(
+        "ActiveEffect",
+        [
+          {
+            name: game.i18n.format("DOCUMENT.New", {
+              type: game.i18n.localize("DOCUMENT.ActiveEffect"),
+            }),
+            icon: "icons/svg/aura.svg",
+            origin: owner.uuid,
+            transfer: owner.type !== "spell",
+          },
+        ],
+        { renderSheet: true },
+      );
     case "editEffect":
       return effect.sheet.render(true);
     case "deleteEffect":
