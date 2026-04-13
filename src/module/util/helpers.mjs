@@ -86,7 +86,7 @@ export function sort(collection, property, direction = "asc") {
   return collection.sort((a, b) =>
     direction === "asc"
       ? foundry.utils.getProperty(a, property) <= foundry.utils.getProperty(b, property)
-      : foundry.utils.getProperty(a, property) >= foundry.utils.getProperty(b, property)
+      : foundry.utils.getProperty(a, property) >= foundry.utils.getProperty(b, property),
   );
 }
 

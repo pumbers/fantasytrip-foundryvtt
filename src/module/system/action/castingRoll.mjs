@@ -152,8 +152,7 @@ export default function castingRoll(actor, spell, options = {}) {
       );
 
       // Apply spell effects to target
-      console.log("SPELL", spell.name, spell.effects);
-      if (spell.effects.size && game.user.targets.size) {
+      if (game.settings.get(FT.id, "applySpellEffects") && spell.effects.size && game.user.targets.size) {
         ChatMessage.create({
           flavor: game.i18n.format("FT.effect.result.spell", {
             spell: spell.name,

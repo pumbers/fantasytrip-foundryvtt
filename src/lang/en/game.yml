@@ -31,12 +31,13 @@ FT:
           multiply: Roll the damage once and multiply
       addCastingFatigueAuto:
         name: Add Casting Fatigue Automatically
-        hint: >
-          When a spell is cast, add the appropriate ST cost to the character's fatigue automatically.
+        hint: When a spell is cast, add the appropriate ST cost to the character's fatigue automatically.
       useManaFirst:
         name: Use item mana first when casting spells
-        hint: >
-          When casting spells, use mana from readied items before character ST.
+        hint: When casting spells, use mana from readied items before character ST.
+      applySpellEffects:
+        name: Apply spell Active Effects to target?
+        hint: Apply any Active Effects from a spell to the target(s) when successfully cast.
       defaultUnskilled4d6:
         name: Default unskilled attacks to 4/DX
         hint: "When set, weapon actions with no talent attached (ie: unskilled) will default to a 4/DX roll instead of 3/DX."
