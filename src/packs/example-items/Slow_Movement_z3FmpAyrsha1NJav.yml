@@ -1,0 +1,83 @@
+name: Slow Movement
+type: spell
+_id: z3FmpAyrsha1NJav
+img: icons/magic/movement/acceleration-speed-tech-blue.webp
+system:
+  notes: ''
+  attacks: []
+  defenses: []
+  minIQ: 8
+  iqCost: 1
+  stToCast:
+    min: 2
+    max: 2
+  stToMaintain: 0
+  stSpent: 0
+  type: thrown
+effects:
+  - name: Slow Movement
+    _id: 1Jt0XwhMfFYgPOjR
+    img: icons/magic/movement/acceleration-speed-tech-blue.webp
+    type: base
+    system:
+      changes:
+        - key: system.ma.walk.value
+          type: multiply
+          value: 0.5
+          priority: null
+          phase: initial
+        - key: system.ma.swim.value
+          type: multiply
+          value: 0.5
+          priority: null
+          phase: initial
+        - key: system.ma.fly.value
+          type: multiply
+          value: 0.5
+          priority: null
+          phase: initial
+    disabled: false
+    start: null
+    duration:
+      value: 4
+      units: turns
+      expiry: turnStart
+      expired: false
+    description: ''
+    origin: null
+    tint: '#ffffff'
+    transfer: false
+    statuses: []
+    showIcon: 2
+    folder: null
+    sort: 0
+    flags: {}
+    _stats:
+      coreVersion: '14.359'
+      systemId: fantasy-trip
+      systemVersion: 1.2.0
+      createdTime: 1776202167492
+      modifiedTime: 1776202167492
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
+      compendiumSource: null
+      duplicateSource: null
+      exportSource: null
+    _key: '!items.effects!z3FmpAyrsha1NJav.1Jt0XwhMfFYgPOjR'
+folder: null
+ownership:
+  default: 0
+  DoJEEiLZ8CgYIaAq: 3
+flags: {}
+_stats:
+  coreVersion: '14.359'
+  systemId: fantasy-trip
+  systemVersion: 1.2.0
+  createdTime: 1776202167492
+  modifiedTime: 1776202167492
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+  exportSource: null
+  compendiumSource: null
+  duplicateSource: null
+sort: 0
+_key: '!items!z3FmpAyrsha1NJav'
+

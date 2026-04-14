@@ -28,7 +28,7 @@
                 <tr>
                     <td>{{change.key}}</td>
                     <td>{{localize (concat "FT.effect.types." change.type)}}</td>
-                    <td>{{change.value}}</td>
+                    <td>{{abbrev (stringify change.value) len=40 ellipsis=true}}</td>
                 </tr>
                 {{/each}}
             </table>
