@@ -21,24 +21,22 @@ effects:
   - name: Encumbrance
     origin: Item.SE2fJ4WlfiUrhMPP
     transfer: true
-    img: icons/svg/aura.svg
+    img: icons/equipment/chest/coat-collared-red-gold.webp
     _id: JRSofZfAZCW4QSvi
     type: base
-    system: {}
-    changes:
-      - key: system.dx.value
-        mode: 2
-        value: "-1"
-        priority: null
+    system:
+      changes:
+        - key: system.dx.value
+          type: subtract
+          value: 1
+          priority: null
+          phase: initial
     disabled: true
     duration:
-      startTime: null
-      combat: null
-      seconds: null
-      rounds: null
-      turns: null
-      startRound: null
-      startTurn: null
+      value: null
+      units: seconds
+      expiry: null
+      expired: false
     description: ""
     tint: "#ffffff"
     statuses: []
@@ -48,10 +46,15 @@ effects:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: "13.345"
+      coreVersion: "14.359"
       systemId: fantasy-trip
-      systemVersion: 0.1.0
-      lastModifiedBy: null
+      systemVersion: 1.2.0
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
+      createdTime: 1776202547639
+      modifiedTime: 1776202717821
+    start: null
+    showIcon: 1
+    folder: null
     _key: "!items.effects!zcZ7pAlnripgNeyc.JRSofZfAZCW4QSvi"
 folder: null
 ownership:
@@ -62,7 +65,7 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: "13.345"
+  coreVersion: "14.359"
   systemId: fantasy-trip
   systemVersion: 0.1.0
   createdTime: 1752529347029

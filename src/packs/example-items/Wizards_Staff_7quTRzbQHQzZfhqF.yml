@@ -57,24 +57,22 @@ system:
 effects:
   - name: Mana
     origin: Item.CX16fF724RK57pCN
-    img: icons/svg/aura.svg
+    img: icons/magic/symbols/runes-star-pentagon-blue.webp
     _id: olwx2f549hLy86ex
     type: base
-    system: {}
-    changes:
-      - key: system.mana.max
-        mode: 2
-        value: "10"
-        priority: null
+    system:
+      changes:
+        - key: system.mana.max
+          type: add
+          value: 10
+          priority: null
+          phase: initial
     disabled: true
     duration:
-      startTime: null
-      seconds: null
-      combat: null
-      rounds: null
-      turns: null
-      startRound: null
-      startTurn: null
+      value: null
+      units: seconds
+      expiry: null
+      expired: false
     description: ""
     tint: "#ffffff"
     transfer: true
@@ -85,10 +83,15 @@ effects:
       compendiumSource: null
       duplicateSource: null
       exportSource: null
-      coreVersion: "13.346"
+      coreVersion: "14.359"
       systemId: fantasy-trip
-      systemVersion: 0.2.0
-      lastModifiedBy: null
+      systemVersion: 1.2.0
+      lastModifiedBy: DoJEEiLZ8CgYIaAq
+      createdTime: 1776202593805
+      modifiedTime: 1776202618622
+    start: null
+    showIcon: 1
+    folder: null
     _key: "!items.effects!7quTRzbQHQzZfhqF.olwx2f549hLy86ex"
 folder: null
 flags: {}
@@ -96,7 +99,7 @@ _stats:
   compendiumSource: null
   duplicateSource: null
   exportSource: null
-  coreVersion: "13.346"
+  coreVersion: "14.359"
   systemId: fantasy-trip
   systemVersion: 0.2.0
   createdTime: 1753826283062
