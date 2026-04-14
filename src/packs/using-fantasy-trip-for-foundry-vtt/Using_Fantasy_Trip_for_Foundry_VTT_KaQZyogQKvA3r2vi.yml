@@ -842,29 +842,28 @@ pages:
         made automatically. If the player or GM does not want a figure to be in
         the line-of-fire, it can be deselected and no roll will be
         made.</p><p>As per the rulebook, a to-miss roll is the same as the
-        attackers adjDX to-hit roll, but will only do normal damage, not double or
-        triple damage if a critical is rolled. Damage is calculated
+        attackers adjDX to-hit roll, but will only do normal damage, not double
+        or triple damage if a critical is rolled. Damage is calculated
         automatically and can be applied to any figure hit by the GM as usual.
         If a figure is hit, then the attack fails.</p><p>Automatic line-of-fire
-        determination can be turned off in the system settings if
-        desired. It also requires a scene to have a hexagonal grid.</p>
-        <h2>Combat Settings</h2><p>To allow for different GM's
-        wanting to run combat in different ways, the following settings can be
-        changed using Foundry's Game Settings dialog:</p><ul><li><p><strong>Use
-        Fantasy Trip Initiative</strong>: On by default, turning this off
-        reverts back to Foundry's basic round/turn structure with 1D6.1D61D6
-        rolls for initiative.</p></li><li><p><strong>PC Group
-        Initiative</strong>: Off by default, movement initiative is rolled
-        separately for each PC. Turning this on makes only a single initiative
-        roll that applies to every PC.</p></li><li><p><strong>NPC Group
-        Initiative</strong>: On by default, movement initiative is rolled once
-        and applies to every NPC. Turning this on makes a separate initiative
-        roll for each NPC.</p></li></ul><h2>Initiative Bonuses</h2><p>Each
-        character sheet has an <strong>Init Mod</strong> field that can be used
-        as a temporary bonus to that character's individual
-        initiative.</p><p>Active Affects can also be used to add to both
-        individual initiative or party initiative, as for the
-        <strong>Tactics</strong> and <strong>Strategy</strong> talents, for
+        determination can be turned off in the system settings if desired. It
+        also requires a scene to have a hexagonal grid.</p> <h2>Combat
+        Settings</h2><p>To allow for different GM's wanting to run combat in
+        different ways, the following settings can be changed using Foundry's
+        Game Settings dialog:</p><ul><li><p><strong>Use Fantasy Trip
+        Initiative</strong>: On by default, turning this off reverts back to
+        Foundry's basic round/turn structure with 1D6.1D61D6 rolls for
+        initiative.</p></li><li><p><strong>PC Group Initiative</strong>: Off by
+        default, movement initiative is rolled separately for each PC. Turning
+        this on makes only a single initiative roll that applies to every
+        PC.</p></li><li><p><strong>NPC Group Initiative</strong>: On by default,
+        movement initiative is rolled once and applies to every NPC. Turning
+        this on makes a separate initiative roll for each
+        NPC.</p></li></ul><h2>Initiative Bonuses</h2><p>Each character sheet has
+        an <strong>Init Mod</strong> field that can be used as a temporary bonus
+        to that character's individual initiative.</p><p>Active Affects can also
+        be used to add to both individual initiative or party initiative, as for
+        the <strong>Tactics</strong> and <strong>Strategy</strong> talents, for
         example (see
         @UUID[Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.KaQZyogQKvA3r2vi.JournalEntryPage.ZC0ir9H0OUqr0Ehw]{Writing
         Effects}).</p>
@@ -905,16 +904,23 @@ pages:
         sheet), and each spell has a <strong>Cast</strong> button next to it.
         Click that button, and the Dice roller appears, preset for casting that
         spell.</p><img
-        src="systems/fantasy-trip/assets/images/instructions/dice_roller_cast.webp"
-        /><p>If the spell has a variable ST cost, that can be altered before the
-        roll is made. Any situation or range modifiers can be selected as
-        well.</p><h2>Spell Effects</h2><p>For the most part, spell effects need
-        to be interpreted manually - since spells can have such a wide ranging
-        set of effects. This may change in future, but for now it's the easiest
-        way to cope with such a variety of spell effects. Two mechanisms have
-        been implemented though:</p><h3>Attack Spells</h3><p>Spells which have
-        an attack component, like Fireball or Lightning, will behave like weapon
-        attacks. Hit messages, Roll Damage buttons, etc (see
+        src="systems/fantasy-trip/assets/images/instructions/dice_roller_cast.webp"><p>If
+        the spell has a variable ST cost, that can be altered before the roll is
+        made. Any situation or range modifiers can be selected as
+        well.</p><h2>Spell Effects</h2><p>With Fantasy Trip system 1.2 and
+        Foundry v14 or higher, by default any Active Effects set on the spell
+        will not affect the wizard casting it but will be transferred to any
+        selected targets on a successful casting. This functionality can be
+        turned off in the system settings if you prefer a more manual
+        approach.</p><p>Because Foundry v14 allows for the creation of compendia
+        containing Active Effects, it's possible to create a library of spell
+        effects. The new item sheet for spells allows you to drag and drop
+        Active Effects from a compendium on to the sheet where they become spell
+        effects. You can drop any number of effects onto a spell item, and they
+        will all be transferred to targets on a successful
+        casting.</p><h3>Attack Spells</h3><p>Spells which have an attack
+        component, like Fireball or Lightning, will behave like weapon attacks.
+        Hit messages, Roll Damage buttons, etc (see
         @UUID[Compendium.fantasy-trip.using-fantasy-trip-for-foundry-vtt.JournalEntry.KaQZyogQKvA3r2vi.JournalEntryPage.taYa6XujJcawZlXZ#attacks-and-damage]{Attacks
         &amp; Damage}).</p><h3>Maintained Spells</h3><p>Spells which have
         effects that last longer than a single round, that is they have a
@@ -935,11 +941,11 @@ pages:
     _stats:
       compendiumSource: null
       duplicateSource: null
-      coreVersion: "13.345"
+      coreVersion: "14.359"
       systemId: fantasy-trip
       systemVersion: 0.1.0
       createdTime: 1743110384981
-      modifiedTime: 1750882829513
+      modifiedTime: 1776199767033
       lastModifiedBy: DoJEEiLZ8CgYIaAq
       exportSource: null
     category: null
