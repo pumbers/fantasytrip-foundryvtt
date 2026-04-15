@@ -15,8 +15,8 @@ system:
   minIQ: 12
   iqCost: 1
   stToCast:
-    min: 0
-    max: 0
+    min: 1
+    max: 3
   type: missile
   pdfReference: ITL#24
   stToMaintain: 0
