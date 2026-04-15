@@ -1,7 +1,7 @@
 name: Light
 type: spell
 _id: 7VWDQEa3vKziXhjz
-img: icons/magic/light/explosion-star-large-orange.webp
+img: icons/magic/light/explosion-star-blue-large.webp
 system:
   notes: ""
   attacks: []
@@ -17,7 +17,7 @@ system:
 effects:
   - name: Light
     _id: KPFHZxlpZMD2A9oH
-    img: icons/magic/light/explosion-star-large-orange.webp
+    img: icons/magic/light/explosion-star-blue-large.webp
     type: base
     system:
       changes:
@@ -26,9 +26,9 @@ effects:
           value:
             bright: 8
             dim: 20
-            color: "#ffd478"
+            color: "#75d5ff"
             animation:
-              type: flame
+              type: sunburst
           priority: null
           phase: initial
     disabled: false
