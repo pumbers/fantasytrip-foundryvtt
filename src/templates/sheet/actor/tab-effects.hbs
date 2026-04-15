@@ -9,8 +9,8 @@
                 <img src="{{effect.img}}" />
                 {{#if item}}
                 <span>{{effect.item.name}}</span>
-                <a data-action="editItem" title="{{localize 'FT.effect.action.editItem'}}"> <i
-                        class="fa fa-file"></i></a>
+                <a data-action="editItem" data-item-id="{{effect.parent._id}}"
+                    title="{{localize 'FT.effect.action.editItem'}}"> <i class="fa fa-file"></i></a>
                 {{/if}}
                 <span>{{effect.name}}</span>
                 {{#unless effect.item}}
