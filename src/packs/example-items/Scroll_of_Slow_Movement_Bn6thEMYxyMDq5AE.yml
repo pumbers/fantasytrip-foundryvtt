@@ -1,0 +1,37 @@
+name: Scroll of Slow Movement
+type: equipment
+_id: Bn6thEMYxyMDq5AE
+img: icons/sundries/scrolls/scroll-bound-ruby-red.webp
+system:
+  notes: ""
+  attacks: []
+  defenses: []
+  cost: 500
+  wt: 1
+  qty: 1
+  location: packed
+  applyEffectsWhen:
+    - readied
+  capacity: 0
+  container: null
+  spells:
+    - uuid: Compendium.fantasy-trip.example-items.Item.z3FmpAyrsha1NJav
+      burn: true
+effects: []
+folder: null
+sort: 0
+ownership:
+  default: 0
+  DoJEEiLZ8CgYIaAq: 3
+flags: {}
+_stats:
+  coreVersion: "14.359"
+  systemId: fantasy-trip
+  systemVersion: 1.2.0
+  createdTime: 1776288362192
+  modifiedTime: 1776288871881
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+_key: "!items!Bn6thEMYxyMDq5AE"

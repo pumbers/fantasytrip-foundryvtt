@@ -126,9 +126,23 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
             .reduce((talents, talent) => ({ ...talents, [talent._id]: talent.name }), {}),
         }),
         // World Spells for Magic Items
-        spells: Array.from(game.items.values())
-          .filter((item) => item.type === "spell")
-          .reduce((spells, spell) => ({ ...spells, [spell.uuid]: spell.name }), {}),
+        spells: {
+          ...(!this.item.inCompendium && {
+            world: Array.from(game.items.values())
+              .filter((item) => item.type === "spell")
+              .reduce((spells, spell) => ({ ...spells, [spell.uuid]: spell.name }), {}),
+          }),
+          packs: await Promise.all(
+            game.packs
+              .filter((pack) => pack.metadata.type === "Item")
+              .map(async (compendium) => ({
+                label: compendium.metadata.label,
+                contents: (await compendium.getDocuments({ type: "spell" }))
+                  .map((spell) => ({ uuid: spell.uuid, name: spell.name }))
+                  .reduce((spells, spell) => ({ ...spells, [spell.uuid]: spell.name }), {}),
+              })),
+          ),
+        },
       },
       //
       effects: this.item.effects,

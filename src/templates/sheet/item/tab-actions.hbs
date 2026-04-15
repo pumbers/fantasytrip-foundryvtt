@@ -27,7 +27,7 @@
                     <label>{{localize "FT.item.sheet.label.type"}}</label>
                     <select name="system.attacks.{{@index}}.type">
                         <option value="">{{localize 'FT.game.option.none'}}</option>
-                        {{selectOptions ../selectOptions.attackTypes selected=attack.type localize=true}}
+                        {{selectOptions @root/selectOptions.attackTypes selected=attack.type localize=true}}
                     </select>
                 </div>
                 {{!-- If equipment, there's a min ST to use --}}
@@ -51,7 +51,7 @@
                     <label>{{localize "FT.item.sheet.label.talent"}}</label>
                     <select name="system.attacks.{{@index}}.talent">
                         <option value="">{{localize 'FT.game.option.unskilled'}}</option>
-                        {{selectOptions ../selectOptions.talents selected=attack.talent}}
+                        {{selectOptions @root/selectOptions.talents selected=attack.talent}}
                     </select>
                 </div>
                 {{/if}}
@@ -109,7 +109,16 @@
                             data-index="{{@index}}"><i class="fas fa-trash"></i></a>
                         <select name="system.spells.{{@index}}.uuid">
                             <option>{{localize "FT.game.option.select"}}</option>
-                            {{selectOptions ../selectOptions.spells selected=spell.uuid}}
+                            {{#if @root/selectOptions.spells.world}}
+                            <optgroup label="World">
+                                {{selectOptions @root/selectOptions.spells.world selected=spell.uuid}}
+                            </optgroup>
+                            {{/if}}
+                            {{#each @root/selectOptions.spells.packs as | pack |}}
+                            <optgroup label="{{pack.label}}">
+                                {{selectOptions pack.contents selected=spell.uuid}}
+                            </optgroup>
+                            {{/each}}
                         </select>
                     </div>
                 </div>

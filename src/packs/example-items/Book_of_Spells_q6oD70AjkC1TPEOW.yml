@@ -1,0 +1,43 @@
+name: Book of Spells
+type: equipment
+_id: q6oD70AjkC1TPEOW
+img: icons/sundries/books/book-embossed-jewel-gold-green.webp
+system:
+  notes: ""
+  attacks: []
+  defenses: []
+  cost: 2000
+  wt: 5
+  qty: 1
+  location: packed
+  applyEffectsWhen:
+    - readied
+  capacity: 0
+  container: null
+  spells:
+    - uuid: Compendium.fantasy-trip.example-items.Item.7VWDQEa3vKziXhjz
+      burn: false
+    - uuid: Compendium.fantasy-trip.example-items.Item.7z1jLuotiHn45LXq
+      burn: false
+    - uuid: Compendium.fantasy-trip.example-items.Item.b6c9C0DwhwQdKT0c
+      burn: false
+    - uuid: Compendium.fantasy-trip.example-items.Item.z3FmpAyrsha1NJav
+      burn: false
+effects: []
+folder: null
+sort: 0
+ownership:
+  default: 0
+  DoJEEiLZ8CgYIaAq: 3
+flags: {}
+_stats:
+  coreVersion: "14.359"
+  systemId: fantasy-trip
+  systemVersion: 1.2.0
+  createdTime: 1776288886149
+  modifiedTime: 1776288930890
+  lastModifiedBy: DoJEEiLZ8CgYIaAq
+  compendiumSource: null
+  duplicateSource: null
+  exportSource: null
+_key: "!items!q6oD70AjkC1TPEOW"
