@@ -57,7 +57,7 @@ export default function castingRoll(actor, spell, options = {}) {
     submit: async (data) => {
       // console.log("Action.castingRoll().submit()", "data", data);
       // Extract roll parameters
-      const { cost, dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode } =
+      const { cost, dice, attributes, totalAttributes, modifiers, totalModifiers, messageMode } =
         extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
@@ -148,7 +148,7 @@ export default function castingRoll(actor, spell, options = {}) {
           flavor: message,
           content,
         },
-        { rollMode },
+        { messageMode },
       );
 
       // Apply spell effects to target

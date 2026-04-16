@@ -47,12 +47,12 @@ FT:
       showItemIcons:
         name: Show Item Icons
         hint: Show icons in item tables?
-    rollMode:
-      roll: Default
-      publicroll: Public
-      gmroll: With GM
-      blindroll: Blind
-      selfroll: Self
+    messageMode:
+      ic: In Character
+      public: Public
+      gm: With GM
+      blind: Blind
+      self: Self
     # General Messages
     message:
       disclaimer: >

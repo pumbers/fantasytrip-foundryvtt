@@ -50,10 +50,10 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
           modifiers: {
             situationMod: { min: FT.roll.modifiers.default.min, max: FT.roll.modifiers.default.max, value: 0 },
           },
-          rollMode: "roll",
+          messageMode: "ic",
         },
         options,
-        { recursive: true }
+        { recursive: true },
       ),
       FT: CONFIG.FT,
     };
@@ -77,7 +77,7 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
       return FTDiceRollerApp.#context.submit?.(
         foundry.utils.mergeObject(FTDiceRollerApp.#context, data, {
           recursive: true,
-        })
+        }),
       );
     }
 

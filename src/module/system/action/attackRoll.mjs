@@ -85,7 +85,7 @@ export default function attackRoll(actor, item, options) {
     submit: async (data) => {
       // console.log("Action.attackRoll().submit()", "data", data);
       // Extract roll parameters
-      const { dice, attributes, totalAttributes, modifiers, totalModifiers, lof, rollMode } =
+      const { dice, attributes, totalAttributes, modifiers, totalModifiers, lof, messageMode } =
         extractRollParameters(data);
 
       // If resolving lof misses results in a hit, don't roll for the attack
@@ -163,7 +163,7 @@ export default function attackRoll(actor, item, options) {
           flavor: message,
           content,
         },
-        { rollMode },
+        { messageMode },
       );
     },
   };

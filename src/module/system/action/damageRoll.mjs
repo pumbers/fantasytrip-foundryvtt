@@ -30,7 +30,8 @@ export default function damageRoll(actor, item, options = {}) {
     submit: (data) => {
       // console.log("Action.damageRoll().submit()", "data", data);
       // Extract roll parameters
-      const { actor, formula, minimum, multiplier, damageMultiplierStrategy, rollMode } = extractRollParameters(data);
+      const { actor, formula, minimum, multiplier, damageMultiplierStrategy, messageMode } =
+        extractRollParameters(data);
 
       // Build a damage formula
       const finalFormula =
@@ -67,7 +68,7 @@ export default function damageRoll(actor, item, options = {}) {
               flavor: message,
               content,
             },
-            { rollMode },
+            { messageMode },
           );
         });
       } else {
@@ -82,7 +83,7 @@ export default function damageRoll(actor, item, options = {}) {
                 effects: attack.effects,
               }),
             },
-            { rollMode },
+            { messageMode },
           );
         });
       }

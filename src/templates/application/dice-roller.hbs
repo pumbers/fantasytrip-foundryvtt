@@ -122,11 +122,11 @@
 
     {{!-- Roll Mode --}}
     <div class="grid grid-cols-5 gap-1">
-        {{#each (array "roll" "publicroll" "gmroll" "blindroll" "selfroll" ) as | rollMode |}}
+        {{#each (array "ic" "public" "gm" "blind" "self" ) as | messageMode |}}
         <span>
-            <input type="radio" name="rollMode" id="rollMode-{{rollMode}}" value="{{rollMode}}" {{#if (eq ../rollMode
-                rollMode)}}checked{{/if}}>
-            <label for="rollMode-{{rollMode}}">{{localize (concat "FT.game.rollMode." rollMode)}}</label>
+            <input type="radio" name="messageMode" id="messageMode-{{messageMode}}" value="{{messageMode}}" {{#if (eq
+                ../messageMode messageMode)}}checked{{/if}}>
+            <label for="messageMode-{{messageMode}}">{{localize (concat "FT.game.messageMode." messageMode)}}</label>
         </span>
         {{/each}}
     </div>

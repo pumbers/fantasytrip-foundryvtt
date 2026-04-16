@@ -25,7 +25,7 @@ export default function talentRoll(actor, talent, options) {
     submit: async (data) => {
       // console.log("Action.talentRoll().submit()", "data", data);
       // Extract roll parameters
-      const { actor, talent, dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode } =
+      const { actor, talent, dice, attributes, totalAttributes, modifiers, totalModifiers, messageMode } =
         extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
@@ -62,7 +62,7 @@ export default function talentRoll(actor, talent, options) {
           flavor: message,
           content,
         },
-        { rollMode },
+        { messageMode },
       );
     },
   };

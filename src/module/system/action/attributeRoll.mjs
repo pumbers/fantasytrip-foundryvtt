@@ -38,7 +38,7 @@ export default function attributeRoll(actor, options) {
     submit: (data) => {
       // console.log("Action.attributeRoll().submit()", "data", data);
       // Extract roll parameters
-      const { actor, dice, attributes, totalAttributes, modifiers, totalModifiers, rollMode } =
+      const { actor, dice, attributes, totalAttributes, modifiers, totalModifiers, messageMode } =
         extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
@@ -75,7 +75,7 @@ export default function attributeRoll(actor, options) {
             flavor: message,
             content,
           },
-          { rollMode },
+          { messageMode },
         );
       });
     },
