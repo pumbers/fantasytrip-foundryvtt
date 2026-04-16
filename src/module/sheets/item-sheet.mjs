@@ -192,7 +192,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
 
   static #addSpell(event, target) {
     console.log("#addSpell", target.dataset);
-    this.item.system.spells.push({ id: null, item: null });
+    this.item.system.spells.push({ uuid: null, burn: false });
     this.item.update({ "system.spells": this.item.system.spells });
   }
 

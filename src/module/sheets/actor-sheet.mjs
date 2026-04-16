@@ -107,10 +107,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
           item.system.spells
             ?.filter((spell) => !!spell.uuid)
             .forEach((spell) => {
-              foundry.utils.fromUuid(spell.uuid).then((found) => {
-                spell.name = found.name;
-                spell.casting = found.system.casting;
-              });
+              spell.name = foundry.utils.fromUuidSync(spell.uuid)?.name;
             });
           return item;
         })
@@ -239,9 +236,10 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
     if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
-    const spell = foundry.utils.fromUuidSync(target.dataset.spellUuid);
-    if (!spell) return console.error(FT.prefix, "Unable to find spell", target.dataset.spellUuid);
-    Action.castingRoll(this.actor, spell, { ...target.dataset, burn: target.dataset.burn, item });
+    const spell = foundry.utils.fromUuid(target.dataset.spellUuid).then((spell) => {
+      if (!spell) return ui.notifications.error(`Unable to find spell ${target.dataset.spellUuid}`);
+      Action.castingRoll(this.actor, spell, { ...target.dataset, burn: target.dataset.burn, item });
+    });
   }
 
   static #manageEffect(event, target) {

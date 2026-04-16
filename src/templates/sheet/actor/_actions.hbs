@@ -26,7 +26,7 @@
         {{#each item.system.spells as | spell |}}
         <a class="sheet-button" data-action="castSpellFromItem" data-spell-uuid="{{spell.uuid}}"
             data-burn="{{spell.burn}}" title="{{localize 'FT.actor.sheet.action.spell.cast'}} {{spell.name}}">
-            <i class="icon-magic-swirl"></i>{{spell.casting}}&thinsp;{{spell.name}}</a>
+            <i class="icon-magic-swirl"></i>{{spell.name}}</a>
         {{/each}}
 
         {{!-- Active Spell --}}
