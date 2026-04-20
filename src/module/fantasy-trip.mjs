@@ -297,7 +297,7 @@ Hooks.on("ready", async () => {
     console.info(FT.prefix, "PDF Pager module found, setting PDF references", game.modules.get("pdf-pager")?.active);
   }
 
-  // ui.notifications.info("FT.game.message.disclaimer", { localize: true });
-  // ui.notifications.info("FT.game.message.notice", { localize: true });
+  ui.notifications.info("FT.game.message.disclaimer", { localize: true });
+  ui.notifications.info("FT.game.message.notice", { localize: true });
   console.info(FT.prefix, "System ready");
 });
