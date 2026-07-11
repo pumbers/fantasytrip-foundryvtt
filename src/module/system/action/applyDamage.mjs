@@ -43,7 +43,7 @@ export default async function applyDamage(actor, damage, options) {
           action: "apply",
           hitsStopped: Array.from(button.form?.elements)
             .filter((e) => e.id === "defense" && e.checked)
-            .reduce((hitsStopped, e) => hitsStopped + parseInt(e.value), 0),
+            .reduce((hitsStopped, e) => hitsStopped + (parseInt(e.value) || 0), 0),
         }),
       },
     ],

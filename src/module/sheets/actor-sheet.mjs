@@ -188,7 +188,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#talentRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
     Action.talentRoll(this.actor, item, target.dataset);
   }
 
@@ -196,7 +196,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#attackRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
     Action.attackRoll(this.actor, item, target.dataset);
   }
 
@@ -204,7 +204,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#damageRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
     Action.damageRoll(this.actor, item, target.dataset);
   }
 
@@ -212,7 +212,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#castSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
     Action.castingRoll(this.actor, item, target.dataset);
   }
 
@@ -220,7 +220,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#maintainSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
     this.actor.update({ "system.fatigue": this.actor.system.fatigue + item.system.stToMaintain });
   }
 
@@ -228,6 +228,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#cancelSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const spell = this.actor.items.get(itemId);
+    if (!spell) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
     spell.delete();
   }
 
@@ -235,7 +236,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#castSpellFromItem", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
     const spell = foundry.utils.fromUuid(target.dataset.spellUuid).then((spell) => {
       if (!spell) return ui.notifications.error(`Unable to find spell ${target.dataset.spellUuid}`);
       Action.castingRoll(this.actor, spell, { ...target.dataset, burn: target.dataset.burn, item });

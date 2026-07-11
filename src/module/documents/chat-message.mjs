@@ -27,10 +27,14 @@ const onDamageRoll = async (event) => {
   // console.log("onDamageRoll()", event.target.dataset);
   const dataset = event.target.dataset;
   const item = await foundry.utils.fromUuid(dataset.itemUuid);
-  if (!item) return console.error(FT.prefix, "Unable to find item", dataset.itemUuid, "for damage roll");
+  if (!item)
+    return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId: dataset.itemUuid } });
   const actor = game.actors.tokens[dataset.tokenId] ?? game.actors.get(dataset.actorId);
-  if (!actor) return console.error(FT.prefix, "Unable to find actor for damage roll");
-
+  if (!actor)
+    return ui.notifications.error("FT.system.error.noActor", {
+      localize: true,
+      format: { actorId: game.actors.tokens[dataset.tokenId] ?? game.actors.get(dataset.actorId) },
+    });
   Action.damageRoll(actor, item, event.target.dataset);
 };
 
@@ -41,7 +45,10 @@ const onApplyDamage = async (event) => {
   // console.log("onApplyDamage()", event.target.dataset);
   const dataset = event.target.dataset;
   const actor = game.actors.tokens[dataset.tokenId] ?? game.actors.get(dataset.actorId);
-  if (!actor) return console.error(FT.prefix, "Unable to find actor for apply damage");
-
+  if (!actor)
+    return ui.notifications.error("FT.system.error.noActor", {
+      localize: true,
+      format: { actorId: game.actors.tokens[dataset.tokenId] ?? game.actors.get(dataset.actorId) },
+    });
   Action.applyDamage(actor, dataset.damage);
 };

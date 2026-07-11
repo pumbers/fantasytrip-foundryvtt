@@ -125,3 +125,6 @@ FT:
         scale:
           thrown: -1/H
           missile: -1/2 MH
+    error:
+      noActor: Unable to find actor {actorId}
+      noItem: Unable to find item {itemId}
