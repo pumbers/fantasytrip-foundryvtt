@@ -1,4 +1,5 @@
 import { FT } from "../config.mjs";
+import { useStatusOverlays } from "../../documents/active-effect.mjs";
 
 /**
  * Apply damage to a target, accounting for any defenses if present
@@ -112,7 +113,7 @@ function _applyDamage(actor, damageTaken, _options = {}) {
       } else if (damageTaken >= 8) {
         updatedActor.toggleStatusEffect("stun", {
           active: true,
-          overlay: true,
+          overlay: useStatusOverlays(),
         });
         ChatMessage.create({
           flavor: game.i18n.format(

@@ -1,4 +1,5 @@
 import { FT } from "../system/config.mjs";
+import { useStatusOverlays } from "./active-effect.mjs";
 
 /*****************************************************************************
  * Fantasy Trip Actor
@@ -160,11 +161,14 @@ export class FTActor extends foundry.documents.Actor {
   async updateHealthStatus() {
     const { isDead, isDown } = this.system;
     if (isDead) {
-      await this.toggleStatusEffect("dead", { active: true, overlay: true });
+      await this.toggleStatusEffect("dead", {
+        active: true,
+        overlay: useStatusOverlays(),
+      });
     } else if (isDown) {
       const effect = await this.toggleStatusEffect("unconscious", {
         active: true,
-        overlay: true,
+        overlay: useStatusOverlays(),
       });
       // Only flag a newly created effect, not an existing one (e.g. from a spell)
       if (effect instanceof foundry.documents.ActiveEffect)

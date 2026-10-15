@@ -27,3 +27,26 @@ export class FTActiveEffect extends foundry.documents.ActiveEffect {
     return false;
   }
 }
+
+/*****************************************************************************
+ * Status Overlays
+ *****************************************************************************/
+
+// Statuses drawn as a large overlay over the token, unless turned off in the world settings
+export const OVERLAY_STATUSES = ["dead", "unconscious", "stun"];
+
+/**
+ * Whether the dead, unconscious & stunned statuses should be drawn as token overlays
+ * @returns {Boolean}
+ */
+export function useStatusOverlays() {
+  return game.settings.get(FT.id, "statusOverlays");
+}
+
+// When overlays are turned off, remove the overlay from these statuses however
+// they're applied (e.g. by the combat tracker's defeated toggle, macros or modules)
+Hooks.on("preCreateActiveEffect", (effect) => {
+  if (useStatusOverlays()) return;
+  if (!OVERLAY_STATUSES.some((status) => effect.statuses.has(status))) return;
+  effect.updateSource({ "flags.core.overlay": false });
+});

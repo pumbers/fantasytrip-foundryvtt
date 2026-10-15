@@ -252,6 +252,20 @@ Hooks.once("init", async function () {
     requiresReload: false,
   });
 
+  game.settings.register(FT.id, "statusOverlays", {
+    name: game.i18n.localize("FT.game.setting.statusOverlays.name"),
+    hint: game.i18n.localize("FT.game.setting.statusOverlays.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: true,
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: false,
+  });
+
   game.settings.register(FT.id, "showItemIcons", {
     name: game.i18n.localize("FT.game.setting.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.setting.showItemIcons.hint"),
