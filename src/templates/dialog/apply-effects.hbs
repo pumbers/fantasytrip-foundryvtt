@@ -1,0 +1,31 @@
+{{!-- {{log .}} --}}
+<div class="flex flex-col gap-2">
+    <p>{{localize "FT.dialog.effects.label.request" caster=caster.name spell=spell.name}}</p>
+    {{!-- Effects --}}
+    <div class="flex flex-col gap-1">
+        {{#each effects as | effect |}}
+        <div class="effect">
+            <img src="{{effect.img}}" class="w-[1.5em] h-[1.5em]">
+            <div>
+                <div>{{effect.name}}</div>
+                {{#each effect.changes as | change |}}
+                <div class="change">
+                    {{change.key}} {{localize (concat "FT.effect.types." change.type)}} {{change.value}}
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{!-- Targets --}}
+    <fieldset>
+        <legend>{{localize "FT.dialog.effects.label.targets"}}</legend>
+        {{#each tokens as | token |}}
+        <div class="target">
+            <input class="!my-0" type="checkbox" name="target" value="{{token.uuid}}" checked>
+            <img src="{{token.texture.src}}" class="w-[1.5em] h-[1.5em]">
+            <div>{{token.name}}</div>
+        </div>
+        {{/each}}
+    </fieldset>
+</div>

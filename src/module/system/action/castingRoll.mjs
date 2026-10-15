@@ -1,6 +1,7 @@
 import { FT } from "../config.mjs";
 import { FTDiceRollerApp } from "../../applications/dice-roller.mjs";
 import { extractRollParameters, determineRollResult } from "./rollResults.mjs";
+import { applySpellEffects } from "./applySpellEffects.mjs";
 
 const DICE_ROLLER = new FTDiceRollerApp();
 
@@ -206,27 +207,15 @@ export default function castingRoll(actor, spell, options = {}) {
         { messageMode },
       );
 
-      // Apply spell effects to target
+      // Apply spell effects to targets on a successful cast (not awaited, as
+      // the GM may take a while to confirm)
       if (
+        succeeded &&
         game.settings.get(FT.id, "applySpellEffects") &&
         spell.effects.size &&
         game.user.targets.size
       ) {
-        ChatMessage.create({
-          flavor: game.i18n.format("FT.effect.result.spell", {
-            spell: spell.name,
-            targets: Array.from(game.user.targets)
-              .map((target) => target.name)
-              .join(", "),
-          }),
-        });
-
-        for (const target of game.user.targets) {
-          target.actor.createEmbeddedDocuments(
-            "ActiveEffect",
-            Array.from(spell.effects),
-          );
-        }
+        applySpellEffects(actor, spell, Array.from(game.user.targets));
       }
 
       // If the spell is cast from an item, then it may get burned (deleted)

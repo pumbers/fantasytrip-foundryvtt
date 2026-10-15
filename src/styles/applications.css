@@ -19,4 +19,19 @@
             @apply grid grid-cols-[1fr_1fr_6fr_4fr_3fr] gap-1 m-0 p-[2px] text-xs leading-4;
         }
     }
+
+    &#ft-apply-effects {
+        input[type="checkbox"] {
+            @apply size-4;
+        }
+        .effect {
+            @apply grid grid-cols-[1fr_14fr] gap-1 m-0 p-[2px] text-xs leading-4;
+            .change {
+                @apply wrap-anywhere;
+            }
+        }
+        .target {
+            @apply grid grid-cols-[1fr_1fr_13fr] gap-1 m-0 p-[2px] text-xs leading-4;
+        }
+    }
 }

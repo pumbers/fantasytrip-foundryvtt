@@ -16,6 +16,11 @@ FT:
       talent: The following effects will be applied to the character, but can be toggled on or off at any time.
     result:
       spell: The effects of {spell} are applied to {targets}.
+      declined: The GM declined to apply the effects of {spell} to {targets}.
+      failed: The effects of {spell} could not be applied to {targets}. See the console for details.
+      noGM: No GM is connected, so the effects of {spell} could not be applied to {targets}.
+      noResponse: The GM did not respond, so the effects of {spell} were not applied to {targets}.
+      expired: The request to apply the effects of {spell} timed out, so they were not applied.
     action:
       create: Create
       edit: Edit Effect

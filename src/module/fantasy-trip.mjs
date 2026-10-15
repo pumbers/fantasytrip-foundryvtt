@@ -19,6 +19,10 @@ import { FTActiveEffect } from "./documents/active-effect.mjs";
 import * as ChatMessage from "./documents/chat-message.mjs";
 import * as Helpers from "./util/helpers.mjs";
 import { migrateWorld } from "./system/migration.mjs";
+import {
+  QUERY_NAME as APPLY_SPELL_EFFECTS_QUERY,
+  handleApplySpellEffectsQuery,
+} from "./system/action/applySpellEffects.mjs";
 
 const { StringField, NumberField, BooleanField } = foundry.data.fields;
 
@@ -296,6 +300,9 @@ Hooks.once("init", async function () {
   CONFIG.Combat.documentClass = FTCombat;
   CONFIG.ActiveEffect.documentClass = FTActiveEffect;
 
+  // Queries (requests from other clients, e.g. players asking the GM to apply spell effects)
+  CONFIG.queries[APPLY_SPELL_EFFECTS_QUERY] = handleApplySpellEffectsQuery;
+
   /**
    * Handlebars Helpers & Partials
    */
@@ -321,6 +328,7 @@ Hooks.once("init", async function () {
     `${FT.path}/templates/chat/damage-roll.hbs`,
     //
     `${FT.path}/templates/dialog/apply-damage.hbs`,
+    `${FT.path}/templates/dialog/apply-effects.hbs`,
   ]);
 });
 
