@@ -18,6 +18,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@foundryvtt/foundryvtt-cli": "^3.0.5",
     "@rollup/plugin-terser": "^1.0.0",
     "@tailwindcss/postcss": "^4.3.3",
@@ -29,6 +30,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^7.3.0",
     "eslint-plugin-standard": "^5.0.0",
+    "globals": "^17.13.0",
     "gulp": "^5.0.1",
     "gulp-clean": "^0.4.0",
     "gulp-merge-json": "^2.2.2",
