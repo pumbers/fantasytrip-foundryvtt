@@ -41,21 +41,32 @@ export function importActor(actor) {
       if (action !== "import") return;
 
       if (pasted.length) {
-        const actorData = importStandardText(pasted);
-        actor.items.clear();
-        actor.update(actorData, { diff: false, recursive: false });
+        applyImport(actor, pasted);
       } else if (file) {
         // Read the file contents
         const reader = new FileReader();
         reader.onload = function () {
-          const content = new TextDecoder("utf-8").decode(this.result);
-          const actorData = importStandardText(content);
-          actor.update(actorData, { diff: false, recursive: false });
+          applyImport(actor, new TextDecoder("utf-8").decode(this.result));
         };
         reader.readAsArrayBuffer(file);
       }
     },
   }).render({ force: true });
+}
+
+/**
+ * Parse standard text and replace the Actor's data (including items) with the result
+ * @param {Actor} actor
+ * @param {String} text
+ */
+async function applyImport(actor, text) {
+  try {
+    const actorData = importStandardText(text);
+    await actor.update(actorData, { diff: false, recursive: false });
+  } catch (error) {
+    console.error(FT.prefix, "Unable to import actor", error);
+    ui.notifications.error("FT.dialog.import.error", { localize: true });
+  }
 }
 
 /**
@@ -71,16 +82,18 @@ export function importStandardText(text) {
     /^(?<name>[\w\s’'`]*)[\s,]*(?<type>(wizard|hero))?[\s,]*(age\s(?<age>\d+))?$/m.exec(
       text.trim(),
     )?.groups;
-  const name = header.name ?? "Imported Character";
-  const type = header.type ?? "hero";
-  const age = header.age ?? 18;
+  const name = header?.name?.trim() || "Imported Character";
+  const type = header?.type ?? "hero";
+  const age = header?.age ?? 18;
   console.log("... character", name, "type", type, "age", age);
 
   // Parse attributes
-  const { st, dx, iq, ma } =
+  const attributes =
     /^ST\s+(?<st>\d+)\s*,\s*DX\s*(?<dx>\d+)\s*,\s*IQ\s*(?<iq>\d+)\s*,\s*MA\s*(?<ma>\d+)/gm.exec(
       text,
     )?.groups;
+  if (!attributes) throw new Error("No 'ST n, DX n, IQ n, MA n' line found");
+  const { st, dx, iq, ma } = attributes;
   console.log("... attributes", "ST", st, "DX", dx, "IQ", iq, "MA", ma);
 
   // Parse item lists
@@ -94,7 +107,7 @@ export function importStandardText(text) {
     magic = [],
     notes = [];
 
-  const lists = text.match(/^[\w\s\/]*:/gm);
+  const lists = text.match(/^[\w\s\/]*:/gm) ?? [];
   console.log("... found lists", lists);
 
   lists.forEach((name, index) => {
@@ -164,10 +177,11 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((item) => {
-            const { name, damage } =
-              /^(?<name>[\w\s’'`]*)(\((?<damage>.*)?\))?$/ms.exec(item)?.groups;
+            const { name = item, damage } =
+              /^(?<name>[\w\s’'`]*)(\((?<damage>.*)?\))?$/ms.exec(item)
+                ?.groups ?? {};
             const found = game.items.find(
-              (entry) => entry.type === "talent" && entry.name === name,
+              (entry) => entry.type === "equipment" && entry.name === name.trim(),
             );
             return found
               ? found.toObject()
@@ -193,12 +207,12 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((item) => {
-            const { name, stops } =
+            const { name = item, stops } =
               /^(?<name>[\w\s’'`]*)(stops|stop)+\s*(?<stops>\d*)/ms.exec(
                 item,
-              )?.groups;
+              )?.groups ?? {};
             const found = game.items.find(
-              (entry) => entry.type === "equipment" && entry.name === name,
+              (entry) => entry.type === "equipment" && entry.name === name.trim(),
             );
             return found
               ? found.toObject()
@@ -207,7 +221,7 @@ export function importStandardText(text) {
                   type: "equipment",
                   system: {
                     defenses: [
-                      { action: "Body", hitsStopped: parseInt(stops) },
+                      { action: "Body", hitsStopped: parseInt(stops) || 0 },
                     ],
                   },
                 };
@@ -220,10 +234,11 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((item) => {
-            const { name, qty } =
-              /^(?<name>[\w\s’'`]*)\s*(\((?<qty>\d*)\))?/ms.exec(item)?.groups;
+            const { name = item, qty } =
+              /^(?<name>[\w\s’'`]*)\s*(\((?<qty>\d*)\))?/ms.exec(item)?.groups ??
+              {};
             const found = game.items.find(
-              (entry) => entry.type === "equipment" && entry.name === name,
+              (entry) => entry.type === "equipment" && entry.name === name.trim(),
             );
             return found
               ? found.toObject()
@@ -247,11 +262,10 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((item) => {
-            const { name, notes } = /^(?<name>[\w\s’'`]*)(?<notes>.*)$/ms.exec(
-              item,
-            )?.groups;
+            const { name = item, notes } =
+              /^(?<name>[\w\s’'`]*)(?<notes>.*)$/ms.exec(item)?.groups ?? {};
             const found = game.items.find(
-              (entry) => entry.type === "ability" && entry.name === name,
+              (entry) => entry.type === "ability" && entry.name === name.trim(),
             );
             return found
               ? found.toObject()
@@ -295,7 +309,12 @@ export function importStandardText(text) {
       st: { max: parseInt(st) },
       dx: { max: parseInt(dx) },
       iq: { max: parseInt(iq) },
-      ma: { walk: parseInt(ma), fly: parseInt(ma), swim: parseInt(ma) },
+      ma: {
+        mode: "walk",
+        walk: { max: parseInt(ma) },
+        swim: { max: parseInt(ma) },
+        fly: { max: 0 },
+      },
       notes: notes.map((note) => `<p>${note}</p>`),
     },
     items: [
