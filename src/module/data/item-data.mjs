@@ -36,7 +36,7 @@ class FTEmbeddedAttack extends foundry.abstract.DataModel {
 class FTEmbeddedDefense extends foundry.abstract.DataModel {
   static defineSchema() {
     return {
-      action: new StringField({ required: TextTrackCueList }),
+      action: new StringField({ required: true }),
       hitsStopped: new NumberField({ initial: 0 }),
     };
   }
