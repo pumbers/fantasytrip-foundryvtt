@@ -31,7 +31,7 @@ effects:
           value: 1
           priority: null
           phase: initial
-    disabled: true
+    disabled: false
     duration:
       value: null
       units: seconds

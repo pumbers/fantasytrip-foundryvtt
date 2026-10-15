@@ -75,6 +75,10 @@ FT:
         start: First Round - Movement!
         movement: New round - Movement!
         fight: New Round - Combat!
+      migration:
+        start: Migrating Fantasy Trip world data to version {version}. Please don't close the game until this is complete.
+        complete: Fantasy Trip world data migration to version {version} is complete.
+        failed: "Fantasy Trip world data migration to version {version} finished with {count} error(s). See the console for details."
     label:
       notes: Notes
     option:

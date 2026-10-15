@@ -15,8 +15,10 @@ import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
 import { FTTokenRuler } from "./canvas/token-ruler.mjs";
 import { FTCombat } from "./documents/combat.mjs";
+import { FTActiveEffect } from "./documents/active-effect.mjs";
 import * as ChatMessage from "./documents/chat-message.mjs";
 import * as Helpers from "./util/helpers.mjs";
+import { migrateWorld } from "./system/migration.mjs";
 
 const { StringField, NumberField, BooleanField } = foundry.data.fields;
 
@@ -247,6 +249,13 @@ Hooks.once("init", async function () {
     type: new BooleanField({ initial: false }),
   });
 
+  // The version of the most recent data migration applied to the world
+  game.settings.register(FT.id, "systemMigrationVersion", {
+    scope: "world",
+    type: new StringField({ initial: "" }),
+    config: false,
+  });
+
   /**
    * Define Documents & Sheets
    */
@@ -285,6 +294,7 @@ Hooks.once("init", async function () {
 
   // Other document configuration
   CONFIG.Combat.documentClass = FTCombat;
+  CONFIG.ActiveEffect.documentClass = FTActiveEffect;
 
   /**
    * Handlebars Helpers & Partials
@@ -332,6 +342,9 @@ Hooks.on("ready", async () => {
       game.modules.get("pdf-pager")?.active,
     );
   }
+
+  // Migrate world data if required
+  await migrateWorld();
 
   ui.notifications.info("FT.game.message.disclaimer", { localize: true });
   ui.notifications.info("FT.game.message.notice", { localize: true });
