@@ -48,7 +48,7 @@ export default function damageRoll(actor, item, options = {}) {
           : `max(max(${formula},0)*${multiplier ?? 1},${minimum ?? 0})`;
 
       // Roll and generate a chat message for each target
-      if (!!game.user.targets.size) {
+      if (game.user.targets.size) {
         game.user.targets.forEach(async (token) => {
           // Create & evaluate a roll based on the set parameters
           const roll = await new Roll(finalFormula).evaluate();

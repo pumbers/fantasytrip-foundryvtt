@@ -189,10 +189,10 @@ export default function castingRoll(actor, spell, options = {}) {
               damage: {
                 ownerClasses: Array.from(Object.entries(actor.ownership))
                   .filter(
-                    ([id, level]) =>
+                    ([, level]) =>
                       level === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
                   )
-                  .map(([id, level]) => `ft-show-${id}`)
+                  .map(([id]) => `ft-show-${id}`)
                   .join(" "),
                 minimum: spell.system.type === "missile" ? cost.st.value : 0,
                 multiplier: spell.system.type === "missile" ? cost.st.value : 1,
@@ -231,7 +231,7 @@ export default function castingRoll(actor, spell, options = {}) {
       }
 
       // If the spell is cast from an item, then it may get burned (deleted)
-      if (!!options.item && options.burn === "true") {
+      if (options.item && options.burn === "true") {
         actor.deleteEmbeddedDocuments("Item", [options.item._id]);
         ChatMessage.create({
           flavor: game.i18n.format("FT.item.chat.burn", {

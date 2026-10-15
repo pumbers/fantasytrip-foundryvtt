@@ -16,7 +16,7 @@ import { FTItemSheet } from "./sheets/item-sheet.mjs";
 import { FTTokenRuler } from "./canvas/token-ruler.mjs";
 import { FTCombat } from "./documents/combat.mjs";
 import { FTActiveEffect } from "./documents/active-effect.mjs";
-import * as ChatMessage from "./documents/chat-message.mjs";
+import "./documents/chat-message.mjs"; // Registers chat message hooks
 import * as Helpers from "./util/helpers.mjs";
 import { migrateWorld } from "./system/migration.mjs";
 import {

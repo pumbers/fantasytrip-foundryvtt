@@ -19,8 +19,8 @@ export default [
       sourceType: "module",
       globals: {
         ...globals.browser,
-        $: "readonly",
         foundry: "readonly",
+        canvas: "readonly",
         fromUuid: "readonly",
         fromUuidSync: "readonly",
         CONFIG: "readonly",
@@ -42,8 +42,8 @@ export default [
         ChatMessage: "readonly",
         Macro: "readonly",
         Roll: "readonly",
-        test: "readonly",
-        expect: "readonly",
+        TokenDocument: "readonly",
+        Folder: "readonly",
         module: "readonly",
       },
     },
@@ -63,6 +63,13 @@ export default [
       quotes: ["error", "double"],
       semi: ["error", "always"],
       "no-unused-vars": ["error", { varsIgnorePattern: ".*Key" }],
+    },
+  },
+  {
+    // Jest unit tests
+    files: ["src/module/util/_tests/**"],
+    languageOptions: {
+      globals: { ...globals.jest },
     },
   },
 ];

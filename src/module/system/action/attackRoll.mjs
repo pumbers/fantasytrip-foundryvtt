@@ -14,7 +14,7 @@ export default function attackRoll(actor, item, options) {
   // console.log("Action.attackRoll()", actor, item, options);
   // Get the attack details
   const attack = item.system.attacks[options.attackIndex ?? 0];
-  const talent = !!attack.talent ? actor.items.get(attack.talent) : null;
+  const talent = attack.talent ? actor.items.get(attack.talent) : null;
 
   // Set up the dice roller context
   const context = {
@@ -189,10 +189,10 @@ export default function attackRoll(actor, item, options) {
               damage: {
                 ownerClasses: Array.from(Object.entries(actor.ownership))
                   .filter(
-                    ([id, level]) =>
+                    ([, level]) =>
                       level === CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER,
                   )
-                  .map(([id, level]) => `ft-show-${id}`)
+                  .map(([id]) => `ft-show-${id}`)
                   .join(" "),
                 minimum: 0,
                 multiplier: roll.total === 3 ? 3 : roll.total === 4 ? 2 : 1,

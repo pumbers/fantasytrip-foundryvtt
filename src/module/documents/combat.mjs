@@ -134,7 +134,7 @@ export class FTCombat extends foundry.documents.Combat {
           pcGroupBonus,
           "(1d6/10)+(1d6/100)",
         ]
-          .filter((t) => !!t)
+          .filter((t) => t)
           .join("+"),
         updateTurn,
         messageOptions,
@@ -152,7 +152,7 @@ export class FTCombat extends foundry.documents.Combat {
           npcGroupBonus,
           "(1d6/10)+(1d6/100)",
         ]
-          .filter((t) => !!t)
+          .filter((t) => t)
           .join("+"),
         updateTurn,
         messageOptions,

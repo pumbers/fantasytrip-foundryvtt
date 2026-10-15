@@ -63,7 +63,7 @@ export function determineLoF(actor, attack) {
         }))
         .filter(
           (token) =>
-            !!path.find(
+            path.find(
               (hex) => hex.i === token.position.i && hex.j === token.position.j,
             ),
         )

@@ -114,7 +114,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(
         .filter((item) => item.system.isReady && item.system.hasActions)
         .map((item) => {
           item.system.spells
-            ?.filter((spell) => !!spell.uuid)
+            ?.filter((spell) => spell.uuid)
             .forEach((spell) => {
               spell.name = foundry.utils.fromUuidSync(spell.uuid)?.name;
             });
@@ -127,7 +127,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(
     // Sort inventory items into their containers
     context.inventory = context.inventory
       .map((item) => {
-        if (!!item.system.capacity) {
+        if (item.system.capacity) {
           return [
             item,
             context.inventory.filter(
@@ -292,7 +292,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(
         localize: true,
         format: { itemId },
       });
-    const spell = foundry.utils
+    foundry.utils
       .fromUuid(target.dataset.spellUuid)
       .then((spell) => {
         if (!spell)
@@ -342,7 +342,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(
       // Check if it was dropped on a container item
       const containerId =
         event?.target?.closest?.(".item-container")?.dataset.itemId;
-      const container = !!containerId
+      const container = containerId
         ? await this.actor.getEmbeddedDocument("Item", containerId)
         : null;
 
@@ -355,7 +355,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(
         return item;
 
       // Check if the item is a container itself and is being dropped on a container
-      if (!!container && item.system.isContainer) {
+      if (container && item.system.isContainer) {
         ui.notifications.warn("FT.game.message.noDropContainer", {
           localize: true,
           console: false,

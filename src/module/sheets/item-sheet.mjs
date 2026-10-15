@@ -127,7 +127,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(
         spellTypes: FT.item.spell.types,
         attackTypes: FT.item.attack.types,
         // Applicable skill options from the parent actor
-        ...(!!this.item.parent && {
+        ...(this.item.parent && {
           talents: Array.from(this.item.parent?.items.values())
             .filter((item) => item.type === "talent")
             .reduce(
@@ -256,7 +256,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(
     console.log("#openPDF", target.dataset);
     const re = /^([a-zA-Z0-9_]*)#(\d*)$/m;
     if (!re.test(target.dataset.reference)) return;
-    const [_, code, page] = target.dataset.reference.match(re);
+    const [, code, page] = target.dataset.reference.match(re);
     ui.pdfpager?.openPDFByCode(code, { page });
   }
 

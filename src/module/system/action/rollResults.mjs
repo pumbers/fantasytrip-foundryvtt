@@ -7,7 +7,7 @@ import { FT } from "../config.mjs";
  * @returns
  */
 export function extractRollParameters(data) {
-  const attributes = JSON.parse(data.attributes ?? "[]").filter((a) => !!a);
+  const attributes = JSON.parse(data.attributes ?? "[]").filter((a) => a);
   const totalAttributes = attributes.reduce(
     (total, attribute) =>
       total + foundry.utils.getProperty(data.actor.getRollData(), attribute),
@@ -20,8 +20,8 @@ export function extractRollParameters(data) {
   if (data.cost) data.cost.st.value = parseInt(data.cost.st.value ?? 0);
 
   const lof = Object.entries(data.lof ?? {})
-    .filter(([_id, value]) => value === "true")
-    .map(([_id, _]) =>
+    .filter(([, value]) => value === "true")
+    .map(([_id]) =>
       canvas.tokens.viewedDocuments().find((token) => token._id === _id),
     );
 
