@@ -357,7 +357,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(
       }
 
       // Check if the container has remaining capacity...
-      if (item.system.wt > container?.system.remaining) {
+      if (item.system.totalWt > container?.system.remaining) {
         ui.notifications.warn("FT.game.message.noCapacity", {
           localize: true,
           console: false,
