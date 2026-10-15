@@ -124,7 +124,7 @@ export class FTCombat extends foundry.documents.Combat {
       npcGroupRoll = (await new Roll(`1d6`).evaluate()).total;
 
     // Roll PC initiative
-    super.rollInitiative(
+    await super.rollInitiative(
       pcCombatants.map((c) => c._id),
       {
         formula: [
@@ -142,7 +142,7 @@ export class FTCombat extends foundry.documents.Combat {
     );
 
     // Roll NPC initiative
-    super.rollInitiative(
+    await super.rollInitiative(
       npcCombatants.map((c) => c._id),
       {
         formula: [
@@ -160,7 +160,7 @@ export class FTCombat extends foundry.documents.Combat {
     );
 
     // Set all defeated combatants initiative to 0
-    Promise.all(
+    await Promise.all(
       combatants
         .filter((c) => c.isDefeated)
         .map((c) => this.setInitiative(c._id, 0)),
