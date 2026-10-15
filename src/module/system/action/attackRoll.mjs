@@ -139,12 +139,12 @@ export default function attackRoll(actor, item, options) {
       );
 
       // On 17+, bad things happen to the attacker
-      if (roll.total >= 17 && item.system.type === "natural") {
+      if (roll.total >= 17 && attack.type === "natural") {
         // Natural weapons take 1d6 damage
         message = message.concat(
           " ",
           game.i18n.format("FT.system.roll.result.damage", {
-            damage: await new Roll("1d6").evaluate().total,
+            damage: (await new Roll("1d6").evaluate()).total,
           }),
         );
       } else if (roll.total === 17) {
