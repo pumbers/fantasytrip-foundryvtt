@@ -122,6 +122,9 @@ export default function attackRoll(actor, item, options) {
         roll,
       );
       const margin = totalAttributes + totalModifiers - roll.total;
+      const succeeded = ["exact", "automaticSuccess", "success"].includes(
+        result,
+      );
 
       // Create a chat message for the result
       let message = game.i18n.format(
@@ -183,7 +186,7 @@ export default function attackRoll(actor, item, options) {
           unskilled: item.type !== "equipment" && !talent,
           roll,
           parts: roll.dice.map((d) => d.getTooltipData()),
-          ...(margin >= 0 &&
+          ...(succeeded &&
             item.system.attacks[options.attackIndex].damage && {
               damage: {
                 ownerClasses: Array.from(Object.entries(actor.ownership))

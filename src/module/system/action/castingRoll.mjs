@@ -77,11 +77,14 @@ export default function castingRoll(actor, spell, options = {}) {
         roll,
       );
       const margin = totalAttributes + totalModifiers - roll.total;
+      const succeeded = ["exact", "automaticSuccess", "success"].includes(
+        result,
+      );
 
       // Calculate item mana cost and/or actor ST cost for the casting
       let manaCost = 0;
       let stCost =
-        margin >= 0 || spell.system.type === "missile" || roll.total >= 17
+        succeeded || spell.system.type === "missile" || roll.total >= 17
           ? cost.st.value
           : 1;
       if (game.settings.get(FT.id, "useManaFirst")) {
@@ -98,7 +101,7 @@ export default function castingRoll(actor, spell, options = {}) {
       }
 
       // If the spell can be maintained...
-      if (margin >= 0 && spell.system.canBeMaintained) {
+      if (succeeded && spell.system.canBeMaintained) {
         // Create a "cast" spell clone and record the ST spent
         actor.createEmbeddedDocuments("Item", [
           spell.clone({ "system.stSpent": stCost + manaCost }),
@@ -173,7 +176,7 @@ export default function castingRoll(actor, spell, options = {}) {
           targetNumber: totalAttributes + totalModifiers,
           roll,
           parts: roll.dice.map((d) => d.getTooltipData()),
-          ...(margin >= 0 &&
+          ...(succeeded &&
             spell.system.attacks[0]?.damage && {
               damage: {
                 ownerClasses: Array.from(Object.entries(actor.ownership))
