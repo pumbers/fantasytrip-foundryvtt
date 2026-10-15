@@ -8,15 +8,15 @@ test("Export Full Actor", async () => {
     "utf8",
   );
   const actor = JSON.parse(actorData);
-  const items = actor.items.reduce((items, item) => {
+  // Add the derived item properties the export relies on
+  actor.items.forEach((item) => {
     item.system.hasAttacks = item.system.attacks?.length > 0;
     item.system.attacks.forEach((attack) => {
       attack.damage = attack.baseDamage;
     });
     item.system.hasDefenses = item.system.defenses?.length > 0;
     item.system.hasSpells = item.system.spells?.length > 0;
-    return items.set(item._id, item);
-  }, new Map());
+  });
 
   // Run object through export
   const text = exportStandardText(actor);

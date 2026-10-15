@@ -1,4 +1,4 @@
-import { importStandardText, exportStandardText } from "../transfer.mjs";
+import { importStandardText } from "../transfer.mjs";
 
 const fullActor = `Doctor Mandrake, wizard, age 99
 ST 12, DX 13, IQ 18, MA 10
@@ -118,7 +118,7 @@ test("Import Full Actor", () => {
 });
 
 test("Import Full Actor", () => {
-  const { name, system, items } = importStandardText(minimalActor);
+  const { name, system } = importStandardText(minimalActor);
 
   // Base
   expect(name).toBe("Little Crabmen");

@@ -1,4 +1,3 @@
-import { FT } from "../system/config.mjs";
 import * as Action from "../system/action/_module.mjs";
 
 export class FTChatMessage extends ChatMessage {}
@@ -6,7 +5,7 @@ export class FTChatMessage extends ChatMessage {}
 /**
  * Hook into chat message rendering to add listeners for damage buttons.
  */
-Hooks.on("renderChatMessageHTML", async (chatMessage, html, messageData) => {
+Hooks.on("renderChatMessageHTML", async (chatMessage, html) => {
   html
     .querySelectorAll("[data-ft-action='damageRoll']")
     .forEach((e) =>

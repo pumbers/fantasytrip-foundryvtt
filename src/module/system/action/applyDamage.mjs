@@ -45,7 +45,7 @@ export default async function applyDamage(actor, damage, options) {
         action: "apply",
         label: game.i18n.localize("FT.dialog.damage.action.apply"),
         default: true,
-        callback: (event, button, dialog) => ({
+        callback: (event, button) => ({
           action: "apply",
           hitsStopped: Array.from(button.form?.elements)
             .filter((e) => e.id === "defense" && e.checked)
@@ -69,10 +69,10 @@ export default async function applyDamage(actor, damage, options) {
  *
  * @param {Actor} actor
  * @param {Number} damageTaken
- * @param {Object} options
+ * @param {Object} _options Unused; kept for future options
  */
-function _applyDamage(actor, damageTaken, options = {}) {
-  // console.log("Action._applyDamage", actor, damageTaken, options);
+function _applyDamage(actor, damageTaken, _options = {}) {
+  // console.log("Action._applyDamage", actor, damageTaken, _options);
   // If net damage is zero, don't bother applying it
   if (damageTaken === 0) {
     ChatMessage.create({

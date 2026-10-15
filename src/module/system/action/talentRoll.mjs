@@ -7,10 +7,10 @@ import { extractRollParameters, determineRollResult } from "./rollResults.mjs";
  *
  * @param {Actor} actor
  * @param {Item} talent
- * @param {Object} options
+ * @param {Object} _options Unused; kept for a consistent roll action signature
  */
-export default function talentRoll(actor, talent, options) {
-  // console.log("Action.talentRoll()", actor, talent, options);
+export default function talentRoll(actor, talent, _options) {
+  // console.log("Action.talentRoll()", actor, talent, _options);
   const context = {
     force: true,
     //

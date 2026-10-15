@@ -6,8 +6,9 @@
 /**
  * Send an object to the console log for debugging
  */
-export function log(obj) {
-  console.log(...Array.from(arguments).slice(0, -1));
+export function log(...args) {
+  // The last argument is the Handlebars options object
+  console.log(...args.slice(0, -1));
 }
 
 /**

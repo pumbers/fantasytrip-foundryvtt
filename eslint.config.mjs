@@ -62,7 +62,14 @@ export default [
       "linebreak-style": ["error", "unix"],
       quotes: ["error", "double"],
       semi: ["error", "always"],
-      "no-unused-vars": ["error", { varsIgnorePattern: ".*Key" }],
+      "no-unused-vars": [
+        "error",
+        {
+          varsIgnorePattern: ".*Key",
+          // Parameters kept deliberately (e.g. for a consistent signature) start with _
+          argsIgnorePattern: "^_",
+        },
+      ],
     },
   },
   {

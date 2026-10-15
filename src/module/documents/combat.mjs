@@ -115,13 +115,13 @@ export class FTCombat extends foundry.documents.Combat {
       0,
     );
     if (pcGroupInitiative)
-      pcGroupRoll = (await new Roll(`1d6`).evaluate()).total;
+      pcGroupRoll = (await new Roll("1d6").evaluate()).total;
     const npcGroupBonus = Math.max(
       ...npcCombatants.map((c) => c.actor.system.initiative.party),
       0,
     );
     if (npcGroupInitiative)
-      npcGroupRoll = (await new Roll(`1d6`).evaluate()).total;
+      npcGroupRoll = (await new Roll("1d6").evaluate()).total;
 
     // Roll PC initiative
     await super.rollInitiative(

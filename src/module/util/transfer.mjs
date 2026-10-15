@@ -26,7 +26,7 @@ export function importActor(actor) {
         label: game.i18n.localize("FT.dialog.import.action.import"),
         icon: "fa fa-upload",
         default: true,
-        callback: (event, button, dialog) => {
+        callback: (event, button) => {
           console.log("import", button.form);
           return {
             action: "import",
@@ -107,7 +107,7 @@ export function importStandardText(text) {
     magic = [],
     notes = [];
 
-  const lists = text.match(/^[\w\s\/]*:/gm) ?? [];
+  const lists = text.match(/^[\w\s/]*:/gm) ?? [];
   console.log("... found lists", lists);
 
   lists.forEach((name, index) => {
@@ -257,7 +257,7 @@ export function importStandardText(text) {
       case "ability":
       case "abilities":
       case "attack":
-      case "attacks":
+      case "attacks": {
         const items = list
           .split(",")
           .map((item) => item.trim())
@@ -278,6 +278,7 @@ export function importStandardText(text) {
         abilities.push(...items);
         console.log("... ... adding abilities", abilities);
         break;
+      }
       // Magic Items
       case "magic items":
         magic = list

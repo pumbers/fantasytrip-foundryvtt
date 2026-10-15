@@ -1,5 +1,3 @@
-import { FT } from "../system/config.mjs";
-
 export class FTTokenRuler extends foundry.canvas.placeables.tokens.TokenRuler {
   static applyFTMovementConfig() {
     foundry.utils.mergeObject(CONFIG.Token.movement.actions, {
@@ -40,7 +38,7 @@ export class FTTokenRuler extends foundry.canvas.placeables.tokens.TokenRuler {
       GREEN = 0x32cd32,
       FEET_PER_MA = 4;
     const mode =
-      foundry.utils.getProperty(this, `token.document.actor.system.ma.mode`) ??
+      foundry.utils.getProperty(this, "token.document.actor.system.ma.mode") ??
       "walk";
     const ma =
       foundry.utils.getProperty(

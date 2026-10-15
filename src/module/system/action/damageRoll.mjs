@@ -1,6 +1,6 @@
 import { FT } from "../config.mjs";
 import { DICE_ROLLER } from "../../applications/dice-roller.mjs";
-import { extractRollParameters, determineRollResult } from "./rollResults.mjs";
+import { extractRollParameters } from "./rollResults.mjs";
 
 /**
  * Make a Damage Roll for the specified Actor & attack
