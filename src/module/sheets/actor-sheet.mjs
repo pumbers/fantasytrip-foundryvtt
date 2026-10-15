@@ -321,8 +321,10 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(
     const folder = await Folder.implementation.fromDropData(data);
     if (folder.type !== "Item") return [];
     const droppedItemData = await Promise.all(
+      // Compendium folders contain index entries rather than documents
       folder.contents.map(async (item) => {
-        if (!(document instanceof Item)) item = await fromUuid(item.uuid);
+        if (!(item instanceof Item))
+          item = await foundry.utils.fromUuid(item.uuid);
         return item;
       }),
     );
@@ -338,8 +340,8 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(
     // If it was an equipment item type...
     if (FT.item.inventory.types.includes(item.type)) {
       // Check if it was dropped on a container item
-      const element = $(event?.target);
-      const containerId = element?.closest(".item-container").data("itemId");
+      const containerId =
+        event?.target?.closest?.(".item-container")?.dataset.itemId;
       const container = !!containerId
         ? await this.actor.getEmbeddedDocument("Item", containerId)
         : null;
