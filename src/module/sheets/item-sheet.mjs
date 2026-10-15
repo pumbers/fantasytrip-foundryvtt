@@ -135,40 +135,51 @@ export class FTItemSheet extends HandlebarsApplicationMixin(
               {},
             ),
         }),
-        // World Spells for Magic Items
-        spells: {
-          ...(!this.item.inCompendium && {
-            world: Array.from(game.items.values())
-              .filter((item) => item.type === "spell")
-              .reduce(
-                (spells, spell) => ({ ...spells, [spell.uuid]: spell.name }),
-                {},
-              ),
-          }),
-          packs: await Promise.all(
-            game.packs
-              .filter((pack) => pack.metadata.type === "Item")
-              .map(async (compendium) => ({
-                label: compendium.metadata.label,
-                contents: (await compendium.getDocuments({ type: "spell" }))
-                  .map((spell) => ({ uuid: spell.uuid, name: spell.name }))
-                  .reduce(
-                    (spells, spell) => ({
-                      ...spells,
-                      [spell.uuid]: spell.name,
-                    }),
-                    {},
-                  ),
-              })),
-          ),
-        },
       },
       //
       effects: this.item.effects,
     });
 
+    // Spells for magic items (only needed if the item can hold spells)
+    if (context.flags.maxSpells)
+      context.selectOptions.spells = await this.#prepareSpellOptions();
+
     console.log("... item context", context);
     return context;
+  }
+
+  /**
+   * Spell options for magic items: world spells, plus the spells in each Item
+   * compendium which contains any. Uses the compendium indexes, which Foundry
+   * caches, rather than loading every spell document.
+   */
+  async #prepareSpellOptions() {
+    const packs = await Promise.all(
+      game.packs
+        .filter((pack) => pack.metadata.type === "Item")
+        .map(async (pack) => {
+          const index = await pack.getIndex({ fields: ["type"] });
+          return {
+            label: pack.metadata.label,
+            contents: Object.fromEntries(
+              index
+                .filter((entry) => entry.type === "spell")
+                .map((entry) => [pack.getUuid(entry._id), entry.name]),
+            ),
+          };
+        }),
+    );
+
+    return {
+      ...(!this.item.inCompendium && {
+        world: Object.fromEntries(
+          game.items
+            .filter((item) => item.type === "spell")
+            .map((spell) => [spell.uuid, spell.name]),
+        ),
+      }),
+      packs: packs.filter((pack) => Object.keys(pack.contents).length),
+    };
   }
 
   /**
