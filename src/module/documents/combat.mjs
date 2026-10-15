@@ -163,7 +163,7 @@ export class FTCombat extends foundry.documents.Combat {
     Promise.all(
       combatants
         .filter((c) => c.isDefeated)
-        .map((c) => this.setInitiative(_id, c._id, 0)),
+        .map((c) => this.setInitiative(c._id, 0)),
     );
 
     return this;
