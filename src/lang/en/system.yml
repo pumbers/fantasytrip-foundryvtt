@@ -51,6 +51,7 @@ FT:
           - Shapes mana and casts {spell}... {result}
           - With confidence, casts {spell}... {result}
           - Concentrates then casts {spell}... {result}
+        castFromItem: "{spell} from their {item}"
         damage:
           - Unleashes hell, striking for a total of {total} point(s) of hurt. {effects}
           - Unleashes a devastating blast that deals {total} point(s) of damage to their foe. {effects}

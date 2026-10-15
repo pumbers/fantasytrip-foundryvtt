@@ -21,6 +21,7 @@ export default function castingRoll(actor, spell, options = {}) {
     dice: 3,
     actor,
     spell,
+    item: options.item,
     attribute: "dx.value",
     modifiers: {
       ...(actor.system.dx.modFor.casting !== 0 && {
@@ -109,11 +110,19 @@ export default function castingRoll(actor, spell, options = {}) {
         ]);
       }
 
+      // Name the item the spell was cast from, if any
+      let spellLabel = spell.name;
+      if (options.item)
+        spellLabel = game.i18n.format("FT.system.roll.flavor.castFromItem", {
+          spell: spell.name,
+          item: options.item.name,
+        });
+
       // Create a chat message for the result
       let message = game.i18n.format(
         `FT.system.roll.flavor.cast.${Math.floor(Math.random() * 6)}`,
         {
-          spell: spell.name,
+          spell: spellLabel,
           targets: Array.from(game.user.targets)
             .map((t) => t.name)
             .join(", "),
@@ -215,7 +224,12 @@ export default function castingRoll(actor, spell, options = {}) {
         spell.effects.size &&
         game.user.targets.size
       ) {
-        applySpellEffects(actor, spell, Array.from(game.user.targets));
+        applySpellEffects(
+          actor,
+          spell,
+          Array.from(game.user.targets),
+          options.item,
+        );
       }
 
       // If the spell is cast from an item, then it may get burned (deleted)

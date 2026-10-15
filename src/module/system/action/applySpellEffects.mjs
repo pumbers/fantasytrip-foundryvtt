@@ -78,8 +78,9 @@ async function createEffects(spell, tokens) {
  * @param {Actor} caster
  * @param {Item} spell
  * @param {Array<Token>} targets
+ * @param {Item} [item] The item the spell was cast from, if any
  */
-export async function applySpellEffects(caster, spell, targets) {
+export async function applySpellEffects(caster, spell, targets, item) {
   const tokens = targets
     .map((target) => target.document)
     .filter((token) => token?.actor);
@@ -116,6 +117,8 @@ export async function applySpellEffects(caster, spell, targets) {
               spellUuid: spell.uuid,
               casterUuid: caster.uuid,
               targetUuids: request.map((token) => token.uuid),
+              // Name only (for display), as the item may be burned straight after casting
+              itemName: item?.name,
             },
             { timeout: QUERY_TIMEOUT },
           ),
@@ -172,7 +175,7 @@ export async function applySpellEffects(caster, spell, targets) {
  * @returns {Promise<{applied: Array<String>, declined: Array<String>, failed: Array<String>}>}
  */
 export async function handleApplySpellEffectsQuery(
-  { spellUuid, casterUuid, targetUuids },
+  { spellUuid, casterUuid, targetUuids, itemName },
   { timeout } = {},
 ) {
   const started = Date.now();
@@ -187,11 +190,20 @@ export async function handleApplySpellEffectsQuery(
   if (!spell?.effects.size || !tokens.length)
     return { failed: tokens.map((t) => t.name) };
 
+  // Name the item the spell was cast from, if any
+  let spellLabel = spell.name;
+  if (itemName)
+    spellLabel = game.i18n.format("FT.system.roll.flavor.castFromItem", {
+      spell: spell.name,
+      item: itemName,
+    });
+
   const content = await foundry.applications.handlebars.renderTemplate(
     `${FT.path}/templates/dialog/apply-effects.hbs`,
     {
       caster,
       spell,
+      spellLabel,
       effects: Array.from(spell.effects, (effect) => ({
         name: effect.name,
         img: effect.img,
