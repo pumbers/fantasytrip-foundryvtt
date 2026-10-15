@@ -346,6 +346,14 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(
         ? await this.actor.getEmbeddedDocument("Item", containerId)
         : null;
 
+      // Dropping an item onto the container it's already in does nothing
+      if (
+        containerId &&
+        item.parent?.id === this.actor.id &&
+        item.system.container === containerId
+      )
+        return item;
+
       // Check if the item is a container itself and is being dropped on a container
       if (!!container && item.system.isContainer) {
         ui.notifications.warn("FT.game.message.noDropContainer", {
