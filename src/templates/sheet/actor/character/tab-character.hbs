@@ -93,7 +93,7 @@
                     >
                     <div class="flex flex-row gap-0">
                         <input
-                            class="m-0 !text-center !text-xl !h-full !w-14"
+                            class="m-0 text-center! text-xl! h-full! w-14!"
                             type="number"
                             name="system.{{key}}.max"
                             min="0"
@@ -102,14 +102,14 @@
                         {{#if roll}}
                         <a
                             title="{{title}}"
-                            class="!p-2 sheet-button"
+                            class="p-2! sheet-button"
                             data-action="attributeRoll"
                             data-attribute="{{key}}.max"
                             data-type="save"
                             ><i class="icon-d6 text-xl"></i
                         ></a>
                         {{else}}
-                        <a class="!p-2 sheet-button" disabled
+                        <a class="p-2! sheet-button" disabled
                             ><i class="{{icon}} text-xl"></i
                         ></a>
                         {{/if}}
@@ -121,14 +121,14 @@
                         {{#if roll}}
                         <div class="flex flex-row gap-0">
                             <input
-                                class="m-0 w-14 !text-center"
+                                class="m-0 w-14 text-center!"
                                 type="text"
                                 value="{{attr.value}}"
                                 readonly
                             />
                             <a
                                 title="{{title}}"
-                                class="!p-1 sheet-button"
+                                class="p-1! sheet-button"
                                 data-action="attributeRoll"
                                 data-attribute="{{key}}.value"
                                 data-type="save"
@@ -138,21 +138,21 @@
                         {{else if action}}
                         <div class="flex flex-row gap-0">
                             <input
-                                class="m-0 w-14 !text-center"
+                                class="m-0 w-14 text-center!"
                                 type="text"
                                 value="{{attr.value}}"
                                 readonly
                             />
                             <a
                                 title="{{title}}"
-                                class="!p-1 sheet-button"
+                                class="p-1! sheet-button"
                                 data-action="{{name}}"
                                 ><i class="{{icon}}"></i
                             ></a>
                         </div>
                         {{else}}
                         <input
-                            class="m-0 w-14 !text-center"
+                            class="m-0 w-14 text-center!"
                             type="text"
                             value="{{attr.value}}"
                             readonly

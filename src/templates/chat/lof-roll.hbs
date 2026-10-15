@@ -11,7 +11,7 @@
                             <span class="part-formula">{{attributes}}</span>
                             <span class="part-total">{{totalAttributes}}</span>
                         </header>
-                        <ol class="modifiers list-none !p-0">
+                        <ol class="modifiers list-none p-0!">
                             {{#each modifiers as | value modifier|}}
                             <li class="flex flex-row justify-between px-[5px]">
                                 <span
@@ -79,7 +79,7 @@
 {{#if damage}}
 <button
     type="button"
-    class="!mt-4 w-full ft-restricted ft-show-gm"
+    class="mt-4! w-full ft-restricted ft-show-gm"
     data-ft-action="applyDamage"
     data-token-id="{{token.id}}"
     data-token-name="{{token.name}}"

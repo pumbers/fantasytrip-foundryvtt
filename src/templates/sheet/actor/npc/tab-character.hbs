@@ -12,7 +12,7 @@
                 >{{localize (concat "FT.actor.attribute." key ".max")}}</label
             >
             <input
-                class="m-0 !text-center grow"
+                class="m-0 text-center! grow"
                 type="number"
                 name="system.{{key}}.max"
                 min="0"
@@ -21,14 +21,14 @@
             {{#if roll}}
             <a
                 title="{{title}}"
-                class="!p-1 h-6 sheet-button"
+                class="p-1! h-6 sheet-button"
                 data-action="attributeRoll"
                 data-attribute="{{key}}.max"
                 data-type="save"
                 ><i class="icon-d6"></i
             ></a>
             {{else}}
-            <a class="!p-1 h-6 sheet-button" disabled
+            <a class="p-1! h-6 sheet-button" disabled
                 ><i class="{{icon}}"></i
             ></a>
             {{/if}}
@@ -37,7 +37,7 @@
             {{#if roll}}
             <div class="flex flex-row gap-0">
                 <input
-                    class="m-0 w-14 !text-center"
+                    class="m-0 w-14 text-center!"
                     type="text"
                     value="{{attr.value}}"
                     readonly
@@ -54,7 +54,7 @@
             {{else if action}}
             <div class="flex flex-row gap-0">
                 <input
-                    class="m-0 w-14 !text-center"
+                    class="m-0 w-14 text-center!"
                     type="text"
                     value="{{attr.value}}"
                     readonly
@@ -68,7 +68,7 @@
             </div>
             {{else}}
             <input
-                class="m-0 w-14 !text-center"
+                class="m-0 w-14 text-center!"
                 type="text"
                 value="{{attr.value}}"
                 readonly

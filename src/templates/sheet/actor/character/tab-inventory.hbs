@@ -32,10 +32,10 @@
                     <th class="w-full">
                         {{localize 'FT.actor.sheet.table.items.name'}}
                     </th>
-                    <th class="!text-right">
+                    <th class="text-right!">
                         {{localize 'FT.actor.sheet.table.items.cost'}}
                     </th>
-                    <th class="!text-right">
+                    <th class="text-right!">
                         {{localize 'FT.actor.sheet.table.items.wt'}}
                     </th>
                     <th>{{localize 'FT.actor.sheet.table.items.qty'}}</th>
@@ -64,10 +64,10 @@
                     {{#if
                     item.system.isContained}}&rdsh;&nbsp;{{/if}}{{item.name}}
                 </td>
-                <td class="!text-right">
+                <td class="text-right!">
                     {{numberFormat item.system.totalCost decimals=1}}
                 </td>
-                <td class="!text-right">
+                <td class="text-right!">
                     {{numberFormat item.system.totalWt decimals=1}}
                 </td>
                 <td>{{item.system.qty}}</td>
@@ -95,7 +95,7 @@
                     {{#if settings.showItemIcons}}
                     <td></td>
                     {{/if}}
-                    <td colspan="2" class="!text-right">
+                    <td colspan="2" class="text-right!">
                         {{localize 'FT.actor.sheet.table.items.packed'}}
                     </td>
                     <td>

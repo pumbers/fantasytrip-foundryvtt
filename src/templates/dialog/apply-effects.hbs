@@ -22,7 +22,7 @@
         <legend>{{localize "FT.dialog.effects.label.targets"}}</legend>
         {{#each tokens as | token |}}
         <div class="target">
-            <input class="!my-0" type="checkbox" name="target" value="{{token.uuid}}" checked>
+            <input class="my-0!" type="checkbox" name="target" value="{{token.uuid}}" checked>
             <img src="{{token.texture.src}}" class="w-[1.5em] h-[1.5em]">
             <div>{{token.name}}</div>
         </div>
