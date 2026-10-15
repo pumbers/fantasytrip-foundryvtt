@@ -166,16 +166,32 @@ export class FTActor extends foundry.documents.Actor {
   }
 }
 
-// When a token movement action is updated, update the attached character as well
-Hooks.on("updateToken", (token, changes) => {
-  if (changes.movementAction) {
-    token.actor.update({ system: { ma: { mode: changes.movementAction } } });
-  }
+// When a token movement action is updated, update the attached character as well.
+// Only the client which made the change responds, and only for Fantasy Trip movement modes.
+Hooks.on("updateToken", (token, changes, options, userId) => {
+  if (userId !== game.user.id) return;
+  const mode = changes.movementAction;
+  if (!(mode in FT.actor.ma.modes) || !token.actor) return;
+  if (token.actor.system.ma.mode === mode) return;
+  token.actor.update({ "system.ma.mode": mode });
 });
 
-// When a character movement mode is updated, update their token if they have one
-Hooks.on("updateActor", (actor, changes) => {
-  if (actor.token && changes.system?.ma?.mode) {
-    actor.token.update({ movementAction: changes.system.ma.mode });
+// When a character movement mode is updated, update their token(s) as well: the
+// token itself for an unlinked (token) actor, or linked tokens in the current scene.
+Hooks.on("updateActor", (actor, changes, options, userId) => {
+  if (userId !== game.user.id) return;
+
+  const mode = changes.system?.ma?.mode;
+  if (!mode) return;
+
+  if (actor.isToken) {
+    if (actor.token.movementAction !== mode)
+      actor.token.update({ movementAction: mode });
+    return;
   }
+
+  actor
+    .getActiveTokens(true, true)
+    .filter((token) => token.movementAction !== mode)
+    .forEach((token) => token.update({ movementAction: mode }));
 });
