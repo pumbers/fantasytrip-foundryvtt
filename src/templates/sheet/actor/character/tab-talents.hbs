@@ -1,46 +1,77 @@
 {{!-- Talents Tab --}}
-<section id="{{partId}}" class="tab {{tabs.talents.cssClass}}" data-group="primary" data-tab="talents">
+<section
+    id="{{partId}}"
+    class="tab {{tabs.talents.cssClass}}"
+    data-group="primary"
+    data-tab="talents"
+>
     <div class="flex flex-col gap-2">
-
         {{#*inline "actions"}}
-        <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.item.chat'}}"><i
-                class="fa fa-comment"></i></a>
-        <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.item.edit'}}"><i class="fas fa-edit"></i></a>
-        <a data-action="deleteItem" title="{{localize 'FT.actor.sheet.action.item.delete'}}"><i
-                class="fas fa-trash"></i></a>
-        {{/inline}}
-
-        {{!-- Talents --}}
+        <a
+            data-action="chatItem"
+            title="{{localize 'FT.actor.sheet.action.item.chat'}}"
+            ><i class="fa fa-comment"></i
+        ></a>
+        <a
+            data-action="editItem"
+            title="{{localize 'FT.actor.sheet.action.item.edit'}}"
+            ><i class="fas fa-edit"></i
+        ></a>
+        <a
+            data-action="deleteItem"
+            title="{{localize 'FT.actor.sheet.action.item.delete'}}"
+            ><i class="fas fa-trash"></i
+        ></a>
+        {{/inline}} {{!-- Talents --}}
         <table id="talents">
             <thead>
                 <tr>
-                    {{#if settings.showItemIcons}}<th></th>{{/if}}
-                    <th class="w-full">{{localize 'FT.actor.sheet.table.talents.name'}}</th>
-                    <th>{{localize 'FT.actor.sheet.table.talents.attribute'}}</th>
+                    {{#if settings.showItemIcons}}
+                    <th></th>
+                    {{/if}}
+                    <th class="w-full">
+                        {{localize 'FT.actor.sheet.table.talents.name'}}
+                    </th>
+                    <th>
+                        {{localize 'FT.actor.sheet.table.talents.attribute'}}
+                    </th>
                     <th>{{localize 'FT.actor.sheet.table.talents.iq'}}</th>
                     <th>{{localize 'FT.actor.sheet.table.talents.cost'}}</th>
                     <th></th>
-                    <th><a data-action="createItem" data-type="talent"
-                            title="{{localize 'FT.actor.sheet.action.item.create'}}"><i class="fa fa-plus"></i></a>
+                    <th>
+                        <a
+                            data-action="createItem"
+                            data-type="talent"
+                            title="{{localize 'FT.actor.sheet.action.item.create'}}"
+                            ><i class="fa fa-plus"></i
+                        ></a>
                     </th>
                 </tr>
             </thead>
             {{#each talents as |talent|}}
             <tr data-item-id="{{talent._id}}">
                 {{#if ../settings.showItemIcons}}
-                <td><img src="{{talent.img}}" /> </td>
+                <td><img src="{{talent.img}}" /></td>
                 {{/if}}
                 <td>{{talent.name}}</td>
-                <td>{{#if talent.system.isReady}}{{localize (concat "FT.actor.attribute."
-                    talent.system.defaultAttribute)}}{{/if}}</td>
+                <td>
+                    {{#if talent.system.isReady}}{{localize (concat
+                    "FT.actor.attribute."
+                    talent.system.defaultAttribute)}}{{/if}}
+                </td>
                 <td>{{talent.system.minIQ}}</td>
                 <td>{{talent.system.actualIQCost}}</td>
                 <td>
                     {{#if talent.system.defaultAttribute}}
-                    <a class="px-1 sheet-button" data-action="talentRoll">{{localize "FT.actor.sheet.action.talent.roll"
-                        name=talent.name}}</a>
+                    <a class="px-1 sheet-button" data-action="talentRoll"
+                        >{{localize "FT.actor.sheet.action.talent.roll"
+                        name=talent.name}}</a
+                    >
                     {{else}}
-                    <i class="icon-skills warning" title="{{localize 'FT.actor.sheet.tooltip.noAttribute'}}"></i>
+                    <i
+                        class="icon-skills warning"
+                        title="{{localize 'FT.actor.sheet.tooltip.noAttribute'}}"
+                    ></i>
                     {{/if}}
                 </td>
                 <td>{{> actions}}</td>
@@ -59,42 +90,62 @@
         <table id="abilities">
             <thead>
                 <tr>
-                    {{#if settings.showItemIcons}}<th></th>{{/if}}
-                    <th class="w-full">{{localize 'FT.actor.sheet.table.abilities.name'}}</th>
+                    {{#if settings.showItemIcons}}
+                    <th></th>
+                    {{/if}}
+                    <th class="w-full">
+                        {{localize 'FT.actor.sheet.table.abilities.name'}}
+                    </th>
                     <th></th>
                     <th></th>
-                    <th><a data-action="createItem" data-type="ability"
-                            title="{{localize 'FT.actor.sheet.action.item.create'}}"><i class="fa fa-plus"></i></a>
+                    <th>
+                        <a
+                            data-action="createItem"
+                            data-type="ability"
+                            title="{{localize 'FT.actor.sheet.action.item.create'}}"
+                            ><i class="fa fa-plus"></i
+                        ></a>
                     </th>
                 </tr>
             </thead>
             {{#each abilities as | ability |}}
             <tr data-item-id="{{ability._id}}">
                 {{#if ../settings.showItemIcons}}
-                <td><img src="{{ability.img}}" /> </td>
+                <td><img src="{{ability.img}}" /></td>
                 {{/if}}
                 <td>{{ability.name}}</td>
-                <td>{{#if ability.system.isReady}}
-                    <i title="{{localize 'FT.actor.sheet.table.abilities.active'}}"
-                        class="icon-embrassed-energy ml-2"></i>{{/if}}
+                <td>
+                    {{#if ability.system.isReady}}
+                    <i
+                        title="{{localize 'FT.actor.sheet.table.abilities.active'}}"
+                        class="icon-embrassed-energy ml-2"
+                    ></i
+                    >{{/if}}
                 </td>
                 <td>
-                    {{#unless ability.system.isAlwaysOn}}
-                    {{#if ability.system.isReady}}
-                    <a class="px-1 sheet-button" data-action="setItemField" data-field="system.isActive"
-                        data-value="false">{{localize
-                        "FT.actor.sheet.action.ability.cancel"}}</a>
+                    {{#unless ability.system.isAlwaysOn}} {{#if
+                    ability.system.isReady}}
+                    <a
+                        class="px-1 sheet-button"
+                        data-action="setItemField"
+                        data-field="system.isActive"
+                        data-value="false"
+                        >{{localize "FT.actor.sheet.action.ability.cancel"}}</a
+                    >
                     {{else}}
-                    <a class="px-1 sheet-button" data-action="setItemField" data-field="system.isActive"
-                        data-value="true">{{localize
-                        "FT.actor.sheet.action.ability.activate"}}</a>
-                    {{/if}}
-                    {{/unless}}
+                    <a
+                        class="px-1 sheet-button"
+                        data-action="setItemField"
+                        data-field="system.isActive"
+                        data-value="true"
+                        >{{localize
+                        "FT.actor.sheet.action.ability.activate"}}</a
+                    >
+                    {{/if}} {{/unless}}
                 </td>
                 <td>{{> actions}}</td>
             </tr>
             {{/each}}
         </table>
-
     </div>
 </section>

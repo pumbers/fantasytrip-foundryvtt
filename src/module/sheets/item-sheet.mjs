@@ -7,7 +7,9 @@ const { HandlebarsApplicationMixin } = foundry.applications.api;
  * Fantasy Trip Item Sheet
  *****************************************************************************/
 
-export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
+export class FTItemSheet extends HandlebarsApplicationMixin(
+  foundry.applications.sheets.ItemSheetV2,
+) {
   /**
    * Sheet Setup
    */
@@ -86,7 +88,9 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       uuid: this.item.uuid,
       item: foundry.utils.deepClone(this.item),
       system: foundry.utils.deepClone(this.item.system),
-      settings: { pdfPagerEnabled: game.settings.get(FT.id, "pdfPagerEnabled") },
+      settings: {
+        pdfPagerEnabled: game.settings.get(FT.id, "pdfPagerEnabled"),
+      },
       flags: {
         ...foundry.utils.deepClone(this.item.flags[FT.id] ?? {}),
         ...(this.item.type === "equipment" && {
@@ -114,7 +118,10 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       selectOptions: {
         attributes: FT.actor.attributes,
         inventoryLocations: FT.item.inventory.locations.reduce(
-          (options, location) => Object.assign(options, { [location]: `FT.actor.sheet.label.location.${location}` }),
+          (options, location) =>
+            Object.assign(options, {
+              [location]: `FT.actor.sheet.label.location.${location}`,
+            }),
           {},
         ),
         spellTypes: FT.item.spell.types,
@@ -123,14 +130,20 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
         ...(!!this.item.parent && {
           talents: Array.from(this.item.parent?.items.values())
             .filter((item) => item.type === "talent")
-            .reduce((talents, talent) => ({ ...talents, [talent._id]: talent.name }), {}),
+            .reduce(
+              (talents, talent) => ({ ...talents, [talent._id]: talent.name }),
+              {},
+            ),
         }),
         // World Spells for Magic Items
         spells: {
           ...(!this.item.inCompendium && {
             world: Array.from(game.items.values())
               .filter((item) => item.type === "spell")
-              .reduce((spells, spell) => ({ ...spells, [spell.uuid]: spell.name }), {}),
+              .reduce(
+                (spells, spell) => ({ ...spells, [spell.uuid]: spell.name }),
+                {},
+              ),
           }),
           packs: await Promise.all(
             game.packs
@@ -139,7 +152,13 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
                 label: compendium.metadata.label,
                 contents: (await compendium.getDocuments({ type: "spell" }))
                   .map((spell) => ({ uuid: spell.uuid, name: spell.name }))
-                  .reduce((spells, spell) => ({ ...spells, [spell.uuid]: spell.name }), {}),
+                  .reduce(
+                    (spells, spell) => ({
+                      ...spells,
+                      [spell.uuid]: spell.name,
+                    }),
+                    {},
+                  ),
               })),
           ),
         },

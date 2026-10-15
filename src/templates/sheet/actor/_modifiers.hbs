@@ -1,38 +1,73 @@
 {{!-- Damage, Fatigue and stats modifiers --}}
 <section id="modifiers">
-  <div class="field">
-    <label>{{localize "FT.actor.sheet.label.fatigue"}}</label><input type="number" name="system.fatigue"
-      value="{{ system.fatigue }}" min="0" />
-  </div>
-  <div class="field">
-    <label>{{localize "FT.actor.sheet.label.damage"}}</label><input type="number" name="system.damage"
-      value="{{ system.damage }}" min="0" />
-  </div>
-  {{#if (or (eq actor.type "npc") (eq system.type "wizard"))}}
-  <div class="field">
-    <label>{{localize "FT.actor.sheet.label.mana"}}</label><input type="number" name="system.mana.value"
-      value="{{ system.mana.value }}" min="0" max="{{ system.mana.max }}" />
-  </div>
-  {{/if}}
-  <div class="field">
-    <label>{{localize "FT.actor.sheet.label.stMod"}}</label><input type="number" name="system.st.mod"
-      value="{{ system.st.mod }}" />
-  </div>
-  <div class="field">
-    <label>{{localize "FT.actor.sheet.label.dxMod"}}</label><input type="number" name="system.dx.mod"
-      value="{{ system.dx.mod }}" />
-  </div>
-  <div class="field">
-    <label>{{localize "FT.actor.sheet.label.iqMod"}}</label><input type="number" name="system.iq.mod"
-      value="{{ system.iq.mod }}" />
-  </div>
-  <div class="field">
-    <label>{{localize "FT.actor.sheet.label.maMod"}}</label><input type="number"
-      name="{{concat 'system.ma.' system.ma.mode '.mod' }}" value="{{ system.currentMA.mod }}" />
-  </div>
-  <div class="field">
-    <label>{{localize
-      "FT.actor.sheet.label.initiative"}}</label><input type="number" name="system.initiative.situation"
-      value="{{ system.initiative.situation }}" />
-  </div>
+    <div class="field">
+        <label>{{localize "FT.actor.sheet.label.fatigue"}}</label
+        ><input
+            type="number"
+            name="system.fatigue"
+            value="{{ system.fatigue }}"
+            min="0"
+        />
+    </div>
+    <div class="field">
+        <label>{{localize "FT.actor.sheet.label.damage"}}</label
+        ><input
+            type="number"
+            name="system.damage"
+            value="{{ system.damage }}"
+            min="0"
+        />
+    </div>
+    {{#if (or (eq actor.type "npc") (eq system.type "wizard"))}}
+    <div class="field">
+        <label>{{localize "FT.actor.sheet.label.mana"}}</label
+        ><input
+            type="number"
+            name="system.mana.value"
+            value="{{ system.mana.value }}"
+            min="0"
+            max="{{ system.mana.max }}"
+        />
+    </div>
+    {{/if}}
+    <div class="field">
+        <label>{{localize "FT.actor.sheet.label.stMod"}}</label
+        ><input
+            type="number"
+            name="system.st.mod"
+            value="{{ system.st.mod }}"
+        />
+    </div>
+    <div class="field">
+        <label>{{localize "FT.actor.sheet.label.dxMod"}}</label
+        ><input
+            type="number"
+            name="system.dx.mod"
+            value="{{ system.dx.mod }}"
+        />
+    </div>
+    <div class="field">
+        <label>{{localize "FT.actor.sheet.label.iqMod"}}</label
+        ><input
+            type="number"
+            name="system.iq.mod"
+            value="{{ system.iq.mod }}"
+        />
+    </div>
+    <div class="field">
+        <label>{{localize "FT.actor.sheet.label.maMod"}}</label
+        ><input
+            type="number"
+            name="{{concat 'system.ma.' system.ma.mode '.mod' }}"
+            value="{{ system.currentMA.mod }}"
+        />
+    </div>
+    <div class="field">
+        <label>{{localize "FT.actor.sheet.label.initiative"}}</label
+        ><input
+            type="number"
+            name="system.initiative.situation"
+            value="{{ system.initiative.situation }}"
+        />
+    </div>
 </section>

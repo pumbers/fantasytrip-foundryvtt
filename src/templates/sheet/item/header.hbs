@@ -1,14 +1,30 @@
 <!-- Sheet Heaader -->
 <header id="{{partId}}" class="sheet-header">
-    <img class="item-img" src="{{item.img}}" data-action="editImage" data-edit="img" title="{{item.name}}" />
+    <img
+        class="item-img"
+        src="{{item.img}}"
+        data-action="editImage"
+        data-edit="img"
+        title="{{item.name}}"
+    />
     <div class="header-fields">
-        <input class="name" name="name" type="text" value="{{item.name}}" placeholder="Name" />
+        <input
+            class="name"
+            name="name"
+            type="text"
+            value="{{item.name}}"
+            placeholder="Name"
+        />
         <div class="flex flex-row justify-between font-bold uppercase mt-2">
             <span>{{localize (concat "FT.item.type." item.type)}}</span>
             {{#if (and settings.pdfPagerEnabled system.pdfReference)}}
-            <a title="{{localize 'FT.item.sheet.action.openPDF'}}" data-action="openPDF"
-                data-reference="{{system.pdfReference}}"><i
-                    class="icon-open-book"></i>&thinsp;{{system.pdfReference}}</a>
+            <a
+                title="{{localize 'FT.item.sheet.action.openPDF'}}"
+                data-action="openPDF"
+                data-reference="{{system.pdfReference}}"
+                ><i class="icon-open-book"></i
+                >&thinsp;{{system.pdfReference}}</a
+            >
             {{/if}}
         </div>
     </div>

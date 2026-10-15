@@ -9,17 +9,23 @@ import { FT } from "../config.mjs";
 export function extractRollParameters(data) {
   const attributes = JSON.parse(data.attributes ?? "[]").filter((a) => !!a);
   const totalAttributes = attributes.reduce(
-    (total, attribute) => total + foundry.utils.getProperty(data.actor.getRollData(), attribute),
+    (total, attribute) =>
+      total + foundry.utils.getProperty(data.actor.getRollData(), attribute),
     0,
   );
-  const totalModifiers = Object.values(data.modifiers ?? []).reduce((total, modifier) => total + parseInt(modifier), 0);
+  const totalModifiers = Object.values(data.modifiers ?? []).reduce(
+    (total, modifier) => total + parseInt(modifier),
+    0,
+  );
   if (data.cost) data.cost.st.value = parseInt(data.cost.st.value ?? 0);
 
   console.log("LOF", data.lof);
 
   const lof = Object.entries(data.lof ?? {})
     .filter(([_id, value]) => value === "true")
-    .map(([_id, _]) => canvas.tokens.viewedDocuments().find((token) => token._id === _id));
+    .map(([_id, _]) =>
+      canvas.tokens.viewedDocuments().find((token) => token._id === _id),
+    );
 
   return {
     ...data,

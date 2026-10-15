@@ -32,7 +32,11 @@ export function onCreateItem(actor, event, target) {
  */
 export function onEditItem(actor, event, target) {
   const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-  if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
+  if (!item)
+    return ui.notifications.error("FT.system.error.noItem", {
+      localize: true,
+      format: { itemId },
+    });
   const item = actor.items.get(itemId);
   item?.sheet.render(true);
 }
@@ -45,13 +49,21 @@ export function onEditItem(actor, event, target) {
  */
 export function onDeleteItem(actor, event, target) {
   const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-  if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
+  if (!item)
+    return ui.notifications.error("FT.system.error.noItem", {
+      localize: true,
+      format: { itemId },
+    });
   const item = actor.items.get(itemId);
   const changes = [];
   if (item.system.isContainer) {
     actor.items.forEach((i) => {
       if (i.system.container === itemId)
-        changes.push({ _id: i._id, "system.container": null, "system.location": "dropped" });
+        changes.push({
+          _id: i._id,
+          "system.container": null,
+          "system.location": "dropped",
+        });
     });
   }
   actor.updateEmbeddedDocuments("Item", changes);
@@ -60,19 +72,31 @@ export function onDeleteItem(actor, event, target) {
 
 export function onIemChangeLocation(actor, locations, event, target) {
   const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-  if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
+  if (!item)
+    return ui.notifications.error("FT.system.error.noItem", {
+      localize: true,
+      format: { itemId },
+    });
   const item = actor.items.get(itemId);
   const changes = [];
 
   // Move it to the next location
-  const movedTo = (locations.findIndex((location) => location === item.system.location) + 1) % 5;
-  changes.push({ _id: itemId, "system.location": FT.item.inventory.locations[movedTo] });
+  const movedTo =
+    (locations.findIndex((location) => location === item.system.location) + 1) %
+    5;
+  changes.push({
+    _id: itemId,
+    "system.location": FT.item.inventory.locations[movedTo],
+  });
 
   // If it's a container, also move its contents
   if (item.system.isContainer) {
     actor.items.forEach((i) => {
       if (i.system.container === itemId)
-        changes.push({ _id: i._id, "system.location": FT.item.inventory.locations[movedTo] });
+        changes.push({
+          _id: i._id,
+          "system.location": FT.item.inventory.locations[movedTo],
+        });
     });
   }
 
@@ -87,7 +111,11 @@ export function onIemChangeLocation(actor, locations, event, target) {
  */
 export function onSetItemField(actor, event, target) {
   const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-  if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
+  if (!item)
+    return ui.notifications.error("FT.system.error.noItem", {
+      localize: true,
+      format: { itemId },
+    });
   const item = actor.items.get(itemId);
   if (!item) return;
   const field = target.dataset.field;
@@ -104,7 +132,11 @@ export function onSetItemField(actor, event, target) {
  */
 export function onChatItem(actor, event, target) {
   const itemId = target?.closest("[data-item-id]").dataset?.itemId;
-  if (!item) return ui.notifications.error("FT.system.error.noItem", { localize: true, format: { itemId } });
+  if (!item)
+    return ui.notifications.error("FT.system.error.noItem", {
+      localize: true,
+      format: { itemId },
+    });
   const item = actor ? actor.items.get(itemId) : game.items.get(itemId);
   if (!item) return;
   item.chat(ChatMessage.getSpeaker({ actor }));

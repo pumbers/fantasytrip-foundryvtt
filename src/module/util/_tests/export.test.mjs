@@ -3,7 +3,10 @@ import { exportStandardText } from "../transfer.mjs";
 
 test("Export Full Actor", async () => {
   // Set up test object
-  const actorData = fs.readFileSync("src/module/util/_tests/fvtt-test-actor-export.json", "utf8");
+  const actorData = fs.readFileSync(
+    "src/module/util/_tests/fvtt-test-actor-export.json",
+    "utf8",
+  );
   const actor = JSON.parse(actorData);
   const items = actor.items.reduce((items, item) => {
     item.system.hasAttacks = item.system.attacks?.length > 0;

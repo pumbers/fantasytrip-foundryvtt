@@ -5,7 +5,12 @@ import { FTActor } from "./documents/actor.mjs";
 import { FTCharacterSheet, FTNPCSheet } from "./sheets/actor-sheet.mjs";
 
 import { FTItem } from "./documents/item.mjs";
-import { FTEquipmentData, FTTalentData, FTSpellData, FTAbilityData } from "./data/item-data.mjs";
+import {
+  FTEquipmentData,
+  FTTalentData,
+  FTSpellData,
+  FTAbilityData,
+} from "./data/item-data.mjs";
 import { FTItemSheet } from "./sheets/item-sheet.mjs";
 
 import { FTTokenRuler } from "./canvas/token-ruler.mjs";
@@ -16,7 +21,7 @@ import * as Helpers from "./util/helpers.mjs";
 const { StringField, NumberField, BooleanField } = foundry.data.fields;
 
 /**
- /*  Define Module Structure                         
+ /*  Define Module Structure
  */
 
 Hooks.once("init", async function () {
@@ -34,8 +39,12 @@ Hooks.once("init", async function () {
   CONFIG.time.turnTime = 1;
 
   // Combat
-  CONFIG.Combat.initiative.formula = "1d6+@initiative.situation+@initiative.self+(1d6/10)+(1d6/100)";
-  CONFIG.Actor.trackableAttributes = { character: { bar: ["st"], value: [] }, npc: { bar: ["st"], value: [] } };
+  CONFIG.Combat.initiative.formula =
+    "1d6+@initiative.situation+@initiative.self+(1d6/10)+(1d6/100)";
+  CONFIG.Actor.trackableAttributes = {
+    character: { bar: ["st"], value: [] },
+    npc: { bar: ["st"], value: [] },
+  };
 
   // Canvas
   CONFIG.Token.rulerClass = FTTokenRuler;
@@ -115,8 +124,12 @@ Hooks.once("init", async function () {
     scope: "world",
     type: new StringField({
       choices: {
-        classic: game.i18n.localize("FT.game.setting.failureRollResults.options.classic"),
-        legacy: game.i18n.localize("FT.game.setting.failureRollResults.options.legacy"),
+        classic: game.i18n.localize(
+          "FT.game.setting.failureRollResults.options.classic",
+        ),
+        legacy: game.i18n.localize(
+          "FT.game.setting.failureRollResults.options.legacy",
+        ),
       },
       required: true,
       nullable: false,
@@ -133,8 +146,12 @@ Hooks.once("init", async function () {
     scope: "world",
     type: new StringField({
       choices: {
-        rollTimes: game.i18n.localize("FT.game.setting.damageMultiplierStrategy.options.rollTimes"),
-        multiply: game.i18n.localize("FT.game.setting.damageMultiplierStrategy.options.multiply"),
+        rollTimes: game.i18n.localize(
+          "FT.game.setting.damageMultiplierStrategy.options.rollTimes",
+        ),
+        multiply: game.i18n.localize(
+          "FT.game.setting.damageMultiplierStrategy.options.multiply",
+        ),
       },
       required: true,
       nullable: false,
@@ -237,12 +254,18 @@ Hooks.once("init", async function () {
   // Actor document configuration
   CONFIG.Actor.dataModels = { character: FTActorData, npc: FTActorData };
   CONFIG.Actor.documentClass = FTActor;
-  foundry.documents.collections.Actors.unregisterSheet("core", foundry.applications.sheets.ActorSheetV2);
+  foundry.documents.collections.Actors.unregisterSheet(
+    "core",
+    foundry.applications.sheets.ActorSheetV2,
+  );
   foundry.documents.collections.Actors.registerSheet(FT.id, FTCharacterSheet, {
     types: ["character", "npc"],
     makeDefault: true,
   });
-  foundry.documents.collections.Actors.registerSheet(FT.id, FTNPCSheet, { types: ["npc"], makeDefault: true });
+  foundry.documents.collections.Actors.registerSheet(FT.id, FTNPCSheet, {
+    types: ["npc"],
+    makeDefault: true,
+  });
 
   // Item document configuration
   CONFIG.Item.dataModels = {
@@ -252,8 +275,13 @@ Hooks.once("init", async function () {
     ability: FTAbilityData,
   };
   CONFIG.Item.documentClass = FTItem;
-  foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
-  foundry.documents.collections.Items.registerSheet(FT.id, FTItemSheet, { makeDefault: true });
+  foundry.documents.collections.Items.unregisterSheet(
+    "core",
+    foundry.applications.sheets.ItemSheetV2,
+  );
+  foundry.documents.collections.Items.registerSheet(FT.id, FTItemSheet, {
+    makeDefault: true,
+  });
 
   // Other document configuration
   CONFIG.Combat.documentClass = FTCombat;
@@ -293,8 +321,16 @@ Hooks.once("init", async function () {
 Hooks.on("ready", async () => {
   // Check for PDF Pager module and enable integration if active
   if (game.modules.has("pdf-pager")) {
-    game.settings.set(FT.id, "pdfPagerEnabled", game.modules.get("pdf-pager")?.active);
-    console.info(FT.prefix, "PDF Pager module found, setting PDF references", game.modules.get("pdf-pager")?.active);
+    game.settings.set(
+      FT.id,
+      "pdfPagerEnabled",
+      game.modules.get("pdf-pager")?.active,
+    );
+    console.info(
+      FT.prefix,
+      "PDF Pager module found, setting PDF references",
+      game.modules.get("pdf-pager")?.active,
+    );
   }
 
   ui.notifications.info("FT.game.message.disclaimer", { localize: true });

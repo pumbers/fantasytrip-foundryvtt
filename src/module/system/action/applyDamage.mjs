@@ -18,16 +18,22 @@ export default async function applyDamage(actor, damage, options) {
   }
 
   // Create a dialog for the GM to select applicable defenses
-  const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/dialog/apply-damage.hbs`, {
-    damage,
-    items,
-  });
+  const content = await foundry.applications.handlebars.renderTemplate(
+    `${FT.path}/templates/dialog/apply-damage.hbs`,
+    {
+      damage,
+      items,
+    },
+  );
 
   new foundry.applications.api.DialogV2({
     id: "ft-apply-damage",
     classes: [FT.id, "apply-damage"],
     window: {
-      title: game.i18n.format("FT.dialog.damage.title", { name: actor.parent?.name ?? actor.name, damage }),
+      title: game.i18n.format("FT.dialog.damage.title", {
+        name: actor.parent?.name ?? actor.name,
+        damage,
+      }),
     },
     content,
     buttons: [
@@ -43,7 +49,10 @@ export default async function applyDamage(actor, damage, options) {
           action: "apply",
           hitsStopped: Array.from(button.form?.elements)
             .filter((e) => e.id === "defense" && e.checked)
-            .reduce((hitsStopped, e) => hitsStopped + (parseInt(e.value) || 0), 0),
+            .reduce(
+              (hitsStopped, e) => hitsStopped + (parseInt(e.value) || 0),
+              0,
+            ),
         }),
       },
     ],
@@ -76,40 +85,60 @@ function _applyDamage(actor, damageTaken, options = {}) {
   }
 
   // Otherwise, apply it to the target
-  actor.update({ "system.damage": actor.system.damage + damageTaken }).then((updatedActor) => {
-    if (updatedActor?.system.isDead) {
-      updatedActor.toggleStatusEffect("dead", { active: true, overlay: true });
-      ChatMessage.create({
-        flavor: game.i18n.format(`FT.system.combat.chat.dead.${Math.floor(Math.random() * 6)}`, {
-          name: actor.parent?.name ?? actor.name,
-          damageTaken,
-        }),
-      });
-    } else if (updatedActor?.system.isDown) {
-      updatedActor.toggleStatusEffect("unconscious", { active: true, overlay: true });
-      ChatMessage.create({
-        flavor: game.i18n.format(`FT.system.combat.chat.down.${Math.floor(Math.random() * 6)}`, {
-          name: actor.parent?.name ?? actor.name,
-          damageTaken,
-        }),
-      });
-    } else if (damageTaken >= 8) {
-      updatedActor.toggleStatusEffect("stun", { active: true, overlay: true });
-      ChatMessage.create({
-        flavor: game.i18n.format(`FT.system.combat.chat.stunned.${Math.floor(Math.random() * 6)}`, {
-          name: actor.parent?.name ?? actor.name,
-          damageTaken,
-        }),
-        whisper: Object.keys(actor.ownership).filter((k) => k !== "default"),
-      });
-    } else {
-      ChatMessage.create({
-        flavor: game.i18n.format("FT.system.combat.chat.damaged", {
-          name: actor.parent?.name ?? actor.name,
-          damageTaken,
-        }),
-        whisper: Object.keys(actor.ownership).filter((k) => k !== "default"),
-      });
-    }
-  });
+  actor
+    .update({ "system.damage": actor.system.damage + damageTaken })
+    .then((updatedActor) => {
+      if (updatedActor?.system.isDead) {
+        updatedActor.toggleStatusEffect("dead", {
+          active: true,
+          overlay: true,
+        });
+        ChatMessage.create({
+          flavor: game.i18n.format(
+            `FT.system.combat.chat.dead.${Math.floor(Math.random() * 6)}`,
+            {
+              name: actor.parent?.name ?? actor.name,
+              damageTaken,
+            },
+          ),
+        });
+      } else if (updatedActor?.system.isDown) {
+        updatedActor.toggleStatusEffect("unconscious", {
+          active: true,
+          overlay: true,
+        });
+        ChatMessage.create({
+          flavor: game.i18n.format(
+            `FT.system.combat.chat.down.${Math.floor(Math.random() * 6)}`,
+            {
+              name: actor.parent?.name ?? actor.name,
+              damageTaken,
+            },
+          ),
+        });
+      } else if (damageTaken >= 8) {
+        updatedActor.toggleStatusEffect("stun", {
+          active: true,
+          overlay: true,
+        });
+        ChatMessage.create({
+          flavor: game.i18n.format(
+            `FT.system.combat.chat.stunned.${Math.floor(Math.random() * 6)}`,
+            {
+              name: actor.parent?.name ?? actor.name,
+              damageTaken,
+            },
+          ),
+          whisper: Object.keys(actor.ownership).filter((k) => k !== "default"),
+        });
+      } else {
+        ChatMessage.create({
+          flavor: game.i18n.format("FT.system.combat.chat.damaged", {
+            name: actor.parent?.name ?? actor.name,
+            damageTaken,
+          }),
+          whisper: Object.keys(actor.ownership).filter((k) => k !== "default"),
+        });
+      }
+    });
 }

@@ -48,7 +48,11 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
           type: "save",
           dice: 3,
           modifiers: {
-            situationMod: { min: FT.roll.modifiers.default.min, max: FT.roll.modifiers.default.max, value: 0 },
+            situationMod: {
+              min: FT.roll.modifiers.default.min,
+              max: FT.roll.modifiers.default.max,
+              value: 0,
+            },
           },
           messageMode: "ic",
         },
@@ -71,7 +75,9 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
     const data = foundry.utils.expandObject(Object.fromEntries(formData));
 
     data.dice = parseInt(data.dice ?? 0);
-    Object.entries(data.modifiers ?? []).forEach(([key, value]) => (data.modifiers[key] = parseInt(value)));
+    Object.entries(data.modifiers ?? []).forEach(
+      ([key, value]) => (data.modifiers[key] = parseInt(value)),
+    );
 
     if (event.submitter?.value === "submit") {
       return FTDiceRollerApp.#context.submit?.(

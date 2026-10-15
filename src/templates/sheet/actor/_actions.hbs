@@ -1,44 +1,59 @@
-{{!-- Actions --}}
-{{#each readied as | item |}}
-<div id="action-item-{{item._id}}" class="action-item" data-item-id="{{item._id}}">
-    <img class="action-item__image" src="{{item.img}}" alt="">
+{{!-- Actions --}} {{#each readied as | item |}}
+<div
+    id="action-item-{{item._id}}"
+    class="action-item"
+    data-item-id="{{item._id}}"
+>
+    <img class="action-item__image" src="{{item.img}}" alt="" />
     <span class="action-item__name">{{item.name}}</span>
     <div class="action-item__details">
-
-        {{!-- Attacks --}}
-        {{#each item.system.attacks as | attack |}}
-        <a class="sheet-button" data-action="attackRoll" data-attack-index="{{@index}}"
-            title="{{localize (concat 'FT.item.attack.type.' type)}}">
+        {{!-- Attacks --}} {{#each item.system.attacks as | attack |}}
+        <a
+            class="sheet-button"
+            data-action="attackRoll"
+            data-attack-index="{{@index}}"
+            title="{{localize (concat 'FT.item.attack.type.' type)}}"
+        >
             <i
-                class="{{property ../../FT.item.attack.icon type}} mr-1 {{#unless (gte ../../system.st.max minST)}}warning{{/unless}}"></i>
-            &thinsp;{{action}}&thinsp;{{dice}}/{{localize "FT.actor.attribute.dx.value"}}&thinsp;{{toHit}}</a>
-        <a class="sheet-button" data-action="damageRoll" data-attack-index="{{@index}}"><i
-                class="icon-death-skull"></i>{{action}}&thinsp;{{damage}}
+                class="{{property ../../FT.item.attack.icon type}} mr-1 {{#unless (gte ../../system.st.max minST)}}warning{{/unless}}"
+            ></i>
+            &thinsp;{{action}}&thinsp;{{dice}}/{{localize
+            "FT.actor.attribute.dx.value"}}&thinsp;{{toHit}}</a
+        >
+        <a
+            class="sheet-button"
+            data-action="damageRoll"
+            data-attack-index="{{@index}}"
+            ><i class="icon-death-skull"></i>{{action}}&thinsp;{{damage}}
         </a>
-        {{/each}}
-
-        {{!-- Defenses --}}
-        {{#each item.system.defenses as | defense |}}
-        <span>{{action}}&thinsp;<i class="icon-chest-armor"></i>{{hitsStopped}}</span>
-        {{/each}}
-
-        {{!-- Embedded Spells --}}
-        {{#each item.system.spells as | spell |}}
-        <a class="sheet-button" data-action="castSpellFromItem" data-spell-uuid="{{spell.uuid}}"
-            data-burn="{{spell.burn}}" title="{{localize 'FT.actor.sheet.action.spell.cast'}} {{spell.name}}">
-            <i class="icon-magic-swirl"></i>{{spell.name}}</a>
-        {{/each}}
-
-        {{!-- Active Spell --}}
-        {{#if (eq item.type "spell")}}
-        <a class="sheet-button" data-action="maintainSpell"><i
-                class="icon-magic-swirl"></i>{{item.system.stToMaintain}}&thinsp;{{localize
-            "FT.actor.sheet.action.spell.maintain"}}</a>
-        <a class="sheet-button" data-action="cancelSpell"><i class="icon-magic-swirl"></i>{{localize
-            "FT.actor.sheet.action.spell.cancel"}}</a>
+        {{/each}} {{!-- Defenses --}} {{#each item.system.defenses as | defense
+        |}}
+        <span
+            >{{action}}&thinsp;<i class="icon-chest-armor"></i
+            >{{hitsStopped}}</span
+        >
+        {{/each}} {{!-- Embedded Spells --}} {{#each item.system.spells as |
+        spell |}}
+        <a
+            class="sheet-button"
+            data-action="castSpellFromItem"
+            data-spell-uuid="{{spell.uuid}}"
+            data-burn="{{spell.burn}}"
+            title="{{localize 'FT.actor.sheet.action.spell.cast'}} {{spell.name}}"
+        >
+            <i class="icon-magic-swirl"></i>{{spell.name}}</a
+        >
+        {{/each}} {{!-- Active Spell --}} {{#if (eq item.type "spell")}}
+        <a class="sheet-button" data-action="maintainSpell"
+            ><i class="icon-magic-swirl"></i
+            >{{item.system.stToMaintain}}&thinsp;{{localize
+            "FT.actor.sheet.action.spell.maintain"}}</a
+        >
+        <a class="sheet-button" data-action="cancelSpell"
+            ><i class="icon-magic-swirl"></i>{{localize
+            "FT.actor.sheet.action.spell.cancel"}}</a
+        >
         {{/if}}
-
     </div>
-
 </div>
 {{/each}}

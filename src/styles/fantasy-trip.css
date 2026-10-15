@@ -7,132 +7,132 @@
 @custom-variant dark (&:where(.theme-dark, .theme-dark *));
 
 @theme {
-  --color-ft-sheet: oklch(97% 0 0);
-  --color-ft-light: oklch(87% 0 0);
-  --color-ft-dark: oklch(26.9% 0 0);
-  /* --color-ft-dark: oklch(76.8% 0.233 130.85); */
+    --color-ft-sheet: oklch(97% 0 0);
+    --color-ft-light: oklch(87% 0 0);
+    --color-ft-dark: oklch(26.9% 0 0);
+    /* --color-ft-dark: oklch(76.8% 0.233 130.85); */
 }
 
 .fantasy-trip,
 .fantasy-trip.application {
-  .window-content {
-    input,
-    textarea,
-    select {
-      @apply w-full h-6 shadow-none m-0 p-1 leading-4;
-      &::placeholder {
-        @apply opacity-80;
-      }
-      &:focus {
-        @apply outline-none shadow-none;
-      }
-      &[readonly],
-      &[disabled] {
-        @apply cursor-not-allowed;
-      }
-    }
-
-    table {
-      @apply text-xs m-0 p-0;
-      thead {
-        text-shadow: none;
-        @apply m-0 p-0;
-      }
-      tbody.break {
-        &:after {
-          content: "";
-          @apply block h-4;
+    .window-content {
+        input,
+        textarea,
+        select {
+            @apply w-full h-6 shadow-none m-0 p-1 leading-4;
+            &::placeholder {
+                @apply opacity-80;
+            }
+            &:focus {
+                @apply outline-none shadow-none;
+            }
+            &[readonly],
+            &[disabled] {
+                @apply cursor-not-allowed;
+            }
         }
-      }
-      th,
-      td {
-        @apply p-1 whitespace-nowrap text-center;
-        &:first-child {
-          @apply text-left w-4;
+
+        table {
+            @apply text-xs m-0 p-0;
+            thead {
+                text-shadow: none;
+                @apply m-0 p-0;
+            }
+            tbody.break {
+                &:after {
+                    content: "";
+                    @apply block h-4;
+                }
+            }
+            th,
+            td {
+                @apply p-1 whitespace-nowrap text-center;
+                &:first-child {
+                    @apply text-left w-4;
+                }
+                &:nth-child(2) {
+                    @apply text-left;
+                }
+                &:last-child {
+                    @apply text-right;
+                }
+                img {
+                    @apply m-0 p-0 min-w-[1em] min-h-[1em];
+                }
+            }
+            tfoot {
+                text-shadow: none;
+                @apply m-0 p-0;
+            }
         }
-        &:nth-child(2) {
-          @apply text-left;
+
+        nav.sheet-tabs.tabs {
+            @apply my-2 text-[0.6rem];
         }
-        &:last-child {
-          @apply text-right;
+
+        section.tab {
+            @apply grow;
         }
-        img {
-          @apply m-0 p-0 min-w-[1em] min-h-[1em];
+
+        fieldset {
+            @apply m-0 p-2;
         }
-      }
-      tfoot {
-        text-shadow: none;
-        @apply m-0 p-0;
-      }
-    }
 
-    nav.sheet-tabs.tabs {
-      @apply my-2 text-[0.6rem];
-    }
-
-    section.tab {
-      @apply grow;
-    }
-
-    fieldset {
-      @apply m-0 p-2;
-    }
-
-    fieldset.effect {
-      @apply flex flex-col gap-1 text-xs;
-      legend {
-        @apply flex flex-row gap-1;
-        img {
-          @apply size-4;
+        fieldset.effect {
+            @apply flex flex-col gap-1 text-xs;
+            legend {
+                @apply flex flex-row gap-1;
+                img {
+                    @apply size-4;
+                }
+                a[data-action] {
+                    @apply opacity-30;
+                    &:hover {
+                        @apply opacity-100;
+                    }
+                }
+            }
+            .description {
+                @apply text-xs;
+            }
+            .changes {
+                td:first-child {
+                    @apply w-full;
+                }
+            }
+            .statuses {
+                @apply flex flex-row gap-1;
+                .status {
+                    @apply p-0.5 bg-gray-200;
+                }
+            }
         }
-        a[data-action] {
-          @apply opacity-30;
-          &:hover {
-            @apply opacity-100;
-          }
+
+        .field {
+            @apply flex flex-col gap-0.5 mt-auto mb-0 !leading-2;
+            label {
+                @apply m-0 p-0 text-[0.5rem] !text-left uppercase;
+            }
         }
-      }
-      .description {
-        @apply text-xs;
-      }
-      .changes {
-        td:first-child {
-          @apply w-full;
+
+        .draggable {
+            @apply cursor-grab;
         }
-      }
-      .statuses {
-        @apply flex flex-row gap-1;
-        .status {
-          @apply p-0.5 bg-gray-200;
+
+        a {
+            text-shadow: none;
         }
-      }
-    }
 
-    .field {
-      @apply flex flex-col gap-0.5 mt-auto mb-0 !leading-2;
-      label {
-        @apply m-0 p-0 text-[0.5rem] !text-left uppercase;
-      }
-    }
+        [data-action] {
+            @apply cursor-pointer;
+        }
 
-    .draggable {
-      @apply cursor-grab;
-    }
+        [data-action].sheet-button {
+            @apply block;
+        }
 
-    a {
-      text-shadow: none;
+        div.tags.input-element-tags {
+            @apply justify-start;
+        }
     }
-
-    [data-action] {
-      @apply cursor-pointer;
-    }
-
-    [data-action].sheet-button {
-      @apply block;
-    }
-
-    div.tags.input-element-tags {
-      @apply justify-start;
-    }
-  }
 }

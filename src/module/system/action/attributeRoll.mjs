@@ -38,28 +38,46 @@ export default function attributeRoll(actor, options) {
     submit: (data) => {
       // console.log("Action.attributeRoll().submit()", "data", data);
       // Extract roll parameters
-      const { actor, dice, attributes, totalAttributes, modifiers, totalModifiers, messageMode } =
-        extractRollParameters(data);
+      const {
+        actor,
+        dice,
+        attributes,
+        totalAttributes,
+        modifiers,
+        totalModifiers,
+        messageMode,
+      } = extractRollParameters(data);
 
       // Create & evaluate a roll based on the set parameters
       new Roll(`${dice}D6`).evaluate().then(async (roll) => {
         // Determine roll result and margin of success/failure
-        const result = determineRollResult(dice, totalAttributes + totalModifiers, roll);
+        const result = determineRollResult(
+          dice,
+          totalAttributes + totalModifiers,
+          roll,
+        );
         const margin = totalAttributes + totalModifiers - roll.total;
 
         // Create a chat message for the result
-        const message = game.i18n.format(`FT.system.roll.flavor.attribute.${Math.floor(Math.random() * 6)}`, {
-          attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
-          result: game.i18n.format(`FT.system.roll.result.${result}`, {
-            margin: Math.abs(margin),
-          }),
-        });
+        const message = game.i18n.format(
+          `FT.system.roll.flavor.attribute.${Math.floor(Math.random() * 6)}`,
+          {
+            attributes: attributes
+              .map((a) => game.i18n.localize(`FT.actor.attribute.${a}`))
+              .join("+"),
+            result: game.i18n.format(`FT.system.roll.result.${result}`, {
+              margin: Math.abs(margin),
+            }),
+          },
+        );
 
         const content = await foundry.applications.handlebars.renderTemplate(
           `${FT.path}/templates/chat/dice-roll.hbs`,
           {
             actor,
-            attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
+            attributes: attributes
+              .map((a) => game.i18n.localize(`FT.actor.attribute.${a}`))
+              .join("+"),
             totalAttributes,
             modifiers,
             totalModifiers,

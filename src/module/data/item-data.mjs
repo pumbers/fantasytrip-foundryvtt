@@ -22,7 +22,9 @@ class FTEmbeddedAttack extends foundry.abstract.DataModel {
       toHitMod: new NumberField({ initial: 0 }),
       baseDamage: new StringField({ required: true, nullable: false }),
       effects: new StringField({ nullable: true }),
-      talent: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+      talent: new ForeignDocumentField(foundry.documents.BaseItem, {
+        idOnly: true,
+      }),
     };
   }
 
@@ -33,7 +35,10 @@ class FTEmbeddedAttack extends foundry.abstract.DataModel {
 
 class FTEmbeddedDefense extends foundry.abstract.DataModel {
   static defineSchema() {
-    return { action: new StringField({ required: TextTrackCueList }), hitsStopped: new NumberField({ initial: 0 }) };
+    return {
+      action: new StringField({ required: TextTrackCueList }),
+      hitsStopped: new NumberField({ initial: 0 }),
+    };
   }
 }
 
@@ -55,13 +60,21 @@ class FTBaseItemData extends foundry.abstract.TypeDataModel {
     return {
       pdfReference: new StringField(),
       notes: new HTMLField(),
-      attacks: new ArrayField(new EmbeddedDataField(FTEmbeddedAttack), { initial: [] }),
-      defenses: new ArrayField(new EmbeddedDataField(FTEmbeddedDefense), { initial: [] }),
+      attacks: new ArrayField(new EmbeddedDataField(FTEmbeddedAttack), {
+        initial: [],
+      }),
+      defenses: new ArrayField(new EmbeddedDataField(FTEmbeddedDefense), {
+        initial: [],
+      }),
     };
   }
 
   get hasActions() {
-    return this.attacks.length > 0 || this.defenses.length > 0 || this.spells?.length > 0;
+    return (
+      this.attacks.length > 0 ||
+      this.defenses.length > 0 ||
+      this.spells?.length > 0
+    );
   }
 
   get hasAttacks() {
@@ -128,7 +141,10 @@ export class FTSpellData extends FTTalentData {
   static defineSchema() {
     return Object.assign(super.defineSchema(), {
       type: new StringField(),
-      stToCast: new SchemaField({ min: new NumberField({ initial: 1 }), max: new NumberField({ initial: 1 }) }),
+      stToCast: new SchemaField({
+        min: new NumberField({ initial: 1 }),
+        max: new NumberField({ initial: 1 }),
+      }),
       stToMaintain: new NumberField({ initial: 0 }),
       stSpent: new NumberField({ initial: 0 }),
     });
@@ -153,7 +169,9 @@ export class FTSpellData extends FTTalentData {
 
   get casting() {
     const cast =
-      this.stToCast.min === this.stToCast.max ? this.stToCast.max : `${this.stToCast.min}-${this.stToCast.max}`;
+      this.stToCast.min === this.stToCast.max
+        ? this.stToCast.max
+        : `${this.stToCast.min}-${this.stToCast.max}`;
     const maintain = this.stToMaintain ? ` (${this.stToMaintain})` : "";
     return cast + maintain;
   }
@@ -175,11 +193,17 @@ export class FTEquipmentData extends FTBaseItemData {
       qty: new NumberField({ initial: 1 }),
       //
       location: new StringField({ initial: "packed" }),
-      applyEffectsWhen: new ArrayField(new StringField(), { initial: ["readied"] }),
+      applyEffectsWhen: new ArrayField(new StringField(), {
+        initial: ["readied"],
+      }),
       capacity: new NumberField({ initial: 0 }),
-      container: new ForeignDocumentField(foundry.documents.BaseItem, { idOnly: true }),
+      container: new ForeignDocumentField(foundry.documents.BaseItem, {
+        idOnly: true,
+      }),
       //
-      spells: new ArrayField(new EmbeddedDataField(FTEmbeddedSpell), { initial: [] }),
+      spells: new ArrayField(new EmbeddedDataField(FTEmbeddedSpell), {
+        initial: [],
+      }),
     });
   }
 

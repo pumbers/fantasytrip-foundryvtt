@@ -39,10 +39,14 @@ export class FTActor extends foundry.documents.Actor {
 
     const load = Array.from(this.items)
       .filter((item) => item.type === "equipment")
-      .filter((item) => FT.item.inventory.encumbering.includes(item.system.location))
+      .filter((item) =>
+        FT.item.inventory.encumbering.includes(item.system.location),
+      )
       .reduce((load, item) => load + item.system.totalWt, 0);
 
-    const level = capacity.findIndex((val, index) => val > load || index === capacity.length - 1);
+    const level = capacity.findIndex(
+      (val, index) => val > load || index === capacity.length - 1,
+    );
 
     system.encumbrance = { capacity, load, level };
 
@@ -87,13 +91,23 @@ export class FTActor extends foundry.documents.Actor {
           // To Hit
           const talent = this.getEmbeddedDocument("Item", attack.talent);
           attack.dice =
-            weapon.type === "equipment" && !talent ? (game.settings.get(FT.id, "defaultUnskilled4d6") ? 4 : 3) : 3;
+            weapon.type === "equipment" && !talent
+              ? game.settings.get(FT.id, "defaultUnskilled4d6")
+                ? 4
+                : 3
+              : 3;
           attack.minSTMod = Math.min(this.system.st.max - attack.minST, 0);
           attack.attackTypeMod = this.system.dx.modFor[attack.type];
-          attack.toHit = this.system.dx.value + attack.minSTMod + attack.toHitMod + attack.attackTypeMod;
+          attack.toHit =
+            this.system.dx.value +
+            attack.minSTMod +
+            attack.toHitMod +
+            attack.attackTypeMod;
 
           // Adjust Damage based on weapon min ST
-          attack.stDamageMod = Math.floor(Math.min(system.st.max - attack.minST, 0) / 2);
+          attack.stDamageMod = Math.floor(
+            Math.min(system.st.max - attack.minST, 0) / 2,
+          );
           attack.finalDamage = attack.baseDamage?.concat(
             attack.stDamageMod <= 0 ? "" : "+",
             attack.stDamageMod === 0 ? "" : attack.stDamageMod,
@@ -101,7 +115,10 @@ export class FTActor extends foundry.documents.Actor {
 
           // Calculate worst initiative DX using readied weapons
           if (weapon.system.isReady) {
-            this.system.initiative.dx = Math.min(this.system.initiative.dx, this.system.dx.value + attack.minSTMod);
+            this.system.initiative.dx = Math.min(
+              this.system.initiative.dx,
+              this.system.dx.value + attack.minSTMod,
+            );
           }
         });
       });
@@ -111,11 +128,17 @@ export class FTActor extends foundry.documents.Actor {
     this.items.forEach((item) => {
       switch (item.type) {
         case "talent":
-          item.system.actualIQCost = this.system.type === "hero" ? item.system.iqCost : item.system.iqCost * 2;
+          item.system.actualIQCost =
+            this.system.type === "hero"
+              ? item.system.iqCost
+              : item.system.iqCost * 2;
           system.totalIQCost.talents += item.system.actualIQCost;
           break;
         case "spell":
-          item.system.actualIQCost = this.system.type === "wizard" ? item.system.iqCost : item.system.iqCost * 3;
+          item.system.actualIQCost =
+            this.system.type === "wizard"
+              ? item.system.iqCost
+              : item.system.iqCost * 3;
           system.totalIQCost.spells += item.system.actualIQCost;
           break;
         default:
@@ -131,13 +154,15 @@ export class FTActor extends foundry.documents.Actor {
 
   chat(speaker) {
     // console.log("chat()", this);
-    foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/actor.hbs`, this).then((content) =>
-      ChatMessage.create({
-        content: content,
-        flavor: this.name,
-        speaker,
-      }),
-    );
+    foundry.applications.handlebars
+      .renderTemplate(`${FT.path}/templates/chat/actor.hbs`, this)
+      .then((content) =>
+        ChatMessage.create({
+          content: content,
+          flavor: this.name,
+          speaker,
+        }),
+      );
   }
 }
 

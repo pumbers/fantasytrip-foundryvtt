@@ -13,7 +13,7 @@ export function importActor(actor) {
       closeOnSubmit: true,
     },
     content: `<label for="pasted">${game.i18n.localize(
-      "FT.dialog.import.label.instructions"
+      "FT.dialog.import.label.instructions",
     )}</label><textarea id="pasted" name="pasted"></textarea><input type="file" name="upload"/>`,
     buttons: [
       {
@@ -67,9 +67,10 @@ export function importStandardText(text) {
   console.log(FT.prefix, "Importing character from standard text", text);
 
   // Parse initial text
-  const header = /^(?<name>[\w\s’'`]*)[\s,]*(?<type>(wizard|hero))?[\s,]*(age\s(?<age>\d+))?$/m.exec(
-    text.trim()
-  )?.groups;
+  const header =
+    /^(?<name>[\w\s’'`]*)[\s,]*(?<type>(wizard|hero))?[\s,]*(age\s(?<age>\d+))?$/m.exec(
+      text.trim(),
+    )?.groups;
   const name = header.name ?? "Imported Character";
   const type = header.type ?? "hero";
   const age = header.age ?? 18;
@@ -77,7 +78,9 @@ export function importStandardText(text) {
 
   // Parse attributes
   const { st, dx, iq, ma } =
-    /^ST\s+(?<st>\d+)\s*,\s*DX\s*(?<dx>\d+)\s*,\s*IQ\s*(?<iq>\d+)\s*,\s*MA\s*(?<ma>\d+)/gm.exec(text)?.groups;
+    /^ST\s+(?<st>\d+)\s*,\s*DX\s*(?<dx>\d+)\s*,\s*IQ\s*(?<iq>\d+)\s*,\s*MA\s*(?<ma>\d+)/gm.exec(
+      text,
+    )?.groups;
   console.log("... attributes", "ST", st, "DX", dx, "IQ", iq, "MA", ma);
 
   // Parse item lists
@@ -100,7 +103,10 @@ export function importStandardText(text) {
     console.log("... processing list", id);
 
     // Parse the list items
-    let regex = new RegExp(`^${name}\\s*(?<list>.*)${lists[index + 1] ?? "$"}`, "gms");
+    let regex = new RegExp(
+      `^${name}\\s*(?<list>.*)${lists[index + 1] ?? "$"}`,
+      "gms",
+    );
     console.log("... ... parsing list using regex", regex);
     let list = regex.exec(text)?.groups?.list;
     console.log("... ... list", list);
@@ -114,7 +120,9 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((name) => {
-            const found = game.items.find((entry) => entry.type === "talent" && entry.name === name);
+            const found = game.items.find(
+              (entry) => entry.type === "talent" && entry.name === name,
+            );
             return found ? found.toObject() : { name: name, type: "talent" };
           });
         console.log("... ... adding talents", talents);
@@ -126,7 +134,9 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((name) => {
-            const found = game.items.find((entry) => entry.type === "spell" && entry.name === name);
+            const found = game.items.find(
+              (entry) => entry.type === "spell" && entry.name === name,
+            );
             return found ? found.toObject() : { name: name, type: "spell" };
           });
         console.log("... ... adding spells", spells);
@@ -137,8 +147,13 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((name) => {
-            const found = game.items.find((entry) => entry.type === "talent" && entry.name === `Language (${name})`);
-            return found ? found.toObject() : { name: `Language (${name})`, type: "talent" };
+            const found = game.items.find(
+              (entry) =>
+                entry.type === "talent" && entry.name === `Language (${name})`,
+            );
+            return found
+              ? found.toObject()
+              : { name: `Language (${name})`, type: "talent" };
           });
         console.log("... ... adding languages", languages);
         break;
@@ -149,14 +164,24 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((item) => {
-            const { name, damage } = /^(?<name>[\w\s’'`]*)(\((?<damage>.*)?\))?$/ms.exec(item)?.groups;
-            const found = game.items.find((entry) => entry.type === "talent" && entry.name === name);
+            const { name, damage } =
+              /^(?<name>[\w\s’'`]*)(\((?<damage>.*)?\))?$/ms.exec(item)?.groups;
+            const found = game.items.find(
+              (entry) => entry.type === "talent" && entry.name === name,
+            );
             return found
               ? found.toObject()
               : {
                   name: name.trim(),
                   type: "equipment",
-                  system: { attacks: [{ action: "Attack", baseDamage: (damage ?? "").replace(/(d|D)/gms, "D6") }] },
+                  system: {
+                    attacks: [
+                      {
+                        action: "Attack",
+                        baseDamage: (damage ?? "").replace(/(d|D)/gms, "D6"),
+                      },
+                    ],
+                  },
                 };
           });
         console.log("... ... adding weapons", weapons);
@@ -168,14 +193,23 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((item) => {
-            const { name, stops } = /^(?<name>[\w\s’'`]*)(stops|stop)+\s*(?<stops>\d*)/ms.exec(item)?.groups;
-            const found = game.items.find((entry) => entry.type === "equipment" && entry.name === name);
+            const { name, stops } =
+              /^(?<name>[\w\s’'`]*)(stops|stop)+\s*(?<stops>\d*)/ms.exec(
+                item,
+              )?.groups;
+            const found = game.items.find(
+              (entry) => entry.type === "equipment" && entry.name === name,
+            );
             return found
               ? found.toObject()
               : {
                   name: name.trim(),
                   type: "equipment",
-                  system: { defenses: [{ action: "Body", hitsStopped: parseInt(stops) }] },
+                  system: {
+                    defenses: [
+                      { action: "Body", hitsStopped: parseInt(stops) },
+                    ],
+                  },
                 };
           });
         console.log("... ... adding armor", armor);
@@ -186,8 +220,11 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((item) => {
-            const { name, qty } = /^(?<name>[\w\s’'`]*)\s*(\((?<qty>\d*)\))?/ms.exec(item)?.groups;
-            const found = game.items.find((entry) => entry.type === "equipment" && entry.name === name);
+            const { name, qty } =
+              /^(?<name>[\w\s’'`]*)\s*(\((?<qty>\d*)\))?/ms.exec(item)?.groups;
+            const found = game.items.find(
+              (entry) => entry.type === "equipment" && entry.name === name,
+            );
             return found
               ? found.toObject()
               : {
@@ -210,8 +247,12 @@ export function importStandardText(text) {
           .split(",")
           .map((item) => item.trim())
           .map((item) => {
-            const { name, notes } = /^(?<name>[\w\s’'`]*)(?<notes>.*)$/ms.exec(item)?.groups;
-            const found = game.items.find((entry) => entry.type === "ability" && entry.name === name);
+            const { name, notes } = /^(?<name>[\w\s’'`]*)(?<notes>.*)$/ms.exec(
+              item,
+            )?.groups;
+            const found = game.items.find(
+              (entry) => entry.type === "ability" && entry.name === name,
+            );
             return found
               ? found.toObject()
               : {
@@ -257,7 +298,16 @@ export function importStandardText(text) {
       ma: { walk: parseInt(ma), fly: parseInt(ma), swim: parseInt(ma) },
       notes: notes.map((note) => `<p>${note}</p>`),
     },
-    items: [...talents, ...spells, ...languages, ...weapons, ...armor, ...equipment, ...abilities, ...magic],
+    items: [
+      ...talents,
+      ...spells,
+      ...languages,
+      ...weapons,
+      ...armor,
+      ...equipment,
+      ...abilities,
+      ...magic,
+    ],
   };
 }
 
@@ -272,27 +322,47 @@ export function exportStandardText(actor) {
   // Categorize and saummarize items
   const talents = Array.from(actor.items)
     .filter((item) => item.type === "talent")
-    .filter((item) => !item.name.match(/^(Language|language)\s*\([\s\w’'`]*\)$/m))
+    .filter(
+      (item) => !item.name.match(/^(Language|language)\s*\([\s\w’'`]*\)$/m),
+    )
     .map((item) => item.name);
   const languages = Array.from(actor.items)
     .filter((item) => item.type === "talent")
-    .filter((item) => item.name.match(/^(Language|language)\s*\([\s\w’'`]*\)$/m))
-    .map((item) => /^(Language|language)\s*\((?<name>[\s\w`']*)\)$/m.exec(item.name)?.groups?.name);
+    .filter((item) =>
+      item.name.match(/^(Language|language)\s*\([\s\w’'`]*\)$/m),
+    )
+    .map(
+      (item) =>
+        /^(Language|language)\s*\((?<name>[\s\w`']*)\)$/m.exec(item.name)
+          ?.groups?.name,
+    );
   const spells = Array.from(actor.items)
     .filter((item) => item.type === "spell")
     .map((item) => item.name);
   const weapons = Array.from(actor.items)
     .filter((item) => item.type === "equipment" && item.system.hasAttacks)
-    .map((item) => `${item.name} (${item.system.attacks.map((attack) => attack.damage).join("/")})`);
+    .map(
+      (item) =>
+        `${item.name} (${item.system.attacks.map((attack) => attack.damage).join("/")})`,
+    );
   const armor = Array.from(actor.items)
     .filter((item) => item.type === "equipment" && item.system.hasDefenses)
-    .map((item) => `${item.system.defenses.map((defense) => item.name + " stops " + defense.hitsStopped)}`);
+    .map(
+      (item) =>
+        `${item.system.defenses.map((defense) => item.name + " stops " + defense.hitsStopped)}`,
+    );
   const equipment = Array.from(actor.items)
     .filter(
       (item) =>
-        item.type === "equipment" && !item.system.hasAttacks && !item.system.hasDefenses && !item.system.hasSpells
+        item.type === "equipment" &&
+        !item.system.hasAttacks &&
+        !item.system.hasDefenses &&
+        !item.system.hasSpells,
     )
-    .map((item) => `${item.name}${item.system.qty > 1 ? " (" + item.system.qty + ")" : ""}`);
+    .map(
+      (item) =>
+        `${item.name}${item.system.qty > 1 ? " (" + item.system.qty + ")" : ""}`,
+    );
   const magic = Array.from(actor.items)
     .filter((item) => item.type === "equipment" && item.system.hasSpells)
     .map((item) => `• ${item.name}`);
@@ -303,13 +373,24 @@ export function exportStandardText(actor) {
     `ST ${actor.system.st.max}, DX ${actor.system.dx.max}, IQ ${actor.system.iq.max}, MA ${actor.system.ma.walk.max}`,
   ];
 
-  if (talents.length) lines.push(`Talents: ${talents.length > 0 ? talents.join(", ") : ""}`);
-  if (languages.length) lines.push(`Languages: ${languages.length > 0 ? languages.join(", ") : ""}`);
-  if (spells.length) lines.push(`Spells: ${spells.length > 0 ? spells.join(", ") : ""}`);
-  if (weapons.length) lines.push(`Weapons: ${weapons.length > 0 ? weapons.join(", ") : ""}`);
-  if (armor.length) lines.push(`Armor: ${armor.length > 0 ? armor.join(", ") : ""}`);
-  if (equipment.length) lines.push(`Equipment: ${equipment.length > 0 ? equipment.join(", ") : ""}`);
-  if (magic.length) lines.push(`Magic Items:\n${magic.length > 0 ? magic.join("\n") : ""}`);
+  if (talents.length)
+    lines.push(`Talents: ${talents.length > 0 ? talents.join(", ") : ""}`);
+  if (languages.length)
+    lines.push(
+      `Languages: ${languages.length > 0 ? languages.join(", ") : ""}`,
+    );
+  if (spells.length)
+    lines.push(`Spells: ${spells.length > 0 ? spells.join(", ") : ""}`);
+  if (weapons.length)
+    lines.push(`Weapons: ${weapons.length > 0 ? weapons.join(", ") : ""}`);
+  if (armor.length)
+    lines.push(`Armor: ${armor.length > 0 ? armor.join(", ") : ""}`);
+  if (equipment.length)
+    lines.push(
+      `Equipment: ${equipment.length > 0 ? equipment.join(", ") : ""}`,
+    );
+  if (magic.length)
+    lines.push(`Magic Items:\n${magic.length > 0 ? magic.join("\n") : ""}`);
 
   return lines.join("\n");
 }

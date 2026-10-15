@@ -17,7 +17,11 @@ export class FTItem extends foundry.documents.Item {
       // Turn on ActiveEffects if in a tagged location, only for inventory items
       if (FT.item.inventory.types.includes(this.type)) {
         this.getEmbeddedCollection("ActiveEffect").forEach((effect) =>
-          effect.update({ disabled: !this.system.applyEffectsWhen.includes(this.system.location) }),
+          effect.update({
+            disabled: !this.system.applyEffectsWhen.includes(
+              this.system.location,
+            ),
+          }),
         );
       }
 
@@ -35,7 +39,10 @@ export class FTItem extends foundry.documents.Item {
    */
 
   async chat() {
-    const content = await foundry.applications.handlebars.renderTemplate(`${FT.path}/templates/chat/item.hbs`, this);
+    const content = await foundry.applications.handlebars.renderTemplate(
+      `${FT.path}/templates/chat/item.hbs`,
+      this,
+    );
     ChatMessage.create({
       content: content,
       flavor: this.name,

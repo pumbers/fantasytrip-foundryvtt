@@ -1,21 +1,21 @@
 @reference "./fantasy-trip.css";
 
 .fantasy-trip.item.sheet {
-  .window-content {
-    .sheet-header {
-      @apply flex flex-row gap-2;
-      input.name {
-        @apply w-full h-8 m-0 p-2 px-2 text-3xl font-bold;
-      }
-    }
+    .window-content {
+        .sheet-header {
+            @apply flex flex-row gap-2;
+            input.name {
+                @apply w-full h-8 m-0 p-2 px-2 text-3xl font-bold;
+            }
+        }
 
-    img.item-img {
-      @apply rounded-none size-[70px] object-cover;
-    }
+        img.item-img {
+            @apply rounded-none size-[70px] object-cover;
+        }
 
-    section[id$="-actions"],
-    section[id$="-effects"] {
-      @apply pr-3 overflow-y-scroll;
+        section[id$="-actions"],
+        section[id$="-effects"] {
+            @apply pr-3 overflow-y-scroll;
+        }
     }
-  }
 }

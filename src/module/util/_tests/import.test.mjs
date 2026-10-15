@@ -61,7 +61,11 @@ test("Import Full Actor", () => {
 
   // Talents
   expect(items).toContainEqual({ name: "Alchemy", type: "talent" });
-  expect(items).toContainEqual({ _id: "test", name: "Literacy", type: "talent" });
+  expect(items).toContainEqual({
+    _id: "test",
+    name: "Literacy",
+    type: "talent",
+  });
   expect(items).toContainEqual({ name: "Sword", type: "talent" });
 
   // Spells
@@ -80,8 +84,16 @@ test("Import Full Actor", () => {
     system: { defenses: [{ action: "Body", hitsStopped: 3 }] },
     type: "equipment",
   });
-  expect(items).toContainEqual({ name: "Torches", type: "equipment", system: { qty: 2 } });
-  expect(items).toContainEqual({ name: "wizard’s chest", type: "equipment", system: { qty: 1 } });
+  expect(items).toContainEqual({
+    name: "Torches",
+    type: "equipment",
+    system: { qty: 2 },
+  });
+  expect(items).toContainEqual({
+    name: "wizard’s chest",
+    type: "equipment",
+    system: { qty: 1 },
+  });
   expect(items).toContainEqual({
     name: "Allergic to cats",
     type: "ability",
@@ -95,10 +107,13 @@ test("Import Full Actor", () => {
   expect(items).toContainEqual(
     { name: "Gem of Summoning (4-Hex Dragon)", type: "equipment" },
     { name: "Powerstone, 5 ST (emerald; see below)", type: "equipment" },
-    { name: "Staff III (Mana 12): 2’ ebony wand, value $300 (1d)", type: "equipment" }
+    {
+      name: "Staff III (Mana 12): 2’ ebony wand, value $300 (1d)",
+      type: "equipment",
+    },
   );
   expect(system.notes).toContainEqual(
-    "<p>Dr. Mandrake becomes violently angry if he is reminded, intentionally or not, of his age.</p>"
+    "<p>Dr. Mandrake becomes violently angry if he is reminded, intentionally or not, of his age.</p>",
   );
 });
 
