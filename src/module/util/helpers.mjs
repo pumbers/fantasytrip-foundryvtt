@@ -82,14 +82,17 @@ export function abs(num) {
 /**
  * Sort an array by a specified entry property
  */
-export function sort(collection, property, direction = "asc") {
-  return collection.sort((a, b) =>
-    direction === "asc"
-      ? foundry.utils.getProperty(a, property) <=
-        foundry.utils.getProperty(b, property)
-      : foundry.utils.getProperty(a, property) >=
-        foundry.utils.getProperty(b, property),
-  );
+export function sort(collection, property, ...args) {
+  // Handlebars passes its options object last, so direction is only set if given as a string
+  const direction = typeof args[0] === "string" ? args[0] : "asc";
+  const sign = direction === "desc" ? -1 : 1;
+  return Array.from(collection).sort((a, b) => {
+    const x = foundry.utils.getProperty(a, property);
+    const y = foundry.utils.getProperty(b, property);
+    if (typeof x === "string" && typeof y === "string")
+      return sign * x.localeCompare(y);
+    return sign * (x < y ? -1 : x > y ? 1 : 0);
+  });
 }
 
 /**
