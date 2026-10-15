@@ -128,7 +128,7 @@ export async function resolveLoF(
         result: lofResult,
         damage:
           lofResult === "hit" && lofTarget === "friendly"
-            ? (await new Roll(`max(${attack.baseDamage},0)`).evaluate()).total
+            ? (await new Roll(`max(${attack.damage},0)`).evaluate()).total
             : undefined,
       })
       .then((content) => {

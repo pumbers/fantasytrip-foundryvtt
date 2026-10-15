@@ -83,7 +83,7 @@ FT:
               friendly: the throw whizzes past {name}.
             hit:
               hostile: the throw hits {name}, but falls to the ground leaving them unharmed.
-              friendly: the throw accientally hits {name}, nasty end first.
+              friendly: the throw accidentally hits {name}, nasty end first.
           missile:
             miss:
               hostile: the shot whistles past {name}.

@@ -34,6 +34,7 @@
 - Added setting to include or exclude ST modifiers from effects when deciding if a character is dead or down
 - Added setting for using base ST or adjusted ST when checking for dead or down
 - Down effect is removed if character ST recovers, dead effect must be manually removed by GM
+- Use adjusted ST damage for friendly targets hit in line-of-fire
 
 ### Applying Spell Effects
 
