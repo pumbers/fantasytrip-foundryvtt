@@ -186,50 +186,65 @@ export class FTItemSheet extends HandlebarsApplicationMixin(
    * Action & Utility Functions
    */
 
+  /**
+   * Change one of the item's action lists (attacks, defenses or spells). Works
+   * on a copy of the stored source data, not the prepared data.
+   * @param {String} key The list in system data
+   * @param {Function} change Modifies the copied list in place
+   */
+  #updateList(key, change) {
+    const list = this.item.system.toObject()[key];
+    change(list);
+    return this.item.update({ [`system.${key}`]: list });
+  }
+
   static #addAttack(event, target) {
     console.log("#addAttack", target.dataset);
-    this.item.system.attacks.push({
-      name: "Attack",
-      type: "melee",
-      toHitMod: 0,
-      baseDamage: "1d6",
-      minST: 7,
-      talent: null,
-    });
-    this.item.update({ "system.attacks": this.item.system.attacks });
+    return this.#updateList("attacks", (attacks) =>
+      attacks.push({
+        action: "Attack",
+        type: "melee",
+        toHitMod: 0,
+        baseDamage: "1d6",
+        minST: 7,
+        talent: null,
+      }),
+    );
   }
 
   static #deleteAttack(event, target) {
     console.log("#deleteAttack", target.dataset);
-    this.item.system.attacks.splice(target.dataset.index, 1);
-    this.item.update({ "system.attacks": this.item.system.attacks });
+    return this.#updateList("attacks", (attacks) =>
+      attacks.splice(Number(target.dataset.index), 1),
+    );
   }
 
   static #addDefense(event, target) {
     console.log("#addDefense", target.dataset);
-    this.item.system.defenses.push({
-      name: "Defend",
-      hitsStopped: 0,
-    });
-    this.item.update({ "system.defenses": this.item.system.defenses });
+    return this.#updateList("defenses", (defenses) =>
+      defenses.push({ action: "Defend", hitsStopped: 0 }),
+    );
   }
 
   static #deleteDefense(event, target) {
     console.log("#deleteDefense", target.dataset);
-    this.item.system.defenses.splice(target.dataset.index, 1);
-    this.item.update({ "system.defenses": this.item.system.defenses });
+    return this.#updateList("defenses", (defenses) =>
+      defenses.splice(Number(target.dataset.index), 1),
+    );
   }
 
   static #addSpell(event, target) {
     console.log("#addSpell", target.dataset);
-    this.item.system.spells.push({ uuid: null, burn: false });
-    this.item.update({ "system.spells": this.item.system.spells });
+    return this.#updateList("spells", (spells) =>
+      spells.push({ uuid: null, burn: false }),
+    );
   }
 
   static #deleteSpell(event, target) {
     console.log("#deleteSpell", target.dataset);
-    this.item.system.spells.splice(target.dataset.index, 1);
-    this.item.update({ "system.spells": this.item.system.spells });
+    return this.#updateList("spells", (spells) =>
+      spells.splice(Number(target.dataset.index), 1),
+    );
   }
 
   static #manageEffect(event, target) {
