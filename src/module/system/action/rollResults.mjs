@@ -19,8 +19,6 @@ export function extractRollParameters(data) {
   );
   if (data.cost) data.cost.st.value = parseInt(data.cost.st.value ?? 0);
 
-  console.log("LOF", data.lof);
-
   const lof = Object.entries(data.lof ?? {})
     .filter(([_id, value]) => value === "true")
     .map(([_id, _]) =>
@@ -50,7 +48,7 @@ export function determineRollResult(dice, target, roll) {
     if (roll.total === target) return "exact";
     return roll.total <= target ? "success" : "failure";
   };
-  
+
   if (game.settings.get(FT.id, "failureRollResults") === "classic") {
     // Dice roll failure levels as per classic rules
     switch (dice) {
