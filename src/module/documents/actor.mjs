@@ -152,6 +152,31 @@ export class FTActor extends foundry.documents.Actor {
    * Action & Utility Functions
    */
 
+  /**
+   * Keep the dead & unconscious statuses in step with the actor's damage,
+   * fatigue and ST. Unconscious statuses set here are flagged, and only those
+   * are removed when the actor recovers; dead is left for the GM to clear.
+   */
+  async updateHealthStatus() {
+    const { isDead, isDown } = this.system;
+    if (isDead) {
+      await this.toggleStatusEffect("dead", { active: true, overlay: true });
+    } else if (isDown) {
+      const effect = await this.toggleStatusEffect("unconscious", {
+        active: true,
+        overlay: true,
+      });
+      // Only flag a newly created effect, not an existing one (e.g. from a spell)
+      if (effect instanceof foundry.documents.ActiveEffect)
+        await effect.setFlag(FT.id, "fromHealth", true);
+    } else {
+      const ids = this.effects
+        .filter((effect) => effect.getFlag(FT.id, "fromHealth"))
+        .map((effect) => effect.id);
+      if (ids.length) await this.deleteEmbeddedDocuments("ActiveEffect", ids);
+    }
+  }
+
   chat(speaker) {
     // console.log("chat()", this);
     foundry.applications.handlebars
@@ -194,4 +219,19 @@ Hooks.on("updateActor", (actor, changes, options, userId) => {
     .getActiveTokens(true, true)
     .filter((token) => token.movementAction !== mode)
     .forEach((token) => token.update({ movementAction: mode }));
+});
+
+// When damage, fatigue or ST change (from the sheet, damage, casting or anywhere
+// else), update the dead & unconscious statuses. Only the client which made the
+// change responds.
+Hooks.on("updateActor", (actor, changes, options, userId) => {
+  if (userId !== game.user.id) return;
+  const paths = [
+    "system.damage",
+    "system.fatigue",
+    "system.st.max",
+    "system.st.mod",
+  ];
+  if (paths.some((path) => foundry.utils.hasProperty(changes, path)))
+    actor.updateHealthStatus();
 });

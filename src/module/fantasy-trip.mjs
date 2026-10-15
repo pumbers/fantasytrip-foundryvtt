@@ -238,6 +238,20 @@ Hooks.once("init", async function () {
     requiresReload: false,
   });
 
+  game.settings.register(FT.id, "useSTModForHealth", {
+    name: game.i18n.localize("FT.game.setting.useSTModForHealth.name"),
+    hint: game.i18n.localize("FT.game.setting.useSTModForHealth.hint"),
+    scope: "world",
+    type: new BooleanField({
+      required: true,
+      nullable: false,
+      initial: false,
+    }),
+    config: true,
+    restricted: true,
+    requiresReload: false,
+  });
+
   game.settings.register(FT.id, "showItemIcons", {
     name: game.i18n.localize("FT.game.setting.showItemIcons.name"),
     hint: game.i18n.localize("FT.game.setting.showItemIcons.hint"),

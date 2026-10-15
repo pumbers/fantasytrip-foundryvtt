@@ -155,12 +155,9 @@ export default function castingRoll(actor, spell, options = {}) {
         );
       }
 
-      // If the actor used all their fatigue...
+      // If the actor used all their fatigue... (the unconscious status is set by
+      // FTActor#updateHealthStatus when the fatigue changes)
       if (actor.system.isDown) {
-        actor.toggleStatusEffect("unconscious", {
-          active: true,
-          overlay: true,
-        });
         message = message.concat(
           " ",
           game.i18n.format("FT.system.roll.result.strained"),

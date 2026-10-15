@@ -31,6 +31,9 @@
 - Fixed incorrect attack used to show damage button on equipment with multiple attacks
 - Ensure dropping an item onto a container check total wt of multiple items against the container's remaining capacity
 - Ignore dropping an item into a container it's already in
+- Added setting to include or exclude ST modifiers from effects when deciding if a character is dead or down
+- Added setting for using base ST or adjusted ST when checking for dead or down
+- Down effect is removed if character ST recovers, dead effect must be manually removed by GM
 
 ### Applying Spell Effects
 

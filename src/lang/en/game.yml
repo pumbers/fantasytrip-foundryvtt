@@ -44,6 +44,9 @@ FT:
       resolveLoF:
         name: Resolve Line of Fire
         hint: When making missile or thrown attacks, identify targets in the line of fire and automatically make rolls to miss them.
+      useSTModForHealth:
+        name: Include ST modifiers in down/dead checks
+        hint: When enabled, a character is down or dead based on their modified ST (base ST plus modifiers) rather than their base ST.
       showItemIcons:
         name: Show Item Icons
         hint: Show icons in item tables?

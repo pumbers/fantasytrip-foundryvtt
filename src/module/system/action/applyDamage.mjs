@@ -84,15 +84,12 @@ function _applyDamage(actor, damageTaken, _options = {}) {
     return;
   }
 
-  // Otherwise, apply it to the target
+  // Otherwise, apply it to the target (the dead & unconscious statuses are set
+  // by FTActor#updateHealthStatus when the damage changes)
   actor
     .update({ "system.damage": actor.system.damage + damageTaken })
     .then((updatedActor) => {
       if (updatedActor?.system.isDead) {
-        updatedActor.toggleStatusEffect("dead", {
-          active: true,
-          overlay: true,
-        });
         ChatMessage.create({
           flavor: game.i18n.format(
             `FT.system.combat.chat.dead.${Math.floor(Math.random() * 6)}`,
@@ -103,10 +100,6 @@ function _applyDamage(actor, damageTaken, _options = {}) {
           ),
         });
       } else if (updatedActor?.system.isDown) {
-        updatedActor.toggleStatusEffect("unconscious", {
-          active: true,
-          overlay: true,
-        });
         ChatMessage.create({
           flavor: game.i18n.format(
             `FT.system.combat.chat.down.${Math.floor(Math.random() * 6)}`,

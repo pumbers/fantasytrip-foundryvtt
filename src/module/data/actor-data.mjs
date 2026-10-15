@@ -125,11 +125,18 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
     return this.damage > 0;
   }
 
+  // The ST used for the down & dead checks: base ST, plus modifiers if the setting is enabled
+  get healthST() {
+    return game.settings.get(FT.id, "useSTModForHealth")
+      ? this.st.max + this.st.mod
+      : this.st.max;
+  }
+
   get isDown() {
-    return this.damage + this.fatigue >= this.st.max;
+    return this.damage + this.fatigue >= this.healthST;
   }
 
   get isDead() {
-    return this.damage > this.st.max;
+    return this.damage > this.healthST;
   }
 }
