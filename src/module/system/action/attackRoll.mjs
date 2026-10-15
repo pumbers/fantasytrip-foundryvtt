@@ -185,7 +185,7 @@ export default function attackRoll(actor, item, options) {
           roll,
           parts: roll.dice.map((d) => d.getTooltipData()),
           ...(succeeded &&
-            item.system.attacks[options.attackIndex].damage && {
+            attack.damage && {
               damage: {
                 ownerClasses: Array.from(Object.entries(actor.ownership))
                   .filter(
