@@ -1,8 +1,6 @@
 import { FT } from "../config.mjs";
-import { FTDiceRollerApp } from "../../applications/dice-roller.mjs";
+import { DICE_ROLLER } from "../../applications/dice-roller.mjs";
 import { extractRollParameters, determineRollResult } from "./rollResults.mjs";
-
-const DICE_ROLLER = new FTDiceRollerApp();
 
 /**
  * Make a Talent Roll for the specified Actor.

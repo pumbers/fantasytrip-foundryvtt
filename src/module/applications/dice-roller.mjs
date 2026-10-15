@@ -38,11 +38,12 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
    * Data Preparation
    */
 
-  static #context = {};
+  // The current roll (set on each render), used again when the form is submitted
+  #context = {};
 
   async _prepareContext(options) {
     // console.log("FTDiceRollerApp._prepareContext()", "options", options);
-    FTDiceRollerApp.#context = {
+    this.#context = {
       ...foundry.utils.mergeObject(
         {
           type: "save",
@@ -61,14 +62,15 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
       ),
       FT: CONFIG.FT,
     };
-    // console.log("FTDiceRollerApp._prepareContext()", "#context", FTDiceRollerApp.#context);
-    return FTDiceRollerApp.#context;
+    // console.log("FTDiceRollerApp._prepareContext()", "#context", this.#context);
+    return this.#context;
   }
 
   /**
    * Action & Utility Functions
    */
 
+  // Called by Foundry with this set to the application instance
   static onSubmit(event, _, formData) {
     // console.log("FTDiceRollerApp.onSubmit()", "action", event.submitter?.value, "formData", formData);
 
@@ -80,8 +82,8 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
     );
 
     if (event.submitter?.value === "submit") {
-      return FTDiceRollerApp.#context.submit?.(
-        foundry.utils.mergeObject(FTDiceRollerApp.#context, data, {
+      return this.#context.submit?.(
+        foundry.utils.mergeObject(this.#context, data, {
           recursive: true,
         }),
       );
@@ -90,3 +92,9 @@ export class FTDiceRollerApp extends HandlebarsApplicationMixin(ApplicationV2) {
     this.close();
   }
 }
+
+/**
+ * The single dice roller shared by all roll actions, so that only one is ever
+ * open: starting a new roll re-renders it with that roll's context.
+ */
+export const DICE_ROLLER = new FTDiceRollerApp();

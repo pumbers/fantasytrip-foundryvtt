@@ -1,9 +1,7 @@
 import { FT } from "../config.mjs";
-import { FTDiceRollerApp } from "../../applications/dice-roller.mjs";
+import { DICE_ROLLER } from "../../applications/dice-roller.mjs";
 import { extractRollParameters, determineRollResult } from "./rollResults.mjs";
 import { determineLoF, resolveLoF } from "./lof.mjs";
-
-const DICE_ROLLER = new FTDiceRollerApp();
 
 /**
  * Make an Attack Roll for the specified Actor

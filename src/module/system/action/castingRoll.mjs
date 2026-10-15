@@ -1,9 +1,7 @@
 import { FT } from "../config.mjs";
-import { FTDiceRollerApp } from "../../applications/dice-roller.mjs";
+import { DICE_ROLLER } from "../../applications/dice-roller.mjs";
 import { extractRollParameters, determineRollResult } from "./rollResults.mjs";
 import { applySpellEffects } from "./applySpellEffects.mjs";
-
-const DICE_ROLLER = new FTDiceRollerApp();
 
 /**
  * Make a Spell Casting Roll for the specified Actor
