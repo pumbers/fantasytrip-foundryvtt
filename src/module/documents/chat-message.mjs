@@ -48,11 +48,7 @@ const onDamageRoll = async (event) => {
   if (!actor)
     return ui.notifications.error("FT.system.error.noActor", {
       localize: true,
-      format: {
-        actorId:
-          game.actors.tokens[dataset.tokenId] ??
-          game.actors.get(dataset.actorId),
-      },
+      format: { actorId: dataset.actorId },
     });
   Action.damageRoll(actor, item, event.target.dataset);
 };
@@ -68,11 +64,7 @@ const onApplyDamage = async (event) => {
   if (!actor)
     return ui.notifications.error("FT.system.error.noActor", {
       localize: true,
-      format: {
-        actorId:
-          game.actors.tokens[dataset.tokenId] ??
-          game.actors.get(dataset.actorId),
-      },
+      format: { actorId: dataset.actorId },
     });
   Action.applyDamage(actor, dataset.damage);
 };
