@@ -51,6 +51,7 @@ FT:
           - Shapes mana and casts {spell}... {result}
           - With confidence, casts {spell}... {result}
           - Concentrates then casts {spell}... {result}
+        castFromItem: "{spell} from their {item}"
         damage:
           - Unleashes hell, striking for a total of {total} point(s) of hurt. {effects}
           - Unleashes a devastating blast that deals {total} point(s) of damage to their foe. {effects}
@@ -82,7 +83,7 @@ FT:
               friendly: the throw whizzes past {name}.
             hit:
               hostile: the throw hits {name}, but falls to the ground leaving them unharmed.
-              friendly: the throw accientally hits {name}, nasty end first.
+              friendly: the throw accidentally hits {name}, nasty end first.
           missile:
             miss:
               hostile: the shot whistles past {name}.
@@ -125,3 +126,6 @@ FT:
         scale:
           thrown: -1/H
           missile: -1/2 MH
+    error:
+      noActor: Unable to find actor {actorId}
+      noItem: Unable to find item {itemId}

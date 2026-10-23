@@ -1,63 +1,105 @@
 {{!-- Character Tab --}}
-<section id="{{partId}}" class="tab {{tabs.character.cssClass}}" data-group="primary" data-tab="character">
+<section
+    id="{{partId}}"
+    class="tab {{tabs.character.cssClass}}"
+    data-group="primary"
+    data-tab="character"
+>
     <div class="flex flex-col gap-2">
-
-        {{!-- Attribute Partial --}}
-        {{#*inline "attribute"}}
+        {{!-- Attribute Partial --}} {{#*inline "attribute"}}
         <div class="flex flex-row gap-0 justify-between">
-            <label class="attribute h-6 text-center min-w-8">{{localize
-                (concat "FT.actor.attribute." key ".max")}}</label>
-            <input class="m-0 !text-center grow" type="number" name="system.{{key}}.max" min="0" value="{{attr.max}}" />
+            <label class="attribute h-6 text-center min-w-8"
+                >{{localize (concat "FT.actor.attribute." key ".max")}}</label
+            >
+            <input
+                class="m-0 text-center! grow"
+                type="number"
+                name="system.{{key}}.max"
+                min="0"
+                value="{{attr.max}}"
+            />
             {{#if roll}}
-            <a title="{{title}}" class="!p-1 h-6 sheet-button" data-action="attributeRoll" data-attribute="{{key}}.max"
-                data-type="save"><i class="icon-d6"></i></a>
+            <a
+                title="{{title}}"
+                class="p-1! h-6 sheet-button"
+                data-action="attributeRoll"
+                data-attribute="{{key}}.max"
+                data-type="save"
+                ><i class="icon-d6"></i
+            ></a>
             {{else}}
-            <a class="!p-1 h-6 sheet-button" disabled><i class="{{icon}}"></i></a>
+            <a class="p-1! h-6 sheet-button" disabled
+                ><i class="{{icon}}"></i
+            ></a>
             {{/if}}
         </div>
         <div class="field w-14 ml-auto">
             {{#if roll}}
             <div class="flex flex-row gap-0">
-                <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                <a title="{{title}}" class="block m-0 p-1 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
-                    data-action="attributeRoll" data-attribute="{{key}}.value" data-type="save"><i
-                        class="icon-d6"></i></a>
+                <input
+                    class="m-0 w-14 text-center!"
+                    type="text"
+                    value="{{attr.value}}"
+                    readonly
+                />
+                <a
+                    title="{{title}}"
+                    class="block m-0 p-1 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
+                    data-action="attributeRoll"
+                    data-attribute="{{key}}.value"
+                    data-type="save"
+                    ><i class="icon-d6"></i
+                ></a>
             </div>
             {{else if action}}
             <div class="flex flex-row gap-0">
-                <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
-                <a title="{{title}}" class="block m-0 p-1 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
-                    data-action="{{name}}"><i class="{{icon}}"></i></a>
+                <input
+                    class="m-0 w-14 text-center!"
+                    type="text"
+                    value="{{attr.value}}"
+                    readonly
+                />
+                <a
+                    title="{{title}}"
+                    class="block m-0 p-1 border-y-[1px] border-r-[1px] border-ft-dark sheet-button"
+                    data-action="{{name}}"
+                    ><i class="{{icon}}"></i
+                ></a>
             </div>
             {{else}}
-            <input class="m-0 w-14 !text-center" type="text" value="{{attr.value}}" readonly />
+            <input
+                class="m-0 w-14 text-center!"
+                type="text"
+                value="{{attr.value}}"
+                readonly
+            />
             {{/if}}
         </div>
-        {{/inline}}
-
-        {{!-- Attribute Block --}}
+        {{/inline}} {{!-- Attribute Block --}}
         <section id="attributes" class="grid grid-flow-col grid-rows-2 gap-1">
-            {{> attribute key="st" attr=system.st roll=true title=(localize "FT.actor.sheet.action.attribute.roll")}}
-            {{> attribute key="dx" attr=system.dx roll=true title=(localize "FT.actor.sheet.action.attribute.roll")}}
-            {{> attribute key="iq" attr=system.iq roll=true title=(localize "FT.actor.sheet.action.attribute.roll")}}
-            {{> attribute key=(concat "ma." system.ma.mode) attr=system.currentMA action=true
-            name="changeMovement" icon=(concat "icon-" system.ma.mode) title=(localize (concat
-            "FT.actor.attribute.ma.mode."
+            {{> attribute key="st" attr=system.st roll=true title=(localize
+            "FT.actor.sheet.action.attribute.roll")}} {{> attribute key="dx"
+            attr=system.dx roll=true title=(localize
+            "FT.actor.sheet.action.attribute.roll")}} {{> attribute key="iq"
+            attr=system.iq roll=true title=(localize
+            "FT.actor.sheet.action.attribute.roll")}} {{> attribute key=(concat
+            "ma." system.ma.mode) attr=system.currentMA action=true
+            name="changeMovement" icon=(concat "icon-" system.ma.mode)
+            title=(localize (concat "FT.actor.attribute.ma.mode."
             system.ma.mode))}}
         </section>
 
         {{!-- Character Status --}}
         <section id="status" class="flex flex-col gap-1">
-            {{> (concat FT.path "/templates/sheet/actor/_encumbrance.hbs")}}
-            {{> (concat FT.path "/templates/sheet/actor/_health.hbs")}}
-            {{> (concat FT.path "/templates/sheet/actor/_mana.hbs")}}
-            {{> (concat FT.path "/templates/sheet/actor/_modifiers.hbs")}}
+            {{> (concat FT.path "/templates/sheet/actor/_encumbrance.hbs")}} {{>
+            (concat FT.path "/templates/sheet/actor/_health.hbs")}} {{> (concat
+            FT.path "/templates/sheet/actor/_mana.hbs")}} {{> (concat FT.path
+            "/templates/sheet/actor/_modifiers.hbs")}}
         </section>
 
         {{!-- Character Actions --}}
         <section id="actions" class="flex flex-col gap-1">
             {{> (concat FT.path "/templates/sheet/actor/_actions.hbs")}}
         </section>
-
     </div>
 </section>

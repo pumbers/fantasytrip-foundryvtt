@@ -17,6 +17,14 @@ FT:
       action:
         apply: Apply Damage
         cancel: Cancel
+    effects:
+      title: Apply Spell Effects
+      label:
+        request: "{caster} has cast {spell}. Apply its effects to the selected targets?"
+        targets: Targets
+      action:
+        apply: Apply
+        deny: Deny
     import:
       title: Import Actor
       label:
@@ -24,3 +32,4 @@ FT:
       action:
         import: Import
         cancel: Cancel
+      error: Unable to import the actor. Check the text is in the standard format; see the console for details.

@@ -1,125 +1,165 @@
 {{!-- Inventory Tab --}}
-<section id="{{partId}}" class="tab {{tabs.inventory.cssClass}}" data-group="primary" data-tab="inventory">
+<section
+    id="{{partId}}"
+    class="tab {{tabs.inventory.cssClass}}"
+    data-group="primary"
+    data-tab="inventory"
+>
     <div class="flex flex-col gap-2">
-
-        {{!-- Table Header Partial --}}
-        {{#*inline "table-header"}}
+        {{!-- Table Header Partial --}} {{#*inline "table-header"}}
         <thead>
             <tr>
-                {{#if settings.showItemIcons}}<th></th>{{/if}}
+                {{#if settings.showItemIcons}}
+                <th></th>
+                {{/if}}
                 <th class="w-full">{{localize itemName}}</th>
-                <th>{{#if qty}}{{localize 'FT.actor.sheet.table.items.qty'}}{{/if}}</th>
-                <th>{{#if location}}{{localize 'FT.actor.sheet.table.items.location'}}{{/if}}</th>
-                <th><a data-action="createItem" data-type="{{itemType}}" data-location="packed"
-                        title="{{localize 'FT.actor.sheet.action.item.create'}}"><i class="fa fa-plus"></i></a></th>
+                <th>
+                    {{#if qty}}{{localize
+                    'FT.actor.sheet.table.items.qty'}}{{/if}}
+                </th>
+                <th>
+                    {{#if location}}{{localize
+                    'FT.actor.sheet.table.items.location'}}{{/if}}
+                </th>
+                <th>
+                    <a
+                        data-action="createItem"
+                        data-type="{{itemType}}"
+                        data-location="packed"
+                        title="{{localize 'FT.actor.sheet.action.item.create'}}"
+                        ><i class="fa fa-plus"></i
+                    ></a>
+                </th>
             </tr>
         </thead>
-        {{/inline}}
-
-        {{!-- Table Row Partial --}}
-        {{#*inline "table-row"}}
-        <tr data-item-id="{{item._id}}" class="item {{#if item.system.isContainer}}item-container{{/if}} {{#if (eq item.type 'equipment'
-            )}}draggable{{/if}}">
-            {{!-- Common Columns --}}
-            {{#if showItemIcon}}
+        {{/inline}} {{!-- Table Row Partial --}} {{#*inline "table-row"}}
+        <tr
+            data-item-id="{{item._id}}"
+            class="item {{#if item.system.isContainer}}item-container{{/if}} {{#if (eq item.type 'equipment'
+            )}}draggable{{/if}}"
+        >
+            {{!-- Common Columns --}} {{#if showItemIcon}}
             <td><img src="{{item.img}}" /></td>
             {{/if}}
-            <td>{{#if item.system.isContained}}&rdsh;&nbsp;{{/if}}{{item.name}}</td>
-            {{!-- Talent --}}
-            {{#if (eq item.type "talent")}}
+            <td>
+                {{#if item.system.isContained}}&rdsh;&nbsp;{{/if}}{{item.name}}
+            </td>
+            {{!-- Talent --}} {{#if (eq item.type "talent")}}
             <td>
                 {{#if item.system.defaultAttribute}}
-                <a class="px-1 sheet-button" data-action="talentRoll">{{localize "FT.actor.sheet.action.talent.roll"
-                    name=item.name}}</a>
+                <a class="px-1 sheet-button" data-action="talentRoll"
+                    >{{localize "FT.actor.sheet.action.talent.roll"
+                    name=item.name}}</a
+                >
                 {{else}}
-                <i class="icon-skills warning" title="{{localize 'FT.actor.sheet.tooltip.noAttribute'}}"></i>
+                <i
+                    class="icon-skills warning"
+                    title="{{localize 'FT.actor.sheet.tooltip.noAttribute'}}"
+                ></i>
                 {{/if}}
             </td>
             <td></td>
-            {{!-- Ability --}}
-            {{else if (eq item.type "ability")}}
+            {{!-- Ability --}} {{else if (eq item.type "ability")}}
             <td>
-                {{#unless item.system.isAlwaysOn}}
-                {{#if item.system.isReady}}
-                <a class="px-1 sheet-button" data-action="setItemField" data-field="system.isActive"
-                    data-value="false">{{localize
-                    "FT.actor.sheet.action.ability.cancel"}}</a>
+                {{#unless item.system.isAlwaysOn}} {{#if item.system.isReady}}
+                <a
+                    class="px-1 sheet-button"
+                    data-action="setItemField"
+                    data-field="system.isActive"
+                    data-value="false"
+                    >{{localize "FT.actor.sheet.action.ability.cancel"}}</a
+                >
                 {{else}}
-                <a class="px-1 sheet-button" data-action="setItemField" data-field="system.isActive"
-                    data-value="true">{{localize
-                    "FT.actor.sheet.action.ability.activate"}}</a>
-                {{/if}}
-                {{/unless}}
+                <a
+                    class="px-1 sheet-button"
+                    data-action="setItemField"
+                    data-field="system.isActive"
+                    data-value="true"
+                    >{{localize "FT.actor.sheet.action.ability.activate"}}</a
+                >
+                {{/if}} {{/unless}}
             </td>
-            <td>{{#if item.system.isReady}}
-                <i title="{{localize 'FT.actor.sheet.table.abilities.active'}}"
-                    class="icon-embrassed-energy mr-2"></i>{{/if}}
-            </td>
-            {{!-- Spell --}}
-            {{else if (eq item.type "spell")}}
             <td>
                 {{#if item.system.isReady}}
-                <a class="px-1 sheet-button" data-action="cancelSpell">{{localize
-                    "FT.actor.sheet.action.spell.cancel"}}</a>
+                <i
+                    title="{{localize 'FT.actor.sheet.table.abilities.active'}}"
+                    class="icon-embrassed-energy mr-2"
+                ></i
+                >{{/if}}
+            </td>
+            {{!-- Spell --}} {{else if (eq item.type "spell")}}
+            <td>
+                {{#if item.system.isReady}}
+                <a class="px-1 sheet-button" data-action="cancelSpell"
+                    >{{localize "FT.actor.sheet.action.spell.cancel"}}</a
+                >
                 {{else}}
-                <a class="px-1 sheet-button" data-action="castSpell">{{localize
-                    "FT.actor.sheet.action.spell.cast"}}</a>
+                <a class="px-1 sheet-button" data-action="castSpell"
+                    >{{localize "FT.actor.sheet.action.spell.cast"}}</a
+                >
                 {{/if}}
             </td>
             <td></td>
-            {{!-- Equipment --}}
-            {{else}}
+            {{!-- Equipment --}} {{else}}
             <td>{{item.system.qty}}</td>
             <td>
                 {{#unless item.system.container}}
-                <a class="mr-2" data-action="changeItemLocation"
-                    title="{{localize (concat 'FT.actor.sheet.label.location.' item.system.location)}}"><i
-                        class="{{property FT.item.inventory.icons item.system.location}}"></i></a>
+                <a
+                    class="mr-2"
+                    data-action="changeItemLocation"
+                    title="{{localize (concat 'FT.actor.sheet.label.location.' item.system.location)}}"
+                    ><i
+                        class="{{property FT.item.inventory.icons item.system.location}}"
+                    ></i
+                ></a>
                 {{/unless}}
             </td>
             {{/if}}
             <td>
-                <a data-action="chatItem" title="{{localize 'FT.actor.sheet.action.item.chat'}}"><i
-                        class="fa fa-comment"></i></a>
-                <a data-action="editItem" title="{{localize 'FT.actor.sheet.action.item.edit'}}"><i
-                        class="fas fa-edit"></i></a>
-                <a data-action="deleteItem" title="{{localize 'FT.actor.sheet.action.item.delete'}}"><i
-                        class="fas fa-trash"></i></a>
+                <a
+                    data-action="chatItem"
+                    title="{{localize 'FT.actor.sheet.action.item.chat'}}"
+                    ><i class="fa fa-comment"></i
+                ></a>
+                <a
+                    data-action="editItem"
+                    title="{{localize 'FT.actor.sheet.action.item.edit'}}"
+                    ><i class="fas fa-edit"></i
+                ></a>
+                <a
+                    data-action="deleteItem"
+                    title="{{localize 'FT.actor.sheet.action.item.delete'}}"
+                    ><i class="fas fa-trash"></i
+                ></a>
             </td>
         </tr>
-        {{/inline}}
-
-        {{!-- Inventory Table --}}
+        {{/inline}} {{!-- Inventory Table --}}
         <table id="inventory">
-            {{!-- Talents --}}
-            {{> "table-header" itemName="FT.item.type.talent" itemType="talent" location=false}}
+            {{!-- Talents --}} {{> "table-header" itemName="FT.item.type.talent"
+            itemType="talent" location=false}}
             <tbody class="break">
-                {{#each talents as |talent|}}
-                {{> "table-row" item=talent showItemIcon=../settings.showItemIcons FT=../FT}}
-                {{/each}}
+                {{#each talents as |talent|}} {{> "table-row" item=talent
+                showItemIcon=../settings.showItemIcons FT=../FT}} {{/each}}
             </tbody>
-            {{!-- Abilities --}}
-            {{> "table-header" itemName="FT.item.type.ability" itemType="ability" location=false}}
+            {{!-- Abilities --}} {{> "table-header"
+            itemName="FT.item.type.ability" itemType="ability" location=false}}
             <tbody class="break">
-                {{#each abilities as |ability|}}
-                {{> "table-row" item=ability showItemIcon=../settings.showItemIcons FT=../FT}}
-                {{/each}}
+                {{#each abilities as |ability|}} {{> "table-row" item=ability
+                showItemIcon=../settings.showItemIcons FT=../FT}} {{/each}}
             </tbody>
-            {{!-- Inventory --}}
-            {{> "table-header" itemName="FT.item.type.equipment" itemType="equipment" qty=true location=true}}
+            {{!-- Inventory --}} {{> "table-header"
+            itemName="FT.item.type.equipment" itemType="equipment" qty=true
+            location=true}}
             <tbody class="break">
-                {{#each inventory as |item|}}
-                {{> "table-row" item=item showItemIcon=../settings.showItemIcons FT=../FT}}
-                {{/each}}
+                {{#each inventory as |item|}} {{> "table-row" item=item
+                showItemIcon=../settings.showItemIcons FT=../FT}} {{/each}}
             </tbody>
-            {{!-- Spells --}}
-            {{> "table-header" itemName="FT.item.type.spell" itemType="spell" location=false}}
+            {{!-- Spells --}} {{> "table-header" itemName="FT.item.type.spell"
+            itemType="spell" location=false}}
             <tbody class="break">
-                {{#each spells as |spell|}}
-                {{> "table-row" item=spell showItemIcon=../settings.showItemIcons FT=../FT}}
-                {{/each}}
+                {{#each spells as |spell|}} {{> "table-row" item=spell
+                showItemIcon=../settings.showItemIcons FT=../FT}} {{/each}}
             </tbody>
         </table>
-
     </div>
 </section>

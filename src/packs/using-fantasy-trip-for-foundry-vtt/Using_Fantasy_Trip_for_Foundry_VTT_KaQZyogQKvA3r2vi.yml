@@ -318,7 +318,7 @@ pages:
       content: >-
         <p>In most Foundry games, an Item is basically anything that's not an
         Actor (Player Character, NPC, monster, etc). In the Fantasy Trip
-        implementation for Foundry, there are three types of
+        implementation for Foundry, there are four types of
         Item:</p><ul><li><p><strong>Talents</strong> are a direct translation of
         Talents from the rulebook.</p></li><li><p><strong>Spells</strong> are
         also a direct translation of Spells from the

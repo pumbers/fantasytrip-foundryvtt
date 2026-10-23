@@ -7,7 +7,9 @@ const { HandlebarsApplicationMixin } = foundry.applications.api;
  * Fantasy Trip Item Sheet
  *****************************************************************************/
 
-export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ItemSheetV2) {
+export class FTItemSheet extends HandlebarsApplicationMixin(
+  foundry.applications.sheets.ItemSheetV2,
+) {
   /**
    * Sheet Setup
    */
@@ -86,7 +88,9 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       uuid: this.item.uuid,
       item: foundry.utils.deepClone(this.item),
       system: foundry.utils.deepClone(this.item.system),
-      settings: { pdfPagerEnabled: game.settings.get(FT.id, "pdfPagerEnabled") },
+      settings: {
+        pdfPagerEnabled: game.settings.get(FT.id, "pdfPagerEnabled"),
+      },
       flags: {
         ...foundry.utils.deepClone(this.item.flags[FT.id] ?? {}),
         ...(this.item.type === "equipment" && {
@@ -114,92 +118,133 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
       selectOptions: {
         attributes: FT.actor.attributes,
         inventoryLocations: FT.item.inventory.locations.reduce(
-          (options, location) => Object.assign(options, { [location]: `FT.actor.sheet.label.location.${location}` }),
+          (options, location) =>
+            Object.assign(options, {
+              [location]: `FT.actor.sheet.label.location.${location}`,
+            }),
           {},
         ),
         spellTypes: FT.item.spell.types,
         attackTypes: FT.item.attack.types,
         // Applicable skill options from the parent actor
-        ...(!!this.item.parent && {
+        ...(this.item.parent && {
           talents: Array.from(this.item.parent?.items.values())
             .filter((item) => item.type === "talent")
-            .reduce((talents, talent) => ({ ...talents, [talent._id]: talent.name }), {}),
+            .reduce(
+              (talents, talent) => ({ ...talents, [talent._id]: talent.name }),
+              {},
+            ),
         }),
-        // World Spells for Magic Items
-        spells: {
-          ...(!this.item.inCompendium && {
-            world: Array.from(game.items.values())
-              .filter((item) => item.type === "spell")
-              .reduce((spells, spell) => ({ ...spells, [spell.uuid]: spell.name }), {}),
-          }),
-          packs: await Promise.all(
-            game.packs
-              .filter((pack) => pack.metadata.type === "Item")
-              .map(async (compendium) => ({
-                label: compendium.metadata.label,
-                contents: (await compendium.getDocuments({ type: "spell" }))
-                  .map((spell) => ({ uuid: spell.uuid, name: spell.name }))
-                  .reduce((spells, spell) => ({ ...spells, [spell.uuid]: spell.name }), {}),
-              })),
-          ),
-        },
       },
       //
       effects: this.item.effects,
     });
+
+    // Spells for magic items (only needed if the item can hold spells)
+    if (context.flags.maxSpells)
+      context.selectOptions.spells = await this.#prepareSpellOptions();
 
     console.log("... item context", context);
     return context;
   }
 
   /**
+   * Spell options for magic items: world spells, plus the spells in each Item
+   * compendium which contains any. Uses the compendium indexes, which Foundry
+   * caches, rather than loading every spell document.
+   */
+  async #prepareSpellOptions() {
+    const packs = await Promise.all(
+      game.packs
+        .filter((pack) => pack.metadata.type === "Item")
+        .map(async (pack) => {
+          const index = await pack.getIndex({ fields: ["type"] });
+          return {
+            label: pack.metadata.label,
+            contents: Object.fromEntries(
+              index
+                .filter((entry) => entry.type === "spell")
+                .map((entry) => [pack.getUuid(entry._id), entry.name]),
+            ),
+          };
+        }),
+    );
+
+    return {
+      ...(!this.item.inCompendium && {
+        world: Object.fromEntries(
+          game.items
+            .filter((item) => item.type === "spell")
+            .map((spell) => [spell.uuid, spell.name]),
+        ),
+      }),
+      packs: packs.filter((pack) => Object.keys(pack.contents).length),
+    };
+  }
+
+  /**
    * Action & Utility Functions
    */
 
+  /**
+   * Change one of the item's action lists (attacks, defenses or spells). Works
+   * on a copy of the stored source data, not the prepared data.
+   * @param {String} key The list in system data
+   * @param {Function} change Modifies the copied list in place
+   */
+  #updateList(key, change) {
+    const list = this.item.system.toObject()[key];
+    change(list);
+    return this.item.update({ [`system.${key}`]: list });
+  }
+
   static #addAttack(event, target) {
     console.log("#addAttack", target.dataset);
-    this.item.system.attacks.push({
-      name: "Attack",
-      type: "melee",
-      toHitMod: 0,
-      baseDamage: "1d6",
-      minST: 7,
-      talent: null,
-    });
-    this.item.update({ "system.attacks": this.item.system.attacks });
+    return this.#updateList("attacks", (attacks) =>
+      attacks.push({
+        action: "Attack",
+        type: "melee",
+        toHitMod: 0,
+        baseDamage: "1d6",
+        minST: 7,
+        talent: null,
+      }),
+    );
   }
 
   static #deleteAttack(event, target) {
     console.log("#deleteAttack", target.dataset);
-    this.item.system.attacks.splice(target.dataset.index, 1);
-    this.item.update({ "system.attacks": this.item.system.attacks });
+    return this.#updateList("attacks", (attacks) =>
+      attacks.splice(Number(target.dataset.index), 1),
+    );
   }
 
   static #addDefense(event, target) {
     console.log("#addDefense", target.dataset);
-    this.item.system.defenses.push({
-      name: "Defend",
-      hitsStopped: 0,
-    });
-    this.item.update({ "system.defenses": this.item.system.defenses });
+    return this.#updateList("defenses", (defenses) =>
+      defenses.push({ action: "Defend", hitsStopped: 0 }),
+    );
   }
 
   static #deleteDefense(event, target) {
     console.log("#deleteDefense", target.dataset);
-    this.item.system.defenses.splice(target.dataset.index, 1);
-    this.item.update({ "system.defenses": this.item.system.defenses });
+    return this.#updateList("defenses", (defenses) =>
+      defenses.splice(Number(target.dataset.index), 1),
+    );
   }
 
   static #addSpell(event, target) {
     console.log("#addSpell", target.dataset);
-    this.item.system.spells.push({ uuid: null, burn: false });
-    this.item.update({ "system.spells": this.item.system.spells });
+    return this.#updateList("spells", (spells) =>
+      spells.push({ uuid: null, burn: false }),
+    );
   }
 
   static #deleteSpell(event, target) {
     console.log("#deleteSpell", target.dataset);
-    this.item.system.spells.splice(target.dataset.index, 1);
-    this.item.update({ "system.spells": this.item.system.spells });
+    return this.#updateList("spells", (spells) =>
+      spells.splice(Number(target.dataset.index), 1),
+    );
   }
 
   static #manageEffect(event, target) {
@@ -211,7 +256,7 @@ export class FTItemSheet extends HandlebarsApplicationMixin(foundry.applications
     console.log("#openPDF", target.dataset);
     const re = /^([a-zA-Z0-9_]*)#(\d*)$/m;
     if (!re.test(target.dataset.reference)) return;
-    const [_, code, page] = target.dataset.reference.match(re);
+    const [, code, page] = target.dataset.reference.match(re);
     ui.pdfpager?.openPDFByCode(code, { page });
   }
 

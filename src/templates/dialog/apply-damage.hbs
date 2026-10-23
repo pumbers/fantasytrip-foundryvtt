@@ -3,7 +3,7 @@
     {{#each items as | item |}}
     {{#each item.system.defenses as | defense |}}
     <div class="defense">
-        <input class="!my-0" type="checkbox" id="defense" value="{{defense.hitsStopped}}" checked>
+        <input class="my-0!" type="checkbox" id="defense" value="{{defense.hitsStopped}}" checked>
         <img src="{{item.img}}" class="w-[1.5em] h-[1.5em]">
         <div>{{item.name}}</div>
         <div>{{defense.action}}</div>

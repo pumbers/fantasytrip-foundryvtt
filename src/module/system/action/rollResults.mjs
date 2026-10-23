@@ -7,19 +7,23 @@ import { FT } from "../config.mjs";
  * @returns
  */
 export function extractRollParameters(data) {
-  const attributes = JSON.parse(data.attributes ?? "[]").filter((a) => !!a);
+  const attributes = JSON.parse(data.attributes ?? "[]").filter((a) => a);
   const totalAttributes = attributes.reduce(
-    (total, attribute) => total + foundry.utils.getProperty(data.actor.getRollData(), attribute),
+    (total, attribute) =>
+      total + foundry.utils.getProperty(data.actor.getRollData(), attribute),
     0,
   );
-  const totalModifiers = Object.values(data.modifiers ?? []).reduce((total, modifier) => total + parseInt(modifier), 0);
+  const totalModifiers = Object.values(data.modifiers ?? []).reduce(
+    (total, modifier) => total + parseInt(modifier),
+    0,
+  );
   if (data.cost) data.cost.st.value = parseInt(data.cost.st.value ?? 0);
 
-  console.log("LOF", data.lof);
-
   const lof = Object.entries(data.lof ?? {})
-    .filter(([_id, value]) => value === "true")
-    .map(([_id, _]) => canvas.tokens.viewedDocuments().find((token) => token._id === _id));
+    .filter(([, value]) => value === "true")
+    .map(([_id]) =>
+      canvas.tokens.viewedDocuments().find((token) => token._id === _id),
+    );
 
   return {
     ...data,
@@ -39,7 +43,11 @@ export function extractRollParameters(data) {
  * @returns
  */
 export function determineRollResult(dice, target, roll) {
-  if (roll.total === target) return "exact";
+  // Applied after the automatic success/failure checks, which take precedence
+  const successOrFailure = () => {
+    if (roll.total === target) return "exact";
+    return roll.total <= target ? "success" : "failure";
+  };
 
   if (game.settings.get(FT.id, "failureRollResults") === "classic") {
     // Dice roll failure levels as per classic rules
@@ -49,31 +57,31 @@ export function determineRollResult(dice, target, roll) {
       case 2:
         if (roll.total === 2) return "automaticSuccess";
         if (roll.total === 12) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 3:
         if (roll.total <= 5) return "automaticSuccess";
         if (roll.total >= 16) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 4:
         if (roll.total <= 8) return "automaticSuccess";
         if (roll.total >= 20) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 5:
         if (roll.total <= 11) return "automaticSuccess";
         if (roll.total >= 22) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 6:
         if (roll.total <= 14) return "automaticSuccess";
         if (roll.total >= 24) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 7:
         if (roll.total <= 17) return "automaticSuccess";
         if (roll.total >= 26) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 8:
         if (roll.total <= 20) return "automaticSuccess";
         if (roll.total >= 28) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       default:
         console.error(FT.prefix, "Incorrect number of dice rolled", dice);
         break;
@@ -86,31 +94,31 @@ export function determineRollResult(dice, target, roll) {
       case 2:
         if (roll.total === 2) return "automaticSuccess";
         if (roll.total === 12) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 3:
         if (roll.total <= 5) return "automaticSuccess";
         if (roll.total >= 16) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 4:
         if (roll.total <= 8) return "automaticSuccess";
         if (roll.total >= 20) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 5:
         if (roll.total <= 11) return "automaticSuccess";
         if (roll.total >= 24) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 6:
         if (roll.total <= 14) return "automaticSuccess";
         if (roll.total >= 28) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 7:
         if (roll.total <= 17) return "automaticSuccess";
         if (roll.total >= 32) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       case 8:
         if (roll.total <= 20) return "automaticSuccess";
         if (roll.total >= 36) return "criticalFailure";
-        return roll.total <= target ? "success" : "failure";
+        return successOrFailure();
       default:
         console.error(FT.prefix, "Incorrect number of dice rolled", dice);
         break;

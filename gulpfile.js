@@ -15,10 +15,17 @@ const clean = require("gulp-clean");
 const fs = require("fs");
 const path = require("path");
 
-const webp = (...args) => import("gulp-webp").then(({ default: webp }) => webp(...args));
+const webp = (...args) =>
+  import("gulp-webp").then(({ default: webp }) => webp(...args));
 
-const compilePack = (...args) => import("@foundryvtt/foundryvtt-cli").then(({ compilePack }) => compilePack(...args));
-const extractPack = (...args) => import("@foundryvtt/foundryvtt-cli").then(({ extractPack }) => extractPack(...args));
+const compilePack = (...args) =>
+  import("@foundryvtt/foundryvtt-cli").then(({ compilePack }) =>
+    compilePack(...args),
+  );
+const extractPack = (...args) =>
+  import("@foundryvtt/foundryvtt-cli").then(({ extractPack }) =>
+    extractPack(...args),
+  );
 
 /*
  * Build settings & locations
@@ -38,7 +45,9 @@ const DIST_DIR = "dist";
 /* ----------------------------------------- */
 
 function cleanBuild() {
-  return gulp.src([BUILD_DIR, DIST_DIR], { allowEmpty: true }, { read: false }).pipe(clean());
+  return gulp
+    .src([BUILD_DIR, DIST_DIR], { allowEmpty: true }, { read: false })
+    .pipe(clean());
 }
 
 /* ----------------------------------------- */
@@ -67,7 +76,7 @@ function compileLangs(cb) {
               file.contents = Buffer.from(JSON.stringify(json));
               cb(null, file);
             },
-          })
+          }),
         )
         .pipe(merge())
         .pipe(rename({ basename: lang, extname: ".json" }))
@@ -100,7 +109,7 @@ function compileYaml(cb) {
           file.contents = Buffer.from(JSON.stringify(json));
           cb(null, file);
         },
-      })
+      }),
     )
     .pipe(rename({ extname: ".json" }))
     .pipe(gulp.dest(BUILD_DIR));
@@ -111,7 +120,9 @@ function compileYaml(cb) {
 /* ----------------------------------------- */
 
 function cleanPacks() {
-  return gulp.src(SYSTEM_PACKS, { allowEmpty: true }, { read: false }).pipe(clean());
+  return gulp
+    .src(SYSTEM_PACKS, { allowEmpty: true }, { read: false })
+    .pipe(clean());
 }
 
 // Extract LevelDB packs from a world or module to Yaml
@@ -125,11 +136,15 @@ function importPacks(cb) {
 
   return Promise.all(
     packs.map((pack) => {
-      return extractPack(path.join(PACKS_DIR, pack), path.resolve(__dirname, "src", "packs", pack), {
-        yaml: true,
-        log: true,
-      });
-    })
+      return extractPack(
+        path.join(PACKS_DIR, pack),
+        path.resolve(__dirname, "src", "packs", pack),
+        {
+          yaml: true,
+          log: true,
+        },
+      );
+    }),
   ).then(() => cb());
 }
 
@@ -143,11 +158,15 @@ function compilePacks(cb) {
 
   return Promise.all(
     packs.map((folder) => {
-      return compilePack(path.join(SYSTEM_PACKS, folder), path.resolve(__dirname, BUILD_DIR, "packs", folder), {
-        yaml: true,
-        log: true,
-      });
-    })
+      return compilePack(
+        path.join(SYSTEM_PACKS, folder),
+        path.resolve(__dirname, BUILD_DIR, "packs", folder),
+        {
+          yaml: true,
+          log: true,
+        },
+      );
+    }),
   ).then(() => cb());
 }
 
@@ -193,7 +212,10 @@ function bundleJs() {
 /* ----------------------------------------- */
 
 const optimizeImages = function () {
-  return gulp.src("src/assets/**/*.+(png|jpg|gif)").pipe(webp()).pipe(gulp.dest("src/assets"));
+  return gulp
+    .src("src/assets/**/*.+(png|jpg|gif)")
+    .pipe(webp())
+    .pipe(gulp.dest("src/assets"));
 };
 
 /* ----------------------------------------- */
@@ -243,8 +265,15 @@ function watchUpdates() {
 
 exports.default = gulp.series(
   cleanBuild,
-  gulp.parallel(compileYaml, compileLangs, compilePacks, compileCss, bundleJs, copyFiles),
-  watchUpdates
+  gulp.parallel(
+    compileYaml,
+    compileLangs,
+    compilePacks,
+    compileCss,
+    bundleJs,
+    copyFiles,
+  ),
+  watchUpdates,
 );
 exports.yaml = compileYaml;
 exports.lang = compileLangs;
@@ -256,11 +285,25 @@ exports.bundle = bundleJs;
 exports.copy = copyFiles;
 exports.build = gulp.series(
   cleanBuild,
-  gulp.parallel(compileYaml, compileLangs, compilePacks, compileCss, bundleJs, copyFiles)
+  gulp.parallel(
+    compileYaml,
+    compileLangs,
+    compilePacks,
+    compileCss,
+    bundleJs,
+    copyFiles,
+  ),
 );
 exports.dist = gulp.series(
   cleanBuild,
-  gulp.parallel(compileYaml, compileLangs, compilePacks, compileCss, bundleJs, copyFiles),
-  createDist
+  gulp.parallel(
+    compileYaml,
+    compileLangs,
+    compilePacks,
+    compileCss,
+    bundleJs,
+    copyFiles,
+  ),
+  createDist,
 );
 exports.clean = cleanBuild;

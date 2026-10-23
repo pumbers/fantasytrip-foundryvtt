@@ -11,41 +11,60 @@
                             <span class="part-formula">{{attributes}}</span>
                             <span class="part-total">{{totalAttributes}}</span>
                         </header>
-                        <ol class="modifiers list-none !p-0">
+                        <ol class="modifiers list-none p-0!">
                             {{#each modifiers as | value modifier|}}
                             <li class="flex flex-row justify-between px-[5px]">
-                                <span>{{localize (concat "FT.system.roll.modifier." modifier)}}</span>
+                                <span
+                                    >{{localize (concat
+                                    "FT.system.roll.modifier." modifier)}}</span
+                                >
                                 <span>{{numberFormat value sign=true}}</span>
                             </li>
                             {{/each}}
-                            <li class="flex flex-row justify-between px-[5px] font-bold">
-                                <span>{{localize "FT.system.roll.targetNumber"}}</span>
+                            <li
+                                class="flex flex-row justify-between px-[5px] font-bold"
+                            >
+                                <span
+                                    >{{localize
+                                    "FT.system.roll.targetNumber"}}</span
+                                >
                                 <span>{{targetNumber}}</span>
                             </li>
                             {{#if unskilled}}
                             <li class="flex flex-row justify-between px-[5px]">
-                                <span>{{localize "FT.system.roll.modifier.unskilledMod"}}</span>
+                                <span
+                                    >{{localize
+                                    "FT.system.roll.modifier.unskilledMod"}}</span
+                                >
                                 <span>{{roll.formula}}</span>
                             </li>
                             {{/if}}
                         </ol>
                     </div>
-                    {{!-- Normal Foundry Dice Result Display --}}
-                    {{#each parts}}
+                    {{!-- Normal Foundry Dice Result Display --}} {{#each
+                    parts}}
                     <div class="dice">
                         <header class="part-header flexrow">
                             {{#if icon}}
-                            <span class="part-method" data-tooltip aria-label="{{ localize method }}">
+                            <span
+                                class="part-method"
+                                data-tooltip
+                                aria-label="{{ localize method }}"
+                            >
                                 {{{ icon }}}
                             </span>
                             {{/if}}
                             <span class="part-formula">{{this.formula}}</span>
-                            {{#if this.flavor}}<span class="part-flavor">{{this.flavor}}</span>{{/if}}
+                            {{#if this.flavor}}<span class="part-flavor"
+                                >{{this.flavor}}</span
+                            >{{/if}}
                             <span class="part-total">{{this.total}}</span>
                         </header>
                         <ol class="dice-rolls">
                             {{#each this.rolls}}
-                            <li class="roll {{this.classes}}">{{{this.result}}}</li>
+                            <li class="roll {{this.classes}}">
+                                {{{this.result}}}
+                            </li>
                             {{/each}}
                         </ol>
                     </div>
@@ -58,8 +77,16 @@
     </div>
 </div>
 {{#if damage}}
-<button type="button" class="!mt-4 w-full ft-restricted ft-show-gm" data-ft-action="applyDamage"
-    data-token-id="{{token.id}}" data-token-name="{{token.name}}" data-actor-id="{{token.actor.id}}"
-    data-damage="{{damage}}">{{localize "FT.system.combat.chat.action.applyDamage" name=token.name
-    damage=damage}}</button>
+<button
+    type="button"
+    class="mt-4! w-full ft-restricted ft-show-gm"
+    data-ft-action="applyDamage"
+    data-token-id="{{token.id}}"
+    data-token-name="{{token.name}}"
+    data-actor-id="{{token.actor.id}}"
+    data-damage="{{damage}}"
+>
+    {{localize "FT.system.combat.chat.action.applyDamage" name=token.name
+    damage=damage}}
+</button>
 {{/if}}

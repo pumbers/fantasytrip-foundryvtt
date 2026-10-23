@@ -44,6 +44,12 @@ FT:
       resolveLoF:
         name: Resolve Line of Fire
         hint: When making missile or thrown attacks, identify targets in the line of fire and automatically make rolls to miss them.
+      useSTModForHealth:
+        name: Include ST modifiers in down/dead checks
+        hint: When enabled, a character is down or dead based on their modified ST (base ST plus modifiers) rather than their base ST.
+      statusOverlays:
+        name: Show dead, down & stunned as token overlays
+        hint: When enabled, the dead, unconscious and stunned statuses are shown as a large icon over the token. When disabled, they are shown as a small status icon instead, leaving the token art visible (e.g. for modules that change token art on death).
       showItemIcons:
         name: Show Item Icons
         hint: Show icons in item tables?
@@ -75,6 +81,10 @@ FT:
         start: First Round - Movement!
         movement: New round - Movement!
         fight: New Round - Combat!
+      migration:
+        start: Migrating Fantasy Trip world data to version {version}. Please don't close the game until this is complete.
+        complete: Fantasy Trip world data migration to version {version} is complete.
+        failed: "Fantasy Trip world data migration to version {version} finished with {count} error(s). See the console for details."
     label:
       notes: Notes
     option:

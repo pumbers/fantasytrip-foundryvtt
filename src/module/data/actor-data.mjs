@@ -1,5 +1,6 @@
 import { FT } from "../system/config.mjs";
-const { SchemaField, NumberField, StringField, HTMLField } = foundry.data.fields;
+const { SchemaField, NumberField, StringField, HTMLField } =
+  foundry.data.fields;
 
 /*****************************************************************************
  * Fantasy Trip Actor Data Model
@@ -14,7 +15,10 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
       job: new SchemaField({
         name: new StringField(),
         pay: new NumberField({ initial: 0 }),
-        risk: new SchemaField({ low: new NumberField({ initial: 3 }), high: new NumberField({ initial: 18 }) }),
+        risk: new SchemaField({
+          low: new NumberField({ initial: 3 }),
+          high: new NumberField({ initial: 18 }),
+        }),
       }),
       xp: new NumberField({ initial: 0 }),
       notes: new HTMLField(),
@@ -121,11 +125,18 @@ export class FTActorData extends foundry.abstract.TypeDataModel {
     return this.damage > 0;
   }
 
+  // The ST used for the down & dead checks: base ST, plus modifiers if the setting is enabled
+  get healthST() {
+    return game.settings.get(FT.id, "useSTModForHealth")
+      ? this.st.max + this.st.mod
+      : this.st.max;
+  }
+
   get isDown() {
-    return this.damage + this.fatigue >= this.st.max;
+    return this.damage + this.fatigue >= this.healthST;
   }
 
   get isDead() {
-    return this.damage > this.st.max;
+    return this.damage > this.healthST;
   }
 }

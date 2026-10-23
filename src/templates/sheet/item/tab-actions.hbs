@@ -19,7 +19,7 @@
                         <a title="{{localize 'FT.item.sheet.action.deleteAction'}}"
                             class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="deleteAttack"
                             data-index="{{@index}}"><i class="fas fa-trash"></i></a>
-                        <input class="!rounded-l-none" type="text" name="system.attacks.{{@index}}.action"
+                        <input class="rounded-l-none!" type="text" name="system.attacks.{{@index}}.action"
                             value="{{attack.action}}">
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                         <a title="{{localize 'FT.item.sheet.action.deleteAction'}}"
                             class="block m-0 p-1 h-6 border-y-[1px] border-l-[1px] text-xs" data-action="deleteDefense"
                             data-index="{{@index}}"><i class="fas fa-trash"></i></a>
-                        <input class="!rounded-l-none" type="text" name="system.defenses.{{@index}}.action"
+                        <input class="rounded-l-none!" type="text" name="system.defenses.{{@index}}.action"
                             value="{{defense.action}}">
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                 {{#if spell.uuid}}
                 <div class="field">
                     <label>{{localize "FT.item.sheet.label.burn"}}</label>
-                    <input class="!size-4" type="checkbox" name="system.spells.{{@index}}.burn" {{#if
+                    <input class="size-4!" type="checkbox" name="system.spells.{{@index}}.burn" {{#if
                         spell.burn}}checked{{/if}} />
                 </div>
                 {{/if}}

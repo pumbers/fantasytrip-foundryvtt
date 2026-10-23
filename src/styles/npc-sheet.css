@@ -1,68 +1,68 @@
 @reference "./fantasy-trip.css";
 
 .fantasy-trip.npc.sheet {
-  .window-content {
-    .sheet-header {
-      @apply flex flex-row gap-2;
-      input.name {
-        @apply w-full h-10 m-0 p-1 text-3xl font-bold;
-      }
-    }
-
-    img.profile-img {
-      @apply rounded-none size-10 object-cover flex-none;
-    }
-
-    section#attributes {
-      label.attribute {
-        @apply m-0 p-1;
-      }
-    }
-
-    section#status {
-      .track {
-        @apply grid grid-cols-8 gap-1 text-xs text-center;
-        .track-type,
-        .track-gauge {
-          @apply m-0 p-0;
+    .window-content {
+        .sheet-header {
+            @apply flex flex-row gap-2;
+            input.name {
+                @apply w-full h-10 m-0 p-1 text-3xl font-bold;
+            }
         }
-      }
-    }
 
-    section#modifiers {
-      @apply w-full flex flex-row gap-1 text-xs text-center;
-      .field {
-        @apply min-w-12 grow;
-      }
-    }
+        img.profile-img {
+            @apply rounded-none size-10 object-cover flex-none;
+        }
 
-    section#actions {
-      @apply h-[9em];
-      .action-item {
-        @apply grid grid-cols-[5%_30%_65%] gap-1 text-xs m-0 p-1;
-        img.action-item__image {
-          @apply size-4;
+        section#attributes {
+            label.attribute {
+                @apply m-0 p-1;
+            }
         }
-        span.action-item__name {
-          @apply w-32;
-        }
-        .action-item__details {
-          @apply flex flex-row gap-2 flex-wrap;
-          i[class^="icon-"] {
-            @apply mr-1;
-          }
-          a,
-          span {
-            @apply px-1 shrink whitespace-nowrap;
-          }
-        }
-      }
-    }
 
-    section#actions,
-    section[id$="-inventory"],
-    section[id$="-effects"] {
-      @apply pr-3 overflow-y-scroll;
+        section#status {
+            .track {
+                @apply grid grid-cols-8 gap-1 text-xs text-center;
+                .track-type,
+                .track-gauge {
+                    @apply m-0 p-0;
+                }
+            }
+        }
+
+        section#modifiers {
+            @apply w-full flex flex-row gap-1 text-xs text-center;
+            .field {
+                @apply min-w-12 grow;
+            }
+        }
+
+        section#actions {
+            @apply h-[9em];
+            .action-item {
+                @apply grid grid-cols-[5%_30%_65%] gap-1 text-xs m-0 p-1;
+                img.action-item__image {
+                    @apply size-4;
+                }
+                span.action-item__name {
+                    @apply w-32;
+                }
+                .action-item__details {
+                    @apply flex flex-row gap-2 flex-wrap;
+                    i[class^="icon-"] {
+                        @apply mr-1;
+                    }
+                    a,
+                    span {
+                        @apply px-1 shrink whitespace-nowrap;
+                    }
+                }
+            }
+        }
+
+        section#actions,
+        section[id$="-inventory"],
+        section[id$="-effects"] {
+            @apply pr-3 overflow-y-scroll;
+        }
     }
-  }
 }

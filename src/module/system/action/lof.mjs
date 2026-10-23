@@ -61,7 +61,12 @@ export function determineLoF(actor, attack) {
           disposition: token.disposition,
           position: canvas.grid.getOffset(token.getSnappedPosition()),
         }))
-        .filter((token) => !!path.find((hex) => hex.i === token.position.i && hex.j === token.position.j))
+        .filter(
+          (token) =>
+            path.find(
+              (hex) => hex.i === token.position.i && hex.j === token.position.j,
+            ),
+        )
         .toArray();
 
       return lof;
@@ -103,13 +108,18 @@ export async function resolveLoF(
     )
       ? "hit"
       : "miss";
-    const lofTarget = token.disposition < CONST.TOKEN_DISPOSITIONS.NEUTRAL ? "hostile" : "friendly";
+    const lofTarget =
+      token.disposition < CONST.TOKEN_DISPOSITIONS.NEUTRAL
+        ? "hostile"
+        : "friendly";
 
     foundry.applications.handlebars
       .renderTemplate(`${FT.path}/templates/chat/lof-roll.hbs`, {
         token,
         roll: lofRoll,
-        attributes: attributes.map((a) => game.i18n.localize(`FT.actor.attribute.${a}`)).join("+"),
+        attributes: attributes
+          .map((a) => game.i18n.localize(`FT.actor.attribute.${a}`))
+          .join("+"),
         totalAttributes,
         modifiers,
         totalModifiers,
@@ -118,7 +128,7 @@ export async function resolveLoF(
         result: lofResult,
         damage:
           lofResult === "hit" && lofTarget === "friendly"
-            ? (await new Roll(`max(${attack.baseDamage},0)`).evaluate()).total
+            ? (await new Roll(`max(${attack.damage},0)`).evaluate()).total
             : undefined,
       })
       .then((content) => {
@@ -126,9 +136,12 @@ export async function resolveLoF(
           speaker: ChatMessage.getSpeaker({ actor }),
           flavor: game.i18n.format(`FT.system.roll.flavor.lof.${attack.type}`, {
             item: item.name,
-            result: game.i18n.format(`FT.system.roll.result.lof.${attack.type}.${lofResult}.${lofTarget}`, {
-              name: token.name,
-            }),
+            result: game.i18n.format(
+              `FT.system.roll.result.lof.${attack.type}.${lofResult}.${lofTarget}`,
+              {
+                name: token.name,
+              },
+            ),
           }),
           content,
         });

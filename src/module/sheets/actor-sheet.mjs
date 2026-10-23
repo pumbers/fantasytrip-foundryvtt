@@ -10,7 +10,9 @@ const { HandlebarsApplicationMixin } = foundry.applications.api;
  * Fantasy Trip Base Character Sheet
  *****************************************************************************/
 
-class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applications.sheets.ActorSheetV2) {
+class FTBaseCharacterSheet extends HandlebarsApplicationMixin(
+  foundry.applications.sheets.ActorSheetV2,
+) {
   /**
    * Sheet Setup
    */
@@ -83,14 +85,21 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       FT,
       actor: foundry.utils.deepClone(this.actor),
       system: foundry.utils.deepClone(this.actor.system),
-      flags: foundry.utils.mergeObject(foundry.utils.deepClone(this.actor.flags[FT.id] ?? {}), {
-        apExceeded: this.actor.system.ap > game.settings.get(FT.id, "initialAP") && this.actor.system.xp === 0,
-      }),
+      flags: foundry.utils.mergeObject(
+        foundry.utils.deepClone(this.actor.flags[FT.id] ?? {}),
+        {
+          apExceeded:
+            this.actor.system.ap > game.settings.get(FT.id, "initialAP") &&
+            this.actor.system.xp === 0,
+        },
+      ),
       settings: {
         showItemIcons: game.settings.get(FT.id, "showItemIcons"),
       },
       // Categorized items
-      talents: this.actor.items.filter((item) => item.type === "talent").sort((a, b) => a.name.localeCompare(b.name)),
+      talents: this.actor.items
+        .filter((item) => item.type === "talent")
+        .sort((a, b) => a.name.localeCompare(b.name)),
       spells: this.actor.items
         .filter((item) => item.type === "spell" && !item.system.isReady)
         .sort((a, b) => a.name.localeCompare(b.name)),
@@ -105,7 +114,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
         .filter((item) => item.system.isReady && item.system.hasActions)
         .map((item) => {
           item.system.spells
-            ?.filter((spell) => !!spell.uuid)
+            ?.filter((spell) => spell.uuid)
             .forEach((spell) => {
               spell.name = foundry.utils.fromUuidSync(spell.uuid)?.name;
             });
@@ -118,8 +127,13 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     // Sort inventory items into their containers
     context.inventory = context.inventory
       .map((item) => {
-        if (!!item.system.capacity) {
-          return [item, context.inventory.filter((contents) => contents.system.container === item._id)];
+        if (item.system.capacity) {
+          return [
+            item,
+            context.inventory.filter(
+              (contents) => contents.system.container === item._id,
+            ),
+          ];
         } else if (!item.system.container) {
           return item;
         } else {
@@ -148,7 +162,9 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
 
   static #createItem(event, target) {
     console.log("#createItem()", target.dataset);
-    Handlers.onCreateItem(this.actor, event, target).then((item) => item.sheet.render(true));
+    Handlers.onCreateItem(this.actor, event, target).then((item) =>
+      item.sheet.render(true),
+    );
   }
 
   static #editItem(event, target) {
@@ -163,7 +179,12 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
 
   static #changeItemLocation(event, target) {
     console.log("#changeItemLocation()", target.dataset);
-    return Handlers.onIemChangeLocation(this.actor, FT.item.inventory.locations, event, target);
+    return Handlers.onIemChangeLocation(
+      this.actor,
+      FT.item.inventory.locations,
+      event,
+      target,
+    );
   }
 
   static #setItemField(event, target) {
@@ -175,7 +196,11 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#changeMovement()", target.dataset);
     const modes = Object.keys(CONFIG.FT.actor.ma.modes);
     this.actor.update({
-      "system.ma.mode": modes[(modes.findIndex((m) => m === this.actor.system.ma.mode) + 1) % modes.length],
+      "system.ma.mode":
+        modes[
+          (modes.findIndex((m) => m === this.actor.system.ma.mode) + 1) %
+            modes.length
+        ],
     });
   }
 
@@ -188,7 +213,11 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#talentRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    if (!item)
+      return ui.notifications.error("FT.system.error.noItem", {
+        localize: true,
+        format: { itemId },
+      });
     Action.talentRoll(this.actor, item, target.dataset);
   }
 
@@ -196,7 +225,11 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#attackRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    if (!item)
+      return ui.notifications.error("FT.system.error.noItem", {
+        localize: true,
+        format: { itemId },
+      });
     Action.attackRoll(this.actor, item, target.dataset);
   }
 
@@ -204,7 +237,11 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#damageRoll", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    if (!item)
+      return ui.notifications.error("FT.system.error.noItem", {
+        localize: true,
+        format: { itemId },
+      });
     Action.damageRoll(this.actor, item, target.dataset);
   }
 
@@ -212,7 +249,11 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#castSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
+    if (!item)
+      return ui.notifications.error("FT.system.error.noItem", {
+        localize: true,
+        format: { itemId },
+      });
     Action.castingRoll(this.actor, item, target.dataset);
   }
 
@@ -220,14 +261,25 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#maintainSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
-    this.actor.update({ "system.fatigue": this.actor.system.fatigue + item.system.stToMaintain });
+    if (!item)
+      return ui.notifications.error("FT.system.error.noItem", {
+        localize: true,
+        format: { itemId },
+      });
+    this.actor.update({
+      "system.fatigue": this.actor.system.fatigue + item.system.stToMaintain,
+    });
   }
 
   static #cancelSpell(event, target) {
     console.log("#cancelSpell", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const spell = this.actor.items.get(itemId);
+    if (!spell)
+      return ui.notifications.error("FT.system.error.noItem", {
+        localize: true,
+        format: { itemId },
+      });
     spell.delete();
   }
 
@@ -235,11 +287,24 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     console.log("#castSpellFromItem", target.dataset);
     const itemId = target?.closest("[data-item-id]").dataset?.itemId;
     const item = this.actor.items.get(itemId);
-    if (!item) return console.error(FT.prefix, "Unable to find item", itemId);
-    const spell = foundry.utils.fromUuid(target.dataset.spellUuid).then((spell) => {
-      if (!spell) return ui.notifications.error(`Unable to find spell ${target.dataset.spellUuid}`);
-      Action.castingRoll(this.actor, spell, { ...target.dataset, burn: target.dataset.burn, item });
-    });
+    if (!item)
+      return ui.notifications.error("FT.system.error.noItem", {
+        localize: true,
+        format: { itemId },
+      });
+    foundry.utils
+      .fromUuid(target.dataset.spellUuid)
+      .then((spell) => {
+        if (!spell)
+          return ui.notifications.error(
+            `Unable to find spell ${target.dataset.spellUuid}`,
+          );
+        Action.castingRoll(this.actor, spell, {
+          ...target.dataset,
+          burn: target.dataset.burn,
+          item,
+        });
+      });
   }
 
   static #manageEffect(event, target) {
@@ -256,8 +321,10 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     const folder = await Folder.implementation.fromDropData(data);
     if (folder.type !== "Item") return [];
     const droppedItemData = await Promise.all(
+      // Compendium folders contain index entries rather than documents
       folder.contents.map(async (item) => {
-        if (!(document instanceof Item)) item = await fromUuid(item.uuid);
+        if (!(item instanceof Item))
+          item = await foundry.utils.fromUuid(item.uuid);
         return item;
       }),
     );
@@ -273,12 +340,22 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     // If it was an equipment item type...
     if (FT.item.inventory.types.includes(item.type)) {
       // Check if it was dropped on a container item
-      const element = $(event?.target);
-      const containerId = element?.closest(".item-container").data("itemId");
-      const container = !!containerId ? await this.actor.getEmbeddedDocument("Item", containerId) : null;
+      const containerId =
+        event?.target?.closest?.(".item-container")?.dataset.itemId;
+      const container = containerId
+        ? await this.actor.getEmbeddedDocument("Item", containerId)
+        : null;
+
+      // Dropping an item onto the container it's already in does nothing
+      if (
+        containerId &&
+        item.parent?.id === this.actor.id &&
+        item.system.container === containerId
+      )
+        return item;
 
       // Check if the item is a container itself and is being dropped on a container
-      if (!!container && item.system.isContainer) {
+      if (container && item.system.isContainer) {
         ui.notifications.warn("FT.game.message.noDropContainer", {
           localize: true,
           console: false,
@@ -288,7 +365,7 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
       }
 
       // Check if the container has remaining capacity...
-      if (item.system.wt > container?.system.remaining) {
+      if (item.system.totalWt > container?.system.remaining) {
         ui.notifications.warn("FT.game.message.noCapacity", {
           localize: true,
           console: false,
@@ -306,7 +383,10 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
         });
         return item;
       }
-    } else if (game.settings.get(FT.id, "checkIQForLearned") && FT.item.learned.types.includes(item.type)) {
+    } else if (
+      game.settings.get(FT.id, "checkIQForLearned") &&
+      FT.item.learned.types.includes(item.type)
+    ) {
       if (item.system.minIQ > this.actor.system.iq.max) {
         ui.notifications.error("FT.game.message.insufficientIQ", {
           localize: true,
@@ -340,7 +420,10 @@ class FTBaseCharacterSheet extends HandlebarsApplicationMixin(foundry.applicatio
     const a = document.createElement("a");
     const url = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
     a.setAttribute("href", url);
-    a.setAttribute("download", `Fantasy Trip FVTT Export - ${this.actor.name}.txt`);
+    a.setAttribute(
+      "download",
+      `Fantasy Trip FVTT Export - ${this.actor.name}.txt`,
+    );
     a.click();
     a.remove();
   }
@@ -391,9 +474,13 @@ export class FTCharacterSheet extends FTBaseCharacterSheet {
     },
     character: {
       template: `${FT.path}/templates/sheet/actor/character/tab-character.hbs`,
-      templates: ["_actions.hbs", "_encumbrance.hbs", "_health.hbs", "_mana.hbs", "_modifiers.hbs"].map(
-        (t) => `${FT.path}/templates/sheet/actor/${t}`,
-      ),
+      templates: [
+        "_actions.hbs",
+        "_encumbrance.hbs",
+        "_health.hbs",
+        "_mana.hbs",
+        "_modifiers.hbs",
+      ].map((t) => `${FT.path}/templates/sheet/actor/${t}`),
       scrollable: ["#actions"],
     },
     notes: {
@@ -438,7 +525,12 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
   /** @inheritdoc */
   static TABS = {
     primary: {
-      tabs: [{ id: "character" }, { id: "notes" }, { id: "inventory" }, { id: "effects" }],
+      tabs: [
+        { id: "character" },
+        { id: "notes" },
+        { id: "inventory" },
+        { id: "effects" },
+      ],
       initial: "character",
       labelPrefix: "FT.actor.sheet.tab",
     },
@@ -455,9 +547,13 @@ export class FTNPCSheet extends FTBaseCharacterSheet {
     },
     character: {
       template: `${FT.path}/templates/sheet/actor/npc/tab-character.hbs`,
-      templates: ["_actions.hbs", "_encumbrance.hbs", "_health.hbs", "_mana.hbs", "_modifiers.hbs"].map(
-        (t) => `${FT.path}/templates/sheet/actor/${t}`,
-      ),
+      templates: [
+        "_actions.hbs",
+        "_encumbrance.hbs",
+        "_health.hbs",
+        "_mana.hbs",
+        "_modifiers.hbs",
+      ].map((t) => `${FT.path}/templates/sheet/actor/${t}`),
       scrollable: ["#actions"],
     },
     notes: {

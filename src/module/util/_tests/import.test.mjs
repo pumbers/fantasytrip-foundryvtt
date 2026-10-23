@@ -1,4 +1,4 @@
-import { importStandardText, exportStandardText } from "../transfer.mjs";
+import { importStandardText } from "../transfer.mjs";
 
 const fullActor = `Doctor Mandrake, wizard, age 99
 ST 12, DX 13, IQ 18, MA 10
@@ -53,15 +53,19 @@ test("Import Full Actor", () => {
   expect(system.st.max).toBe(12);
   expect(system.dx.max).toBe(13);
   expect(system.iq.max).toBe(18);
-  expect(system.ma.walk).toBe(10);
-  expect(system.ma.fly).toBe(10);
-  expect(system.ma.swim).toBe(10);
+  expect(system.ma.walk.max).toBe(10);
+  expect(system.ma.swim.max).toBe(10);
+  expect(system.ma.fly.max).toBe(0);
 
   expect(items.length).toBe(34);
 
   // Talents
   expect(items).toContainEqual({ name: "Alchemy", type: "talent" });
-  expect(items).toContainEqual({ _id: "test", name: "Literacy", type: "talent" });
+  expect(items).toContainEqual({
+    _id: "test",
+    name: "Literacy",
+    type: "talent",
+  });
   expect(items).toContainEqual({ name: "Sword", type: "talent" });
 
   // Spells
@@ -80,8 +84,16 @@ test("Import Full Actor", () => {
     system: { defenses: [{ action: "Body", hitsStopped: 3 }] },
     type: "equipment",
   });
-  expect(items).toContainEqual({ name: "Torches", type: "equipment", system: { qty: 2 } });
-  expect(items).toContainEqual({ name: "wizard’s chest", type: "equipment", system: { qty: 1 } });
+  expect(items).toContainEqual({
+    name: "Torches",
+    type: "equipment",
+    system: { qty: 2 },
+  });
+  expect(items).toContainEqual({
+    name: "wizard’s chest",
+    type: "equipment",
+    system: { qty: 1 },
+  });
   expect(items).toContainEqual({
     name: "Allergic to cats",
     type: "ability",
@@ -95,18 +107,74 @@ test("Import Full Actor", () => {
   expect(items).toContainEqual(
     { name: "Gem of Summoning (4-Hex Dragon)", type: "equipment" },
     { name: "Powerstone, 5 ST (emerald; see below)", type: "equipment" },
-    { name: "Staff III (Mana 12): 2’ ebony wand, value $300 (1d)", type: "equipment" }
+    {
+      name: "Staff III (Mana 12): 2’ ebony wand, value $300 (1d)",
+      type: "equipment",
+    },
   );
   expect(system.notes).toContainEqual(
-    "<p>Dr. Mandrake becomes violently angry if he is reminded, intentionally or not, of his age.</p>"
+    "<p>Dr. Mandrake becomes violently angry if he is reminded, intentionally or not, of his age.</p>",
   );
 });
 
 test("Import Full Actor", () => {
-  const { name, system, items } = importStandardText(minimalActor);
+  const { name, system } = importStandardText(minimalActor);
 
   // Base
   expect(name).toBe("Little Crabmen");
   expect(system.type).toBe("hero");
   expect(system.age).toBe(18);
+});
+
+test("Import finds world weapons, armor & equipment by trimmed name", () => {
+  const original = game.items.find;
+  const worldItems = [
+    { _id: "sword", name: "Broadsword", type: "equipment" },
+    { _id: "armor", name: "Leather armor", type: "equipment" },
+    { _id: "rope", name: "Rope", type: "equipment" },
+  ];
+  game.items.find = (fn) => {
+    const found = worldItems.find(fn);
+    return found ? { toObject: () => found } : undefined;
+  };
+
+  try {
+    const { items } = importStandardText(`Test Hero
+ST 10, DX 10, IQ 10, MA 10
+Weapon: Broadsword (2d)
+Armor: Leather armor stops 2 hits/attack
+Equipment: Rope (2)`);
+
+    expect(items).toContainEqual(worldItems[0]);
+    expect(items).toContainEqual(worldItems[1]);
+    expect(items).toContainEqual(worldItems[2]);
+  } finally {
+    game.items.find = original;
+  }
+});
+
+test("Import rejects text without an attribute line", () => {
+  expect(() => importStandardText("Just some text")).toThrow();
+});
+
+test("Import tolerates missing lists and unexpected list entries", () => {
+  const { name, items } = importStandardText(`Plain Hero
+ST 10, DX 10, IQ 10, MA 10`);
+  expect(name).toBe("Plain Hero");
+  expect(items).toEqual([]);
+
+  const { items: oddItems } = importStandardText(`Odd Hero
+ST 10, DX 10, IQ 10, MA 10
+Weapon: Halberd [2-hex]
+Armor: Leather armor`);
+  expect(oddItems).toContainEqual({
+    name: "Halberd [2-hex]",
+    type: "equipment",
+    system: { attacks: [{ action: "Attack", baseDamage: "" }] },
+  });
+  expect(oddItems).toContainEqual({
+    name: "Leather armor",
+    type: "equipment",
+    system: { defenses: [{ action: "Body", hitsStopped: 0 }] },
+  });
 });

@@ -9,8 +9,10 @@ Hooks.on("renderCombatTracker", async (app, html, data) => {
       .querySelector(".encounter-title")
       .append(
         ` - ${game.i18n.localize(
-          data.combat?.isMovementRound ? "FT.system.combat.phase.movement" : "FT.system.combat.phase.combat"
-        )}`
+          data.combat?.isMovementRound
+            ? "FT.system.combat.phase.movement"
+            : "FT.system.combat.phase.combat",
+        )}`,
       );
   }
 });
@@ -35,14 +37,20 @@ export class FTCombat extends foundry.documents.Combat {
         "Combatant",
         this.combatants.map((c) => ({
           _id: c._id,
-          initiative: c.isDefeated ? 0 : c.actor?.system.initiative.dx + c.initiative / 10,
-        }))
+          initiative: c.isDefeated
+            ? 0
+            : c.actor?.system.initiative.dx + c.initiative / 10,
+        })),
       );
     } else {
       // If we've just ended a combat round, roll new initiatives for the movement round
 
       // Set all defeated combatants initiative to 0, everyone else to null
-      await Promise.all(this.combatants.map((c) => this.setInitiative(c._id, c.isDefeated ? 0 : null)));
+      await Promise.all(
+        this.combatants.map((c) =>
+          this.setInitiative(c._id, c.isDefeated ? 0 : null),
+        ),
+      );
 
       // Reroll all remaining initiatives
       await this.rollAll();
@@ -65,7 +73,10 @@ export class FTCombat extends foundry.documents.Combat {
   /**
    * @inheritdoc
    */
-  async rollInitiative(ids, { formula = null, updateTurn = false, messageOptions = {} } = {}) {
+  async rollInitiative(
+    ids,
+    { formula = null, updateTurn = false, messageOptions = {} } = {},
+  ) {
     // console.log(
     //   "Combat.rollInitiative()",
     //   "ids",
@@ -85,22 +96,35 @@ export class FTCombat extends foundry.documents.Combat {
     // console.log("... useFTInitiative", useFTInitiative, "combatGroupInitiative", combatGroupInitiative);
 
     // If not using Fantasy Trip initiative, use Foundary default
-    if (!useFTInitiative) return super.rollInitiative(ids, { formula, updateTurn, messageOptions });
+    if (!useFTInitiative)
+      return super.rollInitiative(ids, { formula, updateTurn, messageOptions });
 
     // Split up the combatants
     const combatants = ids.map((id) => this.combatants.get(id));
-    const pcCombatants = combatants.filter((c) => !c.isDefeated).filter((c) => !c.isNPC);
-    const npcCombatants = combatants.filter((c) => !c.isDefeated).filter((c) => c.isNPC);
+    const pcCombatants = combatants
+      .filter((c) => !c.isDefeated)
+      .filter((c) => !c.isNPC);
+    const npcCombatants = combatants
+      .filter((c) => !c.isDefeated)
+      .filter((c) => c.isNPC);
 
     // Calculate group initiative bonuses & group rolls
     let pcGroupRoll, npcGroupRoll;
-    const pcGroupBonus = Math.max(...pcCombatants.map((c) => c.actor.system.initiative.party), 0);
-    if (pcGroupInitiative) pcGroupRoll = (await new Roll(`1d6`).evaluate()).total;
-    const npcGroupBonus = Math.max(...npcCombatants.map((c) => c.actor.system.initiative.party), 0);
-    if (npcGroupInitiative) npcGroupRoll = (await new Roll(`1d6`).evaluate()).total;
+    const pcGroupBonus = Math.max(
+      ...pcCombatants.map((c) => c.actor.system.initiative.party),
+      0,
+    );
+    if (pcGroupInitiative)
+      pcGroupRoll = (await new Roll("1d6").evaluate()).total;
+    const npcGroupBonus = Math.max(
+      ...npcCombatants.map((c) => c.actor.system.initiative.party),
+      0,
+    );
+    if (npcGroupInitiative)
+      npcGroupRoll = (await new Roll("1d6").evaluate()).total;
 
     // Roll PC initiative
-    super.rollInitiative(
+    await super.rollInitiative(
       pcCombatants.map((c) => c._id),
       {
         formula: [
@@ -110,15 +134,15 @@ export class FTCombat extends foundry.documents.Combat {
           pcGroupBonus,
           "(1d6/10)+(1d6/100)",
         ]
-          .filter((t) => !!t)
+          .filter((t) => t)
           .join("+"),
         updateTurn,
         messageOptions,
-      }
+      },
     );
 
     // Roll NPC initiative
-    super.rollInitiative(
+    await super.rollInitiative(
       npcCombatants.map((c) => c._id),
       {
         formula: [
@@ -128,15 +152,19 @@ export class FTCombat extends foundry.documents.Combat {
           npcGroupBonus,
           "(1d6/10)+(1d6/100)",
         ]
-          .filter((t) => !!t)
+          .filter((t) => t)
           .join("+"),
         updateTurn,
         messageOptions,
-      }
+      },
     );
 
     // Set all defeated combatants initiative to 0
-    Promise.all(combatants.filter((c) => c.isDefeated).map((c) => this.setInitiative(_id, c._id, 0)));
+    await Promise.all(
+      combatants
+        .filter((c) => c.isDefeated)
+        .map((c) => this.setInitiative(c._id, 0)),
+    );
 
     return this;
   }
@@ -146,7 +174,10 @@ export class FTCombat extends foundry.documents.Combat {
  * Check for possible conflicting modules
  */
 Hooks.on("ready", async () => {
-  if (game.modules.get("monks-combat-details")?.active && game.settings.get(FT.id, "useFTInitiative")) {
+  if (
+    game.modules.get("monks-combat-details")?.active &&
+    game.settings.get(FT.id, "useFTInitiative")
+  ) {
     ui.notifications.warn("FT.game.message.monksWarning", { localize: true });
   }
 });

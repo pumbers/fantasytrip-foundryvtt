@@ -1,138 +1,140 @@
 @reference "./fantasy-trip.css";
 
 .theme-dark .fantasy-trip i[class^="icon-"] {
-  @apply invert-100;
+    @apply invert-100;
 }
 
 .fantasy-trip {
-  & i[class^="icon-"] {
-    @apply inline-block !w-[1em] !h-[1em] leading-[1em] relative top-[0.1em] text-ft-dark dark:invert-100;
-    filter: brightness(0) saturate(100%) invert(16%) sepia(0%) saturate(24%) hue-rotate(172deg) brightness(85%)
-      contrast(97%);
-    @media (prefers-color-scheme: dark) {
-      filter: brightness(0) saturate(100%) invert(90%) sepia(61%) saturate(2753%) hue-rotate(188deg) brightness(127%)
-        contrast(93%);
+    & i[class^="icon-"] {
+        @apply inline-block w-[1em]! h-[1em]! leading-[1em] relative top-[0.1em] text-ft-dark dark:invert-100;
+        filter: brightness(0) saturate(100%) invert(16%) sepia(0%) saturate(24%)
+            hue-rotate(172deg) brightness(85%) contrast(97%);
+        @media (prefers-color-scheme: dark) {
+            filter: brightness(0) saturate(100%) invert(90%) sepia(61%)
+                saturate(2753%) hue-rotate(188deg) brightness(127%)
+                contrast(93%);
+        }
+        &.warning {
+            filter: brightness(0) saturate(100%) invert(58%) sepia(33%)
+                saturate(3104%) hue-rotate(360deg) brightness(104%)
+                contrast(107%);
+        }
+        &.danger {
+            filter: brightness(0) saturate(100%) invert(27%) sepia(63%)
+                saturate(6083%) hue-rotate(0deg) brightness(100%) contrast(110%);
+        }
+        &.faded {
+            filter: brightness(0) saturate(100%) invert(71%) sepia(4%)
+                saturate(30%) hue-rotate(23deg) brightness(96%) contrast(89%);
+        }
     }
-    &.warning {
-      filter: brightness(0) saturate(100%) invert(58%) sepia(33%) saturate(3104%) hue-rotate(360deg) brightness(104%)
-        contrast(107%);
+
+    /* Dice */
+    & .icon-d6::before {
+        content: url("../assets/icons/d6.svg");
     }
-    &.danger {
-      filter: brightness(0) saturate(100%) invert(27%) sepia(63%) saturate(6083%) hue-rotate(0deg) brightness(100%)
-        contrast(110%);
+    & .icon-d20::before {
+        content: url("../assets/icons/d20.svg");
     }
-    &.faded {
-      filter: brightness(0) saturate(100%) invert(71%) sepia(4%) saturate(30%) hue-rotate(23deg) brightness(96%)
-        contrast(89%);
+    & .icon-rolling-dice::before {
+        content: url("../assets/icons/rolling-dice.svg");
     }
-  }
 
-  /* Dice */
-  & .icon-d6::before {
-    content: url("../assets/icons/d6.svg");
-  }
-  & .icon-d20::before {
-    content: url("../assets/icons/d20.svg");
-  }
-  & .icon-rolling-dice::before {
-    content: url("../assets/icons/rolling-dice.svg");
-  }
+    /* Equipment Locations */
+    & .icon-battle-gear::before {
+        content: url("../assets/icons/battle-gear.svg");
+    }
+    & .icon-knapsack::before {
+        content: url("../assets/icons/knapsack.svg");
+    }
+    & .icon-chest::before {
+        content: url("../assets/icons/chest.svg");
+    }
+    & .icon-white-tower::before {
+        content: url("../assets/icons/white-tower.svg");
+    }
+    & .icon-drop-weapon::before {
+        content: url("../assets/icons/drop-weapon.svg");
+    }
 
-  /* Equipment Locations */
-  & .icon-battle-gear::before {
-    content: url("../assets/icons/battle-gear.svg");
-  }
-  & .icon-knapsack::before {
-    content: url("../assets/icons/knapsack.svg");
-  }
-  & .icon-chest::before {
-    content: url("../assets/icons/chest.svg");
-  }
-  & .icon-white-tower::before {
-    content: url("../assets/icons/white-tower.svg");
-  }
-  & .icon-drop-weapon::before {
-    content: url("../assets/icons/drop-weapon.svg");
-  }
+    /* Status */
+    & .icon-death-skull::before {
+        content: url("../assets/icons/death-skull.svg");
+    }
+    & .icon-wizard-staff::before {
+        content: url("../assets/icons/wizard-staff.svg");
+    }
+    & .icon-embrassed-energy::before {
+        content: url("../assets/icons/embrassed-energy.svg");
+    }
 
-  /* Status */
-  & .icon-death-skull::before {
-    content: url("../assets/icons/death-skull.svg");
-  }
-  & .icon-wizard-staff::before {
-    content: url("../assets/icons/wizard-staff.svg");
-  }
-  & .icon-embrassed-energy::before {
-    content: url("../assets/icons/embrassed-energy.svg");
-  }
+    /* Actions */
+    & .icon-sword-brandish::before {
+        content: url("../assets/icons/sword-brandish.svg");
+    }
+    & .icon-weight-lifting-up::before {
+        content: url("../assets/icons/weight-lifting-up.svg");
+    }
+    & .icon-broadsword::before {
+        content: url("../assets/icons/broadsword.svg");
+    }
+    & .icon-chest-armor::before {
+        content: url("../assets/icons/chest-armor.svg");
+    }
+    & .icon-run::before {
+        content: url("../assets/icons/run.svg");
+    }
+    & .icon-pentacle::before {
+        content: url("../assets/icons/pentacle.svg");
+    }
+    & .icon-flame::before {
+        content: url("../assets/icons/flame.svg");
+    }
+    & .icon-skills::before {
+        content: url("../assets/icons/skills.svg");
+    }
 
-  /* Actions */
-  & .icon-sword-brandish::before {
-    content: url("../assets/icons/sword-brandish.svg");
-  }
-  & .icon-weight-lifting-up::before {
-    content: url("../assets/icons/weight-lifting-up.svg");
-  }
-  & .icon-broadsword::before {
-    content: url("../assets/icons/broadsword.svg");
-  }
-  & .icon-chest-armor::before {
-    content: url("../assets/icons/chest-armor.svg");
-  }
-  & .icon-run::before {
-    content: url("../assets/icons/run.svg");
-  }
-  & .icon-pentacle::before {
-    content: url("../assets/icons/pentacle.svg");
-  }
-  & .icon-flame::before {
-    content: url("../assets/icons/flame.svg");
-  }
-  & .icon-skills::before {
-    content: url("../assets/icons/skills.svg");
-  }
+    /* Weapons */
+    & .icon-fist::before {
+        content: url("../assets/icons/fist.svg");
+    }
+    & .icon-swordman::before {
+        content: url("../assets/icons/swordman.svg");
+    }
+    & .icon-flanged-mace::before {
+        content: url("../assets/icons/flanged-mace.svg");
+    }
+    & .icon-thrown-knife::before {
+        content: url("../assets/icons/thrown-knife.svg");
+    }
+    & .icon-bowman::before {
+        content: url("../assets/icons/bowman.svg");
+    }
 
-  /* Weapons */
-  & .icon-fist::before {
-    content: url("../assets/icons/fist.svg");
-  }
-  & .icon-swordman::before {
-    content: url("../assets/icons/swordman.svg");
-  }
-  & .icon-flanged-mace::before {
-    content: url("../assets/icons/flanged-mace.svg");
-  }
-  & .icon-thrown-knife::before {
-    content: url("../assets/icons/thrown-knife.svg");
-  }
-  & .icon-bowman::before {
-    content: url("../assets/icons/bowman.svg");
-  }
+    /* Movement */
+    & .icon-walk::before {
+        content: url("../assets/icons/walk.svg");
+    }
+    & .icon-swim::before {
+        content: url("../assets/icons/whale-tail.svg");
+    }
+    & .icon-fly::before {
+        content: url("../assets/icons/feathered-wing.svg");
+    }
 
-  /* Movement */
-  & .icon-walk::before {
-    content: url("../assets/icons/walk.svg");
-  }
-  & .icon-swim::before {
-    content: url("../assets/icons/whale-tail.svg");
-  }
-  & .icon-fly::before {
-    content: url("../assets/icons/feathered-wing.svg");
-  }
+    /* Spells */
+    & .icon-magic-swirl::before {
+        content: url("../assets/icons/magic-swirl.svg");
+    }
+    & .icon-pentacle::before {
+        content: url("../assets/icons/pentacle.svg");
+    }
+    & .icon-pentagram-rose::before {
+        content: url("../assets/icons/pentagram-rose.svg");
+    }
 
-  /* Spells */
-  & .icon-magic-swirl::before {
-    content: url("../assets/icons/magic-swirl.svg");
-  }
-  & .icon-pentacle::before {
-    content: url("../assets/icons/pentacle.svg");
-  }
-  & .icon-pentagram-rose::before {
-    content: url("../assets/icons/pentagram-rose.svg");
-  }
-
-  /* Misc */
-  & .icon-open-book::before {
-    content: url("../assets/icons/open-book.svg");
-  }
+    /* Misc */
+    & .icon-open-book::before {
+        content: url("../assets/icons/open-book.svg");
+    }
 }

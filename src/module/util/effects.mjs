@@ -29,7 +29,7 @@ export function onManageActiveEffect(owner, event, target) {
             name: game.i18n.format("DOCUMENT.New", {
               type: game.i18n.localize("DOCUMENT.ActiveEffect"),
             }),
-            icon: "icons/svg/aura.svg",
+            img: "icons/svg/aura.svg",
             origin: owner.uuid,
             transfer: owner.type !== "spell",
           },
