@@ -64,9 +64,9 @@ FT.actor = {
   },
   ma: {
     modes: {
-      walk: "FT.actor.ma.mode.walk",
-      swim: "FT.actor.ma.mode.swim",
-      fly: "FT.actor.ma.mode.fly",
+      walk: "FT.actor.attribute.ma.mode.walk",
+      swim: "FT.actor.attribute.ma.mode.swim",
+      fly: "FT.actor.attribute.ma.mode.fly",
     },
   },
   tracks: {

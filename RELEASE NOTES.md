@@ -27,7 +27,7 @@
 - Casting from an item now names the item in chats & dialogs
 - Fixed icon for new active effect and deprecation message
 - Ensure item actions are edited from source data and default names are applied
-- Fixed incorrect roll dialog type and console error when pmaking different rolls one after another
+- Fixed incorrect roll dialog type and console error when making different rolls one after another
 - Fixed incorrect attack used to show damage button on equipment with multiple attacks
 - Ensure dropping an item onto a container check total wt of multiple items against the container's remaining capacity
 - Ignore dropping an item into a container it's already in
